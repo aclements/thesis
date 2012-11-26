@@ -15,7 +15,7 @@ do
             fi
 	done
     done
-    FLIST=`ls $FLIST | sort | uniq`
+    FLIST=`ls $FLIST 2>/dev/null | sort | uniq`
 
     if [ "$LAST" = "$FLIST" ]; then
 	echo $LAST

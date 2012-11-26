@@ -1,4 +1,4 @@
-% \section{Introduction}
+\section{Introduction}
 \label{sec:intro}
 
 In computation-heavy domains, such as scientific computing and
@@ -57,7 +57,7 @@ are addressed quickly.
 %
 Application developers must modify their code to avoid bottlenecks in
 the kernel and in other services, such as databases, but these
-bottlenecks often aren't documented or even known.
+bottlenecks often aren't documented or may not even be known.
 %
 Effort is duplicated as multiple programmers discover similar
 workarounds, and then must modify them as underlying problems are
@@ -76,11 +76,13 @@ Documented \emph{interface-level} properties should, as far as
 possible, determine the scalability of a program.
 
 This proposal develops tools for modular scalability reasoning that
-we call \textbf{commutativity rules}.
+we call the \textbf{external commutativity rule}.
+\XXX[Scalable commutativity rule?]
 %
 The main idea is intuitive (our proposed work will make it precise).
 %
-Two operations \emph{commute} if their order doesn't matter and
+Two operations \emph{commute} if their order of execution does not
+affect their results and the results of
 later operations cannot distinguish which operation executed first.
 %
 Commutativity is a property of an interface specification
@@ -89,15 +91,17 @@ implementation.  A particular implementation of an interface
 \emph{scales} when concurrent operations do not affect each other's
 execution times; this is ``perfect'' scalability in which
 additional cores produce linear increases in throughput.
-Commutativity rules observe that, even though
+The commutativity rule observes that, even though
 scalability is an implementation property, an interface has a certain
 inherent scalability that an implementation may exploit.
+Hence, programmers can use the rule to evaluate scalability
+independent of implementations; not only is this far easier than
+reasoning about code, but it is possible before an implementation even
+exists.
 %
-The basic commutativity rule says that \emph{whenever two
+Specifically, \emph{whenever two
 operations commute, there exist implementations of those operations that
 scale}.
-%
-A proof sketch is given in Section~\ref{pf}.
 %
 More broadly stated, we believe that \emph{the more commutative} an
 interface is, \emph{the more scalable} its implementation can be.
@@ -105,7 +109,7 @@ interface is, \emph{the more scalable} its implementation can be.
 This has two important consequences, one for interface design and use
 and one for implementation.
 
-First, commutativity rules suggest that an operation that
+First, the commutativity rule suggests that an operation that
 \emph{never} commutes will be difficult or impossible to scale.
 %
 A system designer need not try to scale such an operation, since the
@@ -124,11 +128,12 @@ must return the lowest unused file descriptor.
 A more scalable \syscall{open} interface would return \emph{any}
 unused file descriptor.
 
-Second, commutativity rules suggest that operations that
+Second, the commutativity rule suggests that operations that
 \emph{do} commute \emph{can be} made scalable.
 %
 This holds even for operations that commute only in selected states or for
-selected arguments.
+selected arguments and, as we show, many interfaces fall between
+universal commutativity and universal non-commutativity.
 %
 For example, consider the \syscall{mmap} system call for mapping
 memory.
@@ -139,12 +144,11 @@ of the memory map requests can win.
 %
 But more commonly, different threads will call \syscall{mmap} at
 \emph{different} addresses (for example, to allocate memory within
-thread-specific VM regions).
+thread-specific regions of virtual memory).
 %
 Since such calls commute, they can also scale~\cite{clements:bonsai},
 even if they do not scale in current implementations of
 \syscall{mmap}.
-
 
 The commutativity rule lets systems implementers, interface
 designers, and application developers think of scalability in terms of
@@ -164,14 +168,59 @@ lacking from our current understanding of scalability: they highlight
 when implementations should strive to be scalable, and which interfaces
 are inherently unscalable.
 
-\input{problem}
+An example will show why commutativity rules can help even experienced
+programmers understand the inherent scalability of an interface.
+%
+Consider the \syscall{open} system call, as used to create a file in a
+directory.
+%
+Further imagine that two \syscall{open} calls from different processes
+create two files in the same directory at the same time.
+%
+Can those system calls be made to scale?
+%
+Our first answer was ``obviously not.''
+%
+The two system calls modify the same shared state, namely the containing
+directory.
+%
+Surely in any implementation the two calls would contend on this shared
+state, either via a lock or via non-blocking synchronization on one or
+more shared cache lines. (Both forms of contention limit scalability.)
+%
+But commutativity shows this isn't really true.
+%
+If the two system calls create files \emph{with different names}, then the
+success or failure of each system call is independent; later system calls can't
+distinguish which completed first; and the operations commute.
+%
+Our commutativity rules say, therefore, that there must exist some
+implementation of \syscall{open} that scales for these calls.
+%
+In hindsight, this implementation is straightforward.
+%
+If the directory is implemented as a hash table, and each hash bucket has an
+independent lock, the two file creations can proceed (most likely) without
+communicating.
+%
+The authors initially believed that this example could not scale; our
+mistake was to analyze only the implementations we could think of for
+scalability. It was examples like this that motivated our search for
+the rule.
+%
+And file creation is not the only example: commutativity rules have pointed us
+to similar insights in other interfaces, including the virtual memory system and
+\syscall{mmap}.
 
 \paragraph{Research challenges}
 
-Our overall research plan is to explore and formalize scalable
-commutativity and modular scalability reasoning. We will build
-the {\sys} operating system for hands-on experience with
-using these ideas to design scalable interfaces and 
+The proposed research addresses new problems in specification and
+implementation.  Our overall research plan is to explore and formalize
+the commutativity rule and modular scalability reasoning.  A precise
+definition of commutativity must depend on interface properties,
+system state, and potentially even future operations, while remaining
+intuitive.  We will build the {\sys} operating system for hands-on
+experience with using these ideas to design scalable interfaces and
 construct scalable implementations.
 
 More specifically, we plan to work on the following (see

@@ -1,7 +1,8 @@
 \section{Research challenges}
 \label{sec:research}
 
-The ultimate goal of this proposal is to provide a rule that developers
+The ultimate goal of this proposal is to provide a rule that software
+developers
 can use to design scalable interfaces, and to understand when an
 implementation of a given interface cannot be expected to scale
 further.
@@ -22,29 +23,6 @@ APIs and to quickly explore different implementations.
 \end{comment}
 The rest of this section lays out the research challenges both in
 developing the rule, and in applying the rule to software systems.
-
-
-\subsection{What is a good abstract machine model?}
-
-One of the main topics of research for this proposal is to explore
-aspects of the abstract machine and their relationship to scalability.
-Although the abstract machine above is a quite simplistic version of
-real hardware, it is a good starting point.  Our preliminary results
-with \sys demonstrate that real-world hardware with local caches and
-cache coherence is reasonably close to the abstract machine.
-%
-But the current abstract machine doesn't have a notion
-of locality.  For example, in real hardware pair-wise communication
-can scale linearly, which the above model doesn't capture.  As we
-explore in \S\ref{sec:asymptotic}, scalable local communication allows
-for a class of algorithms (e.g., resource allocation) to be implemented
-that are important in practice.
-
-Another limitation is that the abstract machine is limited to modeling
-caches (and assumes infinitely large caches), ignoring other scalability
-bottlenecks, such as the memory system.  Generalizing the abstract
-machine to other resources is another research direction that we would
-like to explore.
 
 
 \subsection{Are there different degrees of commutativity?}
@@ -107,6 +85,30 @@ system.
 %% care tho
 
 
+\subsection{What is a good abstract machine model?}
+
+One of the main topics of research for this proposal is to explore
+aspects of the abstract machine and their relationship to scalability.
+Although the abstract machine above is a quite simplistic version of
+real hardware, it is a good starting point.  Our preliminary results
+with \sys demonstrate that real-world hardware with local caches and
+cache coherence is reasonably close to the abstract machine.
+%
+But the current abstract machine doesn't have a notion
+of locality.  For example, in real hardware communication between
+topological neighbors
+can scale linearly, which the above model doesn't capture.  As we
+explore in \S\ref{sec:asymptotic}, scalable local communication
+enables scalable implementations of a class of algorithms that are
+important in practice (e.g., resource allocation). 
+
+The abstract machine is also limited to modeling
+caches (and assumes infinitely large caches), ignoring other scalability
+bottlenecks, such as the memory system.  Generalizing the abstract
+machine to other resources is another research direction that we would
+like to explore.
+
+
 \subsection{What can be made scalable that is not covered by the rule?}
 \label{sec:asymptotic}
 
@@ -144,13 +146,13 @@ operations that can be implemented scalably on that machine.
 \label{sec:api}
 
 As a case study of how the rule can be used by developers, we plan to
-explore the scalability of the Linux syscall API, which is inspired
-by POSIX\@.  Although our experience suggests that POSIX is largely
+explore the scalability of the Linux syscall API (which is inspired
+by POSIX).  Although our experience suggests that POSIX is largely
 amenable to scalable implementations~\cite{boyd-wickizer:scaling}, we hope
 to use the rule to either prove that certain aspects of the API can be
 implemented to scale linearly on real hardware, or to find system calls
 that are needlessly non-commutative.  For interfaces whose execution
-doesn't scale linearly, we will propose changes to the API that improves
+doesn't scale linearly, we will propose changes to the API that improve
 the commutativity of operations, thereby making it possible to implement
 a scalable kernel.
 
@@ -235,32 +237,6 @@ carried over to subsystems that xv6 won't support.
 \end{comment}
 
 
-\subsection{How should applications use the rule and scalable interfaces?}
-
-Commutativity also applies to other interfaces important to
-systems programming, such as database interfaces.
-%
- To understand what the commutativity rule means for application
-developers, we will build a new key-value store based on our previous
-work with Masstree~\cite{mao:masstree}.  This implementation will
-use the rule in two ways.  First, we will apply the rule to ensure
-that the store uses commutative (and therefore scalable) operating
-system interfaces whenever possible, so that its
-implementation can be made scalable.  Second, we will analyze and improve the
-commutativity (and therefore scalability) of the interface that the
-store exposes to its users.
-%
-The basic key-value store interface is simple and seemingly commutative;
-when considering only \OP{get}$(k)$ and \OP{put}$(k, v)$ operations,
-everything commutes except for operations on the same key.
-%
-However, this interface does not suffice for building larger sensible
-units, such as transactions.
-%
-We will investigate new, more commutative interfaces for isolated
-transaction-like units.
-
-
 \subsection{How to verify that an implementation follows the rule?}
 
 The commutativity rule guides design, but for complex and multi-layered
@@ -268,7 +244,7 @@ software like an OS kernel with interacting subsystems, developers must
 ensure that the implementation satisfies the rule when expected.
 One question we would like to explore as part of this proposal's research
 is how to check whether an implementation follows the rule.  As a starting
-point, we would like to explore an approach based on logical variables
+point, we would like to explore an approach based on \emph{logical variables}
 and physical memory tracing.
 
 At first glance it might seem easy to check if an operation scales
@@ -282,9 +258,10 @@ we need a different approach for focusing a developer's attention on
 the commutative operations that don't scale linearly.
 
 As part of this proposal, we plan to build a dynamic analysis tool that uses
-programmer-supplied annotations to mark logical variables (e.g., a directory, an
-inode, a virtual page, etc.) and physical memory tracing to determine which
-operations are commutative, and consequently should scale linearly.  Combined
+programmer-supplied annotations to mark logical variables---objects
+such as directories, inodes, and virtual pages that are manipulated at
+an API level---to determine which operations are commutative, and
+physical memory tracing to determine which operations share memory.  Combined
 with workload generators designed to exercise the kernel, this lets us report
 pairs of operations that violate the rule, along with exactly where the
 violation occurred and what memory was shared.

@@ -1,9 +1,0 @@
-#!/bin/sh
-
-for file in bu${1}*.aux
-do
-  F=`basename $file .aux`
-  echo bibtex -min-crossrefs=100 $F
-  bibtex -min-crossrefs=100 $F
-  cat $F.bbl | grep -v ^$ > $F.bbl2 && mv $F.bbl2 $F.bbl
-done

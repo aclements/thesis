@@ -12,7 +12,8 @@ To get a sense of whether the commutativity rule matters for scalability
 of real system interfaces, and how one might apply it in a constructive
 fashion, we explore one specific example from the Linux system call API:
 the \code{stat} system call.  The \code{stat} system call returns both the
-length of the file and the number of hard links.  Because the \code{stat}
+length of the file and the number of hard links among other things.
+Because the \code{stat}
 system call returns the link count, it does not commute with
 \code{link} and \code{unlink} operations on the same file, even if
 the application is only interested in the file's length. This lack of

@@ -3,7 +3,7 @@
 \section{Related Work}
 \label{sec:related}
 
-The primary contribution of this work is the Commutativity Rule and its
+The primary contribution of this work is the commutativity rule and its
 use in the design and implementation of software systems.  This section
 relates this contribution to previous work on scalability, operating
 system design, and commutativity.
@@ -30,10 +30,12 @@ as explained in more detail in \S\ref{sec:research}.
 
 The Laws of Order~\cite{law:orders} explore the relationship between an
 interface specification and whether that interface can be implemented
-without ``expensive instructions.''  These expensive instructions, such
+without ``expensive instructions'' related to synchronization.  These expensive
+instructions, such
 as \code{mfence} on the x86, slow down the execution of an individual
-processor in isolation, because they require the write buffer to be
-flushed before subsequent reads can be retired.  The Laws of Order observe
+processor in isolation by interfering with its ability to reorder execution in
+externally observable ways (e.g., they require the write buffer to be
+flushed before subsequent reads can be retired).  The Laws of Order observe
 that strong non-commutativity of operations is related to whether an
 implementation without expensive instructions is feasible.  Paul
 McKenney explores what the Laws of Order may mean for the Linux kernel,
@@ -50,7 +52,8 @@ Theoreticians generally analyze implementations of concurrent
 data structures in terms of properties like lock-freedom and
 wait-freedom~\cite{herlihy:art}, and such data structures are useful in
 realizing scalable implementations of commutative interfaces.
-These notions guarantee progress, but not scalability.
+However, while these notions guarantee progress, they do not imply that a data
+structure will perform or scale well.
 
 % \XXX[FK][Cut this paragraph?] Theoreticians analyze concurrent data structures
 % not in terms of scalability but make an argument that functions on a data
@@ -60,37 +63,36 @@ These notions guarantee progress, but not scalability.
 % directly relate concurrency to scalability, while the Scalable Commutativity
 % Property does.
 
-Practitioners follow in general the iterative design pattern for
-achieving scalability: design, implement, measure, and iterate (e.g.,
-see~\cite{cacm-real-world}).  It is well understood that cache-line
+Practitioners often follow an iterative design pattern for
+achieving scalability: design, implement, measure, and
+iterate~\cite{cacm-real-world}.  It is well understood that cache-line
 contention can result in bad scalability. A clear example is the design of
 the MCS lock~\cite{MCS}, which eliminates scalability collapse by avoiding
 contention for a particular cache line.  Other good examples include
 scalable reference counters~\cite{approx:counter,snzi:podc}.
 The commutativity rule makes the connection between scaling and cache-line
-movement explicitly, and identifies a class of operations that can avoid
+movement explicit, and identifies a class of operations that can avoid
 cache-line movement.
 
 \subsection{Scalable operating systems}
 
 The Linux kernel scales well for many important workloads, but
-there remain many scalability bottlenecks, and it is unclear which
+there remain many scalability bottlenecks, and, in lieu of a method for
+reasoning about interface-level scalability, it is unclear which
 of the scalability bottlenecks are inherent to its system call interface.
 One well-known bottleneck is the virtual memory system, when multiple
 threads in the same process invoke \code{mmap} and \code{munmap} and
 trigger page faults.  The Linux kernel does not scale in this situation
-due to a single lock protecting the address space, which is difficult
-to remove~\cite{clements:bonsai}, yet our commutativity rule suggests
+because a single lock protects the address space, and this lock is difficult
+to remove~\cite{clements:bonsai}.  However, our commutativity rule suggests
 that a scalable implementation for the common case of operations on
 non-overlapping regions should be possible.  Conversely, there are
 operations that cannot be made to scale without deviating from the POSIX
 specification,
-such as \code{open} returning the lowest file descriptor.
-As part of the proposed work, we will pin down situations where the
-Linux kernel implementation is not as scalable as the POSIX specification's
-commutativity
-implies it could be, and also point out specific POSIX calls that limit
-the potential scalability of Linux.
+such as \code{open} returning the lowest available file descriptor.
+As part of the proposed work, we will identify situations where POSIX permits or
+limits scalability and point out specific interface modifications that would
+permit greater implementation scalability.
 
 % A contribution of this paper is the
 % design and implementation of 

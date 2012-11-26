@@ -1,0 +1,134 @@
+\documentclass[11pt,twoside]{article}
+
+\newif\ifdraft\drafttrue
+\newif\ifnotes\notestrue
+\ifdraft\else\notesfalse\fi
+
+\usepackage[square,comma,numbers,sort&compress]{natbib}
+\usepackage{fullpage}
+% \usepackage{paralist}
+% \usepackage{graphicx}
+% \usepackage{xcolor}
+% \usepackage{listings}
+% \usepackage{textcomp}
+% \usepackage{amsmath}
+% \usepackage{amssymb}
+% \usepackage{amsfonts}
+% \usepackage{subfigure,verbatim}
+% \usepackage{microtype}
+% \usepackage{xspace}
+% \usepackage{gnuplot-lua-tikz}
+% \usepackage[T1]{fontenc}
+\usepackage{times,mathptmx}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{balance}
+\usepackage{gnuplot-lua-tikz}
+\usepackage{subfig}
+\usepackage{booktabs}
+\usepackage[T1]{fontenc}
+\usepackage{comment}
+\usepackage{amsmath,amssymb}
+\usepackage{emptypage}          % No footer from \cleardoublepage
+
+\IfFileExists{microtype.sty}{
+  \usepackage{microtype}
+}{
+  \PackageError{microtype}{Package microtype not found.  Please
+    install texlive-latex-recommended}{}
+}
+
+% Draft info
+\ifdraft
+\usepackage{gitinfo}
+\fancyfoot[L]{\textbf{DRAFT}}
+\else
+% \pagestyle{empty}
+\pagestyle{plain}
+\fi
+
+% One space after periods
+\frenchspacing
+
+% Avoid widows and orphans
+\widowpenalty=500
+\clubpenalty=500
+
+% Define \XXX, \XXX[notes] and \XXX[author][notes]
+\definecolor{xxxcolor}{rgb}{0.8,0,0}
+\makeatletter
+\long\def\XXX{\@ifnextchar[{\@XXX}{\@XXX[]}}
+\long\def\@XXX[#1]{\@ifnextchar[{\@@@XXX{#1}}{\@@XXX{#1}}}
+\ifnotes
+% Show XXX comments
+\long\def\@@XXX#1{{\color{xxxcolor} XXX #1}\xspace}
+\long\def\@@@XXX#1[#2]{{\color{xxxcolor} XXX (#1) #2}\xspace}
+\else
+% Hide XXX comments
+\long\def\@@XXX#1{\ignorespaces}
+\long\def\@@@XXX#1[#2]{\ignorespaces}
+\fi
+\makeatother
+
+% Fix things like \emph{foo\xspace}.  See
+% http://tug.org/pipermail/texhax/2006-November/007339.html
+\makeatletter
+\xspaceaddexceptions{\check@icr}
+\makeatother
+
+% Listing style
+%\renewcommand{\ttdefault}{pxtt}
+%\lstset{basicstyle=\ttfamily}
+\lstset{basicstyle=\fontsize{9}{9}\sffamily,showstringspaces=false,columns=fullflexible}
+
+% Use \code{...} for inline code
+\let\code=\lstinline
+\let\syscall=\code
+
+\newcommand{\eg}{\textit{e.g.}}
+\newcommand{\ie}{\textit{i.e.}}
+
+\newcommand{\sys}{\textsc{sck}\xspace}
+\newcommand{\mtrace}{\textsc{sctrace}\xspace}
+\newcommand{\mscan}{\textsc{scscan}\xspace}
+\newcommand{\dirbench}{Dirbench\xspace}
+\newcommand{\filebench}{Filebench\xspace}
+\newcommand{\mapbench}{Mapbench\xspace}
+
+% Better \URL
+\def\discretionaryslash{\discretionary{/}{}{/}}
+{\catcode`\/\active
+\gdef\URLprepare{\catcode`\/\active\let/\discretionaryslash
+        \def~{\char`\~}}}%
+\def\URL{\bgroup\URLprepare\realURL}%
+\def\realURL#1{\tt #1\egroup}%
+
+
+\begin{document}
+
+\input{pyexpr}
+
+\pagestyle{plain}
+
+\input{cover}
+
+\begin{abstract}
+  \input{abstract}
+\end{abstract}
+
+\input{intro}
+\input{related}
+\input{rule}
+\input{prelim}
+\input{research}
+\input{timeline}
+
+{
+\bibliographystyle{abbrv}
+\bibliography{n-str,paper,n,n-conf,kpubs}
+}
+
+\end{document}

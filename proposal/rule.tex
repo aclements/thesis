@@ -4,14 +4,14 @@
 \label{sec:rule}
 
 We now precisely present the basic commutativity rule and sketch a
-proof of its main claim, namely that commutative operations can be made
-to scale.
+proof of its main claim, namely that commutative operations can be
+implemented to scale.
 %
 The rule depends intimately on \emph{state} and \emph{history}.
 %
 It says that whenever operations commute \emph{in the context of some
 trace} of operations, there exist implementations of those operations
-the scale \emph{in the same context}.
+that scale \emph{in the same context}.
 %
 We argue that this history dependence captures an important property of
 practical scalability, and discuss how the definition could be
@@ -68,17 +68,26 @@ formalize this, we build on the terminology of Herlihy and
 Wing~\cite{herlihy:linearizability}.
 
 
-An \emph{operation} is the pair of two \emph{actions}, an
+An \emph{operation} is the pair of two \emph{actions}: an
 \emph{invocation} and a \emph{response}. In the context of an
 operating system kernel, the invocation is basically a system call,
 including arguments, and the response is the return value. Each
-operation takes place on a single \emph{thread}. We write the thread
-as a subscript. An example invocation is written
+operation takes place on a single \emph{thread}.
+We write an invocation as 
 $\INV{operation}{\text{arguments}}{\text{thread}}$, and its response
 as $\RES{operation}{\text{response}}{\text{thread}}$.
+For example, imagine a
+simple interface for a single shared variable with two
+functions: $\OP{put}(x)$, which sets the shared variable's value to $x$,
+and $\OP{get}()$, which returns the
+variable's current value as its response.  We would write an invocation
+of $\OP{get}$ on thread 1 as $\INV{get}{}{1}$ and a corresponding
+response returning $3$ as $\RES{get}{3}{1}$.
 
 A \emph{serial history} is a sequence of actions in which each
-invocation is immediately followed by its response.
+invocation is either immediately followed by its response or is the last
+action in the sequence.  This constraint prevents concurrent or
+overlapping operations.
 
 A \emph{history} $\HIST{H}$ is a sequence of actions where for any
 thread $t$, the subsequence formed by selecting just operations on $t$
@@ -91,27 +100,12 @@ response. However, operations on \emph{different} threads can overlap.
 A history may contain \emph{outstanding} invocations---i.e., invocations
 that lack corresponding responses. However, since thread subhistories
 are serial, there can be at most one outstanding invocation per thread,
-and that outstanding invocation must be the last invocation for that
+and that outstanding invocation must be the last action for that
 thread.
 
-\emph{Legal} histories capture the notion of correctness. Some
-histories are legal and some aren't. A legal history is allowed by the
-specification of the objects under study (e.g., the specifications
-of systems calls); an illegal history isn't
-allowed. If a history is legal, then every prefix of that history is
-also legal. The (prefix-closed) set of legal histories is called
-$\LEGALHIST$.
-
-We assume that $\LEGALHIST$ exists, but aren't
-concerned with how it is created. For example, imagine a
-simple interface for a single shared variable with two
-functions: $\OP{put}(x)$, which sets the shared variable's value to $x$,
-and $\OP{get}()$, which returns the
-variable's current value as its response.  $H_1$ and $H_2$ below are
-legal histories, but $H_3$ is not (because $\OP{get}_1$ returns an
-unexpected value). $H_2$ shows an example of overlapping
+$H_1$ and $H_2$ below are examples of histories.  $H_1$ is also a serial
+history.  $H_2$ shows an examples of overlapping (concurrent)
 operations.
-%
 \begin{align*}
   H_1 = [&\INV{put}{1}{1}, \RES{put}{\OK}{1}, \INV{get}{}{1},
   \RES{get}{1}{1}] \\
@@ -120,6 +114,23 @@ operations.
   H_3 = [&\INV{put}{1}{1}, \RES{put}{\OK}{1}, \INV{get}{}{1},
   \RES{get}{0}{1}]
 \end{align*}
+
+$H_3$ is also a history (and a serial history), even though it violates
+the specification of $\OP{get}\slash\OP{put}$ ($\OP{get}_1$ returns an
+unexpected value), because the above definition only requires that
+histories be well-formed, not that they satisfy the specification of the
+operations at hand.  $H_3$ is not, however, a \emph{legal history}.
+Legal histories capture the notion of correctness with respect to
+a specification.  A legal history is allowed by the
+specification of the objects under study (e.g., the specifications
+of systems calls); an illegal history isn't
+allowed.  Hence, $H_1$ and $H_2$ are legal histories with respect to the
+specification of $\OP{get}\slash\OP{put}$, but $H_3$ is not.
+If a history is legal, then every prefix of that history is
+also legal. The (prefix-closed) set of legal histories is called
+$\LEGALHIST$.
+We assume that $\LEGALHIST$ exists, but aren't
+concerned with how it is created.
 
 An \emph{implementation}'s job is to generate responses for outstanding
 invocations.
@@ -266,16 +277,16 @@ Why is the basic commutativity rule true?
 The intuition is simple.
 %
 Since $X$ commutes in $\HIST{H}$, the implementations of the
-invocations in $X$ must not need to communicate: they return the same
-results regardless of order, and later functions in $H$ can't
-distinguish the order either.
+invocations in $X$ don't need to communicate to determine their order,
+since their responses are the same regardless of order and later
+invocations cannot reveal their order.
 
 This intuition can be formalized by \emph{constructing} an
 implementation $M$
 whose threads don't communicate in $X$.
 %
-This implementation is tailored for a single history and
-commutative region. Though it is \emph{correct} for every history, it is
+This implementation is tailored for a single history $H$ and
+commutative region $X$. Though it is \emph{correct} for every history, it is
 guaranteed to \emph{scale} only for $H$ and $X$.
 %
 $M$ compares received invocations against a copy of $H$
@@ -347,7 +358,7 @@ For thread $t$, we store $H_t = A \cdot
   reference implementation.
 %
 The implementation of thread $t$ is as follows.
-  \begin{CompactEnumerate}
+  \begin{enumerate}
 \item If $\textit{pc}_t = \FAIL$, or $\textit{pc}_t$ points beyond
   $H_t$, then $t$ falls back to the reference implementation.
 \item If $\textit{pc}_t$ points at an invocation or response not in
@@ -355,7 +366,7 @@ The implementation of thread $t$ is as follows.
   $\textit{pc}_t$ or set it to \FAIL.
 \item If invocation $i$ is received, and $\textit{pc}_t$ points to an
   invocation $I$ on thread $t$, then:
-  \begin{CompactEnumerate}
+  \begin{enumerate}
 \item If $i \neq I$, then the thread non-scalably falls back to the
   reference implementation. This involves pausing all other threads, taking
   a snapshot of all $\textit{pc}_t$ values, replaying the
@@ -366,12 +377,12 @@ The implementation of thread $t$ is as follows.
   non-scalably increments \emph{all} $\textit{pc}$ values.
 \item If $i = I$ and $\textit{pc}_t$ is in $\HRESTRICT{X}{t}$, then the
   thread scalably increments \emph{only its own} $\textit{pc}_t$.
-  \end{CompactEnumerate}
+  \end{enumerate}
 \item If $\textit{pc}_t$ points to a response on thread $t$, then the
   implementation generates that response and increments $\textit{pc}_t$.
   If this response is in $A$, the implementation also
   non-scalably increments the other threads' \textit{pc} values.
-\end{CompactEnumerate}
+\end{enumerate}
 
 \noindent
 %
@@ -413,7 +424,7 @@ conceptual benefits of our history-dependent definition of
 commutativity.
 
 
-\paragraph{Reference counter}
+\paragraph{Split reference counter}
 
 Consider a reference counter with three operations, \OP{inc}, \OP{dec},
 and \OP{isdead}.
@@ -428,7 +439,8 @@ Finally, the \OP{isdead} operation returns \TRUE\ iff the count is
 non-positive.
 %
 The intent is that a client calls \OP{inc} when obtaining a reference
-and \OP{dec} when releasing a reference. After \OP{dec}, the client
+and \OP{dec} when releasing a reference.  At some point, possibly after
+many \OP{inc} and \OP{dec} operations, the client
 calls \OP{isdead}, freeing the object if \OP{isdead} returns \TRUE.
 
 Consider the following history, assuming that the initial value of the
@@ -448,7 +460,7 @@ performed by a different thread, indicated by subscript.
 %
 The following subsequences commute in $\HIST{H}$.
 
-\begin{CompactItemize}
+\begin{itemize}
 \item Each individual invocation--response pair obviously commutes, since an
   individual invocation--response pair has no nontrivial re-interleavings.
   This doesn't tell us anything, since the scalability of an
@@ -469,17 +481,21 @@ The following subsequences commute in $\HIST{H}$.
   the ``\OP{isdead}'' snapshots accordingly.
   In this history, threads 3 and 4 might start out with per-core
   counters equal to 1, with thread 5's per-core counter equal to 0.
-  Then the first four operations will execute scalably.\footnote{%
+  Then the first four operations will execute scalably.
   %
   The operations would not execute scalably given other
-  initial per-core counter assignments.}
-\end{CompactItemize}
+  initial per-core counter assignments.
+\end{itemize}
 
-The first \emph{five} operations do \emph{not} commute in $\HIST{H}$.
+The first \emph{five} operations do \emph{not} commute in $\HIST{H}$
+because moving an \OP{isdead} operation after the three \OP{dec}
+operations would result in an illegal history (because this change would
+require \OP{isdead} to return \TRUE.
 
 Now, the three different commutative subsequences above call for three
-\emph{fundamentally different} scalable implementations. This is exactly
-right! We know that a read-mostly counter can be made scalable, and a
+\emph{fundamentally different} scalable implementations.  This is both
+necessary and desirable.
+We know that a read-mostly counter can be made scalable, and a
 write-mostly counter can be made scalable, though those implementations
 are very different. In practice, an implementer would decide which
 \emph{kinds} of commutative subsequences are more common, and write an
@@ -507,7 +523,8 @@ The analogous history would be as follows:
 &\INV{deccheck}{}{5}, \RES{deccheck}{\TRUE}{5}]
 \end{align*}
 %
-Now, unlike in $H$ above, the three \OP{deccheck} calls \emph{do not}
+Now, unlike the three \OP{dec} operations in $H$ above, the three
+\OP{deccheck} operations in $H'$ \emph{do not}
 commute.
 %
 The interface with combined decrement is harder to make scale than
@@ -628,7 +645,7 @@ The basic commutativity rule helps separate the job of a scalable
 systems programmer into
 two problems:
 
-\begin{CompactItemize}
+\begin{itemize}
 
 \item When designing an interface, the designer can decide if a given
   interface design could scale without first having to implement it,
@@ -640,7 +657,7 @@ two problems:
   more efficient than the general construction given above by exploiting the
   semantics of the specific interface.
 
-\end{CompactItemize}
+\end{itemize}
 
 \noindent
 In practice, designers make trade-offs between scalability
@@ -648,8 +665,8 @@ and other desired properties.  For example, memory is not
 unlimited, so the kernel must reuse memory; but re-using memory that has been used
 by an operation is not commutative with that operation. As another example, an
 implementation that scales linearly may not be the
-highest performing implementation for a particular core count.
-Some implementations of a scalable reference counter may be inefficient for a
+highest performing implementation for a particular core count; e.g.,
+some implementations of a scalable reference counter may be inefficient for a
 small number of cores.
 
 Determining which operations commute can be non-trivial, as illustrated
