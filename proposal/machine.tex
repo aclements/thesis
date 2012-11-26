@@ -1,0 +1,74 @@
+\subsection{Abstract machine}
+\label{sec:abscal}
+
+The commutativity rule and proof sketch make assumptions about the
+circumstances under which hardware operations scale. In summary, they
+assume an ``abstract machine model'' as follows. Each core effectively
+has an infinite local cache that is kept consistent with other local
+caches using a coherence protocol. A set of operations scales as long
+as the set of memory locations written to by each core is disjoint
+from the set of memory locations read from or written to by all other
+cores. That is, for every pair of cores, the two cores access either
+completely disjoint memory locations, or if they do share any memory,
+both cores only read the shared memory. As a result, a set of
+operations that scales will not experience coherence misses; rather,
+it will only experience cache misses it would have experienced when
+executing in isolation or on a single core.
+
+This abstract machine is simpler than any actual machine; it makes few
+assumptions about real hardware performance models, akin to how
+asymptotic analysis models performance in a largely
+hardware-independent way. Though the abstract machine does not always
+agree with real hardware, we have experimentally verified agreement in many
+regimes. Due to lack of space, these results are not included.
+Roughly speaking, a real machine fits the abstract model as long as a
+workload's working set fits in cache, the interconnect and DRAM
+interface are not bottlenecks, and the machine uses a modern
+scalable directory-based coherence protocol.
+
+\begin{comment}
+
+This view of scalability is unusual in that it doesn't involve varying
+the number of cores executing a workload.  Traditional
+scalability implies that a workload's throughput is $n$
+times greater on $n$ cores than on a single core.  However, this
+definition requires a way to construct executions for varying numbers of
+cores, as well as a measure of throughput.  We instead look at a single
+execution and consider whether the time to execute each operation is
+affected by concurrent operations on other cores.  Intuitively, if the
+execution time of each individual operation is the same as if it were
+run in isolation, it means that the overall $n$-core system can execute
+the operations at $n$ times the rate of a single core running those same
+operations, which agrees with the traditional, informal definition of
+scalability.
+
+Conversely, when two cores on the abstract machine have read-write or
+write-write sharing, data must move between cores.  As the number of
+cores grows, the amount of concurrent data movement will also grow.
+We define such communication to be non-scalable on our abstract machine
+model.  Whether that is true on a real computer depends on whether each
+write affects a growing number of reading cores, on how scalable the
+computer's interconnect is, and on whether the cache coherence protocol
+has serialization points such as directories that process coherence
+messages at a limited rate.  Like our earlier assumption, we have
+verified that real hardware generally agrees with this assumption.
+%\S\ref{sec:eval:hardware} shows that scaling
+%on real hardware agrees with the model in many regimes.
+
+For example, in an implementation of \code{open} that acquires locks on
+directories to check if the named file already exists,
+\code{open("/tmp/a", O_CREAT|O_EXCL)} and
+\code{open("/tmp/b", O_CREAT|O_EXCL)} will both write to \code{tmp}'s
+lock and hence won't scale linearly on the abstract machine.  On the
+other hand, in an alternate implementation that supports lock-free path
+lookup and represents directories as hash tables with per-bucket locks,
+these same calls will scale linearly on the abstract machine (barring
+hash collisions) because they won't write to the same memory.
+\XXX[AC][``Lock-free'' isn't the right term here because that still
+permits writes.  Also, open could do other non-scalable things (like
+allocate FDs), so maybe this needs to the worded to focus on the file
+creation part.]
+
+\XXX[AC][Set data structure example?  Hash set versus tree set?  Radix
+set?  List set?]
+\end{comment}

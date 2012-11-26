@@ -1,0 +1,1747 @@
+== --host=tom --bench=linkbench --st_nlink=true --kernel=xv6 --id=2012-09-28T16:30:00 ==
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=48 --duration=5s --stats=1 --links=47
+# --pmc="L2 cache misses"
+14470 cycles start skew
+27702665 cycles stop skew
+12071570073 cycles
+844769 stats
+14264 cycles/stat
+847151 pmc
+1 pmc/stat
+5635 links
+100689499 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=42 --duration=5s --stats=1 --links=41
+# --pmc="L2 cache misses"
+19504 cycles start skew
+12621936 cycles stop skew
+12063293937 cycles
+1028760 stats
+11717 cycles/stat
+1019892 pmc
+0 pmc/stat
+9731 links
+50827700 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=36 --duration=5s --stats=1 --links=35
+# --pmc="L2 cache misses"
+13122 cycles start skew
+8350025 cycles stop skew
+12059301497 cycles
+1447751 stats
+8325 cycles/stat
+1386341 pmc
+0 pmc/stat
+15323 links
+27545624 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=30 --duration=5s --stats=1 --links=29
+# --pmc="L2 cache misses"
+12119 cycles start skew
+4640943 cycles stop skew
+12056999896 cycles
+2003520 stats
+6016 cycles/stat
+1892383 pmc
+0 pmc/stat
+23879 links
+14642839 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=24 --duration=5s --stats=1 --links=23
+# --pmc="L2 cache misses"
+8938 cycles start skew
+2134206 cycles stop skew
+12054774340 cycles
+2442374 stats
+4935 cycles/stat
+2328423 pmc
+0 pmc/stat
+39407 links
+7035837 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=18 --duration=5s --stats=1 --links=17
+# --pmc="L2 cache misses"
+4715 cycles start skew
+855437 cycles stop skew
+12054048141 cycles
+3485903 stats
+3457 cycles/stat
+3322946 pmc
+0 pmc/stat
+59701 links
+3432427 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=12 --duration=5s --stats=1 --links=11
+# --pmc="L2 cache misses"
+5178 cycles start skew
+370315 cycles stop skew
+12053615909 cycles
+5954984 stats
+2024 cycles/stat
+5661658 pmc
+0 pmc/stat
+104627 links
+1267264 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=6 --duration=5s --stats=1 --links=5
+# --pmc="L2 cache misses"
+1180 cycles start skew
+48310 cycles stop skew
+12053567847 cycles
+12888330 stats
+935 cycles/stat
+10959552 pmc
+0 pmc/stat
+434762 links
+138622 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=1 --duration=5s --stats=1 --links=0
+# --pmc="L2 cache misses"
+0 cycles start skew
+0 cycles stop skew
+12053438058 cycles
+22004679 stats
+547 cycles/stat
+8620 pmc
+0 pmc/stat
+0 links
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=48 --duration=5s --stats=1 --links=47
+# --pmc="L2 cache misses"
+21989 cycles start skew
+25989145 cycles stop skew
+12052940484 cycles
+807225 stats
+14906 cycles/stat
+815280 pmc
+1 pmc/stat
+4980 links
+113756612 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=42 --duration=5s --stats=1 --links=41
+# --pmc="L2 cache misses"
+16227 cycles start skew
+16191436 cycles stop skew
+12066731871 cycles
+1008761 stats
+11949 cycles/stat
+1018539 pmc
+1 pmc/stat
+6235 links
+79350208 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=36 --duration=5s --stats=1 --links=35
+# --pmc="L2 cache misses"
+15555 cycles start skew
+8222599 cycles stop skew
+12058525217 cycles
+1172438 stats
+10280 cycles/stat
+1144338 pmc
+0 pmc/stat
+17749 links
+23779036 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=30 --duration=5s --stats=1 --links=29
+# --pmc="L2 cache misses"
+12196 cycles start skew
+4034164 cycles stop skew
+12056247753 cycles
+2151414 stats
+5602 cycles/stat
+1986517 pmc
+0 pmc/stat
+20881 links
+16744126 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=24 --duration=5s --stats=1 --links=23
+# --pmc="L2 cache misses"
+10160 cycles start skew
+2286445 cycles stop skew
+12055122353 cycles
+2818262 stats
+4276 cycles/stat
+2608821 pmc
+0 pmc/stat
+34699 links
+7990704 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=18 --duration=5s --stats=1 --links=17
+# --pmc="L2 cache misses"
+7067 cycles start skew
+1158497 cycles stop skew
+12054036468 cycles
+3788950 stats
+3181 cycles/stat
+3477039 pmc
+0 pmc/stat
+57420 links
+3568780 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=12 --duration=5s --stats=1 --links=11
+# --pmc="L2 cache misses"
+2158 cycles start skew
+288766 cycles stop skew
+12053427119 cycles
+6177022 stats
+1951 cycles/stat
+5677382 pmc
+0 pmc/stat
+105804 links
+1253145 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=6 --duration=5s --stats=1 --links=5
+# --pmc="L2 cache misses"
+1194 cycles start skew
+49936 cycles stop skew
+12053239190 cycles
+12416398 stats
+970 cycles/stat
+10942513 pmc
+0 pmc/stat
+455569 links
+132287 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=1 --duration=5s --stats=1 --links=0
+# --pmc="L2 cache misses"
+0 cycles start skew
+0 cycles stop skew
+12053589103 cycles
+21845238 stats
+551 cycles/stat
+8824 pmc
+0 pmc/stat
+0 links
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=48 --duration=5s --stats=1 --links=47
+# --pmc="L2 cache misses"
+17605 cycles start skew
+30380762 cycles stop skew
+12075738153 cycles
+808582 stats
+14904 cycles/stat
+814987 pmc
+1 pmc/stat
+5843 links
+97139129 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=42 --duration=5s --stats=1 --links=41
+# --pmc="L2 cache misses"
+16738 cycles start skew
+21943265 cycles stop skew
+12070354995 cycles
+1017534 stats
+11845 cycles/stat
+1025596 pmc
+1 pmc/stat
+6422 links
+77063528 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=36 --duration=5s --stats=1 --links=35
+# --pmc="L2 cache misses"
+13623 cycles start skew
+8530391 cycles stop skew
+12059005002 cycles
+1090236 stats
+11055 cycles/stat
+1086630 pmc
+0 pmc/stat
+15555 links
+27134121 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=30 --duration=5s --stats=1 --links=29
+# --pmc="L2 cache misses"
+12368 cycles start skew
+4445082 cycles stop skew
+12056040441 cycles
+2219172 stats
+5431 cycles/stat
+2038618 pmc
+0 pmc/stat
+20063 links
+17426514 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=24 --duration=5s --stats=1 --links=23
+# --pmc="L2 cache misses"
+7844 cycles start skew
+2347174 cycles stop skew
+12054793915 cycles
+2965756 stats
+4064 cycles/stat
+2672429 pmc
+0 pmc/stat
+32609 links
+8502619 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=18 --duration=5s --stats=1 --links=17
+# --pmc="L2 cache misses"
+7393 cycles start skew
+727701 cycles stop skew
+12051927950 cycles
+3913043 stats
+3079 cycles/stat
+3599000 pmc
+0 pmc/stat
+57418 links
+3568276 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=12 --duration=5s --stats=1 --links=11
+# --pmc="L2 cache misses"
+3655 cycles start skew
+291443 cycles stop skew
+12053304470 cycles
+6279887 stats
+1919 cycles/stat
+5814611 pmc
+0 pmc/stat
+111244 links
+1191852 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=6 --duration=5s --stats=1 --links=5
+# --pmc="L2 cache misses"
+2058 cycles start skew
+44732 cycles stop skew
+12053360077 cycles
+12378589 stats
+973 cycles/stat
+10898311 pmc
+0 pmc/stat
+461985 links
+130451 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=1 --duration=5s --stats=1 --links=0
+# --pmc="L2 cache misses"
+0 cycles start skew
+0 cycles stop skew
+12053357546 cycles
+21884544 stats
+550 cycles/stat
+8864 pmc
+0 pmc/stat
+0 links
+
+
+== --host=tom --bench=linkbench --st_nlink=false --kernel=xv6 --id=2012-09-28T17:05:00 ==
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=48 --duration=5s --stats=1 --links=47
+# --pmc="L2 cache misses"
+16653 cycles start skew
+22801808 cycles stop skew
+12067046453 cycles
+21755939 stats
+553 cycles/stat
+16293 pmc
+0 pmc/stat
+6203 links
+91434545 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=42 --duration=5s --stats=1 --links=41
+# --pmc="L2 cache misses"
+19648 cycles start skew
+14348844 cycles stop skew
+12063890458 cycles
+21846974 stats
+551 cycles/stat
+38198 pmc
+0 pmc/stat
+11504 links
+42996361 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=36 --duration=5s --stats=1 --links=35
+# --pmc="L2 cache misses"
+13101 cycles start skew
+11218434 cycles stop skew
+12061340006 cycles
+21946535 stats
+549 cycles/stat
+47599 pmc
+0 pmc/stat
+13964 links
+30231708 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=30 --duration=5s --stats=1 --links=29
+# --pmc="L2 cache misses"
+10749 cycles start skew
+4805886 cycles stop skew
+12056319543 cycles
+21639003 stats
+556 cycles/stat
+55261 pmc
+0 pmc/stat
+20253 links
+17263454 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=24 --duration=5s --stats=1 --links=23
+# --pmc="L2 cache misses"
+6659 cycles start skew
+3281637 cycles stop skew
+12055197758 cycles
+21931791 stats
+549 cycles/stat
+75476 pmc
+0 pmc/stat
+28391 links
+9766193 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=18 --duration=5s --stats=1 --links=17
+# --pmc="L2 cache misses"
+6212 cycles start skew
+1051769 cycles stop skew
+12053721614 cycles
+21569337 stats
+558 cycles/stat
+124883 pmc
+0 pmc/stat
+55361 links
+3701414 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=12 --duration=5s --stats=1 --links=11
+# --pmc="L2 cache misses"
+4756 cycles start skew
+413869 cycles stop skew
+12052897861 cycles
+21906069 stats
+550 cycles/stat
+217290 pmc
+0 pmc/stat
+138930 links
+954308 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=1 --duration=5s --stats=1 --links=0
+# --pmc="L2 cache misses"
+0 cycles start skew
+0 cycles stop skew
+12055943224 cycles
+22053088 stats
+546 cycles/stat
+9376 pmc
+0 pmc/stat
+0 links
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=48 --duration=5s --stats=1 --links=47
+# --pmc="L2 cache misses"
+22663 cycles start skew
+24421340 cycles stop skew
+12053748160 cycles
+22096742 stats
+544 cycles/stat
+16280 pmc
+0 pmc/stat
+6285 links
+90142311 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=42 --duration=5s --stats=1 --links=41
+# --pmc="L2 cache misses"
+19577 cycles start skew
+15697179 cycles stop skew
+12064219744 cycles
+22001599 stats
+547 cycles/stat
+19619 pmc
+0 pmc/stat
+8897 links
+55596801 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=36 --duration=5s --stats=1 --links=35
+# --pmc="L2 cache misses"
+17479 cycles start skew
+7749748 cycles stop skew
+12058405504 cycles
+22028090 stats
+547 cycles/stat
+18607 pmc
+0 pmc/stat
+20660 links
+20428350 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=30 --duration=5s --stats=1 --links=29
+# --pmc="L2 cache misses"
+10340 cycles start skew
+5174348 cycles stop skew
+12056886706 cycles
+22025928 stats
+547 cycles/stat
+19198 pmc
+0 pmc/stat
+24643 links
+14188761 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=24 --duration=5s --stats=1 --links=23
+# --pmc="L2 cache misses"
+7838 cycles start skew
+2363414 cycles stop skew
+12054963628 cycles
+22139887 stats
+544 cycles/stat
+21635 pmc
+0 pmc/stat
+39420 links
+7033632 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=18 --duration=5s --stats=1 --links=17
+# --pmc="L2 cache misses"
+4220 cycles start skew
+1061391 cycles stop skew
+12053884607 cycles
+22012182 stats
+547 cycles/stat
+20227 pmc
+0 pmc/stat
+60719 links
+3374838 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=12 --duration=5s --stats=1 --links=11
+# --pmc="L2 cache misses"
+3363 cycles start skew
+313486 cycles stop skew
+12053540612 cycles
+21701616 stats
+555 cycles/stat
+36879 pmc
+0 pmc/stat
+156101 links
+849380 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=1 --duration=5s --stats=1 --links=0
+# --pmc="L2 cache misses"
+0 cycles start skew
+0 cycles stop skew
+12053318593 cycles
+22170052 stats
+543 cycles/stat
+8867 pmc
+0 pmc/stat
+0 links
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=48 --duration=5s --stats=1 --links=47
+# --pmc="L2 cache misses"
+23866 cycles start skew
+26141633 cycles stop skew
+12052691349 cycles
+20278370 stats
+593 cycles/stat
+19908 pmc
+0 pmc/stat
+6275 links
+90278383 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=42 --duration=5s --stats=1 --links=41
+# --pmc="L2 cache misses"
+15584 cycles start skew
+15625483 cycles stop skew
+12065914439 cycles
+22009209 stats
+547 cycles/stat
+18355 pmc
+0 pmc/stat
+8935 links
+55368126 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=36 --duration=5s --stats=1 --links=35
+# --pmc="L2 cache misses"
+17825 cycles start skew
+9521985 cycles stop skew
+12062087690 cycles
+22035238 stats
+547 cycles/stat
+16253 pmc
+0 pmc/stat
+19851 links
+21267435 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=30 --duration=5s --stats=1 --links=29
+# --pmc="L2 cache misses"
+12597 cycles start skew
+4778476 cycles stop skew
+12056600726 cycles
+22025765 stats
+547 cycles/stat
+19648 pmc
+0 pmc/stat
+24354 links
+14356777 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=24 --duration=5s --stats=1 --links=23
+# --pmc="L2 cache misses"
+9346 cycles start skew
+2306036 cycles stop skew
+12054810340 cycles
+22141318 stats
+544 cycles/stat
+19256 pmc
+0 pmc/stat
+39321 links
+7051250 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=18 --duration=5s --stats=1 --links=17
+# --pmc="L2 cache misses"
+5372 cycles start skew
+1288516 cycles stop skew
+12054176246 cycles
+22132278 stats
+544 cycles/stat
+22496 pmc
+0 pmc/stat
+59505 links
+3443776 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=12 --duration=5s --stats=1 --links=11
+# --pmc="L2 cache misses"
+2168 cycles start skew
+395486 cycles stop skew
+12053650479 cycles
+21705311 stats
+555 cycles/stat
+35838 pmc
+0 pmc/stat
+173304 links
+765074 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=1 --duration=5s --stats=1 --links=0
+# --pmc="L2 cache misses"
+0 cycles start skew
+0 cycles stop skew
+12053454368 cycles
+20369389 stats
+591 cycles/stat
+9190 pmc
+0 pmc/stat
+0 links
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=48 --duration=5s --stats=1 --links=47
+# --pmc="L2 cache misses"
+23671 cycles start skew
+21233747 cycles stop skew
+12051439298 cycles
+21909793 stats
+549 cycles/stat
+17988 pmc
+0 pmc/stat
+6887 links
+82246837 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=42 --duration=5s --stats=1 --links=41
+# --pmc="L2 cache misses"
+19713 cycles start skew
+14661444 cycles stop skew
+12063798950 cycles
+21143739 stats
+570 cycles/stat
+21572 pmc
+0 pmc/stat
+8100 links
+61065027 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=36 --duration=5s --stats=1 --links=35
+# --pmc="L2 cache misses"
+17691 cycles start skew
+9984704 cycles stop skew
+12060091771 cycles
+21750050 stats
+554 cycles/stat
+16853 pmc
+0 pmc/stat
+18883 links
+22353996 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=30 --duration=5s --stats=1 --links=29
+# --pmc="L2 cache misses"
+10577 cycles start skew
+4205266 cycles stop skew
+12055976359 cycles
+22026313 stats
+547 cycles/stat
+18703 pmc
+0 pmc/stat
+26971 links
+12963048 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=24 --duration=5s --stats=1 --links=23
+# --pmc="L2 cache misses"
+7914 cycles start skew
+2744401 cycles stop skew
+12055299764 cycles
+21898811 stats
+550 cycles/stat
+21629 pmc
+0 pmc/stat
+41466 links
+6686779 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=18 --duration=5s --stats=1 --links=17
+# --pmc="L2 cache misses"
+4511 cycles start skew
+1080295 cycles stop skew
+12054256210 cycles
+22010716 stats
+547 cycles/stat
+19896 pmc
+0 pmc/stat
+65752 links
+3116606 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=12 --duration=5s --stats=1 --links=11
+# --pmc="L2 cache misses"
+5303 cycles start skew
+265398 cycles stop skew
+12053338792 cycles
+21975787 stats
+548 cycles/stat
+32070 pmc
+0 pmc/stat
+194276 links
+682466 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-252-g8dadb8e+
+# --cores=1 --duration=5s --stats=1 --links=0
+# --pmc="L2 cache misses"
+0 cycles start skew
+0 cycles stop skew
+12053304686 cycles
+22048365 stats
+546 cycles/stat
+8930 pmc
+0 pmc/stat
+0 links
+
+
+
+== --host=tom --bench=linkbench --kernel=xv6 --id=2012-10-01T07:57:28 ==
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43
+# --cores=48 --duration=5s --st_nlink=true --stats=24 --links=24
+# --pmc="L2 cache misses"
+23765 cycles start skew
+4893644 cycles stop skew
+12038029429 cycles
+57758543 stats
+5001 cycles/stat
+14778249 pmc
+0 pmc/stat
+6840 links
+42245676 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43
+# --cores=42 --duration=5s --st_nlink=true --stats=21 --links=21
+# --pmc="L2 cache misses"
+15008 cycles start skew
+2398103 cycles stop skew
+12050244265 cycles
+86410487 stats
+2928 cycles/stat
+10748510 pmc
+0 pmc/stat
+11063 links
+22875671 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43
+# --cores=36 --duration=5s --st_nlink=true --stats=18 --links=18
+# --pmc="L2 cache misses"
+13937 cycles start skew
+2265184 cycles stop skew
+12074828647 cycles
+85658922 stats
+2537 cycles/stat
+17153171 pmc
+0 pmc/stat
+14609 links
+14878738 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43
+# --cores=30 --duration=5s --st_nlink=true --stats=15 --links=15
+# --pmc="L2 cache misses"
+9529 cycles start skew
+839194 cycles stop skew
+12052195381 cycles
+71709934 stats
+2520 cycles/stat
+15032925 pmc
+0 pmc/stat
+21270 links
+8499662 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43
+# --cores=24 --duration=5s --st_nlink=true --stats=12 --links=12
+# --pmc="L2 cache misses"
+7886 cycles start skew
+604818 cycles stop skew
+12053161052 cycles
+61014695 stats
+2370 cycles/stat
+22666295 pmc
+0 pmc/stat
+34810 links
+4155159 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43
+# --cores=18 --duration=5s --st_nlink=true --stats=9 --links=9
+# --pmc="L2 cache misses"
+8310 cycles start skew
+180336 cycles stop skew
+12053094806 cycles
+48960486 stats
+2215 cycles/stat
+19797772 pmc
+0 pmc/stat
+66980 links
+1619563 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43
+# --cores=12 --duration=5s --st_nlink=true --stats=6 --links=6
+# --pmc="L2 cache misses"
+3816 cycles start skew
+242777 cycles stop skew
+12053342973 cycles
+42693840 stats
+1693 cycles/stat
+27594685 pmc
+0 pmc/stat
+187084 links
+386565 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43
+# --cores=6 --duration=5s --st_nlink=true --stats=3 --links=3
+# --pmc="L2 cache misses"
+665 cycles start skew
+31114 cycles stop skew
+12053526214 cycles
+39025130 stats
+926 cycles/stat
+17007756 pmc
+0 pmc/stat
+504698 links
+71647 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43
+# --cores=2 --duration=5s --st_nlink=true --stats=1 --links=1
+# --pmc="L2 cache misses"
+436 cycles start skew
+20848 cycles stop skew
+12053421191 cycles
+17925025 stats
+672 cycles/stat
+7425185 pmc
+0 pmc/stat
+985713 links
+12228 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43
+# --cores=48 --duration=5s --st_nlink=true --stats=24 --links=24
+# --pmc="L2 cache misses"
+18434 cycles start skew
+4591847 cycles stop skew
+12053406459 cycles
+74562972 stats
+3879 cycles/stat
+11532774 pmc
+0 pmc/stat
+8372 links
+34558855 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43
+# --cores=42 --duration=5s --st_nlink=true --stats=21 --links=21
+# --pmc="L2 cache misses"
+16385 cycles start skew
+3287732 cycles stop skew
+12054736484 cycles
+94427589 stats
+2680 cycles/stat
+15219838 pmc
+0 pmc/stat
+10916 links
+23193185 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43
+# --cores=36 --duration=5s --st_nlink=true --stats=18 --links=18
+# --pmc="L2 cache misses"
+16077 cycles start skew
+1876588 cycles stop skew
+12053941830 cycles
+96637022 stats
+2245 cycles/stat
+14376768 pmc
+0 pmc/stat
+15428 links
+14064333 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43
+# --cores=30 --duration=5s --st_nlink=true --stats=15 --links=15
+# --pmc="L2 cache misses"
+10886 cycles start skew
+2737449 cycles stop skew
+12053479957 cycles
+83127406 stats
+2174 cycles/stat
+16295494 pmc
+0 pmc/stat
+19885 links
+9092627 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43
+# --cores=24 --duration=5s --st_nlink=true --stats=12 --links=12
+# --pmc="L2 cache misses"
+8181 cycles start skew
+512231 cycles stop skew
+12053590065 cycles
+69035161 stats
+2095 cycles/stat
+20077134 pmc
+0 pmc/stat
+35000 links
+4132729 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43
+# --cores=18 --duration=5s --st_nlink=true --stats=9 --links=9
+# --pmc="L2 cache misses"
+4881 cycles start skew
+236623 cycles stop skew
+12062716017 cycles
+57514260 stats
+1887 cycles/stat
+14646471 pmc
+0 pmc/stat
+66258 links
+1638522 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43
+# --cores=12 --duration=5s --st_nlink=true --stats=6 --links=6
+# --pmc="L2 cache misses"
+4878 cycles start skew
+88746 cycles stop skew
+12053606319 cycles
+43188135 stats
+1674 cycles/stat
+23844547 pmc
+0 pmc/stat
+189638 links
+381367 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43
+# --cores=6 --duration=5s --st_nlink=true --stats=3 --links=3
+# --pmc="L2 cache misses"
+1647 cycles start skew
+16013 cycles stop skew
+12053527762 cycles
+40301390 stats
+897 cycles/stat
+10351493 pmc
+0 pmc/stat
+509782 links
+70933 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43
+# --cores=2 --duration=5s --st_nlink=true --stats=1 --links=1
+# --pmc="L2 cache misses"
+436 cycles start skew
+50354 cycles stop skew
+12053425671 cycles
+18190081 stats
+662 cycles/stat
+1813306 pmc
+0 pmc/stat
+984896 links
+12238 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43
+# --cores=48 --duration=5s --st_nlink=true --stats=24 --links=24
+# --pmc="L2 cache misses"
+25997 cycles start skew
+3807046 cycles stop skew
+12052479596 cycles
+76054858 stats
+3802 cycles/stat
+11016177 pmc
+0 pmc/stat
+8312 links
+34804362 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43
+# --cores=42 --duration=5s --st_nlink=true --stats=21 --links=21
+# --pmc="L2 cache misses"
+17401 cycles start skew
+3672027 cycles stop skew
+12054902043 cycles
+96855998 stats
+2613 cycles/stat
+14409579 pmc
+0 pmc/stat
+10908 links
+23210916 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43
+# --cores=36 --duration=5s --st_nlink=true --stats=18 --links=18
+# --pmc="L2 cache misses"
+17594 cycles start skew
+1617631 cycles stop skew
+12053666200 cycles
+98087536 stats
+2211 cycles/stat
+9336001 pmc
+0 pmc/stat
+15190 links
+14284225 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43
+# --cores=30 --duration=5s --st_nlink=true --stats=15 --links=15
+# --pmc="L2 cache misses"
+14400 cycles start skew
+1073037 cycles stop skew
+12053616813 cycles
+83133372 stats
+2174 cycles/stat
+19066033 pmc
+0 pmc/stat
+20424 links
+8852848 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43
+# --cores=24 --duration=5s --st_nlink=true --stats=12 --links=12
+# --pmc="L2 cache misses"
+9174 cycles start skew
+378373 cycles stop skew
+12053432800 cycles
+69661574 stats
+2076 cycles/stat
+5612948 pmc
+0 pmc/stat
+36271 links
+3987841 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43
+# --cores=18 --duration=5s --st_nlink=true --stats=9 --links=9
+# --pmc="L2 cache misses"
+6186 cycles start skew
+170462 cycles stop skew
+12053498024 cycles
+57192534 stats
+1896 cycles/stat
+23728676 pmc
+0 pmc/stat
+65245 links
+1662687 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43
+# --cores=12 --duration=5s --st_nlink=true --stats=6 --links=6
+# --pmc="L2 cache misses"
+5216 cycles start skew
+66883 cycles stop skew
+12053490008 cycles
+43544362 stats
+1660 cycles/stat
+8512044 pmc
+0 pmc/stat
+187729 links
+385241 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43
+# --cores=6 --duration=5s --st_nlink=true --stats=3 --links=3
+# --pmc="L2 cache misses"
+2070 cycles start skew
+55198 cycles stop skew
+12053613645 cycles
+40178541 stats
+900 cycles/stat
+20258382 pmc
+0 pmc/stat
+510107 links
+70888 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43
+# --cores=2 --duration=5s --st_nlink=true --stats=1 --links=1
+# --pmc="L2 cache misses"
+349 cycles start skew
+13546 cycles stop skew
+12053362596 cycles
+18123855 stats
+665 cycles/stat
+7417433 pmc
+0 pmc/stat
+973493 links
+12381 cycles/link
+
+
+== --host=tom --bench=linkbench --kernel=xv6 --id=2012-10-01T08:07:58 ==
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43+
+# --cores=48 --duration=5s --st_nlink=false --stats=24 --links=24
+# --pmc="L2 cache misses"
+24675 cycles start skew
+3058935 cycles stop skew
+12048255854 cycles
+469523201 stats
+615 cycles/stat
+241854 pmc
+0 pmc/stat
+43883 links
+6589972 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43+
+# --cores=42 --duration=5s --st_nlink=false --stats=21 --links=21
+# --pmc="L2 cache misses"
+15051 cycles start skew
+1723790 cycles stop skew
+12050423319 cycles
+413198812 stats
+612 cycles/stat
+215541 pmc
+0 pmc/stat
+44062 links
+5743560 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43+
+# --cores=36 --duration=5s --st_nlink=false --stats=18 --links=18
+# --pmc="L2 cache misses"
+14241 cycles start skew
+1438519 cycles stop skew
+12050987281 cycles
+354648202 stats
+611 cycles/stat
+238169 pmc
+0 pmc/stat
+50487 links
+4296697 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43+
+# --cores=30 --duration=5s --st_nlink=false --stats=15 --links=15
+# --pmc="L2 cache misses"
+8865 cycles start skew
+845748 cycles stop skew
+12051882450 cycles
+296544417 stats
+609 cycles/stat
+203235 pmc
+0 pmc/stat
+77318 links
+2338132 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43+
+# --cores=24 --duration=5s --st_nlink=false --stats=12 --links=12
+# --pmc="L2 cache misses"
+8360 cycles start skew
+450827 cycles stop skew
+12067176224 cycles
+238646815 stats
+606 cycles/stat
+146083 pmc
+0 pmc/stat
+131481 links
+1101362 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43+
+# --cores=18 --duration=5s --st_nlink=false --stats=9 --links=9
+# --pmc="L2 cache misses"
+7506 cycles start skew
+368144 cycles stop skew
+12052836080 cycles
+182653175 stats
+593 cycles/stat
+158095 pmc
+0 pmc/stat
+278786 links
+389101 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43+
+# --cores=12 --duration=5s --st_nlink=false --stats=6 --links=6
+# --pmc="L2 cache misses"
+3780 cycles start skew
+241178 cycles stop skew
+12052739892 cycles
+121697831 stats
+594 cycles/stat
+28117 pmc
+0 pmc/stat
+666262 links
+108540 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43+
+# --cores=6 --duration=5s --st_nlink=false --stats=3 --links=3
+# --pmc="L2 cache misses"
+1151 cycles start skew
+92695 cycles stop skew
+12052823467 cycles
+60781517 stats
+594 cycles/stat
+66105 pmc
+0 pmc/stat
+984965 links
+36710 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43+
+# --cores=2 --duration=5s --st_nlink=false --stats=1 --links=1
+# --pmc="L2 cache misses"
+205 cycles start skew
+45293 cycles stop skew
+12052899448 cycles
+21923235 stats
+549 cycles/stat
+13418 pmc
+0 pmc/stat
+1457828 links
+8267 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43+
+# --cores=48 --duration=5s --st_nlink=false --stats=24 --links=24
+# --pmc="L2 cache misses"
+16533 cycles start skew
+3397866 cycles stop skew
+12058365672 cycles
+514458107 stats
+562 cycles/stat
+155234 pmc
+0 pmc/stat
+43641 links
+6632100 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43+
+# --cores=42 --duration=5s --st_nlink=false --stats=21 --links=21
+# --pmc="L2 cache misses"
+17282 cycles start skew
+1723204 cycles stop skew
+12062545048 cycles
+449624175 stats
+563 cycles/stat
+125556 pmc
+0 pmc/stat
+44161 links
+5736454 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43+
+# --cores=36 --duration=5s --st_nlink=false --stats=18 --links=18
+# --pmc="L2 cache misses"
+13261 cycles start skew
+1474411 cycles stop skew
+12060251764 cycles
+384914122 stats
+563 cycles/stat
+385851 pmc
+0 pmc/stat
+48902 links
+4439374 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43+
+# --cores=30 --duration=5s --st_nlink=false --stats=15 --links=15
+# --pmc="L2 cache misses"
+8976 cycles start skew
+955647 cycles stop skew
+12049527989 cycles
+319731240 stats
+565 cycles/stat
+83768 pmc
+0 pmc/stat
+76380 links
+2366436 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43+
+# --cores=24 --duration=5s --st_nlink=false --stats=12 --links=12
+# --pmc="L2 cache misses"
+11189 cycles start skew
+280236 cycles stop skew
+12037350042 cycles
+255508382 stats
+565 cycles/stat
+191607 pmc
+0 pmc/stat
+135511 links
+1065957 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43+
+# --cores=18 --duration=5s --st_nlink=false --stats=9 --links=9
+# --pmc="L2 cache misses"
+5742 cycles start skew
+263700 cycles stop skew
+12049572806 cycles
+191463112 stats
+566 cycles/stat
+26982 pmc
+0 pmc/stat
+256093 links
+423467 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43+
+# --cores=12 --duration=5s --st_nlink=false --stats=6 --links=6
+# --pmc="L2 cache misses"
+2549 cycles start skew
+75647 cycles stop skew
+12053132617 cycles
+127023823 stats
+569 cycles/stat
+98732 pmc
+0 pmc/stat
+702626 links
+102926 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43+
+# --cores=6 --duration=5s --st_nlink=false --stats=3 --links=3
+# --pmc="L2 cache misses"
+1679 cycles start skew
+43362 cycles stop skew
+12053060789 cycles
+62667825 stats
+576 cycles/stat
+21581 pmc
+0 pmc/stat
+954589 links
+37879 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43+
+# --cores=2 --duration=5s --st_nlink=false --stats=1 --links=1
+# --pmc="L2 cache misses"
+320 cycles start skew
+86445 cycles stop skew
+12053274779 cycles
+21919326 stats
+549 cycles/stat
+5413 pmc
+0 pmc/stat
+1468318 links
+8208 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43+
+# --cores=48 --duration=5s --st_nlink=false --stats=24 --links=24
+# --pmc="L2 cache misses"
+17904 cycles start skew
+2732376 cycles stop skew
+12052666282 cycles
+513378026 stats
+563 cycles/stat
+82077 pmc
+0 pmc/stat
+43204 links
+6695876 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43+
+# --cores=42 --duration=5s --st_nlink=false --stats=21 --links=21
+# --pmc="L2 cache misses"
+16660 cycles start skew
+1906197 cycles stop skew
+12052979327 cycles
+448791751 stats
+563 cycles/stat
+539853 pmc
+0 pmc/stat
+46630 links
+5428429 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43+
+# --cores=36 --duration=5s --st_nlink=false --stats=18 --links=18
+# --pmc="L2 cache misses"
+15640 cycles start skew
+1127157 cycles stop skew
+12053838714 cycles
+383701711 stats
+565 cycles/stat
+63901 pmc
+0 pmc/stat
+50952 links
+4258453 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43+
+# --cores=30 --duration=5s --st_nlink=false --stats=15 --links=15
+# --pmc="L2 cache misses"
+14576 cycles start skew
+940740 cycles stop skew
+12053021480 cycles
+319963148 stats
+565 cycles/stat
+164534 pmc
+0 pmc/stat
+71456 links
+2530228 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43+
+# --cores=24 --duration=5s --st_nlink=false --stats=12 --links=12
+# --pmc="L2 cache misses"
+7804 cycles start skew
+415259 cycles stop skew
+12072764635 cycles
+255869568 stats
+566 cycles/stat
+48463 pmc
+0 pmc/stat
+136352 links
+1062505 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43+
+# --cores=18 --duration=5s --st_nlink=false --stats=9 --links=9
+# --pmc="L2 cache misses"
+6997 cycles start skew
+213305 cycles stop skew
+12052556078 cycles
+191378083 stats
+566 cycles/stat
+168773 pmc
+0 pmc/stat
+266481 links
+407058 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43+
+# --cores=12 --duration=5s --st_nlink=false --stats=6 --links=6
+# --pmc="L2 cache misses"
+2592 cycles start skew
+64924 cycles stop skew
+12065685968 cycles
+126974610 stats
+570 cycles/stat
+39610 pmc
+0 pmc/stat
+735671 links
+98405 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43+
+# --cores=6 --duration=5s --st_nlink=false --stats=3 --links=3
+# --pmc="L2 cache misses"
+1637 cycles start skew
+96444 cycles stop skew
+12053197358 cycles
+65401239 stats
+552 cycles/stat
+40752 pmc
+0 pmc/stat
+1004715 links
+35989 cycles/link
+
+# --kernel=xv6 --host=tom --kver=osdi12-submit-264-geb55f43+
+# --cores=2 --duration=5s --st_nlink=false --stats=1 --links=1
+# --pmc="L2 cache misses"
+497 cycles start skew
+29577 cycles stop skew
+12052869545 cycles
+22043976 stats
+546 cycles/stat
+11642 pmc
+0 pmc/stat
+1463730 links
+8234 cycles/link
+
+
+
+== --host=tom --bench=linkbench --kernel=Linux --id=2012-10-01T11:59:47 ==
+
+# --kernel=Linux --host=tom --kver="#1 SMP Mon Jul 23 02:45:17 UTC 2012"
+# --cores=48 --duration=5s --st_nlink=true --stats=24 --links=24
+735845 cycles start skew
+1626982 cycles stop skew
+12005490631 cycles
+11025709 stats
+26132 cycles/stat
+457510 links
+629792 cycles/link
+
+# --kernel=Linux --host=tom --kver="#1 SMP Mon Jul 23 02:45:17 UTC 2012"
+# --cores=42 --duration=5s --st_nlink=true --stats=21 --links=21
+550122 cycles start skew
+2418028 cycles stop skew
+12051560447 cycles
+10355233 stats
+24439 cycles/stat
+443487 links
+570683 cycles/link
+
+# --kernel=Linux --host=tom --kver="#1 SMP Mon Jul 23 02:45:17 UTC 2012"
+# --cores=36 --duration=5s --st_nlink=true --stats=18 --links=18
+336713 cycles start skew
+3813604 cycles stop skew
+12052769117 cycles
+13111213 stats
+16545 cycles/stat
+467774 links
+463817 cycles/link
+
+# --kernel=Linux --host=tom --kver="#1 SMP Mon Jul 23 02:45:17 UTC 2012"
+# --cores=30 --duration=5s --st_nlink=true --stats=15 --links=15
+236749 cycles start skew
+2639592 cycles stop skew
+12053147109 cycles
+10705076 stats
+16887 cycles/stat
+499972 links
+361644 cycles/link
+
+# --kernel=Linux --host=tom --kver="#1 SMP Mon Jul 23 02:45:17 UTC 2012"
+# --cores=24 --duration=5s --st_nlink=true --stats=12 --links=12
+164213 cycles start skew
+2278313 cycles stop skew
+12054314089 cycles
+11267371 stats
+12837 cycles/stat
+519221 links
+278615 cycles/link
+
+# --kernel=Linux --host=tom --kver="#1 SMP Mon Jul 23 02:45:17 UTC 2012"
+# --cores=18 --duration=5s --st_nlink=true --stats=9 --links=9
+112349 cycles start skew
+477308 cycles stop skew
+12053816454 cycles
+10739847 stats
+10101 cycles/stat
+517090 links
+209799 cycles/link
+
+# --kernel=Linux --host=tom --kver="#1 SMP Mon Jul 23 02:45:17 UTC 2012"
+# --cores=12 --duration=5s --st_nlink=true --stats=6 --links=6
+38518 cycles start skew
+303209 cycles stop skew
+12054464415 cycles
+10911294 stats
+6628 cycles/stat
+497237 links
+145458 cycles/link
+
+# --kernel=Linux --host=tom --kver="#1 SMP Mon Jul 23 02:45:17 UTC 2012"
+# --cores=6 --duration=5s --st_nlink=true --stats=3 --links=3
+11538 cycles start skew
+43864 cycles stop skew
+12054654542 cycles
+12343952 stats
+2929 cycles/stat
+521419 links
+69356 cycles/link
+
+# --kernel=Linux --host=tom --kver="#1 SMP Mon Jul 23 02:45:17 UTC 2012"
+# --cores=2 --duration=5s --st_nlink=true --stats=1 --links=1
+7302 cycles start skew
+9034 cycles stop skew
+12055443840 cycles
+22986230 stats
+524 cycles/stat
+676052 links
+17832 cycles/link
+
+# --kernel=Linux --host=tom --kver="#1 SMP Mon Jul 23 02:45:17 UTC 2012"
+# --cores=48 --duration=5s --st_nlink=true --stats=24 --links=24
+665593 cycles start skew
+1520906 cycles stop skew
+12050328654 cycles
+10428574 stats
+27731 cycles/stat
+447320 links
+646545 cycles/link
+
+# --kernel=Linux --host=tom --kver="#1 SMP Mon Jul 23 02:45:17 UTC 2012"
+# --cores=42 --duration=5s --st_nlink=true --stats=21 --links=21
+535378 cycles start skew
+5220347 cycles stop skew
+12051909450 cycles
+12302821 stats
+20570 cycles/stat
+441556 links
+573200 cycles/link
+
+# --kernel=Linux --host=tom --kver="#1 SMP Mon Jul 23 02:45:17 UTC 2012"
+# --cores=36 --duration=5s --st_nlink=true --stats=18 --links=18
+499193 cycles start skew
+4930079 cycles stop skew
+12053380020 cycles
+10676533 stats
+20317 cycles/stat
+476870 links
+455044 cycles/link
+
+# --kernel=Linux --host=tom --kver="#1 SMP Mon Jul 23 02:45:17 UTC 2012"
+# --cores=30 --duration=5s --st_nlink=true --stats=15 --links=15
+302361 cycles start skew
+1528727 cycles stop skew
+12052964996 cycles
+10614374 stats
+17032 cycles/stat
+512246 links
+352952 cycles/link
+
+# --kernel=Linux --host=tom --kver="#1 SMP Mon Jul 23 02:45:17 UTC 2012"
+# --cores=24 --duration=5s --st_nlink=true --stats=12 --links=12
+212459 cycles start skew
+669002 cycles stop skew
+12052659134 cycles
+10409745 stats
+13893 cycles/stat
+533705 links
+270998 cycles/link
+
+# --kernel=Linux --host=tom --kver="#1 SMP Mon Jul 23 02:45:17 UTC 2012"
+# --cores=18 --duration=5s --st_nlink=true --stats=9 --links=9
+61870 cycles start skew
+1887893 cycles stop skew
+12054868130 cycles
+14177159 stats
+7652 cycles/stat
+516950 links
+209886 cycles/link
+
+# --kernel=Linux --host=tom --kver="#1 SMP Mon Jul 23 02:45:17 UTC 2012"
+# --cores=12 --duration=5s --st_nlink=true --stats=6 --links=6
+32531 cycles start skew
+602381 cycles stop skew
+12054712623 cycles
+11346903 stats
+6374 cycles/stat
+494456 links
+146281 cycles/link
+
+# --kernel=Linux --host=tom --kver="#1 SMP Mon Jul 23 02:45:17 UTC 2012"
+# --cores=6 --duration=5s --st_nlink=true --stats=3 --links=3
+12524 cycles start skew
+43524 cycles stop skew
+12055217640 cycles
+13027839 stats
+2776 cycles/stat
+524749 links
+68919 cycles/link
+
+# --kernel=Linux --host=tom --kver="#1 SMP Mon Jul 23 02:45:17 UTC 2012"
+# --cores=2 --duration=5s --st_nlink=true --stats=1 --links=1
+9507 cycles start skew
+12271 cycles stop skew
+12055383571 cycles
+22830783 stats
+528 cycles/stat
+682662 links
+17659 cycles/link
+
+# --kernel=Linux --host=tom --kver="#1 SMP Mon Jul 23 02:45:17 UTC 2012"
+# --cores=48 --duration=5s --st_nlink=true --stats=24 --links=24
+666002 cycles start skew
+3010142 cycles stop skew
+12051571872 cycles
+11863302 stats
+24380 cycles/stat
+447921 links
+645751 cycles/link
+
+# --kernel=Linux --host=tom --kver="#1 SMP Mon Jul 23 02:45:17 UTC 2012"
+# --cores=42 --duration=5s --st_nlink=true --stats=21 --links=21
+555988 cycles start skew
+1945561 cycles stop skew
+12051838019 cycles
+10443402 stats
+24233 cycles/stat
+446140 links
+567305 cycles/link
+
+# --kernel=Linux --host=tom --kver="#1 SMP Mon Jul 23 02:45:17 UTC 2012"
+# --cores=36 --duration=5s --st_nlink=true --stats=18 --links=18
+396062 cycles start skew
+1390920 cycles stop skew
+12052408306 cycles
+10478549 stats
+20703 cycles/stat
+468293 links
+463271 cycles/link
+
+# --kernel=Linux --host=tom --kver="#1 SMP Mon Jul 23 02:45:17 UTC 2012"
+# --cores=30 --duration=5s --st_nlink=true --stats=15 --links=15
+305409 cycles start skew
+879788 cycles stop skew
+12053187847 cycles
+9651542 stats
+18732 cycles/stat
+524088 links
+344979 cycles/link
+
+# --kernel=Linux --host=tom --kver="#1 SMP Mon Jul 23 02:45:17 UTC 2012"
+# --cores=24 --duration=5s --st_nlink=true --stats=12 --links=12
+197937 cycles start skew
+729686 cycles stop skew
+12053462785 cycles
+15171644 stats
+9533 cycles/stat
+522056 links
+277064 cycles/link
+
+# --kernel=Linux --host=tom --kver="#1 SMP Mon Jul 23 02:45:17 UTC 2012"
+# --cores=18 --duration=5s --st_nlink=true --stats=9 --links=9
+100621 cycles start skew
+995036 cycles stop skew
+12054255981 cycles
+11309722 stats
+9592 cycles/stat
+503485 links
+215480 cycles/link
+
+# --kernel=Linux --host=tom --kver="#1 SMP Mon Jul 23 02:45:17 UTC 2012"
+# --cores=12 --duration=5s --st_nlink=true --stats=6 --links=6
+116860 cycles start skew
+268364 cycles stop skew
+12054612365 cycles
+11529721 stats
+6273 cycles/stat
+488020 links
+148206 cycles/link
+
+# --kernel=Linux --host=tom --kver="#1 SMP Mon Jul 23 02:45:17 UTC 2012"
+# --cores=6 --duration=5s --st_nlink=true --stats=3 --links=3
+16712 cycles start skew
+30233 cycles stop skew
+12054988931 cycles
+11933018 stats
+3030 cycles/stat
+512557 links
+70557 cycles/link
+
+# --kernel=Linux --host=tom --kver="#1 SMP Mon Jul 23 02:45:17 UTC 2012"
+# --cores=2 --duration=5s --st_nlink=true --stats=1 --links=1
+10281 cycles start skew
+6054 cycles stop skew
+12055437017 cycles
+23113207 stats
+521 cycles/stat
+678731 links
+17761 cycles/link

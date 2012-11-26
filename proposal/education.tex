@@ -1,0 +1,78 @@
+\section{Curriculum Development Activities}
+\label{sec:education}
+
+The educational goal of this proposal is to enable advanced systems classes to
+teach undergraduate and graduate students about multicore systems programming.
+Based on our personal experience we believe that this topic can be best taught
+and learned through programming labs, since the issues are subtle and there are
+no general strategies to parallelize systems.
+%
+The recent textbook \emph{The Art of Multiprocessor
+Programming}~\cite{herlihy:art} does a great job of documenting a library of
+algorithms, but doesn't teach students how to design their software for
+parallelism or teach which data structure to use when.  We will create such labs
+using \sys and make \sys and the labs publicly available. Our initial targets are
+advanced systems classes at Harvard and MIT (CS 261 and CS 264 at Harvard,
+6.828 at MIT).
+
+The development of \sys\ for advanced classes will follow our approach with
+xv6~\cite{xv6}. As part of previous NSF
+grants, the MIT PIs developed a new multiprocessor teaching operating system, xv6, along
+with new labs.  We also have written a commentary, inspired by Lions, for xv6.
+Now xv6 is used in several schools around the world for teaching, as well as
+advanced undergraduate and graduate projects.  As a traditional
+multiprocessor operating system with big locks, xv6 is unsuitable for teaching
+about parallel programming for many cores.  To fill that gap, we will make \sys
+suitable for classes and research projects, following the same road as we have
+done for xv6.
+
+We will initially experiment with \sys\ in classes by using it in MIT's operating
+system class, 6.828.  The second half of 6.828 is project
+based, and we will encourage students to do projects in the context of \sys.
+Since the high-level structure of xv6 and \sys are similar, students should be
+able to get of the ground quickly.  In addition, we will continue to incorporate
+more advanced parallel programming material into 6.828 to give students the
+necessary background to execute projects using \sys.  It is not uncommon for
+these projects to grow into advanced undergraduate projects to obtain the
+bachelor degree or a master thesis to obtain the Meng degree.
+
+The advanced OS class taught at Harvard uses a different system, JOS,
+which has been developed by both groups of PIs for many
+years.
+%
+Unlike xv6, JOS is incomplete on its own: students make it work by
+adding code.
+%
+JOS's simplicity makes it a good laboratory for experimenting with
+commutative interfaces.
+
+We plan to teach at least one research seminar class on parallel
+systems programming using \sys\ and/or a parallel JOS\@.
+%
+This class will be taught at Harvard, cross-registered at MIT\@.
+
+The projects that we are planning involve studying different subsystems and
+applications, and designing the best scalable implementation for that subsystem
+or application. For example, a project may involve designing a VM system with
+different concurrent data structures~\cite{herlihy:art} and evaluating which one
+is the most suitable for a VM system.  Another project may involve designing and
+implementing a scalable parallel garbage collector. The latter is also a good
+driver for stressing the VM system, since the garbage collector must interact
+frequently with the operating system to acquire and release memory.
+
+Of course, this proposal itself is an opportunity for teaching graduate and
+undergraduate students about how to do research in multicore systems.  The
+proposal will support mostly graduate students with whom he will work one on
+one.  Through bachelor and master projects we expect that a number of
+undergraduates to be involved as well. For instance, two MIT undergraduates are
+involved in the development of \sys for this proposal.
+
+Through this combined approach of teaching and research we expect to train a
+cadre of students at Harvard and MIT about multicore systems programming. By
+making all material publicly available we hope that other universities can use
+the \sys infrastructure to train students.  Given the need in industry for
+students who understand advanced parallel systems programming, we are hopeful
+that \sys could see significant adoption at other universities.
+
+% LocalWords:  multicore PIs MSRA Kaashoek EECS mentorship WTP OCW JOS
+% LocalWords:  adoptable

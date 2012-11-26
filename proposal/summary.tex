@@ -1,0 +1,132 @@
+\subsection*{Project Summary: \proptitle{}}
+\label{sec:summary}
+
+% Systems programs, including operating systems kernels, network servers,
+% and databases, are very hard to scale~\cite{barrelfish,linuxscalability}.
+%
+Systems software is often repeatedly
+re-architected as increasing numbers of cores
+turn innocuous constructs into bottlenecks.
+%
+This process can take tremendous effort over many years, as has been shown by
+Linux and other systems.
+%
+A more attractive approach would be to build, \emph{once},
+implementations that scale \emph{by design} to any number
+of cores.
+%
+Unfortunately, scalability by design isn't always possible.
+%
+Some interfaces can always be made to scale;
+%
+others can scale only for some system states or for some
+mixes of operations;
+%
+and others are always unscalable.
+%
+The difference is not always obvious: for example, the requirement
+that the Unix \syscall{open} system call return the \emph{minimum}
+available file descriptor prevents it from scaling whenever multiple
+threads in a process open files simultaneously.
+%
+Lacking tools for reasoning about interface scalability,
+programmers measure implementation scalability instead.
+%
+This leads to a host of problems, including fruitless searches for scalable
+implementations and incorrect assumptions that interfaces cannot scale.
+%
+No wonder programmers fall back to the reactive approach of waiting for
+bottlenecks to appear.
+
+The missing piece required for scalability by design is \emph{modular
+scalability reasoning}.
+%
+Programmers need well-defined rules for analyzing scalability
+independent of particular implementations.
+%
+The rules should distinguish situations where scalability is possible
+from ones where it is not, so that programmers can focus their
+attention.
+%
+Implementation effort is justified when the rules say scalability is
+possible; re-design of interfaces or changes in interface usage
+can avoid scalability limitations; and sometimes scalability is
+inherently impossible, as when threads intentionally interact.
+
+\textbf{Intellectual merit.}
+%
+We propose
+\emph{commutativity rules}
+as a step towards modular scalability reasoning.
+%
+When two
+operations, such as system calls, \emph{commute}---when their order of
+execution does not change their results or the results of later
+operations---then we show those operations can be implemented in a scalable way, because
+their implementations need not communicate.
+%
+This applies the existing idea of disjoint access parallelism to
+\emph{interfaces}.
+%%  rather than implementations.
+%
+Programmers can use the rule to evaluate scalability independent of
+implementations; not only is this far easier than reasoning about code, but it
+is possible before an implementation even exists.
+
+
+As we show, many interfaces fall between universal commutativity
+and universal non-commutativity.
+%
+Commutativity rules should aid reasoning in
+such gray areas.
+%
+For instance, operations that \emph{frequently} commute (i.e., for
+more combinations of system state and parameters)
+may be \emph{easier} to make
+scalable.
+%
+We also argue that commutativity considerations can 
+help programmers discover new scalable implementations.
+
+The proposed research addresses new problems in specification and
+implementation.
+%
+A precise definition of commutativity must depend on interface properties,
+system state, and potentially even future operations, while remaining
+intuitive.
+%
+Important commutativity classes remain to be defined, such as
+interfaces that commute in many, but not all, system states.
+%
+We will also develop several systems programs whose
+interfaces and implementations are driven by the
+commutativity rule.
+%
+These systems will motivate and test our specifications,
+and lead us to develop more tools for evaluating commutativity in
+practice.
+%
+A centerpiece of our work will be a new operating
+system, \sys, whose interface is commutative whenever possible, and
+whose implementation is scalable on all commutative operations.
+
+
+\textbf{Broader impacts.}
+%
+Our research results will help programmers design interfaces that can
+be scaled, and help them decide when to expend the effort to make
+implementations scale. 
+%
+Our focus on a practical rule should have
+broad impact as scalability on multi-core machines becomes increasingly
+critical to larger communities of programmers.
+
+We will incorporate our understanding of scalability into our operating
+systems courses, and into our widely used xv6 teaching operating system.
+%
+Our new \sys\ operating system will be released publicly.
+%
+A critical goal is the education of graduate students skilled in
+multi-core systems programming techniques.
+
+\textbf{Key words:}   multi-core; operating systems; parallel programming

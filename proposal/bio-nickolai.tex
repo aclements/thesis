@@ -1,0 +1,172 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{bibunits}
+
+\setlength\pdfpageheight{\paperheight}
+\setlength\pdfpagewidth{\paperwidth}
+
+\makeatletter
+\def\@bibunitname{bu-nickolai\the\@bibunitauxcnt}
+\makeatother
+
+\renewcommand{\rmdefault}{ptm}
+\renewcommand{\sfdefault}{phv}
+
+\def\discretionaryslash{\discretionary{/}{}{/}}
+{\catcode`\/\active
+\gdef\URLprepare{\catcode`\/\active\let/\discretionaryslash
+        \def~{\char`\~}}}%
+\def\URL{\bgroup\URLprepare\realURL}%
+\def\realURL#1{\tt #1\egroup}%
+
+\newcounter{bibctr}
+
+\newcommand{\mkbib}[1]{
+    \refstepcounter{bibctr}
+    \item[\hskip0pt plus1filll \hbox{[\arabic{bibctr}]}]
+  \begin{bibunit}[plain]
+      \nocite{#1}
+      \putbib[n-str,n,n-conf]
+    \label{bib:#1}
+  \end{bibunit}
+}
+
+\newcommand{\refbib}[1]{[\ref{bib:#1}]}
+
+%\renewcommand{\refname}{}
+
+\makeatletter
+\renewenvironment{thebibliography}[1]
+     {\list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+            \leftmargin\labelwidth
+            \advance\leftmargin\labelsep
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sloppy
+      \clubpenalty4000
+      \@clubpenalty \clubpenalty
+      \widowpenalty4000%
+      \sfcode`\.\@m}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \endlist}
+
+\renewcommand{\@biblabel}[1]{}
+\countdef\c@nfssec=1
+\makeatother
+
+\renewcommand{\thepage}{\Alph{nfssec}-\arabic{page}}
+\def\up#1{\raise.16ex\hbox{#1}}
+
+
+
+\begin{document}
+\count1=6 % This sets page numbers to be F-n
+\count0=1 % This first page to be F-n
+\section*{Biographical Sketch: Nickolai Zeldovich}
+
+\subsection*{(a) Professional Preparation}
+
+\begin{tabbing}
+Massachusetts Inst.\ of Technology \quad \=
+    Elec. Eng. and Comp. Sci. \quad \=
+    Postdoctoral Scholar \quad \=
+    \kill
+
+\textbf{Institution} \> \textbf{Major} \> \textbf{Degree} \> \textbf{Date} \\
+Massachusetts Inst.\ of Technology \> Elec. Eng. and Comp. Sci. \> S.B. \> 6/2002 \\
+Massachusetts Inst.\ of Technology \> Elec. Eng. and Comp. Sci. \> M.Eng. \> 6/2002 \\
+Stanford University \> Computer Science \> Ph.D. \> 1/2008 \\
+Stanford University \> Computer Science \> Postdoctoral Scholar \> 1/2008--7/2008 \\
+\end{tabbing}
+
+\subsection*{(b) Appointments}
+
+\begin{tabbing}
+Massachusetts Inst.\ of Technology\quad \=
+    Elec. Eng. and Comp. Sci. \quad \=
+    \kill
+\textbf{Organization}\> \textbf{Position}\> \textbf{Dates}\\
+
+Massachusetts Inst.\ of Technology \> Associate Professor \> 7/2012-- \\
+Massachusetts Inst.\ of Technology \> Assistant Professor \> 7/2008--6/2012 \\
+moka5 \> Co-founder \> 5/2005--9/2005 \\
+Kaveri Networks \> Software Developer \> 6/2000--8/2000 \\
+Naval Research Laboratory \> Summer Intern \> 6/1999--8/1999 \\
+
+\end{tabbing}
+
+%\textbf{Honors:} Douglas T. Ross Career Development Chair (2009--2012).
+
+\subsection*{(c) Publications}
+
+\subsubsection*{Publications Relevant to Proposal}
+\begin{itemize}
+    \mkbib{clements:bonsai}
+    \mkbib{boyd-wickizer:scaling}
+    \mkbib{boyd-wickizer:locks}
+    \mkbib{pesterev:multiaccept}
+    \mkbib{pesterev:dprof}
+\end{itemize}
+
+\subsubsection*{Selected Other Publications}
+\begin{itemize}
+    \mkbib{zeldovich:histar}
+    \mkbib{popa:cryptdb}
+    \mkbib{kim:retro}
+    \mkbib{chandra:collective}
+    \mkbib{yip:resin}
+\end{itemize}
+
+\subsection*{(d) Synergistic Activities}
+
+\begin{itemize}
+\item Program committee member for SOSP 2009, Usenix 2010, OSDI 2010, SOSP 2011, NSDI 2012, OSDI 2012, ASPLOS 2013, SOSP 2013.
+\item Teaching courses on computer systems (6.033), operating systems (6.828),
+      and computer systems security (6.858) at MIT.
+\end{itemize}
+
+\subsection*{(e) Collaborators \& Other Affiliations}
+\paragraph{Non-MIT Collaborators:}
+    Michael Dalton (Stanford),
+    Eddie Kohler (Harvard),
+    Christos Kozyrakis (Stanford),
+    Philip Levis (Stanford),
+    David Mazi\`eres (Stanford),
+    Nick McKeown (Stanford),
+    Arjun Roy (Stanford),
+    Stephen Rumble (Stanford),
+    Ryan Stutsman (Stanford).
+
+\paragraph{Graduate Advisors:}
+    Monica Lam (Stanford),
+    David Mazi\`eres (Stanford),
+    Robert Morris (MIT).
+
+\paragraph{Postdoctoral Sponsor:}
+    David Mazi\`eres (Stanford).
+
+\paragraph{Student Advisees:}
+    Ramesh Chandra (MIT),
+    Haogang Chen (MIT),
+    Austin Clements (MIT),
+    Priya Gupta (Google),
+    Taesoo Kim (MIT),
+    Raluca Ada Popa (MIT),
+    Meelap Shah (MIT),
+    Emily Stark (MIT),
+    Frank Wang (MIT),
+    Hsin-Jung Yang (MIT),
+    Alex Yip (Nicira).
+
+    Student total: 3~completed, 8~current.
+
+\paragraph{Postdocs:}
+    Jad Naous (Nerati).
+
+    Postdoc total: 1~completed, 0~current.
+
+\end{document}

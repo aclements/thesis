@@ -1,0 +1,8 @@
+{
+  "xv6-loc": {
+    "libraries": 1510, 
+    "kernel": 13442, 
+    "applications": 6187, 
+    "headers": 9592
+  }
+}

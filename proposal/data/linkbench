@@ -1,0 +1,42 @@
+#!/usr/bin/python -3
+
+from __future__ import print_function
+
+import sys
+import data
+import textformat
+import plot
+
+def fill_out(row):
+    # Convert cycles to secs
+    if row.get("iv.host") in ["tom", "ben"]:
+        for k in row.keys():
+            if k.startswith("dv.cycles"):
+                row["dv.secs" + k[len("dv.cycles"):]] = float(row[k]) / 2.4e9
+    # Create X/sec (XXX These could be client-side expressions)
+    if "dv.secs" in row:
+        for x in ["dv.iterations", "dv.links", "dv.stats"]:
+            out = x + "/sec"
+            if x in row and out not in row:
+                row[out] = row[x] / float(row["dv.secs"])
+    # Recompute pmc/stat, since xv6 doesn't have floating-point
+    if "dv.pmc" in row and "dv.stats" in row:
+        row["dv.pmc/stat"] = float(row["dv.pmc"]) / row["dv.stats"]
+    return row
+
+def main():
+    fname = "linkbench.raw"
+    if len(sys.argv) > 1:
+        fname = sys.argv[1]
+    raw = list(textformat.parse(file(fname)))
+    d = data.Table(map(fill_out, raw))
+
+    plot.\
+        Gnuplot(d.filter(lambda r: r["id"] in ("2012-10-01T07:57:28",
+                                               "2012-10-01T08:07:58")),
+                x="iv.cores", y="dv.stats/sec",
+                layer=("iv.st_nlink", "id", "iv.kver")).\
+        data()
+
+if __name__ == "__main__":
+    main()

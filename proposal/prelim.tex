@@ -1,0 +1,71 @@
+\section{Preliminary results}
+\label{s:prelim}
+
+\input{machine}
+
+\subsection{System calls: stat}
+
+%\XXX[AC][We use fstat instead of stat to focus on stating rather than
+%path lookup.]
+
+To get a sense of whether the commutativity rule matters for scalability
+of real system interfaces, and how one might apply it in a constructive
+fashion, we explore one specific example from the Linux system call API:
+the \code{stat} system call.  The \code{stat} system call returns both the
+length of the file and the number of hard links.  Because the \code{stat}
+system call returns the link count, it does not commute with
+\code{link} and \code{unlink} operations on the same file, even if
+the application is only interested in the file's length. This lack of
+commutativity suggests that these operations cannot scale.
+
+Indeed, in Linux, the \code{stat} system call does not scale when running
+concurrently with \code{link} and \code{unlink}.
+Several shared locks are acquired by \code{link} and \code{unlink}, and
+it is difficult to restructure the code to isolate their effects.  But
+how much of this non-scalability is due to potential implementation
+defects in Linux, and how much of it is inherent due to the non-commutative
+API?
+
+To answer this question, we implemented a modified version of
+\code{stat} in a preliminary version of \sys.  This
+modified version lets applications specify which fields to return.  If
+an application specifies all fields, it behaves like Linux's
+\code{stat}.  However, if an application indicates that \code{stat}
+should only return the file's size and not its link count, then,
+unlike Linux's \code{stat}, that call to \code{stat} will commute with
+\code{link} and \code{unlink}.
+
+Using this modified \code{stat}, we run a benchmark that uses half of
+the available cores to repeatedly \code{stat} a file, while the other
+half of the available cores repeatedly \code{link} the file to a new,
+unique name and then \code{unlink} the new name, causing the file's
+link count to fluctuate.  Our implementation of \code{stat} is optimal
+for this benchmark in that it moves at most one cache line: the cache
+line containing the file's link count.
+
+\begin{figure}
+  \centering
+  \input{graph/linkbench-xv6.tex}
+  \caption{Throughput of \code{stat} calls, with $n/2$ cores calling
+    \code{stat} and $n/2$ cores calling \code{link} and
+    \code{unlink}.}
+  \label{fig:linkbench}
+\end{figure}
+
+Figure~\ref{fig:linkbench} compares the results of two configurations
+of this benchmark: one that calls \syscall{stat} in a non-commutative
+way, requesting all file information including the link count, and one
+that calls \syscall{stat} in a commutative way, requesting that the
+link count be omitted from the result.  The difference is striking:
+despite moving only a single cache line, the scalability of the
+non-commutative configuration is severely limited, while the
+commutative configuration scales perfectly.  The limited scalability
+of the regular \syscall{stat} implementation is a direct consequence
+of the interface-level non-commutativity of \syscall{stat} and
+\syscall{link}/\syscall{unlink}.  Thus, we
+believe that the proposed research will be important to real systems
+and real APIs.
+
+%Furthermore, this result indicates that our abstract
+%machine model captures a key scalability property of real hardware.
+

@@ -1,0 +1,301 @@
+\section{Research challenges}
+\label{sec:research}
+
+The ultimate goal of this proposal is to provide a rule that developers
+can use to design scalable interfaces, and to understand when an
+implementation of a given interface cannot be expected to scale
+further.
+\begin{comment}
+There are a number of challenges in providing such a rule.  First,
+the rule must be precise and intuitive to help developers make clear
+decisions.  Second, the rule must capture how an interface might scale
+under different workloads, which we hope to represent using a hierarchy
+of scalability classes.  Third, the rule should capture scalability on
+real hardware.  Finally, the programmer should be able to check whether
+their implementation achieves the goal set out by the commutativity rule.
+
+To evaluate whether our commutativity rule is meaningful for systems
+software, we will apply the rule to both existing systems with rich
+interfaces, such as Linux, and to new systems that we build, which will
+give us the freedom to choose more commutative (and thus more scalable)
+APIs and to quickly explore different implementations.
+\end{comment}
+The rest of this section lays out the research challenges both in
+developing the rule, and in applying the rule to software systems.
+
+
+\subsection{What is a good abstract machine model?}
+
+One of the main topics of research for this proposal is to explore
+aspects of the abstract machine and their relationship to scalability.
+Although the abstract machine above is a quite simplistic version of
+real hardware, it is a good starting point.  Our preliminary results
+with \sys demonstrate that real-world hardware with local caches and
+cache coherence is reasonably close to the abstract machine.
+%
+But the current abstract machine doesn't have a notion
+of locality.  For example, in real hardware pair-wise communication
+can scale linearly, which the above model doesn't capture.  As we
+explore in \S\ref{sec:asymptotic}, scalable local communication allows
+for a class of algorithms (e.g., resource allocation) to be implemented
+that are important in practice.
+
+Another limitation is that the abstract machine is limited to modeling
+caches (and assumes infinitely large caches), ignoring other scalability
+bottlenecks, such as the memory system.  Generalizing the abstract
+machine to other resources is another research direction that we would
+like to explore.
+
+
+\subsection{Are there different degrees of commutativity?}
+
+Based on our experience, we have found that some operations appear to
+be more commutative than others.  For example, the \OP{getpid} system call
+is highly commutative---that is, it commutes with all operations
+from other threads.  Other operations, such as reading and writing from
+files, are mostly commutative, except for a few cases (such as reading
+and writing from the same position in the same file).  Some operations
+are only commutative under certain workloads: for instance, file creation
+is commutative as long as there's enough free space and free inodes.
+Finally, some operations never commute, such as allocating the lowest
+file descriptor in a process.  As part of this work, we plan to come up
+with a hierarchy of commutativity classes to capture these situations
+and help programmers reason about them.
+
+
+\subsection{How to formalize and prove the rule?}
+
+We will produce a full proof of the basic commutativity rule.
+%
+We also will produce proofs of related commutativity rules for other
+commutativity classes, giving us a better understanding for the
+limits of scalability and commutativity.  We expect these proofs
+will help us understand the classes of interfaces that can or cannot
+be made scalable, and how that relates to interfaces that do or do not
+satisfy the rule.
+%
+For instance, the proof sketched above works only for a specific history.
+%
+For some classes of commutative interface, such as (trivially)
+constant interfaces like \OP{getpid}, we expect to be able to
+prove the existence of a \emph{universally} scalable implementation.
+%
+Intermediate classes of commutative interface require further
+investigation; one major outcome of this proposal would be to resolve
+the tension between universal scalability and trace-tailored scalability.
+
+
+\subsection{How to make the rule even more intuitive?}
+
+The basic rule proposed in \S\ref{sec:rule} reasons about commutativity
+of operations in terms of the history of all operations performed to
+get to a certain state.  This is far simpler than reasoning about
+implementations.
+%
+However, in practice we expect programmers may
+have trouble even reasoning about commutativity.
+%  of their operations in this
+% manner, because it requires reasoning about all possible combinations of
+% operations that produce a trace.
+We would like to explore alternative
+formulations that are more intuitive for programmers yet capture the
+same underlying idea.  For example, it may be possible to provide
+a special case that both captures typical interfaces seen in POSIX and
+helps programmers apply a specialized version of our rule to their
+system.
+%% E: Really? Reads even more handwavy than the rest. Don't really
+%% care tho
+
+
+\subsection{What can be made scalable that is not covered by the rule?}
+\label{sec:asymptotic}
+
+Although the rule defines a set of interfaces that can be implemented to be
+scalable, it is not a complete set of such interfaces.  In particular,
+as pointed out above,
+real hardware allows certain communication patterns
+to scale well, such as communication between cores within the same socket.
+% within the same socket) scales well.  Broadcast communication from a
+% single source should also scale.
+Such communication patterns could
+be composed, for instance communicating along a chain of all cores in
+a scalable way, where each pair of cores is adjacent to one another.
+%
+These hardware properties can be used to implement important
+non-commutative operations in a scalable manner.  For example, the RCU
+garbage collection scheme requires computing the global minimum epoch
+across all cores. Though this doesn't commute, the minimum can still be
+computed in a scalable manner (with some latency cost) by chaining communication between pairs of
+adjacent cores.
+% One trade-off in this design is that the propagation
+% latency increases with the number of cores.  Thus, each core may need
+% to buffer more garbage before it can be collected.
+%
+A similarly important problem is load-balancing across cores, a
+problem which shows up in many guises (balancing running threads,
+work stealing, balancing free memory pages, etc.).
+
+Once we have an abstract machine model that captures these features of
+real hardware, the challenge remains of characterizing the kinds of
+operations that can be implemented scalably on that machine.
+
+
+\subsection{How can the rule help with API design?}
+\label{sec:api}
+
+As a case study of how the rule can be used by developers, we plan to
+explore the scalability of the Linux syscall API, which is inspired
+by POSIX\@.  Although our experience suggests that POSIX is largely
+amenable to scalable implementations~\cite{boyd-wickizer:scaling}, we hope
+to use the rule to either prove that certain aspects of the API can be
+implemented to scale linearly on real hardware, or to find system calls
+that are needlessly non-commutative.  For interfaces whose execution
+doesn't scale linearly, we will propose changes to the API that improves
+the commutativity of operations, thereby making it possible to implement
+a scalable kernel.
+
+Our preliminary analysis of Linux system calls has found several
+classes of unnecessary non-commutativity in these interfaces, such as
+(as pointed out earlier) \syscall{open} returning the lowest available
+file descriptor number~\cite{boyd-wickizer:corey}.
+%
+% For example, POSIX requires that \code{open} returns the lowest available
+% file descriptor number.  Since the file descriptor numbers are shared
+% by all threads in a process, this means that two \code{open} calls
+% issued by different threads do not commute, and this has been shown
+% to be a potential scalability bottleneck~\cite{boyd-wickizer:corey}.
+A simple change to the API would be to allow \code{open} to return any
+unused file descriptor number, allowing two \code{open} operations by
+different threads in the same process to commute.
+
+Another class of unnecessary non-commutativity is system calls that
+require unnecessary ordering between events.  For example, multiple
+programs reading messages from a local socket in Linux are required
+to receive messages in the same order as they were written by other
+processes.  This ordering constraint makes reads non-commutative with
+respect to each other, and likewise for writes, and this can be a problem
+for communication with local (or even remote) servers.  Similar ordering
+constraints show up for pipes, for select and poll, etc.  A better
+interface might allow the kernel to re-order messages on a socket,
+which will allow reads and writes to commute in certain situations.
+
+A subtle case of ordering constraints shows up with \code{munmap},
+\code{mremap}, and \code{madvise} operations.  The current API requires
+the kernel to prevent any subsequent memory access to the unmapped region
+from other threads in the same process.  However, in many applications,
+the programmer does not require this guarantee, and does not want to pay
+the associated cost of performing TLB shootdowns, etc, which are hard
+to scale.  A more scalable API would allow the programmer to separate the
+two operations: first, allow the kernel to reuse the physical pages if
+necessary, and second, reuse the virtual address region for a new mapping
+(possibly an empty mapping).
+
+Yet another source of unnecessary non-commutativity is system calls that
+embed too much information into a single operation, as in the
+\syscall{stat} system call discussed in \S\ref{s:prelim}. Similar problems show
+up in \syscall{getdents}, \syscall{msgctl},
+\syscall{getrusage}, etc.
+
+
+\subsection{How to realize a scalable implementation?}
+
+A challenge for our research is what system to use for evaluation of
+the proposed ideas.  On one hand it is natural to use the Linux kernel,
+since it is widely used, exhibits scaling problems (see \S\ref{s:prelim}),
+and is open source.  On the other hand, Linux comprises millions of
+lines of code and modifications can require extraordinary amounts of work.
+%be an extraordinary amount of work, because the subsystems are not as
+%cleanly designed as one might hope for.
+We learned from integrating the
+Bonsai tree into Linux~\cite{clements:bonsai} that just modifying one subsystem
+is time-consuming and modifying several (as this proposal calls for)
+is infeasible for a small group of researchers.  Therefore, for this
+proposal we propose to build \sys, a new small, POSIX-like monolithic
+kernel based on our earlier work on xv6~\cite{xv6}.  \sys provides a
+POSIX-like API; the benchmarks used in \S\ref{s:prelim} can be compiled on
+both Linux and \sys.  Our hope is that \sys will be a useful experimental
+infrastructure for other researchers, and a teaching tool for advanced
+operating system classes. Though using \sys may cause us to ignore
+important features (e.g., swapping), we expect the lessons we learn
+from it to carry over to subsystems that it lacks.
+
+Once we modify the POSIX API as described in \S\ref{sec:api} to
+allow for an implementation that can scale linearly on real hardware,
+we will use \sys as a starting point to realize this implementation.
+This will be for a large part an exercise in parallel programming and
+parallel data structure design, which may
+itself require research and result in novel designs.
+
+\begin{comment}
+The downside of using \sys is that we will miss features that are
+important (e.g., swapping) and for which a scalable implementation is
+challenging (e.g., swapping needs a reverse map).  Our hope is that
+we will learn enough from the xv6 subsystems that those lessons can be
+carried over to subsystems that xv6 won't support.
+\end{comment}
+
+
+\subsection{How should applications use the rule and scalable interfaces?}
+
+Commutativity also applies to other interfaces important to
+systems programming, such as database interfaces.
+%
+ To understand what the commutativity rule means for application
+developers, we will build a new key-value store based on our previous
+work with Masstree~\cite{mao:masstree}.  This implementation will
+use the rule in two ways.  First, we will apply the rule to ensure
+that the store uses commutative (and therefore scalable) operating
+system interfaces whenever possible, so that its
+implementation can be made scalable.  Second, we will analyze and improve the
+commutativity (and therefore scalability) of the interface that the
+store exposes to its users.
+%
+The basic key-value store interface is simple and seemingly commutative;
+when considering only \OP{get}$(k)$ and \OP{put}$(k, v)$ operations,
+everything commutes except for operations on the same key.
+%
+However, this interface does not suffice for building larger sensible
+units, such as transactions.
+%
+We will investigate new, more commutative interfaces for isolated
+transaction-like units.
+
+
+\subsection{How to verify that an implementation follows the rule?}
+
+The commutativity rule guides design, but for complex and multi-layered
+software like an OS kernel with interacting subsystems, developers must
+ensure that the implementation satisfies the rule when expected.
+One question we would like to explore as part of this proposal's research
+is how to check whether an implementation follows the rule.  As a starting
+point, we would like to explore an approach based on logical variables
+and physical memory tracing.
+
+At first glance it might seem easy to check if an operation scales
+linearly on real hardware: run an application and the kernel under a
+cache profiler and look for coherence misses in the output.  However,
+without commutativity, the cache profiler cannot distinguish between
+inevitable coherence misses from operations that are not commutative,
+and coherence misses that represent violations of the rule.  Hence, while
+cache profiling is important for improving the performance of a system,
+we need a different approach for focusing a developer's attention on
+the commutative operations that don't scale linearly.
+
+As part of this proposal, we plan to build a dynamic analysis tool that uses
+programmer-supplied annotations to mark logical variables (e.g., a directory, an
+inode, a virtual page, etc.) and physical memory tracing to determine which
+operations are commutative, and consequently should scale linearly.  Combined
+with workload generators designed to exercise the kernel, this lets us report
+pairs of operations that violate the rule, along with exactly where the
+violation occurred and what memory was shared.
+
+
+\subsection{How to specify scalability contracts?}
+
+Ideally, programmers would be able to look up the scalability properties
+of an interface.  We would like to explore what such a scalability
+contract might look like.  For example, an ideal contract would be simple
+enough to embed in a manpage for POSIX\@.  One idea would be to leverage
+the notion of logical variables, as used for rule checking above,
+to also specify the commutativity of operations in the documentation,
+and thus their scalability.

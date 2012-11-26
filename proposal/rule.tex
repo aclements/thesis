@@ -1,0 +1,676 @@
+% -*- fill-column: 72 -*-
+
+\section{The Basic Commutativity Rule}
+\label{sec:rule}
+
+We now precisely present the basic commutativity rule and sketch a
+proof of its main claim, namely that commutative operations can be made
+to scale.
+%
+The rule depends intimately on \emph{state} and \emph{history}.
+%
+It says that whenever operations commute \emph{in the context of some
+trace} of operations, there exist implementations of those operations
+the scale \emph{in the same context}.
+%
+We argue that this history dependence captures an important property of
+practical scalability, and discuss how the definition could be
+broadened.
+
+\begin{comment}
+To give a sense for how the connection between commutativity and
+scalability might be formalized, this section provides a preliminary
+definition of scalability, commutativity, and a rule that connects the
+two.  While this makes our proposal more concrete, we hope to further
+improve on these definitions and rules to make them easier to apply
+in practice.
+
+In this section, we start by first defining an abstract machine designed
+to capture the primary factors in scalability on real hardware.
+Then, we define commutativity in a way
+that applies well to system calls with state-dependent behavior.  Finally,
+our hypothesis connects the commutativity of interfaces with the
+existence of implementations that scale linearly on the abstract
+machine.
+\end{comment}
+
+\subsection{Definitions}
+\label{pf}
+
+\def\OP#1{\textsl{#1}}
+\def\INV#1#2#3{\text{\OP{#1}}_{#3}(#2)}
+\def\RES#1#2#3{\text{\OP{#1}}_{#3} \rightarrow #2}
+\def\HRESTRICT#1#2{#1|#2}
+\def\HIST#1{#1}
+\def\LEGALHIST{\mathcal{H}}
+\def\PARTIALHIST{\mathcal{P}}
+\def\STEP{\rightarrow}
+\def\TRUE{\textsc{true}}
+\def\FALSE{\textsc{false}}
+\def\OK{\textsc{ok}}
+\def\FAIL{\textsc{fail}}
+\def\qed{$\square$}
+
+\begin{comment}
+The abstract machine gives us a way to reason about when a particular
+implementation scales, which, in turn, lets us weigh potential
+implementations of an given interface.
+In order to reason about when an interface's implementation \emph{can
+  be} scalable, this section turns to \emph{commutativity}, an interface
+design property that captures the inherent communication needs of an
+interface's implementations.
+\end{comment}
+
+Informally, operations commute when 
+they produce the same results regardless of their execution order
+and later operations cannot reveal their execution order.  To
+formalize this, we build on the terminology of Herlihy and
+Wing~\cite{herlihy:linearizability}.
+
+
+An \emph{operation} is the pair of two \emph{actions}, an
+\emph{invocation} and a \emph{response}. In the context of an
+operating system kernel, the invocation is basically a system call,
+including arguments, and the response is the return value. Each
+operation takes place on a single \emph{thread}. We write the thread
+as a subscript. An example invocation is written
+$\INV{operation}{\text{arguments}}{\text{thread}}$, and its response
+as $\RES{operation}{\text{response}}{\text{thread}}$.
+
+A \emph{serial history} is a sequence of actions in which each
+invocation is immediately followed by its response.
+
+A \emph{history} $\HIST{H}$ is a sequence of actions where for any
+thread $t$, the subsequence formed by selecting just operations on $t$
+is serial. (We write this subsequence as $\HRESTRICT{\HIST{H}}{t}$.)
+%
+This means that each thread's actions look like the trace of
+some single-threaded program, alternating between invocation and
+response. However, operations on \emph{different} threads can overlap.
+%
+A history may contain \emph{outstanding} invocations---i.e., invocations
+that lack corresponding responses. However, since thread subhistories
+are serial, there can be at most one outstanding invocation per thread,
+and that outstanding invocation must be the last invocation for that
+thread.
+
+\emph{Legal} histories capture the notion of correctness. Some
+histories are legal and some aren't. A legal history is allowed by the
+specification of the objects under study (e.g., the specifications
+of systems calls); an illegal history isn't
+allowed. If a history is legal, then every prefix of that history is
+also legal. The (prefix-closed) set of legal histories is called
+$\LEGALHIST$.
+
+We assume that $\LEGALHIST$ exists, but aren't
+concerned with how it is created. For example, imagine a
+simple interface for a single shared variable with two
+functions: $\OP{put}(x)$, which sets the shared variable's value to $x$,
+and $\OP{get}()$, which returns the
+variable's current value as its response.  $H_1$ and $H_2$ below are
+legal histories, but $H_3$ is not (because $\OP{get}_1$ returns an
+unexpected value). $H_2$ shows an example of overlapping
+operations.
+%
+\begin{align*}
+  H_1 = [&\INV{put}{1}{1}, \RES{put}{\OK}{1}, \INV{get}{}{1},
+  \RES{get}{1}{1}] \\
+  H_2 = [&\INV{put}{1}{1}, \INV{put}{2}{2}, \INV{get}{}{3},
+  \RES{put}{\OK}{2}, \RES{get}{1}{3}, \RES{put}{\OK}{1}] \\
+  H_3 = [&\INV{put}{1}{1}, \RES{put}{\OK}{1}, \INV{get}{}{1},
+  \RES{get}{0}{1}]
+\end{align*}
+
+An \emph{implementation}'s job is to generate responses for outstanding
+invocations.
+%
+We model implementations using a \emph{step relation} over histories,
+written $\STEP$.
+%
+The step relation completes outstanding invocations: if $P \STEP P\cdot
+r$, then $P$ is a history with one or more outstanding invocations, and
+$r$ is a response to one of the outstanding invocations.
+%
+Different implementations might generate different responses, and
+responses need not be unique (a single implementation might allow both
+$P \STEP P\cdot r$ and $P \STEP P\cdot r'$ with $r \neq r'$).
+%
+Implementations are modeled as state machines that work on a shared
+memory.
+%
+Each thread has a separate state machine that receives invocations on
+that thread as externally generated events.
+%
+Although a history imposes a specific order on all invocations and
+responses, threads can in general observe that order only by
+writing and reading shared memory.
+%
+We leave full discussion of this model for future work, but
+discuss its preliminary development in Section~\ref{sec:abscal}.
+
+A set of legal histories defines both an interface and correctness
+requirements for implementations of that interface.
+%
+A \emph{correct} implementation will ensure that every generated response is
+legal.
+%
+Specifically, an implementation is correct if, whenever $P \in
+\LEGALHIST$ and  $P \STEP P\cdot r$, we also have $P\cdot r \in
+\LEGALHIST$.
+
+Note that an implementation has no say over the order in which
+\emph{invocations} arrive.
+%
+This depends only on the set of legal histories.
+%
+In most situations, such as operating systems kernels, it's important
+that the set of legal histories allow any invocation at any time (though
+of course an implementation would generate error responses for many
+invocations, such as requests to read from non-existent file
+descriptors).
+%
+We elide this requirement for this presentation, as well as some requirements concerning blocking
+interfaces---additional work is needed to ensure that implementations
+don't block forever unless that is appropriate.
+
+
+Implementation correctness can imply the existence of state
+that implementations must keep.
+%
+For instance, since $\OP{get}()$ above is required to return
+the most recently $\OP{put}$ value, any correct implementation must keep
+some state corresponding to that value (although this state need not be
+a single shared memory location).
+
+
+\begin{comment}
+\textbf{Nondeterminism.} We assume without loss of
+generality${}^{\text{????}}$ that all operations have deterministic
+return values. Of course, real operations often return nondeterministic
+results. This can be modeled in various ways. For example, we might
+model a nondeterministic action as returning a \emph{set} of values,
+where the set contains all legal return values.
+\XXX[AC][Do we need this, given that legality already accounts for
+nondeterminism?]
+\XXX[E][Yes, because commutativity doesn't say just that the scrambled
+history is legal with SOME return values, we say that the scrambled
+history is legal with THE SAME RETURN VALUES as in the original trace]
+\XXX[AC][That's exactly my point.  Our definition \emph{already}
+captures this, so why do we need to say something fuzzy about making
+interface deterministic?  If we're going to say something about
+nondeterminism, shouldn't we draw the reader's attention to how our
+definitions capture it, rather than saying that they don't without
+additional modeling?]
+\XXX[E][I don't think it is your point but I don't think we actually need
+to care about nondeterminism at this point in the doc]
+\end{comment}
+
+\subsection{The rule}
+\label{rulerule}
+
+We are now ready to define commutativity and the basic commutativity
+rule.
+
+Given a series of actions $X$,
+a series of actions $Y$ is an
+\emph{interleaving} of $X$ if, for every thread $t$,
+$\HRESTRICT{Y}{t} = \HRESTRICT{X}{t}$.
+%
+This means that $Y$ and $X$ contain exactly the same actions, and that
+their per-thread subsequences are identical. However, it allows $Y$ to
+reorder actions \emph{among threads} relative to $X$.
+%
+A series of actions $Z$ is a \emph{sub-interleaving} of $X$ if $Z$ is a
+\emph{prefix} of some interleaving of $X$.
+%
+This means that, for every thread $t$, $\HRESTRICT{Z}{t}$ is a prefix of
+$\HRESTRICT{X}{t}$. Sub-interleavings, like interleavings, preserve per-thread
+orders of actions in $X$; unlike interleavings, they are allowed to leave
+later actions out.
+%
+Any $X$ is both an interleaving and a sub-interleaving of itself.
+
+Consider a legal history $\HIST{H}$ and a contiguous subsequence $X$ of its
+actions, with $\HIST{H} = A \cdot X \cdot B$.
+%
+We say that $X$ \emph{commutes} in $\HIST{H}$ if, given any
+sub-interleaving $Z$ of $X$, any $B'$ so that
+$A \cdot Z \cdot B'$ is legal, and any interleaving $Z'$ of $Z$, the
+history $A \cdot Z' \cdot B'$ is also legal.
+%
+Thus, when $X$ commutes in $\HIST{H}$, any actions after $X$ can't
+distinguish between different orders of the actions in $X$.
+
+The \textbf{basic commutativity rule} is then stated as follows.
+%
+Assume there exists a correct implementation over some set of legal
+histories $\LEGALHIST$.
+%
+Take some $\HIST{H} \in \LEGALHIST$ and some $X$ that commutes in
+$\HIST{H}$.
+%
+Then there exists a correct implementation over $\LEGALHIST$
+that is \emph{scalable} over the operations wholly
+contained in $X$.
+%
+Here, ``scalable'' means that operations on different threads do not
+communicate using shared memory: a memory location written by the
+implementation of thread $t$ in $X$ is not read by any other thread in
+$X$.
+
+
+\subsection{Proof sketch}
+
+Why is the basic commutativity rule true?
+%
+The intuition is simple.
+%
+Since $X$ commutes in $\HIST{H}$, the implementations of the
+invocations in $X$ must not need to communicate: they return the same
+results regardless of order, and later functions in $H$ can't
+distinguish the order either.
+
+This intuition can be formalized by \emph{constructing} an
+implementation $M$
+whose threads don't communicate in $X$.
+%
+This implementation is tailored for a single history and
+commutative region. Though it is \emph{correct} for every history, it is
+guaranteed to \emph{scale} only for $H$ and $X$.
+%
+$M$ compares received invocations against a copy of $H$
+embedded in $M$.
+%
+If the received invocations match $H$,
+then (at least so far) the operation sequence is the one
+$M$ is tailored for, and $M$
+plays back responses from its copy of $H$.
+%
+If they don't match, then $M$ is seeing a
+sequence of operations other than the one it's tailored for,
+and $M$ switches over to
+simulating a correct reference implementation, $R$.
+%
+This requires replaying the previous invocations to prepare $R$'s
+internal state.
+
+Since it is simply playing back responses, you might
+expect $M$ to scale over all of $H$.
+%
+It doesn't, though, since tracking received invocations is not scalable.
+%
+In general global synchronization is required to ensure that all
+threads' received invocations match those in $H$---\emph{except} in a
+commutative region.
+%
+There, by definition, \emph{any} replay order must create an equivalent
+result. Thus, $M$ can switch to unsynchronized, scalable tracking upon
+reaching $X$, which, as it knows, commutes.
+
+Without further assumptions on the nature of the interface being
+represented, a specifically tailored implementation is the best we can
+do.
+%
+We will investigate assumptions that allow us to construct more generic
+scalable implementations as part of our proposed work.
+%
+A more formal presentation of this argument follows.
+
+By assumption a correct reference implementation $R$ exists.
+%
+Consider a legal history  $\HIST{H} = A \cdot X$ where $X$ commutes in
+$\HIST{H}$.
+%
+Assume without loss of generality that, when given the invocations in
+$H$, the reference implementation always generates the responses
+indicated by $H$.
+%
+% Then an implementation that scales over $X$ when given a history
+% beginning with $A\cdot X$, but returns the same result as the reference
+% implementation for \emph{any} history, can be constructed by tracking
+% received invocations against $A\cdot X$.
+% %
+% Within $A$, invocation tracking must be non-scalable; but within $X$, it
+% can be scalable, thanks to commutativity.
+% %
+% When received invocations either complete $A\cdot X$ or diverge from it,
+% the constructed implementation replays the received invocations to the
+% reference implementation.
+%
+Then construct $M$ by adding to $R$'s state one history and one history
+program counter per thread.
+%
+For thread $t$, we store $H_t = A \cdot
+  (\HRESTRICT{X}{t})$ and $\textit{pc}_t$. Each $\textit{pc}_t$
+  initially points at the first invocation in $H_t$. The special value
+  $\textit{pc}_t = \FAIL$ indicates the thread should fall back to the
+  reference implementation.
+%
+The implementation of thread $t$ is as follows.
+  \begin{CompactEnumerate}
+\item If $\textit{pc}_t = \FAIL$, or $\textit{pc}_t$ points beyond
+  $H_t$, then $t$ falls back to the reference implementation.
+\item If $\textit{pc}_t$ points at an invocation or response not in
+  thread $t$, then $t$ waits for another thread to advance
+  $\textit{pc}_t$ or set it to \FAIL.
+\item If invocation $i$ is received, and $\textit{pc}_t$ points to an
+  invocation $I$ on thread $t$, then:
+  \begin{CompactEnumerate}
+\item If $i \neq I$, then the thread non-scalably falls back to the
+  reference implementation. This involves pausing all other threads, taking
+  a snapshot of all $\textit{pc}_t$ values, replaying the
+  invocations indicated by the \textit{pc}s on the backup
+  implementation's state, and then setting all $\textit{pc}_t$ values to
+  \FAIL.
+\item If $i = I$ and $\textit{pc}_t$ is in $A$, then the thread
+  non-scalably increments \emph{all} $\textit{pc}$ values.
+\item If $i = I$ and $\textit{pc}_t$ is in $\HRESTRICT{X}{t}$, then the
+  thread scalably increments \emph{only its own} $\textit{pc}_t$.
+  \end{CompactEnumerate}
+\item If $\textit{pc}_t$ points to a response on thread $t$, then the
+  implementation generates that response and increments $\textit{pc}_t$.
+  If this response is in $A$, the implementation also
+  non-scalably increments the other threads' \textit{pc} values.
+\end{CompactEnumerate}
+
+\noindent
+%
+This implementation
+%
+exactly replays the responses in $A$ using lockstep \textit{pc}
+updates; these responses are legal by assumption (legal histories are
+prefix-closed).
+%
+Over $X$, the order of responses generated by this implementation may
+differ from that of $H$, but any such order is legal because of
+commutativity.
+%
+If and when the input history diverges from $H$, the implementation
+replays the received invocations to the reference implementation.
+%
+For invocations in the commutative region $X$, the replay order may
+differ from the actual order in which the original invocations were received, because a scalable
+implementation cannot record a global reception order.
+%
+Again commutativity shows that any replay order is allowed, since later
+invocations can't distinguish among them.
+%
+Thus, thanks partially to commutativity, $M$ both scales over $X$ and is
+correct for any sequence of invocations. \qed
+
+\subsection{Examples}
+
+The implementation constructed in the proof sketch is clearly not one
+anyone would use.
+%
+Nevertheless, the definition of commutativity on which it relies
+captures the implicit interface structure that allows for better
+scalable implementations.
+%
+Some concrete examples of commutative interfaces will show both more
+realistic scalable implementations of commutative interfaces, and
+conceptual benefits of our history-dependent definition of
+commutativity.
+
+
+\paragraph{Reference counter}
+
+Consider a reference counter with three operations, \OP{inc}, \OP{dec},
+and \OP{isdead}.
+%
+The \OP{inc} operation increments the reference count, returning
+nothing.
+%
+The \OP{dec} operation decrements the reference count, returning
+nothing.
+%
+Finally, the \OP{isdead} operation returns \TRUE\ iff the count is
+non-positive.
+%
+The intent is that a client calls \OP{inc} when obtaining a reference
+and \OP{dec} when releasing a reference. After \OP{dec}, the client
+calls \OP{isdead}, freeing the object if \OP{isdead} returns \TRUE.
+
+Consider the following history, assuming that the initial value of the
+count is 3:
+%
+\begin{align*}
+\HIST{H} = [& \INV{isdead}{}{1}, \RES{isdead}{\FALSE}{1},
+	\INV{isdead}{}{2}, \RES{isdead}{\FALSE}{2}, \\
+	&\INV{dec}{}{3}, \RES{dec}{\OK}{3},
+	\INV{dec}{}{4}, \RES{dec}{\OK}{4},
+	\INV{dec}{}{5}, \RES{dec}{\OK}{5}, \\
+        &\INV{isdead}{}{6}, \RES{isdead}{\TRUE}{6}].
+\end{align*}
+%
+Each operation is
+performed by a different thread, indicated by subscript.
+%
+The following subsequences commute in $\HIST{H}$.
+
+\begin{CompactItemize}
+\item Each individual invocation--response pair obviously commutes, since an
+  individual invocation--response pair has no nontrivial re-interleavings.
+  This doesn't tell us anything, since the scalability of an
+  individual operation in isolation is meaningless.
+\item The first two \OP{isdead} calls commute. They can be made to scale
+  by keeping per-core counter snapshots, and forcing \OP{dec} to update
+  each core's snapshots.
+\item The three \OP{dec} calls commute. They can be made to scale by
+  keeping per-core counters, and forcing \OP{isdead} to sum all per-core
+  counters before returning a result.
+\item The first four operations commute (two \OP{isdead} and two \OP{dec}). These can be
+  made to scale with a combination of per-core counters (whose sum is one
+  less than the true counter) and
+  per-core ``\OP{isdead}'' snapshots. An ``\OP{isdead}'' snapshot is defined to
+  \TRUE\ iff the sum of the per-core counters is negative. A \OP{dec}
+  call decrements its per-core counter. If the per-core counter goes
+  negative, the \OP{dec} call must read and sum all the counters and update
+  the ``\OP{isdead}'' snapshots accordingly.
+  In this history, threads 3 and 4 might start out with per-core
+  counters equal to 1, with thread 5's per-core counter equal to 0.
+  Then the first four operations will execute scalably.\footnote{%
+  %
+  The operations would not execute scalably given other
+  initial per-core counter assignments.}
+\end{CompactItemize}
+
+The first \emph{five} operations do \emph{not} commute in $\HIST{H}$.
+
+Now, the three different commutative subsequences above call for three
+\emph{fundamentally different} scalable implementations. This is exactly
+right! We know that a read-mostly counter can be made scalable, and a
+write-mostly counter can be made scalable, though those implementations
+are very different. In practice, an implementer would decide which
+\emph{kinds} of commutative subsequences are more common, and write an
+implementation scalable in those situations.
+
+
+\paragraph{Reference counter interfaces}
+
+Typical reference counter interfaces differ from the one above by
+combining \OP{isdead} and \OP{dec} into one call, \OP{deccheck}, where
+\OP{deccheck} both decrements the reference count and returns
+\TRUE\ if the decrement caused the counter to become non-positive.
+%
+(For instance, Linux's \verb+atomic_inc+ and \verb+atomic_dec_and_test+
+functions provide this kind of interface.)
+%
+Commutativity reasoning shows how this interface choice limits
+scalability.
+%
+The analogous history would be as follows:
+%
+\begin{align*}
+\HIST{H'} = [&\INV{deccheck}{}{3}, \RES{deccheck}{\FALSE}{3},
+	\INV{deccheck}{}{4}, \RES{deccheck}{\FALSE}{4}, \\
+&\INV{deccheck}{}{5}, \RES{deccheck}{\TRUE}{5}]
+\end{align*}
+%
+Now, unlike in $H$ above, the three \OP{deccheck} calls \emph{do not}
+commute.
+%
+The interface with combined decrement is harder to make scale than
+the interface that separates decrement from checking alone.
+%
+This can lead to new implementation techniques.
+%
+For example, in the separated interface, perhaps
+calls to \OP{isdead} could be moved to a background
+thread that occasionally collected garbage, allowing \OP{inc} and
+\OP{dec} calls to scale.
+%
+On the other hand, if, in most histories, the counter has a large
+positive value, then even the \OP{deccheck} interface commutes, and
+therefore can be made to scale using per-core counters.
+
+Basic commutativity reasoning points out where scalability is possible.
+%
+Other forms of reasoning are required to choose which kinds of
+scalability are important to implement.
+%
+We envision developing a \emph{set} of commutativity rules that
+distinguish interfaces by \emph{how easily} they commute---in other
+words, that distinguish interfaces that commute only with specific
+arguments or at specific points in a history from interfaces that
+commute more generally.
+
+
+\begin{comment}
+Careful analysis using our commutativity definition reveals that
+increments and decrements commute as long as the counter is large
+enough. If the counter is small, however, decrements may not commute.
+For example, if the counter is one, and there are two concurrent
+decrements, which one returns true and which false depends on
+the order. Thus this interface does not allow a generally commutative
+implementation.
+
+However, the commutativity analysis suggests a way to change the
+interface so that it can scale. In particular:
+\begin{verbatim}
+  inc() -> void
+  dec() -> void
+  nonzero?() -> boolean
+\end{verbatim}
+Now increments and decrements scale. If the calls to {\tt nonzero?}
+can be moved to a background thread that occasionally collects
+garbage, then the common case can be made to scale.
+
+\XXX[rtm][this is a lot like the ispos example, but cast in a way
+that I think makes it more clear why it's useful to the programmer to
+have a precise definition of commutativity. also I think we should have
+an example that involves a programming using commutativity to help
+choose a better interface.]
+\end{comment}
+
+
+\paragraph{File creation}  Consider the following history, in which
+threads in different processes create different files in the same directory:
+%
+\begin{align*}
+\HIST{H} = [& \ldots, \INV{open}{\text{\code{"/tmp/a", O_CREAT|O_EXCL}}}{1},
+    \RES{open}{\textit{fd1}}{1}, \\
+  & \INV{open}{\text{\code{"/tmp/b", O_CREAT|O_EXCL}}}{2},
+    \RES{open}{\textit{fd2}}{2}, \ldots ].
+\end{align*}
+%
+This is the file-creation example mentioned earlier.
+%
+The subsequence containing the four responses and invocations shown
+above is commutative in $\HIST{H}$.
+%
+These operations both write
+the directory, so it's natural to assume that they must modify shared
+state. An implementer might naturally throw up her hands and not even
+try to make them scale. But ignoring quotas (and assuming inode
+numbers are nondeterministic, and that directory listings return values
+in random order, etc.), the operations commute. Later code
+can't distinguish the order in which the operations completed. This is
+a hint that a scalable implementation might exist. As in fact one
+does---given a hash-based directory definition, cores creating
+``/tmp/a'' and ``/tmp/b'' could do so without
+communicating. Even updating the directory modification time could be
+made to scale by storing per-core modification times to be resolved on
+read, or when the disk is actually written.
+%
+On the other hand, if the threads were in \emph{the same} process, the
+operations wouldn't commute, because different interleavings of the
+operations would result in different returned file descriptors.
+
+
+\begin{comment}
+% Eddie doesn't get the point of this and so doesn't want to fix it to
+% be correct
+
+\paragraph{Delayed allocation} You're designing an allocator.
+It may run out of resources. You consider an interface design in which
+the allocator returns an error indication if there are no free
+resources. However, concurrent calls to the allocator therefor won't
+commute, suggesting that there may not be a scalable implementation. You
+think ``why not just have the allocator delay until resources become
+available?'' With intuitive notions of commutativity, this appears to
+make the allocator commutative, since there's no obvious difference
+between a call when there were free resources and a call when there
+weren't.
+%
+However, once you apply our careful definition of commutativity, you'll
+realize that the delaying allocator doesn't make allocation commute.
+Both the invocation and the response have to be in the re-interleaving
+window. The definition says that every re-interleaving has to leave a legal
+$R$. But you can't re-interleave the return of the allocation call that had
+to wait so that it goes before the return of the allocation call that
+didn't.
+\end{comment}
+
+\subsection{Discussion}
+
+The basic commutativity rule helps separate the job of a scalable
+systems programmer into
+two problems:
+
+\begin{CompactItemize}
+
+\item When designing an interface, the designer can decide if a given
+  interface design could scale without first having to implement it,
+  by reasoning about commutativity at the level of the interface's
+  specification.
+
+\item Once the designer has decided on an interface and which operations
+  commute, the designer can think about an implementation that is
+  more efficient than the general construction given above by exploiting the
+  semantics of the specific interface.
+
+\end{CompactItemize}
+
+\noindent
+In practice, designers make trade-offs between scalability
+and other desired properties.  For example, memory is not
+unlimited, so the kernel must reuse memory; but re-using memory that has been used
+by an operation is not commutative with that operation. As another example, an
+implementation that scales linearly may not be the
+highest performing implementation for a particular core count.
+Some implementations of a scalable reference counter may be inefficient for a
+small number of cores.
+
+Determining which operations commute can be non-trivial, as illustrated
+by the file creation and counter examples above.  In the best case,
+some operations are always commutative, such as multiple invocations
+of \code{getpid()}.  For these cases, our hypothesis suggests that
+the operations should always be scalable.  In other cases, as we've
+shown, commutativity depends on system state (e.g., whether quotas are
+enabled) or arguments (e.g., whether two \OP{open} calls are on different
+threads of the same process); or there may be no maximal set of mutually
+commutative actions (e.g., the reference counter), forcing the designer
+to choose which operations to scale.
+%%  , but is relatively
+%% straightforward, as in the file creation example:
+%% as long as quotas are not enabled, the
+%% operations should scale linearly.  The most complex situations arise when
+%% different subsets of operations commute but there is no single maximal set
+%% of operations that commutes together.
+%% A similar situation might arise if quotas are enabled in a file system,
+%% or a pipe becomes full or empty. 
+In these cases, an interface designer
+may need to provide explicit hints as to which of the commutative sets
+of operations they decided to make scalable, or they may opt to change
+the interface.

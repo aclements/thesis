@@ -1,0 +1,198 @@
+% \section{Introduction}
+\label{sec:intro}
+
+In computation-heavy domains, such as scientific computing and
+graphics, applications can use multi-core hardware well on their own.
+%
+But the situation is different for systems applications, by which we
+mean programs that make heavy use of other \emph{interfaces} (provided
+by the operating system kernel, infrastructure libraries, databases, and
+the like).
+%
+Such applications often have scalability problems caused not
+by their own code but by the interfaces they use.
+%
+This makes a systems application's scalability difficult to analyze in
+isolation.
+%
+For instance, multi-threaded applications
+in which each thread allocates memory
+might run into a scalability bottleneck due to the single lock that protects
+a process's address space in Linux~\cite{clements:bonsai}, even though there
+is no fundamental reason why these operations should not scale.
+%
+But the application programmer had no way to predict this bottleneck.
+%
+The scalability limit doesn't appear in the manual, and isn't obvious
+from the system interface.
+%
+Unknown scalability consequences cause problems for kernel developers, too,
+who are left unsure which interfaces need to scale, and which need
+not---or cannot.
+%
+Similar limitations and concerns hold for interfaces ranging from
+databases to system calls to interfaces within an OS kernel.
+
+The result is a reactive approach to scalability.
+%
+Systems programs aren't made to scale until bottlenecks become
+painfully obvious.
+%
+For instance, kernel developers watch for applications
+whose performance does not scale well on existing machines due to kernel
+bottlenecks, and then modify the kernel to improve the scalability of the
+relevant services~\cite{cacm-real-world}.  These modifications typically
+involve changing data structures to use finer-grained locks, applying
+RCU~\cite{rcu:linux} to avoid read locks altogether, and partitioning or
+replicating data per core.
+%
+Though operating systems like Linux scale well for many important applications on current
+hardware~\cite{boyd-wickizer:scaling},
+%
+the reactive approach has serious disadvantages.
+%
+Any application might uncover a new kernel scalability bottleneck,
+but only those bottlenecks encountered by ``important'' applications
+are addressed quickly.
+%
+Application developers must modify their code to avoid bottlenecks in
+the kernel and in other services, such as databases, but these
+bottlenecks often aren't documented or even known.
+%
+Effort is duplicated as multiple programmers discover similar
+workarounds, and then must modify them as underlying problems are
+resolved and the workarounds become bottlenecks themselves.
+
+Systems programs will be fragile---scalable only on today's
+hardware and sensitive to changes in other software layers---until we
+develop better tools for \emph{modular scalability
+  reasoning}.
+%
+Systems programmers should be able to reason about scalability
+without understanding the \emph{implementations} of
+the systems with which their programs interact.
+%
+Documented \emph{interface-level} properties should, as far as
+possible, determine the scalability of a program.
+
+This proposal develops tools for modular scalability reasoning that
+we call \textbf{commutativity rules}.
+%
+The main idea is intuitive (our proposed work will make it precise).
+%
+Two operations \emph{commute} if their order doesn't matter and
+later operations cannot distinguish which operation executed first.
+%
+Commutativity is a property of an interface specification
+and is independent of its
+implementation.  A particular implementation of an interface
+\emph{scales} when concurrent operations do not affect each other's
+execution times; this is ``perfect'' scalability in which
+additional cores produce linear increases in throughput.
+Commutativity rules observe that, even though
+scalability is an implementation property, an interface has a certain
+inherent scalability that an implementation may exploit.
+%
+The basic commutativity rule says that \emph{whenever two
+operations commute, there exist implementations of those operations that
+scale}.
+%
+A proof sketch is given in Section~\ref{pf}.
+%
+More broadly stated, we believe that \emph{the more commutative} an
+interface is, \emph{the more scalable} its implementation can be.
+
+This has two important consequences, one for interface design and use
+and one for implementation.
+
+First, commutativity rules suggest that an operation that
+\emph{never} commutes will be difficult or impossible to scale.
+%
+A system designer need not try to scale such an operation, since the
+attempt will likely fail.
+%
+Instead, the designer should try to create an alternate interface that
+\emph{does} commute.
+%
+Similarly, an interface \emph{user} should avoid non-commutative
+interfaces in favor of commutative ones.
+%
+For example, two \syscall{open} system calls by different threads of
+the same POSIX process are not commutative, because each such call
+must return the lowest unused file descriptor.
+%
+A more scalable \syscall{open} interface would return \emph{any}
+unused file descriptor.
+
+Second, commutativity rules suggest that operations that
+\emph{do} commute \emph{can be} made scalable.
+%
+This holds even for operations that commute only in selected states or for
+selected arguments.
+%
+For example, consider the \syscall{mmap} system call for mapping
+memory.
+%
+If two threads of the same process call \syscall{mmap(x)} at the same
+address \syscall{x}, then clearly the calls do not commute: only one
+of the memory map requests can win.
+%
+But more commonly, different threads will call \syscall{mmap} at
+\emph{different} addresses (for example, to allocate memory within
+thread-specific VM regions).
+%
+Since such calls commute, they can also scale~\cite{clements:bonsai},
+even if they do not scale in current implementations of
+\syscall{mmap}.
+
+
+The commutativity rule lets systems implementers, interface
+designers, and application developers think of scalability in terms of
+interfaces.
+%
+This complements the reactive approach to scalable software design, and
+addresses many of its problems, by providing a clear statement of
+interface scalability that does not require reasoning about
+potential implementations.
+%
+Scalability problems aren't automatically solved;
+%
+scalable implementations of commutative interfaces still require effort.
+%
+But commutativity rules perform two critical functions
+lacking from our current understanding of scalability: they highlight
+when implementations should strive to be scalable, and which interfaces
+are inherently unscalable.
+
+\input{problem}
+
+\paragraph{Research challenges}
+
+Our overall research plan is to explore and formalize scalable
+commutativity and modular scalability reasoning. We will build
+the {\sys} operating system for hands-on experience with
+using these ideas to design scalable interfaces and 
+construct scalable implementations.
+
+More specifically, we plan to work on the following (see
+\S\ref{sec:research}).
+(1) Formalizing definitions of scalability that match various
+hardware designs, and understanding the situations where real
+hardware scales better or worse than our abstract model.
+(2) Making the definition of commutativity more precise,
+and proving that it implies scalability.
+(3) Exploring intermediate degrees of commutativity.
+(4) Exploring ways in which commutativity analyses can help
+programmers find scalable implementations.
+(5) Exploring notions of amortized scalability, which allow
+small amounts of inter-core interaction, and corresponding
+commutativity-like rules.
+(6) Finding ways to change POSIX interfaces to allow better
+scalability.
+(7) Developing checking tools to help programmers verify that
+their code achieves the intended scalability.
+(8) Defining documentation conventions that allow application
+programmers to predict whether their use of interfaces will
+be scalable.
+(9) Applying the rule and using scalable system calls in a
+high-performance application.

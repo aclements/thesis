@@ -1,0 +1,143 @@
+% -*- fill-column: 80 -*-
+
+\section{Related Work}
+\label{sec:related}
+
+The primary contribution of this work is the Commutativity Rule and its
+use in the design and implementation of software systems.  This section
+relates this contribution to previous work on scalability, operating
+system design, and commutativity.
+
+\subsection{Thinking about scalability}
+
+Israeli and Rappoport introduce the notion of disjoint access parallelism.
+In particular, they point out that concurrent programs that access
+memory locations disjointly won't experience hotspots, and thus 
+are scalable~\cite{israeli:disjoint-access}.  We build on a similar intuition.
+A key advance proposed in this work is to reason about the potential
+for scalability at the level of interfaces, as opposed to the
+scalability of a given implementation or memory access trace.
+In particular, we aim to connect the commutativity of interfaces to the
+potential for disjoint access parallelism.
+
+Both the original disjoint access parallelism paper and subsequent work,
+including the paper by Roy et al.~\cite{roy:limits-dap}, explore
+the scalability of applications that have some amount of non-disjoint
+sharing, such as compare-and-swap instructions on a shared cache line
+or a shared lock.  As part of this research, we also plan to explore
+weaker forms of scalability and commutativity, and their relation,
+as explained in more detail in \S\ref{sec:research}.
+
+The Laws of Order~\cite{law:orders} explore the relationship between an
+interface specification and whether that interface can be implemented
+without ``expensive instructions.''  These expensive instructions, such
+as \code{mfence} on the x86, slow down the execution of an individual
+processor in isolation, because they require the write buffer to be
+flushed before subsequent reads can be retired.  The Laws of Order observe
+that strong non-commutativity of operations is related to whether an
+implementation without expensive instructions is feasible.  Paul
+McKenney explores what the Laws of Order may mean for the Linux kernel,
+and points out that the Laws of Order may not apply if linearizability
+is not required~\cite{lwn:law}.
+
+The commutativity rule explores a different relationship
+than the Laws of Order: namely, the relationship between an interface
+specification and whether that interface can be implemented in a scalable
+manner.  Thus, the commutativity rule is focused on overall system
+scalability and not on the performance of individual cores.
+
+Theoreticians generally analyze implementations of concurrent
+data structures in terms of properties like lock-freedom and
+wait-freedom~\cite{herlihy:art}, and such data structures are useful in
+realizing scalable implementations of commutative interfaces.
+These notions guarantee progress, but not scalability.
+
+% \XXX[FK][Cut this paragraph?] Theoreticians analyze concurrent data structures
+% not in terms of scalability but make an argument that functions on a data
+% structure are lock-free, wait-free, etc.  and worry about contention and
+% bottlenecks for performance ~\cite{herlihy:art}, but don't relate these
+% properties to scalability.  The Laws of Order are a case in point: it doesn't
+% directly relate concurrency to scalability, while the Scalable Commutativity
+% Property does.
+
+Practitioners follow in general the iterative design pattern for
+achieving scalability: design, implement, measure, and iterate (e.g.,
+see~\cite{cacm-real-world}).  It is well understood that cache-line
+contention can result in bad scalability. A clear example is the design of
+the MCS lock~\cite{MCS}, which eliminates scalability collapse by avoiding
+contention for a particular cache line.  Other good examples include
+scalable reference counters~\cite{approx:counter,snzi:podc}.
+The commutativity rule makes the connection between scaling and cache-line
+movement explicitly, and identifies a class of operations that can avoid
+cache-line movement.
+
+\subsection{Scalable operating systems}
+
+The Linux kernel scales well for many important workloads, but
+there remain many scalability bottlenecks, and it is unclear which
+of the scalability bottlenecks are inherent to its system call interface.
+One well-known bottleneck is the virtual memory system, when multiple
+threads in the same process invoke \code{mmap} and \code{munmap} and
+trigger page faults.  The Linux kernel does not scale in this situation
+due to a single lock protecting the address space, which is difficult
+to remove~\cite{clements:bonsai}, yet our commutativity rule suggests
+that a scalable implementation for the common case of operations on
+non-overlapping regions should be possible.  Conversely, there are
+operations that cannot be made to scale without deviating from the POSIX
+specification,
+such as \code{open} returning the lowest file descriptor.
+As part of the proposed work, we will pin down situations where the
+Linux kernel implementation is not as scalable as the POSIX specification's
+commutativity
+implies it could be, and also point out specific POSIX calls that limit
+the potential scalability of Linux.
+
+% A contribution of this paper is the
+% design and implementation of 
+% a new virtual memory design that allows \code{mmap} and \code{munmap}
+% operations to be perfectly scalable when they are invoked for different memory
+% regions.  This design improves on the Bonsai-based VM
+% design~\cite{clements:bonsai}, which allows only page faults to execute
+% concurrently with \code{mmap} and \code{unmap}.  The Scalable Commutativity
+% Property made us realize that a perfect-scalable implementation is possible, and
+% Section \S\ref{sec:cases} explains how we achieve it.
+
+Multikernels for multicore processors aim for
+scalability by avoiding shared data structures in
+the kernel~\cite{barrelfish:sosp,wentzlaff:fos}.  These systems
+implement shared abstractions using distributed systems techniques
+(such as name caches and state replication) on top of message passing.
+Our commutativity rule can relate the interface exposed by this shared
+abstraction to its scalability, even if implemented using distributed
+systems techniques on a multikernel.
+
+The designers of the Corey operating system~\cite{boyd-wickizer:corey} argue for
+putting the application in control of managing the cost of sharing
+without providing a guideline how; the commutativity rule could be a
+helpful guideline for application developers.
+
+\subsection{Commutativity}
+
+The idea of commutativity to increase
+concurrency has been widely explored.  The database community has long used the
+notions of logical readsets and writesets, conflicts, and execution histories
+to reason about when transactions can be executed concurrently
+while maintaining serializability (e.g., see~\cite{bernstein:concurrency}).
+Weihl discusses commutativity-based concurrency control for abstract data
+types~\cite{weihl:commutativity}.  Herlihy and Wing uses commutativity to prove
+the correctness of a concurrent queue in their paper introducing
+linearizability~\cite{herlihy:linearizability}.  Rinard and Diniz describe
+a compiler that exploits commutativity in applications to increase
+parallelism~\cite{rinard:commutativity}, and Prabhu et al.\ exploit
+commutativity annotations on system calls to give more freedom to the
+compiler to increase parallelism by re-ordering operations or issuing
+them concurrently~\cite{prabhu:cset}.
+Transactional boosting exploits
+commutativity to increase concurrency in software transactional memory
+systems~\cite{herlihy:boosting}.
+
+Our contribution in this space is to apply commutativity to interfaces. In
+contrast, existing definitions, such as Steele's~\cite{steele:commutativity},
+apply to specific implementations. Our focus on interfaces is what allows
+modular scalability reasoning: the ability to reason about scalability
+independently of specific implementations.

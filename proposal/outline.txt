@@ -1,0 +1,121 @@
+CFP: http://www.nsf.gov/pubs/2012/nsf12582/nsf12582.htm
+
+1-PAGE ABSTRACT
+
+goal:  perfect scalability for application developers whose apps use the OS
+
+focus: scalability bottlenecks due to coherence traffic?
+
+contribution:
+- SCP: the rule
+  rule+proof sketch
+- Designing with SCP
+  SCK
+  Tool for verifying
+- Programming with SCP
+
+broader impact
+ 
+education plan?
+
+INTRO
+
+- current approach to achieving scalability is bottom-up
+   expensive in programming time
+   no guarantees
+
+- an approach to achieve perfect scalability for programmers
+
+- contributions:  some re-hash of 1-page abstract
+
+- impact: broader and education
+
+RELATED WORK (improved section 2 of the paper)
+
+- law of orders
+- disjoint-access parallelism
+- thinking about cache-line movement
+- commutativity
+
+GOAL & APPROACH  (new)
+
+goal: perfect scalability
+
+approach: interface rule
+  commutativity, cache
+  no interference at all
+    skip list explains why
+
+SCP (section 3 of paper)
+  invocation
+  abstract scalability
+  logical commutativity
+  the property
+
+EXAMPLES OF API design
+- fd 
+- stat
+- recvmsg ordering
+- pipe ordering
+- file seek offset: hard to share fd without pread, etc
+- munmap batching, postpone expensive op to last
+- readdir *.c; flistxattr
+- select / epoll_wait / poll: is it legal to return 0 FDs after timeout?
+- thread termination vs process exit / exit_group
+- gettimeofday vs settimeofday: clock_gettime(CLOCK_MONOTONIC) is better
+- fork/exit, exec/FD_CLOEXEC
+- order of records in accounting file: acct()
+- eventfd EFD_SEMAPHORE
+- madvise MADV_DONTNEED requires immediate TLB shootdown: a symmetric
+  MADV_NEEDNOW would have been better
+- fcntl(F_SETLK) lock released when any fd for that file is closed,
+  even if by another thread
+- FUTEX_WAIT/FUTEX_CMP_REQUEUE/FUTEX_WAKE
+- getdents returns d_ino, making it non-commutative w/ rename
+
+[ stopped looking through /usr/share/man/man2 after mbind.2.gz ]
+
+INSIGHTS:
+- Unnecessary ordering (pipe, recvmsg, etc.)
+- Too many kernel ops bundled (unmap, stat)
+- Not enough semantic info (*.c)
+  
+RESEARCH QUESTIONS:
+
+what formal form should the rule have?
+  history based?
+
+how realistic is the abstract machine model?
+  graphs
+  how do changes in the abstract machine model effect perfect scalability?
+
+what does SCP mean for kernel design?
+   how does it apply to an OS?
+   sck
+   examples of how SCP influences how design?
+
+how to verify that a kernel has SCP
+  sctrace
+
+what does SCP mean for programmers?
+  Test with invocations have SCP in Linux (use tool for Linux?)
+  Ones that are not, can we adjust their semantics to make commutative?
+  e.g., psearchy w. threads or processes
+  e.g., use same directory or not
+  creation of work: avoid fork/exec/exit, instead pre-fork
+
+what can be made scalable that is not covered by SCP?
+- Ven diagram
+- LRU-list and allocation---perfectly scalable?
+- amortized cost
+- asymptotic scalable
+  class of interfaces that are not commutative but scale amortized well
+
+EDUCATION
+  xv6
+
+BROADER IMPACT
+
+PRIOR RESULTS
+
+COLLABORATION AND MANAGEMENT PLAN

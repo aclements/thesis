@@ -1,0 +1,115 @@
+An example will show why commutativity rules can help even experienced
+programmers understand the inherent scalability of an interface.
+%
+Consider the \syscall{open} system call, as used to create a file in a
+directory.
+%
+Further imagine that two \syscall{open} calls are used to create two
+files in the same directory at the same time.
+%
+Can those system calls be made to scale?
+%
+Our first answer was ``obviously not.''
+%
+The two system calls modify the same shared state, namely the containing
+directory.
+%
+Surely in any implementation the two calls would contend on this shared
+state, either via a lock or via non-blocking synchronization on one or
+more shared cache lines. (Both forms of contention limit scalability.)
+%
+But commutativity shows this isn't really true.
+%
+If the two system calls create files \emph{with different names}, then the
+success or failure of each system call is independent; later system calls can't
+distinguish which completed first; and the operations commute.
+%
+Our commutativity rules say, therefore, that there must exist some
+implementation of \syscall{open} that scales for these calls.
+%
+In hindsight, this implementation is straightforward.
+%
+If the directory is implemented as a hash table, and each hash bucket has an
+independent lock, the two file creations can proceed (most likely) without
+communicating.
+%
+The authors initially believed that this example could not scale; our
+mistake was to analyze only the implementations we could think of for
+scalability. It was examples like this that motivated our search for
+the rule.
+%
+And file creation is not the only example: commutativity rules have pointed us
+to similar insights in other interfaces, including the virtual memory system and
+\syscall{mmap}.
+
+
+\begin{comment}
+\paragraph{Commutativity examples}
+
+Some examples of commutative and non-commutative interfaces follow.
+%
+Though our proposed implementation work will involve both operating
+system kernels and user-level programs, we take our examples from
+kernels, whose interface (system calls) is well understood.
+
+\begin{itemize}
+
+\item One process calls \code{open("/a/x", O_CREAT|O_EXCL)} and another
+process calls \code{open("/b/x", O_CREAT|O_EXCL)}. 
+%
+The two \code{open} calls commute,
+since applications cannot tell the order in which these calls happened.
+There is one caveat: if one of the directories is a symbolic link
+to the other, then whichever call executes second will fail;
+in this case the operations do not commute.
+Thus, we expect these two operations should be
+able to scale linearly as long as the caveat does not apply.
+
+\item Two threads in the same process invoke \code{sbrk(4096)}.
+Intuitively, the two invocations of \code{sbrk} must advance the shared
+break point in the shared address space, and return the previous break
+point value to the caller.  This means that two invocations of \code{sbrk}
+must necessarily communicate with each other to determine the order in
+which they update the break point.  As a result, one thread's execution
+of \code{sbrk} will be slowed down by another thread concurrently running
+\code{sbrk} at the same time.  Note that we are able to deduce this purely
+by considering the interface specification for \code{sbrk}, and not by
+analyzing a specific implementation.
+
+% \item Two threads in the same process invoke \code{dup()}, each on a
+% different file descriptor.  By the same intuition as above, the specification
+% of the \code{dup} function requires it to return the lowest-numbered available
+% file descriptor, and consequently two \code{dup} operations must coordinate
+% to determine which one goes first.  As above, this means that two \code{dup}
+% operations cannot scale linearly, purely based on the interface contract.
+
+\item Two threads invoke \code{getpid()}.  Unlike the example above,
+the two \code{getpid} calls are independent of each other, and no application
+can deduce the order in which they executed.  Intuitively, we expect that it
+should be possible to implement these two operations to be linearly scalable.
+\XXX[rtm][the argument sounds like ``they are independent, so they commute,
+so they scale.'' i find this a bit confusing, since i associate independence
+with the implementation. could we omit ``independent''
+and just say ``they commute, so they scale''?]
+
+\item Suppose one process calls \code{open("/tmp/a", O_CREAT|O_EXCL)}, and
+  another process concurrently calls \code{open("/tmp/b", O_CREAT|O_EXCL)}.
+  Traditionally, each of these calls acquires an exclusive lock on the
+  directory while updating it, so it is natural to think that the
+  concurrent calls cannot scale. However, except for corner cases such
+  as running out of i-nodes, the two calls commute: the processes
+  can't tell which executed first. And indeed a scalable
+  implementation is possible, by implementing the directory as a hash
+  table (on file names), with a separate lock on each hash bucket. The
+  authors initially believed that this example could not scale; our
+  mistake was to analyze only the implementations we could think of
+  for scalability. It was examples like this that motivated our search
+  for the rule.
+
+
+\end{itemize}
+
+The goal of this proposal is to formalize the intuitive connection
+illustrated above between the commutativity of an interface and the linear
+scalability of its implementations.
+\end{comment}

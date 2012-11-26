@@ -1,0 +1,121 @@
+\section{Checking the Scalable Commutativity Property}
+\label{s:checker}
+
+The Scalable Commutativity Property guides design, but for complex and
+multi-layered software like an OS kernel with interacting subsystems, developers must
+ensure that the implementation satisfies the property when expected.  One
+question we would like to explore as part of this proposal's research is how
+check whether an implementation obeys SCP.  As a starting point, we would like
+to explore an approach based on logical variables and physical memory tracing.
+
+At first glance it might seem easy to check if an operation scales linearly
+on real hardware: run an application and the kernel under a cache profiler
+and look for coherence misses.  However, without logical
+commutativity, the cache profiler cannot distinguish between inevitable
+coherence misses from operations that are not logically commutative, and
+coherence misses that represent violations of scalable commutativity.  Hence,
+while cache profiling is important for improving the performance of a system, we
+need a different approach for focusing a developer's attention on the logically
+commutative operations that don't scale linearly.
+
+We can accomplish this with the help of a dynamic analysis tool that provides
+logical variables to allow kernel developers to specify logical commutativity in
+their source code.  The tool will use these annotations and physical memory tracing
+to determine which operations scale linearly.  Combined with workload
+generators designed to exercise the kernel, this will let us report pairs of
+operations that violate the Scalable Commutativity Property, along with exactly
+where the violation occurred and what memory was shared.
+
+\subsection{Logical variables}
+\label{sec:logicvar}
+
+\XXX[rtm][should we call them ``logical objects'' instead? or abstract
+objects? the word ``variable'' calls attention to the idea that they
+will be modified -- but they aren't.]
+
+We first introduce the notion of logical variables, a mechanism to help us
+reason about logical commutativity.  A \textit{logical variable} is a unique
+name for a logical part of the shared state, such as a virtual page in an
+address space, that an operation either observes or modifies.  We name logical
+variables using tuples, such as $\langle \mathrm{DirEnt}, \mathit{device},
+\mathit{inode}, \mathit{name} \rangle$ for a directory entry, where
+$\mathit{device}$ and $\mathit{inode}$ identify the directory and
+$\mathit{name}$ is the file name within that directory.  The logical variables
+of an operation can depend on its arguments as well as system state.  For
+example, \code{open} ``reads'' a $\mathrm{DirEnt}$ logical variable for each
+component in the pathname being opened, which requires mapping names to inode
+numbers.  \code{creat} additionally ``writes'' the $\mathrm{DirEnt}$ of the
+final component. Logical variables are intuitively related to the abstractions
+application developers think about when using kernel subsystems.
+\XXX[rtm][this last sentence needs more explanation. why is it true?
+what about subsystems like the block cache, which deal with objects
+private to the kernel, which the app writer may never think about?
+or is the point that it's useful to be mindful of what the app writer
+thinks when specifying logical variable -- but why? is the idea that
+logical variables are only associated with the system call interface,
+and never used deeper in the kernel?]
+
+Logical variables make it easy to reason about when two operations logically
+commute.  Two operations logically commute if they do not have any read-write
+or write-write sharing at the level of logical variables.  That is, if
+any logical variable written by one operation is either read or
+written by the other, they do not logically commute; otherwise, they
+do.
+For example, two \code{creat}s of different names in the same directory
+both read from the $\mathrm{DirEnt}$s leading to that directory, but
+they write to different $\mathrm{DirEnt}$s and neither reads the
+other's newly created $\mathrm{DirEnt}$, so they logically commute.
+
+As another example, consider the VM system.  Non-overlapping
+\code{mmap} operations commute and page faults commute with each
+other, but a page fault does not commute with an \code{mmap} of the
+faulting virtual page. We can
+express this using logical variables for each virtual page, such as
+$\langle \mathrm{VirtPage}, \mathit{asid}, \mathit{pagenum}\rangle$,
+where $\mathit{asid}$ is some address space identifier and
+$\mathit{pagenum}$ is the virtual page number.  \code{mmap} logically
+writes each $\mathrm{VirtPage}$ in the range being mapped and page
+fault reads from the $\mathrm{VirtPage}$ of the faulting virtual
+address.
+
+Logical variables allow the designer to think about each operation in
+isolation and write down the logical variables it accesses.  Then, the designer
+can think about logical commutativity of two operations by reasoning about the
+logical read and write sets of those two operations.  This is
+useful, because it allows thinking about subsystems without explicitly stating
+the relationship of every pair of operations.  For instance, an
+\code{mmap} of a file descriptor and a \code{close} of that file
+descriptor do not commute, because closing a file descriptor would
+cause a later \code{mmap} to fail.
+However, a developer can think about the VM
+system and file system independently as long as they use consistent
+logical variable names; they don't have to consider this particular
+pair of operations.
+
+\subsection{Using logical variables}
+
+To check a kernel, the developer must annotate the source code to denote logical
+variables and operations to be checked by the checker; these operations
+include systems calls as well as internal operations.  To collect logical and
+physical traces, we plan to run an annotated kernel with applications on a
+modified QEMU~\cite{qemu}, which we call \mtrace.  We will add support for
+hypercalls so that software running within \mtrace can communicate events such
+as logical variable declarations, call stack switches, and the range and type of
+every memory allocation.  \mtrace also modifies the QEMU code generator to
+intercept all loads and stores and can trace additional instructions such as
+\code{call} and \code{ret} to produce call stacks.  This information is written
+to a log file.
+
+To identify logically commutative operations that don't scale, an
+offline tool called \mscan analyzes the log recorded by \mtrace.  \mscan
+collects every operation and attributes logical variable reads and writes as
+well as physical memory reads and writes to operations.  It then tests every
+pair of operations.  If there are no common logical variables written by one
+operation and written or read by the other, then the operations logically
+commute, and \mscan checks for physical memory that was written by one operation and
+read or written by the other.  Any such overlap identifies operations
+that execute sub-linearly and \mscan reports the names of the conflicting operations,
+the call stacks of the accesses, and the address of the conflict, which it
+resolves to a user-friendly structure field or array index using the type
+information recorded for allocations and static variables.
+
