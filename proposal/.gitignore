@@ -4,6 +4,7 @@
 *.log
 *.pdf
 *.dvi
+/gitinfo.tex
 /submit-commitment.tex
 /submit-conflicts.tex
 /submit-datamgmt.tex
