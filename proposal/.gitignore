@@ -5,15 +5,6 @@
 *.pdf
 *.dvi
 /gitinfo.tex
-/submit-commitment.tex
-/submit-conflicts.tex
-/submit-datamgmt.tex
-/submit-description.tex
-/submit-personnel.tex
-/submit-postdoc.tex
-/submit-prior.tex
-/submit-references.tex
-/submit-summary.tex
 /pyexpr.tex
 /graph/*.tex
 *.pyc
