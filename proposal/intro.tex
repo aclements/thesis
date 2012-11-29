@@ -33,7 +33,7 @@ not---or cannot.
 Similar limitations and concerns hold for interfaces ranging from
 databases to system calls to interfaces within an OS kernel.
 
-The result is a reactive approach to scalability.
+The result is a reactive approach to designing for scalability.
 %
 Systems programs aren't made to scale until bottlenecks become
 painfully obvious.
@@ -64,8 +64,8 @@ workarounds, and then must modify them as underlying problems are
 resolved and the workarounds become bottlenecks themselves.
 
 Systems programs will be fragile---scalable only on today's
-hardware and sensitive to changes in other software layers---until we
-develop better tools for \emph{modular scalability
+hardware and sensitive to changes in other software layers---until
+systems developers have better tools for \emph{modular scalability
   reasoning}.
 %
 Systems programmers should be able to reason about scalability
@@ -75,9 +75,12 @@ the systems with which their programs interact.
 Documented \emph{interface-level} properties should, as far as
 possible, determine the scalability of a program.
 
-This proposal develops tools for modular scalability reasoning that
-we call the \textbf{external commutativity rule}.
-\XXX[Scalable commutativity rule?]
+This proposal develops tools for modular scalability reasoning that we
+call the \textbf{commutativity rule}.\footnote{This thesis proposal is
+  in collaboration with faculty members Frans Kaashoek, Nickolai
+  Zeldovich, Robert Morris, and Eddie Kohler.  To recognize their
+  help, this proposal uses the words ``we,'' ``authors,'' etc.}
+\XXX[Scalable commutativity rule?  External commutativity rule?]
 %
 The main idea is intuitive (our proposed work will make it precise).
 %
@@ -245,3 +248,25 @@ programmers to predict whether their use of interfaces will
 be scalable.
 (9) Applying the rule and using scalable system calls in a
 high-performance application.
+
+\paragraph{Expected contributions}
+
+The long-term impact of this research is ideas about how to structure
+software so that it is scalable by design, by thinking about interface
+commutativity.  Our ideas about commutative interface design for
+scalability apply equally well to systems other than operating
+systems, and in the long term we hope that programmers find our ideas
+useful to think about how to design interfaces and structure software
+to obtain good scalability.
+
+In the near term, we hope to contribute new techniques for how to make
+operating systems more scalable.  Our goal is that these techniques
+address problems that widely used operating systems experience, with
+the hope that our solutions will influence those operating systems.
+Because of our work with
+Linux~\cite{boyd-wickizer:scaling,clements:bonsai}, we have developed
+a good understanding of the scalability challenges faced by real
+operating systems.  Our \sys operating system will demonstrate the
+application of modular scalability reasoning through the commutativity
+rule to such challenges and act as a proving ground for our
+techniques.
