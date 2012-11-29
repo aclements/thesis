@@ -157,7 +157,7 @@ responses, threads can in general observe that order only by
 writing and reading shared memory.
 %
 We leave full discussion of this model for future work, but
-discuss its preliminary development in Section~\ref{sec:abscal}.
+discuss its preliminary development in \S\ref{sec:abscal}.
 
 A set of legal histories defines both an interface and correctness
 requirements for implementations of that interface.
@@ -569,7 +569,7 @@ interface so that it can scale. In particular:
   dec() -> void
   nonzero?() -> boolean
 \end{verbatim}
-Now increments and decrements scale. If the calls to {\tt nonzero?}
+Now increments and decrements scale. If the calls to \OP{nonzero?}
 can be moved to a background thread that occasionally collects
 garbage, then the common case can be made to scale.
 
