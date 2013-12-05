@@ -1,0 +1,245 @@
+== id=2013-09-15T12:12:32-0400 --bench=mailbench kernel=Linux host=ben krel=3.5.7.2 kver="#1 SMP Sun Feb 10 23:37:45 EST 2013" ==
+
+# --cores=1 --duration=5s --alt=none
+0 start usec skew
+0 stop usec skew
+4.999654 secs
+12000027080 cycles
+1809 messages
+6633514 cycles/message
+361 messages/sec
+
+# --cores=1 --duration=5s --alt=none
+0 start usec skew
+0 stop usec skew
+4.999261 secs
+11999065156 cycles
+1833 messages
+6546134 cycles/message
+366 messages/sec
+
+# --cores=1 --duration=5s --alt=none
+0 start usec skew
+0 stop usec skew
+5.001151 secs
+12003581260 cycles
+1783 messages
+6732238 cycles/message
+356 messages/sec
+
+# --cores=10 --duration=5s --alt=none
+2249 start usec skew
+2297 stop usec skew
+5.000006 secs
+12000802274 cycles
+15184 messages
+7903584 cycles/message
+3036 messages/sec
+
+# --cores=10 --duration=5s --alt=none
+4017 start usec skew
+2002 stop usec skew
+4.999846 secs
+12000405008 cycles
+15531 messages
+7726743 cycles/message
+3106 messages/sec
+
+# --cores=10 --duration=5s --alt=none
+2387 start usec skew
+2787 stop usec skew
+5.000464 secs
+12001864235 cycles
+15297 messages
+7845894 cycles/message
+3059 messages/sec
+
+# --cores=20 --duration=5s --alt=none
+9859 start usec skew
+6846 stop usec skew
+4.999928 secs
+12000613918 cycles
+13546 messages
+17718313 cycles/message
+2709 messages/sec
+
+# --cores=20 --duration=5s --alt=none
+6476 start usec skew
+9225 stop usec skew
+5.000403 secs
+12002166297 cycles
+12517 messages
+19177384 cycles/message
+2503 messages/sec
+
+# --cores=20 --duration=5s --alt=none
+6506 start usec skew
+8765 stop usec skew
+5.000288 secs
+12001857632 cycles
+12254 messages
+19588473 cycles/message
+2450 messages/sec
+
+# --cores=30 --duration=5s --alt=none
+15681 start usec skew
+12600 stop usec skew
+4.999295 secs
+11999451179 cycles
+11003 messages
+32716853 cycles/message
+2200 messages/sec
+
+# --cores=30 --duration=5s --alt=none
+12168 start usec skew
+11775 stop usec skew
+5.000345 secs
+12001941238 cycles
+11126 messages
+32361876 cycles/message
+2225 messages/sec
+
+# --cores=30 --duration=5s --alt=none
+15009 start usec skew
+16612 stop usec skew
+5.001492 secs
+12004664890 cycles
+11113 messages
+32407085 cycles/message
+2221 messages/sec
+
+# --cores=40 --duration=5s --alt=none
+44595 start usec skew
+18656 stop usec skew
+4.998807 secs
+11998165184 cycles
+10324 messages
+46486498 cycles/message
+2065 messages/sec
+
+# --cores=40 --duration=5s --alt=none
+32000 start usec skew
+17131 stop usec skew
+4.999982 secs
+12000867031 cycles
+10666 messages
+45006064 cycles/message
+2133 messages/sec
+
+# --cores=40 --duration=5s --alt=none
+38890 start usec skew
+17821 stop usec skew
+4.995084 secs
+11989135711 cycles
+10559 messages
+45417693 cycles/message
+2113 messages/sec
+
+# --cores=50 --duration=5s --alt=none
+36791 start usec skew
+21720 stop usec skew
+4.998225 secs
+11996679033 cycles
+9385 messages
+63914113 cycles/message
+1877 messages/sec
+
+# --cores=50 --duration=5s --alt=none
+63467 start usec skew
+24297 stop usec skew
+4.997806 secs
+11995571015 cycles
+9536 messages
+62896240 cycles/message
+1908 messages/sec
+
+# --cores=50 --duration=5s --alt=none
+45949 start usec skew
+24772 stop usec skew
+4.997704 secs
+11995397220 cycles
+9418 messages
+63683357 cycles/message
+1884 messages/sec
+
+# --cores=60 --duration=5s --alt=none
+62876 start usec skew
+33170 stop usec skew
+4.997410 secs
+11994678722 cycles
+8708 messages
+82645925 cycles/message
+1742 messages/sec
+
+# --cores=60 --duration=5s --alt=none
+60498 start usec skew
+33169 stop usec skew
+4.994110 secs
+11986667152 cycles
+8168 messages
+88050934 cycles/message
+1635 messages/sec
+
+# --cores=60 --duration=5s --alt=none
+86363 start usec skew
+30617 stop usec skew
+4.994009 secs
+11986476334 cycles
+8712 messages
+82551489 cycles/message
+1744 messages/sec
+
+# --cores=70 --duration=5s --alt=none
+129020 start usec skew
+40246 stop usec skew
+4.993199 secs
+11984488142 cycles
+8016 messages
+104654961 cycles/message
+1605 messages/sec
+
+# --cores=70 --duration=5s --alt=none
+109887 start usec skew
+41186 stop usec skew
+4.989617 secs
+11975847377 cycles
+7926 messages
+105767009 cycles/message
+1588 messages/sec
+
+# --cores=70 --duration=5s --alt=none
+158445 start usec skew
+36538 stop usec skew
+4.988695 secs
+11973634063 cycles
+7744 messages
+108232745 cycles/message
+1552 messages/sec
+
+# --cores=80 --duration=5s --alt=none
+135076 start usec skew
+48160 stop usec skew
+4.992308 secs
+11982244249 cycles
+7271 messages
+131835997 cycles/message
+1456 messages/sec
+
+# --cores=80 --duration=5s --alt=none
+113872 start usec skew
+46995 stop usec skew
+4.988978 secs
+11974289131 cycles
+7348 messages
+130367872 cycles/message
+1472 messages/sec
+
+# --cores=80 --duration=5s --alt=none
+120044 start usec skew
+46587 stop usec skew
+4.988656 secs
+11973462540 cycles
+7279 messages
+131594587 cycles/message
+1459 messages/sec
+

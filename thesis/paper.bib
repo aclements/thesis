@@ -1,0 +1,618 @@
+@techreport{adams:tree,
+    author = {Stephen Adams},
+    title = {Implementing Sets Efficiently in a Functional Language},
+    number = {CSTR 92-10},
+    institution = "University of Southampton",
+    year = {1992}
+}
+
+@inproceedings{nievergelt:treebb,
+  author = {Nievergelt, J. and Reingold, E. M.},
+  title = {Binary search trees of bounded balance},
+  booktitle = {Proc.\ of the 4th STOC},
+  year = {1972},
+  address = {Denver, CO},
+  pages = {137--142},
+  numpages = {6},
+} 
+
+@techreport{fraser:phd,
+    author = {Keir Fraser},
+    title = {Practical lock freedom},
+    number = {UCAM-CL-TR-579},
+    institution = "Cambridge University",
+    year = {2003}
+}
+
+@article{fraser:tocs,
+    author = {Keir Fraser and Tim Harris},
+    title = "Concurrent programming without locks", 
+    journal = "ACM Transactions on Computer Systems",
+    volume = 25,
+    number = 2,
+    year = 2007,
+    month = {May},
+}
+
+@inproceedings{rcu:linux,
+  Author="Paul E. McKenney and Dipankar Sarma and Andrea Arcangeli and
+          Andi Kleen and Orran Krieger and Rusty Russell",
+  Title="Read-Copy Update",
+  crossref = {OLS2002},
+  xpages="338-367",
+}
+
+@techreport{metis:tr,
+    author = "Yandong Mao and Robert Morris and Frans Kaashoek",
+    title = "Optimizing {MapReduce} for Multicore Architectures",
+    number = "MIT-CSAIL-TR-2010-020",
+    year = "2010",
+    institution = {MIT CSAIL},
+    month = {May},
+}
+
+@article{dean:mapreduce,
+ author = {Jeffrey Dean and Sanjay Ghemawat},
+ title = "{MapReduce: simplified data processing on large clusters}",
+ journal = CACM,
+ volume = {51},
+ number = {1},
+ year = {2008},
+ issn = {0001-0782},
+ pages = {107--113},
+ doi = {http://doi.acm.org/10.1145/1327452.1327492},
+ address = {New York, NY, USA},
+ }              
+
+@inproceedings{p2psearch:iptps03,
+  title = {On the feasibility of peer-to-peer web indexing and search},
+  author = {Jinyang Li and Boon Thau Loo and Joseph M. Hellerstein and M. Frans
+Kaashoek and David Karger and Robert Morris},
+  booktitle = {Proc.\ of the 2nd IPTPS},
+  year = {2003},
+  month = {February},
+  address = {Berkeley, CA},
+}
+
+@inproceedings{overcite:nsdi06,
+  title = {OverCite: A Distributed, Cooperative {CiteSeer}},
+  author = {Jeremy Stribling and Jinyang Li and Isaac G. Councill and M. Frans
+Kaashoek and Robert Morris},
+  booktitle = {Proc.\ of the 3rd NSDI},
+  year = {2006},
+  month = {May},
+  address = {San Jose, CA},
+}
+
+@Manual{pthreads,
+  title =       "{Threads Extensions for Portable Operating Systems P1003.4a}",
+  organization =        "IEEE",
+  edition =     "Draft 6",
+  year =        "1992",
+  month =       feb,
+}
+
+@inproceedings{McKenney98,
+Author="Paul E. McKenney and John D. Slingwine"
+,Title="Read-Copy Update: Using Execution History to Solve Concurrency Problems"
+,Booktitle="Proc.\ of the 10th IASTED International Conference on Parallel and Distributed Computing and Systems"
+,Month="October"
+,Year="1998"
+,pages="509-518"
+,Address="Las Vegas, NV"
+}
+
+@phdthesis{PaulEdwardMcKenneyPhD
+,author="Paul E. McKenney"
+,title="Exploiting Deferred Destruction:
+An Analysis of Read-Copy-Update Techniques
+in Operating System Kernels"
+,school="OGI School of Science and Engineering at
+Oregon Health and Sciences University"
+,year="2004"
+,note="Available:
+\url{http://www.rdrop.com/users/paulmck/RCU/RCUdissertation.2004.07.14e1.pdf}"
+,annotation="
+	Describes RCU implementations and presents design patterns
+	corresponding to common uses of RCU in several operating-system
+	kernels.
+"
+}
+
+@article{PaulEMcKenney2008RCUOSR
+,author="Paul E. McKenney and Jonathan Walpole"
+,title="Introducing technology into the {Linux} kernel: a case study"
+,Year="2008"
+,Month={July}
+,journal="SIGOPS Operating Systems Review"
+,volume="42"
+,number="5"
+,pages="4--17"
+,publisher="ACM"
+,address="New York, NY, USA"
+,annotation={
+	Linux changed RCU to a far greater degree than RCU has changed Linux.
+}
+}
+
+@unpublished{PaulEMcKenney2007PreemptibleRCU
+,Author="Paul E. McKenney"
+,Title="The design of preemptible read-copy-update"
+,month="October"
+,day="8"
+,year="2007"
+,note="Available:
+\url{http://lwn.net/Articles/253651/}"
+,annotation="
+	LWN article describing the design of preemptible RCU.
+"
+}
+
+@misc{windows:slides,
+    author = {Landy Wang},
+    title = {Windows 7 Memory Management},
+    note = {\url{http://download.microsoft.com/download/7/E/7/7E7662CF-CBEA-470B-A97E-CE7CE0D98DC2/mmwin7.pptx}},
+    month = {November},
+    year = 2009,
+}
+
+@misc{windows:wrk,
+    author = {{Microsoft Corp.}},
+    title = {Windows Research Kernel},
+    note = {\url{http://www.microsoft.com/resources/sharedsource/windowsacademic/researchkernelkit.mspx}},
+}
+
+@inproceedings{schneider:streamflow,
+        author  = {Scott Schneider and Christos D. Antonopoulos and Dimitrios S. Nikolopoulos},
+        title = "Scalable Locality-Conscious Multithreaded Memory Allocation",
+        booktitle = {Proc.\ of the 2006 ACM SIGPLAN International Symposium on Memory Management},
+        year = {2006},
+        month = {June},
+        address = {Ottawa, Canada},
+}
+
+@unpublished{PaulEMcKenney2006c
+,Author="Paul E. McKenney"
+,Title="Sleepable {RCU}"
+,month="October 9,"
+,year="2006"
+,note="Available:
+\url{http://lwn.net/Articles/202847/}
+Revised:
+\url{http://www.rdrop.com/users/paulmck/RCU/srcu.2007.01.14a.pdf}"
+}
+
+@misc{ltp,
+  author = {{Linux Test Project}},
+  note = {\url{http://ltp.sourceforge.net/}},
+}
+
+@misc{qemu,
+  author = {Fabrice Bellard and others},
+  title = {{QEMU}},
+  note = {\url{http://www.qemu.org/}},
+}
+
+@inproceedings{PaulEMcKenney2001RCU,
+    author = {Paul E. McKenney and Jonathan Appavoo and Andi Kleen and Orran Krieger and Rusty Russell and Dipankar Sarma and Maneesh Soni},
+    title = {Read-Copy Update},
+    booktitle = {Proc.\ of the {O}ttawa {L}inux {S}ymposium},
+    year = {2001},
+    month = {July},
+    pages = {338--367}
+}
+
+@phdthesis{ bienia11benchmarking,
+  author = {Christian Bienia},
+  title = {Benchmarking Modern Multiprocessors},
+  school = {Princeton University},
+  year      = {2011},
+  month     = {January}
+}
+
+@inproceedings{jemalloc,
+  author  = {Jason Evans},
+  title   = {A scalable concurrent malloc (3) implementation for {FreeBSD}},
+  booktitle = {Proc.\ of the BSDCan Conference},
+  year    = 2006,
+  month   = {April},
+  address = {Ottawa, Canada}
+}
+
+@techreport{howard:relrbtree,
+  author = {Philip W. Howard and Jonathan Walpole},
+  title = {Relativistic Red-Black Trees},
+  number = {10-06},
+  year = 2010,
+  institution = {Portland State University, Computer Science Department},
+}
+
+@article{kung:concurrent-tree,
+  author = {H. T. Kung and Philip L. Lehman},
+  title = {Concurrent manipulation of binary search trees},
+  journal = {ACM TODS},
+  year = 1980,
+  month = {September},
+  volume = 5,
+  number = 3,
+}
+
+@techreport{herlihy:construction,
+  author = {Maurice Herlihy},
+  title = {A Methodology for Implementing Highly Concurrent Data Objects},
+  institution = {Digital Equipment Corporation},
+  number = {CRL 91/10},
+  month = {October},
+  year = 1991,
+}
+
+@article{ellis:concurrent-avl,
+  author = {Carla S. Ellis},
+  title = {Concurrent Search and Insertion in {AVL} Trees},
+  journal = {IEEE Transactions on Computers},
+  year = 1980,
+  month = {September},
+  volume = {C-29},
+  number = 9,
+}
+
+@techreport{Pugh90concurrentmaintenance,
+    author = {William Pugh},
+    title = {Concurrent Maintenance of Skip Lists},
+    number = {CS-TR-2222},
+    institution = {Dept.\ of Computer Science, University of Maryland, College Park},
+    year = {1990}
+}
+
+@article{Lehman:conc-btree,
+ author = {Lehman, Philip L. and Yao, S. Bing},
+ title = {Efficient locking for concurrent operations on {B-trees}},
+ journal = {ACM Transactions on Database Systems},
+ volume = {6},
+ issue = {4},
+ month = {December},
+ year = {1981},
+ pages = {650--670},
+ numpages = {21},
+ acmid = {319663},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ keywords = {B-tree, concurrenct algorithms, concurrency controls, consistencey, correctness, data structures, database, index organizations, locking protocols, multiway search trees},
+}
+
+@book{herlihy:art,
+  author = {Maurice Herlihy and Nir Shavit},
+  title = {The art of multiprocessor programming},
+  publisher = {Morgan Kaufmann},
+  year = 2008
+}
+
+@article{rcu:dcache,
+ author = {McKenney, Paul E. and Sarma, Dipankar and Soni, Maneesh},
+ title = {Scaling dcache with RCU},
+ journal = {Linux J.},
+ issue_date = {January 2004},
+ volume = {2004},
+ number = {117},
+ month = jan,
+ year = {2004},
+ issn = {1075-3583},
+ pages = {3--},
+ url = {http://dl.acm.org/citation.cfm?id=959336.959339},
+ acmid = {959339},
+ publisher = {Belltown Media},
+ address = {Houston, TX},
+} 
+
+@misc{lwn:dcache,
+  author = {Jonathan Corbet},
+  title = {Dcache scalability and {RCU}-walk},
+  note = {\url{http://lwn.net/Articles/419811/}},
+  year = 2012,
+  month = {April 23,},
+}
+
+@misc{lwn:law,
+  author = {Paul E. McKenney},
+  title = {Concurrent code and expensive instructions},
+  year = {2011},
+  month = {January},
+  howpublished = {\url{https://lwn.net/Articles/423994/}},
+}
+
+@misc{linuxdoc:dirlocking,
+  author = {{Linux Documentation}},
+  title = {Directory Locking},
+  note = {\url{http://lxr.linux.no/linux+v3.3.4/Documentation/filesystems/directory-locking}},
+  year = {2012},
+  month = {May 3,},
+}
+
+@Misc{approx:counter,
+    author = {Jonathan Corbet},
+    title = {{The search for fast, scalable counters}},
+    month = {May},
+    year = {2010},
+    note = {\url{http://lwn.net/Articles/170003/}}
+}
+
+@inproceedings{snzi:podc,
+  author = {Faith Ellen and Yossi Lev and Victor Luchango and Mark Moir},
+  title = {{SNZI}: Scalable NonZero Indicators},
+  crossref = {PODC07},
+}
+
+@InProceedings{barrelfish:sosp,
+  title = {{The Multikernel}: A new {OS} architecture for scalable multicore systems},
+  author = {Andrew Baumann and Paul Barham and Pierre-Evariste Dagand and Tim Harris and Rebecca Isaacs and Simon Peter and Timothy Roscoe and Adrian Sch{\"u}pbach and Akhilesh Singhania},
+  crossref = {SOSP22},
+}
+
+@article{MCS,
+ author = {John M. Mellor-Crummey and Michael L. Scott},
+ title = {Algorithms for scalable synchronization on shared-memory multiprocessors},
+ journal = TOCS,
+ volume = {9},
+ number = {1},
+ year = {1991},
+ pages = {21--65},
+}
+
+@article{cacm-real-world,
+ author = {Cantrill, Bryan and Bonwick, Jeff},
+ title = {Real-world concurrency},
+ journal = CACM,
+ volume = {51},
+ number = {11},
+ year = {2008},
+ pages = {34--39},
+ }
+
+@article{wentzlaff:fos, author = {Wentzlaff, David and Agarwal, Anant},
+ title = {Factored operating systems (fos): The case for a scalable operating system for multicores}
+,
+ journal = OSR,
+ volume = {43},
+ number = {2},
+ year = {2009},
+ pages = {76--85},
+ }
+
+@book{c++11,
+  key = {ISO},
+  title = {{ISO/IEC} 14882:2011(E): Information technology -- Programming languages -- {C++}},
+  publisher = {{ISO}},
+  address = {Geneva, Switzerland},
+  year = {2011},
+}
+
+@inproceedings{law:orders,
+ author = {Attiya, Hagit and Guerraoui, Rachid and Hendler, Danny and Kuznetsov, Petr and Michael, Maged M. and Vechev, Martin},
+ title = {Laws of order: Expensive synchronization in concurrent algorithms cannot be eliminated},
+ crossref = {POPL11},
+ xpages = {487--498},
+ sha1 = {3b3cc9245ec5c1d82815f8949e561f33a0bcd9a6},
+} 
+
+@article{rinard:commutativity,
+ author = {Rinard, Martin C. and Diniz, Pedro C.},
+ title = {Commutativity analysis: A new analysis technique for parallelizing compilers},
+ journal = TOPLAS,
+ volume = {19},
+ number = {6},
+ month = {November},
+ year = {1997},
+ pages = {942--991},
+ sha1 = {8e5b154bdcfda4488a28771469554605a0e76a49},
+} 
+
+@inproceedings{herlihy:boosting,
+ author = {Herlihy, Maurice and Koskinen, Eric},
+ title = {Transactional boosting: A methodology for highly-concurrent transactional objects},
+ crossref = {PPOPP08},
+ xpages = {207--216},
+ sha1 = {758e8260c77678a37d72c1dee12efb09165d9a2f},
+} 
+
+@article{bernstein:concurrency,
+ author = {Bernstein, Philip A. and Goodman, Nathan},
+ title = {Concurrency Control in Distributed Database Systems},
+ journal = {ACM Computing Surveys},
+ issue_date = {June 1981},
+ volume = {13},
+ number = {2},
+ month = jun,
+ year = {1981},
+ pages = {185--221},
+ numpages = {37},
+ acmid = {356846},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+} 
+
+@article{weihl:commutativity,
+ author = {Weihl, W. E.},
+ title = {Commutativity-Based Concurrency Control for Abstract Data Types},
+ journal = {IEEE Transactions on Computers},
+ volume = {37},
+ number = {12},
+ month = {December},
+ year = {1988},
+ pages = {1488--1505},
+ sha1 = {4289181e73cd93899a85650cad19c20e0c67c9ac},
+} 
+                  
+@inproceedings{steele:commutativity,
+ author = {Steele, Jr., Guy L.},
+ title = {Making asynchronous parallelism safe for the world},
+ crossref = {POPL90},
+ xpages = {218--231},
+ sha1 = {611f1fae814340eed6d98550fcfb3f27674d41a0},
+}
+
+@Misc{lwip,
+ author = {{lwIP}},
+ url = {http://savannah.nongnu.org/projects/lwip/}
+}
+
+@inproceedings{roy:limits-dap,
+  author = {Amitabha Roy and Steven Hand and Tim Harris},
+  title = {Exploring the Limits of Disjoint Access Parallelism},
+  booktitle = POT # { 1st USENIX Workshop on Hot Topics in Parallelism},
+  month = {March},
+  year = 2009,
+  address = {Berkeley, CA},
+  sha1 = {b6d5391113479566d734588f53ca61bef8ffa8e3},
+}
+
+@inproceedings{israeli:disjoint-access,
+  author = {Amos Israeli and Lihu Rappoport},
+  title = {Disjoint-Access-Parallel Implementations of Strong Shared Memory Primitives},
+  crossref = {PODC94},
+  sha1 = {961eb67eb799aa73428207dfe2a888fa509c3265},
+}
+
+@inproceedings{prabhu:cset,
+  author = {Prakash Prabhu and Soumyadeep Ghosh and Yun Zhang and Nick P. Johnson and David I. August},
+  title = {Commutative Set: A Language Extension for Implicit Parallel Programming},
+  crossref = {PLDI11},
+  sha1 = {c85f605689fff6599d55f6f057264b2eb068ea5a},
+}
+
+@misc{xv6,
+  author = {Russ Cox and M. Frans Kaashoek and Robert T. Morris},
+  title = {Xv6, a simple {Unix}-like teaching operating system},
+  note = {\url{http://pdos.csail.mit.edu/6.828/2012/xv6.html}},
+}
+
+@inproceedings{shapiro:conflict-free,
+  author = {Marc Shapiro and Nuno Preguica and Carlos Baquero and Marek Zawirski},
+  title = {Conflict-free Replicated Data Types},
+  booktitle = POT # {13th International Conference on Stabilization, Safety, and Security of Distributed Systems},
+  address = {Grenoble, France},
+  month = {October},
+  year = 2011,
+  sha1 = {4265d23b30c18e2f13a0b4fbabb066d1ce2960b1 e7760db2a240901fc25fef804ec8804b60f82451},
+}
+
+@article{shapiro:convergent,
+  author = {Marc Shapiro and Nuno Preguica and Carlos Baquero and Marek Zawirski},
+  title = {Convergent and Commutative Replicated Data Types},
+  journal = {Bulletin of the EATCS},
+  volume = 104,
+  pages = {67--88},
+  month = jun,
+  year = 2011,
+}
+
+@misc{linux:xstat,
+  author =    {David Howells},
+  title =     {{Extended file stat functions, {Linux} patch}},
+  note =      {\url{https://lkml.org/lkml/2010/7/14/539}}}
+
+@inproceedings{demoura:z3,
+  author = {Leonardo de Moura and Nikolaj Bj{\o}rner},
+  title = {{Z3}: An efficient {SMT} solver},
+  booktitle = POT # {14th International Conference on Tools and Algorithms
+                     for the Construction and Analysis of Systems},
+  address = {Budapest, Hungary},
+  month = {March--April},
+  year = 2008,
+}
+
+@inproceedings{lameter:linuxsync,
+  author = {Christoph Lameter},
+  title = {Effective Synchronization on {Linux}/{NUMA} Systems},
+  booktitle = {Gelato Conference},
+  month = may,
+  year = 2005,
+  note = {\url{http://www.lameter.com/gelato2005.pdf}}
+}
+
+@inproceedings{godefroid:dart,
+  author = {Patrice Godefroid and Nils Klarlund and Koushik Sen},
+  title = {{DART}: Directed Automated Random Testing},
+  crossref = {PLDI05},
+}
+
+@inproceedings{sen:cute,
+  author = {Koushik Sen and Darko Marinov and Gul Agha},
+  title = {{CUTE}: A Concolic Unit Testing Engine for {C}},
+  booktitle = POT # {13th ACM SIGSOFT International Symposium on Foundations of Software Engineering},
+  address = {Lisbon, Portugal},
+  month = {September},
+  year = 2005,
+}
+
+@InProceedings{qmail,
+  author = {Daniel J. Bernstein},
+  title = {Some thoughts on security after ten years of qmail 1.0},
+  booktitle = POT # {ACM Workshop on Computer Security Architecture},
+  address = {Fairfax, VA},
+  month = {November},
+  year = 2007,
+}
+
+@inproceedings{papamarcos:mesi,
+  author = {Papamarcos, Mark S. and Patel, Janak H.},
+  title = {A Low-overhead Coherence Solution for Multiprocessors with Private Cache Memories},
+  crossref = {ISCA84},
+  xpages = {348--354},
+  xnumpages = {7},
+  xisbn = {0-8186-0538-3},
+  xurl = {http://doi.acm.org/10.1145/800015.808204},
+  xdoi = {10.1145/800015.808204},
+  xpublisher = {ACM},
+}
+
+@inproceedings{attiya:disjoint,
+  author = {Attiya, Hagit and Hillel, Eshcar and Milani, Alessia},
+  title = {Inherent limitations on disjoint-access parallel implementations of transactional memory},
+  crossref = {SPAA09},
+  xpages = {69--78},
+  xnumpages = {10},
+  xisbn = {978-1-60558-606-9},
+  xurl = {http://doi.acm.org/10.1145/1583991.1584015},
+  xdoi = {10.1145/1583991.1584015},
+  xpublisher = {ACM},
+  sha1 = {e32707f2edfeac69c6d2981c9b3f7489e0daeac7},
+}
+
+@PhdThesis{boyd-wickizer:thesis,
+  author =       {Silas Boyd-Wickizer},
+  title =        {Optimizing Communication Bottlenecks in Multiprocessor
+                  Operating System Kernels},
+  school =       {Massachusetts Institute of Technology},
+  year =         2014,
+  month =        {February},
+}
+
+@misc{dwarf,
+  author = {{DWARF Debugging Information Format Committee}},
+  title = {{DWARF} Debugging Information Format, Version 4},
+  month = {June},
+  year = 2010,
+}
+
+@article{gil:c4,
+ author = {Tene, Gil and Iyengar, Balaji and Wolf, Michael},
+ title = {{C4}: The continuously concurrent compacting collector},
+ journal = {SIGPLAN Notices},
+ issue_date = {November 2011},
+ volume = {46},
+ number = {11},
+ month = {June},
+ year = {2011},
+ pages = {79--88},
+}
+
+@article{mckenney:differential,
+  author = {Paul E. McKenney},
+  title = {Differential Profiling},
+  journal = {Software: Practice and Experience},
+  volume = {29},
+  number = {3},
+  year = {1999},
+  pages = {219--234},
+}
+

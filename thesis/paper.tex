@@ -1,0 +1,251 @@
+% -*- TeX-PDF-mode: t -*-
+
+\documentclass[10pt,letterpaper,twocolumn]{article}
+\usepackage[10pt,inchmargins]{sigmin}
+\usepackage[square,comma,numbers,sort&compress]{natbib}
+\usepackage[pdfauthor={Austin T. Clements, M. Frans Kaashoek, Nickolai Zeldovich, Robert T. Morris, and Eddie Kohler},
+            pdftitle={The Scalable Commutativity Rule: Designing Scalable Software for Multicore Processors},
+            letterpaper,breaklinks,hidelinks]{hyperref}
+\newif\ifdraft\drafttrue\draftfalse
+\newif\ifnotes\notestrue
+\ifdraft\else\notesfalse\fi
+
+\usepackage{times,mathptmx}
+\usepackage{textcomp}
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{balance}
+\usepackage{gnuplot-lua-tikz}
+\usepackage{subfig}
+\usepackage{booktabs}
+\usepackage[T1]{fontenc}
+\usepackage{multirow}
+\usepackage{rotating}
+\usepackage{fancyvrb}
+\usepackage[defaultsans]{lato}
+\usepackage{lastpage}
+%\usepackage{changebar}
+% The changebar package is remarkably insidious.  You may need to
+% delete your .aux file after switch to non-draft mode to remove all
+% of its leftovers and get the paper to build.
+\let\cbstart=\relax
+\let\cbend=\relax
+\usepackage{alltt}
+\usepackage{mathrsfs}
+
+\usepackage{etoolbox}
+\usepackage{scp-macros}
+\usetikzlibrary{calc}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{shapes.misc}
+
+% How do we set the page size?  Let me count the ways.  (From SOSP
+% template.)
+\special{papersize=8.5in,11in}
+\setlength{\pdfpagewidth}{8.5in}
+\setlength{\pdfpageheight}{11in}
+\ifdraft
+\usepackage[left=1in,right=1in,top=1in,bottom=1in,columnsep=0.3in]{geometry}
+\else
+\usepackage[noheadfoot,
+            left=1in,right=1in,top=1in,bottom=1in,columnsep=0.3in]{geometry}
+\fi
+
+% From SOSP template.
+\usepackage[font=bf]{caption}
+
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+
+%\conferenceinfo{SOSP'13}{XXX}
+%\CopyrightYear{2013}
+%\crdata{XXX}
+
+\IfFileExists{microtype.sty}{
+  \usepackage{microtype}
+}{
+  \PackageError{microtype}{Package microtype not found.  Please
+    install texlive-latex-recommended}{}
+}
+
+% Draft info
+\ifdraft
+\usepackage{gitinfo}
+\fancyfoot[L]{\textbf{DRAFT}}
+\ifnotes\else
+\cfoot{}                        % Be closer to SOSP style; no page numbers
+\fi
+\else
+\pagestyle{empty}
+% \pagestyle{plain}
+\fi
+
+% One space after periods
+\frenchspacing
+
+% Avoid widows and orphans
+\widowpenalty=500
+\clubpenalty=500
+
+% Aggressive figure placement
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\setcounter{dbltopnumber}{2}
+\renewcommand{\dbltopfraction}{0.9}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.7}
+\renewcommand{\dblfloatpagefraction}{0.7}
+
+\setlength{\marginparwidth}{0.8in}
+
+% Define \XXX, \XXX[notes] and \XXX[author][notes]
+\definecolor{xxxcolor}{rgb}{0.8,0,0}
+\makeatletter
+\long\def\XXX{\@ifnextchar[{\@XXX}{\@XXX[]}}
+\long\def\@XXX[#1]{\@ifnextchar[{\@@@XXX{#1}}{\@@XXX{#1}}}
+\ifnotes
+% Show XXX comments
+\long\def\@@XXX#1{{\color{xxxcolor} XXX #1}\xspace}
+\long\def\@@@XXX#1[#2]{{\color{xxxcolor} XXX (#1) #2}\xspace}
+\else
+% Hide XXX comments
+\long\def\@@XXX#1{\ignorespaces}
+\long\def\@@@XXX#1[#2]{\ignorespaces}
+\fi
+\makeatother
+
+% Fix things like \emph{foo\xspace}.  See
+% http://tug.org/pipermail/texhax/2006-November/007339.html
+\makeatletter
+\xspaceaddexceptions{\check@icr}
+\makeatother
+
+% Listing style
+\lstset{basicstyle=\fontsize{9}{9}\sffamily,showstringspaces=false,columns=fullflexible}
+
+% Use \code{...} for inline code.  Note that \code will typeset
+% hyphens as minus signs.
+\makeatletter
+\def\@mathcode#1{\text{\code{#1}}}
+\def\code{\ifmmode\let\next\@mathcode\else\let\next\lstinline\fi\next}
+\makeatother
+\let\syscall=\code
+% Code in gnuplot labels
+\def\gpcode#1{{\fontsize{6}{6}\sffamily #1}}
+
+\RecustomVerbatimEnvironment{Verbatim}{Verbatim}{formatcom=\footnotesize}
+
+\renewcommand{\ttdefault}{pxtt}
+
+\newcommand{\vm}{RadixVM\xspace}
+\newcommand{\refcache}{Refcache\xspace}
+\newcommand{\sys}{sv6\xspace}
+\newcommand{\tool}{{\scshape Commuter}\xspace}
+\newcommand{\analyzer}{{\scshape Analyzer}\xspace}
+\newcommand{\generator}{{\scshape Testgen}\xspace}
+\newcommand{\mtrace}{{\scshape Mtrace}\xspace}
+\newcommand{\SRI}{SIM\xspace}
+\newcommand{\fs}{ScaleFS\xspace}
+
+
+% Copyright block (adapted from SOSP template, made compatible with
+% sigmin)
+
+\makeatletter
+
+\def\ftype@copyrightbox{8}
+\def\@copyrightspace{
+\@float{copyrightbox}[b]
+\begin{center}
+\setlength{\unitlength}{1pc}
+\begin{picture}(20,7.0)
+\put(0,3){\parbox{\columnwidth}{\footnotesize
+
+%*** SAMPLE. AUTHOR PUT SUPPLIED TEXT HERE ****
+
+\noindent
+Permission to make digital or hard copies of part or all of this work
+for personal or classroom use is granted without fee provided that
+copies are not made or distributed for profit or commercial advantage
+and that copies bear this notice and the full citation on the first
+page. Copyrights for third-party components of this work must be
+honored.  For all other uses, contact the owner/author.
+
+\vspace{\baselineskip}\noindent
+Copyright is held by the owner/author(s).\\
+\textit{SOSP'13}, Nov.\ 3--6, 2013, Farmington, Pennsylvania, USA. \\
+ACM 978-1-4503-2388-8/13/11.
+
+\noindent
+%{\let\UrlFont=\relax
+\url{http://dx.doi.org/10.1145/2517349.2522712}}}
+%}
+\end{picture}
+\end{center}
+\end@float}
+
+\bibpunct[: ]{[}{]}{,}{n}{XXX}{XXX}
+
+\makeatother
+
+
+\begin{document}
+
+\input{pyexpr}
+\input{code/fmt}
+
+\input{title}
+
+\begin{abstract}
+\input{abstract}
+\end{abstract}
+
+\input{intro}
+\input{related}
+\input{scp}
+\input{posix}
+% \input{example}
+\input{model}
+\input{fs}
+\input{eval}
+\input{concl}
+
+
+% \acks
+
+\section*{Acknowledgments}
+
+We thank Silas Boyd-Wickizer, Marc Shapiro, Rachid Guerraoui,
+Butler Lampson, the anonymous reviewers, and our
+shepherd, Jon Howell, for their feedback.
+%
+Additionally, Silas Boyd-Wickizer contributed to much of the
+implementation of \sys.
+%
+This research was supported by NSF awards SHF-964106 and CNS-1301934,
+by Quanta, and by Google. Eddie Kohler was partially supported by a
+Microsoft Research New Faculty Fellowship and a Sloan Research
+Fellowship.
+
+
+{
+% \footnotesize
+% \def\UrlFont{\tt \footnotesize}
+%\setlength{\bibsep}{4pt}
+\bibliographystyle{abbrvnat}
+\bibliography{n-str,paper,n,n-conf,kpubs}
+}
+
+\end{document}

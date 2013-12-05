@@ -1,0 +1,329 @@
+\section{Introduction}
+\label{sec:intro}
+\label{intro}
+
+\cbstart The state of the art for evaluating the scalability of multicore software
+is to choose a workload, plot performance at varying
+numbers of cores, and use tools such as differential
+profiling~\cite{mckenney:differential} to
+identify scalability bottlenecks.  \XXX[AC][Should we cite anything
+for this?  Is there anything to cite besides our own papers?]
+%
+This focuses developer effort on real issues, but 
+has several drawbacks.
+%
+Different workloads or higher core counts often exhibit new bottlenecks.
+%
+It's unclear which bottlenecks are fundamental, so developers may
+give up without realizing that
+a scalable solution is possible.
+%
+Finally, this process happens so late in the development process
+that design-level solutions such as improved interfaces may be
+impractical.
+
+This paper presents a new approach to scalability that
+starts at a higher level: the software interface.
+%
+This makes reasoning about scalability possible before an
+implementation exists and before the necessary hardware is available
+to measure the implementation's scalability.  It can highlight
+inherent scalability problems, leading to alternate interface designs.
+And it sets a clear scaling target for the implementation of a
+scalable interface.
+
+Scalability is often considered an implementation property, not an
+interface property, not least because what scales depends on hardware.
+%
+However, if we assume a
+shared-memory multicore processor with caches kept
+coherent by a MESI-like protocol~\cite{papamarcos:mesi},
+general scalability arguments are possible.
+%
+On such processors, a core can scalably read and write data
+it has cached exclusively, and scalably read data it has cached
+in shared mode. Writing a cache line that was last
+read or written by another core is not scalable, however,
+since the coherence protocol serializes ownership
+changes for each cache line, and because the shared
+interconnect may serialize unrelated transfers~\cite[\S4.3]{boyd-wickizer:thesis}.
+%
+% rtm: the reason for lack of scaling is the serialization,
+% not the absolute amount of time taken.
+%
+% since that requires transferring ownership, which
+% can take thousands of cycles and slow down concurrent
+% cache line transfers~\cite[\S4.3]{boyd-wickizer:thesis}.
+% In other words, modern multicore hardware is roughly disjoint-access
+% parallel~\cite{israeli:disjoint-access,attiya:disjoint}.
+
+We therefore say that a set of operations scales if their implementations
+have \emph{conflict-free} memory accesses, where no core writes a
+cache line that was read or written by another core.
+%
+When memory accesses are conflict-free, adding more cores will produce
+a linear increase in capacity.
+%Such
+%operations do not experience coherence misses and do not slow each
+%other down. 
+% E- Can we get away w/o that sentence?
+This is not a perfect model of the complex realities of
+modern hardware, but it is a good approximation. 
+% \XXX[AC][Make it
+%clear that, informally, we equate conflict-free with scalable, but
+%formally always state it in terms of conflict-freedom.]
+
+At the core of our approach is this \emph{scalable commutativity rule}: In any
+situation where several operations \emph{commute}---meaning
+there's no way to distinguish their execution order using the
+interface---they have an implementation whose memory accesses
+are conflict-free during those operations.
+Or, more concisely,
+\textbf{whenever interface operations commute, they can be implemented in a way
+  that scales.}
+%
+%Commutativity is an interface property:
+%two operations commute if their order of execution does not affect
+%their results, and the results of later operations cannot distinguish
+%which operation executed first.
+%
+%\cbstart
+%Scalability is an implementation property:
+%two operations \emph{scale} if concurrent
+%invocations do not slow each other down, so additional cores produce a
+%linear increase in capacity.
+% Because commutativity considers only the externally visible
+% behavior of an interface, it is a property of the interface
+% specification that is
+% independent of its implementation.
+%In other words, any interface has
+%a certain inherent scalability that an implementation may
+%exploit.
+%\XXX[rtm][``a certain inherent scalability''
+%sounds like we're talking about different amounts of scalability,
+%rather than a yes-or-no property. can we say a few words to
+%introduce what the amounts are? or maybe we want ``In other words,
+%in situations where interface calls commute, scalable implementations
+%are possible.'' though that is just a repeat of the rule,
+%so maybe we should just omit this sentence.]
+
+\cbstart
+Connections between commutativity and concurrency are well
+established in the literature.  Previous work, however, has focused on
+using commutativity to reason about the safety of executing operations
+concurrently (see \S\ref{sec:related}).  Our work is complementary: we
+use commutativity to reason about scalability.
+\cbend
+
+
+% Hence, stated more precisely, the rule says that \emph{whenever two
+%   operations commute, they have a conflict-free implementation.}
+The commutativity rule makes
+intuitive sense: when operations commute, their
+results (return value and effect on system state) are independent of order.
+%operation happens before or after the writes performed by the other
+%operation. 
+Hence, communication between commutative operations is
+unnecessary, and eliminating it yields conflict-free implementations.
+%
+This intuitive version of the rule is useful in practice, but
+not precise enough to reason
+about formally.
+%
+\S\ref{sec:rule} formally defines the commutativity rule and proves
+the correctness of the formalized rule.
+
+An important consequence of this presentation is a novel form of
+commutativity we call \emph{\SRI\ commutativity}.
+%
+The usual definition of commutativity (e.g., for algebraic operations)
+is so stringent that it rarely applies to the complex, stateful
+interfaces common in systems software.
+%
+\SRI\ commutativity, in contrast, is \emph{state-dependent} and
+\emph{interface-based}, as well as \emph{monotonic}.
+%
+%Rather than applying to operations in isolation, \SRI\ commutativity
+%applies to regions of specific executions.
+%
+When operations commute in the context of a specific system state,
+specific operation arguments, and specific concurrent operations, we
+show that an implementation exists that is conflict-free \emph{for that state
+  and those arguments and concurrent operations}.
+%
+This exposes many more opportunities to apply the rule to real
+interfaces---and thus discover scalable implementations---than a more
+conventional notion of commutativity would.
+%
+Despite its logical state dependence, \SRI\ commutativity is
+interface-based: rather than requiring all operation orders to produce
+identical internal states, it requires the resulting states to be
+indistinguishable via the interface.
+%
+\SRI\ commutativity is thus independent of any specific
+implementation, enabling developers to apply the rule directly to
+interface design.
+
+
+% \XXX[AC][The above text doesn't explain why it's region-oriented (which
+% is different from state-dependent!)  OTOH, region-oriented-ness isn't
+% really that interesting.  Maybe we should drop it from the acronym and
+% just discuss it in passing when we formalize commutativity?]
+
+\cbstart The commutativity rule leads to a new way to design scalable
+software:
+%
+first, analyze the interface's commutativity, and then design an
+implementation that
+scales in commutative situations. \cbend
+%\XXX[rtm][to what does ``interface'' refer? to the specification of
+%a single operation? what does it mean for a single operation to
+%commute? commute with what? or does interface here refer to a
+%set of operations, as in ``the POSIX interface?''
+%maybe we want ``first, determine which pairs of an interface's operations
+%commute, and then implement each operation so that it
+%is conflict-free with the implementation of each other operation
+%with which it commutes.'']
+% E- Not sure that applies still.
+%
+For example,
+consider file creation in a POSIX-like file system. Imagine that
+multiple processes create files in the same directory at the same
+time. Can the creation system calls be made to scale? Our
+first answer was ``obviously not'': the system calls modify the same
+directory, so surely the implementation must
+serialize access to the directory. But it turns
+out these operations commute if the two files have different names
+(and no hard or symbolic links are involved) and, therefore, have an
+implementation that scales for such names.
+One such implementation represents each directory as a hash table
+indexed by file name, with an independent lock per bucket,
+so that creation of differently named files is conflict-free, barring
+hash collisions.
+%
+Before the rule, we tried to determine if these
+operations could scale by analyzing all of the \emph{implementations}
+we could think
+of.  This process was difficult, unguided, and itself did not scale to
+complex interfaces, which
+motivated our goal of reasoning about
+scalability in terms of interfaces.
+
+\begin{comment}
+Applying the rule to real-world software systems poses two challenges.
+%
+First, the usual definition of commutativity is limited in ways that
+restricts its applicability to complex, stateful interfaces.  To
+address this challenge, \S\ref{sec:rule} defines a novel form of
+commutativity named \emph{\SRI\ commutativity}.
+%
+\SRI commutativity is \emph{state-dependent}: rather than requiring
+operations to be order-invariant in all states, \SRI\ commutativity
+allows developers to reason not only about specific arguments for
+which operations commute, but also in which system states they
+commute, exposing more opportunities to apply the rule.  The above
+example from POSIX shows why this is important: creating files with
+different names does \emph{not} commute if the names are symlinks to
+the same name, but this one case does not limit the rule's
+applicability to other file system states.
+%
+\SRI\ commutativity is \emph{region-oriented}: rather than applying to just
+two operations, \SRI\ commutativity applies to a region of an execution
+trace, which may contain several operations, again exposing more
+opportunities to apply the rule.
+%
+Finally, it is \emph{interface-based}: rather than requiring all
+operation orders to produce identical internal states, it requires the
+resulting states to be indistinguishable via the interface, allowing
+developers to reason about commutativity independent of any specific
+implementation.
+
+\XXX[AC][Spread the above new terminology to the rest of the paper.]
+\end{comment}
+
+Complex interfaces can make it difficult to spot and reason about all
+commutative cases even given the rule.  To address this challenge,
+\S\ref{sec:model} introduces a tool named \tool that automates this
+reasoning.  \tool takes an interface model
+in the form of a simplified, symbolic implementation, computes precise
+conditions under which sets of operations commute, and tests an
+implementation for conflict-freedom under these conditions.  This tool can be
+integrated into the development process to drive initial design and
+implementation, to incrementally improve existing implementations, or to
+help developers understand the commutativity of an interface.
+%
+%\XXX[FK][Can we
+%working the following point into this paragraph? Before we had \tool, we
+%evaluated the scalability of a system by choosing a workload, running it on
+%some
+%hardware, and plotting its performance at varying numbers of cores.]
+% E- No we can't because we make that point in para1.
+\cbend
+
+This paper demonstrates the value of the commutativity rule and \tool
+in two ways.
+In \S\ref{sec:posix}, we explore the commutativity of POSIX
+and use this
+understanding both to suggest 
+guidelines for designing interfaces
+whose operations commute and
+to propose specific modifications to POSIX
+that would allow for greater scalability.
+
+In \S\ref{sec:fs}, we apply \tool to a simplified model of
+\pyexpr{len(mscan.calls)} POSIX file system and virtual memory system
+calls.
+%
+From this model,
+\tool generates \pyexpr{mscan.ntestcases} tests of commutative
+system call pairs, all of which can be made conflict-free
+according to the rule.  We use these tests to
+guide the implementation of a new research operating system kernel
+named \sys.  \sys has a novel virtual memory system
+(RadixVM~\cite{clements:radixvm}) and in-memory file
+system (named \fs).  \tool determines that \sys is conflict-free for
+\pyexpr{mscan.ntestcases - mscan.xv6.shared} of the
+\pyexpr{mscan.ntestcases} tests, while Linux is conflict-free
+for \pyexpr{mscan.ntestcases - mscan.linux.shared}
+tests.  Some of the commutative cases where Linux doesn't scale are important
+to applications, such as commutative
+\code{mmap}s and creating different files in a shared directory.
+\S\ref{sec:eval} confirms that commutative conflict-free system calls
+translate to better application scalability on an 80-core machine.
+
+
+% \cbstart
+% We demonstrate that
+% {\tool} finds many non-obvious situations where operations commute; that
+% {\tool} finds useful opportunities to increase implementation
+% scalability; and that the test cases that {\tool} generates are a useful way
+% to drive the development of an implementation by pinpointing
+% cases in which the implementation could scale, but doesn't.
+
+
+\begin{comment}
+The contributions of the paper are as follows:
+\begin{CompactItemize}
+
+\item The commutativity rule;
+
+\item The \tool{} tool;
+
+\item \fs: a case study of using \tool to design a scalable file system;
+
+\item A scalability evaluation with microbenchmarks and one application on an
+  80-core machine.
+
+\end{CompactItemize}
+\end{comment}
+
+% The paper is organized as follows.  \S\ref{sec:related} relates our thinking
+% about scalability to previous work. \S\ref{sec:rule} introduces the
+% commutativity rule and argues its correctness. \S\ref{sec:posix} applies the
+% rule to an OS interface, identifying opportunities for
+% commutativity. \S\ref{sec:model} describes \tool{}.  \S\ref{sec:fs} describes
+% \fs and how \tool{} drove its implementation. \S\ref{sec:eval} shows that using
+% the commutativity rule results in better scalability on real
+% hardware. \S\ref{sec:concl} summarizes our conclusions.
+
+% LocalWords:  rule's RCU

@@ -1,0 +1,64 @@
+#!/usr/bin/python
+
+import sys, glob, re, lintlib
+
+errors = False
+
+TEXSPACE = "(?:[ \t]*[ \t\n][ \t]*)"
+def texspace(s): return s.replace(" ", TEXSPACE)
+
+# Lint warnings should be used until there are no more occurrences of
+# that lint, at which point it should be switched to an error.
+
+for path in sys.argv[1:] or glob.glob("*.tex"):
+    if path == "pyexpr.tex": continue
+    orig = lintlib.Text(path)
+    # Ignore comments
+    t = orig.ignore(r"(?:^|[^\\])(%.*\n?)")
+    # Ignore non-text commands arguments
+    t = t.ignore(r"\\(?:label|ref|cite|const|defconst|input|mosrowa?)\{.*?\}")
+    # Ignore code text
+    t = t.ignore(r"\\code\{([^}]*)\}")
+    # Ignore pyexprs
+    t = t.ignore(r"\\pyexpr\{([^}]*)\}")
+    # Ignore XXX text (just the text, so XXX-checking rules still work)
+    t = t.ignore(r"\\XXX\[(.*?(?:\]\[.*?)?)\]", re.S)
+
+    for prefix in ["giga", "mega", "kilo"]:
+        t.mark("Use %sB or %sbyte" % (prefix[0].upper(), prefix),
+               r"\b%sbyte" % prefix[0], re.I)
+        t.mark("Use %sB or %sbyte" % (prefix[0].upper(), prefix),
+               r"[0-9]+(?:%s|~)?%s%s" % (TEXSPACE, prefix[0].upper(), TEXSPACE))
+    t.mark("Use a non-breaking space", r"[0-9.]+%s?[GMK]B" % TEXSPACE)
+    t.mark("Use - instead of ~", r"[0-9]+~core(?!s)")
+    t.mark("Use a non-breaking space", r"[0-9]+%score(?!s)" % TEXSPACE)
+    t.mark("Use a non-breaking space", r"Linux%s[0-9]" % TEXSPACE)
+    t.mark("Use \\S", "section~", re.I)
+    t.mark("Don't use a ~", r"\\S~")
+    # (POSIX is always singular, so apostrophe is okay)
+    t.warn("Maybe eliminate apostrophe", "[A-Z]+(?<!POSIX)'s")
+    t.ignore(r"\\def\\@*XXX.*")\
+        .ignore(r"\\bibpunct.*")\
+        .mark("Use \\XXX", r"(?<!\\)XXX")
+#    t.mark("Contraction", "n't")
+    if not path.startswith("graph/"):
+        pass
+    # t.mark("Do not use \slash, it is in the wrong font (CMR), just type a slash character for chrissake", r"\\slash")
+    t.mark("Use 'x86'", r"{\\em x}86")
+    t.mark("Use 'Figure~'", r"Fig\.~")
+    t.warn("Move period inside XXX", r" \\XXX\[[^]]*\](?:\[[^]]*\])?\.")
+    t.mark("Use \\code", r"\\texttt\b|\\tt\b")
+    t.mark("Put plural outside \\code", r"\\cpde\{m(?:un)maps\}")
+    t.mark("Operat*ing* system", r"operation%ssystem" % TEXSPACE)
+    t.mark("Use 'per-core'", r"per-CPU")
+    t.mark("Use \\sys", r"\bsck\b", re.I)
+    t.mark("Strong commutativity is so last week",
+           r"strong(?:ly)?%scommut" % TEXSPACE, re.I)
+    t.mark("Use \\SRI", r"(?<!\\)SRI")
+    t.mark("Use Unix", r"UNIX")
+
+    orig.showMarks()
+    errors = errors or orig.hasErrors()
+
+if errors:
+    sys.exit(1)

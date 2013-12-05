@@ -1,0 +1,20 @@
+1 3.15913 # ncores tput in forks/msec; ncycles 7597274832 nfork 10000 cycles/fork 759727
+10 29.67706 # ncores tput in forks/msec; ncycles 8087338559 nfork 10000 cycles/fork 808733
+20 57.64482 # ncores tput in forks/msec; ncycles 8327145541 nfork 10000 cycles/fork 832714
+30 84.62601 # ncores tput in forks/msec; ncycles 8508325840 nfork 10000 cycles/fork 850832
+40 109.00623 # ncores tput in forks/msec; ncycles 8807147358 nfork 10000 cycles/fork 880714
+50 132.97716 # ncores tput in forks/msec; ncycles 9024427232 nfork 10000 cycles/fork 902442
+60 148.65084 # ncores tput in forks/msec; ncycles 9687474732 nfork 10000 cycles/fork 968747
+70 164.36304 # ncores tput in forks/msec; ncycles 10221640524 nfork 10000 cycles/fork 1022164
+80 180.17502 # ncores tput in forks/msec; ncycles 10656683308 nfork 10000 cycles/fork 1065668
+
+1 6.156915 # ncores tput in forks/msec; ncycles 389823310 nfork 1000 cycles/fork 389823
+10 41.046185 # ncores tput in forks/msec; ncycles 584727652 nfork 1000 cycles/fork 584727
+20 17.119623 # ncores tput in forks/msec; ncycles 2803896740 nfork 1000 cycles/fork 2803896
+30 12.846007 # ncores tput in forks/msec; ncycles 5605048499 nfork 1000 cycles/fork 5605048
+40 11.652150 # ncores tput in forks/msec; ncycles 8239108530 nfork 1000 cycles/fork 8239108
+50 11.422078 # ncores tput in forks/msec; ncycles 10506337582 nfork 1000 cycles/fork 10506337
+60 11.247464 # ncores tput in forks/msec; ncycles 12803332793 nfork 1000 cycles/fork 12803332
+70 11.322070 # ncores tput in forks/msec; ncycles 14838788838 nfork 1000 cycles/fork 14838788
+80 11.495663 # ncores tput in forks/msec; ncycles 16702522654 nfork 1000 cycles/fork 16702522
+

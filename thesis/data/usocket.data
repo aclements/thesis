@@ -1,0 +1,40 @@
+1 255.26809 # nclient throughput in msg/msec; ncycles 940225348 for nmsg 100000 cycles/msg 9402
+10 2380.41395 # nclient throughput in msg/msec; ncycles 1008263415 for nmsg 1000000 cycles/msg 10082
+20 4650.03813 # nclient throughput in msg/msec; ncycles 1032287351 for nmsg 2000000 cycles/msg 10322
+30 6974.44099 # nclient throughput in msg/msec; ncycles 1032381336 for nmsg 3000000 cycles/msg 10323
+40 9298.58452 # nclient throughput in msg/msec; ncycles 1032456344 for nmsg 4000000 cycles/msg 10324
+50 11360.25410 # nclient throughput in msg/msec; ncycles 1056356172 for nmsg 5000000 cycles/msg 10563
+60 13414.59597 # nclient throughput in msg/msec; ncycles 1073499796 for nmsg 6000000 cycles/msg 10734
+70 15212.59602 # nclient throughput in msg/msec; ncycles 1104393192 for nmsg 7000000 cycles/msg 11043
+80 17590.49761 # nclient throughput in msg/msec; ncycles 1091542520 for nmsg 8000000 cycles/msg 10915
+
+1 118.849536 # nclient throughput in msg/msec; ncycles 20218111 for nmsg 1000 cycles/msg 20218
+10 274.423710 # nclient throughput in msg/msec; ncycles 87482097 for nmsg 10000 cycles/msg 87482
+20 14.578322 # nclient throughput in msg/msec; ncycles 3292668920 for nmsg 20000 cycles/msg 3292668
+30 11.400481 # nclient throughput in msg/msec; ncycles 6315714275 for nmsg 30000 cycles/msg 6315714
+40 10.712057 # nclient throughput in msg/msec; ncycles 8962126378 for nmsg 40000 cycles/msg 8962126
+50 11.169645 # nclient throughput in msg/msec; ncycles 10743713563 for nmsg 50000 cycles/msg 10743713
+60 10.597829 # nclient throughput in msg/msec; ncycles 13588076821 for nmsg 60000 cycles/msg 13588076
+70 10.208826 # nclient throughput in msg/msec; ncycles 16456808026 for nmsg 70000 cycles/msg 16456808
+80 9.945946 # nclient throughput in msg/msec; ncycles 19304889652 for nmsg 80000 cycles/msg 19304889
+
+1 143.294601 # nclient throughput in msg/msec; ncycles 1674950463 for nmsg 100000 cycles/msg 16749
+10 1215.130317 # nclient throughput in msg/msec; ncycles 1975185756 for nmsg 1000000 cycles/msg 19751
+20 255.707977 # nclient throughput in msg/msec; ncycles 18772100076 for nmsg 2000000 cycles/msg 187721
+30 181.909434 # nclient throughput in msg/msec; ncycles 39581541900 for nmsg 3000000 cycles/msg 395815
+40 143.616845 # nclient throughput in msg/msec; ncycles 66846864188 for nmsg 4000000 cycles/msg 668468
+50 144.489891 # nclient throughput in msg/msec; ncycles 83053884224 for nmsg 5000000 cycles/msg 830538
+60 121.179826 # nclient throughput in msg/msec; ncycles 118835884125 for nmsg 6000000 cycles/msg 1188358
+70 104.271601 # nclient throughput in msg/msec; ncycles 161123130154 for nmsg 7000000 cycles/msg 1611231
+80 87.417463 # nclient throughput in msg/msec; ncycles 219642747855 for nmsg 8000000 cycles/msg 2196427
+
+1 215.194450 # nclient throughput in msg/msec; ncycles 1115330460 for nmsg 100000 cycles/msg 11153
+10 1168.014166 # nclient throughput in msg/msec; ncycles 2054855400 for nmsg 1000000 cycles/msg 20548
+20 1042.435463 # nclient throughput in msg/msec; ncycles 4604765838 for nmsg 2000000 cycles/msg 46047
+30 3447.154546 # nclient throughput in msg/msec; ncycles 2088765573 for nmsg 3000000 cycles/msg 20887
+40 2532.600905 # nclient throughput in msg/msec; ncycles 3790705688 for nmsg 4000000 cycles/msg 37907
+50 5964.373604 # nclient throughput in msg/msec; ncycles 2012026167 for nmsg 5000000 cycles/msg 20120
+60 590.156253 # nclient throughput in msg/msec; ncycles 24401092647 for nmsg 6000000 cycles/msg 244010
+70 3378.407727 # nclient throughput in msg/msec; ncycles 4972932139 for nmsg 7000000 cycles/msg 49729
+80 693.454105 # nclient throughput in msg/msec; ncycles 27688356919 for nmsg 8000000 cycles/msg 276883
+

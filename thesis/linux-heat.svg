@@ -1,0 +1,395 @@
+<svg version="1.1" width="328px" height="333px" viewBox="-62.9 -62.9 328.9 333.15" font-family="&quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif">
+
+<clipPath id="clip0">
+  <path d="M0 0 H14 H28 L35 7 L28 14 L21 21 L28 28 L35 35 L28 42 L35 49 L28 56 L35 63 L42 70 L49 63 L56 70 L63 77 L56 84 L63 91 L56 98 L63 105 L56 112 L63 119 L56 126 L49 133 L42 126 L35 133 L28 140 L21 147 L14 140 L7 147 L0 140 V126 V112 V98 V84 V70 V56 V42 V28 V14 Z" />
+</clipPath>
+<g clip-path="url(#clip0)">
+<path d="M0 0 H14 H28 L35 7 L28 14 L21 21 L28 28 L35 35 L28 42 L35 49 L28 56 L35 63 L42 70 L49 63 L56 70 L63 77 L56 84 L63 91 L56 98 L63 105 L56 112 L63 119 L56 126 L49 133 L42 126 L35 133 L28 140 L21 147 L14 140 L7 147 L0 140 V126 V112 V98 V84 V70 V56 V42 V28 V14 Z" fill="#00e80a" />
+<path d="M-14 140 L7 161" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M-14 126 L21 161" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M-14 112 L35 161" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M-14 98 L49 161" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M-14 84 L63 161" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M-14 70 L77 161" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M-14 56 L77 147" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M-14 42 L77 133" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M-14 28 L77 119" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M-14 14 L77 105" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M-14 0 L77 91" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M-14 -14 L77 77" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M0 -14 L77 63" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M14 -14 L77 49" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M28 -14 L77 35" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M42 -14 L77 21" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M56 -14 L77 7" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+</g>
+<path d="M28 0 H42 L49 7 L42 14 L35 21 L28 14 Z" fill="#fa7e28" />
+<path d="M42 0 H56 L63 7 L56 14 L49 21 L42 14 Z" fill="#fa8327" />
+<path d="M56 0 H70 L77 7 L70 14 L63 21 L56 14 Z" fill="#fa7828" />
+<path d="M70 0 H84 L91 7 L84 14 L77 21 L70 14 Z" fill="#f6c21f" />
+<path d="M84 0 H98 L105 7 L98 14 L91 21 L84 14 Z" fill="#f5cf1d" />
+<path d="M98 0 H112 L119 7 L112 14 L105 21 L98 14 Z" fill="#f6c91e" />
+<path d="M112 0 H126 L133 7 L126 14 L119 21 L112 14 Z" fill="#f5d21d" />
+<path d="M126 0 H140 L147 7 L140 14 L133 21 L126 14 Z" fill="#f5ce1d" />
+<path d="M140 0 H154 L161 7 L154 14 L147 21 L140 14 Z" fill="#fa8327" />
+<path d="M154 0 H168 L175 7 L168 14 L161 21 L154 14 Z" fill="#f5d21d" />
+<path d="M168 0 H182 L189 7 L182 14 L175 21 L168 14 Z" fill="#f4ea1a" />
+<path d="M182 0 H196 L203 7 L196 14 L189 21 L182 14 Z" fill="#fa8127" />
+<path d="M196 0 H210 L217 7 L210 14 L203 21 L196 14 Z" fill="#fd4e2e" />
+<path d="M210 0 H224 L231 7 L224 14 L217 21 L210 14 Z" fill="#fd512e" />
+<path d="M224 0 H238 L245 7 L238 14 L231 21 L224 14 Z" fill="#fd4330" />
+<path d="M238 0 H252 V14 H238 Z" fill="#ff3232" />
+<path d="M14 14 H28 L35 21 L28 28 H14 Z" fill="#f2f318" />
+<path d="M28 14 H42 H56 L63 21 L56 28 L49 35 L42 28 L35 35 L28 28 Z" fill="#f99125" />
+<path d="M56 14 H70 L77 21 L70 28 L63 35 L56 28 Z" fill="#f8a123" />
+<path d="M70 14 H84 L91 21 L84 28 L77 35 L70 28 Z" fill="#f7ae21" />
+<path d="M84 14 H98 L105 21 L98 28 L91 35 L84 28 Z" fill="#f5d71c" />
+<path d="M98 14 H112 L119 21 L112 28 L105 35 L98 28 Z" fill="#f6bb1f" />
+<path d="M112 14 H126 L133 21 L126 28 L119 35 L112 28 Z" fill="#f5d81c" />
+<clipPath id="clip1">
+  <path d="M126 14 H140 H154 H168 H182 L189 21 L182 28 L189 35 L182 42 L175 49 L182 56 L189 63 L182 70 L175 77 L168 70 L161 77 L154 70 L147 77 L140 84 L147 91 L140 98 L133 105 L126 98 L119 91 L126 84 L119 77 L126 70 L119 63 L126 56 L119 49 L126 42 L119 35 L126 28 Z" />
+</clipPath>
+<g clip-path="url(#clip1)">
+<path d="M126 14 H140 H154 H168 H182 L189 21 L182 28 L189 35 L182 42 L175 49 L182 56 L189 63 L182 70 L175 77 L168 70 L161 77 L154 70 L147 77 L140 84 L147 91 L140 98 L133 105 L126 98 L119 91 L126 84 L119 77 L126 70 L119 63 L126 56 L119 49 L126 42 L119 35 L126 28 Z" fill="#00e80a" />
+<path d="M105 91 L133 119" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M105 77 L147 119" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M105 63 L161 119" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M105 49 L175 119" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M105 35 L189 119" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M105 21 L203 119" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M105 7 L203 105" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M112 0 L203 91" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M126 0 L203 77" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M140 0 L203 63" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M154 0 L203 49" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M168 0 L203 35" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M182 0 L203 21" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+</g>
+<path d="M182 14 H196 L203 21 L196 28 L189 35 L182 28 Z" fill="#fa7729" />
+<path d="M196 14 H210 H224 H238 V28 H224 V42 H210 V56 H196 L189 49 L196 42 L189 35 L196 28 Z" fill="#ff3232" />
+<path d="M28 28 H42 H56 L63 35 L56 42 L63 49 L56 56 L63 63 L56 70 H42 H28 V56 V42 Z" fill="#ff3232" />
+<path d="M56 28 H70 L77 35 L70 42 L63 49 L56 42 Z" fill="#fd4f2e" />
+<path d="M70 28 H84 L91 35 L84 42 L91 49 L84 56 L77 63 L70 56 L63 49 L70 42 Z" fill="#fb7129" />
+<path d="M84 28 H98 L105 35 L98 42 L105 49 L98 56 L91 63 L84 56 V42 Z" fill="#f7b320" />
+<path d="M98 28 H112 L119 35 L112 42 L105 49 L98 42 Z" fill="#f7b620" />
+<path d="M112 28 H126 V42 V56 L119 63 L112 56 L105 49 L112 42 Z" fill="#f7b720" />
+<path d="M182 28 H196 V42 L189 49 L182 42 Z" fill="#fa7e28" />
+<path d="M56 42 H70 V56 L63 63 L56 56 Z" fill="#fd502e" />
+<path d="M98 42 H112 V56 L105 63 L98 56 Z" fill="#f6bb1f" />
+<path d="M168 42 H182 L189 49 L182 56 H168 Z" fill="#f4df1b" />
+<path d="M182 42 H196 V56 L189 63 L182 56 Z" fill="#fb652b" />
+<path d="M56 56 H70 L77 63 L70 70 L63 77 L56 70 Z" fill="#fd512e" />
+<path d="M70 56 H84 L91 63 L84 70 L77 77 L70 70 Z" fill="#fa7928" />
+<path d="M84 56 H98 L105 63 L98 70 L91 77 L84 70 Z" fill="#f99125" />
+<path d="M98 56 H112 L119 63 L112 70 L105 77 L98 70 Z" fill="#f7b820" />
+<path d="M112 56 H126 V70 L119 77 L112 70 Z" fill="#f8a522" />
+<path d="M182 56 H196 V70 H182 Z" fill="#f99125" />
+<path d="M56 70 H70 L77 77 L70 84 L63 91 L56 84 Z" fill="#f5d71c" />
+<path d="M70 70 H84 L91 77 L84 84 L77 91 L70 84 Z" fill="#f5d61c" />
+<path d="M84 70 H98 L105 77 L98 84 L91 91 L84 84 Z" fill="#f6c41e" />
+<path d="M98 70 H112 L119 77 L112 84 L105 91 L98 84 Z" fill="#f5cc1d" />
+<path d="M112 70 H126 V84 L119 91 L112 84 Z" fill="#f6c31e" />
+<path d="M140 70 H154 L161 77 L154 84 L147 91 L140 84 Z" fill="#f4eb19" />
+<path d="M154 70 H168 L175 77 L168 84 L161 91 L154 84 Z" fill="#f4e21b" />
+<path d="M168 70 H182 V84 H168 Z" fill="#f5db1b" />
+<path d="M56 84 H70 L77 91 L70 98 L63 105 L56 98 Z" fill="#f4e61a" />
+<path d="M70 84 H84 L91 91 L84 98 L77 105 L70 98 Z" fill="#f6bc1f" />
+<path d="M84 84 H98 L105 91 L98 98 L91 105 L84 98 Z" fill="#f5d81c" />
+<path d="M98 84 H112 L119 91 L112 98 L105 105 L98 98 Z" fill="#f5d31c" />
+<path d="M112 84 H126 V98 L119 105 L112 98 Z" fill="#f4e31a" />
+<path d="M140 84 H154 L161 91 L154 98 L147 105 L140 98 Z" fill="#f3f318" />
+<path d="M154 84 H168 V98 H154 Z" fill="#f5cb1d" />
+<path d="M56 98 H70 L77 105 L70 112 L63 119 L56 112 Z" fill="#f4ea19" />
+<path d="M70 98 H84 L91 105 L84 112 L77 119 L70 112 Z" fill="#f3f119" />
+<path d="M84 98 H98 L105 105 L98 112 L91 119 L84 112 Z" fill="#f3f019" />
+<path d="M98 98 H112 L119 105 L112 112 L105 119 L98 112 Z" fill="#f4e81a" />
+<path d="M112 98 H126 L133 105 L126 112 L119 119 L112 112 Z" fill="#f4e61a" />
+<path d="M126 98 H140 L147 105 L140 112 L133 119 L126 112 Z" fill="#f99125" />
+<path d="M140 98 H154 V112 H140 Z" fill="#fa8227" />
+<path d="M56 112 H70 L77 119 L70 126 L63 133 L56 126 Z" fill="#f3f219" />
+<clipPath id="clip2">
+  <path d="M70 112 H84 H98 H112 H126 H140 V126 H126 L119 133 L112 126 L105 133 L98 126 L91 133 L84 126 L77 133 L70 126 Z" />
+</clipPath>
+<g clip-path="url(#clip2)">
+<path d="M70 112 H84 H98 H112 H126 H140 V126 H126 L119 133 L112 126 L105 133 L98 126 L91 133 L84 126 L77 133 L70 126 Z" fill="#00e80a" />
+<path d="M56 126 L77 147" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M56 112 L91 147" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M56 98 L105 147" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M70 98 L119 147" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M84 98 L133 147" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M98 98 L147 147" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M112 98 L154 140" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M126 98 L154 126" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+</g>
+<path d="M28 126 H42 L49 133 L42 140 L35 147 L28 140 Z" fill="#f5d51c" />
+<path d="M42 126 H56 L63 133 L56 140 L49 147 L42 140 Z" fill="#f5da1c" />
+<path d="M56 126 H70 L77 133 L70 140 L63 147 L56 140 Z" fill="#f6c11f" />
+<path d="M70 126 H84 L91 133 L84 140 L77 147 L70 140 Z" fill="#f6ba20" />
+<path d="M84 126 H98 L105 133 L98 140 L91 147 L84 140 Z" fill="#f6c61e" />
+<path d="M98 126 H112 L119 133 L112 140 L105 147 L98 140 Z" fill="#f6bf1f" />
+<path d="M112 126 H126 V140 H112 Z" fill="#f5ce1d" />
+<path d="M0 140 H14 L21 147 L14 154 L7 161 L0 154 Z" fill="#f4ee19" />
+<path d="M14 140 H28 L35 147 L28 154 L21 161 L14 154 Z" fill="#f3f119" />
+<path d="M28 140 H42 L49 147 L42 154 L35 161 L28 154 Z" fill="#f6be1f" />
+<path d="M42 140 H56 L63 147 L56 154 L49 161 L42 154 Z" fill="#f6c41e" />
+<path d="M56 140 H70 L77 147 L70 154 L63 161 L56 154 Z" fill="#f6bb1f" />
+<path d="M70 140 H84 L91 147 L84 154 L77 161 L70 154 Z" fill="#f89f23" />
+<path d="M84 140 H98 L105 147 L98 154 L91 161 L84 154 Z" fill="#f6c01f" />
+<path d="M98 140 H112 V154 H98 Z" fill="#f7b520" />
+<clipPath id="clip3">
+  <path d="M0 154 H14 H28 L35 161 L28 168 L35 175 L28 182 L35 189 L28 196 L35 203 L28 210 L35 217 L28 224 L21 231 L14 224 L7 231 L0 224 V210 V196 V182 V168 Z" />
+</clipPath>
+<g clip-path="url(#clip3)">
+<path d="M0 154 H14 H28 L35 161 L28 168 L35 175 L28 182 L35 189 L28 196 L35 203 L28 210 L35 217 L28 224 L21 231 L14 224 L7 231 L0 224 V210 V196 V182 V168 Z" fill="#00e80a" />
+<path d="M-14 224 L7 245" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M-14 210 L21 245" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M-14 196 L35 245" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M-14 182 L49 245" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M-14 168 L49 231" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M-14 154 L49 217" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M-14 140 L49 203" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M0 140 L49 189" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M14 140 L49 175" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M28 140 L49 161" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+</g>
+<path d="M28 154 H42 L49 161 L42 168 L35 175 L28 168 Z" fill="#f5d71c" />
+<path d="M42 154 H56 L63 161 L56 168 L49 175 L42 168 Z" fill="#f5da1c" />
+<path d="M56 154 H70 L77 161 L70 168 L63 175 L56 168 Z" fill="#f6b920" />
+<path d="M70 154 H84 L91 161 L84 168 L77 175 L70 168 Z" fill="#f7b320" />
+<path d="M84 154 H98 V168 H84 Z" fill="#f6c31e" />
+<path d="M28 168 H42 L49 175 L42 182 L35 189 L28 182 Z" fill="#f7b520" />
+<path d="M42 168 H56 L63 175 L56 182 L49 189 L42 182 Z" fill="#f6bc1f" />
+<path d="M56 168 H70 L77 175 L70 182 L63 189 L56 182 Z" fill="#f7b021" />
+<path d="M70 168 H84 V182 H70 Z" fill="#f98f25" />
+<path d="M28 182 H42 L49 189 L42 196 L35 203 L28 196 Z" fill="#fc5d2c" />
+<path d="M42 182 H56 L63 189 L56 196 L49 203 L42 196 Z" fill="#fd502e" />
+<path d="M56 182 H70 V196 H56 Z" fill="#fd502e" />
+<path d="M28 196 H42 L49 203 L42 210 L35 217 L28 210 Z" fill="#fc562d" />
+<path d="M42 196 H56 V210 H42 Z" fill="#f99125" />
+<path d="M28 210 H42 V224 H28 Z" fill="#fc5e2c" />
+<path d="M0 224 H14 L21 231 L14 238 L7 245 L0 238 Z" fill="#f5d41c" />
+<path d="M14 224 H28 V238 H14 Z" fill="#f5db1b" />
+<path d="M0 238 H14 V252 H0 Z" fill="#f6c41e" />
+<path d="M0 56 H210" fill="none" stroke="#ffffff" />
+<path d="M56 0 V210" fill="none" stroke="#ffffff" />
+<path d="M0 112 H154" fill="none" stroke="#ffffff" />
+<path d="M112 0 V154" fill="none" stroke="#ffffff" />
+<path d="M0 168 H98" fill="none" stroke="#ffffff" />
+<path d="M168 0 V98" fill="none" stroke="#ffffff" />
+<path d="M0 224 H42" fill="none" stroke="#ffffff" />
+<path d="M224 0 V42" fill="none" stroke="#ffffff" />
+<text x="35" y="7" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">42</text>
+<text x="49" y="7" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">8</text>
+<text x="63" y="7" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">149</text>
+<text x="77" y="7" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">28</text>
+<text x="91" y="7" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">22</text>
+<text x="105" y="7" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">21</text>
+<text x="119" y="7" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">21</text>
+<text x="133" y="7" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">2</text>
+<text x="147" y="7" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">32</text>
+<text x="161" y="7" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">32</text>
+<text x="175" y="7" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">4</text>
+<text x="189" y="7" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">14</text>
+<text x="203" y="7" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">40</text>
+<text x="217" y="7" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">15</text>
+<text x="231" y="7" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">83</text>
+<text x="245" y="7" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">110</text>
+<text x="21" y="21" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">1</text>
+<text x="35" y="21" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">20</text>
+<text x="49" y="21" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">4</text>
+<text x="63" y="21" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">42</text>
+<text x="77" y="21" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">20</text>
+<text x="91" y="21" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">10</text>
+<text x="105" y="21" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">14</text>
+<text x="119" y="21" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">9</text>
+<text x="189" y="21" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">7</text>
+<text x="203" y="21" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">25</text>
+<text x="217" y="21" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">9</text>
+<text x="231" y="21" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">28</text>
+<text x="35" y="35" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">10</text>
+<text x="49" y="35" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">2</text>
+<text x="63" y="35" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">22</text>
+<text x="77" y="35" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">12</text>
+<text x="91" y="35" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">6</text>
+<text x="105" y="35" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">7</text>
+<text x="119" y="35" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">5</text>
+<text x="189" y="35" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">3</text>
+<text x="203" y="35" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">9</text>
+<text x="217" y="35" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">5</text>
+<text x="35" y="49" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">20</text>
+<text x="49" y="49" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">4</text>
+<text x="63" y="49" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">42</text>
+<text x="77" y="49" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">24</text>
+<text x="91" y="49" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">12</text>
+<text x="105" y="49" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">14</text>
+<text x="119" y="49" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">10</text>
+<text x="175" y="49" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">2</text>
+<text x="189" y="49" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">8</text>
+<text x="203" y="49" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">27</text>
+<text x="35" y="63" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">10</text>
+<text x="49" y="63" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">2</text>
+<text x="63" y="63" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">20</text>
+<text x="77" y="63" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">10</text>
+<text x="91" y="63" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">8</text>
+<text x="105" y="63" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">8</text>
+<text x="119" y="63" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">6</text>
+<text x="189" y="63" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">3</text>
+<text x="63" y="77" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">21</text>
+<text x="77" y="77" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">10</text>
+<text x="91" y="77" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">16</text>
+<text x="105" y="77" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">12</text>
+<text x="119" y="77" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">17</text>
+<text x="147" y="77" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">2</text>
+<text x="161" y="77" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">11</text>
+<text x="175" y="77" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">5</text>
+<text x="63" y="91" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">33</text>
+<text x="77" y="91" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">63</text>
+<text x="91" y="91" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">28</text>
+<text x="105" y="91" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">30</text>
+<text x="119" y="91" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">21</text>
+<text x="147" y="91" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">2</text>
+<text x="161" y="91" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">81</text>
+<text x="63" y="105" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">8</text>
+<text x="77" y="105" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">2</text>
+<text x="91" y="105" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">2</text>
+<text x="105" y="105" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">4</text>
+<text x="119" y="105" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">5</text>
+<text x="133" y="105" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">4</text>
+<text x="147" y="105" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">19</text>
+<text x="63" y="119" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">1</text>
+<text x="35" y="133" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">13</text>
+<text x="49" y="133" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">2</text>
+<text x="63" y="133" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">76</text>
+<text x="77" y="133" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">39</text>
+<text x="91" y="133" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">29</text>
+<text x="105" y="133" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">27</text>
+<text x="119" y="133" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">23</text>
+<text x="7" y="147" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">4</text>
+<text x="21" y="147" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">3</text>
+<text x="35" y="147" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">19</text>
+<text x="49" y="147" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">3</text>
+<text x="63" y="147" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">70</text>
+<text x="77" y="147" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">48</text>
+<text x="91" y="147" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">30</text>
+<text x="105" y="147" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">26</text>
+<text x="35" y="161" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">12</text>
+<text x="49" y="161" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">2</text>
+<text x="63" y="161" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">70</text>
+<text x="77" y="161" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">46</text>
+<text x="91" y="161" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">28</text>
+<text x="35" y="175" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">27</text>
+<text x="49" y="175" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">4</text>
+<text x="63" y="175" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">92</text>
+<text x="77" y="175" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">67</text>
+<text x="35" y="189" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">238</text>
+<text x="49" y="189" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">74</text>
+<text x="63" y="189" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">1518</text>
+<text x="35" y="203" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">21</text>
+<text x="49" y="203" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">1</text>
+<text x="35" y="217" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">82</text>
+<text x="7" y="231" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">19</text>
+<text x="21" y="231" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">20</text>
+<text x="7" y="245" fill="black" text-anchor="middle" font-size="6pt" dy="1.98pt">22</text>
+<text x="-3.5" y="7" fill="black" text-anchor="end" font-size="9pt" dy="2.97pt">open</text>
+<text x="-3.5" y="21" fill="black" text-anchor="end" font-size="9pt" dy="2.97pt">link</text>
+<text x="-3.5" y="35" fill="black" text-anchor="end" font-size="9pt" dy="2.97pt">unlink</text>
+<text x="-3.5" y="49" fill="black" text-anchor="end" font-size="9pt" dy="2.97pt">rename</text>
+<text x="-3.5" y="63" fill="black" text-anchor="end" font-size="9pt" dy="2.97pt">stat</text>
+<text x="-3.5" y="77" fill="black" text-anchor="end" font-size="9pt" dy="2.97pt">fstat</text>
+<text x="-3.5" y="91" fill="black" text-anchor="end" font-size="9pt" dy="2.97pt">lseek</text>
+<text x="-3.5" y="105" fill="black" text-anchor="end" font-size="9pt" dy="2.97pt">close</text>
+<text x="-3.5" y="119" fill="black" text-anchor="end" font-size="9pt" dy="2.97pt">pipe</text>
+<text x="-3.5" y="133" fill="black" text-anchor="end" font-size="9pt" dy="2.97pt">read</text>
+<text x="-3.5" y="147" fill="black" text-anchor="end" font-size="9pt" dy="2.97pt">write</text>
+<text x="-3.5" y="161" fill="black" text-anchor="end" font-size="9pt" dy="2.97pt">pread</text>
+<text x="-3.5" y="175" fill="black" text-anchor="end" font-size="9pt" dy="2.97pt">pwrite</text>
+<text x="-3.5" y="189" fill="black" text-anchor="end" font-size="9pt" dy="2.97pt">mmap</text>
+<text x="-3.5" y="203" fill="black" text-anchor="end" font-size="9pt" dy="2.97pt">munmap</text>
+<text x="-3.5" y="217" fill="black" text-anchor="end" font-size="9pt" dy="2.97pt">mprotect</text>
+<text x="-3.5" y="231" fill="black" text-anchor="end" font-size="9pt" dy="2.97pt">memread</text>
+<text x="-3.5" y="245" fill="black" text-anchor="end" font-size="9pt" dy="2.97pt">memwrite</text>
+<text x="7" y="-3.5" fill="black" text-anchor="start" font-size="9pt" dy="2.97pt" transform="rotate(-90 7,-3.5)">memwrite</text>
+<text x="21" y="-3.5" fill="black" text-anchor="start" font-size="9pt" dy="2.97pt" transform="rotate(-90 21,-3.5)">memread</text>
+<text x="35" y="-3.5" fill="black" text-anchor="start" font-size="9pt" dy="2.97pt" transform="rotate(-90 35,-3.5)">mprotect</text>
+<text x="49" y="-3.5" fill="black" text-anchor="start" font-size="9pt" dy="2.97pt" transform="rotate(-90 49,-3.5)">munmap</text>
+<text x="63" y="-3.5" fill="black" text-anchor="start" font-size="9pt" dy="2.97pt" transform="rotate(-90 63,-3.5)">mmap</text>
+<text x="77" y="-3.5" fill="black" text-anchor="start" font-size="9pt" dy="2.97pt" transform="rotate(-90 77,-3.5)">pwrite</text>
+<text x="91" y="-3.5" fill="black" text-anchor="start" font-size="9pt" dy="2.97pt" transform="rotate(-90 91,-3.5)">pread</text>
+<text x="105" y="-3.5" fill="black" text-anchor="start" font-size="9pt" dy="2.97pt" transform="rotate(-90 105,-3.5)">write</text>
+<text x="119" y="-3.5" fill="black" text-anchor="start" font-size="9pt" dy="2.97pt" transform="rotate(-90 119,-3.5)">read</text>
+<text x="133" y="-3.5" fill="black" text-anchor="start" font-size="9pt" dy="2.97pt" transform="rotate(-90 133,-3.5)">pipe</text>
+<text x="147" y="-3.5" fill="black" text-anchor="start" font-size="9pt" dy="2.97pt" transform="rotate(-90 147,-3.5)">close</text>
+<text x="161" y="-3.5" fill="black" text-anchor="start" font-size="9pt" dy="2.97pt" transform="rotate(-90 161,-3.5)">lseek</text>
+<text x="175" y="-3.5" fill="black" text-anchor="start" font-size="9pt" dy="2.97pt" transform="rotate(-90 175,-3.5)">fstat</text>
+<text x="189" y="-3.5" fill="black" text-anchor="start" font-size="9pt" dy="2.97pt" transform="rotate(-90 189,-3.5)">stat</text>
+<text x="203" y="-3.5" fill="black" text-anchor="start" font-size="9pt" dy="2.97pt" transform="rotate(-90 203,-3.5)">rename</text>
+<text x="217" y="-3.5" fill="black" text-anchor="start" font-size="9pt" dy="2.97pt" transform="rotate(-90 217,-3.5)">unlink</text>
+<text x="231" y="-3.5" fill="black" text-anchor="start" font-size="9pt" dy="2.97pt" transform="rotate(-90 231,-3.5)">link</text>
+<text x="245" y="-3.5" fill="black" text-anchor="start" font-size="9pt" dy="2.97pt" transform="rotate(-90 245,-3.5)">open</text>
+<text x="126" y="259" fill="black" text-anchor="middle" font-size="9pt" dy="5.94pt">Linux (9,389 of 13,664 cases scale)</text>
+<g transform="translate(238,126)">
+<clipPath id="clip4">
+  <path d="M0 0 H14 V11.25 H0 Z" />
+</clipPath>
+<g clip-path="url(#clip4)">
+<path d="M0 0 H14 V11.25 H0 Z" fill="#00e80a" />
+<path d="M-14 0 L11.25 25.25" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M-14 -14 L25.25 25.25" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+<path d="M0 -14 L28 14" fill="none" stroke="#4cee53" stroke-width="4.94974746831" />
+</g>
+<path d="M0 0 H14 V11.25 H0 Z" fill="none" stroke="#000000" />
+<rect x="0" y="11.25" width="14" height="114.75" fill="#f3f318" />
+<rect x="0" y="13.545" width="14" height="112.455" fill="#f3ef19" />
+<rect x="0" y="15.84" width="14" height="110.16" fill="#f4eb19" />
+<rect x="0" y="18.135" width="14" height="107.865" fill="#f4e71a" />
+<rect x="0" y="20.43" width="14" height="105.57" fill="#f4e31a" />
+<rect x="0" y="22.725" width="14" height="103.275" fill="#f4df1b" />
+<rect x="0" y="25.02" width="14" height="100.98" fill="#f5da1b" />
+<rect x="0" y="27.315" width="14" height="98.685" fill="#f5d61c" />
+<rect x="0" y="29.61" width="14" height="96.39" fill="#f5d21c" />
+<rect x="0" y="31.905" width="14" height="94.095" fill="#f5ce1d" />
+<rect x="0" y="34.2" width="14" height="91.8" fill="#f6ca1e" />
+<rect x="0" y="36.495" width="14" height="89.505" fill="#f6c61e" />
+<rect x="0" y="38.79" width="14" height="87.21" fill="#f6c11f" />
+<rect x="0" y="41.085" width="14" height="84.915" fill="#f6bd1f" />
+<rect x="0" y="43.38" width="14" height="82.62" fill="#f6b920" />
+<rect x="0" y="45.675" width="14" height="80.325" fill="#f7b520" />
+<rect x="0" y="47.97" width="14" height="78.03" fill="#f7b121" />
+<rect x="0" y="50.265" width="14" height="75.735" fill="#f7ad21" />
+<rect x="0" y="52.56" width="14" height="73.44" fill="#f7a922" />
+<rect x="0" y="54.855" width="14" height="71.145" fill="#f8a522" />
+<rect x="0" y="57.15" width="14" height="68.85" fill="#f8a123" />
+<rect x="0" y="59.445" width="14" height="66.555" fill="#f89d23" />
+<rect x="0" y="61.74" width="14" height="64.26" fill="#f89924" />
+<rect x="0" y="64.035" width="14" height="61.965" fill="#f99524" />
+<rect x="0" y="66.33" width="14" height="59.67" fill="#f99125" />
+<rect x="0" y="68.625" width="14" height="57.375" fill="#f98d25" />
+<rect x="0" y="70.92" width="14" height="55.08" fill="#f98926" />
+<rect x="0" y="73.215" width="14" height="52.785" fill="#f98526" />
+<rect x="0" y="75.51" width="14" height="50.49" fill="#fa8127" />
+<rect x="0" y="77.805" width="14" height="48.195" fill="#fa7e28" />
+<rect x="0" y="80.1" width="14" height="45.9" fill="#fa7a28" />
+<rect x="0" y="82.395" width="14" height="43.605" fill="#fa7629" />
+<rect x="0" y="84.69" width="14" height="41.31" fill="#fb7229" />
+<rect x="0" y="86.985" width="14" height="39.015" fill="#fb6e2a" />
+<rect x="0" y="89.28" width="14" height="36.72" fill="#fb6a2a" />
+<rect x="0" y="91.575" width="14" height="34.425" fill="#fb662b" />
+<rect x="0" y="93.87" width="14" height="32.13" fill="#fc632b" />
+<rect x="0" y="96.165" width="14" height="29.835" fill="#fc5f2c" />
+<rect x="0" y="98.46" width="14" height="27.54" fill="#fc5b2c" />
+<rect x="0" y="100.755" width="14" height="25.245" fill="#fc572d" />
+<rect x="0" y="103.05" width="14" height="22.95" fill="#fc542e" />
+<rect x="0" y="105.345" width="14" height="20.655" fill="#fd502e" />
+<rect x="0" y="107.64" width="14" height="18.36" fill="#fd4c2f" />
+<rect x="0" y="109.935" width="14" height="16.065" fill="#fd482f" />
+<rect x="0" y="112.23" width="14" height="13.77" fill="#fd4530" />
+<rect x="0" y="114.525" width="14" height="11.475" fill="#fe4130" />
+<rect x="0" y="116.82" width="14" height="9.18" fill="#fe3d31" />
+<rect x="0" y="119.115" width="14" height="6.885" fill="#fe3a31" />
+<rect x="0" y="121.41" width="14" height="4.59" fill="#fe3632" />
+<rect x="0" y="123.705" width="14" height="2.295" fill="#ff3232" />
+<rect x="0" y="11.25" width="14" height="114.75" fill="none" stroke="#000000" />
+<text x="-3.5" y="5.625" fill="black" text-anchor="end" font-size="9pt" dy="2.97pt">100%</text>
+<text x="-3.5" y="120.375" fill="black" text-anchor="end" font-size="9pt" dy="2.97pt">0%</text>
+</g>
+</svg>

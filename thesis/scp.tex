@@ -1,0 +1,1318 @@
+% -*- fill-column: 72 -*-
+
+\section{The scalable commutativity rule}
+\label{sec:rule}
+
+This section addresses two questions: What is the precise
+definition of the scalable commutativity rule, and why is the rule true?
+%
+We answer these questions using a formalism based on abstract actions, histories,
+and implementations.
+%
+The formalism relies on \SRI commutativity, whose generality broadens
+the rule's applicability to complex software interfaces.
+%
+Our constructive proof of the commutativity rule
+also sheds some light on how real commutative implementations might be
+built, though the actual construction is not very practical.
+
+
+
+\subsection{Actions}
+
+Following earlier work~\cite{herlihy:linearizability}, 
+we model a system execution
+as a sequence of \emph{actions}, where an action is either an
+\emph{invocation} or a \emph{response}.
+%
+In the context of an operating system, an invocation represents a system
+call with arguments (such as \code{getpid()} or \code{open("file", O_RDWR)}) and a
+response represents the corresponding result (a PID or a file
+descriptor).
+%
+Invocations and responses are paired. Each invocation is made by a
+specific thread, and the corresponding response is returned to the same
+thread.
+%
+An action thus comprises (1) an operation class (e.g., which system
+call is being invoked); (2) operation arguments (for invocations) or
+a return value (for responses); (3) the relevant thread;
+and (4) a tag for uniqueness.
+%
+We'll write invocations as left half-circles \scpline{\scpi{A}{0}}
+(``invoke A'') and responses as right half-circles
+\scpline{\scpr{A}{0}} (``respond A''), where the letters match
+invocations and their responses.
+%
+Color and vertical offset differentiate threads:
+\scpline{\scpi{A}{1}} and \scpline{\scpi{B}{2}} are invocations on
+different threads.
+
+\def\historyexample{%
+\scpi{A}{1}
+\scpi{B}{3}
+\scpi{C}{2}
+\scpr{A}{1}
+\scpr{C}{2}
+\scpr{B}{3}
+\scpi{D}{1}
+\scpr{D}{1}
+\scpi{E}{3}
+\scpr{E}{3}
+\scpi{F}{2}
+\scpi{G}{3}
+\scpi{H}{1}
+\scpr{F}{2}
+\scpr{H}{1}
+\scpr{G}{3}}
+
+A system execution is called a \emph{history}. For example:
+%
+\[H = \text{\scpline{\historyexample}}\]
+%
+\noindent We'll consider only \emph{well-formed} histories, in which
+each thread's actions form a sequence of invocation--response pairs.
+$H$ above is well-formed; checking this for the red thread $\scpt{$t$}{1}$, we
+see that the thread-restricted subhistory $\HRESTRICT{H}{\scpt{$t$}{1}} =
+\text{\scplinerestrictb{1}{\historyexample}}$ formed
+by selecting \(\scpt{$t$}{1}\)'s actions from $H$ alternates invocations
+and responses as one would want.
+%
+%\[\HRESTRICT{H}{\scpt{$t$}{1}} = \text{\scplinerestrict{1}{\historyexample}}\]
+%\[\HRESTRICT{H}{\scpt{$t$}{x1}} = \text{\scplinerestrictb{1}{\historyexample}}\]
+%
+%\noindent%
+In a well-formed history, each thread has at
+most one outstanding invocation at every point.
+
+The \emph{specification} distinguishes whether or not a history is
+``correct.''
+%
+A specification $\SPEC$ is a prefix-closed set of well-formed histories.
+%
+Its contents depend on the system being modeled; for example, if $\SPEC$
+specified a Unix-like OS, then
+$[\scpline{\scpi{A}{0}}=\code{getpid()},
+\scpline{\scpr{A}{0}}=0] \not\in \SPEC$, since no Unix thread can
+have PID 0.
+%
+Our definitions and proof require that some specification exists, but we
+aren't concerned with how it is constructed.
+
+
+\subsection{Commutativity}
+\label{sec:topic:strong-commutativity}
+
+Commutativity should capture the idea that the order of a set
+of actions ``doesn't matter.''
+%
+This happens when \emph{later} actions can't tell which order actually
+occurred.
+%
+The specification helps make this precise:
+%
+a set of operations commutes in some context when the specification
+is indifferent to the execution order of that set.
+%
+This means that any response valid for one order of the commutative set
+is valid for {any} order of the commutative set, and likewise any
+response invalid for one order is invalid for any order.
+%
+But the right definition for commutativity is a little tricky, so we
+build it up in two steps.
+
+An action sequence, or region, $H'$ is a \emph{reordering}
+of an action sequence $H$ when $\HRESTRICT{H}{t} = \HRESTRICT{H'}{t}$ for
+every thread $t$. Thus, regions $H$ and $H'$ contain the same actions, but
+may interleave threads differently.
+%
+If $H =
+\text{\scpline{\scpi{A}{1} \scpi{B}{2} \scpr{A}{1} \scpi{C}{1} \scpr{B}{2}
+    \scpr{C}{1}}}$, then
+%
+$\text{\scpline{\scpi{B}{2} \scpr{B}{2} \scpi{A}{1} \scpr{A}{1} \scpi{C}{1}
+    \scpr{C}{1}}}$
+is a reordering of $H$, but
+$\text{\scpline{\scpi{B}{2} \scpi{C}{1} \scpr{B}{2} \scpr{C}{1}
+    \scpi{A}{1} \scpr{A}{1}}}$
+is not, since it doesn't respect the order of actions in $H$'s red thread.
+
+Consider a history $H = \HA \HCONCAT \HB$ (where $\HCONCAT$ concatenates
+action sequences).
+%
+$\HB$ \emph{\integrallycommutes} in $H$ when given any reordering
+$\HB'$ of $\HB$, and any action sequence $\HSUFF$,
+%
+\[ \HA \HCONCAT \HB \HCONCAT \HSUFF \in \SPEC \text{~~~if and only if~~~} \HA \HCONCAT \HB' \HCONCAT \HSUFF \in \SPEC. \]
+%
+This definition
+captures the interface basis and
+state dependence we need.  The action sequence $\HA$ puts the system into the state we wish
+to consider; switching regions $\HB$ and $\HB'$ requires that the return values from
+$\HB$ be valid according to the specification regardless of the actions' order;
+and the presence of region $\HSUFF$ in both histories requires that reorderings of
+actions in region $\HB$ are indistinguishable by future operations.
+%
+\XXX[E][There was something about ``This literal transaltion of our
+informal definition of commutativity'' here, but it's not ``literal,''
+and then I'm not sure we have an informal definition of commutativity?
+Maybe the point was to imply this def actually isn't very hard?...]
+
+Unfortunately, \integralcommutativity doesn't suffice for the proof
+because it is \emph{non-monotonic}.
+%
+Given an action sequence $\HA \HCONCAT \HB_1 \HCONCAT \HB_2$, it is possible
+for $\HB_1 \HCONCAT \HB_2$ to \integrallycommute after region $\HA$ even
+though $\HB_1$ on its own does not.
+%
+For example, consider a
+\code{get}/\code{set} interface and
+%
+\(\HB =
+  [\scpline{\scpi{A}{1}}=\code{set(1)}, \scpline{\scpr{A}{1}},
+   \scpline{\scpi{B}{2}}=\code{set(2)}, \scpline{\scpr{B}{2}},
+   \scpline{\scpi{C}{1}}=\code{set(2)}, \scpline{\scpr{C}{1}}]\).
+%
+\(\HB\) \integrallycommutes in any history (every order sets the
+underlying value to 2), but its prefix
+%
+\(\HB_1 =
+  [\scpline{\scpi{A}{1}}=\code{set(1)}, \scpline{\scpr{A}{1}},
+   \scpline{\scpi{B}{2}}=\code{set(2)}, \scpline{\scpr{B}{2}}]\)
+%
+does not (some orders set the value to 1 and some to 2).
+%
+Whether or not $\HB_1$ will
+ultimately form part of a commutative region thus depends on \emph{future}
+operations!  This is usually incompatible with scalability:
+operations in $\HB_1$ must ``plan for the worst'' by remembering their
+order in case execution diverges from $\HB_2$.
+% \XXX[rtm][is
+% ``seems'' implying that appearances are deceiving and it actually
+% is compatible with scalability? or do we mean ``there are
+% strictly commutative sequences that cannot be made to scale''?
+% or ``there
+% are strictly commutative sequences for which we do not know of
+% scalable implementations''? it would be good to be more clear,
+% given that the paragraph's opening claimed
+% that strict commutativity does not work. but I feel like we *do*
+% know of a scalable implementation of the set(1)/set(2) example,
+% which makes me wonder why we need this paragraph at all.]
+
+A monotonic version of commutativity eliminates this problem.
+%
+An action sequence $\HB$ \emph{\SRI-commutes} in a history $H = \HA \HCONCAT
+\HB$ when for any \emph{prefix} $P$ of some reordering of $\HB$ (including
+$P = \HB$), $P$ \integrallycommutes in $\HA \HCONCAT P$.
+%
+Like \integralcommutativity, \SRI\ commutativity captures 
+interface basis and state dependence; unlike \integralcommutativity, it
+is monotonic and, as we show below, suffices to prove the
+commutativity rule.
+
+State dependence means that \SRI\ commutativity captures operations that
+commute, and therefore can scale, in some states, but not others.
+%
+This allows us to greatly expand the situations that commute,
+and that therefore can scale.
+%
+For example, few OS system calls unconditionally commute in
+every state and history.
+%
+(One that does is \code{getpid()}, since its result is constant over a process's
+lifetime.)
+%
+But many system calls \emph{conditionally} commute.
+%
+Consider Unix's \code{open} system call.
+%
+Two calls to \code{open("a", O_CREAT|O_EXCL)} often don't
+commute: one call will create the file and the other will
+fail because the file already exists.
+%
+However, two calls to \code{open("a", O_CREAT|O_EXCL)} \emph{do}
+commute if called from processes with different working
+directories.  And even if the processes have the same working
+directory, two calls to \code{open("a", O_CREAT|O_EXCL)} will commute
+{if the file already exists} (both
+calls will return the same error).
+%
+\SRI\ commutativity allows us to distinguish these cases, even though the
+operations are the same in each.  This, in turn, means the commutativity
+rule can tell us that scalable implementations exist in the commutative
+cases.
+
+\XXX[AC][Talk about how there may not be a single implementation here?
+Maybe that's best left to the later discussion, once the formal rule has
+been stated.]
+
+\SRI\ commutativity is also interface-based.
+%
+It evaluates the consequences of execution order using only the
+specification.
+%
+Furthermore, it doesn't say that every reordering has indistinguishable
+results on a \emph{given} implementation; it requires instead that
+every reordering \emph{is allowed by the specification} to have
+indistinguishable results. This is important because any given implementation might
+have unnecessary scalability bottlenecks that show through the
+interface. The \SRI\ commutativity of an interface can be
+considered even when no implementation exists. This in turn makes it
+possible to use the commutativity rule early in software development,
+during interface design and initial implementation.
+
+\XXX[AC][This differs from what I meant by ``interface-based.''  What I
+meant is that there are different interpretations of a system being ``in
+the same state'' after any $\HB'$.  It could mean that the internal,
+implementation state is the same (down to the bytes, or some other
+interpretation), or it could mean the caller can't tell the difference
+between two states.  We choose the latter interpretation because it
+depends only on the specification, and not on the implementation.]
+%
+\XXX[E][I see your point, \& tried to capture it.]
+
+\begin{comment}
+% Eddie thinks this is not necessary. I also think it IS required
+% somewhat by the commutativity rule when you have > 2 threads.
+  Finally, \SRI\ commutativity is region-oriented. In contrast with
+  typical definitions of commutativity, which consider pairs of
+  operations, \SRI\ commutativity applies to any number of threads with
+  arbitrary sequences of potentially concurrent operations. This is not
+  strictly required by the commutativity rule, but it is a natural
+  generalization and it is often convenient to consider likely sequences
+  of concurrent operations.
+\end{comment}
+
+\XXX[rtm][if my machine has synchronized clocks, do I need ``SRI
+commutative''? would local/integral commutative be enough?]
+\XXX[E][I believe that's right.]
+
+
+\subsection{Implementations}
+
+To reason about implementation scalability, we need to model
+implementations in enough detail to tell
+whether different threads' ``memory accesses'' are conflict-free. (As 
+discussed in \S\ref{intro}, conflict freedom is our proxy for
+scalability.) We define an implementation as a step
+function: given a state and an invocation, it produces a new state and a
+response. Special \POLL\ actions enable
+concurrent overlapping operations and blocking.
+
+We begin by defining three sets:
+
+\begin{CompactItemize}
+\item $S$ is the set of implementation states.
+\item $I$ is the set of valid invocations, including \POLL.
+\item $R$ is the set of valid responses, including \POLL.
+\end{CompactItemize}
+
+An implementation $m$ is a function in $S \times I \mapsto S \times R$.
+Given an old state and an invocation, the
+implementation produces a new state and a response (where the response
+must have the same thread as the invocation).
+A \POLL\ response indicates that a real response for that thread is not yet ready,
+and allows the implementation to effectively switch to another thread.
+\POLL\ invocations give the implementation an opportunity to complete an
+outstanding request (or further delay its response); however, the response
+must be for the thread matching the \POLL\ invocation.%
+\footnote{There are restrictions on how implementation
+  arguments are chosen---we assume, for example, that \POLL\ invocations
+  are passed only when a thread has an outstanding request.
+  Since implementations are functions, they must be
+  deterministic. We could model implementations instead as relations,
+  allowing non-determinism, though this would complicate later arguments
+  somewhat.}
+%
+% E is not sure this is still important so going to remove it for now
+% \XXX[AC][This gives implementations the ability to force sequential
+% histories.  As we discussed, this is actually okay because this includes
+% what real implementations can really do and so our proof includes
+% reality, but that's not something I would expect a reader to put
+% together.]
+%\XXX[AC][When does an implementation get invoked with \POLL?  Is this
+%non-deterministic?  Does it have to be fair?]
+
+An implementation \emph{generates} a history when calls to the
+implementation (perhaps including \POLL\ invocations)
+could potentially produce the corresponding history.
+For example, this sequence
+shows an implementation $m$ generating a history
+\scpline{\scpi{A}{1} \scpi{B}{2} \scpr{B}{2} \scpr{A}{1}}:
+
+\begin{CompactItemize}
+\item $m(s_0, \text{\scpline{\scpi{A}{1}}}) = \langle s_1, \scpt{\POLL}{1} \rangle$
+\item $m(s_1, \text{\scpline{\scpi{B}{2}}}) = \langle s_2, \scpt{\POLL}{2} \rangle$
+\item $m(s_2, \scpt{\POLL}{1}) = \langle s_3, \scpt{\POLL}{1} \rangle$
+\item $m(s_3, \scpt{\POLL}{2}) = \langle s_4, \text{\scpline{\scpr{B}{2}}}\rangle$
+\item $m(s_4, \scpt{\POLL}{1}) = \langle s_5, \text{\scpline{\scpr{A}{1}}}\rangle$
+\end{CompactItemize}
+
+\noindent The state is threaded from step to step;
+invocations appear as arguments and responses as
+return values. The generated history consists of the invocations
+and responses, in order, with \POLL{}s removed.
+
+An implementation $m$ is \emph{correct} for some specification $\SPEC$
+when the responses it generates are always allowed by the specification.
+Specifically, assume $H \in \SPEC$ is a valid history and
+$r$ is a response where $m$ can generate $H \HCONCAT r$.
+We say that $m$ is correct when for any such $H$ and $r$, $H
+\HCONCAT r \in \SPEC$. Note that a correct implementation need not be
+capable of generating
+every possible valid response; it's just that every response it does
+generate is valid.
+
+To reason about conflict freedom, we must peek into
+implementation states, identify reads and writes, and check for access
+conflicts.
+%
+Let each state $s \in S$ be a tuple $\tup{s.0, \dots, s.m}$, and let
+%
+$\tupleadj{s}{i}{x}$ indicate component
+replacement: $\tupleadj{s}{i}{x} = \tup{s.0,\dots,s.(i-1),x,s.(i+1),\dots,s.m}$.
+%
+Now consider an implementation step $m(s,a) = \tup{s', r}$.
+%
+This step \emph{writes} state component $i$
+when $s.i \neq s'.i$.
+%
+It \emph{reads} state component $i$ when $s.i$ may affect the
+step's behavior; that is, when for some $y$,
+%
+\[m(\tupleadj{s}{i}{y},a) \neq \tup{\tupleadj{s'}{i}{y}, r}.\]
+%
+Two implementation steps have an \emph{access conflict} when they are on
+different threads and one writes a state component that the other either
+writes or reads.
+%
+A set of implementation steps is \emph{conflict-free}
+when no pair of steps in the set has an access conflict.
+%
+This notion of access conflicts maps directly onto read and write access
+conflicts on real shared-memory machines. Since modern MESI-based
+cache-coherent machines
+usually provide good scalability on conflict-free access patterns,
+we can loosely say that a conflict-free set of implementation steps
+``scales.''
+
+
+\subsection{Rule}
+
+We can now formally state the scalable commutativity rule.
+%
+Assume a specification $\SPEC$ with a correct reference implementation
+$\REFIMP$.
+%
+Consider a history $H = \HA \HCONCAT \HB$ where $\HB$ \SRI-commutes in $H$,
+and where $\REFIMP$ can generate $H$.
+%
+Then there exists a correct implementation $m$ of $\SPEC$ whose steps in
+the $\HB$ region of $H$ are conflict-free.
+
+\XXX[rtm][``the ... $\HB$ region'' seems to imply that $m$ must
+generate the same B as $M$.
+is that generally true? what if the specification allows more
+than one response to an invocation? what if $m$ delays responses
+a different amount than $M$? maybe we mean ``there exists an $m$
+that generates the same $\HB$ as $M$ and is conflict-free.'']
+
+\XXX[E][In fact the construction does generate the same results as those
+in $\HB$, for any ordering of the invocations of $\HB$. And this is true
+even if the TRUE implementation, given a different order of invocations
+than the original $\HB$ order, WOULD GENERATE DIFFERENT RESULTS. This is
+important; it's what I'd like interface-based to mean.]
+
+\XXX[AC][The construction works not just for $\HA \HCONCAT \HB$, but for any
+$\HA \HCONCAT \HB'$ where $\HB'$ is a reordering of $\HB$.  Indeed this has to be
+the case, since, by its very nature, the construction can't tell the
+difference, but we write things as if it has to be $\HB$.  Should we be
+clearer that the construction is conflict-free in any $\HB'$?]
+
+
+\subsection{Proof}
+
+A constructive proof for the commutativity rule can be obtained by
+building a scalable
+implementation $m$ from the reference implementation $\REFIMP$ and
+history $H = \HA \HCONCAT \HB$.
+%
+The constructed implementation emulates the reference implementation and
+is thus correct for any history. Its {performance}
+properties, however, are specialized for $H$. For
+any history $\HA\HCONCAT P$ where $P$ is a prefix of a
+reordering of $\HB$, the constructed implementation's steps in $P$
+are conflict-free. This means that, within the \SRI-commutative
+region, $m$ scales.
+
+
+\begin{figure}
+\begin{obeylines}
+\begin{obeyspaces}
+\(\NSIMP(s, a) \equiv\)
+~~~If \(\HEAD(s.h) = a\):
+~~~    \(r \gets \POLL\)
+~~~else if \(a = \POLL\) and \(\HEAD(s.h)\) is a response
+~~~              and \(\THREAD(\HEAD(s.h)) = \THREAD(a)\):
+~~~    \(r \gets \HEAD(s.h)\)   \COMMENT{replay $s.h$}
+~~~else if \(s.h \neq \EMULATE\):   \COMMENT{$H$ complete or input diverged}
+~~~    \(H' \gets \text{an invocation sequence consistent with \(s.h\)}\)
+~~~    For each invocation \(x\) in \(H'\):
+~~~        \(\tup{s.\V{refstate}, \_} \gets \REFIMP(s.\V{refstate}, x)\)
+~~~    \(s.h \gets \EMULATE\)   \COMMENT{switch to emulation mode}
+~~~If \(s.h = \EMULATE\):
+~~~    \(\tup{s.\V{refstate}, r} \gets \REFIMP(s.\V{refstate}, a)\)
+~~~else:                 \COMMENT{replay mode}
+~~~    \(s.h \gets \text{tail}(s.h)\)
+~~~return \(\tup{s, r}\)
+\end{obeyspaces}
+\end{obeylines}
+\rule{\columnwidth}{0.5pt}
+\vspace{-\baselineskip}
+\caption{Constructed \emph{non-scalable} implementation $\NSIMP$ for history $H$ and
+  reference implementation $M$.}
+\label{fig:nonscalablesim}
+\end{figure}
+
+% Keep an index in $H$ instead of a mutable $s.h$?  Explicitly represent
+% emulation mode in that index?  Messy with \END\ and per-thread $s.h$ in
+% $m$.  Explicitly represent mode of $m$?  Could have a single commute
+% flag in $m$, set when you reach the end of $A$.
+
+To understand the construction, it helps to first imagine constructing a
+\emph{non-scalable} implementation $\NSIMP$ from the reference $M$.
+%
+This non-scalable implementation begins in \emph{replay mode}.
+%
+While the input invocations match $H$, $\NSIMP$ responds exactly according to
+$H$, without invoking the reference.
+%
+When the input invocations diverge from $H$, however, $\NSIMP$ no
+longer knows how to respond, so it enters \emph{emulation mode}.
+%
+This requires feeding $M$ all previously received invocations to
+prepare its state.
+
+A state $s$ for $\NSIMP$ contains two components.
+%
+First, $s.h$ holds either the portion of $H$ that remains to be replayed
+or \EMULATE, which denotes emulation mode.
+It is initialized to $H$.
+%
+Second, $s.\V{refstate}$ is the state of the reference
+implementation, and is initialized accordingly.
+%
+Figure~\ref{fig:nonscalablesim} shows how the simulated implementation
+works.
+%
+We make several simplifying assumptions, including that $\NSIMP$
+receives \POLL\ invocations in a restricted way; these assumptions aren't
+critical for the argument.
+%
+One line requires expansion, namely the choice of $H'$ ``consistent
+with \(s.h\)'' when the input sequence diverges.
+%
+This step calculates the prefix of $H$ up to, but not including, $s.h$;
+excludes responses; and adds \POLL\ invocations as appropriate.
+
+This implementation is correct---its responses for any history
+always match those from the reference implementation.
+%
+But it doesn't scale.
+%
+In replay mode, any two steps of $\NSIMP$ conflict on accessing
+$s.h$. These accesses track which invocations
+have occurred; without them it would be impossible to later
+initialize the state of $M$.
+%
+And this is where commutativity comes in.
+%
+The action order in a \SRI-commutative region doesn't matter by
+definition.
+%
+Since the specification doesn't distinguish among orders, it
+is safe to initialize the reference implementation with the commutative
+actions \emph{in a different order than they were received}.
+%
+All future responses will still be valid according to the specification.
+
+\begin{figure}
+\begin{obeylines}
+\begin{obeyspaces}
+\(m(s, a) \equiv\)
+~~~\(t \gets \THREAD(a)\)
+~~~If \(\HEAD(s.h[t]) = \COMMUTE\):  \COMMENT{enter conflict-free mode}
+~~~    \(s.\V{commute}[t] \gets \TRUE\);~ \(s.h[t] \gets \TAIL(s.h[t])\)
+~~~If \(\HEAD(s.h[t]) = a\):
+~~~    \(r \gets \POLL\)
+~~~else if \(a = \POLL\) and \(\HEAD(s.h[t])\) is a response
+~~~              and \(\THREAD(\HEAD(s.h[t])) = t\):
+~~~    \(r \gets \HEAD(s.h[t])\)   \COMMENT{replay $s.h$}
+~~~else if \(s.h[t] \neq \EMULATE\):   \COMMENT{$H$ complete/input diverged}
+~~~    \(H' \gets \text{an invocation sequence consistent with \(s.h[\ast]\)}\)
+~~~    For each invocation \(x\) in \(H'\):
+~~~        \(\tup{s.\V{refstate}, \_} \gets \REFIMP(s.\V{refstate}, x)\)
+~~~    \(s.h[u] \gets \EMULATE\) for each thread \(u\)
+~~~If \(s.h[t] = \EMULATE\):
+~~~    \(\tup{s.\V{refstate}, r} \gets \REFIMP(s.\V{refstate}, a)\)
+~~~else if \(s.\V{commute}[t]\):   \COMMENT{conflict-free mode}
+~~~    \(s.h[t] \gets \text{tail}(s.h[t])\)
+~~~else:   \COMMENT{replay mode}
+~~~    \(s.h[u] \gets \text{tail}(s.h[u])\) for each thread \(u\)
+~~~return \(\tup{s, r}\)
+\end{obeyspaces}
+\end{obeylines}
+\rule{\columnwidth}{0.5pt}
+\vspace{-\baselineskip}
+\caption{Constructed scalable implementation $m$ for history $H$ and
+  reference implementation $M$.}
+\label{fig:scalablesim}
+\end{figure}
+
+Figure~\ref{fig:scalablesim} shows the construction of $m$, a
+version of $M$ that scales over $\HB$ in $H = \HA\HCONCAT \HB$.
+%
+$m$ is similar to $\NSIMP$, but extends it with a \emph{conflict-free
+  mode} used to execute actions in $\HB$.
+%
+Its state is as follows:
+
+\begin{CompactItemize}
+\item $s.h[t]$---a per-thread history. Initialized to
+  $\HA\HCONCAT\COMMUTE\HCONCAT(\HRESTRICT{\HB}{t})$, where the special
+  \COMMUTE\ action indicates the commutative region has begun.
+\item $s.\V{commute}[t]$---a per-thread flag indicating whether the
+  commutative region has been reached. Initialized to \FALSE.
+\item $s.\V{refstate}$---the reference implementation's state.
+\end{CompactItemize}
+
+\noindent%
+Each step of $m$ in the commutative region \emph{accesses
+only state components specific to the invoking thread}.
+%
+This means that any two steps in the commutative region are
+conflict-free, and the commutativity rule is proved.
+%
+The construction uses \SRI\ commutativity when initializing the
+reference implementation's state via $H'$.
+%
+If the observed invocations diverge before the commutative region, then
+just as in $\NSIMP$, $H'$ will exactly equal the observed invocations.
+%
+If the observed invocations diverge in or after the commutative region,
+however, there's not enough information to recover the order of
+invocations. (The $s.h[t]$ components track which invocations have
+happened per thread, but not the order of those invocations between
+threads.) Therefore, $H'$ might reorder the invocations in $\HB$.
+%
+\SRI\ commutativity guarantees that replaying $H'$ will nevertheless produce
+results indistinguishable from those of the actual invocation order,
+even if the execution
+diverges \emph{within} the commutative region.\footnote{%
+  We effectively have assumed that $M$, the reference
+  implementation, produces the same results for any reordering of the
+  commutative region. This is stricter than \SRI\ commutativity, which
+  places requirements on the {specification}, not the
+  implementation. We also assumed that $M$ is indifferent to the
+  placement of \POLL\ invocations in
+  the input history.  Neither of these restrictions is fundamental, however.  If
+  during replay $M$ produces responses that are inconsistent with the
+  desired results, $m$ could throw away $M$'s state, produce a new $H'$
+  with different \POLL\ invocations and/or commutative region ordering,
+  and try again.
+  This procedure must eventually succeed.}
+
+\begin{comment}
+\begin{figure*}
+% A serial history
+(a) \scpline{\scpi{A}{1}
+\scpr{A}{1}
+\scpi{B}{1}
+\scpr{B}{1}
+\scpi{C}{1}
+\scpr{C}{1}
+\scpi{D}{1}
+\scpr{D}{1}
+\scpi{E}{1}
+\scpr{E}{1}
+\scpi{F}{1}
+\scpr{F}{1}
+\scpi{G}{1}
+\scpr{G}{1}} \dots
+
+\vskip5pt
+% A three-threaded history
+\def\threethreadedhistory{%
+\scpi{A}{1}
+\scpi{B}{3}
+\scpi{C}{2}
+\scpr{A}{1}
+\scpr{C}{2}
+\scpr{B}{3}
+\scpi{D}{1}
+\scpr{D}{1}
+\scpi{E}{3}
+\scpr{E}{3}
+\scpi{F}{2}
+\scpi{G}{3}
+\scpi{H}{1}
+\scpr{F}{2}
+\scpr{H}{1}
+\scpr{G}{3}
+\scpi{I}{2}
+\scpr{I}{2}
+\scpi{J}{2}
+\scpi{K}{1}
+\scpr{J}{2}
+\scpi{L}{3}
+\scpr{K}{1}
+\scpi{M}{1}
+\scpr{L}{3}
+\scpr{M}{1}}
+(b) \scpline{\threethreadedhistory} \dots
+
+\vskip5pt
+\begin{tabular}{@{}l@{~}l@{}}
+(c) & \scplinerestrict{1}{\threethreadedhistory}\\
+& \scplinerestrict{2}{\threethreadedhistory}\\
+& \scplinerestrict{3}{\threethreadedhistory}
+\end{tabular}
+
+\vskip5pt
+(d) \scpline{\scpix{A}{3}
+\scpix{B}{1}
+\scprx{A}{3}
+\scpix{C}{3}
+\scprx{C}{3}
+\scpix{D}{2}
+\scpix{E}{3}
+\scprx{B}{1}
+\scprx{E}{3}
+\scprx{D}{2}
+\scpi{F}{3}
+\scpi{G}{1}
+\scpi{H}{2}
+\scpr{G}{1}
+\scpr{F}{3}
+\scpr{H}{2}
+\scpi{I}{1}
+\scpi{J}{2}
+\scpr{J}{2}
+\scpix{K}{3}
+\scprx{I}{1}
+\scprx{K}{3}
+\scpix{L}{3}
+\scpix{M}{2}
+\scprx{L}{3}
+\scpix{N}{3}
+\scprx{M}{2}
+} \dots
+
+\def\commutativeregiona{%
+\scpi{F}{3}
+\scpi{G}{1}
+\scpi{H}{2}
+\scpr{G}{1}
+\scpr{F}{3}
+\scpr{H}{2}
+\scpi{I}{1}
+\scpi{J}{2}
+\scpr{J}{2}}
+
+\def\commutativeregionb{%
+\scpi{H}{2}
+\scpi{F}{3}
+\scpr{H}{2}
+\scpi{G}{1}
+\scpi{J}{2}
+\scpr{F}{3}
+\scpr{G}{1}
+\scpr{J}{2}
+\scpi{I}{1}}
+
+\def\commutativeregionc{%
+\scpi{G}{1}
+\scpi{H}{2}
+\scpi{F}{3}
+\scpr{H}{2}
+\scpr{G}{1}
+\scpi{I}{1}}
+
+
+\vskip5pt
+\begin{tabular}{@{}l@{~}l@{\qquad\qquad}l@{\qquad\qquad}l@{}}
+(e) & \scpline{\commutativeregiona}
+   & \scpline{\commutativeregionb}
+   & \scpline{\commutativeregionc} \\
+\noalign{\vskip3pt}
+   & \scplinerestrict{1}{\commutativeregiona}
+   & \scplinerestrict{1}{\commutativeregionb}
+   & \scplinerestrict{1}{\commutativeregionc} \\
+   & \scplinerestrict{2}{\commutativeregiona}
+   & \scplinerestrict{2}{\commutativeregionb}
+   & \scplinerestrict{2}{\commutativeregionc~\scpicut{J}{2}~\scprcut{J}{2}} \\
+   & \scplinerestrict{3}{\commutativeregiona}
+   & \scplinerestrict{3}{\commutativeregionb}
+   & \scplinerestrict{3}{\commutativeregionc~\scprcut{F}{3}} \\
+\end{tabular}
+
+\caption{\textbf{(a)} A serial, single-threaded history. Each invocation (filled
+  circle) is immediately followed by its response (open circle).
+%
+  \textbf{(b)} A three-thread history. Colors indicate different threads.
+%
+  \textbf{(c)} The thread-restricted subhistories of (b). Each is
+  serial.
+%
+  \textbf{(d)} A three-thread history with a commutative region. The
+  commutative region is highlighted.
+%
+  \textbf{(e)} Three interleavings of the commutative region.
+%
+  \protect\XXX[E][This figure is currently unreferenced, leaving it in case
+  others think it useful.]~
+}
+\end{figure*}
+\end{comment}
+
+\subsection{Discussion}
+
+The commutativity rule and proof construction push state and
+history dependence to an extreme: the proof construction is specialized
+for a single commutative region.
+%
+Repeated application of the construction can build an
+implementation that scales over multiple commutative regions in a
+history, or for the union of many histories.
+%
+(This is because, once the constructed machine leaves the specialized
+region, it passes invocations directly to the reference and has
+the same conflict-freedom properties as the reference.)
+%
+Nevertheless, the proof construction is impractical, and real
+implementations usually achieve scalability using different techniques.
+
+We believe it is easier to create practical scalable implementations for
+operations that commute in more situations.
+%
+The arguments and system states for which a set of operations
+commutes often collapse into
+fairly well-defined classes (e.g., file creation might
+commute whenever the containing directories are different).
+%
+In practice, implementations scale for whole classes of states and
+arguments, not just for specific histories.
+
+It is also often the case that a set of operations
+commutes in more than one class of situation,
+% and while there exist scalable implementations for each class, 
+but no
+single implementation scales for all classes.
+%
+Consider, for example, an interface with two calls:
+\code{put(}$x$\code{)} records a sample with value $x$, and
+\code{max()} returns the maximum sample recorded so far (or \code{0}).
+Suppose
+%
+\[H = [\scpline{\scpi{A}{1}}=\code{put(1)}, \scpline{\scpr{A}{1}},
+   \scpline{\scpi{B}{2}}=\code{put(1)}, \scpline{\scpr{B}{2}},
+   \scpline{\scpi{C}{3}}=\code{max()}, \scpline{\scpr{C}{3}}=1].
+\]
+%
+\XXX[E][We put other similar histories inline and this uses lots of space]
+%
+An implementation could store per-thread maxima reconciled by
+\code{max} and be conflict-free for $\scpline{\scpir{A}{1}
+  \scpir{B}{2}}$ in $H$.  Alternatively, it could use a
+global maximum that \code{put} checked before writing.  This
+is conflict-free for $\scpline{\scpir{B}{2} \scpir{C}{3}}$ in $H$.
+%Symmetric cases hold in the history $\scpline{\scpir{B}{2} \scpir{A}{1}
+%  \scpir{C}{3}}$. 
+%% E: I am happy to ignore this nit; not sure it's relevant.
+%
+But no correct implementation can be conflict-free across all of $H$.
+%
+In the
+end, a system designer must decide which situations involving
+commutative operations are most important, and find practical
+implementation strategies that scale in those situations.
+%
+In \S\ref{sec:fs} we show that many operations in POSIX have
+implementations that scale quite broadly, with few cases of incompatible
+scalability classes.
+
+%It may also be possible to implement non-commutative operations
+%scalably. _------THAT IS REPET WITH THE BELOW
+%
+The commutativity rule shows that \SRI-commutative regions
+have conflict-free implementations.
+%
+It does not show the converse, however:
+commutativity \emph{suffices} for conflict-free accesses,
+but it may not be \emph{necessary}.
+%
+Some non-commutative interfaces may have scalable
+implementations---for instance, on machines that
+offer scalable access to strictly increasing sources of time, or when
+the core interconnect allows certain communication patterns to scale.
+%
+Furthermore, some conflict-free access patterns don't scale on real
+machines; if an application overwhelms the memory bus with memory accesses,
+scalability will suffer regardless of whether those accesses have
+conflicts.
+%
+We hope to investigate these problems in future, but as we show below,
+the rule is already a good guideline for achieving practical
+scalability.
+
+
+% The rest of this paper gives examples of how the rule guided
+% us toward missed opportunities for scalability, and inspired new
+% scalable implementation strategies.
+
+\begin{comment}
+\section {Old version of The commutativity rule}
+
+The basic (but imprecise) commutativity rule says that if two operations
+commute, then a scalable implementation is possible.  The intuition
+behind the rule is that if two operations yield the same results
+regardless of order, there can't be any need for one to communicate
+to the other.
+% If operation $A$ executes first, it must be possible for operation $B$ to
+% execute without learning anything from $A$'s execution, because $B$
+% could have gone first.
+Per the argument of conflicted-access parallelism,
+if they don't need to communicate, a scalable implementation must be
+possible.  The basic rule seems obviously true for operations that
+commute unconditionally; for example, two \code{getpid} calls.
+
+Operating systems, however, have many calls that do not commute
+unconditionally, but only in certain states or with certain arguments.
+%
+For example, consider Unix's \code{open} system call with the
+\code{O_CREAT|O_EXCL} flags, which creates a file iff the file doesn't
+already exist.
+%
+When two processes concurrently use \code{open(O_CREAT|O_EXCL)} to
+create files with the same name, at most one of them will succeed.
+%
+Not only does this mean \code{open} doesn't commute in general, it also
+implies that a correct implementation of \code{open} \emph{cannot be
+scalable} according to conflicted-access parallelism (some memory location
+representing the file must be shared).
+
+\code{open} does commute, however, in many cases.
+%
+For example, two
+\code{open}s without \code{O_EXCL} usually commute,
+because in either order they will usually produce the same result.
+Two calls to \code{open(name, O_CREAT|O_EXCL)} will commute
+if the \code{name}s are different.  Even if the names are the
+same, two calls to \code{open(name, O_CREAT|O_EXCL)} will commute if
+the name is a relative path and the two threads have different
+working directories. And even if the threads have the same working
+directory, two calls to \code{open(name, O_CREAT|O_EXCL)} with the same
+\code{name} will commute \emph{if the file already exists} (both system
+calls will return the same error).
+
+This section provides a precise commutativity rule that allows a
+designer to reason about these different cases of the \code{open} call,
+so that a designer can exploit the commutative cases for a scalable
+implementation.  In particular, what we show is that given any state
+where an operation (with specific arguments)
+\emph{does} commute with one or more others, an
+implementation exists that is scalable \emph{in that state, over those
+  operations}. 
+
+\subsection{Interfaces, implementations and scalability}
+\label{pf}
+
+To make the rule precise, we need a way to talk about interface
+specifications, implementations, and scalability.  This subsection
+introduces the necessary definitions.
+
+Our notions for
+interface specifications and for implementations draw from the action
+calculus \XXX[E] used by Herlihy and Wing to present
+linearizability~\cite{herlihy:linearizability}.
+%
+We model interfaces and implementations via \emph{histories}, which are
+sequences of operation invocations and responses.
+%
+An invocation is a call to an interface function, such as \code{getpid},
+including any arguments.
+%
+A response is the return value.
+%
+Each invocation and response belongs to a \emph{thread}, which is
+written with a subscript: $\ATT{\code{getpid}}{t}$ represents an
+invocation of \code{getpid} by thread $t$.
+
+A history combines invocations and responses from many threads.
+%
+We can restrict a history $\HIST{H}$ to a single thread $t$, creating
+the sub-history $\HRESTRICT{\HIST{H}}{t}$, by extracting the invocations
+and responses for that thread.
+%
+In a well-formed history, each sub-history must be \emph{serial},
+meaning that it looks like the trace of a single-threaded program: an
+alternating series of invocations and the corresponding responses, with
+at most one outstanding invocation at the end.
+%
+$[\ATT{\code{getpid}}{t}, \ATT{192}{t},
+\ATT{\code{getpid}}{t}, \ATT{192}{t}]$ is a well-formed serial history,
+but $[\ATT{192}{t}, \ATT{\code{getpid}}{t}, \ATT{\code{getpid}}{t},
+\ATT{192}{t}]$ is not.
+
+A \emph{specification} $\SPEC$ is a set of \emph{legal} histories that
+defines the allowed behavior for an interface.
+%
+For example, assume $\SPEC$ defines the behavior of \code{getpid} on a
+system where each process has exactly one thread.
+%
+Then $[\ATT{\code{getpid}}{t}, \ATT{1}{t}] \in \SPEC$ and
+$[\ATT{\code{getpid}}{t}, \ATT{2}{t}] \in \SPEC$ (a thread can have any
+PID).
+%
+But a PID can't be zero, so $[\ATT{\code{getpid}}{t}, \ATT{0}{t}]
+\not\in \SPEC$;
+%(a PID
+a thread's PID can't change, so $[\ATT{\code{getpid}}{t}, \ATT{1}{t},
+\ATT{\code{getpid}}{t}, \ATT{2}{t}] \not\in \SPEC$;
+%
+and distinct threads must have distinct PIDs, so
+$[\ATT{\code{getpid}}{t}, \ATT{\code{getpid}}{u},
+\ATT{1}{t}, \ATT{1}{u}] \not\in \SPEC$.
+%
+Every specification must contain only well-formed histories, and every
+specification must be prefix-closed.
+% if $\HIST{H}$ is a prefix of
+% $\HIST{H'}$ and $\HIST{H'} \in \SPEC$, then $\HIST{H} \in \SPEC$.
+
+An \emph{implementation} can be thought of as
+a procedure that generates responses for
+outstanding invocations in a history.
+%
+We write an implementation as a step relation $\STEP$.
+%
+If $H \STEP H\HCONCAT r$, then $H$ is a history with one or more
+outstanding invocations, and $r$ is a response to one of the outstanding
+invocations.
+%
+Different implementations might generate different responses, and
+responses need not be deterministic.
+%---need not be unique (a single implementation might allow both
+%$P \STEP P\HCONCAT r$ and $P \STEP P\HCONCAT r'$ with $r \neq r'$).
+%
+A \emph{correct} implementation will ensure that every generated
+response is legal according to its specification $\SPEC$.
+%
+Specifically, an implementation is correct if $P\HCONCAT r \in \SPEC$
+whenever $P \in \SPEC$ and $P \STEP P\HCONCAT r$.
+
+Note that an implementation has no say over the order in which
+invocations arrive.
+%
+This depends only on the specification.
+%
+In most situations, such as operating system kernels, a specification
+must allow any invocation at any time (though many possible invocations
+will generate error responses).
+
+This formalization captures any system state that is exposed at the
+interface level.
+%
+For example, a specification for a shared variable with \code{get} and
+\code{put} operations would effectively require an implementation to
+keep shared state, since the specification would require each \code{get}
+response to contain the value most recently \code{put}.
+
+We define scalability in terms of disjoint-access parallelism
+using the following abstract machine.  Each core effectively has an
+infinite local cache that is kept consistent with other local caches
+using a coherence protocol. \emph{Scalable} means that operations on
+different threads do not communicate using shared memory: a memory
+location written by the implementation of thread $t$ is not read
+by any other thread.  That is, for every pair of cores, the two
+cores access either completely disjoint memory locations, or if they do
+share any memory, both cores only read the shared memory. As a result, a
+set of operations that scales will not experience coherence misses;
+rather, it will experience only cache misses it would have experienced
+when executing in isolation or on a single core.  This abstract machine
+is simpler than any actual machine,\footnote{Roughly speaking, a real
+  machine fits the abstract model as long as a workload's working set
+  fits in cache, the interconnect and DRAM interface are not
+  bottlenecks, and the machine uses a modern scalable directory-based
+  coherence protocol.} but \S\ref{sec:eval} confirms that when
+operations have disjoint-access parallelism, they typically scale perfectly on
+real hardware.
+
+\subsection{Interleavings and commutativity}
+
+A \emph{region} is a contiguous subsequence of actions in some
+well-formed history.
+%
+A region $X$ is an \emph{interleaving} of a region $Y$
+if their per-thread sub-histories are identical.
+%
+This allows $X$ to reorder the actions of $Y$ across threads, but not
+within them.
+%
+Using our notation, $X$ is an interleaving of $Y$ if $\HRESTRICT{X}{t} =
+\HRESTRICT{Y}{t}$ for all $t$.
+
+Informally, operations commute if the specification can't
+distinguish their order:
+%
+changing the interleaving of some commutative region shouldn't
+change the legality of a history.
+%
+But this informal statement misses an important property.
+%
+We want to consider operations commutative based on their behavior in
+some state and given some \emph{past} history.
+%
+But interleavings also constrain \emph{future} operations, since every
+interleaving of a region contains \emph{all} of that region's
+operations.
+%
+We thus require that for commutative $X$, the specification can't
+distinguish among orderings of arbitrary \emph{prefixes} of
+interleavings of $X$.
+%
+This captures the idea that an implementation should scale throughout a
+commutative region, regardless of whether future invocations from that
+region actually arrive.
+
+Formally, consider a region $X$ of a history $H$,
+%
+with $H = A \HCONCAT X \HCONCAT B \in \SPEC$.
+%
+Let $Z$ be a prefix of some interleaving of $X$. (That is,
+$\HRESTRICT{Z}{t}$ is a prefix of $\HRESTRICT{X}{t}$ for all $t$.)
+%
+Further let $Z'$ be an interleaving of $Z$.
+%
+Finally, let $B'$ be an arbitrary sequence of actions.
+%
+Then $X$ \emph{commutes} in $H$ when the following conditions hold for
+all $Z$, $Z'$, and $B'$:
+%
+(1) $A \HCONCAT Z \in \SPEC$; and
+%
+(2) $A \HCONCAT Z \HCONCAT B' \in \SPEC$ if and only if $A \HCONCAT Z' \HCONCAT B'
+\in \SPEC$.
+
+\XXX[Xi Wang][Want to see an example here.]
+
+\subsection{The rule}
+\label{rulerule}
+
+The commutativity rule is precisely stated as follows.
+%
+Assume there exists a correct implementation of $\SPEC$.
+%
+Then for any $\HIST{H} \in \SPEC$ and region $X$ that commutes in
+$\HIST{H}$,
+%
+there exists a correct implementation $R$ of $\SPEC$ that is
+\emph{scalable} over the operations in $H$ wholly contained in $X$.
+%
+
+\XXX[Xi Wang][Want to see an example here too.]
+
+The intuition behind the precise commutativity rule is simple.
+%
+Since $X$ commutes in $\HIST{H}$, the implementations of the
+operations in $X$ don't need to communicate to determine their order,
+since their responses are the same regardless of order and later
+invocations cannot reveal their order.
+
+We formalize this intuition by constructing an
+implementation $M$
+whose threads don't communicate in $X$.
+%
+This implementation is tailored for the history $\HIST{H}$ and
+commutative region $X$. Though it is correct for every history, it is
+guaranteed to {scale} only for $X$ in $\HIST{H}$.
+%
+Conceptually, all threads of $M$ execute operations synchronously and in
+lockstep as long as the received invocations follow $\HIST{H}$.  If
+execution diverges from $\HIST{H}$, $M$ simply falls back to executing
+the reference implementation $R$.  However, if execution reaches $X$
+without diverging from $\HIST{H}$, then $M$ enters concurrent mode, in
+which each thread independently replays just its own responses from $X$.
+Here, $M$ may generate responses in a different order than $\HIST{H}$,
+but thanks to commutativity any such order is legal.  In concurrent
+mode, no synchronization is necessary, so the threads of $M$ do not
+communicate.
+
+% $M$ compares received invocations against an internal copy of $H$.
+% %
+% If its received invocations match $H$,
+% then $M$ plays back the responses from its copy of $H$.
+% %
+% If they don't match, then $M$ is seeing a sequence of operations other
+% than the one it's tailored for, and $M$ switches over to simulating a
+% correct reference implementation, $R$, which we assume exists.
+% %
+% This requires replaying the previous invocations to prepare $R$'s
+% internal state.
+
+% Since $M$ is simply playing back responses, you might
+% expect it to scale over all of $H$.
+% %
+% It doesn't, though, since tracking received invocations is not scalable.
+% %
+% Global synchronization is required to ensure that all
+% threads' received invocations match those in $H$.
+% %
+% Except, that is, in the commutative region $X$, where
+% by definition, \emph{any} replay order must create an equivalent
+% result. $M$ can switch to unsynchronized, scalable tracking upon
+% reaching $X$.
+
+%% Without further assumptions on the nature of the interface being
+%% represented, a specifically tailored implementation is the best we can
+%% do.
+
+%% By assumption a correct reference implementation $R$ exists.
+%
+Figure~\ref{fig:proof} gives the detailed construction of $M$ from a
+reference implementation $R$ and a legal history $\HIST{H} = A \HCONCAT X$
+where $X$ commutes in $\HIST{H}$.
+%
+% Then an implementation that scales over $X$ when given a history
+% beginning with $A\HCONCAT X$, but returns the same result as the reference
+% implementation for \emph{any} history, can be constructed by tracking
+% received invocations against $A\HCONCAT X$.
+% %
+% Within $A$, invocation tracking must be non-scalable; but within $X$, it
+% can be scalable, thanks to commutativity.
+% %
+% When received invocations either complete $A\HCONCAT X$ or diverge from it,
+% the constructed implementation replays the received invocations to the
+% reference implementation.
+%
+$M$ augments $R$'s state:
+for every thread $t$, we also
+store a history $H_t = A \HCONCAT (\HRESTRICT{X}{t})$
+and a history program counter $\textit{pc}_t$.
+Each $\textit{pc}_t$
+initially points at the first invocation in $H_t$. The value
+$\textit{pc}_t = \FAIL$ indicates the thread should fall back to the
+reference implementation.
+
+\begin{figure}
+\rule{\columnwidth}{0.5pt}
+  \begin{CompactEnumerate}
+\item If invocation $i$ is received on thread $t$, and $\textit{pc}_t$
+  points to an invocation $I$ that also belongs to thread $t$, then:
+ \begin{CompactEnumerate}
+\item If $i = I$ and $\textit{pc}_t$ is in $A$, then the thread
+  non-scalably increments all $\textit{pc}$ values, including its own.
+\item If $i = I$ and $\textit{pc}_t$ is in $\HRESTRICT{X}{t}$, then the
+  thread scalably increments \emph{only its own} $\textit{pc}_t$.
+\item If $i \neq I$, then the thread non-scalably falls back to the
+  reference implementation $R$. This involves pausing all other threads,
+  taking a snapshot of all $\textit{pc}_t$ values, replaying the
+  invocations indicated by the \textit{pc}s on $R$ (while throwing away
+  the responses from $R$, which must equal those already generated by $M$),
+  and finally setting all $\textit{pc}_t$ values to \FAIL. Care is
+  required to ensure that only one thread completes the fallback.
+%
+\end{CompactEnumerate}
+\item If $\textit{pc}_t$ points to a response that belongs to thread $t$, then the
+  implementation generates that response and increments $\textit{pc}_t$.
+  If this response is in $A$, the implementation also
+  non-scalably increments the other threads' \textit{pc} values.
+\item If $\textit{pc}_t$ points beyond $H_t$, then $t$ falls back to $R$
+  as described above.
+\item If $\textit{pc}_t$ points at an invocation or response that does not belong to
+  thread $t$, then $t$ waits. Eventually another thread will either
+  advance $\textit{pc}_t$ or set $\textit{pc}_t$ to \FAIL.
+\item If $\textit{pc}_t = \FAIL$, then $t$ simulates $R$.
+\end{CompactEnumerate}
+\vspace{-\baselineskip}
+\vspace{1ex}
+\rule{\columnwidth}{0.5pt}
+\vspace{-\baselineskip}
+\caption{Simulation procedure for each thread $t$ of $M$.}
+\label{fig:proof}
+\end{figure}
+
+Before $M$ reaches the commutative region, it
+%
+exactly replays $H$'s responses in order using lockstep \textit{pc} updates.
+%
+% After reaching the commutative region, $M$ may generate responses in a
+% different order than $H$, but thanks to commutativity any such order is
+% legal.
+%
+When the input history diverges from $H$, the implementation
+replays the received invocations to the reference implementation.
+%
+For invocations in the commutative region $X$, the replay order may
+differ from the actual order in which the original invocations were
+received, because a scalable implementation cannot record a global
+reception order,
+but since $X$ is commutative, any replay order is allowed since later
+invocations can't distinguish among them.
+%
+(We assume without loss of generality that $R$ can be made
+deterministic; that is, given any interleaving $X'$ of $X$ and any
+prefix $P$ of $A \HCONCAT X'$, we assume that $R$'s responses to $P$'s invocations
+during replay are the same as the actual responses in $P$. This could if
+necessary be simulated by passing the expected responses to $R$.)
+%
+Within the commutative region $X$, each thread of $M$ reads and
+writes only local state ($\textit{pc}_t$ and $H_t$), meaning the threads
+do not communicate using shared memory.
+%
+Thus, $M$ scales over $X$ and is correct for any sequence of
+invocations. \qed
+\XXX[AC][Are we allowed to \qed without an opening \textbf{Proof}?]
+\XXX[EK][NO WE WILL BE KILLED]
+
+\subsection{Discussion}
+
+The commutativity rule allows us to talk about operations that commute
+with specific arguments and in specific system states.  This ability is
+powerful, because even when an interface commutes in limited cases, the
+rule suggests that we may be able to find
+a scalable implementation for those cases.
+
+The rule identifies two valuable degrees of freedom that a developer can
+exploit.  The developer may be able to change the
+specification to make it commute in more situations.  The commutativity
+rule allows a designer to evaluate the potential scalability of
+interfaces without having to first implement them.
+
+Another degree of freedom is in implementations. The proof deals with a
+limited window of operations, and says that scalability is possible
+within that window. That suggests that it may be possible for the
+implementation to push the non-scalability to outside the window. This
+turns out to be useful when deferring non-scalable work allows efficient
+batching. \XXX[EK][don't care about this point.] \XXX[FK][Why not?  We
+  use it often.]
+
+There will usually be an open-ended set of arguments and system states
+for which some operations commute. Luckily these sets usually collapse
+into fairly well-defined classes (e.g., concurrent file creation might
+commute whenever the containing directories are different), so that
+implementations need to be tailored only for the class, and not for
+the specific arguments.
+
+On the other hand, it is often the case that a set of operations
+commutes in more than one class of situation. While there may be a
+scalable implementation for each class, there may not be a convenient
+combined implementation that scales for all of the classes.  In the end,
+a system designer must decide which situations involving commutative
+operations are most important, and find practical implementation
+strategies that scale in those situations.  
+
+The rest of this paper gives examples of how the rule guided
+us toward missed opportunities for scalability, and inspired new
+scalable implementation strategies.
+
+\end{comment}

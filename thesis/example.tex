@@ -1,0 +1,124 @@
+\section{Example}
+\label{sec:example}
+
+This section illustrates ways in which the commutativity rule helps
+designers think about implementations, using reference counters as a
+case study.
+
+Consider a reference counter with three operations, \OP{inc}, \OP{dec},
+and \OP{check}.
+%
+The \OP{inc} operation increments the reference count and returns
+\OK.
+%
+The \OP{dec} operation decrements the reference count and returns
+\OK.
+%
+Finally, the \OP{check} operation returns \TRUE\ if the count is
+non-positive and \FALSE\ otherwise.
+%
+The intent is that a client calls \OP{inc} when obtaining a reference
+and \OP{dec} when releasing a reference.  At some point, possibly after
+many \OP{inc} and \OP{dec} operations, the client
+calls \OP{check}, freeing the object if \OP{check} returns \TRUE.
+
+An obvious way in which this interface commutes is that \OP{inc} and
+\OP{dec} operations commute with themselves and each other. This
+observation can be turned into a scalable implementation by splitting
+(or partitioning) the counter representation: giving each core a
+separate counter, with the abstract counter equal to the sum
+of the per-core counters. \OP{inc} and \OP{dec} operate on the local
+per-core counter, while \OP{check} must take the sum of the per-core
+counters~\cite{XXX}. This splitting is a common and long-standing
+pattern for scalable implementations, evident in techniques such as
+per-core free lists~\cite{XXX}.
+
+Applying the commutativity rule shows there at least one more scaling
+possibility.
+Consider the following six-thread history, with an initial
+count of 3:
+%
+\begin{align*}
+\HIST{H} = [& \INV{check}{}{1}, \RES{check}{\FALSE}{1}, ~~
+	      \INV{check}{}{2}, \RES{check}{\FALSE}{2}, ~~
+	      \INV{dec}{}{3}, \RES{dec}{\OK}{3}, \\
+            & \INV{dec}{}{4}, \RES{dec}{\OK}{4}, ~~
+	      \INV{dec}{}{5}, \RES{dec}{\OK}{5}, ~~
+              \INV{check}{}{6}, \RES{check}{\TRUE}{6}].
+\end{align*}
+%
+Although in general \OP{check} operations do not commute with \OP{inc}
+or \OP{dec} operations, in this history, the first four operations
+commute (the first two \OP{check}s and the first two \OP{dec}s).
+%
+And a different partitioning of the abstract counter shows these
+operations can be implemented scalably as well.
+%
+Each core would maintain a per-core counter 
+  (whose sum is one
+  less than the true counter) and a
+  per-core \OP{check} snapshot, which is defined to
+  \TRUE\ iff the sum of the per-core counters is negative. A \OP{dec}
+  call decrements its per-core counter. If the per-core counter goes
+  negative, the \OP{dec} call must read and sum all the counters and update
+  the \OP{check} snapshots accordingly.
+  In this history, threads 3 and 4 might start out with per-core
+  counters equal to 1, with thread 5's per-core counter equal to 0.
+  Then the first four operations will execute scalably.
+  %
+  The operations would not execute scalably given other
+  initial per-core counter assignments.
+
+The two scalable implementations described are fundamentally different.
+Which is most desirable depends on whether the workload is
+expected to be write-heavy (mostly \OP{inc} and \OP{dec}) or
+read-heavy (mostly \OP{check}).
+Thus an implementer must determine what opportunities to scale exist,
+then decide which are likely to be the most valuable,
+then choose the implementation that scales in those situations.
+
+As an example of how the commutativity rule can help in choice
+of interface, consider a slightly different reference counter
+with a \OP{deccheck} operator that decrements the counter
+and returns
+\TRUE\ if the decrement caused the counter to become non-positive.
+%
+Linux's \verb+atomic_inc+ and \verb+atomic_dec_and_test+
+functions provide this kind of interface.
+%
+Commutativity reasoning shows how this interface choice limits
+scalability.
+%
+A history with three decrements would look like this:
+%
+\begin{align*}
+\HIST{H'} = [&\INV{deccheck}{}{3}, \RES{deccheck}{\FALSE}{3}, ~~
+	     \INV{deccheck}{}{4}, \RES{deccheck}{\FALSE}{4}, \\
+             &\INV{deccheck}{}{5}, \RES{deccheck}{\TRUE}{5}]
+\end{align*}
+%
+Unlike the three \OP{dec} operations in $H$ above, the three
+\OP{deccheck} operations in $H'$ \emph{do not}
+commute.
+%
+The interface with combined decrement is harder to make scale than
+the interface that separates decrement from checking.
+%
+On the other hand, if, in most histories, the counter has a large
+positive value, then even the \OP{deccheck} interface commutes, and
+therefore can be made to scale using per-core counters.
+
+% In practice, designers make trade-offs between scalability
+% and other desired properties.  For example, memory is not
+% unlimited, so the kernel must reuse memory; but re-using memory that has been used
+% by an operation is not commutative with that operation. As another example, an
+% implementation that scales linearly may not be the
+% highest performing implementation for a particular core count; e.g.,
+% some implementations of a scalable reference counter may be inefficient for a
+% small number of cores.
+
+\XXX[EK][Would like to wrap up the point of this section here.]
+
+\XXX[nz][Simple POSIX file system example.]
+
+

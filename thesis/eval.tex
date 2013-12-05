@@ -1,0 +1,414 @@
+% -*- fill-column: 72 -*-
+
+\section{Performance evaluation}
+\label{sec:eval}
+
+The previous section showed that \fs and RadixVM achieve conflict-freedom
+for nearly all commutative operations, which should result
+in perfect scalability in
+theory.  This section shows that these results translate to scalability on
+real hardware for a complete operating system by answering the following
+questions:
+
+\begin{CompactItemize}
+
+\item Do non-commutative operations limit performance on real
+  hardware?
+
+\item Do conflict-free implementations of commutative operations scale
+  on real hardware?
+
+\item Does optimizing for scalability sacrifice sequential performance?
+
+\end{CompactItemize}
+
+% This section answers the following questions:
+
+% \begin{CompactItemize}
+
+% \item Does non-commutativity limit the scalability of interfaces?
+%   (\S\ref{sec:eval:non-commutativity})
+
+% \item Does thinking about commutativity result in better scalability for
+%   applications?  (\S\ref{sec:eval:app})
+%   \XXX[AC][These are one question.]
+
+% \item Does optimizing for commutativity/scalability harm performance?
+%   This question we answer by looking at single-core performance and by
+%   comparing with Linux. The results are woven into the evaluation
+%   discussion of the above two questions.
+
+% \end{CompactItemize}
+
+
+\subsection{Experimental setup}
+\label{sec:topic:ben}
+
+To answer these questions, we use \sys.
+In addition to the operations analyzed in \S\ref{sec:fs}, we scalably implemented
+other commutative operations (e.g., \code{posix_spawn})
+and many of the modified POSIX APIs from
+\S\ref{sec:posix}.
+%
+All told, \sys
+totals \pyexpr{const["xv6-loc"]["all"]} lines of code, including user
+space and library code.
+
+We ran experiments on an 80-core machine with eight 2.4~GHz 10-core
+Intel E7-8870 chips and 256~GB of RAM.  When varying the number of
+cores, benchmarks enable whole sockets at a time, so each 30~MB
+socket-level L3 cache is shared by exactly 10~enabled cores.
+We also report single-core numbers for
+comparison, though these are expected to be higher because one
+core can use the entire 30~MB cache.
+
+We run all benchmarks with the hardware prefetcher disabled because we
+found that it often prefetched contended cache lines to cores that did
+not ultimately access those cache lines, causing significant
+variability in our benchmark results and hampering our efforts to
+precisely control sharing.  We believe that, as large multicores and
+highly parallel applications become more prevalent, prefetcher
+heuristics will likewise evolve to avoid inducing this false sharing.
+
+As a single core performance baseline, we compare against the same
+benchmarks running on Linux~3.5.7 from Ubuntu Quantal.  Direct
+comparison is difficult because
+Linux implements many features \sys does not, but this comparison
+indicates \sys's performance is sensible.
+\XXX[AC][Different version from mtrace, which is a little awkward.]
+
+\subsection{Microbenchmarks}
+\label{sec:eval:microbenchmarks}
+
+% Many interfaces provide stricter or more complex semantics than
+% generally required by applications.  \code{fstat}, for example, combines
+% several return values, including properties like a file's
+% link count, while applications typically only need one or two of these
+% properties, such as the file size or modification time.  Such interfaces
+% often have limited commutativity, where slightly modified interfaces
+% that better align with application needs may commute in more situations.
+% \code{fstat} does not commute with \code{link} on the same inode because
+% \code{link} modifies the link count that \code{fstat} returns, but if an
+% application could request only, say, the file size, the resulting
+% interface would commute with \code{link}.
+
+% We call such cases, where operations do not commute according to the
+% specification but weaker and more widely commutative semantics suffice
+% for many applications, \emph{needless non-commutativity}.
+% \XXX[AC][Avoid ``needless non-commutativity.''  The point of the
+% commutative versions of the benchmarks is just to verify that it's the
+% non-commutativity limiting scalability.]
+
+% In this section, we explore the impact of non-commutative interfaces on
+% scalability by examining the scalability of some of the needlessly
+% non-commutative POSIX interfaces discussed in
+% \S\ref{sec:posix}. \XXX[FK][I don't think we need this reference to
+% section 6, and we could do without section 6, and turning it into a
+% future work and discussion section.]
+
+We evaluate scalability and performance on real hardware using two
+microbenchmarks and an application-level benchmark.  Each benchmark has
+two variants, one that uses standard, non-commutative POSIX APIs and
+another that accomplishes the same task using the modified, more broadly
+commutative APIs from \S\ref{sec:posix}.
+%
+By benchmarking the standard interfaces against
+their commutative counterparts, we can isolate the cost of
+non-commutativity and also examine the scalability of
+conflict-free implementations of commutative operations.
+
+We run each benchmark three times and report the mean.  Variance from
+the mean is always under 4\% and typically under 1\%.  \XXX[AC][Except
+mailbench with regular APIs on 80 cores, where something clearly went
+bonkers.]
+
+% We examine three different classes of
+% non-commutativity: statbench exercises \code{fstat}, which combines
+% several operations into one; openbench exercises file descriptor
+% allocation, which has process-wide invariants; and sockbench exercises
+% local sockets, which have strict ordering requirements.
+
+\paragraph{statbench.} In general, it's difficult to argue that an implementation of a
+non-commutative interface achieves the best possible scalability for
+that interface and that no implementation could scale better.  However,
+in limited cases, we can do exactly this.  We start with statbench,
+which measures the scalability of \code{fstat} with respect to
+\code{link}.  This benchmark creates a single file that $n/2$ cores
+repeatedly \code{fstat}. The other $n/2$ cores repeatedly
+\code{link} this file to a new, unique file name, and then \code{unlink}
+the new file name.  As discussed in \S\ref{sec:posix}, \code{fstat} does not
+commute with \code{link} or \code{unlink} on the same file because
+\code{fstat} returns the link count.  In practice,
+applications rarely invoke \code{fstat} to get the link count, so \sys
+introduces \code{fstatx}, which allows applications to request specific
+fields (a similar system call has been proposed for
+Linux~\cite{linux:xstat}).
+
+\XXX[AC][Mention that commutative statbench helps verify our
+disjoint-access parallelism assertion on real hardware.]
+
+\newcounter{mysubfigure}[figure]
+\renewcommand{\themysubfigure}{\thefigure(\alph{mysubfigure})}
+
+\begin{figure*}
+  % hbox prevents wrapping and fixes nasty vertical space when we
+  % overfill
+  \hbox{
+    % Make subfigure labels refer to correct figure
+    \stepcounter{figure}
+    \input{graph/linkbench.tex}
+    \refstepcounter{mysubfigure}
+    \label{fig:linkbench}
+    \hspace{-.22in}
+    \input{graph/fdbench.tex}
+    \refstepcounter{mysubfigure}
+    \label{fig:fdbench}
+    \hspace{-.22in}
+    \input{graph/mailbench.tex}
+    \refstepcounter{mysubfigure}
+    \label{fig:mailbench}
+    \addtocounter{figure}{-1}
+  }
+  \caption{Benchmark throughput in operations per second per core with
+    varying core counts on \sys.
+    The blue dots indicate single core Linux
+    performance for comparison.}
+\end{figure*}
+
+% \begin{figure}
+%   \centering
+%   \input{graph/linkbench.tex}
+%   \caption{\code{fstat} throughput with $n/2$ cores running \code{fstat}
+%     and $n/2$ cores running \code{link}/\code{unlink}.}
+%   \label{fig:linkbench}
+% \end{figure}
+
+We run statbench in two modes: one mode uses \code{fstat}, which does
+not commute with the \code{link} and \code{unlink} operations performed
+by the other threads, and the other mode uses \code{fstatx} to request
+all fields except the link count, an operation that \emph{does} commute
+with \code{link} and \code{unlink}.  We use a \refcache scalable
+counter~\cite{clements:radixvm} for the link count so that the
+\code{link}s and \code{unlink}s do not conflict, and place it on
+its own cache line to avoid false sharing.
+Figure~\ref{fig:linkbench} shows the results.  With the commutative
+\code{fstatx}, statbench scales perfectly and experiences zero L2 cache
+misses in \code{fstatx}, while \code{fstat} severely limits the
+scalability of statbench.  
+
+%This is no implementation fluke. 
+To better
+isolate the difference between \code{fstat} and \code{fstatx}, we run
+statbench in a
+third mode that uses \code{fstat}, but represents the link count
+using a simple shared counter instead of \refcache.  In this mode, \code{fstat}
+performs better (at the expense of \code{link} and \code{unlink}), but
+still does not scale.  With a shared link count, each \code{fstat}
+call experiences exactly one L2 cache miss (for the cache line
+containing the link count), which means this is the most scalable that
+\code{fstat} can possibly be in the presence of concurrent \code{link}s
+and \code{unlink}s.  Yet, despite sharing only a single cache line, this
+seemingly innocuous non-commutativity limits the
+implementation's scalability.  One small tweak to make the operation
+commute by omitting \code{st_nlink} eliminates the barrier to scaling,
+demonstrating the cost of non-commutativity.
+
+In the case of \code{fstat}, optimizing for scalability sacrifices some
+sequential performance.  Tracking the link count with \refcache
+(or some scalable counter) is necessary to make \code{link} and
+\code{unlink} scale linearly, but requires \code{fstat} to reconcile the
+distributed link count to return \code{st_nlink}.  The exact overhead
+depends on the core count (which determines the number of \refcache
+caches), but with 80~cores, \code{fstat} is \pyexpr{times(
+  mean(linkbench.filter(("iv.st_nlink",True),("iv.stats",1),("iv.FS_NLINK_REFCOUNT","refcache::"))["dv.cycles/stat"]),
+  mean(linkbench.filter(("iv.st_nlink",True),("iv.stats",1),("iv.kernel","Linux"))["dv.cycles/stat"]))}
+more expensive than on Linux.  \XXX[AC][Haven't tried optimizing this.]
+In contrast, \code{fstatx} can avoid this overhead unless link counts are
+requested; like \code{fstat} with a shared count, it performs similarly to Linux's \code{fstat} on
+a single core.
+%\pyexpr{int(mean(linkbench.filter(("iv.st_nlink",True),("iv.stats",1),("iv.FS_NLINK_REFCOUNT","::"))["dv.cycles/stat"]))}~cycles
+% Above 20~cores, the shared link count and \refcache link count
+% implementations of \code{fstat} scale similarly.
+
+\paragraph{openbench.} Figure~\ref{fig:fdbench} shows the results
+of openbench, which stresses the file descriptor allocation performed by
+\code{open}.  In openbench, $n$ threads concurrently \code{open} and
+\code{close} per-thread files.  These calls do not commute because each
+\code{open} must allocate the lowest unused file
+descriptor in the process.  For many applications, it suffices to return
+any unused file descriptor (in which case the \code{open} calls commute),
+so \sys adds an \code{O_ANYFD} flag to \code{open}, which it implements
+using per-core partitions of the FD space.  Much like
+statbench, the standard, non-commutative \code{open} interface limits
+openbench's scalability, while openbench with \code{O_ANYFD} scales
+linearly.  Furthermore, there appears to be no performance penalty to
+\fs's \code{open}, with or without \code{O_ANYFD}: at one core, both
+cases perform identically and outperform Linux's \code{open} by
+\pyexpr{percent(
+  mean(fdbench.filter(("iv.cores",1),("iv.kernel","xv6"),("iv.any_fd",False))["dv.opens/sec"])
+  /mean(fdbench.filter(("iv.cores",1),("iv.kernel","Linux"))["dv.opens/sec"])
+  -1)}.
+Some of the performance difference is because \sys doesn't implement things like
+permissions checking, but much of Linux's overhead comes from locking
+that \fs avoids.
+
+% \begin{figure}
+%   \centering
+%   \input{graph/fdbench.tex}
+%   \caption{\code{open} throughput with varying FD allocation policies.}
+%   \label{fig:fdbench}
+% \end{figure}
+
+\begin{comment}
+\paragraph{sockbench.}
+
+Figure~\ref{fig:sockbench} shows the results of sockbench, which
+stresses local sockets.  In sockbench $n$ client processes repeatedly
+send a 1-byte message over a local socket to $n$ server processes and
+wait for a 1-byte response. The clients send the 1 byte message over a
+datagram socket that is shared among all servers.  The POSIX API doesn't
+require that datagram messages be delivered in order but most operating
+systems do enforce this ordering because a single queue for a socket is
+the most straightforward implementation.  This unnecessary ordering,
+however, makes \code{sendto} invocations on a datagram socket needlessly
+non-commutative.
+
+\sys allows for out of order delivery of datagram messages, making
+invocations to \code{sendto} commute with each other.  \sys takes
+advantage of this commutativity to achieve scalability as follows. When
+\sys notices that several cores are receiving from a shared datagram
+socket, it partitions the socket among the cores.  A sending core puts a
+message into its local partition of the socket, unless its partition is
+full.  If the partition is full, \sys invokes a scalable load balancing
+algorithm to deliver the message into another partition.
+
+As the results in Figure~\ref{fig:sockbench} show, \sys scales
+perfectly, because each pair of a client and a server communicate
+through its local partition of the datagram socket.  Thus, cores don't
+need to share any cache lines, and \sys scales perfectly.  Linux scales
+until a small number of cores, and then collapses because of a contended
+spin lock protecting the in-kernel queue for the datagram socket.
+\sys's scalability doesn't come at the cost of single-core performance;
+in fact, \sys's single core performance is better than Linux.
+
+If an application performs its own load balancing, it could implement
+\sys's approach at the application level by setting up $n$ datagram
+sockets, for each pair of a client and a server.  With this setup
+invocations to \code{sendto} commute because they involve different
+datagram sockets.  Unfortunately, today this setup does not result in
+better scalability on Linux.  The line labeled ``$n$ datagram sockets''
+shows better scalability than the line ``1 datagram socket'', but it
+also collapses. At 20 cores, a spin lock protecting the name lookup in
+\code{sendto} becomes contended.
+
+The application could perform the name lookup once by a setting up a
+stream socket at the beginning, and then using \code{send} to
+communicate.  This setup results in better scalability (see the line
+labeled ``Linux with $n$ streams''). But, in this setup, a spin
+lock in the scheduler becomes a bottleneck (\XXX[FK][double check]).
+Clearly, Linux developers could remove these bottlenecks.  What is nice
+about our approach is that the commutativity rule makes clear that these
+locks can be removed and that \tool{} can catch these non-scalable
+invocations that should be scalable.  \XXX[FK][We should mention
+somewhere that we have a model for unordered and ordered sockets.]
+
+\begin{figure}
+  \centering
+  \input{graph/usocket.tex}
+  \caption{Scalability of $n$ clients concurrently sending and receiving 1
+    byte messages to/from $n$ server  processes.}
+  \label{fig:sockbench}
+\end{figure}
+\end{comment}
+
+%     lazy unmap [doing more than one thing]
+%     thread-level mmap?
+%     stat vs. fstat (name lookup)
+
+\subsection{Application performance}
+\label{sec:eval:app}
+
+\XXX[FK/AC][Cite RadixVM on importance of scalable VM for application
+performance. This may be unnecessary given what section 6.2 already says.]
+
+Finally, we perform a similar experiment using a simple mail server to
+produce a system call workload more representative of a real
+application.  Our mail server uses a sequence of separate, communicating
+processes, each with a specific task, roughly like qmail~\cite{qmail}.
+{mail-enqueue} takes a mailbox name and a single message on
+stdin, writes the message and the envelope to two files in a
+mail queue directory, and notifies the queue manager by writing the
+envelope file
+name to a Unix domain datagram socket.  {mail-qman} is a long-lived
+multithreaded process where each thread reads from the notification
+socket, reads the envelope information, opens the queued message, spawns
+and waits for the delivery process, and then deletes the queued message.
+Finally, {mail-deliver} takes a mailbox name and a single message
+on stdin and delivers the message to the appropriate Maildir.
+The benchmark models a mail client with $n$ threads that continuously
+deliver email by spawning and feeding {mail-enqueue}.
+
+As in the microbenchmarks, we run the mail server in two configurations:
+in one we use lowest FD, an order-preserving socket for queue
+notifications, and \code{fork}/\code{exec} to spawn helper processes; in
+the other we use \code{O_ANYFD}, an unordered notification socket, and
+\code{posix_spawn}, all as described in \S\ref{sec:posix}.
+%\code{openbench} explored the limitations of lowest
+%FD.
+For queue notifications, we use a Unix domain datagram socket;
+\sys implements this with a single shared queue in ordered mode and with
+per-core message queues with scalable load balancing in unordered
+mode.  Finally, because \code{fork} commutes with essentially no other
+operations in the same process,
+\sys implements \code{posix_spawn} by constructing the new process image
+directly and building the new file
+table. This implementation is conflict-free with most other operations,
+including operations on
+\code{O_CLOEXEC} files (except those specifically \code{dup}ed into the
+new process).
+
+Figure~\ref{fig:mailbench} shows the resulting scalability of these two
+configurations.  Even though the mail server performs a much broader mix
+of operations than the microbenchmarks and doesn't focus solely on
+non-commutative operations, the results are quite similar.
+Non-commutative operations cause the benchmark's throughput to collapse
+at a small number of cores, while the configuration that uses
+commutative APIs achieves \pyexpr{times(
+  mean(mailbench.filter(("iv.cores",80),("iv.alt","all"),("iv.kernel","xv6"))["dv.messages/sec"]),
+  mean(mailbench.filter(("iv.cores",10),("iv.alt","all"),("iv.kernel","xv6"))["dv.messages/sec"]))}
+scalability from 1~socket
+(10~cores) to 8~sockets.
+%
+% In the non-commutative case, mailbench on \sys slightly outperforms
+% Linux.
+%
+\XXX[AC][We could also make the point that, the commutative APIs
+outperform the non-commutative APIs on one core, in addition to
+out-scaling them.]
+
+\XXX[AC][In the commutative case, our scalability is currently limited
+by the growing chains in the fixed-size dcache hash table of the
+Maildir.  A resizable hash table would probably help.]
+
+\XXX[AC][In the non-commutative case, the top problem is fork by far.
+However, with \code{posix_spawn} instead of fork, we spend all of our
+time in \code{posix_spawn}, which scales but is slow.  If its
+\emph{sequential} performance were better, the other things mailbench
+does would matter more.]
+
+% \begin{figure}
+%   \centering
+%   \input{graph/mailbench.tex}
+%   \caption{Throughput of $n$ mail agents sending messages to a mail
+%     server, which delivers them to a Maildir.}
+%   \label{fig:mailbench}
+% \end{figure}
+
+\begin{comment}
+\begin{figure}
+  \centering
+  \input{graph/forktest.tex}
+  \caption{Scalability of $n$ cores forking and exiting a process on xv6 and Linux.}
+  \label{fig:forktest}
+\end{figure}
+\end{comment}

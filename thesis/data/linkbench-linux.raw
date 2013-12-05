@@ -1,0 +1,380 @@
+== id=2013-03-17T22:51:23-0400 --bench=linkbench kernel=Linux host=ben krel=3.5.7.2 kver="#1 SMP Sun Feb 10 23:37:45 EST 2013" ==
+
+# --cores=2 --duration=5s --st_nlink=true --stats=1 --links=1
+2712 start cycles skew
+7732 stop cycles skew
+12000719642 cycles
+1 start usec skew
+1 stop usec skew
+5.000126 secs
+23172302 stats
+517 cycles/stat
+4634343 stats/sec
+917516 links
+13079 cycles/link
+183498 links/sec
+
+# --cores=2 --duration=5s --st_nlink=true --stats=1 --links=1
+2308 start cycles skew
+2592 stop cycles skew
+12000485454 cycles
+1 start usec skew
+0 stop usec skew
+5.000029 secs
+23412327 stats
+512 cycles/stat
+4682438 stats/sec
+921244 links
+13026 cycles/link
+184247 links/sec
+
+# --cores=2 --duration=5s --st_nlink=true --stats=1 --links=1
+2504 start cycles skew
+6364 stop cycles skew
+12000569658 cycles
+1 start usec skew
+2 stop usec skew
+5.000064 secs
+23164219 stats
+518 cycles/stat
+4632784 stats/sec
+923065 links
+13000 cycles/link
+184610 links/sec
+
+# --cores=10 --duration=5s --st_nlink=true --stats=5 --links=5
+9910 start cycles skew
+19664 stop cycles skew
+12000650610 cycles
+4 start usec skew
+5 stop usec skew
+5.000097 secs
+13683927 stats
+4384 cycles/stat
+2736732 stats/sec
+1304179 links
+46008 cycles/link
+260830 links/sec
+
+# --cores=10 --duration=5s --st_nlink=true --stats=5 --links=5
+15340 start cycles skew
+11244 stop cycles skew
+12000547875 cycles
+6 start usec skew
+4 stop usec skew
+5.000054 secs
+13676577 stats
+4387 cycles/stat
+2735285 stats/sec
+1299011 links
+46191 cycles/link
+259799 links/sec
+
+# --cores=10 --duration=5s --st_nlink=true --stats=5 --links=5
+11136 start cycles skew
+11950 stop cycles skew
+12000651764 cycles
+5 start usec skew
+5 stop usec skew
+5.000097 secs
+13444348 stats
+4463 cycles/stat
+2688817 stats/sec
+1321388 links
+45409 cycles/link
+264272 links/sec
+
+# --cores=20 --duration=5s --st_nlink=true --stats=10 --links=10
+10474290 start cycles skew
+272034 stop cycles skew
+11999844247 cycles
+4364 start usec skew
+118 stop usec skew
+4.999764 secs
+12907051 stats
+9297 cycles/stat
+2581532 stats/sec
+178758 links
+671238 cycles/link
+35753 links/sec
+
+# --cores=20 --duration=5s --st_nlink=true --stats=10 --links=10
+9946922 start cycles skew
+59352 stop cycles skew
+11999273829 cycles
+4145 start usec skew
+30 stop usec skew
+4.999524 secs
+14772710 stats
+8123 cycles/stat
+2954823 stats/sec
+176463 links
+679911 cycles/link
+35295 links/sec
+
+# --cores=20 --duration=5s --st_nlink=true --stats=10 --links=10
+1956590 start cycles skew
+94074 stop cycles skew
+12000599363 cycles
+815 start usec skew
+26 stop usec skew
+5.000066 secs
+12541942 stats
+9568 cycles/stat
+2508355 stats/sec
+180777 links
+663823 cycles/link
+36154 links/sec
+
+# --cores=30 --duration=5s --st_nlink=true --stats=15 --links=15
+10512014 start cycles skew
+1609890 stop cycles skew
+11999873771 cycles
+4380 start usec skew
+678 stop usec skew
+4.999761 secs
+12132019 stats
+14837 cycles/stat
+2426519 stats/sec
+229384 links
+784649 cycles/link
+45878 links/sec
+
+# --cores=30 --duration=5s --st_nlink=true --stats=15 --links=15
+11904552 start cycles skew
+1805440 stop cycles skew
+11999438741 cycles
+4961 start usec skew
+758 stop usec skew
+4.999583 secs
+12158209 stats
+14805 cycles/stat
+2431844 stats/sec
+231652 links
+776912 cycles/link
+46334 links/sec
+
+# --cores=30 --duration=5s --st_nlink=true --stats=15 --links=15
+25855594 start cycles skew
+562080 stop cycles skew
+11998926860 cycles
+10773 start usec skew
+240 stop usec skew
+4.999373 secs
+12355334 stats
+14569 cycles/stat
+2471376 stats/sec
+214978 links
+837092 cycles/link
+43000 links/sec
+
+# --cores=40 --duration=5s --st_nlink=true --stats=20 --links=20
+27663568 start cycles skew
+2935956 stop cycles skew
+11997384654 cycles
+11526 start usec skew
+1229 stop usec skew
+4.998739 secs
+11387562 stats
+21076 cycles/stat
+2278086 stats/sec
+178560 links
+1343414 cycles/link
+35721 links/sec
+
+# --cores=40 --duration=5s --st_nlink=true --stats=20 --links=20
+18800200 start cycles skew
+2006042 stop cycles skew
+11997858554 cycles
+7833 start usec skew
+840 stop usec skew
+4.998938 secs
+10574209 stats
+22698 cycles/stat
+2115291 stats/sec
+161798 links
+1482694 cycles/link
+32366 links/sec
+
+# --cores=40 --duration=5s --st_nlink=true --stats=20 --links=20
+29130338 start cycles skew
+3417106 stop cycles skew
+11996476617 cycles
+12138 start usec skew
+1429 stop usec skew
+4.998359 secs
+10624794 stats
+22589 cycles/stat
+2125656 stats/sec
+166787 links
+1438043 cycles/link
+33368 links/sec
+
+# --cores=50 --duration=5s --st_nlink=true --stats=25 --links=25
+61543392 start cycles skew
+4732550 stop cycles skew
+11991909908 cycles
+25643 start usec skew
+1977 stop usec skew
+4.996457 secs
+11655248 stats
+25740 cycles/stat
+2332702 stats/sec
+189362 links
+1582048 cycles/link
+37899 links/sec
+
+# --cores=50 --duration=5s --st_nlink=true --stats=25 --links=25
+62818174 start cycles skew
+3586296 stop cycles skew
+11993169306 cycles
+26173 start usec skew
+1502 stop usec skew
+4.996978 secs
+11714473 stats
+25610 cycles/stat
+2344311 stats/sec
+190783 links
+1570602 cycles/link
+38179 links/sec
+
+# --cores=50 --duration=5s --st_nlink=true --stats=25 --links=25
+68830210 start cycles skew
+3939596 stop cycles skew
+11992977831 cycles
+28679 start usec skew
+1646 stop usec skew
+4.996893 secs
+11735740 stats
+25564 cycles/stat
+2348607 stats/sec
+193219 links
+1550732 cycles/link
+38667 links/sec
+
+# --cores=60 --duration=5s --st_nlink=true --stats=30 --links=30
+111268262 start cycles skew
+5966342 stop cycles skew
+11979572616 cycles
+46360 start usec skew
+2503 stop usec skew
+4.991284 secs
+10771511 stats
+33423 cycles/stat
+2158064 stats/sec
+204052 links
+1758123 cycles/link
+40881 links/sec
+
+# --cores=60 --duration=5s --st_nlink=true --stats=30 --links=30
+121208164 start cycles skew
+4461843 stop cycles skew
+11980028512 cycles
+50502 start usec skew
+1863 stop usec skew
+4.991509 secs
+10569193 stats
+34062 cycles/stat
+2117434 stats/sec
+195154 links
+1838462 cycles/link
+39097 links/sec
+
+# --cores=60 --duration=5s --st_nlink=true --stats=30 --links=30
+33439168 start cycles skew
+3372524 stop cycles skew
+11994789642 cycles
+13932 start usec skew
+1416 stop usec skew
+4.997651 secs
+10438400 stats
+34489 cycles/stat
+2088661 stats/sec
+181844 links
+1977895 cycles/link
+36385 links/sec
+
+# --cores=70 --duration=5s --st_nlink=true --stats=35 --links=35
+236617216 start cycles skew
+5645948 stop cycles skew
+11982202667 cycles
+98587 start usec skew
+2358 stop usec skew
+4.992401 secs
+11179537 stats
+37571 cycles/stat
+2239310 stats/sec
+158030 links
+2649669 cycles/link
+31654 links/sec
+
+# --cores=70 --duration=5s --st_nlink=true --stats=35 --links=35
+88778174 start cycles skew
+6784300 stop cycles skew
+11988586690 cycles
+36989 start usec skew
+2833 stop usec skew
+4.995073 secs
+11069635 stats
+37944 cycles/stat
+2216110 stats/sec
+156780 links
+2673639 cycles/link
+31386 links/sec
+
+# --cores=70 --duration=5s --st_nlink=true --stats=35 --links=35
+149401272 start cycles skew
+7211394 stop cycles skew
+11974903368 cycles
+62249 start usec skew
+3011 stop usec skew
+4.989369 secs
+11191467 stats
+37530 cycles/stat
+2243062 stats/sec
+157936 links
+2648033 cycles/link
+31654 links/sec
+
+# --cores=80 --duration=5s --st_nlink=true --stats=40 --links=40
+119525420 start cycles skew
+12337748 stop cycles skew
+11978012424 cycles
+49800 start usec skew
+5146 stop usec skew
+4.990668 secs
+10282668 stats
+46683 cycles/stat
+2060379 stats/sec
+177958 links
+2687224 cycles/link
+35658 links/sec
+
+# --cores=80 --duration=5s --st_nlink=true --stats=40 --links=40
+116473818 start cycles skew
+8381796 stop cycles skew
+11979965171 cycles
+48529 start usec skew
+3497 stop usec skew
+4.991479 secs
+10482667 stats
+45792 cycles/stat
+2100112 stats/sec
+178437 links
+2680894 cycles/link
+35748 links/sec
+
+# --cores=80 --duration=5s --st_nlink=true --stats=40 --links=40
+127601092 start cycles skew
+10197996 stop cycles skew
+11971319781 cycles
+53165 start usec skew
+4255 stop usec skew
+4.987872 secs
+10404247 stats
+46137 cycles/stat
+2085908 stats/sec
+171081 links
+2792106 cycles/link
+34299 links/sec
+

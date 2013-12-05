@@ -1,0 +1,12 @@
+#!/usr/bin/python -3
+
+# Generate throughput graphs of linkbench results
+
+import plot
+import common
+
+d = common.argv_to_table()
+
+plot.Gnuplot(d, x="iv.cores", y="dv.opens/sec",
+             layer=("iv.any_fd",)). \
+             data()

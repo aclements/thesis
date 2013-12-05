@@ -1,0 +1,425 @@
+% -*- fill-column: 72 -*-
+
+\section{Analyzing interfaces using \tool{}}
+\label{sec:model}
+
+% Yet another draft intro:
+% The previous section focused on interface design, but an unimplemented
+% interface is of little use.  However, realizing an implementation of an
+% interface that avoids sharing when operations commute is a difficult
+% task: fully understanding the commutativity of a complex interface is
+% tricky and it's easy to share unintentionally in a complex
+% implementation.  This section presents a systematic approach to applying
+% the commutativity rule to real implementations that leverages the
+% formality of the commutativity rule to automate much of this reasoning.
+
+\cbstart Fully understanding the commutativity of a complex interface is
+tricky, and achieving an
+implementation that avoids sharing when operations commute adds another
+dimension to an already difficult task.  However, by leveraging the
+formality of the commutativity rule, developers can automate much of this
+reasoning.  This section presents a systematic, test-driven approach to
+applying the commutativity rule to real implementations embodied in a
+tool named \tool, whose components are shown in
+Figure~\ref{fig:tool}. \cbend
+
+
+\begin{figure*}
+\input{figures/tool.tex}
+\caption{The components of \tool{}.}
+\label{fig:tool}
+\end{figure*}
+
+First, \analyzer{} takes a symbolic model of
+an interface and computes precise conditions under which that interface's
+operations commute.  Second, \generator{} takes
+these conditions and generates concrete test cases of sets of operations
+that commute according to the interface model, and thus should
+have a conflict-free implementation according to the commutativity rule.
+%
+Third, \mtrace checks whether a particular implementation is
+conflict-free for each test case.
+
+\cbstart A developer can use these test cases to understand the
+commutative cases they should consider,
+to iteratively find and fix scalability
+issues in their
+code, or as a regression test suite to ensure
+scalability bugs do not creep into the implementation over time.
+\cbend
+
+
+\subsection{\analyzer{}}
+\label{sec:model:analyzer}
+
+\cbstart
+%
+\analyzer automates the process of analyzing the commutativity of an
+interface, saving developers from the tedious and error-prone process of
+considering large numbers of interactions between complex operations.
+%
+\analyzer takes as input a model of the behavior of an interface,
+written in a symbolic variant of Python, and outputs \emph{commutativity
+  conditions}: expressions in terms of arguments and state for exactly
+when sets of operations commute.
+%
+A developer can inspect these expressions to understand an interface's
+commutativity or pass them to \generator (\S\ref{sec:model:generator})
+to generate concrete examples of when interfaces commute.
+
+% Some old text:
+% In principle, the model can be specified in any form, such as a
+% specification language or a boolean constraint.  However, to make it
+% easier for programmers to write models, \analyzer{} accepts models
+% written in a symbolic variant of Python.
+% %
+% \XXX[AC][Say what we do and then generalize later.]
+% %
+% \cbstart Python's imperative style is a natural fit for highly stateful
+% interfaces like POSIX, while the symbolic environment lets models
+% capture specification non-determinism (like \code{creat}'s ability to
+% choose any free inode) as under-constrained symbolic values.
+
+\XXX[AC][If we had space, a more complete explanation of how \analyzer
+arrives at commutativity conditions; including pseudo-code for
+\code{test} and the gathering of path conditions and maybe even some
+description of the symbolic executor itself would be useful.  E.g., it's
+not at all obvious that we execute all permutations of a call set in one
+symbolic execution path.  Then we could also be more explicit about how
+we implement ``internal'' variables.]
+
+% Diagrammatically, something like:
+%                        /- op_b=>r_ab @ S_ab -- op_c=>r_abc @ S_abc
+%       / op_a=>r_a @ S_a
+%      /                 \- op_c=>r_ac @ S_ac -- op_b=>r_acb @ S_acb
+%     /                  /- op_a=>r_ba @ S_ba -- op_c=>r_bac @ S_bac
+% S_0 --- op_b=>r_b @ S_b
+%     \                  \- op_c=>r_bc @ S_bc -- op_a=>r_bca @ S_bca
+%      \                 /- op_a=>r_ba @ S_ca -- op_b=>r_cab @ S_cab
+%       \ op_c=>r_c @ S_c
+%                        \- op_b=>r_bc @ S_cb -- op_a=>r_cba @ S_cba
+%
+%   (r_a == r_ba == r_bca == r_ca == r_cba) /\
+%   (r_b == r_ab == r_acb == r_cab == r_cb) /\
+%   (r_c == r_abc == r_ac == r_bac == r_bc) /\
+%   (S_ab == S_ba) /\ (S_ac == S_ca) /\ (S_bc == S_cb) /\
+%   (S_abc == S_acb == S_bac == S_bca == S_cab == S_cba)
+%
+% See also [[2013-08-21 :SCP Analyzer pseudo-code]]
+%
+% Actually, many of these comparisons are redundant.  See the whiteboard
+% photo from 2013-09-14.
+
+Given the Python code for a model, \analyzer uses symbolic execution to
+consider all possible behaviors of the interface model and construct
+complete commutativity conditions.  Symbolic execution also enables
+\analyzer to reason about the external behavior of an interface, rather
+than specifics of the model's implementation, and enables models to
+capture specification non-determinism (like \code{creat}'s ability to
+choose any free inode) as under-constrained symbolic values.
+
+\analyzer considers every set of operations of a certain size (typically
+we use pairs).  For each set of operations $o$, it constructs an
+unconstrained symbolic system state $s$ and unconstrained
+symbolic arguments
+for each operation in $o$, and executes all permutations
+of $o$, each starting from a copy of $s$.
+This execution forks at any branch that can go both
+ways, building up \emph{path conditions} that constrain the state and
+arguments that can lead to each code path.
+At the end of each code path, \analyzer checks if its path condition
+yields an initial state and arguments that make $o$ commute by testing if each
+operation's return value is
+equivalent in all permutations and if the system states reached by all
+permutations are equivalent (or can be equivalent for some
+choice of non-deterministic values like newly allocated
+inode numbers).
+%
+For sets larger than pairs, \analyzer must also check that the
+intermediate states are equivalent for every permutation of each subset
+of $o$.
+%
+\XXX[AC][For example, given operations A and B,
+\analyzer executes AB and BA and tests if the return value of A is the
+same in both cases, the return value of B is the same in both cases, and
+the final state is the same in both cases.]
+
+
+% Old attempt at \analyzer details:
+% Given the Python code for a model, \analyzer{} extracts precise formulas
+% for when operations commute. \cbstart For every set of operations of a
+% certain size (typically we use pairs), it symbolically executes all
+% permutations of the set starting from the same initial unconstrained
+% state for each permutation, collecting the final symbolic state after
+% each permutation as well as the symbolic return values of every
+% operation.  At the end of each code path, it queries the SMT solver for
+% a satisfying assignment of the initial state and all arguments where all
+% final states are equivalent and each operation's return values are
+% equivalent in all permutations (or can be equivalent for some choice of
+% non-deterministic internal variables like newly allocated inode
+% numbers).  If there is a satisfying assignment, it represents a case in
+% which the operations commute. \cbend
+
+This test codifies the definition of \SRI commutativity from
+\S\ref{sec:topic:strong-commutativity},
+except that (1) it assumes the specification is sequentially consistent,
+and (2) instead of considering all possible future operations
+(which would be difficult in symbolic execution), it substitutes state
+equivalence.  It's up to the model's author to define state equivalence
+as whether two states are externally indistinguishable.  This is
+standard practice for high-level data types (e.g., two sets represented
+as trees could be equal even if they are balanced differently).  For the
+POSIX model we present in \S\ref{sec:fs}, only a few types need special
+handling beyond
+what the standard data types provide automatically.  \cbend
+
+\begin{figure}
+\begin{small}
+\input{code/rename}
+\end{small}
+\caption{A simplified version of our \code{rename} model.
+  % \code{tstruct}, \code{tlist}, and \code{tdict} create
+  % symbolic struct, list, and dictionary types.
+  % \code{tsort} creates an ``uninterpreted'' type (whose values support
+  % only equality).
+}
+\label{fig:rename-spec}
+\end{figure}
+
+Figure~\ref{fig:rename-spec} gives an example of how a developer could
+model \code{rename}.  \cbstart The first five lines declare symbolic
+types (\code{tuninterpreted} declares a type whose values support only
+equality), and \code{__init__} instantiates the file system state.  The
+implementation of \code{rename} itself is straightforward.  Indeed, the
+familiarity of Python and ease of manipulating state were part of why we
+chose it over abstract specification languages. \cbend
+% This model is straightforward, but captures the essence
+% of what \code{rename} does: it looks up the source file name, returns
+% an error if it does not exist, and otherwise decrements the link count
+% on the destination file if it exists, points the destination file name
+% to the source file's inode, and so on.
+% \XXX[AC][This sentence seems misleading:]
+% Writing this model requires
+% the interface designer to specify the state that \code{rename} accesses
+% internally, such as the \code{fname_to_inum} map that represents a directory,
+% and the inode reference counts in \code{inode}.
+
+Given two
+\code{rename} operations, \code{rename(a, b)} and \code{rename(c, d)},
+\analyzer outputs that they commute if any of the following hold:
+
+\begin{CompactItemize}
+\item Both source files exist, and the file names are all different
+      (\code{a} and \code{c} exist, and \code{a}, \code{b}, \code{c},
+      \code{d} all differ).
+
+\item One \code{rename}'s source does not exist, and it is not the
+      other \code{rename}'s destination (either
+      \code{a} exists, \code{c} does not, and \code{b}$\neq$\code{c}, or
+      \code{c} exists, \code{a} does not, and \code{d}$\neq$\code{a}).
+
+\item Neither \code{a} nor \code{c} exist.
+
+\item Both calls are self-renames (\code{a}$=$\code{b} and \code{c}$=$\code{d}).
+
+\item One call is a self-rename of an existing file
+      (\code{a} exists and \code{a}$=$\code{b}, or
+       \code{c} exists and \code{c}$=$\code{d}) and
+      it's not the other call's source (\code{a}$\neq$\code{c}).
+
+\item Two hard links to the same inode are renamed to the same new name
+      (\code{a} and \code{c} point to the same inode,
+       \code{a}$\neq$\code{c}, and \code{b}$=$\code{d}).
+
+\end{CompactItemize}
+
+%% For many interfaces, it is possible to apply the commutativity rule ``by
+%% hand''.  For example, the \code{getpid} system call commutes with just
+%% about everything else, and should scale. 
+As this example shows, when system calls access shared, mutable
+state, reasoning about every commutative case by hand can become
+difficult.
+%
+\cbstart Developers can easily overlook cases, both in their
+understanding of an interface's commutativity, and when making their
+implementation scale for commutative cases. \cbend
+%
+\analyzer
+automates reasoning about all possible system states, all possible
+sets of operations that can be
+invoked, and all possible arguments to those operations.
+
+\XXX[AC][Are these examples that enlightening?  Do they just reinforce
+the ``corner case'' mentality?
+
+For
+example, creating two files in two different directories might appear to
+be obviously commutative, but in fact if the file system has exactly one
+free inode left, these two operations do not commute.
+%
+As another example, the \code{open()} and \code{stat()} system calls
+generally commute if they refer to different file names, but there are a
+number of non-obvious cases: e.g., the two operations do not commute if one
+of the files does not exist, the other is a symlink to the first, and
+\code{open} is invoked with \code{O_CREAT}; or if one file exists and is
+non-empty, the other is a symlink to the first, and \code{open} is invoked
+with \code{O_TRUNC}.]
+% \cbstart When analyzing interfaces by hand, many
+% cases are easy for developers to overlook, both in their understanding
+% of the interface's commutativity, and when making their implementation
+% scale for commutative cases. \cbend
+
+
+\subsection{\generator{}}
+\label{sec:model:generator}
+
+\cbstart While a developer can examine the commutativity conditions
+produced by \analyzer directly, for complex interfaces these formulas
+can be large and difficult to decipher.  Further, real implementations
+are complex and likely to contain unintentional sharing, even if the
+developer understands an interface's commutativity.  \generator takes
+the first step to helping developers apply commutativity to real
+implementations by converting \analyzer's commutativity conditions into
+concrete test cases. \cbend
+
+To produce a test case, \generator computes
+a satisfying assignment for the corresponding commutativity condition.
+The assignment specifies concrete values for every symbolic variable in
+the model, such as the \code{fname_to_inum} and \code{inodes} data structures
+and the \code{rename} arguments shown in Figure~\ref{fig:rename-spec}.
+\generator then invokes a model-specific function on the assignment
+to produce actual C test case code.  For example, one test
+case that \generator{} generates is shown in Figure~\ref{fig:testgen}.
+The test case includes setup code that configures the initial state of
+the system and a set of functions to run on different cores. Every
+\generator test case should have a conflict-free implementation.
+
+\begin{figure}
+\begin{small}
+\input{code/testgen}
+\end{small}
+\caption{An example test case for two \code{rename} calls generated by
+         \generator{} for the model in Figure~\ref{fig:rename-spec}.}
+\label{fig:testgen}
+\end{figure}
+
+The goal of these test cases is to expose potential scalability problems
+in an implementation, but it is impossible for \generator{} to know
+exactly what inputs might trigger conflicting memory accesses.  Thus, as a
+proxy for achieving good coverage on the implementation, \generator{}
+aims to achieve good coverage of the Python model.
+
+\XXX[E][THIS PARAGRAPH IS VERY OPAQUE]
+We consider two forms of coverage.
+The first is the standard notion of path coverage, which \generator{}
+achieves by relying on \analyzer{}'s symbolic execution.
+%
+\analyzer{} produces a separate path condition for every possible code
+path through a set of operations.
+%
+However, even a single path might encounter conflicts in interestingly
+different ways.
+%
+For example, the code path through two \code{pwrite}s is the
+same whether they're writing to the same offset or different offsets,
+but the access patterns are very different.
+%
+To capture different conflict conditions as well as path conditions, we
+introduce a new notion called \emph{conflict coverage}.  Conflict coverage
+exercises all possible access patterns on shared data structures:
+looking up two distinct items from different operations, looking up
+the same item, etc.
+%
+\generator approximates
+conflict coverage by concolically executing \emph{itself}
+to enumerate distinct tests for each path condition.  \generator
+starts with the constraints of a path condition from \analyzer, tracks
+every symbolic expression forced to a concrete value by the
+model-specific test code
+generator, negates any equivalent assignment of these expressions from
+the path condition, and generates another test, repeating this process
+until it exhausts assignments that satisfy the path condition or the SMT
+solver fails.  Since
+path conditions can have infinitely many satisfying assignments (e.g.,
+there are infinitely many calls to \code{read} with different FD numbers
+that return \code{EBADF}), \generator partitions most values in
+\emph{isomorphism groups} and considers two assignments equivalent if
+each group has the same
+pattern of equal and distinct values in both assignments.  For our POSIX
+model, this
+bounds the number of enumerated test cases. \cbend
+
+These two forms of coverage ensure that the test cases
+generated by \generator{} will cover all possible paths and data structure
+access patterns in the model, and to the extent that the implementation
+is structured similarly to the model, should achieve good coverage
+for the implementation as well.  As we demonstrate in \S\ref{sec:fs},
+\generator{} produces a total of \pyexpr{mscan.ntestcases} test cases
+for our model of \pyexpr{len(mscan.calls)} POSIX
+system calls, and these
+test cases find scalability issues in the Linux \code{ramfs} file system
+and virtual memory system.
+
+
+\subsection{\mtrace{}}
+\label{sec:model:mtrace}
+
+\cbstart Finally, \mtrace runs the test cases generated by \generator on
+a real implementation and checks that the implementation is
+conflict-free for every test.  If it finds a violation of the
+commutativity rule---a test whose commutative operations are not
+conflict-free---it reports which variables were shared and what code
+accessed them.
+%
+For example, when running the
+test case shown in Figure~\ref{fig:testgen} on a Linux \code{ramfs}
+file system, \mtrace{} reports that the two functions make conflicting
+accesses to the \code{dcache} reference count and lock, which limits
+the scalability of those operations.
+
+\mtrace{} runs the entire operating system in a modified version of
+qemu~\cite{qemu}.  At the beginning of each test case, it issues a hypercall to
+qemu to start recording memory accesses, and then executes the test
+operations on different virtual cores.  During test execution,
+\mtrace{} logs all reads and writes by each core, along with
+information about the currently executing kernel thread,
+to filter out irrelevant conflicts by background threads or
+interrupts.  After execution, \mtrace analyzes
+the log and reports all conflicting memory accesses, along with the C
+data type of the accessed memory location (resolved from
+DWARF~\cite{dwarf} information and logs
+of every dynamic allocation's type) and stack traces for each conflicting
+access.
+\cbend
+
+\subsection{Implementation}
+\label{sec:model:impl}
+
+\cbstart
+We built a prototype implementation of \tool{}'s three components.
+\analyzer{} and \generator{} consist of
+\pyexpr{const['commuter-loc']['analyzer']} lines of Python code,
+including the symbolic execution engine, which uses the Z3 SMT
+solver~\cite{demoura:z3}
+via Z3's Python bindings.
+\mtrace{} consists of \pyexpr{const['mtrace-loc']['qemu-diff']} lines of
+code changed in qemu, along with \pyexpr{const['pk-loc']['pk-diff']}
+lines of code changed in the guest
+Linux kernel (to report memory type information, context switches, etc.).
+Another program, consisting of \pyexpr{const['mtrace-loc']['mscan']}
+lines of C++ code, processes the
+log file to find and report memory locations that are shared between different
+cores for each test case.
+\cbend
+
+\XXX[AC][mtrace's custom DWARF library dwarfs the rest of this at
+$\sim$6,500 LOC.]
+
+% \mtrace{} is implemented on a modified qemu~\cite{qemu}.  We added support
+% for hypercalls so that software running within \mtrace can communicate
+% events such as variable declarations, call stack switches, and the range
+% and type of every memory allocation.  \mtrace also modifies the qemu
+% code generator to intercept all loads and stores and to trace additional
+% instructions such as \code{call} and \code{ret} to produce call stacks.
+% This information is written to a log file.
+

@@ -1,0 +1,87 @@
+xv6 stuff
+ - Dcache/Oplog
+ + Get rid of work queues
+ + Clean up struct proc
+ - Fix proc reclamation bug
+ + Clean up scheduler
+ + Remove uses of RCU that make no sense
+ - Durable file system
+ - LRU-ish cache eviction
+ - Fix pipe sharing
+
+Commuter
+ + VM model
+ + Split symbolic structures (for VM enumeration)
+ - Refcache model
+
+Thinking
+ - Global clocks assumption?  Or even logical clocks?
+ - What is scalable?  See below
+
+Writing
+ + Give design suggestions for scalable APIs.  This could just be a
+   positive version of our current section on common problems in
+   non-scalable APIs.
+ + Don't think of posix_spawn as a combined fork/exec.  It's not that
+   it's a bigger operation than fork and exec (it just happens to be
+   semantically equivalent).  It's really a smaller operation that
+   doesn't do all of the non-scalable things that fork/exec do.
+ + Instead of introducing disjoint access parallelism and then saying
+   that the hardware agrees with this model, do it the other way
+   around.  Talk about how the hardware works and then point out that
+   we can distill most of the hardware's behavior: for the most part,
+   if things are disjoint-access parallel, they will scale.
+ + Make the rule "commutativity -> disjoint access parallelism".
+   Using "scalability" here seems to make people think we're
+   overclaiming because we have a very specific definition of
+   "scalability".
+ + Stuff marked ">>>" in reviews.txt
+ + Python vs spec language.  What matters and what doesn't.  One thing
+   that matters: it's easy to represent system state in Python, which
+   is important for approximating the "future" part of commutativity.
+   One thing that doesn't matter: We can model non-determinism just
+   fine in Python, even though it's an imperative language.  Mostly
+   Python is a convenience without serious downsides.
+ + Move connection between disjoint access parallelism and scalability
+   to intuition (and not in formal section).  Tell the reader why to
+   care about disjoint access parallelism, even though reality is
+   complicated.
+ + Can we classify all xv6 non-scalabilities?  We can identify all
+   idempotent write callsets using Commuter, which seems to be the
+   bulk of non-scalabilities.  We might be able to hand-classify the
+   rest of them.
+ + Link to code
+ + We've been using "disjoint access parallelism" all wrong (including
+   in the comments above).  Fix this (check citations, too).
+ ~ Differential scalability plots?  (See differential-plots branch)
+
+Discussion section?
+ - Global/logical clocks?  (Global clocks require hardware support,
+   while logical clocks don't.  The difference between these is
+   linearizability vs. serialzability.)
+ - Peer-to-peer/topology-aware communication?
+ + Make it really clear that this is an "if", not an "only if".  And
+   the "only if" part is potentially interesting.
+
+What is "scalable"?  Are there cases where sharing is happening, but
+we think it can scale anyway?  Can we weaken our restrictions?
+ - Topology-aware communication: if we share cache lines in a
+   topology-constrained way, can we have both scalability and sharing?
+   E.g., load balancer.
+ - Asymptotic scalability: per-core rate-limited cache line sharing.
+   E.g., refcache, oplog, RCU min, scheduler load balancer, memory
+   load balancer
+
+Scalability fixes
+ + Pre-expand MAP_FIXED mmap area in fstest
+ + Fix lseek offset and whence checking
+ + Fix pipe reference counting in xv6 (this will make xv6 "strictly"
+   more scalable than Linux)
+ + Pre-expand non-MAP_FIXED mmap area in fstest
+ + Use page granularity in model (should fix open/{pread,lseek,...})
+ + Fix lseek to use filemap for offset checking
+
+Pre-release fixes
+ + Commuter implements regular commutativity.  This is equivalent to
+   strong commutativity for pairs, which is all we use it for in the
+   paper, but we should fix this before releasing it.

@@ -1,0 +1,163 @@
+% -*- fill-column: 72 -*-
+
+\section{Designing commutative interfaces}
+\label{sec:posix}
+
+\noindent
+\cbstart The rule facilitates scalability reasoning at the interface and
+specification level, and \SRI\ commutativity lets us apply the rule to
+complex interfaces.
+%\S\ref{sec:topic:strong-commutativity} gave a glimpse of this using
+%\code{open}.
+This section demonstrates the interface-level reasoning enabled by the
+rule. Using POSIX as a case study, we explore changes that make operations
+commute in more situations, enabling more scalable implementations.
+%
+Already, many POSIX operations commute with many other
+operations, a fact we will quantify in the next section; this
+section focuses on
+problematic cases to give a sense of the subtler issues of commutative
+interface design.
+%
+% While the details here are specific to POSIX, the general ideas are
+% applicable to any interface.
+
+\paragraph{Decompose compound operations.}
+
+Many POSIX APIs combine several operations into one, limiting the
+combined operation's commutativity.  \cbend
+For example,
+\code{fork} both creates a new process and snapshots the current process's
+entire memory state, file descriptor state, signal mask, and several
+other properties.  \cbstart As a result, \code{fork} fails to commute
+with most other operations in the same process, such as memory writes,
+address space operations, and many file descriptor operations.
+However, applications often follow \code{fork} with
+\code{exec}, which undoes most of \code{fork}'s sub-operations.
+With only \code{fork} and \code{exec}, applications are forced to accept
+these unnecessary sub-operations that limit commutativity.
+
+POSIX has a little-known API called \code{posix_spawn} that
+addresses this problem by creating a process and loading an image
+directly (\code{CreateProcess} in Windows is similar).  This is
+equivalent to \code{fork}/\code{exec}, but its specification eliminates
+the intermediate sub-operations.  As a result, \code{posix_spawn}
+commutes with most other operations and permits a broadly scalable
+implementation.  \cbend
+% As we show in \S\ref{sec:eval:app}, using \code{posix_spawn} instead of
+% \code{fork} and \code{exec} leads to better scalability.
+
+Another example, \code{stat}, retrieves and returns many
+different attributes of a file simultaneously, which makes it
+non-commutative with operations on the same file that change any
+attribute returned by \code{stat} (such as \code{link}, \code{chmod},
+\code{chown}, \code{write}, and even \code{read}).  In practice,
+applications invoke \code{stat} for just one or two of the returned
+fields. An alternate API that gave applications
+control of which field or fields were returned
+would commute with more operations and enable a more scalable
+implementation of \code{stat}, as we show in
+\S\ref{sec:eval:microbenchmarks}.
+
+POSIX has many other examples of compound return values.
+\code{sigpending} returns all pending signals, even if the caller only
+cares about a subset;
+% \code{wait} returns all children, even if the caller
+% just cares about a subset;
+and \code{select} returns all ready file
+descriptors, even if the caller needs only one ready FD.
+
+\XXX[AC][Examples of weird return values that distinguish things in
+pointless ways?  I think open had something annoying with this.]
+
+\XXX[AC][Embrace non-determinism?  Embrace under-specification?  Maybe
+this is really about naming.  Do not constrain resource names?  Name
+resources non-deterministically?  Use opaque resource names?]
+
+\cbstart \paragraph{Embrace specification non-determinism.}
+
+POSIX's ``lowest available FD'' rule is a classic example of
+overly deterministic design that results in poor scalability.  \cbend
+Because of this rule, \code{open} operations in the same process (and
+any other FD allocating operations) do not commute, since the order in
+which they execute determines the returned FDs.  This constraint is rarely
+needed by applications and an alternate interface
+that could return any
+unused FD would allow FD allocation operations to commute and enable
+implementations to use well-known scalable allocation methods.  We will
+return to this example, too, in \S\ref{sec:eval:microbenchmarks}.
+\cbstart Many other POSIX interfaces get this right: \code{mmap} can
+return any unused virtual address and \code{creat} can assign any unused
+inode number to a new file.
+
+\XXX[AC][Linearizable interfaces are really the problem below.
+Communication interfaces should allow causal or unconstrained ordering.]
+
+\paragraph{Permit weak ordering.} \cbend
+
+Another common source of limited commutativity is strict ordering
+requirements between operations.  For many operations, ordering is
+natural and keeps interfaces simple to use; for example, when one thread
+writes data to a file, other threads can immediately read that data.
+%
+Synchronizing operations like this are naturally non-commutative.
+%
+Communication interfaces, on the other hand, often enforce strict
+ordering, but may not need to.
+For instance, most systems order all messages sent via a local Unix
+domain socket, even when using
+\code{SOCK_DGRAM}, so any \code{send} and \code{recv} system
+calls on the same socket do not commute (except in error conditions).
+This is often unnecessary, especially in multi-reader or multi-writer
+situations, and an alternate interface that does not enforce ordering
+would allow \code{send} and \code{recv} to commute as long as there is
+both enough free space and enough pending messages on the socket, which
+would in turn allow an implementation of Unix domain sockets to support
+scalable communication (which we use in \S\ref{sec:eval:app}).
+\XXX[AC][Should be ``as we demonstrate'', but we don't isolate unordered
+sockets.]
+
+\XXX[AC][Delay?  Decouple and delay?  Enable asynchrony?  Decouple
+asynchronous operations?  Maybe this should be part of decompose
+compound operations because we're splitting the initiation from the
+final action?  Or part of weak ordering because these operations should
+be weakly ordered with respect to other cores.  This also involves
+specification non-determinism, but in the same way weak ordering does.
+Release resources asynchronously?  Really it's about resources that are
+coordinated with other cores.  Coordinate asynchronously?  The above is
+about coordinate you want to be immediate, just unordered.  This is
+about coordination that can be delayed.]
+
+\cbstart \paragraph{Release resources asynchronously.}
+
+% \XXX[AC][kill isn't very compelling.  Others are better.]
+% Another example of strict ordering is \code{kill}, which requires that
+% the signal be immediately delivered to the target (if it is not masked).
+% This means \code{kill} does not commute with the target executing
+% instructions.  A delayed \code{kill} would commute with target execution
+% and other operations, and would
+% allow a kernel to batch signal delivery.
+
+A closely related problem is that many POSIX operations have global
+effects that must be visible before the operation returns.
+This is generally good design for usable interfaces, but for
+operations that release resources, this is often stricter than
+applications need and expensive to ensure. \cbend  For example, writing
+to a pipe
+must deliver \code{SIGPIPE} immediately if there are no
+read FDs for that pipe, so pipe writes do not commute with the last
+\code{close}
+of a read FD.  This requires aggressively tracking the number of
+read FDs; a relaxed specification that promised to eventually deliver the
+\code{SIGPIPE} would allow implementations to use more scalable
+read FD tracking.
+Similarly, \code{munmap} does not commute
+with memory reads or writes of the unmapped region from other threads.
+Enforcing this requires non-scalable remote TLB shootdowns before \code{munmap}
+can return, even though depending
+on this behavior usually indicates a bug.  An \code{munmap} (perhaps an
+\code{madvise}) that released virtual memory asynchronously
+would let the kernel
+reclaim physical memory lazily and batch or eliminate remote TLB
+shootdowns.
+

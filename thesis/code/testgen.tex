@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kt}{void} \PY{n+nf}{setup\PYZus{}rename\PYZus{}rename\PYZus{}path\PYZus{}ec\PYZus{}test0}\PY{p}{(}\PY{k+kt}{void}\PY{p}{)} \PY{p}{\PYZob{}}
+  \PY{n}{close}\PY{p}{(}\PY{n}{open}\PY{p}{(}\PY{l+s}{"}\PY{l+s}{\PYZus{}\PYZus{}i0}\PY{l+s}{"}\PY{p}{,} \PY{n}{O\PYZus{}CREAT}\PY{o}{|}\PY{n}{O\PYZus{}RDWR}\PY{p}{,} \PY{l+m+mo}{0666}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+  \PY{n}{link}\PY{p}{(}\PY{l+s}{"}\PY{l+s}{\PYZus{}\PYZus{}i0}\PY{l+s}{"}\PY{p}{,} \PY{l+s}{"}\PY{l+s}{f0}\PY{l+s}{"}\PY{p}{)}\PY{p}{;}
+  \PY{n}{link}\PY{p}{(}\PY{l+s}{"}\PY{l+s}{\PYZus{}\PYZus{}i0}\PY{l+s}{"}\PY{p}{,} \PY{l+s}{"}\PY{l+s}{f1}\PY{l+s}{"}\PY{p}{)}\PY{p}{;}
+  \PY{n}{unlink}\PY{p}{(}\PY{l+s}{"}\PY{l+s}{\PYZus{}\PYZus{}i0}\PY{l+s}{"}\PY{p}{)}\PY{p}{;}
+\PY{p}{\PYZcb{}}
+\PY{k+kt}{int} \PY{n+nf}{test\PYZus{}rename\PYZus{}rename\PYZus{}path\PYZus{}ec\PYZus{}test0\PYZus{}op0}\PY{p}{(}\PY{k+kt}{void}\PY{p}{)} \PY{p}{\PYZob{}}
+  \PY{k}{return} \PY{n}{rename}\PY{p}{(}\PY{l+s}{"}\PY{l+s}{f0}\PY{l+s}{"}\PY{p}{,} \PY{l+s}{"}\PY{l+s}{f0}\PY{l+s}{"}\PY{p}{)}\PY{p}{;}
+\PY{p}{\PYZcb{}}
+\PY{k+kt}{int} \PY{n+nf}{test\PYZus{}rename\PYZus{}rename\PYZus{}path\PYZus{}ec\PYZus{}test0\PYZus{}op1}\PY{p}{(}\PY{k+kt}{void}\PY{p}{)} \PY{p}{\PYZob{}}
+  \PY{k}{return} \PY{n}{rename}\PY{p}{(}\PY{l+s}{"}\PY{l+s}{f1}\PY{l+s}{"}\PY{p}{,} \PY{l+s}{"}\PY{l+s}{f0}\PY{l+s}{"}\PY{p}{)}\PY{p}{;}
+\PY{p}{\PYZcb{}}
+\end{Verbatim}

@@ -1,0 +1,299 @@
+== id=2013-03-17T22:42:51-0400 --bench=fdbench kernel=Linux host=ben krel=3.5.7.2 kver="#1 SMP Sun Feb 10 23:37:45 EST 2013" ==
+
+# --cores=1 --duration=5s --any_fd=false
+0 start cycles skew
+0 stop cycles skew
+12000753884 cycles
+0 start usec skew
+0 stop usec skew
+5.000144 secs
+3733659 opens
+3214 cycles/open
+746710 opens/sec
+
+# --cores=1 --duration=5s --any_fd=false
+0 start cycles skew
+0 stop cycles skew
+12000585820 cycles
+0 start usec skew
+0 stop usec skew
+5.000074 secs
+3724446 opens
+3222 cycles/open
+744878 opens/sec
+
+# --cores=1 --duration=5s --any_fd=false
+0 start cycles skew
+0 stop cycles skew
+12000558372 cycles
+0 start usec skew
+0 stop usec skew
+5.000063 secs
+3649280 opens
+3288 cycles/open
+729846 opens/sec
+
+# --cores=10 --duration=5s --any_fd=false
+7256 start cycles skew
+31304 stop cycles skew
+12000758095 cycles
+3 start usec skew
+13 stop usec skew
+5.000147 secs
+1416634 opens
+84713 cycles/open
+283318 opens/sec
+
+# --cores=10 --duration=5s --any_fd=false
+5280 start cycles skew
+20224 stop cycles skew
+12000617106 cycles
+2 start usec skew
+8 stop usec skew
+5.000088 secs
+1374461 opens
+87311 cycles/open
+274887 opens/sec
+
+# --cores=10 --duration=5s --any_fd=false
+47238 start cycles skew
+41636 stop cycles skew
+12000770772 cycles
+20 start usec skew
+17 stop usec skew
+5.000152 secs
+1399690 opens
+85738 cycles/open
+279929 opens/sec
+
+# --cores=20 --duration=5s --any_fd=false
+222040 start cycles skew
+82702 stop cycles skew
+12000593626 cycles
+93 start usec skew
+35 stop usec skew
+5.000078 secs
+959669 opens
+250098 cycles/open
+191930 opens/sec
+
+# --cores=20 --duration=5s --any_fd=false
+170348 start cycles skew
+104846 stop cycles skew
+12000520287 cycles
+71 start usec skew
+44 stop usec skew
+5.000047 secs
+954366 opens
+251486 cycles/open
+190871 opens/sec
+
+# --cores=20 --duration=5s --any_fd=false
+223418 start cycles skew
+122828 stop cycles skew
+12000663719 cycles
+93 start usec skew
+51 stop usec skew
+5.000107 secs
+799398 opens
+300242 cycles/open
+159876 opens/sec
+
+# --cores=30 --duration=5s --any_fd=false
+466730 start cycles skew
+212224 stop cycles skew
+12000465511 cycles
+195 start usec skew
+89 stop usec skew
+5.000025 secs
+685050 opens
+525529 cycles/open
+137009 opens/sec
+
+# --cores=30 --duration=5s --any_fd=false
+407058 start cycles skew
+375006 stop cycles skew
+12000438376 cycles
+170 start usec skew
+156 stop usec skew
+5.000013 secs
+763442 opens
+471565 cycles/open
+152688 opens/sec
+
+# --cores=30 --duration=5s --any_fd=false
+434756 start cycles skew
+188164 stop cycles skew
+12000501575 cycles
+181 start usec skew
+79 stop usec skew
+5.000039 secs
+707550 opens
+508819 cycles/open
+141508 opens/sec
+
+# --cores=40 --duration=5s --any_fd=false
+717372 start cycles skew
+898518 stop cycles skew
+12000556460 cycles
+299 start usec skew
+375 stop usec skew
+5.000062 secs
+632074 opens
+759439 cycles/open
+126413 opens/sec
+
+# --cores=40 --duration=5s --any_fd=false
+838602 start cycles skew
+345550 stop cycles skew
+12000599901 cycles
+350 start usec skew
+144 stop usec skew
+5.000080 secs
+525304 opens
+913802 cycles/open
+105059 opens/sec
+
+# --cores=40 --duration=5s --any_fd=false
+842794 start cycles skew
+426902 stop cycles skew
+12000376222 cycles
+351 start usec skew
+178 stop usec skew
+4.999987 secs
+532944 opens
+900685 cycles/open
+106589 opens/sec
+
+# --cores=50 --duration=5s --any_fd=false
+1151062 start cycles skew
+1662600 stop cycles skew
+12000353005 cycles
+480 start usec skew
+693 stop usec skew
+4.999977 secs
+497290 opens
+1206574 cycles/open
+99458 opens/sec
+
+# --cores=50 --duration=5s --any_fd=false
+1030588 start cycles skew
+1850984 stop cycles skew
+12000603106 cycles
+430 start usec skew
+772 stop usec skew
+5.000082 secs
+537174 opens
+1117012 cycles/open
+107433 opens/sec
+
+# --cores=50 --duration=5s --any_fd=false
+971828 start cycles skew
+488258 stop cycles skew
+12000664110 cycles
+405 start usec skew
+204 stop usec skew
+5.000108 secs
+545061 opens
+1100855 cycles/open
+109009 opens/sec
+
+# --cores=60 --duration=5s --any_fd=false
+1533754 start cycles skew
+557516 stop cycles skew
+12000680434 cycles
+639 start usec skew
+232 stop usec skew
+5.000114 secs
+492097 opens
+1463209 cycles/open
+98417 opens/sec
+
+# --cores=60 --duration=5s --any_fd=false
+1437276 start cycles skew
+745302 stop cycles skew
+12000330335 cycles
+599 start usec skew
+310 stop usec skew
+4.999968 secs
+473496 opens
+1520646 cycles/open
+94699 opens/sec
+
+# --cores=60 --duration=5s --any_fd=false
+1323872 start cycles skew
+2143582 stop cycles skew
+12000906409 cycles
+552 start usec skew
+893 stop usec skew
+5.000208 secs
+468302 opens
+1537585 cycles/open
+93656 opens/sec
+
+# --cores=70 --duration=5s --any_fd=false
+1904936 start cycles skew
+1035766 stop cycles skew
+12000872983 cycles
+793 start usec skew
+432 stop usec skew
+5.000194 secs
+402459 opens
+2087320 cycles/open
+80488 opens/sec
+
+# --cores=70 --duration=5s --any_fd=false
+2011194 start cycles skew
+1662270 stop cycles skew
+12000800037 cycles
+838 start usec skew
+693 stop usec skew
+5.000164 secs
+389827 opens
+2154945 cycles/open
+77962 opens/sec
+
+# --cores=70 --duration=5s --any_fd=false
+2022896 start cycles skew
+1080954 stop cycles skew
+12001094994 cycles
+843 start usec skew
+451 stop usec skew
+5.000286 secs
+389624 opens
+2156121 cycles/open
+77920 opens/sec
+
+# --cores=80 --duration=5s --any_fd=false
+2715952 start cycles skew
+2805794 stop cycles skew
+12000986162 cycles
+1132 start usec skew
+1169 stop usec skew
+5.000241 secs
+341205 opens
+2813789 cycles/open
+68237 opens/sec
+
+# --cores=80 --duration=5s --any_fd=false
+2759026 start cycles skew
+1398728 stop cycles skew
+12000174064 cycles
+1150 start usec skew
+582 stop usec skew
+4.999903 secs
+345668 opens
+2777271 cycles/open
+69134 opens/sec
+
+# --cores=80 --duration=5s --any_fd=false
+2500824 start cycles skew
+5138382 stop cycles skew
+12000281901 cycles
+1042 start usec skew
+2140 stop usec skew
+4.999948 secs
+347700 opens
+2761065 cycles/open
+69540 opens/sec
+

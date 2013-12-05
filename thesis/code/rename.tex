@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{SymInode}    \PY{o}{=} \PY{n}{tstruct}\PY{p}{(}\PY{n}{data}  \PY{o}{=} \PY{n}{tlist}\PY{p}{(}\PY{n}{SymByte}\PY{p}{)}\PY{p}{,}
+                      \PY{n}{nlink} \PY{o}{=} \PY{n}{SymInt}\PY{p}{)}
+\PY{n}{SymIMap}     \PY{o}{=} \PY{n}{tdict}\PY{p}{(}\PY{n}{SymInt}\PY{p}{,} \PY{n}{SymInode}\PY{p}{)}
+\PY{n}{SymFilename} \PY{o}{=} \PY{n}{tuninterpreted}\PY{p}{(}\PY{l+s}{'}\PY{l+s}{Filename}\PY{l+s}{'}\PY{p}{)}
+\PY{n}{SymDir}      \PY{o}{=} \PY{n}{tdict}\PY{p}{(}\PY{n}{SymFilename}\PY{p}{,} \PY{n}{SymInt}\PY{p}{)}
+
+\PY{k}{def} \PY{n+nf}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{o}{.}\PY{o}{.}\PY{o}{.}\PY{p}{)}\PY{p}{:}
+  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{fname\PYZus{}to\PYZus{}inum} \PY{o}{=} \PY{n}{SymDir}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{p}{)}
+  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{inodes} \PY{o}{=} \PY{n}{SymIMap}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{p}{)}
+
+\PY{n+nd}{@symargs}\PY{p}{(}\PY{n}{src}\PY{o}{=}\PY{n}{SymFilename}\PY{p}{,} \PY{n}{dst}\PY{o}{=}\PY{n}{SymFilename}\PY{p}{)}
+\PY{k}{def} \PY{n+nf}{rename}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{src}\PY{p}{,} \PY{n}{dst}\PY{p}{)}\PY{p}{:}
+  \PY{k}{if} \PY{k}{not} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{fname\PYZus{}to\PYZus{}inum}\PY{o}{.}\PY{n}{contains}\PY{p}{(}\PY{n}{src}\PY{p}{)}\PY{p}{:}
+    \PY{k}{return} \PY{p}{(}\PY{o}{-}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{errno}\PY{o}{.}\PY{n}{ENOENT}\PY{p}{)}
+  \PY{k}{if} \PY{n}{src} \PY{o}{==} \PY{n}{dst}\PY{p}{:}
+    \PY{k}{return} \PY{l+m+mi}{0}
+  \PY{k}{if} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{fname\PYZus{}to\PYZus{}inum}\PY{o}{.}\PY{n}{contains}\PY{p}{(}\PY{n}{dst}\PY{p}{)}\PY{p}{:}
+    \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{inodes}\PY{p}{[}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{fname\PYZus{}to\PYZus{}inum}\PY{p}{[}\PY{n}{dst}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{nlink} \PY{o}{-}\PY{o}{=} \PY{l+m+mi}{1}
+  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{fname\PYZus{}to\PYZus{}inum}\PY{p}{[}\PY{n}{dst}\PY{p}{]} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{fname\PYZus{}to\PYZus{}inum}\PY{p}{[}\PY{n}{src}\PY{p}{]}
+  \PY{k}{del} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{fname\PYZus{}to\PYZus{}inum}\PY{p}{[}\PY{n}{src}\PY{p}{]}
+  \PY{k}{return} \PY{l+m+mi}{0}
+\end{Verbatim}

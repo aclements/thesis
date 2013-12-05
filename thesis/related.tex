@@ -1,0 +1,242 @@
+% -*- fill-column: 80 -*-
+
+\section{Related work}
+\label{sec:related}
+
+% The primary contribution of this paper is the commutativity rule, its use in the
+% design and implementation of operating systems, and a new tool called \tool
+% that can test if
+% an implementation meets the commutativity rule.
+% This section relates our
+% contributions to previous work on thinking about scalability, on designing
+% parallel operating systems, on exploiting commutativity, and on automated
+% checking.
+
+The scalable commutativity rule is to the best of our knowledge the
+first observation to directly connect scalability to interface
+commutativity.
+% Further, to make the rule applicable to real-world
+% interfaces, we define a novel form of commutativity: \SRI
+% commutativity.
+This section relates the rule and its use
+in \sys and \tool to prior work.
+
+\subsection{Thinking about scalability}
+
+\cbstart Israeli and Rappoport introduce the notion of disjoint-access-parallel
+memory systems~\cite{israeli:disjoint-access}.  Roughly, if a shared memory system
+is disjoint-access-parallel and a set of processes access disjoint memory
+locations, then those processes scale linearly.  Like the commutativity rule,
+this is a conditional scalability guarantee: if the application uses shared
+memory in a particular way, then the shared memory implementation will scale.
+However, where disjoint-access parallelism is specialized to the memory system
+interface, our work encompasses any software interface.
+% However, where disjoint-access parallelism is specialized to the memory system
+% interface and can be demonstrated with specific implementations, the
+% commutativity rule applies to any software interface and is thus a statement
+% about the existence of an implementation.
+%
+Attiya et al. extend Israeli and Rappoport's definition to additionally require
+conflict-free operations to scale~\cite{attiya:disjoint}.
+%
+Our work builds on the assumption that
+memory systems behave this way, and we indirectly confirm that real hardware
+closely approximates this behavior~(\S\ref{sec:eval}).
+\cbend
+
+% They have a fixed interface (asynchronous shared memory) and show specific
+% implementations with disjoint-access parallelism.
+
+% We borrow their operation-centric notion of scalability: rather than focusing
+% on whether a workload performs $n$ times better on $n$ cores, they/we focus on
+% whether two operations execute more slowly when executed concurrently.
+
+% Faced with a similar problem that they have control over what's below the
+% interface, but not what's using it.  So they a similar sort of conditional
+% guarantee: if the application uses the interface in this particular way, the
+% implementation of the interface will perform this way.
+
+% Disjoint-access parallelism is the architectural mirror of the commutativity
+% rule.
+
+% Whereas DAP is concerned with the shared memory interface and down, we assume
+% DAP and work from the memory interface up.
+
+Both the original disjoint-access parallelism paper and subsequent work,
+including the paper by Roy et al.~\cite{roy:limits-dap}, explore the scalability
+of processes that have some amount of non-disjoint sharing, such as
+compare-and-swap instructions on a shared cache line or a shared lock.
+Our work takes a black-and-white view because we have found that, on real
+hardware, a single modified
+shared cache line can wreck
+scalability (\S\ref{sec:eval}).
+
+The Laws of Order~\cite{law:orders} explore the relationship between an
+interface's \emph{strong non-commutativity} and whether its implementation
+requires atomic instructions or fences (e.g., \code{mfence} on the x86) for
+correct concurrent execution.  These instructions slow down execution by
+interfering with out-of-order execution, even if there are no memory access
+conflicts.  The Laws of Order resemble the commutativity rule, but draw
+conclusions about sequential performance, rather than scalability.
+\XXX[FK][It would be great to have an example to nail this point. I am thinking
+but along of the lines of per-core data structures, which need per-core locks
+(and thus mfence instructions), but allow scalability.  I would like to drive
+the point that mfence instructions are orthogonal to scalability. does that make sense?]
+%
+Paul McKenney
+explores the Laws of Order in the context of the Linux kernel, and points out
+that the Laws of Order may not apply if linearizability is not
+required~\cite{lwn:law}.
+
+% A simplifying interpretation of the Laws of Order and the commutativity rule is
+% that the former states when operations cannot be implemented efficiently
+% on each individual processor (assuming that expensive synchronization
+% instructions limit performance), while the latter states when operations can
+% be implemented in a manner that scales when adding more processors (under the
+% assumption of disjoint-access parallelism).  An interesting area of future
+% research is exploring the
+% assumptions underlying each observation and exploring interfaces for which
+% neither observation applies.
+
+% \XXX[AC][If we want to say something here, contrast lock-/wait-freedom against
+% conflict-freedom.]
+% Theoreticians generally analyze implementations of concurrent
+% data structures in terms of properties like lock-freedom and
+% wait-freedom~\cite{herlihy:art}, and such data structures can help
+% realize scalable implementations of commutative interfaces.
+% However, while these notions guarantee progress, they do not imply that a data
+% structure will perform or scale well.
+
+It is well understood that cache-line
+contention can result in bad scalability. A clear example is the design of
+the MCS lock~\cite{MCS}, which eliminates scalability collapse by avoiding
+contention for a particular cache line.  Other good examples include
+scalable reference counters~\cite{approx:counter,snzi:podc}.
+%
+The commutativity rule builds on this understanding and identifies when
+arbitrary interfaces can avoid conflicting memory accesses.
+
+\subsection{Designing scalable operating systems}
+
+Practitioners often follow an iterative process to
+improve scalability: design, implement, measure, 
+repeat~\cite{cacm-real-world}.
+%
+Through a great deal of effort,
+this approach has led kernels such as Linux to scale well
+for many important workloads. However, Linux still has many
+scalability bottlenecks, and absent a method for reasoning about
+interface-level scalability, it is unclear which of the bottlenecks
+are inherent to its system call interface.  This paper identifies situations
+where POSIX permits or limits scalability and points out specific interface
+modifications that would permit greater implementation scalability.
+
+Multikernels for multicore processors aim for scalability by avoiding shared
+data structures in the kernel~\cite{barrelfish:sosp,wentzlaff:fos}.  These
+systems implement shared abstractions using distributed systems techniques (such
+as name caches and state replication) on top of message passing.  It should be
+possible to generalize the commutativity rule to distributed systems, and relate
+the interface exposed by a shared abstraction to its scalability, even if
+implemented using message passing.
+
+The designers of the Corey operating system~\cite{boyd-wickizer:corey} argue for
+putting the application in control of managing the cost of sharing without
+providing a guideline for how applications should do so;
+the commutativity rule could be a helpful guideline
+for application developers.
+
+\subsection{Commutativity}
+
+% Weihl and Steele's definition are almost identical, though Steele clearly says
+% that the bytes in memory must be the same regardless of order and it's not
+% clear if Weihl is talking about an "abstract" state.  Weihl comes at it from a
+% DB perspective and has a lot to say about transactions and recovery.
+
+\cbstart
+The use of commutativity to increase concurrency has been widely explored.
+%
+Steele describes a parallel programming discipline in which all operations must
+be either
+causally related or commutative~\cite{steele:commutativity}.  His work
+approximates commutativity as conflict-freedom.  Our work shows that commutative
+operations always have a conflict-free implementation, making Steele's model
+more broadly applicable.
+%
+% \XXX[AC][This one seems only tangentially related:] Herlihy and Wing use
+% commutativity to prove the correctness of a concurrent queue in their paper
+% introducing linearizability~\cite{herlihy:linearizability}.
+%
+Rinard and
+Diniz describe how to exploit commutativity to automatically parallelize
+code~\cite{rinard:commutativity}.  They allow memory conflicts, but generate
+synchronization code to ensure atomicity of commutative operations.
+%
+Similarly, Prabhu et al.\ describe how to automatically parallelize code using
+manual annotations rather than automatic commutativity
+analysis~\cite{prabhu:cset}.
+%
+Rinard and Prabhu's work focuses
+on the \emph{safety} of executing commutative operations concurrently.  This
+gives operations the opportunity to scale, but does not ensure that they will.
+Our work focuses on scalability: given concurrent, commutative
+operations, we show they have a scalable implementation.
+
+The database community has long used logical readsets and writesets, conflicts,
+and execution histories to reason about how transactions can be interleaved
+while maintaining serializability~\cite{bernstein:concurrency}.
+%
+Weihl extends this work to abstract data types by deriving lock conflict
+relations from operation commutativity~\cite{weihl:commutativity}.
+Transactional boosting applies similar techniques in the context of software
+transactional memory~\cite{herlihy:boosting}.
+%
+Shapiro et al.\ extend this to a distributed setting, leveraging commutative
+operations in the design of replicated data types that support updates during
+faults and network partitions~\cite{shapiro:conflict-free,shapiro:convergent}.
+%
+Like Rinard and Prabhu's work, the work in databases and its extensions
+focuses on the \emph{safety} of executing commutative operations concurrently,
+not directly on scalability.
+
+% \XXX[AC][I think we beat this to death better in other places.]
+% Definitions of commutativity are nearly as diverse as the work that uses
+% commutativity.  However, these definitions commonly require that operations
+% commute in all states.  Our definition of commutativity is uniquely
+% state-sensitive and therefore suitable for highly stateful interfaces such as
+% POSIX.
+\cbend
+
+\subsection{Test case generation}
+
+Prior work on concolic testing~\cite{godefroid:dart,sen:cute}
+and symbolic execution~\cite{cadar:exe,cadar:klee} generates test
+cases by symbolically executing a specific implementation.
+%
+Our \tool tool uses a combination of symbolic and concolic execution, but
+generates
+test cases for an {\em arbitrary} implementation based on a model
+of that implementation's interface.  This resembles
+QuickCheck's~\cite{claessen:quickcheck} or Gast's~\cite{koopman:gast}
+model-based testing, but uses symbolic techniques.
+%
+% AC: Misleading; \tool *does* want to achieve path coverage
+% Unlike prior work, \tool uses symbolic execution to extract precise
+% commutativity conditions from a model rather than to achieve path
+% coverage in an implementation.
+%
+% As we discuss in \S\ref{sec:model:generator}, \tool
+% generates test cases by enumerating all possible (non-isomorphic)
+% assignments that satisfy the commutativity condition, instead of
+% generating one test case per path.
+Furthermore, while symbolic execution systems
+often avoid reasoning precisely about symbolic memory accesses (e.g.,
+accessing a symbolic offset in an array),
+\tool's test case generation aims to achieve \emph{conflict} coverage
+(\S\ref{sec:model:generator}), which tests different access
+patterns when using symbolic addresses or indexes.
+
+%%  LocalWords:  commutativity scalability Rappoport linearizable et al mfence
+%%  LocalWords:  McKenney linearizability scalable MCS POSIX Multikernels Weihl
+%%  LocalWords:  multicore multikernel readsets writesets serializability Diniz
+%%  LocalWords:  Herlihy Rinard Prabhu Transactional transactional Steele's
+%%  LocalWords:  QuickCheck Gast

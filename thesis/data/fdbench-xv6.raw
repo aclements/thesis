@@ -1,0 +1,703 @@
+== id=2013-03-17T22:06:12-0400 --bench=fdbench kernel=xv6 host=ben krel=osdi12-submit-1130-gfb564af kver="Sun Mar 17 22:02:06 EDT 2013" NPROC=64 KSTACKSIZE=8192 NOFILE=64 NFILE=100 NBUF=10000 NINODE=5000 NDEV=16 ROOTDEV=1 MAXARG=32 MAXARGLEN=64 MAXNAME=16 UNIX_PATH_MAX=128 NEPOCH=4 CACHELINE=64 CPUKSTACKS="(64 + 80*2)" VICTIMAGE=1000000 VERBOSE=0 SPINLOCK_DEBUG=0 RCU_TYPE_DEBUG=0 LOCKSTAT=0 ALLOC_MEMSET=0 BUDDY_DEBUG=0 REFCACHE_DEBUG=0 RADIX_DEBUG=0 USTACKPAGES=8 EXECSWITCH=1 GCINTERVAL=10000 GC_GLOBAL=true MMU_SCHEME=mmu_per_core_page_table TLB_SCHEME=core_tracking_shootdown PAGE_REFCOUNT=refcache:: KALLOC_HOT_PAGES=128 KALLOC_LOAD_BALANCE=0 KALLOC_BUDDY_PER_CPU=1 SCHED_LOAD_BALANCE=0 FS_NLINK_REFCOUNT=refcache:: RANDOMIZE_KMALLOC=1 CODEX=0 MTRACE=0 E1000_PORT=0 TZ_SECS="(4*60*60)" RTC_TZ_SECS=0 QUANTUM=10 ==
+
+# --cores=1 --duration=5s --any_fd=false
+0 start cycles skew
+0 stop cycles skew
+12025512652 cycles
+0 start usec skew
+0 stop usec skew
+5.01045 secs
+4745312 opens
+2534 cycles/open
+947082 opens/sec
+41589969 L2 miss
+8.76443 L2 miss/open
+
+# --cores=1 --duration=5s --any_fd=false
+0 start cycles skew
+0 stop cycles skew
+12025515156 cycles
+0 start usec skew
+0 stop usec skew
+5.01045 secs
+4737185 opens
+2538 cycles/open
+945460 opens/sec
+41712328 L2 miss
+8.80529 L2 miss/open
+
+# --cores=1 --duration=5s --any_fd=false
+0 start cycles skew
+0 stop cycles skew
+12025514732 cycles
+0 start usec skew
+0 stop usec skew
+5.01045 secs
+4732089 opens
+2541 cycles/open
+944443 opens/sec
+41511921 L2 miss
+8.77243 L2 miss/open
+
+# --cores=10 --duration=5s --any_fd=false
+1530742 start cycles skew
+1444476 stop cycles skew
+12025559086 cycles
+638 start usec skew
+602 stop usec skew
+5.01047 secs
+36758342 opens
+3271 cycles/open
+7336301 opens/sec
+514692937 L2 miss
+14.00207 L2 miss/open
+
+# --cores=10 --duration=5s --any_fd=false
+1578910 start cycles skew
+1604520 stop cycles skew
+12025508929 cycles
+658 start usec skew
+669 stop usec skew
+5.01045 secs
+36596428 opens
+3285 cycles/open
+7304018 opens/sec
+517409982 L2 miss
+14.13826 L2 miss/open
+
+# --cores=10 --duration=5s --any_fd=false
+1627942 start cycles skew
+1599622 stop cycles skew
+12025519059 cycles
+679 start usec skew
+667 stop usec skew
+5.01045 secs
+36678604 opens
+3278 cycles/open
+7320412 opens/sec
+518346178 L2 miss
+14.13211 L2 miss/open
+
+# --cores=20 --duration=5s --any_fd=false
+490948 start cycles skew
+482062 stop cycles skew
+12001375178 cycles
+205 start usec skew
+202 stop usec skew
+5.00039 secs
+14485614 opens
+16570 cycles/open
+2896893 opens/sec
+151555711 L2 miss
+10.46249 L2 miss/open
+
+# --cores=20 --duration=5s --any_fd=false
+540612 start cycles skew
+450144 stop cycles skew
+12001475698 cycles
+225 start usec skew
+188 stop usec skew
+5.00043 secs
+14480631 opens
+16575 cycles/open
+2895872 opens/sec
+151936828 L2 miss
+10.49241 L2 miss/open
+
+# --cores=20 --duration=5s --any_fd=false
+575234 start cycles skew
+455438 stop cycles skew
+12001479442 cycles
+239 start usec skew
+190 stop usec skew
+5.00043 secs
+14477037 opens
+16580 cycles/open
+2895153 opens/sec
+151904761 L2 miss
+10.49280 L2 miss/open
+
+# --cores=30 --duration=5s --any_fd=false
+538702 start cycles skew
+277072 stop cycles skew
+12001186783 cycles
+225 start usec skew
+115 stop usec skew
+5.00031 secs
+11081346 opens
+32490 cycles/open
+2216128 opens/sec
+122406765 L2 miss
+11.04620 L2 miss/open
+
+# --cores=30 --duration=5s --any_fd=false
+558234 start cycles skew
+334006 stop cycles skew
+12001206399 cycles
+233 start usec skew
+139 stop usec skew
+5.00032 secs
+11083857 opens
+32482 cycles/open
+2216627 opens/sec
+122472610 L2 miss
+11.04963 L2 miss/open
+
+# --cores=30 --duration=5s --any_fd=false
+503290 start cycles skew
+308276 stop cycles skew
+12001246571 cycles
+210 start usec skew
+128 stop usec skew
+5.00034 secs
+11080353 opens
+32493 cycles/open
+2215919 opens/sec
+122494728 L2 miss
+11.05512 L2 miss/open
+
+# --cores=40 --duration=5s --any_fd=false
+1236400 start cycles skew
+181084 stop cycles skew
+12000852796 cycles
+515 start usec skew
+77 stop usec skew
+5.00017 secs
+9266334 opens
+51804 cycles/open
+1853200 opens/sec
+96345944 L2 miss
+10.39741 L2 miss/open
+
+# --cores=40 --duration=5s --any_fd=false
+1140562 start cycles skew
+163234 stop cycles skew
+12000890399 cycles
+475 start usec skew
+69 stop usec skew
+5.00019 secs
+9260995 opens
+51834 cycles/open
+1852127 opens/sec
+96370893 L2 miss
+10.40610 L2 miss/open
+
+# --cores=40 --duration=5s --any_fd=false
+1119778 start cycles skew
+209874 stop cycles skew
+12000837066 cycles
+467 start usec skew
+88 stop usec skew
+5.00017 secs
+9266752 opens
+51801 cycles/open
+1853287 opens/sec
+96334264 L2 miss
+10.39568 L2 miss/open
+
+# --cores=50 --duration=5s --any_fd=false
+1809196 start cycles skew
+147084 stop cycles skew
+12000568638 cycles
+754 start usec skew
+64 stop usec skew
+5.00005 secs
+8480100 opens
+70757 cycles/open
+1695999 opens/sec
+85810331 L2 miss
+10.11902 L2 miss/open
+
+# --cores=50 --duration=5s --any_fd=false
+1115812 start cycles skew
+64366 stop cycles skew
+12000814905 cycles
+465 start usec skew
+27 stop usec skew
+5.00016 secs
+8475886 opens
+70793 cycles/open
+1695122 opens/sec
+85841253 L2 miss
+10.12770 L2 miss/open
+
+# --cores=50 --duration=5s --any_fd=false
+964992 start cycles skew
+217054 stop cycles skew
+12001054927 cycles
+402 start usec skew
+90 stop usec skew
+5.00026 secs
+8478826 opens
+70770 cycles/open
+1695676 opens/sec
+85898613 L2 miss
+10.13095 L2 miss/open
+
+# --cores=60 --duration=5s --any_fd=false
+1463618 start cycles skew
+95710 stop cycles skew
+12000689410 cycles
+609 start usec skew
+41 stop usec skew
+5.00011 secs
+8050373 opens
+89441 cycles/open
+1610039 opens/sec
+81209310 L2 miss
+10.08764 L2 miss/open
+
+# --cores=60 --duration=5s --any_fd=false
+1930852 start cycles skew
+146806 stop cycles skew
+12000457155 cycles
+804 start usec skew
+62 stop usec skew
+5.00001 secs
+8049970 opens
+89444 cycles/open
+1609989 opens/sec
+81143277 L2 miss
+10.07994 L2 miss/open
+
+# --cores=60 --duration=5s --any_fd=false
+926512 start cycles skew
+134814 stop cycles skew
+12001251161 cycles
+386 start usec skew
+56 stop usec skew
+5.00034 secs
+8048262 opens
+89469 cycles/open
+1609541 opens/sec
+81085034 L2 miss
+10.07485 L2 miss/open
+
+# --cores=70 --duration=5s --any_fd=false
+1452924 start cycles skew
+97474 stop cycles skew
+12001065381 cycles
+605 start usec skew
+39 stop usec skew
+5.00026 secs
+7812275 opens
+107532 cycles/open
+1562371 opens/sec
+80254029 L2 miss
+10.27281 L2 miss/open
+
+# --cores=70 --duration=5s --any_fd=false
+1313516 start cycles skew
+128032 stop cycles skew
+12000881972 cycles
+547 start usec skew
+54 stop usec skew
+5.00018 secs
+7813469 opens
+107514 cycles/open
+1562634 opens/sec
+80240114 L2 miss
+10.26946 L2 miss/open
+
+# --cores=70 --duration=5s --any_fd=false
+1254574 start cycles skew
+96984 stop cycles skew
+12001070658 cycles
+523 start usec skew
+41 stop usec skew
+5.00027 secs
+7812037 opens
+107535 cycles/open
+1562323 opens/sec
+80195922 L2 miss
+10.26568 L2 miss/open
+
+# --cores=80 --duration=5s --any_fd=false
+2147854 start cycles skew
+121472 stop cycles skew
+12000352742 cycles
+895 start usec skew
+38 stop usec skew
+4.99996 secs
+7851344 opens
+122275 cycles/open
+1570278 opens/sec
+83560401 L2 miss
+10.64281 L2 miss/open
+
+# --cores=80 --duration=5s --any_fd=false
+1711920 start cycles skew
+91988 stop cycles skew
+12000419849 cycles
+714 start usec skew
+39 stop usec skew
+4.99999 secs
+7850614 opens
+122287 cycles/open
+1570124 opens/sec
+83483107 L2 miss
+10.63395 L2 miss/open
+
+# --cores=80 --duration=5s --any_fd=false
+1299618 start cycles skew
+112638 stop cycles skew
+12000967514 cycles
+541 start usec skew
+47 stop usec skew
+5.00022 secs
+7852239 opens
+122267 cycles/open
+1570376 opens/sec
+83550049 L2 miss
+10.64028 L2 miss/open
+
+# --cores=1 --duration=5s --any_fd=true
+0 start cycles skew
+0 stop cycles skew
+12025512676 cycles
+0 start usec skew
+0 stop usec skew
+5.01045 secs
+4725338 opens
+2544 cycles/open
+943095 opens/sec
+41778726 L2 miss
+8.84142 L2 miss/open
+
+# --cores=1 --duration=5s --any_fd=true
+0 start cycles skew
+0 stop cycles skew
+12025529632 cycles
+0 start usec skew
+0 stop usec skew
+5.01046 secs
+4726753 opens
+2544 cycles/open
+943377 opens/sec
+41694348 L2 miss
+8.82092 L2 miss/open
+
+# --cores=1 --duration=5s --any_fd=true
+0 start cycles skew
+0 stop cycles skew
+12025524776 cycles
+0 start usec skew
+0 stop usec skew
+5.01045 secs
+4726571 opens
+2544 cycles/open
+943341 opens/sec
+41775011 L2 miss
+8.83833 L2 miss/open
+
+# --cores=10 --duration=5s --any_fd=true
+4352790 start cycles skew
+4227416 stop cycles skew
+12025476436 cycles
+1814 start usec skew
+1761 stop usec skew
+5.01043 secs
+44403398 opens
+2708 cycles/open
+8862178 opens/sec
+389916570 L2 miss
+8.78123 L2 miss/open
+
+# --cores=10 --duration=5s --any_fd=true
+4293280 start cycles skew
+4279698 stop cycles skew
+12025523060 cycles
+1789 start usec skew
+1784 stop usec skew
+5.01045 secs
+44398548 opens
+2708 cycles/open
+8861177 opens/sec
+389157845 L2 miss
+8.76510 L2 miss/open
+
+# --cores=10 --duration=5s --any_fd=true
+4313160 start cycles skew
+4374218 stop cycles skew
+12025474470 cycles
+1797 start usec skew
+1822 stop usec skew
+5.01043 secs
+44433089 opens
+2706 cycles/open
+8868106 opens/sec
+390483607 L2 miss
+8.78812 L2 miss/open
+
+# --cores=20 --duration=5s --any_fd=true
+5323866 start cycles skew
+4273240 stop cycles skew
+12025168715 cycles
+2218 start usec skew
+1780 stop usec skew
+5.01030 secs
+88864761 opens
+2706 cycles/open
+17736383 opens/sec
+771393098 L2 miss
+8.68052 L2 miss/open
+
+# --cores=20 --duration=5s --any_fd=true
+5331254 start cycles skew
+4260450 stop cycles skew
+12025151396 cycles
+2222 start usec skew
+1775 stop usec skew
+5.01030 secs
+88853464 opens
+2706 cycles/open
+17734153 opens/sec
+775829117 L2 miss
+8.73155 L2 miss/open
+
+# --cores=20 --duration=5s --any_fd=true
+5354988 start cycles skew
+4298218 stop cycles skew
+12025182205 cycles
+2231 start usec skew
+1791 stop usec skew
+5.01031 secs
+88807673 opens
+2708 cycles/open
+17724967 opens/sec
+778733006 L2 miss
+8.76875 L2 miss/open
+
+# --cores=30 --duration=5s --any_fd=true
+5351068 start cycles skew
+4682206 stop cycles skew
+12025124793 cycles
+2229 start usec skew
+1951 stop usec skew
+5.01029 secs
+133719761 opens
+2697 cycles/open
+26689026 opens/sec
+1163793475 L2 miss
+8.70322 L2 miss/open
+
+# --cores=30 --duration=5s --any_fd=true
+5208018 start cycles skew
+4754714 stop cycles skew
+12025037231 cycles
+2170 start usec skew
+1981 stop usec skew
+5.01025 secs
+133411540 opens
+2704 cycles/open
+26627699 opens/sec
+1165973473 L2 miss
+8.73967 L2 miss/open
+
+# --cores=30 --duration=5s --any_fd=true
+5345674 start cycles skew
+4728112 stop cycles skew
+12025108966 cycles
+2227 start usec skew
+1970 stop usec skew
+5.01028 secs
+133564631 opens
+2700 cycles/open
+26658090 opens/sec
+1169510364 L2 miss
+8.75613 L2 miss/open
+
+# --cores=40 --duration=5s --any_fd=true
+5543374 start cycles skew
+4758356 stop cycles skew
+12024974371 cycles
+2310 start usec skew
+1982 stop usec skew
+5.01022 secs
+178104184 opens
+2700 cycles/open
+35548119 opens/sec
+1553812123 L2 miss
+8.72417 L2 miss/open
+
+# --cores=40 --duration=5s --any_fd=true
+5492686 start cycles skew
+4749558 stop cycles skew
+12025004703 cycles
+2288 start usec skew
+1979 stop usec skew
+5.01024 secs
+178004970 opens
+2702 cycles/open
+35528225 opens/sec
+1556929297 L2 miss
+8.74654 L2 miss/open
+
+# --cores=40 --duration=5s --any_fd=true
+5500272 start cycles skew
+4796906 stop cycles skew
+12025048290 cycles
+2292 start usec skew
+1999 stop usec skew
+5.01025 secs
+177780848 opens
+2705 cycles/open
+35483357 opens/sec
+1555962715 L2 miss
+8.75213 L2 miss/open
+
+# --cores=50 --duration=5s --any_fd=true
+5789614 start cycles skew
+4926364 stop cycles skew
+12024738994 cycles
+2412 start usec skew
+2052 stop usec skew
+5.01013 secs
+222410933 opens
+2703 cycles/open
+44392239 opens/sec
+1945011204 L2 miss
+8.74512 L2 miss/open
+
+# --cores=50 --duration=5s --any_fd=true
+5714404 start cycles skew
+4793212 stop cycles skew
+12024806216 cycles
+2381 start usec skew
+1997 stop usec skew
+5.01015 secs
+222079962 opens
+2707 cycles/open
+44325939 opens/sec
+1945382437 L2 miss
+8.75982 L2 miss/open
+
+# --cores=50 --duration=5s --any_fd=true
+5767188 start cycles skew
+4806014 stop cycles skew
+12024630370 cycles
+2403 start usec skew
+2003 stop usec skew
+5.01008 secs
+222201724 opens
+2705 cycles/open
+44350889 opens/sec
+1946911047 L2 miss
+8.76190 L2 miss/open
+
+# --cores=60 --duration=5s --any_fd=true
+6232916 start cycles skew
+4805326 stop cycles skew
+12024223415 cycles
+2597 start usec skew
+2002 stop usec skew
+5.00991 secs
+266626023 opens
+2705 cycles/open
+53219669 opens/sec
+2329817433 L2 miss
+8.73814 L2 miss/open
+
+# --cores=60 --duration=5s --any_fd=true
+6134834 start cycles skew
+4819598 stop cycles skew
+12024239371 cycles
+2556 start usec skew
+2008 stop usec skew
+5.00992 secs
+266521305 opens
+2706 cycles/open
+53198693 opens/sec
+2335472510 L2 miss
+8.76279 L2 miss/open
+
+# --cores=60 --duration=5s --any_fd=true
+6412556 start cycles skew
+4799492 stop cycles skew
+12024056792 cycles
+2672 start usec skew
+1999 stop usec skew
+5.00984 secs
+266375488 opens
+2708 cycles/open
+53170394 opens/sec
+2334009380 L2 miss
+8.76210 L2 miss/open
+
+# --cores=70 --duration=5s --any_fd=true
+6832546 start cycles skew
+4734300 stop cycles skew
+12023790297 cycles
+2847 start usec skew
+1972 stop usec skew
+5.00973 secs
+310871807 opens
+2707 cycles/open
+62053543 opens/sec
+2715718973 L2 miss
+8.73581 L2 miss/open
+
+# --cores=70 --duration=5s --any_fd=true
+7414804 start cycles skew
+5113028 stop cycles skew
+12023348427 cycles
+3090 start usec skew
+2130 stop usec skew
+5.00955 secs
+310519728 opens
+2710 cycles/open
+61985516 opens/sec
+2716632617 L2 miss
+8.74866 L2 miss/open
+
+# --cores=70 --duration=5s --any_fd=true
+7169530 start cycles skew
+4787046 stop cycles skew
+12023551409 cycles
+2988 start usec skew
+1995 stop usec skew
+5.00963 secs
+310775282 opens
+2708 cycles/open
+62035513 opens/sec
+2720258410 L2 miss
+8.75313 L2 miss/open
+
+# --cores=80 --duration=5s --any_fd=true
+7487276 start cycles skew
+4971434 stop cycles skew
+12023034656 cycles
+3119 start usec skew
+2072 stop usec skew
+5.00942 secs
+354982558 opens
+2709 cycles/open
+70863005 opens/sec
+3105959346 L2 miss
+8.74961 L2 miss/open
+
+# --cores=80 --duration=5s --any_fd=true
+7710124 start cycles skew
+4774812 stop cycles skew
+12023110450 cycles
+3213 start usec skew
+1990 stop usec skew
+5.00945 secs
+355183285 opens
+2708 cycles/open
+70902622 opens/sec
+3114252706 L2 miss
+8.76801 L2 miss/open
+
+# --cores=80 --duration=5s --any_fd=true
+7552862 start cycles skew
+4885222 stop cycles skew
+12023067318 cycles
+3147 start usec skew
+2035 stop usec skew
+5.00943 secs
+354981389 opens
+2709 cycles/open
+70862574 opens/sec
+3110892209 L2 miss
+8.76353 L2 miss/open
