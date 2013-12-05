@@ -4,7 +4,7 @@
 \label{sec:posix}
 
 \noindent
-\cbstart The rule facilitates scalability reasoning at the interface and
+The rule facilitates scalability reasoning at the interface and
 specification level, and \SRI\ commutativity lets us apply the rule to
 complex interfaces.
 %\S\ref{sec:topic:strong-commutativity} gave a glimpse of this using
@@ -25,11 +25,11 @@ interface design.
 \paragraph{Decompose compound operations.}
 
 Many POSIX APIs combine several operations into one, limiting the
-combined operation's commutativity.  \cbend
+combined operation's commutativity.
 For example,
 \code{fork} both creates a new process and snapshots the current process's
 entire memory state, file descriptor state, signal mask, and several
-other properties.  \cbstart As a result, \code{fork} fails to commute
+other properties.  As a result, \code{fork} fails to commute
 with most other operations in the same process, such as memory writes,
 address space operations, and many file descriptor operations.
 However, applications often follow \code{fork} with
@@ -43,7 +43,7 @@ directly (\code{CreateProcess} in Windows is similar).  This is
 equivalent to \code{fork}/\code{exec}, but its specification eliminates
 the intermediate sub-operations.  As a result, \code{posix_spawn}
 commutes with most other operations and permits a broadly scalable
-implementation.  \cbend
+implementation.
 % As we show in \S\ref{sec:eval:app}, using \code{posix_spawn} instead of
 % \code{fork} and \code{exec} leads to better scalability.
 
@@ -74,10 +74,10 @@ pointless ways?  I think open had something annoying with this.]
 this is really about naming.  Do not constrain resource names?  Name
 resources non-deterministically?  Use opaque resource names?]
 
-\cbstart \paragraph{Embrace specification non-determinism.}
+\paragraph{Embrace specification non-determinism.}
 
 POSIX's ``lowest available FD'' rule is a classic example of
-overly deterministic design that results in poor scalability.  \cbend
+overly deterministic design that results in poor scalability.
 Because of this rule, \code{open} operations in the same process (and
 any other FD allocating operations) do not commute, since the order in
 which they execute determines the returned FDs.  This constraint is rarely
@@ -86,14 +86,14 @@ that could return any
 unused FD would allow FD allocation operations to commute and enable
 implementations to use well-known scalable allocation methods.  We will
 return to this example, too, in \S\ref{sec:eval:microbenchmarks}.
-\cbstart Many other POSIX interfaces get this right: \code{mmap} can
+Many other POSIX interfaces get this right: \code{mmap} can
 return any unused virtual address and \code{creat} can assign any unused
 inode number to a new file.
 
 \XXX[AC][Linearizable interfaces are really the problem below.
 Communication interfaces should allow causal or unconstrained ordering.]
 
-\paragraph{Permit weak ordering.} \cbend
+\paragraph{Permit weak ordering.}
 
 Another common source of limited commutativity is strict ordering
 requirements between operations.  For many operations, ordering is
@@ -128,7 +128,7 @@ coordinated with other cores.  Coordinate asynchronously?  The above is
 about coordinate you want to be immediate, just unordered.  This is
 about coordination that can be delayed.]
 
-\cbstart \paragraph{Release resources asynchronously.}
+\paragraph{Release resources asynchronously.}
 
 % \XXX[AC][kill isn't very compelling.  Others are better.]
 % Another example of strict ordering is \code{kill}, which requires that
@@ -142,7 +142,7 @@ A closely related problem is that many POSIX operations have global
 effects that must be visible before the operation returns.
 This is generally good design for usable interfaces, but for
 operations that release resources, this is often stricter than
-applications need and expensive to ensure. \cbend  For example, writing
+applications need and expensive to ensure.  For example, writing
 to a pipe
 must deliver \code{SIGPIPE} immediately if there are no
 read FDs for that pipe, so pipe writes do not commute with the last

@@ -23,7 +23,7 @@ in \sys and \tool to prior work.
 
 \subsection{Thinking about scalability}
 
-\cbstart Israeli and Rappoport introduce the notion of disjoint-access-parallel
+Israeli and Rappoport introduce the notion of disjoint-access-parallel
 memory systems~\cite{israeli:disjoint-access}.  Roughly, if a shared memory system
 is disjoint-access-parallel and a set of processes access disjoint memory
 locations, then those processes scale linearly.  Like the commutativity rule,
@@ -42,7 +42,6 @@ conflict-free operations to scale~\cite{attiya:disjoint}.
 Our work builds on the assumption that
 memory systems behave this way, and we indirectly confirm that real hardware
 closely approximates this behavior~(\S\ref{sec:eval}).
-\cbend
 
 % They have a fixed interface (asynchronous shared memory) and show specific
 % implementations with disjoint-access parallelism.
@@ -152,7 +151,6 @@ for application developers.
 % clear if Weihl is talking about an "abstract" state.  Weihl comes at it from a
 % DB perspective and has a lot to say about transactions and recovery.
 
-\cbstart
 The use of commutativity to increase concurrency has been widely explored.
 %
 Steele describes a parallel programming discipline in which all operations must
@@ -204,7 +202,6 @@ not directly on scalability.
 % commute in all states.  Our definition of commutativity is uniquely
 % state-sensitive and therefore suitable for highly stateful interfaces such as
 % POSIX.
-\cbend
 
 \subsection{Test case generation}
 

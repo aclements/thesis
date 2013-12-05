@@ -2,7 +2,7 @@
 \label{sec:intro}
 \label{intro}
 
-\cbstart The state of the art for evaluating the scalability of multicore software
+The state of the art for evaluating the scalability of multicore software
 is to choose a workload, plot performance at varying
 numbers of cores, and use tools such as differential
 profiling~\cite{mckenney:differential} to
@@ -87,7 +87,6 @@ Or, more concisely,
 %their results, and the results of later operations cannot distinguish
 %which operation executed first.
 %
-%\cbstart
 %Scalability is an implementation property:
 %two operations \emph{scale} if concurrent
 %invocations do not slow each other down, so additional cores produce a
@@ -107,13 +106,11 @@ Or, more concisely,
 %are possible.'' though that is just a repeat of the rule,
 %so maybe we should just omit this sentence.]
 
-\cbstart
 Connections between commutativity and concurrency are well
 established in the literature.  Previous work, however, has focused on
 using commutativity to reason about the safety of executing operations
 concurrently (see \S\ref{sec:related}).  Our work is complementary: we
 use commutativity to reason about scalability.
-\cbend
 
 
 % Hence, stated more precisely, the rule says that \emph{whenever two
@@ -170,12 +167,12 @@ interface design.
 % really that interesting.  Maybe we should drop it from the acronym and
 % just discuss it in passing when we formalize commutativity?]
 
-\cbstart The commutativity rule leads to a new way to design scalable
+The commutativity rule leads to a new way to design scalable
 software:
 %
 first, analyze the interface's commutativity, and then design an
 implementation that
-scales in commutative situations. \cbend
+scales in commutative situations.
 %\XXX[rtm][to what does ``interface'' refer? to the specification of
 %a single operation? what does it mean for a single operation to
 %commute? commute with what? or does interface here refer to a
@@ -258,7 +255,6 @@ help developers understand the commutativity of an interface.
 %some
 %hardware, and plotting its performance at varying numbers of cores.]
 % E- No we can't because we make that point in para1.
-\cbend
 
 This paper demonstrates the value of the commutativity rule and \tool
 in two ways.
@@ -292,7 +288,6 @@ to applications, such as commutative
 translate to better application scalability on an 80-core machine.
 
 
-% \cbstart
 % We demonstrate that
 % {\tool} finds many non-obvious situations where operations commute; that
 % {\tool} finds useful opportunities to increase implementation
