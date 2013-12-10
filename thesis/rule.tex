@@ -9,7 +9,7 @@ definition of the scalable commutativity rule, and why is the rule true?
 We answer these questions using a formalism based on abstract actions, histories,
 and implementations.
 %
-The formalism relies on \SRI commutativity, whose generality broadens
+The formalism relies on \SIM commutativity, whose generality broadens
 the rule's applicability to complex software interfaces.
 %
 Our constructive proof of the commutativity rule
@@ -137,56 +137,56 @@ $\text{\scpline{\scpi{B}{2} \scpi{C}{1} \scpr{B}{2} \scpr{C}{1}
     \scpi{A}{1} \scpr{A}{1}}}$
 is not, since it doesn't respect the order of actions in $H$'s red thread.
 
-Consider a history $H = \HA \HCONCAT \HB$ (where $\HCONCAT$ concatenates
+Consider a history $H = \HX \HCONCAT \HY$ (where $\HCONCAT$ concatenates
 action sequences).
 %
-$\HB$ \emph{\integrallycommutes} in $H$ when given any reordering
-$\HB'$ of $\HB$, and any action sequence $\HSUFF$,
+$\HY$ \emph{\SI-commutes} in $H$ when given any reordering
+$\HY'$ of $\HY$, and any action sequence $\HSUFF$,
 %
-\[ \HA \HCONCAT \HB \HCONCAT \HSUFF \in \SPEC \text{~~~if and only if~~~} \HA \HCONCAT \HB' \HCONCAT \HSUFF \in \SPEC. \]
+\[ \HX \HCONCAT \HY \HCONCAT \HSUFF \in \SPEC \text{~~~if and only if~~~} \HX \HCONCAT \HY' \HCONCAT \HSUFF \in \SPEC. \]
 %
 This definition
 captures the interface basis and
-state dependence we need.  The action sequence $\HA$ puts the system into the state we wish
-to consider; switching regions $\HB$ and $\HB'$ requires that the return values from
-$\HB$ be valid according to the specification regardless of the actions' order;
+state dependence we need.  The action sequence $\HX$ puts the system into the state we wish
+to consider; switching regions $\HY$ and $\HY'$ requires that the return values from
+$\HY$ be valid according to the specification regardless of the actions' order;
 and the presence of region $\HSUFF$ in both histories requires that reorderings of
-actions in region $\HB$ are indistinguishable by future operations.
+actions in region $\HY$ are indistinguishable by future operations.
 %
 \XXX[E][There was something about ``This literal transaltion of our
 informal definition of commutativity'' here, but it's not ``literal,''
 and then I'm not sure we have an informal definition of commutativity?
 Maybe the point was to imply this def actually isn't very hard?...]
 
-Unfortunately, \integralcommutativity doesn't suffice for the proof
+Unfortunately, \SI commutativity doesn't suffice for the proof
 because it is \emph{non-monotonic}.
 %
-Given an action sequence $\HA \HCONCAT \HB_1 \HCONCAT \HB_2$, it is possible
-for $\HB_1 \HCONCAT \HB_2$ to \integrallycommute after region $\HA$ even
-though $\HB_1$ on its own does not.
+Given an action sequence $\HX \HCONCAT \HY_1 \HCONCAT \HY_2$, it is possible
+for $\HY_1 \HCONCAT \HY_2$ to \SI-commute after region $\HX$ even
+though $\HY_1$ on its own does not.
 %
 For example, consider a
 \code{get}/\code{set} interface and
 %
-\(\HB =
+\(\HY =
   [\scpline{\scpi{A}{1}}=\code{set(1)}, \scpline{\scpr{A}{1}},
    \scpline{\scpi{B}{2}}=\code{set(2)}, \scpline{\scpr{B}{2}},
    \scpline{\scpi{C}{1}}=\code{set(2)}, \scpline{\scpr{C}{1}}]\).
 %
-\(\HB\) \integrallycommutes in any history (every order sets the
+\(\HY\) \SI-commutes in any history (every order sets the
 underlying value to 2), but its prefix
 %
-\(\HB_1 =
+\(\HY_1 =
   [\scpline{\scpi{A}{1}}=\code{set(1)}, \scpline{\scpr{A}{1}},
    \scpline{\scpi{B}{2}}=\code{set(2)}, \scpline{\scpr{B}{2}}]\)
 %
 does not (some orders set the value to 1 and some to 2).
 %
-Whether or not $\HB_1$ will
+Whether or not $\HY_1$ will
 ultimately form part of a commutative region thus depends on \emph{future}
 operations!  This is usually incompatible with scalability:
-operations in $\HB_1$ must ``plan for the worst'' by remembering their
-order in case execution diverges from $\HB_2$.
+operations in $\HY_1$ must ``plan for the worst'' by remembering their
+order in case execution diverges from $\HY_2$.
 % \XXX[rtm][is
 % ``seems'' implying that appearances are deceiving and it actually
 % is compatible with scalability? or do we mean ``there are
@@ -201,16 +201,16 @@ order in case execution diverges from $\HB_2$.
 
 A monotonic version of commutativity eliminates this problem.
 %
-An action sequence $\HB$ \emph{\SRI-commutes} in a history $H = \HA \HCONCAT
-\HB$ when for any \emph{prefix} $P$ of some reordering of $\HB$ (including
-$P = \HB$), $P$ \integrallycommutes in $\HA \HCONCAT P$.
+An action sequence $\HY$ \emph{\SIM-commutes} in a history $H = \HX \HCONCAT
+\HY$ when for any \emph{prefix} $P$ of some reordering of $\HY$ (including
+$P = \HY$), $P$ \SI-commutes in $\HX \HCONCAT P$.
 %
-Like \integralcommutativity, \SRI\ commutativity captures 
-interface basis and state dependence; unlike \integralcommutativity, it
+Like \SI commutativity, \SIM\ commutativity captures 
+interface basis and state dependence; unlike \SI commutativity, it
 is monotonic and, as we show below, suffices to prove the
 commutativity rule.
 
-State dependence means that \SRI\ commutativity captures operations that
+State dependence means that \SIM\ commutativity captures operations that
 commute, and therefore can scale, in some states, but not others.
 %
 This allows us to greatly expand the situations that commute,
@@ -237,7 +237,7 @@ directory, two calls to \code{open("a", O_CREAT|O_EXCL)} will commute
 {if the file already exists} (both
 calls will return the same error).
 %
-\SRI\ commutativity allows us to distinguish these cases, even though the
+\SIM\ commutativity allows us to distinguish these cases, even though the
 operations are the same in each.  This, in turn, means the commutativity
 rule can tell us that scalable implementations exist in the commutative
 cases.
@@ -246,7 +246,7 @@ cases.
 Maybe that's best left to the later discussion, once the formal rule has
 been stated.]
 
-\SRI\ commutativity is also interface-based.
+\SIM\ commutativity is also interface-based.
 %
 It evaluates the consequences of execution order using only the
 specification.
@@ -256,14 +256,14 @@ results on a \emph{given} implementation; it requires instead that
 every reordering \emph{is allowed by the specification} to have
 indistinguishable results. This is important because any given implementation might
 have unnecessary scalability bottlenecks that show through the
-interface. The \SRI\ commutativity of an interface can be
+interface. The \SIM\ commutativity of an interface can be
 considered even when no implementation exists. This in turn makes it
 possible to use the commutativity rule early in software development,
 during interface design and initial implementation.
 
 \XXX[AC][This differs from what I meant by ``interface-based.''  What I
 meant is that there are different interpretations of a system being ``in
-the same state'' after any $\HB'$.  It could mean that the internal,
+the same state'' after any $\HY'$.  It could mean that the internal,
 implementation state is the same (down to the bytes, or some other
 interpretation), or it could mean the caller can't tell the difference
 between two states.  We choose the latter interpretation because it
@@ -274,9 +274,9 @@ depends only on the specification, and not on the implementation.]
 \begin{comment}
 % Eddie thinks this is not necessary. I also think it IS required
 % somewhat by the commutativity rule when you have > 2 threads.
-  Finally, \SRI\ commutativity is region-oriented. In contrast with
+  Finally, \SIM\ commutativity is region-oriented. In contrast with
   typical definitions of commutativity, which consider pairs of
-  operations, \SRI\ commutativity applies to any number of threads with
+  operations, \SIM\ commutativity applies to any number of threads with
   arbitrary sequences of potentially concurrent operations. This is not
   strictly required by the commutativity rule, but it is a natural
   generalization and it is often convenient to consider likely sequences
@@ -296,28 +296,28 @@ whether different threads' ``memory accesses'' are conflict-free. (As
 discussed in \S\ref{sec:intro}, conflict freedom is our proxy for
 scalability.) We define an implementation as a step
 function: given a state and an invocation, it produces a new state and a
-response. Special \POLL\ actions enable
+response. Special \CONTINUE\ actions enable
 concurrent overlapping operations and blocking.
 
 We begin by defining three sets:
 
 \begin{CompactItemize}
 \item $S$ is the set of implementation states.
-\item $I$ is the set of valid invocations, including \POLL.
-\item $R$ is the set of valid responses, including \POLL.
+\item $I$ is the set of valid invocations, including \CONTINUE.
+\item $R$ is the set of valid responses, including \CONTINUE.
 \end{CompactItemize}
 
 An implementation $m$ is a function in $S \times I \mapsto S \times R$.
 Given an old state and an invocation, the
 implementation produces a new state and a response (where the response
 must have the same thread as the invocation).
-A \POLL\ response indicates that a real response for that thread is not yet ready,
+A \CONTINUE\ response indicates that a real response for that thread is not yet ready,
 and allows the implementation to effectively switch to another thread.
-\POLL\ invocations give the implementation an opportunity to complete an
+\CONTINUE\ invocations give the implementation an opportunity to complete an
 outstanding request (or further delay its response); however, the response
-must be for the thread matching the \POLL\ invocation.%
+must be for the thread matching the \CONTINUE\ invocation.%
 \footnote{There are restrictions on how implementation
-  arguments are chosen---we assume, for example, that \POLL\ invocations
+  arguments are chosen---we assume, for example, that \CONTINUE\ invocations
   are passed only when a thread has an outstanding request.
   Since implementations are functions, they must be
   deterministic. We could model implementations instead as relations,
@@ -330,28 +330,28 @@ must be for the thread matching the \POLL\ invocation.%
 % what real implementations can really do and so our proof includes
 % reality, but that's not something I would expect a reader to put
 % together.]
-%\XXX[AC][When does an implementation get invoked with \POLL?  Is this
+%\XXX[AC][When does an implementation get invoked with \CONTINUE?  Is this
 %non-deterministic?  Does it have to be fair?]
 
 An implementation \emph{generates} a history when calls to the
-implementation (perhaps including \POLL\ invocations)
+implementation (perhaps including \CONTINUE\ invocations)
 could potentially produce the corresponding history.
 For example, this sequence
 shows an implementation $m$ generating a history
 \scpline{\scpi{A}{1} \scpi{B}{2} \scpr{B}{2} \scpr{A}{1}}:
 
 \begin{CompactItemize}
-\item $m(s_0, \text{\scpline{\scpi{A}{1}}}) = \langle s_1, \scpt{\POLL}{1} \rangle$
-\item $m(s_1, \text{\scpline{\scpi{B}{2}}}) = \langle s_2, \scpt{\POLL}{2} \rangle$
-\item $m(s_2, \scpt{\POLL}{1}) = \langle s_3, \scpt{\POLL}{1} \rangle$
-\item $m(s_3, \scpt{\POLL}{2}) = \langle s_4, \text{\scpline{\scpr{B}{2}}}\rangle$
-\item $m(s_4, \scpt{\POLL}{1}) = \langle s_5, \text{\scpline{\scpr{A}{1}}}\rangle$
+\item $m(s_0, \text{\scpline{\scpi{A}{1}}}) = \langle s_1, \scpt{\CONTINUE}{1} \rangle$
+\item $m(s_1, \text{\scpline{\scpi{B}{2}}}) = \langle s_2, \scpt{\CONTINUE}{2} \rangle$
+\item $m(s_2, \scpt{\CONTINUE}{1}) = \langle s_3, \scpt{\CONTINUE}{1} \rangle$
+\item $m(s_3, \scpt{\CONTINUE}{2}) = \langle s_4, \text{\scpline{\scpr{B}{2}}}\rangle$
+\item $m(s_4, \scpt{\CONTINUE}{1}) = \langle s_5, \text{\scpline{\scpr{A}{1}}}\rangle$
 \end{CompactItemize}
 
 \noindent The state is threaded from step to step;
 invocations appear as arguments and responses as
 return values. The generated history consists of the invocations
-and responses, in order, with \POLL{}s removed.
+and responses, in order, with \CONTINUE{}s removed.
 
 An implementation $m$ is \emph{correct} for some specification $\SPEC$
 when the responses it generates are always allowed by the specification.
@@ -404,30 +404,30 @@ We can now formally state the scalable commutativity rule.
 Assume a specification $\SPEC$ with a correct reference implementation
 $\REFIMP$.
 %
-Consider a history $H = \HA \HCONCAT \HB$ where $\HB$ \SRI-commutes in $H$,
+Consider a history $H = \HX \HCONCAT \HY$ where $\HY$ \SIM-commutes in $H$,
 and where $\REFIMP$ can generate $H$.
 %
 Then there exists a correct implementation $m$ of $\SPEC$ whose steps in
-the $\HB$ region of $H$ are conflict-free.
+the $\HY$ region of $H$ are conflict-free.
 
-\XXX[rtm][``the ... $\HB$ region'' seems to imply that $m$ must
+\XXX[rtm][``the ... $\HY$ region'' seems to imply that $m$ must
 generate the same B as $M$.
 is that generally true? what if the specification allows more
 than one response to an invocation? what if $m$ delays responses
 a different amount than $M$? maybe we mean ``there exists an $m$
-that generates the same $\HB$ as $M$ and is conflict-free.'']
+that generates the same $\HY$ as $M$ and is conflict-free.'']
 
 \XXX[E][In fact the construction does generate the same results as those
-in $\HB$, for any ordering of the invocations of $\HB$. And this is true
+in $\HY$, for any ordering of the invocations of $\HY$. And this is true
 even if the TRUE implementation, given a different order of invocations
-than the original $\HB$ order, WOULD GENERATE DIFFERENT RESULTS. This is
+than the original $\HY$ order, WOULD GENERATE DIFFERENT RESULTS. This is
 important; it's what I'd like interface-based to mean.]
 
-\XXX[AC][The construction works not just for $\HA \HCONCAT \HB$, but for any
-$\HA \HCONCAT \HB'$ where $\HB'$ is a reordering of $\HB$.  Indeed this has to be
+\XXX[AC][The construction works not just for $\HX \HCONCAT \HY$, but for any
+$\HX \HCONCAT \HY'$ where $\HY'$ is a reordering of $\HY$.  Indeed this has to be
 the case, since, by its very nature, the construction can't tell the
-difference, but we write things as if it has to be $\HB$.  Should we be
-clearer that the construction is conflict-free in any $\HB'$?]
+difference, but we write things as if it has to be $\HY$.  Should we be
+clearer that the construction is conflict-free in any $\HY'$?]
 
 
 \subsection{Proof}
@@ -435,14 +435,14 @@ clearer that the construction is conflict-free in any $\HB'$?]
 A constructive proof for the commutativity rule can be obtained by
 building a scalable
 implementation $m$ from the reference implementation $\REFIMP$ and
-history $H = \HA \HCONCAT \HB$.
+history $H = \HX \HCONCAT \HY$.
 %
 The constructed implementation emulates the reference implementation and
 is thus correct for any history. Its {performance}
 properties, however, are specialized for $H$. For
-any history $\HA\HCONCAT P$ where $P$ is a prefix of a
-reordering of $\HB$, the constructed implementation's steps in $P$
-are conflict-free. This means that, within the \SRI-commutative
+any history $\HX\HCONCAT P$ where $P$ is a prefix of a
+reordering of $\HY$, the constructed implementation's steps in $P$
+are conflict-free. This means that, within the \SIM-commutative
 region, $m$ scales.
 
 
@@ -451,8 +451,8 @@ region, $m$ scales.
 \begin{obeyspaces}
 \(\NSIMP(s, a) \equiv\)
 ~~~If \(\HEAD(s.h) = a\):
-~~~    \(r \gets \POLL\)
-~~~else if \(a = \POLL\) and \(\HEAD(s.h)\) is a response
+~~~    \(r \gets \CONTINUE\)
+~~~else if \(a = \CONTINUE\) and \(\HEAD(s.h)\) is a response
 ~~~              and \(\THREAD(\HEAD(s.h)) = \THREAD(a)\):
 ~~~    \(r \gets \HEAD(s.h)\)   \COMMENT{replay $s.h$}
 ~~~else if \(s.h \neq \EMULATE\):   \COMMENT{$H$ complete or input diverged}
@@ -506,14 +506,14 @@ Figure~\ref{fig:nonscalablesim} shows how the simulated implementation
 works.
 %
 We make several simplifying assumptions, including that $\NSIMP$
-receives \POLL\ invocations in a restricted way; these assumptions aren't
+receives \CONTINUE\ invocations in a restricted way; these assumptions aren't
 critical for the argument.
 %
 One line requires expansion, namely the choice of $H'$ ``consistent
 with \(s.h\)'' when the input sequence diverges.
 %
 This step calculates the prefix of $H$ up to, but not including, $s.h$;
-excludes responses; and adds \POLL\ invocations as appropriate.
+excludes responses; and adds \CONTINUE\ invocations as appropriate.
 
 This implementation is correct---its responses for any history
 always match those from the reference implementation.
@@ -527,7 +527,7 @@ initialize the state of $M$.
 %
 And this is where commutativity comes in.
 %
-The action order in a \SRI-commutative region doesn't matter by
+The action order in a \SIM-commutative region doesn't matter by
 definition.
 %
 Since the specification doesn't distinguish among orders, it
@@ -544,8 +544,8 @@ All future responses will still be valid according to the specification.
 ~~~If \(\HEAD(s.h[t]) = \COMMUTE\):  \COMMENT{enter conflict-free mode}
 ~~~    \(s.\V{commute}[t] \gets \TRUE\);~ \(s.h[t] \gets \TAIL(s.h[t])\)
 ~~~If \(\HEAD(s.h[t]) = a\):
-~~~    \(r \gets \POLL\)
-~~~else if \(a = \POLL\) and \(\HEAD(s.h[t])\) is a response
+~~~    \(r \gets \CONTINUE\)
+~~~else if \(a = \CONTINUE\) and \(\HEAD(s.h[t])\) is a response
 ~~~              and \(\THREAD(\HEAD(s.h[t])) = t\):
 ~~~    \(r \gets \HEAD(s.h[t])\)   \COMMENT{replay $s.h$}
 ~~~else if \(s.h[t] \neq \EMULATE\):   \COMMENT{$H$ complete/input diverged}
@@ -570,16 +570,16 @@ All future responses will still be valid according to the specification.
 \end{figure}
 
 Figure~\ref{fig:scalablesim} shows the construction of $m$, a
-version of $M$ that scales over $\HB$ in $H = \HA\HCONCAT \HB$.
+version of $M$ that scales over $\HY$ in $H = \HX\HCONCAT \HY$.
 %
 $m$ is similar to $\NSIMP$, but extends it with a \emph{conflict-free
-  mode} used to execute actions in $\HB$.
+  mode} used to execute actions in $\HY$.
 %
 Its state is as follows:
 
 \begin{CompactItemize}
 \item $s.h[t]$---a per-thread history. Initialized to
-  $\HA\HCONCAT\COMMUTE\HCONCAT(\HRESTRICT{\HB}{t})$, where the special
+  $\HX\HCONCAT\COMMUTE\HCONCAT(\HRESTRICT{\HY}{t})$, where the special
   \COMMUTE\ action indicates the commutative region has begun.
 \item $s.\V{commute}[t]$---a per-thread flag indicating whether the
   commutative region has been reached. Initialized to \FALSE.
@@ -593,7 +593,7 @@ only state components specific to the invoking thread}.
 This means that any two steps in the commutative region are
 conflict-free, and the commutativity rule is proved.
 %
-The construction uses \SRI\ commutativity when initializing the
+The construction uses \SIM\ commutativity when initializing the
 reference implementation's state via $H'$.
 %
 If the observed invocations diverge before the commutative region, then
@@ -603,22 +603,22 @@ If the observed invocations diverge in or after the commutative region,
 however, there's not enough information to recover the order of
 invocations. (The $s.h[t]$ components track which invocations have
 happened per thread, but not the order of those invocations between
-threads.) Therefore, $H'$ might reorder the invocations in $\HB$.
+threads.) Therefore, $H'$ might reorder the invocations in $\HY$.
 %
-\SRI\ commutativity guarantees that replaying $H'$ will nevertheless produce
+\SIM\ commutativity guarantees that replaying $H'$ will nevertheless produce
 results indistinguishable from those of the actual invocation order,
 even if the execution
 diverges \emph{within} the commutative region.\footnote{%
   We effectively have assumed that $M$, the reference
   implementation, produces the same results for any reordering of the
-  commutative region. This is stricter than \SRI\ commutativity, which
+  commutative region. This is stricter than \SIM\ commutativity, which
   places requirements on the {specification}, not the
   implementation. We also assumed that $M$ is indifferent to the
-  placement of \POLL\ invocations in
+  placement of \CONTINUE\ invocations in
   the input history.  Neither of these restrictions is fundamental, however.  If
   during replay $M$ produces responses that are inconsistent with the
   desired results, $m$ could throw away $M$'s state, produce a new $H'$
-  with different \POLL\ invocations and/or commutative region ordering,
+  with different \CONTINUE\ invocations and/or commutative region ordering,
   and try again.
   This procedure must eventually succeed.}
 
@@ -844,7 +844,7 @@ scalability classes.
 %It may also be possible to implement non-commutative operations
 %scalably. _------THAT IS REPET WITH THE BELOW
 %
-The commutativity rule shows that \SRI-commutative regions
+The commutativity rule shows that \SIM-commutative regions
 have conflict-free implementations.
 %
 It does not show the converse, however:

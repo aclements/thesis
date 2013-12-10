@@ -130,16 +130,16 @@ about formally.
 the correctness of the formalized rule.
 
 An important consequence of this presentation is a novel form of
-commutativity we call \emph{\SRI\ commutativity}.
+commutativity we call \emph{\SIM\ commutativity}.
 %
 The usual definition of commutativity (e.g., for algebraic operations)
 is so stringent that it rarely applies to the complex, stateful
 interfaces common in systems software.
 %
-\SRI\ commutativity, in contrast, is \emph{state-dependent} and
+\SIM\ commutativity, in contrast, is \emph{state-dependent} and
 \emph{interface-based}, as well as \emph{monotonic}.
 %
-%Rather than applying to operations in isolation, \SRI\ commutativity
+%Rather than applying to operations in isolation, \SIM\ commutativity
 %applies to regions of specific executions.
 %
 When operations commute in the context of a specific system state,
@@ -151,12 +151,12 @@ This exposes many more opportunities to apply the rule to real
 interfaces---and thus discover scalable implementations---than a more
 conventional notion of commutativity would.
 %
-Despite its logical state dependence, \SRI\ commutativity is
+Despite its logical state dependence, \SIM\ commutativity is
 interface-based: rather than requiring all operation orders to produce
 identical internal states, it requires the resulting states to be
 indistinguishable via the interface.
 %
-\SRI\ commutativity is thus independent of any specific
+\SIM\ commutativity is thus independent of any specific
 implementation, enabling developers to apply the rule directly to
 interface design.
 
@@ -211,10 +211,10 @@ Applying the rule to real-world software systems poses two challenges.
 First, the usual definition of commutativity is limited in ways that
 restricts its applicability to complex, stateful interfaces.  To
 address this challenge, \S\ref{sec:rule} defines a novel form of
-commutativity named \emph{\SRI\ commutativity}.
+commutativity named \emph{\SIM\ commutativity}.
 %
-\SRI commutativity is \emph{state-dependent}: rather than requiring
-operations to be order-invariant in all states, \SRI\ commutativity
+\SIM commutativity is \emph{state-dependent}: rather than requiring
+operations to be order-invariant in all states, \SIM\ commutativity
 allows developers to reason not only about specific arguments for
 which operations commute, but also in which system states they
 commute, exposing more opportunities to apply the rule.  The above
@@ -223,8 +223,8 @@ different names does \emph{not} commute if the names are symlinks to
 the same name, but this one case does not limit the rule's
 applicability to other file system states.
 %
-\SRI\ commutativity is \emph{region-oriented}: rather than applying to just
-two operations, \SRI\ commutativity applies to a region of an execution
+\SIM\ commutativity is \emph{region-oriented}: rather than applying to just
+two operations, \SIM\ commutativity applies to a region of an execution
 trace, which may contain several operations, again exposing more
 opportunities to apply the rule.
 %

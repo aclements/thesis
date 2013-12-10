@@ -7,9 +7,9 @@
 \tikzstyle{none} = [node distance=6.8em];
 
 \node[inout, name=beg] {Python \\ model};
-\node[pass, name=ana, right of=beg, xshift=4em] {\analyzer{} \\ (\S\ref{sec:tool:analyzer})};
-\node[pass, name=gen, right of=ana, xshift=11em] {\generator{} \\ (\S\ref{sec:tool:generator})};
-\node[pass, name=mtr, right of=gen, xshift=10em] {\mtrace{} \\ (\S\ref{sec:tool:mtrace})};
+\node[pass, name=ana, right of=beg, xshift=4em] {\analyzer \\ (\S\ref{sec:tool:analyzer})};
+\node[pass, name=gen, right of=ana, xshift=11em] {\testgen \\ (\S\ref{sec:tool:generator})};
+\node[pass, name=mtr, right of=gen, xshift=10em] {\mtrace \\ (\S\ref{sec:tool:mtrace})};
 \node[inout, name=imp, above of=mtr, yshift=.5em] {Implementation};
 \node[inout, name=end, right of=mtr, xshift=5em] {Shared \\ cache lines};
 

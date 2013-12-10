@@ -16,7 +16,7 @@
 \def\THREAD{\textrm{thread}}
 \def\OK{\textsc{ok}}
 \def\FAIL{\textsc{fail}}
-\def\POLL{\textsc{continue}}
+\def\CONTINUE{\textsc{continue}}
 \def\ATTH#1#2{#1_{#2}}
 \let\ATT\ATTH
 \def\REFIMP{\textit{M}}
@@ -118,11 +118,9 @@ rounded rectangle,\@scpcorners=none,inner ysep=2pt,inner xsep=0.75pt,%
   \def\tupBrackets<##1>{\tupBraces{##1}}
   \@ifnextchar<\tupBrackets\tupBraces}
 
-\newcommand{\integrallycommute}{SI-commute\xspace}
-\newcommand{\integrallycommutes}{SI-commutes\xspace}
-\newcommand{\integralcommutativity}{SI commutativity\xspace}
-\newcommand{\HA}{\ensuremath{X}}
-\newcommand{\HB}{\ensuremath{Y}}
+\newcommand{\SI}{SI\xspace}
+\newcommand{\HX}{\ensuremath{X}}
+\newcommand{\HY}{\ensuremath{Y}}
 \newcommand{\HSUFF}{\ensuremath{Z}}
 
 \makeatother
