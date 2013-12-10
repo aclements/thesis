@@ -1,6 +1,5 @@
 \section{Introduction}
 \label{sec:intro}
-\label{intro}
 
 The state of the art for evaluating the scalability of multicore software
 is to choose a workload, plot performance at varying
@@ -240,7 +239,7 @@ implementation.
 
 Complex interfaces can make it difficult to spot and reason about all
 commutative cases even given the rule.  To address this challenge,
-\S\ref{sec:model} introduces a tool named \tool that automates this
+\S\ref{sec:tool} introduces a tool named \tool that automates this
 reasoning.  \tool takes an interface model
 in the form of a simplified, symbolic implementation, computes precise
 conditions under which sets of operations commute, and tests an
@@ -266,7 +265,7 @@ whose operations commute and
 to propose specific modifications to POSIX
 that would allow for greater scalability.
 
-In \S\ref{sec:fs}, we apply \tool to a simplified model of
+In \S\ref{sec:model}, we apply \tool to a simplified model of
 \pyexpr{len(mscan.calls)} POSIX file system and virtual memory system
 calls.
 %
@@ -316,7 +315,7 @@ The contributions of the paper are as follows:
 % about scalability to previous work. \S\ref{sec:rule} introduces the
 % commutativity rule and argues its correctness. \S\ref{sec:posix} applies the
 % rule to an OS interface, identifying opportunities for
-% commutativity. \S\ref{sec:model} describes \tool{}.  \S\ref{sec:fs} describes
+% commutativity. \S\ref{sec:tool} describes \tool{}.  \S\ref{sec:model} describes
 % \fs and how \tool{} drove its implementation. \S\ref{sec:eval} shows that using
 % the commutativity rule results in better scalability on real
 % hardware. \S\ref{sec:concl} summarizes our conclusions.

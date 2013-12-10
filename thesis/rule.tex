@@ -293,7 +293,7 @@ commutative''? would local/integral commutative be enough?]
 To reason about implementation scalability, we need to model
 implementations in enough detail to tell
 whether different threads' ``memory accesses'' are conflict-free. (As 
-discussed in \S\ref{intro}, conflict freedom is our proxy for
+discussed in \S\ref{sec:intro}, conflict freedom is our proxy for
 scalability.) We define an implementation as a step
 function: given a state and an invocation, it produces a new state and a
 response. Special \POLL\ actions enable
@@ -837,7 +837,7 @@ end, a system designer must decide which situations involving
 commutative operations are most important, and find practical
 implementation strategies that scale in those situations.
 %
-In \S\ref{sec:fs} we show that many operations in POSIX have
+In \S\ref{sec:model} we show that many operations in POSIX have
 implementations that scale quite broadly, with few cases of incompatible
 scalability classes.
 
