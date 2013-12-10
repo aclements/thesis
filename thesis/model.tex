@@ -1,419 +1,356 @@
-% -*- fill-column: 72 -*-
+\section{Finding scalability opportunities}
+\label{sec:fs}
 
-\section{Analyzing interfaces using \tool{}}
-\label{sec:model}
-
-% Yet another draft intro:
-% The previous section focused on interface design, but an unimplemented
-% interface is of little use.  However, realizing an implementation of an
-% interface that avoids sharing when operations commute is a difficult
-% task: fully understanding the commutativity of a complex interface is
-% tricky and it's easy to share unintentionally in a complex
-% implementation.  This section presents a systematic approach to applying
-% the commutativity rule to real implementations that leverages the
-% formality of the commutativity rule to automate much of this reasoning.
-
-Fully understanding the commutativity of a complex interface is
-tricky, and achieving an
-implementation that avoids sharing when operations commute adds another
-dimension to an already difficult task.  However, by leveraging the
-formality of the commutativity rule, developers can automate much of this
-reasoning.  This section presents a systematic, test-driven approach to
-applying the commutativity rule to real implementations embodied in a
-tool named \tool, whose components are shown in
-Figure~\ref{fig:tool}.
-
-
-\begin{figure*}
-\input{figures/tool.tex}
-\caption{The components of \tool{}.}
-\label{fig:tool}
-\end{figure*}
-
-First, \analyzer{} takes a symbolic model of
-an interface and computes precise conditions under which that interface's
-operations commute.  Second, \generator{} takes
-these conditions and generates concrete test cases of sets of operations
-that commute according to the interface model, and thus should
-have a conflict-free implementation according to the commutativity rule.
+To understand whether \tool{} is useful to kernel developers,
+we modeled several POSIX file system and virtual memory calls in \tool,
+then used this both to evaluate Linux's scalability and to develop a
+scalable file and virtual memory system for our \sys research kernel.
 %
-Third, \mtrace checks whether a particular implementation is
-conflict-free for each test case.
-
-A developer can use these test cases to understand the
-commutative cases they should consider,
-to iteratively find and fix scalability
-issues in their
-code, or as a regression test suite to ensure
-scalability bugs do not creep into the implementation over time.
-
-
-\subsection{\analyzer{}}
-\label{sec:model:analyzer}
-
-\analyzer automates the process of analyzing the commutativity of an
-interface, saving developers from the tedious and error-prone process of
-considering large numbers of interactions between complex operations.
-%
-\analyzer takes as input a model of the behavior of an interface,
-written in a symbolic variant of Python, and outputs \emph{commutativity
-  conditions}: expressions in terms of arguments and state for exactly
-when sets of operations commute.
-%
-A developer can inspect these expressions to understand an interface's
-commutativity or pass them to \generator (\S\ref{sec:model:generator})
-to generate concrete examples of when interfaces commute.
-
-% Some old text:
-% In principle, the model can be specified in any form, such as a
-% specification language or a boolean constraint.  However, to make it
-% easier for programmers to write models, \analyzer{} accepts models
-% written in a symbolic variant of Python.
-% %
-% \XXX[AC][Say what we do and then generalize later.]
-% %
-% Python's imperative style is a natural fit for highly stateful
-% interfaces like POSIX, while the symbolic environment lets models
-% capture specification non-determinism (like \code{creat}'s ability to
-% choose any free inode) as under-constrained symbolic values.
-
-\XXX[AC][If we had space, a more complete explanation of how \analyzer
-arrives at commutativity conditions; including pseudo-code for
-\code{test} and the gathering of path conditions and maybe even some
-description of the symbolic executor itself would be useful.  E.g., it's
-not at all obvious that we execute all permutations of a call set in one
-symbolic execution path.  Then we could also be more explicit about how
-we implement ``internal'' variables.]
-
-% Diagrammatically, something like:
-%                        /- op_b=>r_ab @ S_ab -- op_c=>r_abc @ S_abc
-%       / op_a=>r_a @ S_a
-%      /                 \- op_c=>r_ac @ S_ac -- op_b=>r_acb @ S_acb
-%     /                  /- op_a=>r_ba @ S_ba -- op_c=>r_bac @ S_bac
-% S_0 --- op_b=>r_b @ S_b
-%     \                  \- op_c=>r_bc @ S_bc -- op_a=>r_bca @ S_bca
-%      \                 /- op_a=>r_ba @ S_ca -- op_b=>r_cab @ S_cab
-%       \ op_c=>r_c @ S_c
-%                        \- op_b=>r_bc @ S_cb -- op_a=>r_cba @ S_cba
-%
-%   (r_a == r_ba == r_bca == r_ca == r_cba) /\
-%   (r_b == r_ab == r_acb == r_cab == r_cb) /\
-%   (r_c == r_abc == r_ac == r_bac == r_bc) /\
-%   (S_ab == S_ba) /\ (S_ac == S_ca) /\ (S_bc == S_cb) /\
-%   (S_abc == S_acb == S_bac == S_bca == S_cab == S_cba)
-%
-% See also [[2013-08-21 :SCP Analyzer pseudo-code]]
-%
-% Actually, many of these comparisons are redundant.  See the whiteboard
-% photo from 2013-09-14.
-
-Given the Python code for a model, \analyzer uses symbolic execution to
-consider all possible behaviors of the interface model and construct
-complete commutativity conditions.  Symbolic execution also enables
-\analyzer to reason about the external behavior of an interface, rather
-than specifics of the model's implementation, and enables models to
-capture specification non-determinism (like \code{creat}'s ability to
-choose any free inode) as under-constrained symbolic values.
-
-\analyzer considers every set of operations of a certain size (typically
-we use pairs).  For each set of operations $o$, it constructs an
-unconstrained symbolic system state $s$ and unconstrained
-symbolic arguments
-for each operation in $o$, and executes all permutations
-of $o$, each starting from a copy of $s$.
-This execution forks at any branch that can go both
-ways, building up \emph{path conditions} that constrain the state and
-arguments that can lead to each code path.
-At the end of each code path, \analyzer checks if its path condition
-yields an initial state and arguments that make $o$ commute by testing if each
-operation's return value is
-equivalent in all permutations and if the system states reached by all
-permutations are equivalent (or can be equivalent for some
-choice of non-deterministic values like newly allocated
-inode numbers).
-%
-For sets larger than pairs, \analyzer must also check that the
-intermediate states are equivalent for every permutation of each subset
-of $o$.
-%
-\XXX[AC][For example, given operations A and B,
-\analyzer executes AB and BA and tests if the return value of A is the
-same in both cases, the return value of B is the same in both cases, and
-the final state is the same in both cases.]
-
-
-% Old attempt at \analyzer details:
-% Given the Python code for a model, \analyzer{} extracts precise formulas
-% for when operations commute.  For every set of operations of a
-% certain size (typically we use pairs), it symbolically executes all
-% permutations of the set starting from the same initial unconstrained
-% state for each permutation, collecting the final symbolic state after
-% each permutation as well as the symbolic return values of every
-% operation.  At the end of each code path, it queries the SMT solver for
-% a satisfying assignment of the initial state and all arguments where all
-% final states are equivalent and each operation's return values are
-% equivalent in all permutations (or can be equivalent for some choice of
-% non-deterministic internal variables like newly allocated inode
-% numbers).  If there is a satisfying assignment, it represents a case in
-% which the operations commute.
-
-This test codifies the definition of \SRI commutativity from
-\S\ref{sec:topic:strong-commutativity},
-except that (1) it assumes the specification is sequentially consistent,
-and (2) instead of considering all possible future operations
-(which would be difficult in symbolic execution), it substitutes state
-equivalence.  It's up to the model's author to define state equivalence
-as whether two states are externally indistinguishable.  This is
-standard practice for high-level data types (e.g., two sets represented
-as trees could be equal even if they are balanced differently).  For the
-POSIX model we present in \S\ref{sec:fs}, only a few types need special
-handling beyond
-what the standard data types provide automatically.
-
-\begin{figure}
-\begin{small}
-\input{code/rename}
-\end{small}
-\caption{A simplified version of our \code{rename} model.
-  % \code{tstruct}, \code{tlist}, and \code{tdict} create
-  % symbolic struct, list, and dictionary types.
-  % \code{tsort} creates an ``uninterpreted'' type (whose values support
-  % only equality).
-}
-\label{fig:rename-spec}
-\end{figure}
-
-Figure~\ref{fig:rename-spec} gives an example of how a developer could
-model \code{rename}.  The first five lines declare symbolic
-types (\code{tuninterpreted} declares a type whose values support only
-equality), and \code{__init__} instantiates the file system state.  The
-implementation of \code{rename} itself is straightforward.  Indeed, the
-familiarity of Python and ease of manipulating state were part of why we
-chose it over abstract specification languages.
-% This model is straightforward, but captures the essence
-% of what \code{rename} does: it looks up the source file name, returns
-% an error if it does not exist, and otherwise decrements the link count
-% on the destination file if it exists, points the destination file name
-% to the source file's inode, and so on.
-% \XXX[AC][This sentence seems misleading:]
-% Writing this model requires
-% the interface designer to specify the state that \code{rename} accesses
-% internally, such as the \code{fname_to_inum} map that represents a directory,
-% and the inode reference counts in \code{inode}.
-
-Given two
-\code{rename} operations, \code{rename(a, b)} and \code{rename(c, d)},
-\analyzer outputs that they commute if any of the following hold:
+The rest of this section uses this case study to answer the following
+questions:
 
 \begin{CompactItemize}
-\item Both source files exist, and the file names are all different
-      (\code{a} and \code{c} exist, and \code{a}, \code{b}, \code{c},
-      \code{d} all differ).
 
-\item One \code{rename}'s source does not exist, and it is not the
-      other \code{rename}'s destination (either
-      \code{a} exists, \code{c} does not, and \code{b}$\neq$\code{c}, or
-      \code{c} exists, \code{a} does not, and \code{d}$\neq$\code{a}).
+\item How many test cases does \tool{} generate, and what do they test?
 
-\item Neither \code{a} nor \code{c} exist.
+\item How good are current implementations of the POSIX interface?
+      Do the test cases generated by \tool{} find
+      cases where current implementations don't scale?
 
-\item Both calls are self-renames (\code{a}$=$\code{b} and \code{c}$=$\code{d}).
+\item What techniques are necessary to achieve scalability for
+      cases where current file and virtual memory systems do not
+      scale?
 
-\item One call is a self-rename of an existing file
-      (\code{a} exists and \code{a}$=$\code{b}, or
-       \code{c} exists and \code{c}$=$\code{d}) and
-      it's not the other call's source (\code{a}$\neq$\code{c}).
-
-\item Two hard links to the same inode are renamed to the same new name
-      (\code{a} and \code{c} point to the same inode,
-       \code{a}$\neq$\code{c}, and \code{b}$=$\code{d}).
+\item What situations might be too difficult or impractical to
+      make scale, despite being commutative?
 
 \end{CompactItemize}
 
-%% For many interfaces, it is possible to apply the commutativity rule ``by
-%% hand''.  For example, the \code{getpid} system call commutes with just
-%% about everything else, and should scale. 
-As this example shows, when system calls access shared, mutable
-state, reasoning about every commutative case by hand can become
-difficult.
+\subsection{POSIX test cases}
+
+To answer the first question, we developed a simplified model of the
+POSIX file system and virtual memory APIs in \tool{}.  The model covers
+\pyexpr{len(mscan.calls)} system
+calls, and includes inodes, file
+names, file descriptors and their offsets, hard links, link counts,
+file lengths, file contents, file times, pipes, memory-mapped files,
+anonymous memory, processes, and threads.  Our model
+also supports nested
+directories, but we disable them because Z3 does not currently handle
+the resulting constraints.
+\XXX[AC][Do we want to say any more about nested directories?]
 %
-Developers can easily overlook cases, both in their
-understanding of an interface's commutativity, and when making their
-implementation scale for commutative cases.
+We restrict file sizes and offsets to page granularity; some \sys data
+structures are conflict-free for offsets on different pages, but
+offsets within a page conflict.
 %
-\analyzer
-automates reasoning about all possible system states, all possible
-sets of operations that can be
-invoked, and all possible arguments to those operations.
-
-\XXX[AC][Are these examples that enlightening?  Do they just reinforce
-the ``corner case'' mentality?
-
-For
-example, creating two files in two different directories might appear to
-be obviously commutative, but in fact if the file system has exactly one
-free inode left, these two operations do not commute.
+\tool generates a total of \pyexpr{mscan.ntestcases} test cases
+from our model.
 %
-As another example, the \code{open()} and \code{stat()} system calls
-generally commute if they refer to different file names, but there are a
-number of non-obvious cases: e.g., the two operations do not commute if one
-of the files does not exist, the other is a symlink to the first, and
-\code{open} is invoked with \code{O_CREAT}; or if one file exists and is
-non-empty, the other is a symlink to the first, and \code{open} is invoked
-with \code{O_TRUNC}.]
-% When analyzing interfaces by hand, many
-% cases are easy for developers to overlook, both in their understanding
-% of the interface's commutativity, and when making their implementation
-% scale for commutative cases.
+Generating the test cases and running them on both Linux and \sys
+takes a total of 8~minutes on the machine described in
+\S\ref{sec:topic:ben}.
 
+The model implementation and its model-specific test code generator
+are \pyexpr{const['commuter-loc']['fsmodel']} and
+\pyexpr{const['commuter-loc']['fstestgen']} lines of Python code,
+respectively.
+Figure~\ref{fig:rename-spec} showed a part of our
+model, and Figure~\ref{fig:testgen} gave an example test
+case generated by \tool{}.  We verified that all test cases return
+the expected results on both Linux and \sys.
 
-\subsection{\generator{}}
-\label{sec:model:generator}
+\begin{figure*}
+\small
+\centering
+\input{figures/testcases}
+\caption{
+  Scalability for system call pairs, showing the fraction and number
+  of test cases generated by \tool that are not
+  conflict-free for each system call pair.
+  One example test case was shown in Figure~\ref{fig:testgen}.
+}
+\label{fig:testcase-breakdown}
+\end{figure*}
 
-While a developer can examine the commutativity conditions
-produced by \analyzer directly, for complex interfaces these formulas
-can be large and difficult to decipher.  Further, real implementations
-are complex and likely to contain unintentional sharing, even if the
-developer understands an interface's commutativity.  \generator takes
-the first step to helping developers apply commutativity to real
-implementations by converting \analyzer's commutativity conditions into
-concrete test cases.
+\XXX[AC][memwrite is weird because mscan ignores user space addresses,
+so the actual write performed by memwrite isn't counted.  That's why
+even the idempotent ones are ``conflict-free''.]
 
-To produce a test case, \generator computes
-a satisfying assignment for the corresponding commutativity condition.
-The assignment specifies concrete values for every symbolic variable in
-the model, such as the \code{fname_to_inum} and \code{inodes} data structures
-and the \code{rename} arguments shown in Figure~\ref{fig:rename-spec}.
-\generator then invokes a model-specific function on the assignment
-to produce actual C test case code.  For example, one test
-case that \generator{} generates is shown in Figure~\ref{fig:testgen}.
-The test case includes setup code that configures the initial state of
-the system and a set of functions to run on different cores. Every
-\generator test case should have a conflict-free implementation.
+\subsection{Current implementation scalability}
 
-\begin{figure}
-\begin{small}
-\input{code/testgen}
-\end{small}
-\caption{An example test case for two \code{rename} calls generated by
-         \generator{} for the model in Figure~\ref{fig:rename-spec}.}
-\label{fig:testgen}
-\end{figure}
-
-The goal of these test cases is to expose potential scalability problems
-in an implementation, but it is impossible for \generator{} to know
-exactly what inputs might trigger conflicting memory accesses.  Thus, as a
-proxy for achieving good coverage on the implementation, \generator{}
-aims to achieve good coverage of the Python model.
-
-\XXX[E][THIS PARAGRAPH IS VERY OPAQUE]
-We consider two forms of coverage.
-The first is the standard notion of path coverage, which \generator{}
-achieves by relying on \analyzer{}'s symbolic execution.
+To evaluate the scalability of existing file and virtual memory systems,
+we used \mtrace{} to check the above test cases against
+Linux kernel version 3.8.
+Linux developers have invested significant effort in making the file
+system scale~\cite{boyd-wickizer:scaling}, and it already scales in
+many interesting cases, such as concurrent operations in different
+directories or concurrent operations on different files in the same
+directory that already exist~\cite{lwn:dcache}.
 %
-\analyzer{} produces a separate path condition for every possible code
-path through a set of operations.
+We evaluated the \code{ramfs} file system because
+\code{ramfs} is effectively a user-space interface to the Linux buffer
+cache.  Since exercising \code{ramfs} is equivalent to exercising the
+buffer cache and the buffer cache underlies all Linux file
+systems, this represents the best-case scalability for a Linux file
+system.
 %
-However, even a single path might encounter conflicts in interestingly
-different ways.
+Linux's virtual memory system, in contrast, involves process-wide
+locks that are known to limit its
+scalability and impact real
+applications~\cite{boyd-wickizer:scaling,clements:bonsai,gil:c4}.
+
+\XXX[AC][Maybe call out pure FS calls and/or pure VM calls?]
+The left half of Figure~\ref{fig:testcase-breakdown} shows the results.
+Out of \pyexpr{mscan.ntestcases} test cases,
+\pyexpr{mscan.linux.shared} cases, widely distributed across the
+system call pairs, were not conflict-free.
+This indicates that even a mature and reasonably scalable operating system
+implementation misses many cases that can be made to scale according
+to the commutativity rule.
+
+A common source of access conflicts is shared reference counts.
 %
-For example, the code path through two \code{pwrite}s is the
-same whether they're writing to the same offset or different offsets,
-but the access patterns are very different.
+For example, most file name lookup operations update the reference
+count on a \code{struct dentry}; the resulting write conflicts cause
+them to not scale.
 %
-To capture different conflict conditions as well as path conditions, we
-introduce a new notion called \emph{conflict coverage}.  Conflict coverage
-exercises all possible access patterns on shared data structures:
-looking up two distinct items from different operations, looking up
-the same item, etc.
+Similarly, most operations that take a file descriptor update the
+reference count on a \code{struct file}, making
+commutative operations such as two \code{fstat} calls on the
+same file descriptor not scale.
+Coarse-grained locks are another source of access conflicts.  For
+instance, Linux locks the parent directory for any operation that
+creates file names, even though operations that create distinct names
+generally commute.
 %
-\generator approximates
-conflict coverage by concolically executing \emph{itself}
-to enumerate distinct tests for each path condition.  \generator
-starts with the constraints of a path condition from \analyzer, tracks
-every symbolic expression forced to a concrete value by the
-model-specific test code
-generator, negates any equivalent assignment of these expressions from
-the path condition, and generates another test, repeating this process
-until it exhausts assignments that satisfy the path condition or the SMT
-solver fails.  Since
-path conditions can have infinitely many satisfying assignments (e.g.,
-there are infinitely many calls to \code{read} with different FD numbers
-that return \code{EBADF}), \generator partitions most values in
-\emph{isomorphism groups} and considers two assignments equivalent if
-each group has the same
-pattern of equal and distinct values in both assignments.  For our POSIX
-model, this
-bounds the number of enumerated test cases.
-
-These two forms of coverage ensure that the test cases
-generated by \generator{} will cover all possible paths and data structure
-access patterns in the model, and to the extent that the implementation
-is structured similarly to the model, should achieve good coverage
-for the implementation as well.  As we demonstrate in \S\ref{sec:fs},
-\generator{} produces a total of \pyexpr{mscan.ntestcases} test cases
-for our model of \pyexpr{len(mscan.calls)} POSIX
-system calls, and these
-test cases find scalability issues in the Linux \code{ramfs} file system
-and virtual memory system.
-
-
-\subsection{\mtrace{}}
-\label{sec:model:mtrace}
-
-Finally, \mtrace runs the test cases generated by \generator on
-a real implementation and checks that the implementation is
-conflict-free for every test.  If it finds a violation of the
-commutativity rule---a test whose commutative operations are not
-conflict-free---it reports which variables were shared and what code
-accessed them.
+%Many of these problems affect application
+%scalability~\cite{boyd-wickizer:scaling}.
 %
-For example, when running the
-test case shown in Figure~\ref{fig:testgen} on a Linux \code{ramfs}
-file system, \mtrace{} reports that the two functions make conflicting
-accesses to the \code{dcache} reference count and lock, which limits
-the scalability of those operations.
+Similarly, we see that coarse-grained locking in the virtual memory
+system severely limits the conflict-freedom of address space manipulation
+operations. This agrees with previous
+findings~\cite{boyd-wickizer:scaling,clements:radixvm,clements:bonsai},
+which demonstrated these problems in the context of several applications.
 
-\mtrace{} runs the entire operating system in a modified version of
-qemu~\cite{qemu}.  At the beginning of each test case, it issues a hypercall to
-qemu to start recording memory accesses, and then executes the test
-operations on different virtual cores.  During test execution,
-\mtrace{} logs all reads and writes by each core, along with
-information about the currently executing kernel thread,
-to filter out irrelevant conflicts by background threads or
-interrupts.  After execution, \mtrace analyzes
-the log and reports all conflicting memory accesses, along with the C
-data type of the accessed memory location (resolved from
-DWARF~\cite{dwarf} information and logs
-of every dynamic allocation's type) and stack traces for each conflicting
-access.
+% Another source of non-scalability is
+% needless lock acquisition: for instance, Linux locks an inode when
+% truncating the file in \code{open(O_TRUNC)} even if the file is
+% already empty, making concurrent \code{open(O_TRUNC)} calls on an existing
+% empty file non-scalable.  A final example is needless updates: if two file
+% names \code{a} and \code{b} point to the same inode, \code{rename(a, b)}
+% need not modify the \code{dentry} for \code{b}, but Linux does so anyway.
+% \XXX[nz][Weak examples; we should at least finish with an
+% interesting/important case.]
 
-\subsection{Implementation}
-\label{sec:model:impl}
 
-We built a prototype implementation of \tool{}'s three components.
-\analyzer{} and \generator{} consist of
-\pyexpr{const['commuter-loc']['analyzer']} lines of Python code,
-including the symbolic execution engine, which uses the Z3 SMT
-solver~\cite{demoura:z3}
-via Z3's Python bindings.
-\mtrace{} consists of \pyexpr{const['mtrace-loc']['qemu-diff']} lines of
-code changed in qemu, along with \pyexpr{const['pk-loc']['pk-diff']}
-lines of code changed in the guest
-Linux kernel (to report memory type information, context switches, etc.).
-Another program, consisting of \pyexpr{const['mtrace-loc']['mscan']}
-lines of C++ code, processes the
-log file to find and report memory locations that are shared between different
-cores for each test case.
+\subsection{Making test cases scale}
 
-\XXX[AC][mtrace's custom DWARF library dwarfs the rest of this at
-$\sim$6,500 LOC.]
+Given that Linux does not scale in many cases, how hard is it
+to implement scalable file systems and virtual memory systems?  To answer this
+question, we designed and implemented a \code{ramfs}-like in-memory
+file system called \fs and a virtual memory system called RadixVM for
+\sys, our research kernel based on xv6~\cite{xv6}.  RadixVM appeared
+in previous work~\cite{clements:radixvm}, so we focus on \fs here.
+%
+Although it is in principle possible to make the same changes in Linux,
+we chose not to implement \fs in Linux because \fs's design
+would have required modifying code throughout the Linux kernel.
+%
+The designs of both RadixVM and \fs were guided by the
+commutativity rule.  For \fs, we relied heavily on \tool throughout
+development to guide its design and identify sharing problems in its
+implementation (RadixVM
+was built prior to
+\tool).
+%
+The right half of Figure~\ref{fig:testcase-breakdown} shows the
+result of applying \tool
+to \sys.
+\XXX[AC][Mention here or elsewhere that \tool was partly motivated by
+the difficulty of building a scalable file system?]
 
-% \mtrace{} is implemented on a modified qemu~\cite{qemu}.  We added support
-% for hypercalls so that software running within \mtrace can communicate
-% events such as variable declarations, call stack switches, and the range
-% and type of every memory allocation.  \mtrace also modifies the qemu
-% code generator to intercept all loads and stores and to trace additional
-% instructions such as \code{call} and \code{ret} to produce call stacks.
-% This information is written to a log file.
+\fs makes extensive use of existing techniques for scalable
+implementations, such as per-core resource
+allocation, double-checked locking, lock-free readers using
+RCU~\cite{rcu:linux},
+scalable reference counts using Refcache~\cite{clements:radixvm},
+and seqlocks~\cite[\S6]{lameter:linuxsync}.  These techniques lead to
+several common patterns, as follows; we illustrate the patterns with
+example test cases from \tool{} that led us to discover these situations:
 
+
+\paragraph{Layer scalability.}  \fs uses data structures that
+themselves naturally satisfy the commutativity rule, such as linear
+arrays, radix arrays~\cite{clements:radixvm}, and hash tables.  In
+contrast with structures like balanced trees, these data
+structures
+typically share no cache lines when different elements are accessed
+or modified.  For example, \fs stores the cached data pages for a given inode
+using a radix array, so that concurrent reads or writes to different
+file pages scale, even in the presence of operations
+extending or truncating the file.
+% , as long as they don't access the part
+% of the file that's being extended or truncated.
+Many operations also use this radix array to determine if some offset
+is within the file's bounds without risking conflicts with operations
+that change the file's size.
+
+\XXX[AC][Nir's book calls such data structures ``naturally parallel''
+or something.]
+
+
+\paragraph{Defer work.} Many kernel resources are shared,
+such as files and pages, and must be freed when no longer referenced.
+Typically, kernels release resources immediately, but this requires
+eagerly tracking references to resources, causing
+commutative operations that access the same resource to conflict.  Where
+releasing a resource is not time-sensitive, \fs
+uses Refcache~\cite{clements:radixvm} to batch reference count
+reconciliation and zero detection.  This way, resources are eventually
+released, but within each Refcache epoch commutative operations can be
+conflict-free.
+
+\XXX[AC][Discuss crazy pipe hybrid reference counting scheme?]
+
+\XXX[AC][This seems uninteresting, and possibly false. \par
+Batching sometimes enables absorption, when a resource gets reused within
+a batch interval, thus requiring no non-scalable operations at all.
+For instance, if one process closes the last open file descriptor for
+a file, that file becomes eligible for eviction from the inode cache
+(using Refcache weak references~\cite{clements:radixvm}).  However,
+if another process re-opens the file on the same core, the inode can
+be revived without any conflicting memory accesses.]
+
+Some resources are artificially scarce, such as inode numbers in a typical
+Unix file system.  When a typical Unix file system runs out of free
+inodes, it must reuse an inode from a recently deleted file.  However,
+the POSIX interface does not require that inode numbers be reused, only
+that the same inode number is not used for two files at once.  Thus,
+\fs never reuses inode numbers.  Instead, inode numbers are
+generated by a monotonically increasing per-core counter, concatenated
+with the core number that allocated the inode.  This allows \fs to defer
+inode garbage collection for longer periods of time, and enables scalable
+per-core inode allocation.
+
+
+% \paragraph{Check before updating.}  Before updating any data structure,
+% \fs first checks whether the data structure already contains the new
+% value, and avoid any writes if so.  For example, the Linux file system
+% always acquires a lock on an inode when truncating the file.  This means
+% that concurrent truncate operations do not scale, even if the file
+% is already empty.  \fs first checks the current length of the file,
+% and avoids updating the length or acquiring any locks if the file is
+% already at the right size.
+
+% As another example, if one thread tries to create an existing file using
+% \code{open(O_CREAT|O_EXCL)}, it should fail, but a na\"ive implementation
+% might first acquire a lock to prepare for creating the file, and then
+% check whether the file already exists.  This makes
+% concurrent \code{open(O_CREAT|O_EXCL)} calls for an existing file name
+% non-scalable.  \fs first checks whether the file already exists without
+% modifying any cache lines, making these operations scale.
+
+% \XXX[AC][The above two examples are slightly off.  E.g., if I do two
+% truncates and the first writes to the file length and the second reads
+% that, that's sharing.  These are both idempotent updates, which is one
+% of the few things we \emph{don't} do scalably.]
+
+% As a final example, if two file names \code{a} and \code{b} point to the
+% same inode, \code{rename(a, b)} should remove the directory entry for
+% \code{a}, but it should not modify the directory entry for \code{b}, since
+% it already points at the right inode.  By checking the directory
+% entry for \code{b} before updating it, \fs allows \code{rename(a, b)}
+% to scale with other operations that look up \code{b}.
+
+
+\paragraph{Precede pessimism with optimism.} Many operations
+in \fs have an optimistic check stage followed by a pessimistic update
+stage, a generalized sort of double-checked locking.  The optimistic
+stage checks conditions for the operation and returns immediately if
+no updates are necessary (this is often the case for error returns,
+but can also happen for success returns).  This stage does no writes
+or locking, but because no updates are necessary, it is often easy to
+make atomic.  If updates are necessary, the operation acquires
+locks or uses lock-free protocols, re-verifies its conditions to
+ensure atomicity of the update stage, and performs updates.  For
+example, \code{lseek} first computes the new offset using a lock-free
+read-only protocol and returns early if the new offset is invalid or
+equal to the current offset.  Otherwise, \code{lseek} locks the file
+offset, and re-computes the new offset to ensure consistency.
+
+\code{rename} is similar.  If two file names \code{a} and \code{b}
+point to the
+same inode, \code{rename(a, b)} should remove the directory entry for
+\code{a}, but it does not need to modify the directory entry for
+\code{b}, since
+it already points at the right inode.  By checking the directory
+entry for \code{b} before updating it, \code{rename(a, b)} avoids
+conflicts with other operations that look up \code{b}.
+
+
+\paragraph{Don't read unless necessary.}  A common internal interface
+in a file system implementation is a \code{namei} function that
+checks whether a path name exists, and if so, returns the inode for
+that path.
+%
+However, reading the inode is unnecessary
+if the caller wants to know only whether a path name existed, such as
+an \code{access(F_OK)} system call.  In particular, the \code{namei}
+interface makes it impossible for concurrent \code{access(b, F_OK)}
+and \code{rename(a, b)} operations to scale when \code{a} and \code{b}
+point to different inodes, even though they commute.
+\fs has a separate internal interface to check for existence of a
+file name, without looking up the inode, which allows \code{access}
+and \code{rename} to scale in such situations.
+
+
+\subsection{Difficult-to-scale cases}
+
+As Figure~\ref{fig:testcase-breakdown} illustrates, there are a few
+(\pyexpr{mscan.xv6.shared} out of \pyexpr{mscan.ntestcases})
+commutative test cases for
+which \fs is not conflict-free.
+%
+The majority of these tests involve idempotent updates to internal
+state, such as two \code{lseek} operations that both seek a file
+descriptor to the same offset, or two anonymous \code{mmap} operations
+with the same fixed base address and permissions.  While it is
+possible implement these scalably, every implementation we considered
+significantly impacted the performance of more common operations, so
+we explicitly chose to favor common-case performance over total
+scalability.  Even though we decided to forego scalability in these
+cases, the commutativity rule and \tool forced us to consciously make
+this trade-off.
+%
+\XXX[AC][About 75\% are known idempotent.]
+
+% Non-idempotent shared case list (incomplete):
+% close_close_pe_5: Closing pipe writer (eager counting)
+% close_read_pdc_0: Closing pipe writer, reading writer always EBADF
+% close_write_pd8_0: Symmetric to close_read_pdc_0
+% lseek_read_pad8_2: Reading nothing from two different offsets
+% lseek_read_p8b6_3: Same as lseek_read_pad8_2
+% mmap_mprotect_pf8_41: Making different read-only mappings read-only
+%   (The mprotect is a no-op, but what it reads is modified)
+% mmap_mprotect_pae_40: Same
+% read_read_pce4_0: Two reads from a file full of zeroes
+% read_write_pbb0_2: Reading nothing from different end-of-file offsets
+% write_write_pff8_1: Writing to a pipe with no readers
+%   (We could probably fix this one)
+% write_write_pff8_2: Same
+% write_write_pf78_1: Same
+
+Other difficult-to-scale cases are more varied.  Several involve
+reference counting of pipe file descriptors.  Closing the last file
+descriptor for one end of a pipe must immediately affect the other
+end; however, since there's generally no way to know a priori if a
+\code{close} will close the pipe, a shared reference count is used in
+some situations.  Other cases involve operations that return the same
+result in either order, but for different reasons, such as two reads
+from a file filled with identical bytes.
+
+\XXX[AC][fstest works around all radix tree expansion.  Is this
+cheating?  That's actually an interesting case.]
+
+\XXX[AC][Summarize or something?]
