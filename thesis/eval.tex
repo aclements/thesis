@@ -1,5 +1,3 @@
-% -*- fill-column: 72 -*-
-
 \section{Performance evaluation}
 \label{sec:eval}
 
@@ -27,7 +25,8 @@ questions:
 \label{sec:topic:ben}
 
 To answer these questions, we use \sys.
-In addition to the operations analyzed in \S\ref{sec:model}, we scalably implemented
+In addition to the operations analyzed in \S\ref{sec:model}, we scalably
+implemented
 other commutative operations (e.g., \code{posix_spawn})
 and many of the modified POSIX APIs from
 \S\ref{sec:posix}.
@@ -110,7 +109,8 @@ bonkers.]
 % allocation, which has process-wide invariants; and sockbench exercises
 % local sockets, which have strict ordering requirements.
 
-\paragraph{statbench.} In general, it's difficult to argue that an implementation of a
+\paragraph{statbench.} In general, it's difficult to argue that an
+implementation of a
 non-commutative interface achieves the best possible scalability for
 that interface and that no implementation could scale better.  However,
 in limited cases, we can do exactly this.  We start with statbench,
@@ -390,7 +390,8 @@ does would matter more.]
 \begin{figure}
   \centering
   \input{graph/forktest.tex}
-  \caption{Scalability of $n$ cores forking and exiting a process on xv6 and Linux.}
+  \caption{Scalability of $n$ cores forking and exiting a process on xv6
+    and Linux.}
   \label{fig:forktest}
 \end{figure}
 \end{comment}

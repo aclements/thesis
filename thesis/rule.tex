@@ -1,12 +1,11 @@
-% -*- fill-column: 72 -*-
-
 \section{The scalable commutativity rule}
 \label{sec:rule}
 
 This section addresses two questions: What is the precise
 definition of the scalable commutativity rule, and why is the rule true?
 %
-We answer these questions using a formalism based on abstract actions, histories,
+We answer these questions using a formalism based on abstract actions,
+histories,
 and implementations.
 %
 The formalism relies on \SIM commutativity, whose generality broadens
@@ -147,10 +146,13 @@ $\HY'$ of $\HY$, and any action sequence $\HSUFF$,
 %
 This definition
 captures the interface basis and
-state dependence we need.  The action sequence $\HX$ puts the system into the state we wish
-to consider; switching regions $\HY$ and $\HY'$ requires that the return values from
-$\HY$ be valid according to the specification regardless of the actions' order;
-and the presence of region $\HSUFF$ in both histories requires that reorderings of
+state dependence we need.  The action sequence $\HX$ puts the system
+into the state we wish to consider; switching regions $\HY$ and $\HY'$
+requires that the return
+values from
+$\HY$ be valid according to the specification regardless of the actions'
+order; and the presence of region $\HSUFF$ in both histories requires
+that reorderings of
 actions in region $\HY$ are indistinguishable by future operations.
 %
 \XXX[E][There was something about ``This literal transaltion of our
@@ -208,8 +210,8 @@ and that therefore can scale.
 For example, few OS system calls unconditionally commute in
 every state and history.
 %
-(One that does is \code{getpid()}, since its result is constant over a process's
-lifetime.)
+(One that does is \code{getpid()}, since its result is constant over a
+process's lifetime.)
 %
 But many system calls \emph{conditionally} commute.
 %
@@ -243,7 +245,8 @@ specification.
 Furthermore, it doesn't say that every reordering has indistinguishable
 results on a \emph{given} implementation; it requires instead that
 every reordering \emph{is allowed by the specification} to have
-indistinguishable results. This is important because any given implementation might
+indistinguishable results. This is important because any given
+implementation might
 have unnecessary scalability bottlenecks that show through the
 interface. The \SIM\ commutativity of an interface can be
 considered even when no implementation exists. This in turn makes it
@@ -278,7 +281,8 @@ An implementation $m$ is a function in $S \times I \mapsto S \times R$.
 Given an old state and an invocation, the
 implementation produces a new state and a response (where the response
 must have the same thread as the invocation).
-A \CONTINUE\ response indicates that a real response for that thread is not yet ready,
+A \CONTINUE\ response indicates that a real response for that thread is
+not yet ready,
 and allows the implementation to effectively switch to another thread.
 \CONTINUE\ invocations give the implementation an opportunity to complete an
 outstanding request (or further delay its response); however, the response
@@ -390,8 +394,9 @@ even if the TRUE implementation, given a different order of invocations
 than the original $\HY$ order, WOULD GENERATE DIFFERENT RESULTS. This is
 important; it's what I'd like interface-based to mean.]
 
-\XXX[AC][The construction works not just for $\HX \HCONCAT \HY$, but for any
-$\HX \HCONCAT \HY'$ where $\HY'$ is a reordering of $\HY$.  Indeed this has to be
+\XXX[AC][The construction works not just for $\HX \HCONCAT \HY$, but for
+any $\HX \HCONCAT \HY'$ where $\HY'$ is a reordering of $\HY$.  Indeed
+this has to be
 the case, since, by its very nature, the construction can't tell the
 difference, but we write things as if it has to be $\HY$.  Should we be
 clearer that the construction is conflict-free in any $\HY'$?]
@@ -436,7 +441,8 @@ region, $m$ scales.
 \end{obeylines}
 \rule{\columnwidth}{0.5pt}
 \vspace{-\baselineskip}
-\caption{Constructed \emph{non-scalable} implementation $\NSIMP$ for history $H$ and
+\caption{Constructed \emph{non-scalable} implementation $\NSIMP$ for
+  history $H$ and
   reference implementation $M$.}
 \label{fig:nonscalablesim}
 \end{figure}

@@ -45,7 +45,8 @@ in shared mode. Writing a cache line that was last
 read or written by another core is not scalable, however,
 since the coherence protocol serializes ownership
 changes for each cache line, and because the shared
-interconnect may serialize unrelated transfers~\cite[\S4.3]{boyd-wickizer:thesis}.
+interconnect may serialize unrelated
+transfers~\cite[\S4.3]{boyd-wickizer:thesis}.
 
 We therefore say that a set of operations scales if their implementations
 have \emph{conflict-free} memory accesses, where no core writes a
