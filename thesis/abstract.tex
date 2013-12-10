@@ -1,56 +1,11 @@
-%
-% rtm: let's talk about opportunities, not limitations.
-% What fundamental limitations to system scalability are imposed by
-% system \emph{interfaces}, such as system call APIs? Can scalability
-% limitations be predicted before implementation, simply by
-% considering interface specifications?
-%
-% rtm: i cut the ``system'' from ``system scalability'' and
-% ``system interfaces,'' since I don't think we mean
-% something different from ``scalability'' and ``interfaces.''
-% if we do, and it's important that readers understand at this
-% stage, we need to explain.
-%
 What fundamental opportunities for scalability are latent in
 \emph{interfaces}, such as system call APIs? Can scalability
 opportunities be identified even before any implementation exists,
 simply by considering interface specifications?
-%
-% rtm: we cannot answer this question, because the ``seemingly''
-% causes the question to refer to what the reader thinks.
-% And do scalable implementations
-% exist for seemingly unscalable APIs?
-%
 To answer these
 questions this paper introduces the following rule:
-%
-%\begin{quotation}
-%\noindent
 \emph{Whenever interface operations commute,
 they can be implemented in a way that scales.}
-%\end{quotation}
-%
-%\noindent%
-%
-% rtm: the following sentence encodes too many complex ideas
-% for this early in the paper.
-% This observation's power comes from its general
-% applicability to interfaces whose operations commute only in
-% some system states or given only certain arguments, allowing system
-% designers to
-% reason about opportunities for scalability in complex APIs such as
-% POSIX.
-%
-% AC: The following has the same problem as the above.
-% This rule applies to specific system states and operation instances by
-% using a new definition of commutativity, \emph{\SIM commutativity}.
-% The rule enables developers to narrow their
-% focus
-% \XXX[nz][for what purpose?]
-% from entire complex APIs to just the opportunities that can be made to
-% scale.
-% \XXX[nz][This is not right, because the converse of our rule is false]
-%
 This rule aids developers in building more scalable software starting from
 interface design and
 carrying on through implementation, testing, and evaluation.
@@ -60,10 +15,6 @@ a new tool named \tool
 accepts high-level interface models and generates
 tests of operations that commute and hence could scale. Using
 these tests, \tool can
-%
-% rtm: let's not \emph{implementations}, since the cool thing
-% is that Commuter evaluates interfaces, not implementations.
-%
 evaluate the scalability of an implementation.  We apply \tool to
 \pyexpr{len(mscan.calls)} POSIX calls and use the results to
 guide the implementation of a new research operating system kernel
@@ -78,7 +29,3 @@ application scalability.
 \sys scales for
 \pyexpr{percent(1-(mscan.xv6.shared/float(mscan.ntestcases)))} of the
 tests.
-% AC: We have to be careful here.  It's easy for the reader to think
-% that of course sv6 scales in tons of cases because we wrote it to.
-% Hopefully mentioning application problems makes it clearer this is a
-% hard problem and these tests matter.

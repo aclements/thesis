@@ -3,16 +3,6 @@
 \section{Analyzing interfaces using \tool}
 \label{sec:tool}
 
-% Yet another draft intro:
-% The previous section focused on interface design, but an unimplemented
-% interface is of little use.  However, realizing an implementation of an
-% interface that avoids sharing when operations commute is a difficult
-% task: fully understanding the commutativity of a complex interface is
-% tricky and it's easy to share unintentionally in a complex
-% implementation.  This section presents a systematic approach to applying
-% the commutativity rule to real implementations that leverages the
-% formality of the commutativity rule to automate much of this reasoning.
-
 Fully understanding the commutativity of a complex interface is
 tricky, and achieving an
 implementation that avoids sharing when operations commute adds another
@@ -63,19 +53,6 @@ when sets of operations commute.
 A developer can inspect these expressions to understand an interface's
 commutativity or pass them to \testgen (\S\ref{sec:tool:generator})
 to generate concrete examples of when interfaces commute.
-
-% Some old text:
-% In principle, the model can be specified in any form, such as a
-% specification language or a boolean constraint.  However, to make it
-% easier for programmers to write models, \analyzer accepts models
-% written in a symbolic variant of Python.
-% %
-% \XXX[AC][Say what we do and then generalize later.]
-% %
-% Python's imperative style is a natural fit for highly stateful
-% interfaces like POSIX, while the symbolic environment lets models
-% capture specification non-determinism (like \code{creat}'s ability to
-% choose any free inode) as under-constrained symbolic values.
 
 \XXX[AC][If we had space, a more complete explanation of how \analyzer
 arrives at commutativity conditions; including pseudo-code for
@@ -142,21 +119,6 @@ same in both cases, the return value of B is the same in both cases, and
 the final state is the same in both cases.]
 
 
-% Old attempt at \analyzer details:
-% Given the Python code for a model, \analyzer extracts precise formulas
-% for when operations commute.  For every set of operations of a
-% certain size (typically we use pairs), it symbolically executes all
-% permutations of the set starting from the same initial unconstrained
-% state for each permutation, collecting the final symbolic state after
-% each permutation as well as the symbolic return values of every
-% operation.  At the end of each code path, it queries the SMT solver for
-% a satisfying assignment of the initial state and all arguments where all
-% final states are equivalent and each operation's return values are
-% equivalent in all permutations (or can be equivalent for some choice of
-% non-deterministic internal variables like newly allocated inode
-% numbers).  If there is a satisfying assignment, it represents a case in
-% which the operations commute.
-
 This test codifies the definition of \SIM commutativity from
 \S\ref{sec:topic:strong-commutativity},
 except that (1) it assumes the specification is sequentially consistent,
@@ -190,16 +152,6 @@ equality), and \code{__init__} instantiates the file system state.  The
 implementation of \code{rename} itself is straightforward.  Indeed, the
 familiarity of Python and ease of manipulating state were part of why we
 chose it over abstract specification languages.
-% This model is straightforward, but captures the essence
-% of what \code{rename} does: it looks up the source file name, returns
-% an error if it does not exist, and otherwise decrements the link count
-% on the destination file if it exists, points the destination file name
-% to the source file's inode, and so on.
-% \XXX[AC][This sentence seems misleading:]
-% Writing this model requires
-% the interface designer to specify the state that \code{rename} accesses
-% internally, such as the \code{fname_to_inum} map that represents a directory,
-% and the inode reference counts in \code{inode}.
 
 Given two
 \code{rename} operations, \code{rename(a, b)} and \code{rename(c, d)},
@@ -230,9 +182,6 @@ Given two
 
 \end{CompactItemize}
 
-%% For many interfaces, it is possible to apply the commutativity rule ``by
-%% hand''.  For example, the \code{getpid} system call commutes with just
-%% about everything else, and should scale. 
 As this example shows, when system calls access shared, mutable
 state, reasoning about every commutative case by hand can become
 difficult.
@@ -261,10 +210,6 @@ of the files does not exist, the other is a symlink to the first, and
 \code{open} is invoked with \code{O_CREAT}; or if one file exists and is
 non-empty, the other is a symlink to the first, and \code{open} is invoked
 with \code{O_TRUNC}.]
-% When analyzing interfaces by hand, many
-% cases are easy for developers to overlook, both in their understanding
-% of the interface's commutativity, and when making their implementation
-% scale for commutative cases.
 
 
 \subsection{\testgen}

@@ -46,15 +46,6 @@ read or written by another core is not scalable, however,
 since the coherence protocol serializes ownership
 changes for each cache line, and because the shared
 interconnect may serialize unrelated transfers~\cite[\S4.3]{boyd-wickizer:thesis}.
-%
-% rtm: the reason for lack of scaling is the serialization,
-% not the absolute amount of time taken.
-%
-% since that requires transferring ownership, which
-% can take thousands of cycles and slow down concurrent
-% cache line transfers~\cite[\S4.3]{boyd-wickizer:thesis}.
-% In other words, modern multicore hardware is roughly disjoint-access
-% parallel~\cite{israeli:disjoint-access,attiya:disjoint}.
 
 We therefore say that a set of operations scales if their implementations
 have \emph{conflict-free} memory accesses, where no core writes a
@@ -62,15 +53,8 @@ cache line that was read or written by another core.
 %
 When memory accesses are conflict-free, adding more cores will produce
 a linear increase in capacity.
-%Such
-%operations do not experience coherence misses and do not slow each
-%other down. 
-% E- Can we get away w/o that sentence?
 This is not a perfect model of the complex realities of
 modern hardware, but it is a good approximation. 
-% \XXX[AC][Make it
-%clear that, informally, we equate conflict-free with scalable, but
-%formally always state it in terms of conflict-freedom.]
 
 At the core of our approach is this \emph{scalable commutativity rule}: In any
 situation where several operations \emph{commute}---meaning
@@ -80,30 +64,6 @@ are conflict-free during those operations.
 Or, more concisely,
 \textbf{whenever interface operations commute, they can be implemented in a way
   that scales.}
-%
-%Commutativity is an interface property:
-%two operations commute if their order of execution does not affect
-%their results, and the results of later operations cannot distinguish
-%which operation executed first.
-%
-%Scalability is an implementation property:
-%two operations \emph{scale} if concurrent
-%invocations do not slow each other down, so additional cores produce a
-%linear increase in capacity.
-% Because commutativity considers only the externally visible
-% behavior of an interface, it is a property of the interface
-% specification that is
-% independent of its implementation.
-%In other words, any interface has
-%a certain inherent scalability that an implementation may
-%exploit.
-%\XXX[rtm][``a certain inherent scalability''
-%sounds like we're talking about different amounts of scalability,
-%rather than a yes-or-no property. can we say a few words to
-%introduce what the amounts are? or maybe we want ``In other words,
-%in situations where interface calls commute, scalable implementations
-%are possible.'' though that is just a repeat of the rule,
-%so maybe we should just omit this sentence.]
 
 Connections between commutativity and concurrency are well
 established in the literature.  Previous work, however, has focused on
@@ -112,13 +72,9 @@ concurrently (see \S\ref{sec:related}).  Our work is complementary: we
 use commutativity to reason about scalability.
 
 
-% Hence, stated more precisely, the rule says that \emph{whenever two
-%   operations commute, they have a conflict-free implementation.}
 The commutativity rule makes
 intuitive sense: when operations commute, their
 results (return value and effect on system state) are independent of order.
-%operation happens before or after the writes performed by the other
-%operation. 
 Hence, communication between commutative operations is
 unnecessary, and eliminating it yields conflict-free implementations.
 %
@@ -139,9 +95,6 @@ interfaces common in systems software.
 \SIM\ commutativity, in contrast, is \emph{state-dependent} and
 \emph{interface-based}, as well as \emph{monotonic}.
 %
-%Rather than applying to operations in isolation, \SIM\ commutativity
-%applies to regions of specific executions.
-%
 When operations commute in the context of a specific system state,
 specific operation arguments, and specific concurrent operations, we
 show that an implementation exists that is conflict-free \emph{for that state
@@ -160,27 +113,12 @@ indistinguishable via the interface.
 implementation, enabling developers to apply the rule directly to
 interface design.
 
-
-% \XXX[AC][The above text doesn't explain why it's region-oriented (which
-% is different from state-dependent!)  OTOH, region-oriented-ness isn't
-% really that interesting.  Maybe we should drop it from the acronym and
-% just discuss it in passing when we formalize commutativity?]
-
 The commutativity rule leads to a new way to design scalable
 software:
 %
 first, analyze the interface's commutativity, and then design an
 implementation that
 scales in commutative situations.
-%\XXX[rtm][to what does ``interface'' refer? to the specification of
-%a single operation? what does it mean for a single operation to
-%commute? commute with what? or does interface here refer to a
-%set of operations, as in ``the POSIX interface?''
-%maybe we want ``first, determine which pairs of an interface's operations
-%commute, and then implement each operation so that it
-%is conflict-free with the implementation of each other operation
-%with which it commutes.'']
-% E- Not sure that applies still.
 %
 For example,
 consider file creation in a POSIX-like file system. Imagine that
@@ -205,38 +143,6 @@ complex interfaces, which
 motivated our goal of reasoning about
 scalability in terms of interfaces.
 
-\begin{comment}
-Applying the rule to real-world software systems poses two challenges.
-%
-First, the usual definition of commutativity is limited in ways that
-restricts its applicability to complex, stateful interfaces.  To
-address this challenge, \S\ref{sec:rule} defines a novel form of
-commutativity named \emph{\SIM\ commutativity}.
-%
-\SIM commutativity is \emph{state-dependent}: rather than requiring
-operations to be order-invariant in all states, \SIM\ commutativity
-allows developers to reason not only about specific arguments for
-which operations commute, but also in which system states they
-commute, exposing more opportunities to apply the rule.  The above
-example from POSIX shows why this is important: creating files with
-different names does \emph{not} commute if the names are symlinks to
-the same name, but this one case does not limit the rule's
-applicability to other file system states.
-%
-\SIM\ commutativity is \emph{region-oriented}: rather than applying to just
-two operations, \SIM\ commutativity applies to a region of an execution
-trace, which may contain several operations, again exposing more
-opportunities to apply the rule.
-%
-Finally, it is \emph{interface-based}: rather than requiring all
-operation orders to produce identical internal states, it requires the
-resulting states to be indistinguishable via the interface, allowing
-developers to reason about commutativity independent of any specific
-implementation.
-
-\XXX[AC][Spread the above new terminology to the rest of the paper.]
-\end{comment}
-
 Complex interfaces can make it difficult to spot and reason about all
 commutative cases even given the rule.  To address this challenge,
 \S\ref{sec:tool} introduces a tool named \tool that automates this
@@ -247,13 +153,6 @@ implementation for conflict-freedom under these conditions.  This tool can be
 integrated into the development process to drive initial design and
 implementation, to incrementally improve existing implementations, or to
 help developers understand the commutativity of an interface.
-%
-%\XXX[FK][Can we
-%working the following point into this paragraph? Before we had \tool, we
-%evaluated the scalability of a system by choosing a workload, running it on
-%some
-%hardware, and plotting its performance at varying numbers of cores.]
-% E- No we can't because we make that point in para1.
 
 This paper demonstrates the value of the commutativity rule and \tool
 in two ways.
@@ -285,31 +184,6 @@ to applications, such as commutative
 \code{mmap}s and creating different files in a shared directory.
 \S\ref{sec:eval} confirms that commutative conflict-free system calls
 translate to better application scalability on an 80-core machine.
-
-
-% We demonstrate that
-% {\tool} finds many non-obvious situations where operations commute; that
-% {\tool} finds useful opportunities to increase implementation
-% scalability; and that the test cases that {\tool} generates are a useful way
-% to drive the development of an implementation by pinpointing
-% cases in which the implementation could scale, but doesn't.
-
-
-\begin{comment}
-The contributions of the paper are as follows:
-\begin{CompactItemize}
-
-\item The commutativity rule;
-
-\item The \tool{} tool;
-
-\item \fs: a case study of using \tool to design a scalable file system;
-
-\item A scalability evaluation with microbenchmarks and one application on an
-  80-core machine.
-
-\end{CompactItemize}
-\end{comment}
 
 % The paper is organized as follows.  \S\ref{sec:related} relates our thinking
 % about scalability to previous work. \S\ref{sec:rule} introduces the

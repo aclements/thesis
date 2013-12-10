@@ -3,15 +3,6 @@
 \section{Related work}
 \label{sec:related}
 
-% The primary contribution of this paper is the commutativity rule, its use in the
-% design and implementation of operating systems, and a new tool called \tool
-% that can test if
-% an implementation meets the commutativity rule.
-% This section relates our
-% contributions to previous work on thinking about scalability, on designing
-% parallel operating systems, on exploiting commutativity, and on automated
-% checking.
-
 The scalable commutativity rule is to the best of our knowledge the
 first observation to directly connect scalability to interface
 commutativity.
@@ -160,10 +151,6 @@ approximates commutativity as conflict-freedom.  Our work shows that commutative
 operations always have a conflict-free implementation, making Steele's model
 more broadly applicable.
 %
-% \XXX[AC][This one seems only tangentially related:] Herlihy and Wing use
-% commutativity to prove the correctness of a concurrent queue in their paper
-% introducing linearizability~\cite{herlihy:linearizability}.
-%
 Rinard and
 Diniz describe how to exploit commutativity to automatically parallelize
 code~\cite{rinard:commutativity}.  They allow memory conflicts, but generate
@@ -216,15 +203,6 @@ of that implementation's interface.  This resembles
 QuickCheck's~\cite{claessen:quickcheck} or Gast's~\cite{koopman:gast}
 model-based testing, but uses symbolic techniques.
 %
-% AC: Misleading; \tool *does* want to achieve path coverage
-% Unlike prior work, \tool uses symbolic execution to extract precise
-% commutativity conditions from a model rather than to achieve path
-% coverage in an implementation.
-%
-% As we discuss in \S\ref{sec:tool:generator}, \tool
-% generates test cases by enumerating all possible (non-isomorphic)
-% assignments that satisfy the commutativity condition, instead of
-% generating one test case per path.
 Furthermore, while symbolic execution systems
 often avoid reasoning precisely about symbolic memory accesses (e.g.,
 accessing a symbolic offset in an array),
