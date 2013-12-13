@@ -3,7 +3,7 @@ RUBBER=rubber -Wrefs -Wmisc
 GRAPHS=$(filter-out %/common.gnuplot,$(wildcard graph/*.gnuplot))
 FIGS=$(wildcard *.svg)
 
-pdf: paper.pdf
+pdf: thesis.pdf
 .PHONY: pdf
 
 ifeq ($(V),)
@@ -44,16 +44,16 @@ gitinfo.tex:
 .PHONY: gitinfo.tex
 CLEAN+=gitinfo.tex gitinfo.tex.tmp
 
-paper.pdf: $(GRAPHS:.gnuplot=.tex) gnuplot-lua-tikz.sty \
+thesis.pdf: $(GRAPHS:.gnuplot=.tex) gnuplot-lua-tikz.sty \
 	   gitinfo.tex pyexpr.tex figures/testcases.tex
 	-@./lint $(SPELLTEX)
 	$(call quiet,RUBBER)
 	$(Q)( echo '#!/bin/sh' ; echo 'exec '$(shell which bibtex)' -min-crossrefs=100 "$$@"' ) > bibtex
 	$(Q)@chmod 755 bibtex
-	$(Q)PATH=.:$$PATH $(RUBBER) --pdf paper.tex
-.PHONY: paper.pdf
+	$(Q)PATH=.:$$PATH $(RUBBER) --pdf thesis.tex
+.PHONY: thesis.pdf
 
-paper.ps: paper.pdf
+thesis.ps: thesis.pdf
 	acroread -toPostScript $<
 
 .PHONY: lint
@@ -61,15 +61,15 @@ lint:
 	./lint $(SPELLTEX)
 
 clean:
-	$(RUBBER) --pdf --clean paper.tex
+	$(RUBBER) --pdf --clean thesis.tex
 	rm -f $(GRAPHS:.gnuplot=.tex) gnuplot-lua-tikz.sty gnuplot-lua-tikz-common.tex
 .PHONY: clean
 
-view: paper.pdf
-	evince paper.pdf &
+view: thesis.pdf
+	evince thesis.pdf &
 .PHONY: view
 
-SPELLTEX := $(shell ./bin/get-tex-files.sh paper.tex)
+SPELLTEX := $(shell ./bin/get-tex-files.sh thesis.tex)
 spell:
 	@ for i in $(SPELLTEX) *.bbl; do aspell \
 		--mode=tex \
