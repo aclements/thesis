@@ -7,6 +7,9 @@
 *.cb
 *.cb2
 *.out
+*.toc
+*.lof
+*.lot
 /pyexpr.tex
 /gitinfo.tex
 /graph/*.tex
