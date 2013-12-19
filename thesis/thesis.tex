@@ -1,6 +1,5 @@
 % -*- TeX-PDF-mode: t -*-
 
-\newif\ifdraft\drafttrue
 \documentclass[11pt,twoside,draft]{mitthesis}
 \usepackage[square,comma,numbers,sort&compress]{natbib}
 \usepackage[pdfauthor={Austin T. Clements, M. Frans Kaashoek, Nickolai Zeldovich, Robert T. Morris, and Eddie Kohler},
@@ -31,6 +30,7 @@
 \usepackage{alltt}
 \usepackage{mathrsfs}
 \usepackage{etoolbox}
+\usepackage{ifdraft}
 \IfFileExists{microtype.sty}{
   \usepackage{microtype}
 }{
@@ -53,10 +53,8 @@
 
 \DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
 
-% Draft info
-\ifdraft
-\fancyfoot[L]{\textbf{DRAFT}}
-\fi
+% Draft footer
+\ifdraft{\fancyfoot[L]{\textbf{DRAFT}}}{}
 
 % One space after periods
 \frenchspacing
