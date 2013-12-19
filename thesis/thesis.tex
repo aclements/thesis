@@ -30,10 +30,18 @@
 \usepackage{lastpage}
 \usepackage{alltt}
 \usepackage{mathrsfs}
+\usepackage{etoolbox}
+\IfFileExists{microtype.sty}{
+  \usepackage{microtype}
+}{
+  \PackageError{microtype}{Package microtype not found.  Please
+    install texlive-latex-recommended}{}
+}
+
+% Local packages below here
 
 \usepackage{xxxnotes}
 
-\usepackage{etoolbox}
 \usepackage{scp-macros}
 \usetikzlibrary{calc}
 \usetikzlibrary{shapes.geometric}
@@ -43,13 +51,6 @@
 \pdfgentounicode=1
 
 \DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
-
-\IfFileExists{microtype.sty}{
-  \usepackage{microtype}
-}{
-  \PackageError{microtype}{Package microtype not found.  Please
-    install texlive-latex-recommended}{}
-}
 
 % Draft info
 \ifdraft
