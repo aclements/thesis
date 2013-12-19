@@ -22,7 +22,7 @@ for path in sys.argv[1:] or glob.glob("*.tex"):
     # Ignore pyexprs
     t = t.ignore(r"\\pyexpr\{([^}]*)\}")
     # Ignore XXX text (just the text, so XXX-checking rules still work)
-    t = t.ignore(r"\\XXX\[(.*?(?:\]\[.*?)?)\]", re.S)
+    t = t.ignore(r"\\XXX!?(?:\[[^]]*\])?\{(.*?)\}", re.S)
 
     for prefix in ["giga", "mega", "kilo"]:
         t.mark("Use %sB or %sbyte" % (prefix[0].upper(), prefix),
@@ -37,8 +37,7 @@ for path in sys.argv[1:] or glob.glob("*.tex"):
     t.mark("Don't use a ~", r"\\S~")
     # (POSIX is always singular, so apostrophe is okay)
     t.warn("Maybe eliminate apostrophe", "[A-Z]+(?<!POSIX)'s")
-    t.ignore(r"\\def\\@*XXX.*")\
-        .ignore(r"\\bibpunct.*")\
+    t.ignore(r"\\bibpunct.*")\
         .mark("Use \\XXX", r"(?<!\\)XXX")
 #    t.mark("Contraction", "n't")
     if not path.startswith("graph/"):
@@ -46,7 +45,7 @@ for path in sys.argv[1:] or glob.glob("*.tex"):
     # t.mark("Do not use \slash, it is in the wrong font (CMR), just type a slash character for chrissake", r"\\slash")
     t.mark("Use 'x86'", r"{\\em x}86")
     t.mark("Use 'Figure~'", r"Fig\.~")
-    t.warn("Move period inside XXX", r" \\XXX\[[^]]*\](?:\[[^]]*\])?\.")
+    t.warn("Move period inside XXX", r" \\XXX(?:\[[^]]*\])?(?:{[^}]*})\.")
     t.mark("Use \\code", r"\\texttt\b|\\tt\b")
     t.mark("Put plural outside \\code", r"\\cpde\{m(?:un)maps\}")
     t.mark("Operat*ing* system", r"operation%ssystem" % TEXSPACE)

@@ -52,13 +52,13 @@ A developer can inspect these expressions to understand an interface's
 commutativity or pass them to \testgen (\S\ref{sec:tool:generator})
 to generate concrete examples of when interfaces commute.
 
-\XXX[AC][If we had space, a more complete explanation of how \analyzer
+\XXX[AC]{If we had space, a more complete explanation of how \analyzer
 arrives at commutativity conditions; including pseudo-code for
 \code{test} and the gathering of path conditions and maybe even some
 description of the symbolic executor itself would be useful.  E.g., it's
 not at all obvious that we execute all permutations of a call set in one
 symbolic execution path.  Then we could also be more explicit about how
-we implement ``internal'' variables.]
+we implement ``internal'' variables.}
 
 % Diagrammatically, something like:
 %                        /- op_b=>r_ab @ S_ab -- op_c=>r_abc @ S_abc
@@ -111,10 +111,10 @@ For sets larger than pairs, \analyzer must also check that the
 intermediate states are equivalent for every permutation of each subset
 of $o$.
 %
-\XXX[AC][For example, given operations A and B,
+\XXX[AC]{For example, given operations A and B,
 \analyzer executes AB and BA and tests if the return value of A is the
 same in both cases, the return value of B is the same in both cases, and
-the final state is the same in both cases.]
+the final state is the same in both cases.}
 
 
 This test codifies the definition of \SIM commutativity from
@@ -193,7 +193,7 @@ automates reasoning about all possible system states, all possible
 sets of operations that can be
 invoked, and all possible arguments to those operations.
 
-\XXX[AC][Are these examples that enlightening?  Do they just reinforce
+\XXX[AC]{Are these examples that enlightening?  Do they just reinforce
 the ``corner case'' mentality?
 
 For
@@ -207,7 +207,7 @@ number of non-obvious cases: e.g., the two operations do not commute if one
 of the files does not exist, the other is a symlink to the first, and
 \code{open} is invoked with \code{O_CREAT}; or if one file exists and is
 non-empty, the other is a symlink to the first, and \code{open} is invoked
-with \code{O_TRUNC}.]
+with \code{O_TRUNC}.}
 
 
 \subsection{\testgen}
@@ -249,7 +249,7 @@ exactly what inputs might trigger conflicting memory accesses.  Thus, as a
 proxy for achieving good coverage on the implementation, \testgen
 aims to achieve good coverage of the Python model.
 
-\XXX[E][THIS PARAGRAPH IS VERY OPAQUE]
+\XXX[E]{THIS PARAGRAPH IS VERY OPAQUE}
 We consider two forms of coverage.
 The first is the standard notion of path coverage, which \testgen
 achieves by relying on \analyzer's symbolic execution.
@@ -349,8 +349,8 @@ lines of C++ code, processes the
 log file to find and report memory locations that are shared between different
 cores for each test case.
 
-\XXX[AC][mtrace's custom DWARF library dwarfs the rest of this at
-$\sim$6,500 LOC.]
+\XXX[AC]{mtrace's custom DWARF library dwarfs the rest of this at
+$\sim$6,500 LOC.}
 
 % \mtrace is implemented on a modified qemu~\cite{qemu}.  We added support
 % for hypercalls so that software running within \mtrace can communicate

@@ -1,13 +1,11 @@
 % -*- TeX-PDF-mode: t -*-
 
-\documentclass[11pt,twoside]{mitthesis}
+\newif\ifdraft\drafttrue
+\documentclass[11pt,twoside,draft]{mitthesis}
 \usepackage[square,comma,numbers,sort&compress]{natbib}
 \usepackage[pdfauthor={Austin T. Clements, M. Frans Kaashoek, Nickolai Zeldovich, Robert T. Morris, and Eddie Kohler},
             pdftitle={The Scalable Commutativity Rule: Designing Scalable Software for Multicore Processors},
             letterpaper,breaklinks,hidelinks]{hyperref}
-\newif\ifdraft\drafttrue
-\newif\ifnotes\notestrue
-\ifdraft\else\notesfalse\fi
 
 \usepackage{times,mathptmx}
 \usepackage{textcomp}
@@ -32,6 +30,8 @@
 \usepackage{lastpage}
 \usepackage{alltt}
 \usepackage{mathrsfs}
+
+\usepackage{xxxnotes}
 
 \usepackage{etoolbox}
 \usepackage{scp-macros}
@@ -80,22 +80,6 @@
 
 % For text from the SOSP paper, define CompactItemize
 \newenvironment{CompactItemize}{\begin{itemize}}{\end{itemize}}
-
-% Define \XXX, \XXX[notes] and \XXX[author][notes]
-\definecolor{xxxcolor}{rgb}{0.8,0,0}
-\makeatletter
-\long\def\XXX{\@ifnextchar[{\@XXX}{\@XXX[]}}
-\long\def\@XXX[#1]{\@ifnextchar[{\@@@XXX{#1}}{\@@XXX{#1}}}
-\ifnotes
-% Show XXX comments
-\long\def\@@XXX#1{{\color{xxxcolor} XXX #1}\xspace}
-\long\def\@@@XXX#1[#2]{{\color{xxxcolor} XXX (#1) #2}\xspace}
-\else
-% Hide XXX comments
-\long\def\@@XXX#1{\ignorespaces}
-\long\def\@@@XXX#1[#2]{\ignorespaces}
-\fi
-\makeatother
 
 % Fix things like \emph{foo\xspace}.  See
 % http://tug.org/pipermail/texhax/2006-November/007339.html
@@ -155,9 +139,9 @@
 \pagestyle{plain}
 \tableofcontents
 \newpage
-\listoffigures \XXX
+\listoffigures \XXX!{Check if this is reasonable}
 \newpage
-\listoftables \XXX
+\listoftables \XXX!{Check if this is reasonable}
 
 \input{intro}
 \input{related}

@@ -65,12 +65,12 @@ cares about a subset;
 and \code{select} returns all ready file
 descriptors, even if the caller needs only one ready FD.
 
-\XXX[AC][Examples of weird return values that distinguish things in
-pointless ways?  I think open had something annoying with this.]
+\XXX[AC]{Examples of weird return values that distinguish things in
+pointless ways?  I think open had something annoying with this.}
 
-\XXX[AC][Embrace non-determinism?  Embrace under-specification?  Maybe
+\XXX[AC]{Embrace non-determinism?  Embrace under-specification?  Maybe
 this is really about naming.  Do not constrain resource names?  Name
-resources non-deterministically?  Use opaque resource names?]
+resources non-deterministically?  Use opaque resource names?}
 
 \paragraph{Embrace specification non-determinism.}
 
@@ -88,8 +88,8 @@ Many other POSIX interfaces get this right: \code{mmap} can
 return any unused virtual address and \code{creat} can assign any unused
 inode number to a new file.
 
-\XXX[AC][Linearizable interfaces are really the problem below.
-Communication interfaces should allow causal or unconstrained ordering.]
+\XXX[AC]{Linearizable interfaces are really the problem below.
+Communication interfaces should allow causal or unconstrained ordering.}
 
 \paragraph{Permit weak ordering.}
 
@@ -112,10 +112,10 @@ would allow \code{send} and \code{recv} to commute as long as there is
 both enough free space and enough pending messages on the socket, which
 would in turn allow an implementation of Unix domain sockets to support
 scalable communication (which we use in \S\ref{sec:eval:app}).
-\XXX[AC][Should be ``as we demonstrate'', but we don't isolate unordered
-sockets.]
+\XXX[AC]{Should be ``as we demonstrate'', but we don't isolate unordered
+sockets.}
 
-\XXX[AC][Delay?  Decouple and delay?  Enable asynchrony?  Decouple
+\XXX[AC]{Delay?  Decouple and delay?  Enable asynchrony?  Decouple
 asynchronous operations?  Maybe this should be part of decompose
 compound operations because we're splitting the initiation from the
 final action?  Or part of weak ordering because these operations should
@@ -124,11 +124,11 @@ specification non-determinism, but in the same way weak ordering does.
 Release resources asynchronously?  Really it's about resources that are
 coordinated with other cores.  Coordinate asynchronously?  The above is
 about coordinate you want to be immediate, just unordered.  This is
-about coordination that can be delayed.]
+about coordination that can be delayed.}
 
 \paragraph{Release resources asynchronously.}
 
-% \XXX[AC][kill isn't very compelling.  Others are better.]
+% \XXX[AC]{kill isn't very compelling.  Others are better.}
 % Another example of strict ordering is \code{kill}, which requires that
 % the signal be immediately delivered to the target (if it is not masked).
 % This means \code{kill} does not commute with the target executing

@@ -38,7 +38,7 @@ anonymous memory, processes, and threads.  Our model
 also supports nested
 directories, but we disable them because Z3 does not currently handle
 the resulting constraints.
-\XXX[AC][Do we want to say any more about nested directories?]
+\XXX[AC]{Do we want to say any more about nested directories?}
 %
 We restrict file sizes and offsets to page granularity; some \sys data
 structures are conflict-free for offsets on different pages, but
@@ -73,9 +73,9 @@ the expected results on both Linux and \sys.
 \label{fig:testcase-breakdown}
 \end{figure*}
 
-\XXX[AC][memwrite is weird because mscan ignores user space addresses,
+\XXX[AC]{memwrite is weird because mscan ignores user space addresses,
 so the actual write performed by memwrite isn't counted.  That's why
-even the idempotent ones are ``conflict-free''.]
+even the idempotent ones are ``conflict-free''.}
 
 \subsection{Current implementation scalability}
 
@@ -100,7 +100,7 @@ locks that are known to limit its
 scalability and impact real
 applications~\cite{boyd-wickizer:scaling,clements:bonsai,gil:c4}.
 
-\XXX[AC][Maybe call out pure FS calls and/or pure VM calls?]
+\XXX[AC]{Maybe call out pure FS calls and/or pure VM calls?}
 The left half of Figure~\ref{fig:testcase-breakdown} shows the results.
 Out of \pyexpr{mscan.ntestcases} test cases,
 \pyexpr{mscan.linux.shared} cases, widely distributed across the
@@ -140,8 +140,8 @@ which demonstrated these problems in the context of several applications.
 % empty file non-scalable.  A final example is needless updates: if two file
 % names \code{a} and \code{b} point to the same inode, \code{rename(a, b)}
 % need not modify the \code{dentry} for \code{b}, but Linux does so anyway.
-% \XXX[nz][Weak examples; we should at least finish with an
-% interesting/important case.]
+% \XXX[nz]{Weak examples; we should at least finish with an
+% interesting/important case.}
 
 
 \subsection{Making test cases scale}
@@ -167,8 +167,8 @@ was built prior to
 The right half of Figure~\ref{fig:testcase-breakdown} shows the
 result of applying \tool
 to \sys.
-\XXX[AC][Mention here or elsewhere that \tool was partly motivated by
-the difficulty of building a scalable file system?]
+\XXX[AC]{Mention here or elsewhere that \tool was partly motivated by
+the difficulty of building a scalable file system?}
 
 \fs makes extensive use of existing techniques for scalable
 implementations, such as per-core resource
@@ -196,8 +196,8 @@ Many operations also use this radix array to determine if some offset
 is within the file's bounds without risking conflicts with operations
 that change the file's size.
 
-\XXX[AC][Nir's book calls such data structures ``naturally parallel''
-or something.]
+\XXX[AC]{Nir's book calls such data structures ``naturally parallel''
+or something.}
 
 
 \paragraph{Defer work.} Many kernel resources are shared,
@@ -211,16 +211,16 @@ reconciliation and zero detection.  This way, resources are eventually
 released, but within each Refcache epoch commutative operations can be
 conflict-free.
 
-\XXX[AC][Discuss crazy pipe hybrid reference counting scheme?]
+\XXX[AC]{Discuss crazy pipe hybrid reference counting scheme?}
 
-\XXX[AC][This seems uninteresting, and possibly false. \par
+\XXX[AC]{This seems uninteresting, and possibly false. \par
 Batching sometimes enables absorption, when a resource gets reused within
 a batch interval, thus requiring no non-scalable operations at all.
 For instance, if one process closes the last open file descriptor for
 a file, that file becomes eligible for eviction from the inode cache
 (using Refcache weak references~\cite{clements:radixvm}).  However,
 if another process re-opens the file on the same core, the inode can
-be revived without any conflicting memory accesses.]
+be revived without any conflicting memory accesses.}
 
 Some resources are artificially scarce, such as inode numbers in a typical
 Unix file system.  When a typical Unix file system runs out of free
@@ -251,10 +251,10 @@ per-core inode allocation.
 % non-scalable.  \fs first checks whether the file already exists without
 % modifying any cache lines, making these operations scale.
 
-% \XXX[AC][The above two examples are slightly off.  E.g., if I do two
+% \XXX[AC]{The above two examples are slightly off.  E.g., if I do two
 % truncates and the first writes to the file length and the second reads
 % that, that's sharing.  These are both idempotent updates, which is one
-% of the few things we \emph{don't} do scalably.]
+% of the few things we \emph{don't} do scalably.}
 
 % As a final example, if two file names \code{a} and \code{b} point to the
 % same inode, \code{rename(a, b)} should remove the directory entry for
@@ -323,7 +323,7 @@ scalability.  Even though we decided to forego scalability in these
 cases, the commutativity rule and \tool forced us to consciously make
 this trade-off.
 %
-\XXX[AC][About 75\% are known idempotent.]
+\XXX[AC]{About 75\% are known idempotent.}
 
 % Non-idempotent shared case list (incomplete):
 % close_close_pe_5: Closing pipe writer (eager counting)
@@ -350,7 +350,7 @@ some situations.  Other cases involve operations that return the same
 result in either order, but for different reasons, such as two reads
 from a file filled with identical bytes.
 
-\XXX[AC][fstest works around all radix tree expansion.  Is this
-cheating?  That's actually an interesting case.]
+\XXX[AC]{fstest works around all radix tree expansion.  Is this
+cheating?  That's actually an interesting case.}
 
-\XXX[AC][Summarize or something?]
+\XXX[AC]{Summarize or something?}

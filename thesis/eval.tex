@@ -56,7 +56,7 @@ benchmarks running on Linux~3.5.7 from Ubuntu Quantal.  Direct
 comparison is difficult because
 Linux implements many features \sys does not, but this comparison
 indicates \sys's performance is sensible.
-\XXX[AC][Different version from mtrace, which is a little awkward.]
+\XXX[AC]{Different version from mtrace, which is a little awkward.}
 
 \subsection{Microbenchmarks}
 \label{sec:eval:microbenchmarks}
@@ -76,16 +76,16 @@ indicates \sys's performance is sensible.
 % We call such cases, where operations do not commute according to the
 % specification but weaker and more widely commutative semantics suffice
 % for many applications, \emph{needless non-commutativity}.
-% \XXX[AC][Avoid ``needless non-commutativity.''  The point of the
+% \XXX[AC]{Avoid ``needless non-commutativity.''  The point of the
 % commutative versions of the benchmarks is just to verify that it's the
-% non-commutativity limiting scalability.]
+% non-commutativity limiting scalability.}
 
 % In this section, we explore the impact of non-commutative interfaces on
 % scalability by examining the scalability of some of the needlessly
 % non-commutative POSIX interfaces discussed in
-% \S\ref{sec:posix}. \XXX[FK][I don't think we need this reference to
+% \S\ref{sec:posix}. \XXX[FK]{I don't think we need this reference to
 % section 6, and we could do without section 6, and turning it into a
-% future work and discussion section.]
+% future work and discussion section.}
 
 We evaluate scalability and performance on real hardware using two
 microbenchmarks and an application-level benchmark.  Each benchmark has
@@ -99,9 +99,9 @@ non-commutativity and also examine the scalability of
 conflict-free implementations of commutative operations.
 
 We run each benchmark three times and report the mean.  Variance from
-the mean is always under 4\% and typically under 1\%.  \XXX[AC][Except
+the mean is always under 4\% and typically under 1\%.  \XXX[AC]{Except
 mailbench with regular APIs on 80 cores, where something clearly went
-bonkers.]
+bonkers.}
 
 % We examine three different classes of
 % non-commutativity: statbench exercises \code{fstat}, which combines
@@ -126,8 +126,8 @@ introduces \code{fstatx}, which allows applications to request specific
 fields (a similar system call has been proposed for
 Linux~\cite{linux:xstat}).
 
-\XXX[AC][Mention that commutative statbench helps verify our
-disjoint-access parallelism assertion on real hardware.]
+\XXX[AC]{Mention that commutative statbench helps verify our
+disjoint-access parallelism assertion on real hardware.}
 
 \newcounter{mysubfigure}[figure]
 \renewcommand{\themysubfigure}{\thefigure(\alph{mysubfigure})}
@@ -204,7 +204,7 @@ depends on the core count (which determines the number of \refcache
 caches), but with 80~cores, \code{fstat} is \pyexpr{times(
   mean(linkbench.filter(("iv.st_nlink",True),("iv.stats",1),("iv.FS_NLINK_REFCOUNT","refcache::"))["dv.cycles/stat"]),
   mean(linkbench.filter(("iv.st_nlink",True),("iv.stats",1),("iv.kernel","Linux"))["dv.cycles/stat"]))}
-more expensive than on Linux.  \XXX[AC][Haven't tried optimizing this.]
+more expensive than on Linux.  \XXX[AC]{Haven't tried optimizing this.}
 In contrast, \code{fstatx} can avoid this overhead unless link counts are
 requested; like \code{fstat} with a shared count, it performs similarly to Linux's \code{fstat} on
 a single core.
@@ -287,12 +287,12 @@ The application could perform the name lookup once by a setting up a
 stream socket at the beginning, and then using \code{send} to
 communicate.  This setup results in better scalability (see the line
 labeled ``Linux with $n$ streams''). But, in this setup, a spin
-lock in the scheduler becomes a bottleneck (\XXX[FK][double check]).
+lock in the scheduler becomes a bottleneck (\XXX[FK]{double check}).
 Clearly, Linux developers could remove these bottlenecks.  What is nice
 about our approach is that the commutativity rule makes clear that these
 locks can be removed and that \tool{} can catch these non-scalable
-invocations that should be scalable.  \XXX[FK][We should mention
-somewhere that we have a model for unordered and ordered sockets.]
+invocations that should be scalable.  \XXX[FK]{We should mention
+somewhere that we have a model for unordered and ordered sockets.}
 
 \begin{figure}
   \centering
@@ -310,8 +310,8 @@ somewhere that we have a model for unordered and ordered sockets.]
 \subsection{Application performance}
 \label{sec:eval:app}
 
-\XXX[FK/AC][Cite RadixVM on importance of scalable VM for application
-performance. This may be unnecessary given what section 6.2 already says.]
+\XXX[FK/AC]{Cite RadixVM on importance of scalable VM for application
+performance. This may be unnecessary given what section 6.2 already says.}
 
 Finally, we perform a similar experiment using a simple mail server to
 produce a system call workload more representative of a real
@@ -364,19 +364,19 @@ scalability from 1~socket
 % In the non-commutative case, mailbench on \sys slightly outperforms
 % Linux.
 %
-\XXX[AC][We could also make the point that, the commutative APIs
+\XXX[AC]{We could also make the point that, the commutative APIs
 outperform the non-commutative APIs on one core, in addition to
-out-scaling them.]
+out-scaling them.}
 
-\XXX[AC][In the commutative case, our scalability is currently limited
+\XXX[AC]{In the commutative case, our scalability is currently limited
 by the growing chains in the fixed-size dcache hash table of the
-Maildir.  A resizable hash table would probably help.]
+Maildir.  A resizable hash table would probably help.}
 
-\XXX[AC][In the non-commutative case, the top problem is fork by far.
+\XXX[AC]{In the non-commutative case, the top problem is fork by far.
 However, with \code{posix_spawn} instead of fork, we spend all of our
 time in \code{posix_spawn}, which scales but is slow.  If its
 \emph{sequential} performance were better, the other things mailbench
-does would matter more.]
+does would matter more.}
 
 % \begin{figure}
 %   \centering

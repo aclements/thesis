@@ -155,10 +155,10 @@ order; and the presence of region $\HSUFF$ in both histories requires
 that reorderings of
 actions in region $\HY$ are indistinguishable by future operations.
 %
-\XXX[E][There was something about ``This literal transaltion of our
+\XXX[E]{There was something about ``This literal transaltion of our
 informal definition of commutativity'' here, but it's not ``literal,''
 and then I'm not sure we have an informal definition of commutativity?
-Maybe the point was to imply this def actually isn't very hard?...]
+Maybe the point was to imply this def actually isn't very hard?...}
 
 Unfortunately, \SI commutativity doesn't suffice for the proof
 because it is \emph{non-monotonic}.
@@ -233,9 +233,9 @@ operations are the same in each.  This, in turn, means the commutativity
 rule can tell us that scalable implementations exist in the commutative
 cases.
 
-\XXX[AC][Talk about how there may not be a single implementation here?
+\XXX[AC]{Talk about how there may not be a single implementation here?
 Maybe that's best left to the later discussion, once the formal rule has
-been stated.]
+been stated.}
 
 \SIM\ commutativity is also interface-based.
 %
@@ -253,9 +253,9 @@ considered even when no implementation exists. This in turn makes it
 possible to use the commutativity rule early in software development,
 during interface design and initial implementation.
 
-\XXX[rtm][if my machine has synchronized clocks, do I need ``SIM
-commutative''? would SI commutative be enough?]
-\XXX[E][I believe that's right.]
+\XXX[rtm]{if my machine has synchronized clocks, do I need ``SIM
+commutative''? would SI commutative be enough?}
+\XXX[E]{I believe that's right.}
 
 
 \subsection{Implementations}
@@ -296,13 +296,13 @@ must be for the thread matching the \CONTINUE\ invocation.%
   somewhat.}
 %
 % E is not sure this is still important so going to remove it for now
-% \XXX[AC][This gives implementations the ability to force sequential
+% \XXX[AC]{This gives implementations the ability to force sequential
 % histories.  As we discussed, this is actually okay because this includes
 % what real implementations can really do and so our proof includes
 % reality, but that's not something I would expect a reader to put
-% together.]
-%\XXX[AC][When does an implementation get invoked with \CONTINUE?  Is this
-%non-deterministic?  Does it have to be fair?]
+% together.}
+%\XXX[AC]{When does an implementation get invoked with \CONTINUE?  Is this
+%non-deterministic?  Does it have to be fair?}
 
 An implementation \emph{generates} a history when calls to the
 implementation (perhaps including \CONTINUE\ invocations)
@@ -381,25 +381,25 @@ and where $\REFIMP$ can generate $H$.
 Then there exists a correct implementation $m$ of $\SPEC$ whose steps in
 the $\HY$ region of $H$ are conflict-free.
 
-\XXX[rtm][``the ... $\HY$ region'' seems to imply that $m$ must
+\XXX[rtm]{``the ... $\HY$ region'' seems to imply that $m$ must
 generate the same B as $M$.
 is that generally true? what if the specification allows more
 than one response to an invocation? what if $m$ delays responses
 a different amount than $M$? maybe we mean ``there exists an $m$
-that generates the same $\HY$ as $M$ and is conflict-free.'']
+that generates the same $\HY$ as $M$ and is conflict-free.''}
 
-\XXX[E][In fact the construction does generate the same results as those
+\XXX[E]{In fact the construction does generate the same results as those
 in $\HY$, for any ordering of the invocations of $\HY$. And this is true
 even if the TRUE implementation, given a different order of invocations
 than the original $\HY$ order, WOULD GENERATE DIFFERENT RESULTS. This is
-important; it's what I'd like interface-based to mean.]
+important; it's what I'd like interface-based to mean.}
 
-\XXX[AC][The construction works not just for $\HX \HCONCAT \HY$, but for
+\XXX[AC]{The construction works not just for $\HX \HCONCAT \HY$, but for
 any $\HX \HCONCAT \HY'$ where $\HY'$ is a reordering of $\HY$.  Indeed
 this has to be
 the case, since, by its very nature, the construction can't tell the
 difference, but we write things as if it has to be $\HY$.  Should we be
-clearer that the construction is conflict-free in any $\HY'$?]
+clearer that the construction is conflict-free in any $\HY'$?}
 
 
 \subsection{Proof}
@@ -742,8 +742,8 @@ diverges \emph{within} the commutative region.\footnote{%
 %
   \textbf{(e)} Three interleavings of the commutative region.
 %
-  \protect\XXX[E][This figure is currently unreferenced, leaving it in case
-  others think it useful.]~
+  \protect\XXX[E]{This figure is currently unreferenced, leaving it in case
+  others think it useful.}~
 }
 \end{figure*}
 \end{comment}
@@ -792,7 +792,7 @@ Suppose
    \scpline{\scpi{C}{3}}=\code{max()}, \scpline{\scpr{C}{3}}=1].
 \]
 %
-\XXX[E][We put other similar histories inline and this uses lots of space]
+\XXX[E]{We put other similar histories inline and this uses lots of space}
 %
 An implementation could store per-thread maxima reconciled by
 \code{max} and be conflict-free for $\scpline{\scpir{A}{1}

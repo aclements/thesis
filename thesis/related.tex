@@ -66,10 +66,10 @@ correct concurrent execution.  These instructions slow down execution by
 interfering with out-of-order execution, even if there are no memory access
 conflicts.  The Laws of Order resemble the commutativity rule, but draw
 conclusions about sequential performance, rather than scalability.
-\XXX[FK][It would be great to have an example to nail this point. I am thinking
+\XXX[FK]{It would be great to have an example to nail this point. I am thinking
 but along of the lines of per-core data structures, which need per-core locks
 (and thus mfence instructions), but allow scalability.  I would like to drive
-the point that mfence instructions are orthogonal to scalability. does that make sense?]
+the point that mfence instructions are orthogonal to scalability. does that make sense?}
 %
 Paul McKenney
 explores the Laws of Order in the context of the Linux kernel, and points out
@@ -86,8 +86,8 @@ required~\cite{lwn:law}.
 % assumptions underlying each observation and exploring interfaces for which
 % neither observation applies.
 
-% \XXX[AC][If we want to say something here, contrast lock-/wait-freedom against
-% conflict-freedom.]
+% \XXX[AC]{If we want to say something here, contrast lock-/wait-freedom against
+% conflict-freedom.}
 % Theoreticians generally analyze implementations of concurrent
 % data structures in terms of properties like lock-freedom and
 % wait-freedom~\cite{herlihy:art}, and such data structures can help
@@ -181,7 +181,7 @@ Like Rinard and Prabhu's work, the work in databases and its extensions
 focuses on the \emph{safety} of executing commutative operations concurrently,
 not directly on scalability.
 
-% \XXX[AC][I think we beat this to death better in other places.]
+% \XXX[AC]{I think we beat this to death better in other places.}
 % Definitions of commutativity are nearly as diverse as the work that uses
 % commutativity.  However, these definitions commonly require that operations
 % commute in all states.  Our definition of commutativity is uniquely

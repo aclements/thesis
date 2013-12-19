@@ -1,0 +1,40 @@
+\ProvidesPackage{xxxnotes}[2013/12/19 v0.1 XXX macro]
+\NeedsTeXFormat{LaTeX2e}
+
+\newif\ifxxxnotes\xxxnotestrue
+\DeclareOption{draft}{\xxxnotestrue}
+\DeclareOption{final}{\xxxnotesfalse}
+\ProcessOptions
+
+\RequirePackage{xcolor}
+
+\definecolor{xxxhigh}{rgb}{0.8,0,0}
+\definecolor{xxxlow}{rgb}{0,0,0.8}
+
+% There are two levels of XXX notes:
+%
+% Low-priority notes are things that are useful to keep track of, but
+% don't necessarily need to be fixed.  These are things that can
+% remain in a final copy.  This is a step above a TeX comment.
+%
+% High-priority notes are things that *must* be fixed, such as
+% incomplete or incorrect text.  These are things that must not remain
+% in a final copy.
+
+\newcommand{\XXX}{\@ifnextchar!{\@@XXXhigh}{\@XXXlow}}
+\def\@@XXXhigh!{\@XXXhigh}
+
+\newcommand{\@XXXhigh}[2][]{\@XXXformat{xxxhigh}{#1}{#2}}
+\newcommand{\@XXXlow}[2][]{\@XXXformat{xxxlow}{#1}{#2}}
+\newcommand{\@XXXformat}[3]{%
+  \ifxxxnotes%
+    {\color{#1}XXX%
+      \def\@temp{#2}%
+      \ifx\@temp\@empty\else~(#2)\fi%
+      \def\@temp{#3}%
+      \ifx\@temp\@empty\else~#3\fi%
+    }%
+  \fi%
+}
+
+\endinput
