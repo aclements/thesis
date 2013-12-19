@@ -60,7 +60,7 @@ class Text(object):
                 out = "\x1b[35m%s\x1b[36m:" % self.__path
                 out += "\x1b[32m%d\x1b[36m:\x1b[m " % lineno
                 out += "lint %s: " % ("error" if err else "warning")
-                out += "\x1b[4mPlease, " + msg + "\x1b[m"
+                out += "\x1b[4m" + msg + "\x1b[m"
                 print out
                 out = ("  " + text[start:l] + "\x1b[%sm" % ("01;31" if err else "33") +
                        text[l:r] + "\x1b[m" +
