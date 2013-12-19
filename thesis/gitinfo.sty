@@ -1,8 +1,14 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{gitinfo}[2011/02/19 v0.1]
-\ProcessOptions*\relax
+
+\newif\ifgitinfo\gitinfotrue
+\DeclareOption{draft}{\gitinfotrue}
+\DeclareOption{final}{\gitinfofalse}
+\ProcessOptions\relax
+
 \RequirePackage{fancyhdr}
 
+\ifgitinfo
 \input{gitinfo.tex}
 
 \fancypagestyle{plain}{
@@ -11,3 +17,4 @@
   \fancyfoot[R]{{\bf Revision:} \gitid}
 }
 \AtBeginDocument{\pagestyle{plain}}
+\fi
