@@ -69,7 +69,7 @@ Or, more concisely,
 Connections between commutativity and concurrency are well
 established in the literature.  Previous work, however, has focused on
 using commutativity to reason about the safety of executing operations
-concurrently (see \S\ref{sec:related}).  Our work is complementary: we
+concurrently (see \cref{sec:related}).  Our work is complementary: we
 use commutativity to reason about scalability.
 
 
@@ -83,7 +83,7 @@ This intuitive version of the rule is useful in practice, but
 not precise enough to reason
 about formally.
 %
-\S\ref{sec:rule} formally defines the commutativity rule and proves
+\Cref{sec:rule} formally defines the commutativity rule and proves
 the correctness of the formalized rule.
 
 An important consequence of this presentation is a novel form of
@@ -146,7 +146,7 @@ scalability in terms of interfaces.
 
 Complex interfaces can make it difficult to spot and reason about all
 commutative cases even given the rule.  To address this challenge,
-\S\ref{sec:tool} introduces a tool named \tool that automates this
+\cref{sec:tool} introduces a tool named \tool that automates this
 reasoning.  \tool takes an interface model
 in the form of a simplified, symbolic implementation, computes precise
 conditions under which sets of operations commute, and tests an
@@ -157,7 +157,7 @@ help developers understand the commutativity of an interface.
 
 This paper demonstrates the value of the commutativity rule and \tool
 in two ways.
-In \S\ref{sec:posix}, we explore the commutativity of POSIX
+In \cref{sec:posix}, we explore the commutativity of POSIX
 and use this
 understanding both to suggest 
 guidelines for designing interfaces
@@ -165,7 +165,7 @@ whose operations commute and
 to propose specific modifications to POSIX
 that would allow for greater scalability.
 
-In \S\ref{sec:model}, we apply \tool to a simplified model of
+In \cref{sec:model}, we apply \tool to a simplified model of
 \pyexpr{len(mscan.calls)} POSIX file system and virtual memory system
 calls.
 %
@@ -183,7 +183,7 @@ for \pyexpr{mscan.ntestcases - mscan.linux.shared}
 tests.  Some of the commutative cases where Linux doesn't scale are important
 to applications, such as commutative
 \code{mmap}s and creating different files in a shared directory.
-\S\ref{sec:eval} confirms that commutative conflict-free system calls
+\Cref{sec:eval} confirms that commutative conflict-free system calls
 translate to better application scalability on an 80-core machine.
 
 % The paper is organized as follows.  \S\ref{sec:related} relates our thinking

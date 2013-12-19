@@ -30,7 +30,7 @@ conflict-free operations to scale~\cite{attiya:disjoint}.
 %
 Our work builds on the assumption that
 memory systems behave this way, and we indirectly confirm that real hardware
-closely approximates this behavior~(\S\ref{sec:eval}).
+closely approximates this behavior~(\cref{sec:eval}).
 
 % They have a fixed interface (asynchronous shared memory) and show specific
 % implementations with disjoint-access parallelism.
@@ -57,7 +57,7 @@ compare-and-swap instructions on a shared cache line or a shared lock.
 Our work takes a black-and-white view because we have found that, on real
 hardware, a single modified
 shared cache line can wreck
-scalability (\S\ref{sec:eval}).
+scalability (\cref{sec:eval}).
 
 The Laws of Order~\cite{law:orders} explore the relationship between an
 interface's \emph{strong non-commutativity} and whether its implementation
@@ -205,7 +205,7 @@ Furthermore, while symbolic execution systems
 often avoid reasoning precisely about symbolic memory accesses (e.g.,
 accessing a symbolic offset in an array),
 \tool's test case generation aims to achieve \emph{conflict} coverage
-(\S\ref{sec:tool:generator}), which tests different access
+(\cref{sec:tool:generator}), which tests different access
 patterns when using symbolic addresses or indexes.
 
 %%  LocalWords:  commutativity scalability Rappoport linearizable et al mfence

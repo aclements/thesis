@@ -263,7 +263,7 @@ commutative''? would SI commutative be enough?}
 To reason about implementation scalability, we need to model
 implementations in enough detail to tell
 whether different threads' ``memory accesses'' are conflict-free. (As 
-discussed in \S\ref{sec:intro}, conflict freedom is our proxy for
+discussed in \cref{sec:intro}, conflict freedom is our proxy for
 scalability.) We define an implementation as a step
 function: given a state and an invocation, it produces a new state and a
 response. Special \CONTINUE\ actions enable
@@ -475,7 +475,7 @@ It is initialized to $H$.
 Second, $s.\V{refstate}$ is the state of the reference
 implementation, and is initialized accordingly.
 %
-Figure~\ref{fig:nonscalablesim} shows how the simulated implementation
+\Cref{fig:nonscalablesim} shows how the simulated implementation
 works.
 %
 We make several simplifying assumptions, including that $\NSIMP$
@@ -542,7 +542,7 @@ All future responses will still be valid according to the specification.
 \label{fig:scalablesim}
 \end{figure}
 
-Figure~\ref{fig:scalablesim} shows the construction of $m$, a
+\Cref{fig:scalablesim} shows the construction of $m$, a
 version of $M$ that scales over $\HY$ in $H = \HX\HCONCAT \HY$.
 %
 $m$ is similar to $\NSIMP$, but extends it with a \emph{conflict-free
@@ -810,7 +810,7 @@ end, a system designer must decide which situations involving
 commutative operations are most important, and find practical
 implementation strategies that scale in those situations.
 %
-In \S\ref{sec:model} we show that many operations in POSIX have
+In \cref{sec:model} we show that many operations in POSIX have
 implementations that scale quite broadly, with few cases of incompatible
 scalability classes.
 

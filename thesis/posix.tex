@@ -5,7 +5,7 @@
 The rule facilitates scalability reasoning at the interface and
 specification level, and \SIM\ commutativity lets us apply the rule to
 complex interfaces.
-%\S\ref{sec:topic:strong-commutativity} gave a glimpse of this using
+%\Cref{sec:topic:strong-commutativity} gave a glimpse of this using
 %\code{open}.
 This section demonstrates the interface-level reasoning enabled by the
 rule. Using POSIX as a case study, we explore changes that make operations
@@ -42,7 +42,7 @@ equivalent to \code{fork}/\code{exec}, but its specification eliminates
 the intermediate sub-operations.  As a result, \code{posix_spawn}
 commutes with most other operations and permits a broadly scalable
 implementation.
-% As we show in \S\ref{sec:eval:app}, using \code{posix_spawn} instead of
+% As we show in \cref{sec:eval:app}, using \code{posix_spawn} instead of
 % \code{fork} and \code{exec} leads to better scalability.
 
 Another example, \code{stat}, retrieves and returns many
@@ -55,7 +55,7 @@ fields. An alternate API that gave applications
 control of which field or fields were returned
 would commute with more operations and enable a more scalable
 implementation of \code{stat}, as we show in
-\S\ref{sec:eval:microbenchmarks}.
+\cref{sec:eval:microbenchmarks}.
 
 POSIX has many other examples of compound return values.
 \code{sigpending} returns all pending signals, even if the caller only
@@ -83,7 +83,7 @@ needed by applications and an alternate interface
 that could return any
 unused FD would allow FD allocation operations to commute and enable
 implementations to use well-known scalable allocation methods.  We will
-return to this example, too, in \S\ref{sec:eval:microbenchmarks}.
+return to this example, too, in \cref{sec:eval:microbenchmarks}.
 Many other POSIX interfaces get this right: \code{mmap} can
 return any unused virtual address and \code{creat} can assign any unused
 inode number to a new file.
@@ -111,7 +111,7 @@ situations, and an alternate interface that does not enforce ordering
 would allow \code{send} and \code{recv} to commute as long as there is
 both enough free space and enough pending messages on the socket, which
 would in turn allow an implementation of Unix domain sockets to support
-scalable communication (which we use in \S\ref{sec:eval:app}).
+scalable communication (which we use in \cref{sec:eval:app}).
 \XXX[AC]{Should be ``as we demonstrate'', but we don't isolate unordered
 sockets.}
 

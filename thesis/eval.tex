@@ -25,11 +25,11 @@ questions:
 \label{sec:topic:ben}
 
 To answer these questions, we use \sys.
-In addition to the operations analyzed in \S\ref{sec:model}, we scalably
+In addition to the operations analyzed in \cref{sec:model}, we scalably
 implemented
 other commutative operations (e.g., \code{posix_spawn})
 and many of the modified POSIX APIs from
-\S\ref{sec:posix}.
+\cref{sec:posix}.
 %
 All told, \sys
 totals \pyexpr{const["xv6-loc"]["all"]} lines of code, including user
@@ -83,7 +83,7 @@ indicates \sys's performance is sensible.
 % In this section, we explore the impact of non-commutative interfaces on
 % scalability by examining the scalability of some of the needlessly
 % non-commutative POSIX interfaces discussed in
-% \S\ref{sec:posix}. \XXX[FK]{I don't think we need this reference to
+% \cref{sec:posix}. \XXX[FK]{I don't think we need this reference to
 % section 6, and we could do without section 6, and turning it into a
 % future work and discussion section.}
 
@@ -91,7 +91,7 @@ We evaluate scalability and performance on real hardware using two
 microbenchmarks and an application-level benchmark.  Each benchmark has
 two variants, one that uses standard, non-commutative POSIX APIs and
 another that accomplishes the same task using the modified, more broadly
-commutative APIs from \S\ref{sec:posix}.
+commutative APIs from \cref{sec:posix}.
 %
 By benchmarking the standard interfaces against
 their commutative counterparts, we can isolate the cost of
@@ -118,7 +118,7 @@ which measures the scalability of \code{fstat} with respect to
 \code{link}.  This benchmark creates a single file that $n/2$ cores
 repeatedly \code{fstat}. The other $n/2$ cores repeatedly
 \code{link} this file to a new, unique file name, and then \code{unlink}
-the new file name.  As discussed in \S\ref{sec:posix}, \code{fstat} does not
+the new file name.  As discussed in \cref{sec:posix}, \code{fstat} does not
 commute with \code{link} or \code{unlink} on the same file because
 \code{fstat} returns the link count.  In practice,
 applications rarely invoke \code{fstat} to get the link count, so \sys
@@ -173,7 +173,7 @@ with \code{link} and \code{unlink}.  We use a \refcache scalable
 counter~\cite{clements:radixvm} for the link count so that the
 \code{link}s and \code{unlink}s do not conflict, and place it on
 its own cache line to avoid false sharing.
-Figure~\ref{fig:linkbench} shows the results.  With the commutative
+\Cref{fig:linkbench} shows the results.  With the commutative
 \code{fstatx}, statbench scales perfectly and experiences zero L2 cache
 misses in \code{fstatx}, while \code{fstat} severely limits the
 scalability of statbench.  
@@ -212,7 +212,7 @@ a single core.
 % Above 20~cores, the shared link count and \refcache link count
 % implementations of \code{fstat} scale similarly.
 
-\paragraph{openbench.} Figure~\ref{fig:fdbench} shows the results
+\paragraph{openbench.} \Cref{fig:fdbench} shows the results
 of openbench, which stresses the file descriptor allocation performed by
 \code{open}.  In openbench, $n$ threads concurrently \code{open} and
 \code{close} per-thread files.  These calls do not commute because each
@@ -244,7 +244,7 @@ that \fs avoids.
 \begin{comment}
 \paragraph{sockbench.}
 
-Figure~\ref{fig:sockbench} shows the results of sockbench, which
+\Cref{fig:sockbench} shows the results of sockbench, which
 stresses local sockets.  In sockbench $n$ client processes repeatedly
 send a 1-byte message over a local socket to $n$ server processes and
 wait for a 1-byte response. The clients send the 1 byte message over a
@@ -264,7 +264,7 @@ message into its local partition of the socket, unless its partition is
 full.  If the partition is full, \sys invokes a scalable load balancing
 algorithm to deliver the message into another partition.
 
-As the results in Figure~\ref{fig:sockbench} show, \sys scales
+As the results in \Cref{fig:sockbench} show, \sys scales
 perfectly, because each pair of a client and a server communicate
 through its local partition of the datagram socket.  Thus, cores don't
 need to share any cache lines, and \sys scales perfectly.  Linux scales
@@ -334,7 +334,7 @@ As in the microbenchmarks, we run the mail server in two configurations:
 in one we use lowest FD, an order-preserving socket for queue
 notifications, and \code{fork}/\code{exec} to spawn helper processes; in
 the other we use \code{O_ANYFD}, an unordered notification socket, and
-\code{posix_spawn}, all as described in \S\ref{sec:posix}.
+\code{posix_spawn}, all as described in \cref{sec:posix}.
 %\code{openbench} explored the limitations of lowest
 %FD.
 For queue notifications, we use a Unix domain datagram socket;
@@ -349,7 +349,7 @@ including operations on
 \code{O_CLOEXEC} files (except those specifically \code{dup}ed into the
 new process).
 
-Figure~\ref{fig:mailbench} shows the resulting scalability of these two
+\Cref{fig:mailbench} shows the resulting scalability of these two
 configurations.  Even though the mail server performs a much broader mix
 of operations than the microbenchmarks and doesn't focus solely on
 non-commutative operations, the results are quite similar.

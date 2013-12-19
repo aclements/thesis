@@ -2,9 +2,11 @@
 
 \documentclass[11pt,twoside,draft]{mitthesis}
 \usepackage[square,comma,numbers,sort&compress]{natbib}
+
+% Put hyperref in final mode; otherwise hyperlinks are disabled
 \usepackage[pdfauthor={Austin T. Clements, M. Frans Kaashoek, Nickolai Zeldovich, Robert T. Morris, and Eddie Kohler},
             pdftitle={The Scalable Commutativity Rule: Designing Scalable Software for Multicore Processors},
-            letterpaper,breaklinks,hidelinks]{hyperref}
+            letterpaper,breaklinks,hidelinks,final]{hyperref}
 
 \usepackage{times,mathptmx}
 \usepackage{textcomp}
@@ -31,6 +33,7 @@
 \usepackage{mathrsfs}
 \usepackage{etoolbox}
 \usepackage{ifdraft}
+\usepackage[capitalise]{cleveref} % After hyperref, listings
 \IfFileExists{microtype.sty}{
   \usepackage{microtype}
 }{
@@ -114,6 +117,9 @@
 \newcommand{\fs}{ScaleFS\xspace}
 
 \bibpunct[: ]{[}{]}{,}{n}{XXX}{XXX}
+
+\crefname{mysubfigure}{Figure}{Figures}
+\Crefname{mysubfigure}{Figure}{Figures}
 
 \makeatother
 
