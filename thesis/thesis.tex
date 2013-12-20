@@ -148,6 +148,12 @@
 \newpage
 \listoftables \XXX!{Check if this is reasonable}
 
+% Shift sectioning commands to start at \chapter
+\let\subsubsubsection\subsubsection
+\let\subsubsection\subsection
+\let\subsection\section
+\let\section\chapter
+
 \input{intro}
 \input{related}
 \input{rule}
