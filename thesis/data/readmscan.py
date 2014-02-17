@@ -425,9 +425,9 @@ class Tikz(object):
 
         height_rest = height - height100
         if side == 'right':
-            lx, lanchor = 1, 'west'
+            lx, lanchor, align = 1, 'west', 'left'
         else:
-            lx, lanchor = 0, 'east'
+            lx, lanchor, align = 0, 'east', 'right'
 
         # Draw 100% box
         precolor, color = colorfn(1)
@@ -436,8 +436,8 @@ class Tikz(object):
         print >> fp, r'\draw[fill=%s] (0,0) rectangle +(1,-%g);' % \
             (color, height100)
         print >> fp, \
-            r'\draw (%g,-%g) node[anchor=%s,font=\scriptsize] {100\%%};' % \
-            (lx, height100 / 2.0, lanchor)
+            r'\draw (%g,-%g) node[anchor=north %s,inner ysep=0,align=%s,font=\scriptsize] {All tests\\conflict-free};' % \
+            (lx, 0, lanchor, align)
 
         # Draw gradient
         for segment in range(segments):
@@ -448,8 +448,8 @@ class Tikz(object):
             print >> fp, r'\fill[fill=%s] (0,%g) rectangle (%g,%g);' % \
               (color, frac * height_rest - height, width, height_rest - height)
         print >> fp, \
-            r'\draw (%g,%g) node[anchor=base %s,font=\scriptsize] {0\%%};' % \
-            (lx, -height, lanchor)
+            r'\draw (%g,%g) node[anchor=base %s,align=%s,font=\scriptsize] {All tests\\conflicted};' % \
+            (lx, -height, lanchor, align)
 
         # Box the gradient
         print >> fp, r'\draw (0,%g) rectangle (%g,%g);' % \
