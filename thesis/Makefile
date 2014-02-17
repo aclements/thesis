@@ -94,8 +94,6 @@ figures/testcases.tex: data/testcase-tbl.py \
 		--mscan 'Linux' data/mscan-linux.out \
 		--mscan '\sys' data/mscan-xv6.out \
 		> $@
-# XXX Don't have updated Linux data yet
-#		--mscan 'Linux' data/mscan-linux.out
 
 code/fmt.tex:
 	pygmentize -f latex -S default \
