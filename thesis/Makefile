@@ -107,11 +107,11 @@ code/fmt.tex:
 
 code/%.tex: code/%.py
 	pygmentize -f latex $< \
-		| sed -e 's,PY{o+ow},PY{k},' \
+		| sed -e 's,PY{o+ow},PY{k},g' \
 		> $@
 
 code/%.tex: code/%.c
 	pygmentize -f latex $< \
-		| sed -e 's,PY{o+ow},PY{k},' \
+		| sed -e 's,PY{o+ow},PY{k},g' \
 		> $@
 
