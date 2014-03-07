@@ -2,8 +2,9 @@
 \NeedsTeXFormat{LaTeX2e}
 
 \newif\ifxxxnotes\xxxnotestrue
+\newif\ifxxxwarn\xxxwarnfalse
 \DeclareOption{draft}{\xxxnotestrue}
-\DeclareOption{final}{\xxxnotesfalse}
+\DeclareOption{final}{\xxxnotesfalse\xxxwarntrue}
 \ProcessOptions
 
 \RequirePackage{xcolor}
@@ -19,12 +20,17 @@
 %
 % High-priority notes are things that *must* be fixed, such as
 % incomplete or incorrect text.  These are things that must not remain
-% in a final copy.
+% in a final copy and will produce warnings if they are.
 
 \newcommand{\XXX}{\@ifnextchar!{\@@XXXhigh}{\@XXXlow}}
 \def\@@XXXhigh!{\@XXXhigh}
 
-\newcommand{\@XXXhigh}[2][]{\@XXXformat{xxxhigh}{#1}{#2}}
+\newcommand{\@XXXhigh}[2][]{%
+  \@XXXformat{xxxhigh}{#1}{#2}%
+  \ifxxxwarn%
+  \PackageWarning{xxxnotes}{High-priority XXX note in final copy.}%
+  \fi%
+}
 \newcommand{\@XXXlow}[2][]{\@XXXformat{xxxlow}{#1}{#2}}
 \newcommand{\@XXXformat}[3]{%
   \ifxxxnotes%
