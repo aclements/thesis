@@ -4,6 +4,7 @@
 
 import sys
 import os
+import argparse
 
 import simsym
 from simsym import SchedNode
@@ -340,6 +341,12 @@ class SchedTree(object):
             ctx.text(label[-1], x, (t + b) / 2.0 * S, 'bm',
                      rotate=270)
 
+argparser = argparse.ArgumentParser()
+group = argparser.add_mutually_exclusive_group(required=True)
+group.add_argument('--svg', action='store_true')
+group.add_argument('--tex', action='store_true')
+args = argparser.parse_args()
+
 # Don't turn trivial state equality tests into concrete branches,
 # since this makes some of the places where we hit the state equality
 # test disappear from the execution tree.
@@ -351,12 +358,14 @@ for sar in simsym.symbolic_apply(test, Rename, Rename.rename, Rename.rename):
         print >>sys.stderr, simsym.simplify(sar.path_condition)
         print >>sys.stderr
 
-# ctx = context.SVG(**{'font-family': 'Open Sans',
-# #                     'font-weight': '300'
-#                  })
-# tree.to_ctx(ctx, S=30)
+if args.svg:
+    ctx = context.SVG(**{'font-family': 'Open Sans',
+    #                     'font-weight': '300'
+                     })
+    tree.to_ctx(ctx, S=30)
 
-ctx = context.TikZ()
-tree.to_ctx(ctx, S=13)
+if args.tex:
+    ctx = context.TikZ()
+    tree.to_ctx(ctx, S=13)
 
 ctx.write_to(sys.stdout)
