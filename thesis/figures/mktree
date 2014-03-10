@@ -1,0 +1,376 @@
+#!/usr/bin/env python
+
+# PYTHONPATH=$HOME/r/commuter:$PYTHONPATH
+
+import sys
+import os
+
+import simsym
+from simsym import SchedNode
+from models.rename import Rename
+import graph
+import collections
+
+import tools.context as context
+
+def struct_to_dict(struct):
+    return {arg: getattr(struct, arg).copy() for arg in struct._fields}
+
+def test(base, callA, callB):
+    s0 = base.var('s0')
+    argsA = callA.arg_struct_type.var('a')
+    argsB = callB.arg_struct_type.var('b')
+
+    sAB = s0.copy()
+    simsym.note(('begin', (0,)))
+    rA = callA(sAB, **struct_to_dict(argsA))
+    simsym.note(('end', (0,), rA))
+    simsym.note(('begin', (0,1)))
+    rAB = callB(sAB, **struct_to_dict(argsB))
+    simsym.note(('end', (0,1), rAB))
+
+    sBA = s0.copy()
+    simsym.note(('begin', (1,)))
+    rB = callB(sBA, **struct_to_dict(argsB))
+    simsym.note(('end', (1,), rB))
+    if rB != rAB:
+        return 'RB'
+    simsym.note(('begin', (1,0)))
+    rBA = callA(sBA, **struct_to_dict(argsA))
+    simsym.note(('end', (1,0), rBA))
+
+    if rA != rBA:
+        return 'RA'
+    if not sAB == sBA:          # Render commutative branch as True
+        return 'S'
+    return 'C'
+
+class SchedGraph(graph.Graph):
+    def __init__(self):
+        super(SchedGraph, self).__init__()
+        self.graph_attrs(nodesep=0.1, ranksep=0.1)
+#        self.node_attrs(shape='plaintext', width=0.3, fixedsize=True)
+#        self.node_attrs(shape='plaintext', width=0.3, fixedsize=True)
+        self.edge_attrs(arrowsize=0.5)
+        self.edge_attrs(arrowhead="none")
+        # SchedNodes are graph *edges*.  When the schedule forks,
+        # we'll get two SchedNodes with identical metadata but
+        # different vals.  For each graph node, we pick the first edge
+        # out of it we see to represent that graph node and we
+        # identify it by its predecessor SchedNode (which can be
+        # thought of as the edge tail going in to the graph node).
+        self.__tail_to_gnode = {}
+
+    def add_sched(self, sched, result, result_color=None):
+        prev_snode = None
+        path = []
+        callseq = None
+        COLORS = {None: "black",
+                  (0,) : "red", (0,1) : "green",
+                  (1,) : "blue", (1,0) : "yellow"}
+        first_in_seq = False
+        for snode in sched:
+            if snode.typ == "note" and snode.val[0] == "end":
+                gnode = self.__tail_to_gnode.get(prev_snode)
+                if gnode is None:
+                    gnode = self.__tail_to_gnode[prev_snode] = self.node(
+                        snode,
+                        rank=(callseq, 'end'),
+                        color='black',
+                        fontcolor=COLORS[callseq])
+                path.append((gnode, {}))
+
+            if snode.typ == "note":
+                if snode.val[0] == "begin":
+                    callseq = snode.val[1]
+                    first_in_seq = True
+                elif snode.val[0] == "end":
+                    callseq = None
+
+            if (snode.typ in ("branch_nondet", "branch_det") and
+                not (snode.typ == "branch_det" and
+                     snode.frames[0].filename.endswith("symtypes.py"))):
+                gnode = self.__tail_to_gnode.get(prev_snode)
+                if gnode is None:
+                    gnode = self.__tail_to_gnode[prev_snode] = self.node(
+                        snode,
+#                        rank=callseq if first_in_seq else None,
+                        rank=(callseq, snode.frames[0].lineno),
+                        color='black',
+                        fontcolor=COLORS[callseq])
+                first_in_seq = False
+                if snode.is_branch():
+                    edge_attrs = {"label": str(snode.val)[0]}
+                    edge_attrs = {}
+                else:
+                    edge_attrs = {}
+                path.append((gnode, edge_attrs))
+            prev_snode = snode
+        path.append((self.node(result, unique=True, color=result_color), {}))
+        for (n1, attrs), (n2, _) in zip(path, path[1:]):
+            self.edge(n1, n2, **attrs)
+
+    def obj_attrs(self, node):
+        if node == 'C':
+            return {"label": u"\u2713", "fontcolor": "green",
+                    "shape":"plaintext", "margin": 0, "width": 0}
+        elif node in ('RA', 'RB', 'S'):
+            return {"label": u"\u2717", "fontcolor": "red",
+                    "shape":"plaintext", "margin": 0, "width": 0}
+        elif not isinstance(node, SchedNode):
+            return {"label": str(node)}
+        elif node.typ == "note" and node.val[0] == "end":
+            return {"label":str(node.val[2]),
+                    "shape":"plaintext", "margin": 0, "width": 0}
+#        return {"shape":"point"}
+
+        base_label = ("%s:%s" % (os.path.basename(node.frames[0].filename),
+                                 node.frames[0].lineno))
+        LABELS = {"rename.py:21":"X", "rename.py:24":"Y", "rename.py:26":"Z",
+                  "spec.py:139":"W", "poster.py:37":"W"}
+        return {"label": LABELS.get(base_label, base_label),
+                "shape": "plaintext"}
+
+class TreeNode(object):
+    def __init__(self, val=None):
+        self.val = val
+        self.band = None
+        self.x, self.y = None, None
+        self.children = {}
+
+class SchedTree(object):
+    def __init__(self):
+        self.__root = TreeNode()
+
+    def add_sched(self, sched, result):
+        node = self.__root
+        callseq = None
+        for snode in sched:
+            if snode.typ == "note":
+                if snode.val[0] == "begin":
+                    callseq = snode.val[1]
+                elif snode.val[0] == "end":
+                    if node.val is None:
+                        node.val = snode
+                        node.band = (callseq, 'end')
+                    node = node.children.setdefault('', TreeNode())
+                    callseq = None
+                continue
+            if snode.typ in ("branch_det", "branch_nondet"):
+                if (snode.typ == "branch_det" and
+                    os.path.basename(snode.frames[0].filename) == "symtypes.py"):
+                    continue
+                clabel = str(snode.val)[0]
+            else:
+                continue
+            if node.val is None:
+                # SchedNodes are edges, but we want to label tree
+                # nodes by the metadata on their outgoing edges (which
+                # will be the same for both), so record the first
+                # SchedNode going out of a tree node we find.
+                node.val = snode
+                node.band = (callseq, os.path.basename(snode.frames[0].filename),
+                             snode.frames[0].lineno)
+            node = node.children.setdefault(clabel, TreeNode())
+        assert node.val is None
+        node.val = result
+
+    def dump(self):
+        def rec(node, indent):
+            print "%s%s (band %s)" % (" "*indent, node.val, node.band)
+            for child in node.children.values():
+                rec(child, indent + 2)
+        rec(self.__root, 0)
+
+    def __apply_rec(self, fn, node=None, *args):
+        if node is None:
+            node = self.__root
+        fn(node, *args)
+        for child in node.children.values():
+            self.__apply_rec(fn, child, *args)
+
+    def layout(self):
+        apply_rec = self.__apply_rec
+        # Compute band order using a topo sort over bands
+        # XXX Stricter than we want.  E.g., if we include symtypes.py
+        # nodes, then we tend to hit the same line multiple times
+        # within a callseq, which looks like a cyclic band.
+        band_to_nodes = collections.defaultdict(list)
+        def map_band(node):
+            if node.band is not None:
+                band_to_nodes[node.band].append(node)
+        apply_rec(map_band)
+
+        band_marks = {}
+        band_order = []
+        def visit_band(band):
+            if band in band_marks:
+                if band_marks[band] == 'temp':
+                    raise ValueError("Cyclic band %r" % (band,))
+                return
+            band_marks[band] = 'temp'
+            for node in band_to_nodes[band]:
+                for child in node.children.values():
+                    visit_band(child.band)
+            band_marks[band] = True
+            band_order.append(band)
+        visit_band(self.__root.band)
+        band_order.reverse()
+
+        # Turn bands into Y coordinates
+        def assign_y(py, node):
+            if node.band is None:
+                y = py + 1
+                assert not node.children, \
+                    'Band-less interior nodes not implemented'
+            else:
+                y = band_order.index(node.band)
+            node.y = y
+            for child in node.children.values():
+                assign_y(y, child)
+        assign_y(-1, self.__root)
+
+        # Compute X coordinates from the bottom up (XXX could be way
+        # more efficient, perhaps using deltas instead of absolutes)
+        def shift(node, by):
+            # Shift node right by 'by'
+            node.x += by
+        def hspans(ytop, subtree):
+            # Compute the horizontal span at each Y, plus a stem going
+            # from subtree up to ytop.
+            minx, maxx = {}, {}
+            def add_xy(x, y):
+                if y in minx:
+                    minx[y] = min(minx[y], x)
+                    maxx[y] = max(maxx[y], x)
+                else:
+                    minx[y] = maxx[y] = x
+            def hspan1(py, node):
+                for y in range(py, node.y+1):
+                    add_xy(node.x, y)
+                for child in node.children.values():
+                    hspan1(node.y, child)
+            hspan1(ytop, subtree)
+            return minx, maxx
+        def overlap(ytop, sub1, sub2):
+            # Compute the amount to shift sub2 to eliminate overlap with sub1
+            _, sub1r = hspans(ytop, sub1)
+            sub2l, _ = hspans(ytop, sub2)
+            return 1 + max(sub1r[y] - sub2l[y] for y in sub1r if y in sub2l)
+        def assign_x(node):
+            if not node.children:
+                node.x = 0.0
+                return
+            prev_child = None
+            for child in node.children.values():
+                assign_x(child)
+                if prev_child is not None:
+                    apply_rec(shift, child, overlap(node.y, prev_child, child))
+                prev_child = child
+            node.x = (sum(child.x for child in node.children.values()) /
+                      len(node.children))
+        assign_x(self.__root)
+
+    def to_svg(self, fp=sys.stdout):
+        self.layout()
+        ctx = context.SVG(**{'font-family': 'Open Sans',
+#                                'font-weight': '300'
+                            })
+        S = 30.0
+        NODE_RADIUS = S * 0.1
+        LABEL_PAD = S * 0.15
+        STROKE_WIDTH = S * 0.04
+
+        # Render bands (hard-coded for rename, meh)
+        BAND_LEFT = -2
+        band_ys = [S * (band * 4 - 1) for band in range(5)]
+        def parse_rgb(x):
+            return tuple(int(x[a:a+2],16)/255.0 for a in range(1,6,2))
+        def inter(a, b, v):
+            return tuple(ax * (1 - v) + bx * v for ax, bx in zip(a, b))
+        # base_colors = map(parse_rgb, ["#121B2A", "#214373", "#5A9FD8",
+        #                               "#77D0F0", "#CAF6F7"])
+        base_colors = [inter(parse_rgb("#8ae234"), parse_rgb("#729fcf"), x/3.0)
+                       for x in range(4)]
+        # # Blend toward white
+        # band_colors = [tuple(0.75 + x*0.25 for x in c) for c in base_colors]
+        band_colors = [inter(c, (1,1,1), 0.75) for c in base_colors]
+        with ctx:
+            ctx.font_size = 32 / 1.25
+            for band in range(4):
+                top = band_ys[band]
+                bot = band_ys[band+1]
+                ctx.rect(BAND_LEFT * S, top, S * (37 - BAND_LEFT), bot - top,
+                         fill=band_colors[band])
+                for step in range(3):
+                    ctx.text('XYZ'[step], S * (1 + BAND_LEFT), top + S*(step+1),
+                             'cm', fill=(0,0,0,0.5))
+            ctx.text('W', S * (1 + BAND_LEFT), band_ys[-1] + S, 'cm',
+                     fill=(0,0,0,0.5))
+        for band in range(5):
+            ctx.path([('M', BAND_LEFT * S, band_ys[band]), ('H', S * 37)],
+                     stroke=(0,0,0,0.3), stroke_width='2pt')
+
+        path = []
+        def render_edges(node, move):
+            for label, child in node.children.items():
+                if label:
+                    if child.x < node.x:
+                        ctx.text(label, S*node.x - LABEL_PAD,
+                                 S*node.y + LABEL_PAD, 'tr')
+                    elif child.x > node.x:
+                        ctx.text(label, S*node.x + LABEL_PAD,
+                                 S*node.y + LABEL_PAD, 'tl')
+                    else:
+                        ctx.text(label, S*node.x + LABEL_PAD,
+                                 S*node.y + LABEL_PAD, 'tl')
+
+                if move:
+                    path.append(('M', S*node.x, S*node.y))
+                path.extend([('H', S*child.x), ('V', S*child.y)])
+                move = True
+                render_edges(child, False)
+        # Stem to the root
+        path.extend([('M', S*self.__root.x, S*(self.__root.y - 1)),
+                     ('V', S*self.__root.y)])
+        render_edges(self.__root, False)
+        ctx.path(path, stroke=(0,0,0), stroke_width=STROKE_WIDTH)
+
+        def render_node(node):
+            if isinstance(node.val, simsym.SymbolicApplyResult):
+                if node.val.value == 'C':
+                    label = u'\u2713'.encode('utf-8')
+                    fill = (0,1,0)
+                elif node.val.value in ('RA', 'RB', 'S'):
+                    label = node.val.value[0]
+                    fill = (1,0,0)
+                ctx.circle(S*node.x, S*node.y, S * 0.33, fill=fill)
+                with ctx:
+                    ctx.font_size *= 1.5
+                    ctx.text(label, S*node.x, S*node.y, 'cm', fill=(1,1,1))
+            elif isinstance(node.val, simsym.SchedNode) and \
+                 node.val.typ == 'note' and node.val.val[0] == 'end':
+                ctx.rect(S*node.x - S*0.33, S*node.y - S*0.33,
+                         S*0.66, S*0.66, fill=(1,1,1), stroke=(0,0,0),
+                         stroke_width=STROKE_WIDTH)
+                ctx.text(str(node.val.val[2]), S*node.x, S*node.y, 'cm')
+            else:
+                ctx.circle(S*node.x, S*node.y, NODE_RADIUS, fill=(0,0,0))
+        self.__apply_rec(render_node)
+
+        ctx.write_to(fp)
+
+# Don't turn trivial state equality tests into concrete branches,
+# since this makes some of the places where we hit the state equality
+# test disappear from the execution tree.
+simsym.options.eq_eliminate_structural = False
+#graph = SchedGraph()
+tree = SchedTree()
+for sar in simsym.symbolic_apply(test, Rename, Rename.rename, Rename.rename):
+    #graph.add_sched(sar._SymbolicApplyResult__schedule, str(sar.value))
+    tree.add_sched(sar._SymbolicApplyResult__schedule, sar)
+    if sar.value == 'C':
+        print >>sys.stderr, simsym.simplify(sar.path_condition)
+        print >>sys.stderr
+#graph.show()
+tree.to_svg()
