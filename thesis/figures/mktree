@@ -22,20 +22,20 @@ def test(base, callA, callB):
     argsB = callB.arg_struct_type.var('b')
 
     sAB = s0.copy()
-    simsym.note(('begin', (0,)))
+    simsym.note({'type':'begin', 'region':'opA'})
     rA = callA(sAB, **struct_to_dict(argsA))
-    simsym.note(('end', (0,), rA))
-    simsym.note(('begin', (0,1)))
+    simsym.note({'type':'end',   'region':'opA', 'result':rA})
+    simsym.note({'type':'begin', 'region':'opA,opB'})
     rAB = callB(sAB, **struct_to_dict(argsB))
-    simsym.note(('end', (0,1), rAB))
+    simsym.note({'type':'end',   'region':'opA,opB', 'result':rAB})
 
     sBA = s0.copy()
-    simsym.note(('begin', (1,)))
+    simsym.note({'type':'begin', 'region':'opB'})
     rB = callB(sBA, **struct_to_dict(argsB))
-    simsym.note(('end', (1,), rB))
-    simsym.note(('begin', (1,0)))
+    simsym.note({'type':'end',   'region':'opB', 'result':rB})
+    simsym.note({'type':'begin', 'region':'opB,opA'})
     rBA = callA(sBA, **struct_to_dict(argsA))
-    simsym.note(('end', (1,0), rBA))
+    simsym.note({'type':'end',   'region':'opB,opA', 'result':rBA})
 
     if rB != rAB:
         return 'RB'
@@ -46,11 +46,25 @@ def test(base, callA, callB):
     return 'C'
 
 class TreeNode(object):
-    def __init__(self, val=None):
-        self.val = val
-        self.band = None
+    def __init__(self):
+        self.typ = self.val = self.band = None
         self.x, self.y = None, None
         self.children = {}
+
+    def set(self, typ, val, region, frames):
+        if self.typ is not None:
+            assert self.typ == typ
+            return
+        self.typ = typ
+        self.val = val
+        self.band = tuple(region) + tuple((f.filename, f.lineno) for f in frames)
+
+    def dump(self, indent=0, label=''):
+        if label:
+            label += ':'
+        print "%s%s%s (band %s)" % (" "*indent, label, self.val, self.band)
+        for clabel, child in node.children.items():
+            child.dump(indent + 2, clabel)
 
 class SchedTree(object):
     def __init__(self):
@@ -58,43 +72,41 @@ class SchedTree(object):
 
     def add_sched(self, sched, result):
         node = self.__root
-        callseq = None
+        region = []
         for snode in sched:
             if snode.typ == "note":
-                if snode.val[0] == "begin":
-                    callseq = snode.val[1]
-                elif snode.val[0] == "end":
-                    if node.val is None:
-                        node.val = snode
-                        node.band = (callseq, 'end')
+                if snode.val['type'] == 'begin':
+                    region.append(snode.val['region'])
+                elif snode.val['type'] == 'end':
+                    if snode.val['region'] != region[-1]:
+                        raise ValueError('Unbalanced note regions')
+                    node.set('end', snode, region, snode.frames)
                     node = node.children.setdefault('', TreeNode())
-                    callseq = None
+                    region.pop()
                 continue
-            if snode.typ in ("branch_det", "branch_nondet"):
-                if (snode.typ == "branch_det" and
-                    os.path.basename(snode.frames[0].filename) == "symtypes.py"):
-                    continue
-                clabel = str(snode.val)[0]
-            else:
+
+            if snode.typ not in ("branch_det", "branch_nondet"):
                 continue
-            if node.val is None:
-                # SchedNodes are edges, but we want to label tree
-                # nodes by the metadata on their outgoing edges (which
-                # will be the same for both), so record the first
-                # SchedNode going out of a tree node we find.
-                node.val = snode
-                node.band = (callseq, os.path.basename(snode.frames[0].filename),
-                             snode.frames[0].lineno)
+            if (snode.typ == "branch_det" and
+                os.path.basename(snode.frames[0].filename) == "symtypes.py"):
+                # This introduces a bunch of extra deterministic
+                # branches that distract from the main code, so just
+                # strip them out.
+                continue
+
+            # SchedNodes are edges, but we want to label tree nodes by
+            # the metadata on their outgoing edges (which will be the
+            # same for both), so here we record information based on
+            # the first SchedNode going out of a tree node we find.
+            node.set('branch', snode, region, snode.frames)
+            clabel = str(snode.val)[0]
             node = node.children.setdefault(clabel, TreeNode())
+        assert region == []
         assert node.val is None
-        node.val = result
+        node.set('result', result, [], [])
 
     def dump(self):
-        def rec(node, indent):
-            print "%s%s (band %s)" % (" "*indent, node.val, node.band)
-            for child in node.children.values():
-                rec(child, indent + 2)
-        rec(self.__root, 0)
+        self.__root.dump()
 
     def __apply_rec(self, fn, node=None, *args):
         if node is None:
@@ -106,9 +118,9 @@ class SchedTree(object):
     def layout(self):
         apply_rec = self.__apply_rec
         # Compute band order using a topo sort over bands
-        # XXX Stricter than we want.  E.g., if we include symtypes.py
-        # nodes, then we tend to hit the same line multiple times
-        # within a callseq, which looks like a cyclic band.
+        # XXX This can't handle genuine loops, since they will cause
+        # the same stack to appear repeatedly.  We should handle
+        # these, even though it will necessarily be ambiguous.
         band_to_nodes = collections.defaultdict(list)
         def map_band(node):
             if node.band is not None:
@@ -133,7 +145,8 @@ class SchedTree(object):
 
         # Turn bands into Y coordinates
         def assign_y(py, node):
-            if node.band is None:
+            if not node.band:
+                # This should only happen in the final result node
                 y = py + 1
                 assert not node.children, \
                     'Band-less interior nodes not implemented'
@@ -252,26 +265,31 @@ class SchedTree(object):
         ctx.path(path, stroke=(0,0,0), stroke_width=STROKE_WIDTH)
 
         def render_node(node):
-            if isinstance(node.val, simsym.SymbolicApplyResult):
+            if node.typ == 'result':
+                assert isinstance(node.val, simsym.SymbolicApplyResult)
                 if node.val.value == 'C':
                     if isinstance(ctx, context.TikZ):
                         label = '\\checkmark'
                     else:
-                        label = u'\u2713'.encode('utf-8')
+                        label = u'\u2713'
                     fill = (0,1,0)
                 elif node.val.value in ('RA', 'RB', 'S'):
                     label = node.val.value[0]
                     fill = (1,0,0)
                 ctx.circle(S*node.x, S*node.y, S * 0.33, fill=fill)
                 ctx.text(label, S*node.x, S*node.y, 'cm', fill=(1,1,1))
-            elif isinstance(node.val, simsym.SchedNode) and \
-                 node.val.typ == 'note' and node.val.val[0] == 'end':
+            elif node.typ == 'end':
+                assert isinstance(node.val, simsym.SchedNode)
+                note = node.val.val
                 ctx.rect(S*node.x - S*0.33, S*node.y - S*0.33,
                          S*0.66, S*0.66, fill=(1,1,1), stroke=(0,0,0),
                          stroke_width=STROKE_WIDTH)
-                ctx.text(str(node.val.val[2]), S*node.x, S*node.y, 'cm')
-            else:
+                ctx.text(unicode(note['result']), S*node.x, S*node.y, 'cm')
+            elif node.typ == 'branch':
+                assert isinstance(node.val, simsym.SchedNode)
                 ctx.circle(S*node.x, S*node.y, NODE_RADIUS, fill=(0,0,0))
+            else:
+                raise ValueError('Unknown TreeNode type %r' % node.typ)
         with ctx:
             ctx.font_size = NODE_LABEL_SIZE
             self.__apply_rec(render_node)
