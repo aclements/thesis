@@ -21,21 +21,25 @@ def test(base, callA, callB):
     argsA = callA.arg_struct_type.var('a')
     argsB = callB.arg_struct_type.var('b')
 
+    simsym.note({'type':'begin', 'region':'sAB'})
     sAB = s0.copy()
     simsym.note({'type':'begin', 'region':'opA'})
     rA = callA(sAB, **struct_to_dict(argsA))
     simsym.note({'type':'end',   'region':'opA', 'result':rA})
-    simsym.note({'type':'begin', 'region':'opA,opB'})
+    simsym.note({'type':'begin', 'region':'opB'})
     rAB = callB(sAB, **struct_to_dict(argsB))
-    simsym.note({'type':'end',   'region':'opA,opB', 'result':rAB})
+    simsym.note({'type':'end',   'region':'opB', 'result':rAB})
+    simsym.note({'type':'end',   'region':'sAB'})
 
+    simsym.note({'type':'begin', 'region':'sBA'})
     sBA = s0.copy()
     simsym.note({'type':'begin', 'region':'opB'})
     rB = callB(sBA, **struct_to_dict(argsB))
     simsym.note({'type':'end',   'region':'opB', 'result':rB})
-    simsym.note({'type':'begin', 'region':'opB,opA'})
+    simsym.note({'type':'begin', 'region':'opA'})
     rBA = callA(sBA, **struct_to_dict(argsA))
-    simsym.note({'type':'end',   'region':'opB,opA', 'result':rBA})
+    simsym.note({'type':'end',   'region':'opA', 'result':rBA})
+    simsym.note({'type':'end',   'region':'sBA'})
 
     if rB != rAB:
         return 'RB'
