@@ -51,7 +51,7 @@ def test(base, callA, callB):
 
 class TreeNode(object):
     def __init__(self):
-        self.typ = self.val = self.band = None
+        self.typ = self.val = self.band = self.region = None
         self.x, self.y = None, None
         self.children = {}
 
@@ -61,6 +61,7 @@ class TreeNode(object):
             return
         self.typ = typ
         self.val = val
+        self.region = tuple(region)
         self.band = tuple(region) + tuple((f.filename, f.lineno) for f in frames)
 
     def dump(self, indent=0, label=''):
@@ -82,10 +83,11 @@ class SchedTree(object):
                 if snode.val['type'] == 'begin':
                     region.append(snode.val['region'])
                 elif snode.val['type'] == 'end':
+                    if 'result' in snode.val:
+                        node.set('end', snode, region, snode.frames)
+                        node = node.children.setdefault('', TreeNode())
                     if snode.val['region'] != region[-1]:
                         raise ValueError('Unbalanced note regions')
-                    node.set('end', snode, region, snode.frames)
-                    node = node.children.setdefault('', TreeNode())
                     region.pop()
                 continue
 
@@ -208,39 +210,19 @@ class SchedTree(object):
         NODE_RADIUS = S * 0.1
         LABEL_PAD = S * 0.15
         STROKE_WIDTH = S * 0.04
-        NODE_LABEL_SIZE = 5 * S / 13   # 5pt at S=13
-        BRANCH_LABEL_SIZE = 4 * S / 13 # 4pt at S=13
+        NODE_LABEL_SIZE = 5 * S / 13    # 5pt at S=13
+        BRANCH_LABEL_SIZE = 4 * S / 13  # 4pt at S=13
+        REGION_LABEL_SIZE = 11 * S / 13 # 11pt at S=13
 
-        # Render bands (hard-coded for rename, meh)
-        BAND_LEFT = -2
-        band_ys = [S * (band * 4 - 1) for band in range(5)]
-        def parse_rgb(x):
-            return tuple(int(x[a:a+2],16)/255.0 for a in range(1,6,2))
-        def inter(a, b, v):
-            return tuple(ax * (1 - v) + bx * v for ax, bx in zip(a, b))
-        # base_colors = map(parse_rgb, ["#121B2A", "#214373", "#5A9FD8",
-        #                               "#77D0F0", "#CAF6F7"])
-        base_colors = [inter(parse_rgb("#8ae234"), parse_rgb("#729fcf"), x/3.0)
-                       for x in range(4)]
-        # # Blend toward white
-        # band_colors = [tuple(0.75 + x*0.25 for x in c) for c in base_colors]
-        band_colors = [inter(c, (1,1,1), 0.75) for c in base_colors]
+        # XXX Should this include line number labels for each
+        # individual band?
+
+        # Render regions
         with ctx:
-            ctx.font_size = S / 1.25
-            for band in range(4):
-                top = band_ys[band]
-                bot = band_ys[band+1]
-                ctx.rect(BAND_LEFT * S, top, S * (38 - BAND_LEFT), bot - top,
-                         fill=band_colors[band])
-                for step in range(3):
-                    ctx.text('XYZ'[step], S * (1 + BAND_LEFT), top + S*(step+1),
-                             'cm', fill=(0,0,0,0.5))
-            ctx.text('W', S * (1 + BAND_LEFT), band_ys[-1] + S, 'cm',
-                     fill=(0,0,0,0.5))
-        for band in range(5):
-            ctx.path([('M', BAND_LEFT * S, band_ys[band]), ('H', S * 38)],
-                     stroke=(0,0,0,0.3), stroke_width='2pt')
+            ctx.font_size = REGION_LABEL_SIZE
+            self.__render_regions(ctx, S)
 
+        # Render tree edges
         path = []
         def render_edges(node, move):
             for label, child in node.children.items():
@@ -268,6 +250,7 @@ class SchedTree(object):
             render_edges(self.__root, False)
         ctx.path(path, stroke=(0,0,0), stroke_width=STROKE_WIDTH)
 
+        # Render tree nodes
         def render_node(node):
             if node.typ == 'result':
                 assert isinstance(node.val, simsym.SymbolicApplyResult)
@@ -297,6 +280,65 @@ class SchedTree(object):
         with ctx:
             ctx.font_size = NODE_LABEL_SIZE
             self.__apply_rec(render_node)
+
+    def __render_regions(self, ctx, S):
+        GAP = S * 2             # Gap between tree and region labels
+        LINE_SKIP = S * 1.2     # Distance between region layer baselines
+
+        # Compute region bounds
+        regions, lr, unique_regions = {}, [None, None], set()
+        def find_regions(node):
+            if node.region:
+                unique_regions.add(node.region)
+            for i in range(1, len(node.region) + 1):
+                region = node.region[:i]
+                bounds = regions.get(region)
+                if bounds is None:
+                    regions[region] = (node.y - 1, node.y)
+                else:
+                    regions[region] = (min(node.y - 1, bounds[0]),
+                                       max(node.y, bounds[1]))
+            if lr[0] is None:
+                lr[0] = lr[1] = node.x
+            else:
+                lr[0], lr[1] = min(node.x, lr[0]), max(node.x, lr[1])
+        self.__apply_rec(find_regions)
+        max_len = max(map(len, unique_regions))
+        left = lr[0] * S - GAP - max_len * LINE_SKIP
+
+        # Generate region colors
+        def parse_rgb(x):
+            return tuple(int(x[a:a+2],16)/255.0 for a in range(1,6,2))
+        def inter(a, b, v):
+            return tuple(ax * (1 - v) + bx * v for ax, bx in zip(a, b))
+        region_colors = [inter(parse_rgb("#8ae234"), parse_rgb("#729fcf"),
+                               float(x)/(len(unique_regions) - 1))
+                         for x in range(len(unique_regions))]
+        # Blend toward white
+        region_colors = [inter(c, (1,1,1), 0.75) for c in region_colors]
+
+        # Render region backgrounds
+        for i, k in enumerate(sorted(unique_regions,
+                                     key=lambda r:regions[r][0])):
+            region = regions[k]
+            ctx.rect((lr[0] - 0.5) * S, region[0] * S,
+                     (lr[1] - lr[0] + 1) * S, (region[1] - region[0]) * S,
+                     fill=region_colors[i])
+
+        # Render separating lines
+        lines = {}
+        for label, (t, b) in regions.items():
+            for y in (t, b):
+                lines[y] = min(lines.get(y, 0), left + len(label) * LINE_SKIP)
+        for y, x in lines.items():
+            ctx.path([('M', x, y*S), ('H', (lr[1]+0.5)*S)],
+                     stroke=(0,0,0,0.3), stroke_width=S*0.1)
+
+        # Render region labels
+        for label, (t, b) in regions.items():
+            x = left + len(label) * LINE_SKIP
+            ctx.text(label[-1], x, (t + b) / 2.0 * S, 'bm',
+                     rotate=270)
 
 # Don't turn trivial state equality tests into concrete branches,
 # since this makes some of the places where we hit the state equality
