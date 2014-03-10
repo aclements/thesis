@@ -33,103 +33,17 @@ def test(base, callA, callB):
     simsym.note(('begin', (1,)))
     rB = callB(sBA, **struct_to_dict(argsB))
     simsym.note(('end', (1,), rB))
-    if rB != rAB:
-        return 'RB'
     simsym.note(('begin', (1,0)))
     rBA = callA(sBA, **struct_to_dict(argsA))
     simsym.note(('end', (1,0), rBA))
 
+    if rB != rAB:
+        return 'RB'
     if rA != rBA:
         return 'RA'
     if not sAB == sBA:          # Render commutative branch as True
         return 'S'
     return 'C'
-
-class SchedGraph(graph.Graph):
-    def __init__(self):
-        super(SchedGraph, self).__init__()
-        self.graph_attrs(nodesep=0.1, ranksep=0.1)
-#        self.node_attrs(shape='plaintext', width=0.3, fixedsize=True)
-#        self.node_attrs(shape='plaintext', width=0.3, fixedsize=True)
-        self.edge_attrs(arrowsize=0.5)
-        self.edge_attrs(arrowhead="none")
-        # SchedNodes are graph *edges*.  When the schedule forks,
-        # we'll get two SchedNodes with identical metadata but
-        # different vals.  For each graph node, we pick the first edge
-        # out of it we see to represent that graph node and we
-        # identify it by its predecessor SchedNode (which can be
-        # thought of as the edge tail going in to the graph node).
-        self.__tail_to_gnode = {}
-
-    def add_sched(self, sched, result, result_color=None):
-        prev_snode = None
-        path = []
-        callseq = None
-        COLORS = {None: "black",
-                  (0,) : "red", (0,1) : "green",
-                  (1,) : "blue", (1,0) : "yellow"}
-        first_in_seq = False
-        for snode in sched:
-            if snode.typ == "note" and snode.val[0] == "end":
-                gnode = self.__tail_to_gnode.get(prev_snode)
-                if gnode is None:
-                    gnode = self.__tail_to_gnode[prev_snode] = self.node(
-                        snode,
-                        rank=(callseq, 'end'),
-                        color='black',
-                        fontcolor=COLORS[callseq])
-                path.append((gnode, {}))
-
-            if snode.typ == "note":
-                if snode.val[0] == "begin":
-                    callseq = snode.val[1]
-                    first_in_seq = True
-                elif snode.val[0] == "end":
-                    callseq = None
-
-            if (snode.typ in ("branch_nondet", "branch_det") and
-                not (snode.typ == "branch_det" and
-                     snode.frames[0].filename.endswith("symtypes.py"))):
-                gnode = self.__tail_to_gnode.get(prev_snode)
-                if gnode is None:
-                    gnode = self.__tail_to_gnode[prev_snode] = self.node(
-                        snode,
-#                        rank=callseq if first_in_seq else None,
-                        rank=(callseq, snode.frames[0].lineno),
-                        color='black',
-                        fontcolor=COLORS[callseq])
-                first_in_seq = False
-                if snode.is_branch():
-                    edge_attrs = {"label": str(snode.val)[0]}
-                    edge_attrs = {}
-                else:
-                    edge_attrs = {}
-                path.append((gnode, edge_attrs))
-            prev_snode = snode
-        path.append((self.node(result, unique=True, color=result_color), {}))
-        for (n1, attrs), (n2, _) in zip(path, path[1:]):
-            self.edge(n1, n2, **attrs)
-
-    def obj_attrs(self, node):
-        if node == 'C':
-            return {"label": u"\u2713", "fontcolor": "green",
-                    "shape":"plaintext", "margin": 0, "width": 0}
-        elif node in ('RA', 'RB', 'S'):
-            return {"label": u"\u2717", "fontcolor": "red",
-                    "shape":"plaintext", "margin": 0, "width": 0}
-        elif not isinstance(node, SchedNode):
-            return {"label": str(node)}
-        elif node.typ == "note" and node.val[0] == "end":
-            return {"label":str(node.val[2]),
-                    "shape":"plaintext", "margin": 0, "width": 0}
-#        return {"shape":"point"}
-
-        base_label = ("%s:%s" % (os.path.basename(node.frames[0].filename),
-                                 node.frames[0].lineno))
-        LABELS = {"rename.py:21":"X", "rename.py:24":"Y", "rename.py:26":"Z",
-                  "spec.py:139":"W", "poster.py:37":"W"}
-        return {"label": LABELS.get(base_label, base_label),
-                "shape": "plaintext"}
 
 class TreeNode(object):
     def __init__(self, val=None):
@@ -271,15 +185,14 @@ class SchedTree(object):
                       len(node.children))
         assign_x(self.__root)
 
-    def to_svg(self, fp=sys.stdout):
+    def to_ctx(self, ctx, S):
+        """Draw self to ctx.  S is the unit size of the node grid."""
         self.layout()
-        ctx = context.SVG(**{'font-family': 'Open Sans',
-#                                'font-weight': '300'
-                            })
-        S = 30.0
         NODE_RADIUS = S * 0.1
         LABEL_PAD = S * 0.15
         STROKE_WIDTH = S * 0.04
+        NODE_LABEL_SIZE = 5 * S / 13   # 5pt at S=13
+        BRANCH_LABEL_SIZE = 4 * S / 13 # 4pt at S=13
 
         # Render bands (hard-coded for rename, meh)
         BAND_LEFT = -2
@@ -296,11 +209,11 @@ class SchedTree(object):
         # band_colors = [tuple(0.75 + x*0.25 for x in c) for c in base_colors]
         band_colors = [inter(c, (1,1,1), 0.75) for c in base_colors]
         with ctx:
-            ctx.font_size = 32 / 1.25
+            ctx.font_size = S / 1.25
             for band in range(4):
                 top = band_ys[band]
                 bot = band_ys[band+1]
-                ctx.rect(BAND_LEFT * S, top, S * (37 - BAND_LEFT), bot - top,
+                ctx.rect(BAND_LEFT * S, top, S * (38 - BAND_LEFT), bot - top,
                          fill=band_colors[band])
                 for step in range(3):
                     ctx.text('XYZ'[step], S * (1 + BAND_LEFT), top + S*(step+1),
@@ -308,7 +221,7 @@ class SchedTree(object):
             ctx.text('W', S * (1 + BAND_LEFT), band_ys[-1] + S, 'cm',
                      fill=(0,0,0,0.5))
         for band in range(5):
-            ctx.path([('M', BAND_LEFT * S, band_ys[band]), ('H', S * 37)],
+            ctx.path([('M', BAND_LEFT * S, band_ys[band]), ('H', S * 38)],
                      stroke=(0,0,0,0.3), stroke_width='2pt')
 
         path = []
@@ -333,21 +246,24 @@ class SchedTree(object):
         # Stem to the root
         path.extend([('M', S*self.__root.x, S*(self.__root.y - 1)),
                      ('V', S*self.__root.y)])
-        render_edges(self.__root, False)
+        with ctx:
+            ctx.font_size = BRANCH_LABEL_SIZE
+            render_edges(self.__root, False)
         ctx.path(path, stroke=(0,0,0), stroke_width=STROKE_WIDTH)
 
         def render_node(node):
             if isinstance(node.val, simsym.SymbolicApplyResult):
                 if node.val.value == 'C':
-                    label = u'\u2713'.encode('utf-8')
+                    if isinstance(ctx, context.TikZ):
+                        label = '\\checkmark'
+                    else:
+                        label = u'\u2713'.encode('utf-8')
                     fill = (0,1,0)
                 elif node.val.value in ('RA', 'RB', 'S'):
                     label = node.val.value[0]
                     fill = (1,0,0)
                 ctx.circle(S*node.x, S*node.y, S * 0.33, fill=fill)
-                with ctx:
-                    ctx.font_size *= 1.5
-                    ctx.text(label, S*node.x, S*node.y, 'cm', fill=(1,1,1))
+                ctx.text(label, S*node.x, S*node.y, 'cm', fill=(1,1,1))
             elif isinstance(node.val, simsym.SchedNode) and \
                  node.val.typ == 'note' and node.val.val[0] == 'end':
                 ctx.rect(S*node.x - S*0.33, S*node.y - S*0.33,
@@ -356,21 +272,27 @@ class SchedTree(object):
                 ctx.text(str(node.val.val[2]), S*node.x, S*node.y, 'cm')
             else:
                 ctx.circle(S*node.x, S*node.y, NODE_RADIUS, fill=(0,0,0))
-        self.__apply_rec(render_node)
-
-        ctx.write_to(fp)
+        with ctx:
+            ctx.font_size = NODE_LABEL_SIZE
+            self.__apply_rec(render_node)
 
 # Don't turn trivial state equality tests into concrete branches,
 # since this makes some of the places where we hit the state equality
 # test disappear from the execution tree.
 simsym.options.eq_eliminate_structural = False
-#graph = SchedGraph()
 tree = SchedTree()
 for sar in simsym.symbolic_apply(test, Rename, Rename.rename, Rename.rename):
-    #graph.add_sched(sar._SymbolicApplyResult__schedule, str(sar.value))
     tree.add_sched(sar._SymbolicApplyResult__schedule, sar)
     if sar.value == 'C':
         print >>sys.stderr, simsym.simplify(sar.path_condition)
         print >>sys.stderr
-#graph.show()
-tree.to_svg()
+
+# ctx = context.SVG(**{'font-family': 'Open Sans',
+# #                     'font-weight': '300'
+#                  })
+# tree.to_ctx(ctx, S=30)
+
+ctx = context.TikZ()
+tree.to_ctx(ctx, S=13)
+
+ctx.write_to(sys.stdout)
