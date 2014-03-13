@@ -39,6 +39,21 @@ scalability bugs do not creep into the implementation over time.
 \subsection{\analyzer}
 \label{sec:tool:analyzer}
 
+% Alternate outline: Step through in detail with two operations,
+% following commutes2 algorithm, then generalize to sets of operations
+% in the obvious way, then discuss $n$-cube optimization.  Need to
+% cover 1) how to get from the path conditions to the commutativity
+% condition, 2) how \code{commutes} differs from SIM commutativity,
+% and 3) how we implement ``internal'' variables.  Also need to
+% explain (preferably early) how this connects to SIM commutativity:
+% that the unconstrained initial state represents all possible
+% histories that could come before the operations under test and that
+% testing for final state equivalence tests whether any future $Z$ can
+% distinguish the different orders.  This keeps things grounded in
+% examples from the start, but front-loads symbolic execution and
+% separates the rename example from the transition into testgen.
+
+
 \analyzer automates the process of analyzing the commutativity of an
 interface, saving developers from the tedious and error-prone process of
 considering large numbers of interactions between complex operations.
@@ -51,14 +66,6 @@ when sets of operations commute.
 A developer can inspect these expressions to understand an interface's
 commutativity or pass them to \testgen (\cref{sec:tool:generator})
 to generate concrete examples of when interfaces commute.
-
-\XXX[AC]{If we had space, a more complete explanation of how \analyzer
-arrives at commutativity conditions; including pseudo-code for
-\code{test} and the gathering of path conditions and maybe even some
-description of the symbolic executor itself would be useful.  E.g., it's
-not at all obvious that we execute all permutations of a call set in one
-symbolic execution path.  Then we could also be more explicit about how
-we implement ``internal'' variables.}
 
 % Diagrammatically, something like:
 %                        /- op_b=>r_ab @ S_ab -- op_c=>r_abc @ S_abc
@@ -90,64 +97,241 @@ than specifics of the model's implementation, and enables models to
 capture specification non-determinism (like \code{creat}'s ability to
 choose any free inode) as under-constrained symbolic values.
 
-\analyzer considers every set of operations of a certain size (typically
-we use pairs).  For each set of operations $o$, it constructs an
-unconstrained symbolic system state $s$ and unconstrained
-symbolic arguments
-for each operation in $o$, and executes all permutations
-of $o$, each starting from a copy of $s$.
-This execution forks at any branch that can go both
-ways, building up \emph{path conditions} that constrain the state and
-arguments that can lead to each code path.
-At the end of each code path, \analyzer checks if its path condition
-yields an initial state and arguments that make $o$ commute by testing if each
-operation's return value is
-equivalent in all permutations and if the system states reached by all
-permutations are equivalent (or can be equivalent for some
-choice of non-deterministic values like newly allocated
-inode numbers).
-%
-For sets larger than pairs, \analyzer must also check that the
-intermediate states are equivalent for every permutation of each subset
-of $o$.
-%
-\XXX[AC]{For example, given operations A and B,
-\analyzer executes AB and BA and tests if the return value of A is the
-same in both cases, the return value of B is the same in both cases, and
-the final state is the same in both cases.}
+% Larger sets are exponentially more expensive: An n-cube has n *
+% 2^(n-1) edges, so each individual commutativity test is exponential
+% in the number of operations (symbolic branching probably makes this
+% doubly exponential, and the growing path condition at least adds a
+% polynomial factor and may add another exponential).  The number of
+% tests we need to do is nCr(n + k - 1, k) where n is the number of
+% interface operations and k is the number under test.  This probably
+% makes it triply exponential, but I'm not sure what the growth in k
+% is.
 
+\subsubsection{Concrete commutativity analysis}
 
-This test codifies the definition of \SIM commutativity from
-\cref{sec:topic:strong-commutativity},
-except that (1) it assumes the specification is sequentially consistent,
-and (2) instead of considering all possible future operations
-(which would be difficult in symbolic execution), it substitutes state
-equivalence.  It's up to the model's author to define state equivalence
-as whether two states are externally indistinguishable.  This is
-standard practice for high-level data types (e.g., two sets represented
-as trees could be equal even if they are balanced differently).  For the
-POSIX model we present in \cref{sec:model}, only a few types need special
-handling beyond
-what the standard data types provide automatically.
+Starting from such a model, \analyzer computes the commutativity
+condition of each multiset of operations of a user-specified size.
+%
+To determine whether a set of operations commutes, \analyzer executes
+the SIM commutativity test algorithm given in \cref{fig:commutes}.  To
+begin with, we can think of this test in concrete (non-symbolic) terms
+as a test of whether a set of operations commutes starting from a
+specific initial state \code{s0} and given specific operation
+arguments \code{args}.
 
 \begin{figure}
-\inputcode{code/rename}
-\caption{A simplified version of our \code{rename} model.
-  % \code{tstruct}, \code{tlist}, and \code{tdict} create
-  % symbolic struct, list, and dictionary types.
-  % \code{tsort} creates an ``uninterpreted'' type (whose values support
-  % only equality).
-}
-\label{fig:rename-spec}
+  \inputcode{code/commutes}
+  %
+  \splitcaption{The \SIM commutativity test algorithm.}{\code{s0} is
+    the initial state, \code{ops} is the list of operations to test
+    for commutativity, and \code{args} gives the arguments to pass to
+    each operation.  For clarity, this implementation assumes all
+    values in ops are distinct.}
+  \label{fig:commutes}
 \end{figure}
 
-\Cref{fig:rename-spec} gives an example of how a developer could
-model \code{rename}.  The first five lines declare symbolic
-types (\code{tuninterpreted} declares a type whose values support only
-equality), and \code{__init__} instantiates the file system state.  The
-implementation of \code{rename} itself is straightforward.  Indeed, the
-familiarity of Python and ease of manipulating state were part of why we
-chose it over abstract specification languages.
+% Alternate code:
+% def commutes(s0, ops, args):
+%   results, states = {}, {}
+%   for perm in permutations(ops):
+%     s = s0.copy()
+%     for i, op in enumerate(perm):
+%       r = op(s, args[op])
+%
+%       # Test result equivalence
+%       if op not in results:
+%         results[op] = r
+%       elif r != results[op]:
+%         return False
+%
+%       # Test state equivalence
+%       op_set = frozenset(perm[:i+1])
+%       if op_set not in states:
+%         states[op_set] = s.copy()
+%       elif s != states[op_set]:
+%         return False
+%  return True
+
+\code{commutes} codifies the definition of \SIM commutativity, except
+that it requires the specification to be sequentially consistent so it
+needn't interleave partial operations.  Recall that $\HY$ \SI-commutes
+in $H = \HX \HCONCAT \HY$ when, given any reordering $\HY'$ of $\HY$
+and any action sequence $\HSUFF$, \[\HX \HCONCAT \HY \HCONCAT \HSUFF
+\in \SPEC \text{~~~if and only if~~~} \HX \HCONCAT \HY' \HCONCAT
+\HSUFF \in \SPEC.\]  Further, for $\HY$ to \SIM-commute in $H$, every
+prefix of every reodering of $\HY$ must \SI-commute.
+%
+In \code{commutes}, the initial state \code{s0} serves the role of the
+prefix $\HX$: to put the system in some state.
+% For alternate code:
+% The outer loop of \code{commutes} considers all reorderings ($\HY'$)
+% of the operations under test (assuming sequential consistency).  The
+% inner loop executes each individual reordering and performs a result
+% test and a state test.
+\code{ops} serves the role of $\HY$ (assuming sequential consistency)
+and the loop in \code{commutes} generates every $\HY'$, that is, all
+prefixes of all reoderings of $\HY$.  This loop performs two tests.
+First, the result equivalence test ensures that each operation gives
+the same response in all reorderings.  Finally, the state equivalence
+test serves the role of the future actions, $\HSUFF$, by requiring all
+prefixes of all reorderings to converge on states that are
+indistinguishable by future operations.
+
+Since \code{commutes} substitutes state equivalence in place of
+considering all possible future operations (which would be difficult
+with symbolic execution), it's up to the model's author to define
+state equivalence as whether two states are externally
+indistinguishable.  This is standard practice for high-level data
+types (e.g., two sets represented as trees could be equal even if they
+are balanced differently).  For the POSIX model we present in
+\cref{sec:model}, only a few types need special handling beyond what
+\analyzer's high-level data types already provide.
+
+The \code{commutes} algorithm can be optimized by observing that if
+two permutations of the same prefix reach the same state, only one
+needs to be considered further.  This optimization gives
+\code{commutes} a pleasing symmetry: it becomes equivalent to
+exploring all $n$ step paths from $\tup<0,0,\ldots>$ to
+$\tup<1,1,\ldots>$ in an $n$-cube, where each unit step is an
+operation and each vertex is a state.
+
+
+\subsubsection{Symbolic commutativity analysis}
+
+So far, we've considered only how to determine if a set of operations
+commutes for a specific initial state and specific arguments.
+Ultimately, we're interested in the entire space of states and
+arguments for which a set of operations commutes.  To find this,
+\analyzer executes \code{commutes} \emph{symbolically}, passing it an
+unconstrained symbolic initial state and unconstrained symbolic
+operation arguments.  Symbolic execution lets \analyzer efficiently
+consider \emph{all possible} initial states and arguments and
+precisely determine the (likely infinite) set of states and arguments
+for which the operations commute (that is, for which \code{commutes}
+returns \code{True}).
+
+\begin{figure}
+  \inputcode{code/rename}
+  \caption{A simplified version of our \code{rename} model.}
+  \label{fig:rename-spec}
+\end{figure}
+
+\Cref{fig:rename-spec} gives an example of how a developer could model
+the \code{rename} operation in \analyzer.  The first five lines
+declare symbolic types used by the model (\code{tuninterpreted}
+declares a type whose values support only equality).  The \code{POSIX}
+class, itself a symbolic type, represents the \emph{system state} of
+the file system and its methods implement the interface operations to
+be tested.  The implementation of \code{rename} itself is
+straightforward.  Indeed, the familiarity of Python and ease of
+manipulating state were part of why we chose it over abstract
+specification languages.
+
+% \begin{figure}
+%   \inputcode{code/commutes2-old}
+%   \splitcaption{The \SIM commutativity test algorithm for two
+%     operations.}{\tool executes \code{commutes} symbolically and
+%     \code{commutes} executes the operations being tested.  Given a
+%     system state type and two operations, \code{commutes} returns
+%     whether the operations commute under the constraints of the path
+%     condition that leads to the return.}
+%   \label{fig:commutes2-old}
+% \end{figure}
+\begin{figure}
+  \inputcode{code/commutes2}
+  \caption{The \SIM commutativity test algorithm specialized to two
+    operations.}
+  \label{fig:commutes2}
+\end{figure}
+
+To explore how \analyzer analyzes \code{rename}, we'll use the version
+of \code{commutes} given in \cref{fig:commutes2}, which is specialized
+for pairs of operations.  In practice, we typically analyze pairs of
+operations rather than larger sets because larger sets take
+exponentially longer to analyze and rarely reveal problems beyond
+those already revealed by pairs.
+
+% Derived from figures/tree.tex
+\newcommand\treecommutes{%
+  \tikz[y=-0.0111111in,x=0.0111111in]{
+    \definecolor{tmpfill}{rgb}{0,1,0}
+    \path[fill=tmpfill] (0,0) circle (4.29);
+    \node[font=\fontsize{5}{6}\selectfont,text=white,inner sep=0pt] {\checkmark};
+  }%
+}
+\newcommand\treediverges[1]{%
+  \tikz[y=-0.0111111in,x=0.0111111in]{
+    \definecolor{tmpfill}{rgb}{1,0,0}
+    \path[fill=tmpfill] (0,0) circle (4.29);
+    \node[font=\fontsize{5}{6}\selectfont,text=white,inner sep=0pt] {#1};
+  }%
+}
+\begin{figure}
+  \centering
+  \input{figures/tree.tex}
+  %
+  \splitcaption{Symbolic execution tree of \code{commutes2} for
+    \code{rename/rename}.}{Each node represents a conditional branch
+    on a symbolic value.  The terminals at the bottom indicate whether
+    each path constraint yields a commutative execution of the two
+    operations (\treecommutes), or, if not, whether it diverged on
+    return values (\treediverges{R}) or final state
+    (\treediverges{S}).}
+  \label{fig:rename-branching}
+\end{figure}
+
+\XXX[AC]{Add line labels to figure that match up with code listings?}
+
+\XXX[AC]{Show initial path condition and some final path conditions in
+  figure?}
+
+\Cref{fig:rename-branching} visualizes the symbolic execution of
+\code{commutes2} testing a pair of \code{rename} operations.
+%
+By and large, this symbolic execution proceeds like regular Python
+execution, except when it encounters a conditional branch on a
+symbolic value (such as any \code{if} statement in \code{rename}).
+Symbolic execution always begins with an empty symbolic \emph{path
+  condition}.  To execute a conditional branch on a symbolic value,
+\analyzer uses an SMT solver to determine whether that symbolic value
+can be true, false, or either, given the path condition accumulated so
+far.
+%
+If the branch can go both ways, \analyzer logically forks the symbolic
+execution and extends the path conditions of the two forks with the
+constraints that the symbolic value must be true or false,
+respectively.  These growing path conditions thereby constrain further
+execution on the two resulting code paths.
+
+The four main regions of \cref{fig:rename-branching} correspond to the
+four calls to \code{rename} from \code{commutes2} as it tests the two
+different reorderings of the two operations.  Each call region shows
+the three conditional branches in \code{rename}.  The first call forks
+at every conditional branch because the state and arguments are
+completely unconstrained at this point; \analyzer therefore explores
+every code path through \code{rename}.  The second call forks
+similarly.  The third and fourth calls generally do not fork; by this
+point, the symbolic values of \code{s0}, \code{argsA}, and
+\code{argsB} are heavily constrained by the path condition produced by
+the first two calls.  As a result, these calls are often forced to
+make the same branch as the corresponding earlier call.
+
+Finally, after executing both reorderings of \code{rename/rename},
+\code{commutes2} tests their commutativity by checking if each
+operation's return value is equivalent in both permutations and if the
+system states reached by both permutations are equivalent.  This, too,
+is symbolic and may fork execution if it's still possible for the pair
+of operations to be either commutative or non-commutative (we see a
+couple such forks in \cref{fig:rename-branching}).
+
+Together, the set of path conditions that pass this final
+commutativity test are the commutativity condition of this pair of
+operations.  Barring SMT solver time-outs, the disjunction of the path
+conditions for which \code{commutes2} returns \code{True} captures the
+precise set of initial system states and operation arguments for which
+the operations commute.
+
+\XXX!{Fix up flow here.}
 
 Given two
 \code{rename} operations, \code{rename(a, b)} and \code{rename(c, d)},
