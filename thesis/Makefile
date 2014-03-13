@@ -95,6 +95,8 @@ figures/testcases.tex: data/testcase-tbl.py \
 		--mscan '\sys' data/mscan-xv6.out \
 		> $@
 
+# The following rules must be manually invoked because they are
+# expensive or require additional environment
 code/fmt.tex:
 	pygmentize -f latex -S default \
 		| grep -vw 'PY@tok@m' \
@@ -115,3 +117,9 @@ code/%.tex: code/%.c
 		| sed -e 's,PY{o+ow},PY{k},g' \
 		> $@
 
+figures/tree.tex:
+	if ! ./figures/mktree --tex > $@~; then \
+		echo "Are Commuter and Z3 in your PYTHONPATH?" >&2; \
+		false; \
+	fi
+	mv $@~ $@
