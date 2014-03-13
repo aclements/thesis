@@ -57,11 +57,12 @@ for sysname, fname in args.mscan:
     assert set(testset.calls) == set(calls)
 atestset = testsets[0][1]
 
-for idx, (s0, s1) in enumerate(zip(testsets[0][1].col('shared'),
-                                   testsets[1][1].col('shared'))):
-    if len(s1) > 0 and len(s0) == 0:
-        print >>sys.stderr, "Second mscan output not scalable:\n", \
-                            testsets[1][1].row(idx)
+if len(testsets) == 2:
+    for idx, (s0, s1) in enumerate(zip(testsets[0][1].col('shared'),
+                                       testsets[1][1].col('shared'))):
+        if len(s1) > 0 and len(s0) == 0:
+            print >>sys.stderr, "Second mscan output not scalable:\n", \
+                                testsets[1][1].row(idx)
 
 pad = 1
 pos = 0
