@@ -123,6 +123,8 @@
 \newcommand{\inputcode}[1]{%
   {\small\hrule\vspace{0.5em}\input{#1}\hrule\vspace{0.5em}}}
 
+\newcommand{\splitcaption}[2]{\caption[#1]{#1 #2}}
+
 \bibpunct[: ]{[}{]}{,}{n}{XXX}{XXX}
 
 \crefname{figure}{Figure}{Figures} % Default is "Fig.".
@@ -153,6 +155,7 @@
 \tableofcontents
 \newpage
 \listoffigures \XXX!{Check if this is reasonable}
+\XXX{Check for overlong captions and use splitcaption}
 \newpage
 \listoftables \XXX!{Check if this is reasonable}
 
