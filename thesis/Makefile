@@ -45,7 +45,8 @@ gitinfo.tex:
 CLEAN+=gitinfo.tex gitinfo.tex.tmp
 
 thesis.pdf: $(GRAPHS:.gnuplot=.tex) gnuplot-lua-tikz.sty \
-	   gitinfo.tex pyexpr.tex figures/testcases.tex
+	   gitinfo.tex pyexpr.tex figures/testcases-linux.tex \
+	   figures/testcases-sv6.tex
 	-@./lint $(SPELLTEX)
 	$(call quiet,RUBBER)
 	$(Q)( echo '#!/bin/sh' ; echo 'exec '$(shell which bibtex)' -min-crossrefs=100 "$$@"' ) > bibtex
@@ -92,6 +93,22 @@ figures/testcases.tex: data/testcase-tbl.py \
 	$(call quiet,TESTCASE)
 	$(Q)python data/testcase-tbl.py \
 		--mscan 'Linux' data/mscan-linux.out \
+		--mscan '\sys' data/mscan-xv6.out \
+		> $@
+
+figures/testcases-linux.tex: data/testcase-tbl.py \
+			data/readmscan.py \
+			data/mscan-linux.out
+	$(call quiet,TESTCASE)
+	$(Q)python data/testcase-tbl.py \
+		--mscan 'Linux' data/mscan-linux.out \
+		> $@
+
+figures/testcases-sv6.tex: data/testcase-tbl.py \
+			data/readmscan.py \
+			data/mscan-xv6.out
+	$(call quiet,TESTCASE)
+	$(Q)python data/testcase-tbl.py \
 		--mscan '\sys' data/mscan-xv6.out \
 		> $@
 

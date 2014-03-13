@@ -13,7 +13,7 @@
 /pyexpr.tex
 /gitinfo.tex
 /graph/*.tex
-/figures/testcases.tex
+/figures/testcases*.tex
 *.pyc
 /gnuplot-lua-tikz.sty
 /gnuplot-lua-tikz-common.tex
