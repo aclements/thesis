@@ -1,0 +1,32 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{commutes}\PY{p}{(}\PY{n}{s0}\PY{p}{,} \PY{n}{ops}\PY{p}{,} \PY{n}{args}\PY{p}{)}\PY{p}{:}
+  \PY{n}{states} \PY{o}{=} \PY{p}{\PYZob{}}\PY{n+nb}{frozenset}\PY{p}{(}\PY{p}{)}\PY{p}{:} \PY{n}{s0}\PY{p}{\PYZcb{}}
+  \PY{n}{results} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+
+  \PY{c}{\PYZsh{} Generate all (non\PYZhy{}empty) prefixes of all reorderings of ops}
+  \PY{n}{todo} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{p}{(}\PY{n}{op}\PY{p}{,}\PY{p}{)} \PY{k}{for} \PY{n}{op} \PY{k}{in} \PY{n}{ops}\PY{p}{)}
+  \PY{k}{while} \PY{n}{todo}\PY{p}{:}
+    \PY{n}{perm} \PY{o}{=} \PY{n}{todo}\PY{o}{.}\PY{n}{pop}\PY{p}{(}\PY{p}{)}
+
+    \PY{c}{\PYZsh{} Execute next operation in this permutation}
+    \PY{n}{past}\PY{p}{,} \PY{n}{op} \PY{o}{=} \PY{n}{perm}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{perm}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+    \PY{n}{s} \PY{o}{=} \PY{n}{states}\PY{p}{[}\PY{n+nb}{frozenset}\PY{p}{(}\PY{n}{past}\PY{p}{)}\PY{p}{]}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+    \PY{n}{r} \PY{o}{=} \PY{n}{op}\PY{p}{(}\PY{n}{s}\PY{p}{,} \PY{n}{args}\PY{p}{[}\PY{n}{op}\PY{p}{]}\PY{p}{)}
+
+    \PY{c}{\PYZsh{} Test for result equivalence}
+    \PY{k}{if} \PY{n}{op} \PY{k}{not} \PY{k}{in} \PY{n}{results}\PY{p}{:}
+      \PY{n}{results}\PY{p}{[}\PY{n}{op}\PY{p}{]} \PY{o}{=} \PY{n}{r}
+    \PY{k}{elif} \PY{n}{r} \PY{o}{!=} \PY{n}{results}\PY{p}{[}\PY{n}{op}\PY{p}{]}\PY{p}{:}
+      \PY{k}{return} \PY{n+nb+bp}{False}
+
+    \PY{c}{\PYZsh{} Test for state equivalence}
+    \PY{k}{if} \PY{n+nb}{frozenset}\PY{p}{(}\PY{n}{perm}\PY{p}{)} \PY{k}{not} \PY{k}{in} \PY{n}{states}\PY{p}{:}
+      \PY{n}{states}\PY{p}{[}\PY{n+nb}{frozenset}\PY{p}{(}\PY{n}{perm}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{n}{s}
+      \PY{c}{\PYZsh{} Optimization: Move todo.extend here}
+    \PY{k}{elif} \PY{n}{s} \PY{o}{!=} \PY{n}{states}\PY{p}{[}\PY{n+nb}{frozenset}\PY{p}{(}\PY{n}{perm}\PY{p}{)}\PY{p}{]}\PY{p}{:}
+      \PY{k}{return} \PY{n+nb+bp}{False}
+
+    \PY{c}{\PYZsh{} Queue all extensions of perm}
+    \PY{n}{todo}\PY{o}{.}\PY{n}{extend}\PY{p}{(}\PY{n}{perm} \PY{o}{+} \PY{p}{(}\PY{n}{nextop}\PY{p}{,}\PY{p}{)} \PY{k}{for} \PY{n}{nextop} \PY{k}{in} \PY{n}{ops} \PY{k}{if} \PY{n}{nextop} \PY{k}{not} \PY{k}{in} \PY{n}{perm}\PY{p}{)}
+  \PY{k}{return} \PY{n+nb+bp}{True}
+\end{Verbatim}

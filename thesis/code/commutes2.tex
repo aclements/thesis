@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{commutes2}\PY{p}{(}\PY{n}{s0}\PY{p}{,} \PY{n}{opA}\PY{p}{,} \PY{n}{argsA}\PY{p}{,} \PY{n}{opB}\PY{p}{,} \PY{n}{argsB}\PY{p}{)}\PY{p}{:}
+  \PY{c}{\PYZsh{} Run reordering [opA, opB] starting from s0}
+  \PY{n}{sAB} \PY{o}{=} \PY{n}{s0}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+  \PY{n}{rA}  \PY{o}{=} \PY{n}{opA}\PY{p}{(}\PY{n}{sAB}\PY{p}{,} \PY{o}{*}\PY{n}{argsA}\PY{p}{)}
+  \PY{n}{rAB} \PY{o}{=} \PY{n}{opB}\PY{p}{(}\PY{n}{sAB}\PY{p}{,} \PY{o}{*}\PY{n}{argsB}\PY{p}{)}
+
+  \PY{c}{\PYZsh{} Run reordering [opB, opA] starting from s0}
+  \PY{n}{sBA} \PY{o}{=} \PY{n}{s0}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+  \PY{n}{rB}  \PY{o}{=} \PY{n}{opB}\PY{p}{(}\PY{n}{sBA}\PY{p}{,} \PY{o}{*}\PY{n}{argsB}\PY{p}{)}
+  \PY{n}{rBA} \PY{o}{=} \PY{n}{opA}\PY{p}{(}\PY{n}{sBA}\PY{p}{,} \PY{o}{*}\PY{n}{argsA}\PY{p}{)}
+
+  \PY{c}{\PYZsh{} Test commutativity}
+  \PY{k}{return} \PY{n}{rA} \PY{o}{==} \PY{n}{rBA} \PY{k}{and} \PY{n}{rB} \PY{o}{==} \PY{n}{rAB} \PY{k}{and} \PY{n}{sAB} \PY{o}{==} \PY{n}{sBA}
+\end{Verbatim}
