@@ -153,6 +153,7 @@ reference caches at least once.
 \XXX![AC]{Make pseudo-code formatting consistent with rule chapter.}
 
 \begin{figure}
+  \def\fgap{-0.25em}            % Fit on a page
   \begin{tabbing}
     \quad\=\quad\=\quad\=\quad\=\quad\=\quad\=\kill
     inc(obj): \+\\
@@ -160,7 +161,7 @@ reference caches at least once.
         evict(local cache[hash(obj)]) \\
         local cache[hash(obj)] $\gets$ $\langle$obj, 0$\rangle$ \-\\
       local cache[hash(obj)].delta += 1 \\
-    \-\\
+    \-\\[\fgap]
     tryget(weakref): \+\\
       do: \+\\
         $\langle$obj, dying$\rangle$ $\gets$ weakref \-\\
@@ -169,11 +170,11 @@ reference caches at least once.
       if obj is not null: \+\\
         inc(obj) \-\\
       return obj \\
-    \-\\
+    \-\\[\fgap]
     flush(): \+\\
       evict all local cache entries and clear cache \\
       update the current epoch \\
-    \-\\
+    \-\\[\fgap]
     evict(obj, delta): \+\\
       % If this condition is true, then the locked region would be a
       % no-op, but why is it safe to do it without the lock?  The
@@ -194,7 +195,7 @@ reference caches at least once.
             queue \-\\
           else: \+\\
             obj.dirty $\gets$ true \\
-    \-\-\-\-\\
+    \-\-\-\-\\[\fgap]
     review(): \+\\
       for each $\langle$obj, objepoch$\rangle$ in local review queue: \+\\
         if epoch $<$ objepoch + 2: continue \\
@@ -212,6 +213,8 @@ reference caches at least once.
             free obj
   \end{tabbing}
   \vspace{-1em}                 % No idea where this space comes from
+  \rule{\columnwidth}{0.5pt}
+  \vspace{-\baselineskip}
   \caption[\refcache algorithm.]
   {\refcache algorithm.  Each core calls \code{flush} and \code{review}
     periodically.  \code{evict} may be called by \code{flush} or because of a
