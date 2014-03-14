@@ -2,7 +2,7 @@
 
 % Modes:
 % draft - Fast compilation, all XXX notes, draft+git footers
-% (no option) - Full compilation, all XXX notes, git footer
+% (no option) - Full compilation, all XXX notes, draft+git footer
 % final - Full compilation, no XXX notes, no footer
 \documentclass[11pt,twoside,draft]{mitthesis}
 \usepackage[square,comma,numbers,sort&compress]{natbib}
@@ -61,7 +61,8 @@
 \DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
 
 % Draft footer
-\ifdraft{\fancyfoot[L]{\textbf{DRAFT}}}{}
+\ifoptiondraft{\fancyfoot[L]{\textbf{FAST DRAFT}}}%
+{\ifoptionfinal{}{\fancyfoot[L]{\textbf{DRAFT}}}}%
 
 % One space after periods
 \frenchspacing
@@ -122,6 +123,9 @@
 
 \newcommand{\inputcode}[1]{%
   {\small\hrule\vspace{0.5em}\input{#1}\hrule\vspace{0.5em}}}
+
+\newcommand{\inputnodraft}[1]{%
+  \ifdraft{#1 omitted in draft mode}{\input{#1}}}
 
 \newcommand{\splitcaption}[2]{\caption[#1]{#1 #2}}
 
