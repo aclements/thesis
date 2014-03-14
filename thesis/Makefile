@@ -25,7 +25,9 @@ gnuplot-lua-tikz.sty:
 
 %.pdf: %.svg
 	$(call quiet,INKSCAPE)
-	$(Q)inkscape -z --export-text-to-path --export-pdf=$@ $<
+	$(Q)inkscape -z --export-text-to-path --export-pdf=$@ $(INKARGS) $<
+
+figures/refcache.pdf: INKARGS+=--export-area-drawing
 
 # linuxcomp.tex: data/filebench-*.data data/dirbench-*.data mklinuxcomp
 # 	./mklinuxcomp > $@~ && mv $@~ $@
@@ -46,7 +48,7 @@ CLEAN+=gitinfo.tex gitinfo.tex.tmp
 
 thesis.pdf: $(GRAPHS:.gnuplot=.tex) gnuplot-lua-tikz.sty \
 	   gitinfo.tex pyexpr.tex figures/testcases-linux.tex \
-	   figures/testcases-sv6.tex
+	   figures/testcases-sv6.tex figures/refcache.pdf
 	-@./lint $(SPELLTEX)
 	$(call quiet,RUBBER)
 	$(Q)( echo '#!/bin/sh' ; echo 'exec '$(shell which bibtex)' -min-crossrefs=100 "$$@"' ) > bibtex
