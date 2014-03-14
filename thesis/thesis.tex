@@ -100,10 +100,12 @@
 \lstset{basicstyle=\fontsize{9}{9}\sffamily,showstringspaces=false,columns=fullflexible}
 
 % Use \code{...} for inline code.  Note that \code will typeset
-% hyphens as minus signs.
+% hyphens as minus signs.  You can use $math$ in \code.
 \makeatletter
 \def\@mathcode#1{\text{\code{#1}}}
-\def\code{\ifmmode\let\next\@mathcode\else\let\next\lstinline\fi\next}
+\def\@regcode{\lstinline[mathescape=true]}
+\def\@code{\ifmmode\let\next\@mathcode\else\let\next\@regcode\fi\next}
+\def\code{\protect\@code}
 \makeatother
 \let\syscall=\code
 % Code in gnuplot labels
