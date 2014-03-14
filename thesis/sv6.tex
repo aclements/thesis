@@ -206,7 +206,7 @@ and \code{rename} to scale in such situations.
 As \cref{fig:testcase-breakdown-sv6} illustrates, there are a few
 (\pyexpr{mscan.xv6.shared} out of \pyexpr{mscan.ntestcases})
 commutative test cases for
-which \fs is not conflict-free.
+which \vm and \fs are not conflict-free.
 %
 The majority of these tests involve idempotent updates to internal
 state, such as two \code{lseek} operations that both seek a file
