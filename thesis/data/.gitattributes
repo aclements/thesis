@@ -1,0 +1,3 @@
+# Disable text diffs of large JSON data files
+model.out -diff
+mscan-*.out -diff
