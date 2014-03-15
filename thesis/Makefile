@@ -48,8 +48,7 @@ CLEAN+=gitinfo.tex gitinfo.tex.tmp
 
 thesis.pdf: $(GRAPHS:.gnuplot=.tex) gnuplot-lua-tikz.sty \
 	   gitinfo.tex pyexpr.tex figures/testcases-linux.tex \
-	   figures/testcases-sv6.tex figures/refcache.pdf \
-	   figures/radix.pdf
+	   figures/testcases-sv6.tex
 	-@./lint $(SPELLTEX)
 	$(call quiet,RUBBER)
 	$(Q)( echo '#!/bin/sh' ; echo 'exec '$(shell which bibtex)' -min-crossrefs=100 "$$@"' ) > bibtex
