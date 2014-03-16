@@ -3,7 +3,7 @@ CFLAGS += -std=gnu99 -g -O2
 all: write-sharing
 
 write-sharing: write-sharing.c mcorelib/mcorelib.a
-write-sharing: CFLAGS += -lpthread -lnuma
+write-sharing: CFLAGS += -lpthread -lnuma -lm
 
 mcorelib/mcorelib.a: FORCE
 	$(MAKE) -C mcorelib

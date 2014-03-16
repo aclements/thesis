@@ -8,6 +8,19 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <unistd.h>
+#include <math.h>
+
+// XXX Reads are actually *more* expensive than this benchmark
+// indicates.  Fast reads not only bring down the average but also
+// allow the next read to occur sooner.  For example, cores that are
+// on the same socket as the writer not only make much faster reads
+// but also make *far more of them*, artificially reducing the average
+// read latency.  I can't just space the reads out more because then
+// we don't get the effect of simultaneous reads.  I could depend on
+// synchronized TSCs and schedule the reads at regular TSC multiples.
+//
+// OTOH, reads might be cheaper than this benchmark indicates.  If the
+// writer is running really fast, then this won't be 1 write N reads.
 
 struct
 {
@@ -17,6 +30,7 @@ struct
         int minwait;
         int readwait;
         CPU_Set_t *cores;
+        bool stats;
 } opts = {
         .duration = 1,
         .rw = false,
@@ -24,6 +38,7 @@ struct
         .minwait = -1,
         .readwait = 10000,
         .cores = NULL,
+        .stats = false,
 };
 
 struct Args_Info argsInfo[] = {
@@ -39,6 +54,8 @@ struct Args_Info argsInfo[] = {
          .varname = "CYCLES", .help = "Cycles to wait between reads"},
         {"cores", ARGS_CPUSET(&opts.cores),
          .varname = "SET", .help = "Set of cores to run on."},
+        {"stats", ARGS_BOOL(&opts.stats),
+         .help = "Report additional per-CPU statistics."},
         {NULL}
 };
 
@@ -50,6 +67,46 @@ volatile int stop;
 volatile uint64_t buf[256];
 
 uint64_t totalOps, totalOpCycles;
+
+struct StreamStats_Uint
+{
+        uint64_t count;
+        uint64_t total, min, max;
+        double a, q;
+};
+
+void
+StreamStats_UintAdd(struct StreamStats_Uint *s, uint64_t val)
+{
+        s->total += val;
+        if (s->count == 0) {
+                s->min = s->max = val;
+        } else {
+                if (val < s->min)
+                        s->min = val;
+                if (val > s->max)
+                        s->max = val;
+        }
+        ++s->count;
+        // Based on Wikipedia's presentation of Welford 1962.
+        double a_next = s->a + (val - s->a) / s->count;
+        s->q += (val - s->a)*(val - a_next);
+        s->a = a_next;
+}
+
+double
+StreamStats_UintMean(const struct StreamStats_Uint *s)
+{
+        if (s->total / 10000 > s->count)
+                return (double)(s->total / s->count);
+        return ((double)s->total) / s->count;
+}
+
+double
+StreamStats_UintStdDev(const struct StreamStats_Uint *s)
+{
+        return sqrt(s->q / (s->count - 1));
+}
 
 __attribute__((noinline)) void
 doRead()
@@ -75,6 +132,7 @@ doWrite()
 int
 doOps(int cpu, void *opaque)
 {
+        struct StreamStats_Uint ss = {};
         bool reader = opts.rw && (cpu > 0);
 
         // Start barrier
@@ -94,6 +152,8 @@ doOps(int cpu, void *opaque)
                 uint64_t endTSC = Time_TSCAfter();
                 ops++;
                 opCycles += (endTSC - startTSC);
+                if (opts.stats)
+                        StreamStats_UintAdd(&ss, endTSC - startTSC);
                 uint64_t waitTSC;
                 if (reader)
                         waitTSC = endTSC + opts.readwait;
@@ -101,12 +161,17 @@ doOps(int cpu, void *opaque)
                         waitTSC = endTSC + opts.wait;
                 else
                         waitTSC = endTSC + (Rand() % (opts.wait - opts.minwait)) + opts.minwait;
-                while (Time_TSC() < waitTSC);
+                if (endTSC != waitTSC)
+                        while (Time_TSC() < waitTSC);
         }
         if (reader || !opts.rw) {
                 __sync_fetch_and_add(&totalOps, ops);
                 __sync_fetch_and_add(&totalOpCycles, opCycles);
         }
+        if (opts.stats)
+                printf("CPU %d: min %"PRIu64" max %"PRIu64" mean %g stddev %g\n",
+                       cpu, ss.min, ss.max, StreamStats_UintMean(&ss),
+                       StreamStats_UintStdDev(&ss));
 }
 
 void*
