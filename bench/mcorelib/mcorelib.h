@@ -43,6 +43,7 @@ extern struct Args_Type Args_TypeCPUSet;
 double Time_WallSec(void);
 uint64_t Time_WallUsec(void);
 uint64_t Time_SysThreadUsec(void);
+uint64_t Time_TSCOverhead(double *stddev_out);
 
 static inline uint64_t __attribute__((__always_inline__))
 Time_TSC(void)
