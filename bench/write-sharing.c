@@ -72,7 +72,8 @@ struct StreamStats_Uint
 {
         uint64_t count;
         uint64_t total, min, max;
-        double a, q;
+        // Online variance
+        double vmean, vM2;
 };
 
 void
@@ -88,10 +89,12 @@ StreamStats_UintAdd(struct StreamStats_Uint *s, uint64_t val)
                         s->max = val;
         }
         ++s->count;
-        // Based on Wikipedia's presentation of Welford 1962.
-        double a_next = s->a + (val - s->a) / s->count;
-        s->q += (val - s->a)*(val - a_next);
-        s->a = a_next;
+        // Based on Wikipedia's presentation ("Algorithms for
+        // calculating variance") of Knuth's formulation of Welford
+        // 1962.
+        double delta = val - s->vmean;
+        s->vmean += delta / s->count;
+        s->vM2 += delta * (val - s->vmean);
 }
 
 double
@@ -105,7 +108,27 @@ StreamStats_UintMean(const struct StreamStats_Uint *s)
 double
 StreamStats_UintStdDev(const struct StreamStats_Uint *s)
 {
-        return sqrt(s->q / (s->count - 1));
+        return sqrt(s->vM2 / (s->count - 1));
+}
+
+void
+StreamStats_UintCombine(struct StreamStats_Uint *a,
+                        const struct StreamStats_Uint *b)
+{
+        double delta = b->vmean - a->vmean;
+        uint64_t count = a->count + b->count;
+        double vmean = a->vmean + delta * b->count / count;
+        double vM2 = a->vM2 + b->vM2 +
+                delta * delta * a->count * b->count / count;
+
+        a->count = count;
+        a->total += b->total;
+        if (b->min < a->min)
+                a->min = b->min;
+        if (b->max > a->max)
+                a->max = b->max;
+        a->vmean = vmean;
+        a->vM2 = vM2;
 }
 
 __attribute__((noinline)) void
