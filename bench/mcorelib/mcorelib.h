@@ -55,12 +55,13 @@ Time_TSC(void)
 static inline uint64_t __attribute__((__always_inline__))
 Time_TSCBefore(void)
 {
-        // See Intel's "How to Benchmark Code Execution Times on
-        // Intel® IA-32 and IA-64 Instruction Set Architectures"
+        // See the "Improved Benchmarking Method" in Intel's "How to
+        // Benchmark Code Execution Times on Intel® IA-32 and IA-64
+        // Instruction Set Architectures"
         uint32_t a, d;
-        __asm __volatile("rdtsc"
-                         : "=a" (a), "=d" (d)
-                         : : "%rbx", "%rcx");
+        __asm __volatile("cpuid; rdtsc; mov %%eax, %0; mov %%edx, %1"
+                         : "=r" (a), "=r" (d)
+                         : : "%rax", "%rbx", "%rcx", "%rdx");
         return ((uint64_t) a) | (((uint64_t) d) << 32);
 }
 
@@ -68,7 +69,7 @@ static inline uint64_t __attribute__((__always_inline__))
 Time_TSCAfter(void)
 {
         uint32_t a, d;
-        __asm __volatile("rdtscp; mov %%eax, %0; mov %%edx, %1"
+        __asm __volatile("rdtscp; mov %%eax, %0; mov %%edx, %1; cpuid"
                          : "=r" (a), "=r" (d)
                          : : "%rax", "%rbx", "%rcx", "%rdx");
         return ((uint64_t) a) | (((uint64_t) d) << 32);
