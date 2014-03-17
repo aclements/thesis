@@ -9,64 +9,46 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <math.h>
-
-// XXX Reads are actually *more* expensive than this benchmark
-// indicates.  Fast reads not only bring down the average but also
-// allow the next read to occur sooner.  For example, cores that are
-// on the same socket as the writer not only make much faster reads
-// but also make *far more of them*, artificially reducing the average
-// read latency.  I can't just space the reads out more because then
-// we don't get the effect of simultaneous reads.  I could depend on
-// synchronized TSCs and schedule the reads at regular TSC multiples.
-//
-// OTOH, reads might be cheaper than this benchmark indicates.  If the
-// writer is running really fast, then this won't be 1 write N reads.
+#include <assert.h>
+#include <numa.h>
 
 struct
 {
         int duration;
         bool rw;
         int wait;
-        int minwait;
-        int readwait;
         CPU_Set_t *cores;
-        bool stats;
+        int kde_limit;
 } opts = {
         .duration = 1,
         .rw = false,
-        .wait = 10000,
-        .minwait = -1,
-        .readwait = 10000,
+        .wait = 100000,
         .cores = NULL,
-        .stats = false,
+        .kde_limit = 0,
 };
 
 struct Args_Info argsInfo[] = {
         {"duration", ARGS_INT(&opts.duration),
-         .varname = "SECS", .help = "Maximum seconds to run for."},
+         .varname = "SECS", .help = "Maximum seconds to run for"},
         {"rw", ARGS_BOOL(&opts.rw),
          .help = "One core writes, rest read; measure read ops"},
         {"wait", ARGS_INT(&opts.wait),
-         .varname = "CYCLES", .help = "Cycles to wait between writes"},
-        {"minwait", ARGS_INT(&opts.minwait),
-         .varname = "CYCLES", .help = "If set, minimum cycles to wait"},
-        {"readwait", ARGS_INT(&opts.readwait),
-         .varname = "CYCLES", .help = "Cycles to wait between reads"},
+         .varname = "CYCLES", .help = "Period between operations"},
         {"cores", ARGS_CPUSET(&opts.cores),
-         .varname = "SET", .help = "Set of cores to run on."},
-        {"stats", ARGS_BOOL(&opts.stats),
-         .help = "Report additional per-CPU statistics."},
+         .varname = "SET", .help = "Set of cores to run on"},
+        {"kde", ARGS_INT(&opts.kde_limit),
+         .varname = "LIMIT", .help = "If set, generate KDE up to LIMIT cycles"},
         {NULL}
 };
 
-int startCount;
-double startTime;
+uint64_t tscOverhead;
+
+int startCount, endCount;
+double startTime, endTime;
 volatile bool startFlag;
 volatile int stop;
 
-volatile uint64_t buf[256];
-
-uint64_t totalOps, totalOpCycles;
+volatile uint64_t *buf;
 
 struct StreamStats_Uint
 {
@@ -131,6 +113,65 @@ StreamStats_UintCombine(struct StreamStats_Uint *a,
         a->vM2 = vM2;
 }
 
+enum {HISTOGRAM_BINS = 1024};
+
+struct Histogram
+{
+        uint64_t bins[HISTOGRAM_BINS];
+        uint64_t limit, over;
+};
+
+void
+Histogram_Add(struct Histogram *h, uint64_t x)
+{
+        size_t bin = x * HISTOGRAM_BINS / h->limit;
+        if (bin < HISTOGRAM_BINS)
+                ++h->bins[bin];
+        else
+                ++h->over;
+}
+
+void
+Histogram_Sum(struct Histogram *out, const struct Histogram *hist)
+{
+        if (out->limit == 0)
+                out->limit = hist->limit;
+        assert(out->limit == hist->limit);
+        for (size_t i = 0; i < HISTOGRAM_BINS; ++i)
+                out->bins[i] += hist->bins[i];
+        out->over += hist->over;
+}
+
+void
+Histogram_ToKDE(const struct Histogram *hist, const struct StreamStats_Uint *s,
+                double *xs, double *ys, size_t out_len)
+{
+        // Compute bandwidth using Silverman's rule of thumb
+        double h = 1.06 * StreamStats_UintStdDev(s) * pow(s->count, -1.0 / 5);
+
+        // Sample KDE
+        for (size_t outi = 0; outi < out_len; ++outi) {
+                double x = (double)(outi * hist->limit) / out_len;
+                double y = 0;
+
+                for (size_t i = 0; i < HISTOGRAM_BINS; ++i) {
+                        double xi = (double)(i * hist->limit) / HISTOGRAM_BINS;
+                        double arg = (x - xi) / h;
+                        double factor = 0.3989422804014327; // 1/sqrt(2 * PI)
+                        double K = exp(-arg * arg / 2) * factor;
+                        y += hist->bins[i] * K;
+                }
+
+                y /= (s->count * h);
+                xs[outi] = x;
+                ys[outi] = y;
+        }
+}
+
+pthread_mutex_t accumLock = PTHREAD_MUTEX_INITIALIZER;
+struct StreamStats_Uint totalWriteStats, totalReadStats;
+struct Histogram totalWriteHist, totalReadHist;
+
 __attribute__((noinline)) void
 doRead()
 {
@@ -155,8 +196,19 @@ doWrite()
 int
 doOps(int cpu, void *opaque)
 {
-        struct StreamStats_Uint ss = {};
+        struct StreamStats_Uint stats = {};
+        struct Histogram hist = {};
         bool reader = opts.rw && (cpu > 0);
+
+        uint64_t myperiod = opts.rw ? opts.wait * 2 : opts.wait;
+        uint64_t myphase = reader ? myperiod / 2 : myperiod;
+
+        if (opts.kde_limit)
+                hist.limit = opts.kde_limit;
+
+        if (cpu == 0)
+                // Make sure buf is faulted
+                buf[0] = 0;
 
         // Start barrier
         if (__sync_sub_and_fetch(&startCount, 1) == 0) {
@@ -165,7 +217,7 @@ doOps(int cpu, void *opaque)
         } else
                 while (!startFlag) /**/;
 
-        uint64_t ops = 0, opCycles = 0;
+        uint64_t missed = 0;
         while (!stop) {
                 uint64_t startTSC = Time_TSCBefore();
                 if (reader)
@@ -173,28 +225,62 @@ doOps(int cpu, void *opaque)
                 else
                         doWrite();
                 uint64_t endTSC = Time_TSCAfter();
-                ops++;
-                opCycles += (endTSC - startTSC);
-                if (opts.stats)
-                        StreamStats_UintAdd(&ss, endTSC - startTSC);
-                uint64_t waitTSC;
-                if (reader)
-                        waitTSC = endTSC + opts.readwait;
-                else if (opts.wait == opts.minwait)
-                        waitTSC = endTSC + opts.wait;
+
+                uint64_t deltaTSC = endTSC - startTSC;
+                if (deltaTSC < tscOverhead)
+                        deltaTSC = 0;
                 else
-                        waitTSC = endTSC + (Rand() % (opts.wait - opts.minwait)) + opts.minwait;
-                if (endTSC != waitTSC)
-                        while (Time_TSC() < waitTSC);
+                        deltaTSC -= tscOverhead;
+                StreamStats_UintAdd(&stats, deltaTSC);
+                if (opts.kde_limit)
+                        Histogram_Add(&hist, deltaTSC);
+
+                bool good = false;
+                while ((Time_TSC() - myphase) / myperiod ==
+                       (startTSC - myphase) / myperiod)
+                        good = true;
+                missed += !good;
         }
-        if (reader || !opts.rw) {
-                __sync_fetch_and_add(&totalOps, ops);
-                __sync_fetch_and_add(&totalOpCycles, opCycles);
+
+        // End tracking
+        if (__sync_sub_and_fetch(&endCount, 1) == 0)
+                endTime = Time_WallSec();
+
+        pthread_mutex_lock(&accumLock);
+        if (reader) {
+                StreamStats_UintCombine(&totalReadStats, &stats);
+                if (opts.kde_limit)
+                        Histogram_Sum(&totalReadHist, &hist);
+        } else {
+                StreamStats_UintCombine(&totalWriteStats, &stats);
+                if (opts.kde_limit)
+                        Histogram_Sum(&totalWriteHist, &hist);
         }
-        if (opts.stats)
+        pthread_mutex_unlock(&accumLock);
+
+        if (0)
                 printf("CPU %d: min %"PRIu64" max %"PRIu64" mean %g stddev %g\n",
-                       cpu, ss.min, ss.max, StreamStats_UintMean(&ss),
-                       StreamStats_UintStdDev(&ss));
+                       cpu, stats.min, stats.max, StreamStats_UintMean(&stats),
+                       StreamStats_UintStdDev(&stats));
+        if (missed)
+                fprintf(stderr, "CPU %d missed deadline %"PRIu64" times\n",
+                        cpu, missed);
+
+        if (0 && opts.kde_limit) {
+                enum {KDE_SAMPLES = 500};
+                double xs[KDE_SAMPLES], ys[KDE_SAMPLES];
+                Histogram_ToKDE(&hist, &stats, xs, ys, KDE_SAMPLES);
+                char buf[128];
+                sprintf(buf, "write-sharing-kde-%d.data", cpu);
+                FILE *kde = fopen(buf, "a");
+                for (size_t i = 0; i < KDE_SAMPLES; ++i)
+                        fprintf(kde, "%d %g %g\n", CPU_GetCount(opts.cores),
+                                xs[i], ys[i]);
+                fprintf(kde, "\n");
+                fclose(kde);
+        }
+
+        return 0;
 }
 
 void*
@@ -203,9 +289,51 @@ timerThread(void *a)
         sleep(opts.duration);
         if (!stop)
                 stop = 1;
+        return NULL;
 }
 
-int main(int argc, char **argv)
+void
+showStats(const char *op, const struct StreamStats_Uint *stats,
+          const struct Histogram *hist)
+{
+        uint64_t ops = stats->count;
+
+        if (!ops)
+                return;
+
+        if (opts.kde_limit) {
+                enum {KDE_SAMPLES = 500};
+                double xs[KDE_SAMPLES], ys[KDE_SAMPLES];
+                Histogram_ToKDE(hist, stats, xs, ys, KDE_SAMPLES);
+
+                char fname[128];
+                sprintf(fname, "write-sharing-kde-%s.data", op);
+                FILE *kde = fopen(fname, "a");
+                for (size_t i = 0; i < KDE_SAMPLES; ++i)
+                        fprintf(kde, "%d %g %g\n", CPU_GetCount(opts.cores),
+                                xs[i], ys[i]);
+                fprintf(kde, "\n");
+                fclose(kde);
+
+                // Warn if there is significant weight outside of the
+                // histogram
+                double pct_over = hist->over * 100 / (double)(stats->count);
+                if (pct_over >= 1)
+                        fprintf(stderr, "Warning: %g%% of %s samples are outside histogram range\n", pct_over, op);
+        }
+
+        double start = startTime, end = endTime;
+
+        printf("%"PRIu64" %ss\n", ops, op);
+        printf("%"PRIu64" %ss/sec\n", (uint64_t)((double)(ops)/(end-start)), op);
+        printf("%"PRIu64" cycles/%s\n",
+               (uint64_t)StreamStats_UintMean(stats), op);
+        printf("%g stddev cycles/%s\n",
+               StreamStats_UintStdDev(stats), op);
+}
+
+int
+main(int argc, char **argv)
 {
         opts.cores = CPU_GetAffinity();
         int ind = Args_Parse(argsInfo, argc, argv);
@@ -213,26 +341,29 @@ int main(int argc, char **argv)
                 fprintf(stderr, "Unexpected argument '%s'\n", argv[ind]);
                 exit(2);
         }
-        if (opts.minwait == -1)
-                opts.minwait = opts.wait;
 
         char *sum = Args_Summarize(argsInfo);
         printf("# %s\n", sum);
         free(sum);
 
+        buf = numa_alloc_onnode(4096, numa_node_of_cpu(0));
+        if (!buf)
+                epanic("numa_alloc_onnode failed");
+
+        double tscStddev;
+        tscOverhead = Time_TSCOverhead(&tscStddev);
+        if (tscStddev >= 5)
+                panic("TSC overhead standard deviation of %g too high",
+                      tscStddev);
+
         pthread_t timer;
         pthread_create(&timer, NULL, timerThread, NULL);
 
-        startCount = CPU_GetCount(opts.cores);
+        startCount = endCount = CPU_GetCount(opts.cores);
         CPU_RunOnSet(doOps, NULL, opts.cores, NULL, NULL);
-        double end = Time_WallSec();
-        double start = startTime;
-        uint64_t ops = totalOps;
 
-        printf("%g sec\n", end - start);
-        printf("%"PRIu64" ops\n", ops);
-        printf("%"PRIu64" ops/sec\n", (uint64_t)((double)(ops)/(end-start)));
-        if (ops)
-                printf("%"PRIu64" cycles/op\n", totalOpCycles/ops);
+        printf("%g sec\n", endTime - startTime);
+        showStats("read", &totalReadStats, &totalReadHist);
+        showStats("write", &totalWriteStats, &totalWriteHist);
         return 0;
 }
