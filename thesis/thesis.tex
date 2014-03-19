@@ -1,7 +1,10 @@
 % -*- TeX-PDF-mode: t -*-
 
+% XXX 12pt?  Measure is a bit long in 11pt.
+% XXX Use monospace for \code?
+
 % draft - Fast compilation, all XXX notes, draft+git footers
-\documentclass[11pt,twoside,draft,singlespace]{mitthesis}
+\documentclass[11pt,twoside,draft]{mitthesis}
 % (no option) - Full compilation, all XXX notes, draft+git footer
 %\documentclass[11pt,twoside]{mitthesis}
 % final - Full compilation, no XXX notes, no footer
@@ -72,6 +75,9 @@
 % Avoid widows and orphans
 \widowpenalty=500
 \clubpenalty=500
+
+% Double spacing is too big; single spacing is too small
+\linespread{1.15}
 
 % Aggressive figure placement
 \renewcommand{\topfraction}{0.9}
