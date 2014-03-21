@@ -1,64 +1,210 @@
 \subsection{RadixVM: Scalable address space operations}
 
-\XXX![AC]{Introduce: ``The virtual memory interface is rife with
-  commutativity, but existing implementations scale very poorly.''
-  Pull in some of the EuroSys design section intro.}
+\XXX[AC]{``Disjoint'' instead of ``non-overlapping''?  Should at least
+be consistent.}
+
+The POSIX virtual memory interface is rife with commutativity, but
+existing implementations scale poorly.  We model a virtual memory
+system as four key logical operations: \code{mmap} adds a region of
+memory to a process' virtual address space, \code{munmap} removes a
+region of memory from the address space, and \code{memread} and
+\code{memwrite} access virtual memory at a particular virtual address
+or fail if no mapped region contains that address.  In reality, the
+hardware implements \code{memread} and \code{memwrite} directly and
+the VM system instead implements a \code{pagefault} operation; we
+discuss this distinction below.
+
+% Old, implementation-oriented text:
+% A typical virtual memory system supports three key operations:
+% \code{mmap} to add a region of memory to a process's virtual memory
+% address space, \code{munmap} to remove a region of memory from the
+% address space and the corresponding pages from the hardware page
+% tables, and \code{pagefault}, which inserts a page into the hardware
+% page tables at the faulting virtual address, allocating a new physical
+% page if necessary.
+
+% Old, more detailed memread/memwrite text:
+% In reality, the hardware implements \code{memread} and \code{memwrite}
+% directly using a cache of virtual-to-physical translations; when an
+% operation misses in this translation cache, the hardware invokes
+% \code{pagefault}, which is provided by the VM system.  This
+% translation cache does not affect the interface specification or its
+% commutativity; we'll discuss its effect on implementation below.
+
+VM operations from \emph{different} processes (and hence address
+spaces) trivially commute.  Most existing implementations use
+per-process address space representations, so such operations are also
+naturally conflict-free (and scale well).  VM operations from the same
+process also often commute; in particular, operations on
+\emph{non-overlapping} regions of the address space commute.
+%
+Many multithreaded applications exercise exactly this increasingly
+important scenario: \code{mmap}, \code{munmap}, and related variants
+lie at the core of high-performance memory allocators and garbage
+collectors and partitioning the address space between threads is a key
+design component of these
+systems~\cite{ssmalloc:apsys,jemalloc,tcmalloc}.  Applications that
+frequently map and unmap files also generate such workloads for the OS
+kernel.
+
+Unfortunately, owing to complex invariants in virtual memory systems,
+widely used kernels such as Linux and FreeBSD protect each address
+space with a single lock.  This induces not only conflicts but, often,
+complete serialization between commutative VM operations on the same
+address space, which can dramatically limit application
+scalability~\cite{boyd-wickizer:scaling,clements:bonsai}.
+\XXX{Mention workarounds or at least add that tidbit from Google?}
+
+\vm is a novel virtual memory system in which commutative operations
+on non-overlapping address space regions are almost always
+conflict-free.  This ensures that if two threads operate on distinct
+regions of virtual memory, the VM system does not limit the
+application's scalability.  Furthermore, if multiple threads operate
+on the same shared region, \vm constrains conflicts to the cores
+executing those threads.
+
+Achieving this within the constraints of virtual memory hardware,
+without violating POSIX's strict requirements on the ordering and
+global visibility of VM operations, and without unacceptable memory
+overhead is challenging.  The following sections describe \vm's
+approach.  \Cref{sec:radixvm:arch} describes the general architecture
+of POSIX VM systems.  \Cref{sec:radixvm:tree,sec:radixvm:tlb} describe
+the data structures that form the core of \vm.  Finally,
+\cref{sec:radixvm:ops} describes how \vm uses these structures to
+implement standard VM operations.
+
+
+\XXX[AC]{Not sure where to say the following, but I think we need to
+  be clear that none of these subsystems 100\% follows the rule, but
+  that that's okay from an engineering standpoint:
+
+  Like \refcache, \vm sacrifices strict adherence to the scalable
+  commutativity rule in the interest of practical constraints on
+  memory consumption and sequential performance.  Complex software
+  systems inevitably involve conflicting requirements and scalability
+  is no different.  However, in designing \vm, the presence of the
+  rule forced us to explicitly recognize, evaluate, and justify where
+  we made such trade-offs.}
 
 \XXX![AC]{This uses subsubsections, but \refcache uses paragraphs.}
 
-\XXX![AC]{Below here this section is verbatim from the EuroSys paper.
-  Flow into thesis.}
+\XXX![AC]{Copy in some related work section bits from EuroSys.}
+
+\subsubsection{POSIX VM architecture}
+\label{sec:radixvm:arch}
+
+\begin{figure}
+  \centering
+  \XXX!{Mapped regions, page tables, TLB with application on top.  See
+    Bonsai Figure 1 and \vm talk.}
+  \caption[Key structures in a POSIX VM system.]{Key structures in a
+    POSIX VM system, showing an address space with four mapped
+    regions.  Crossed-out page table entries are marked ``not
+    present.''  Some pages have not been faulted yet, and thus are not
+    present, despite being in a mapped region.}
+  \label{fig:vm-structures}
+\end{figure}
+
+Between the POSIX VM interface on one side and the hardware virtual
+memory interface on the other, \vm's general architecture necessarily
+resembles typical UNIX VM systems.  \Cref{fig:vm-structures} shows the
+principle structures any UNIX VM system must manage.  On the left is
+the kernel's internal representation of the address space.  Logically,
+this consists of a set of mapped regions of the virtual address space,
+where each region may map either a file or ``anonymous'' (heap)
+memory, has various access permissions, and may be either shared
+across \code{fork} or copied.  \code{mmap} and \code{munmap} directly
+manipulate this view of the address space.
+
+However, translating virtual addresses to physical addresses is
+ultimately performed in hardware---specifically by the memory
+management unit (MMU)---and the MMU's representation of virtual memory
+generally differs significantly from the kernel's internal
+representation of the address space.  Most hardware architectures
+specify some form of page table, like the x86 page table depicted in
+\cref{fig:vm-structures}, for the kernel to inform the MMU of the
+mapping from virtual addresses to physical addresses.  These
+structures map addresses at a page granularity (typically 4~KB, though
+most architectures also support larger pages) and represent access
+permissions (which are checked by the MMU), but have little
+flexibility.
+
+While we model the VM system in terms of \code{mmap}, \code{munmap},
+\code{memread}, and \code{memwrite}, only the first two are directly
+implemented by the VM system.  The latter two are implemented by the
+MMU using the kernel-provided page table.  However, the VM system has
+a key hook into the MMU: when the virtual address of a read or a write
+is marked ``not present'' in the page table or fails a permission
+check, the MMU invokes the VM system's \code{pagefault} operation.
+Modern UNIX kernels exploit this mechanism to implement \emph{demand
+  paging}, populating page table entries by allocating pages or
+reading them from disk only once a page is first accessed, rather than
+when it is mapped.
+%
+Hence, \code{mmap} and \code{munmap} simply clear the page table
+entries of the region being mapped or unmapped; \code{mmap} depends on
+\code{pagefault} operations to later fill these entries with mappings.
+%
+While demand paging significantly affects the implementation of the VM
+system, it is nevertheless an implementation issue and does not affect
+the commutativity of \code{memread} or \code{memwrite}.
+
+The final key structure the VM system must manage is the hardware
+translation lookaside buffer (TLB).  The TLB is a per-core associative
+cache of virtual-to-physical mappings.  In architectures with a
+hardware-filled TLB (x86, ARM, PowerPC, and many others), the MMU
+transparently fills this cache from the page table.  Invalidating the
+TLB, however, is the responsibility of the VM system.  Hence,
+\code{munmap}, in addition to removing regions from the kernel's
+internal address space representation and clearing entries in the page
+table, must also invalidate the corresponding TLB entries.
+
 
 \subsubsection{Radix tree}
 \label{sec:radixvm:tree}
 
-At its core, an address space is a mapping from virtual addresses to
-metadata and physical memory.  To achieve perfectly scalable
-non-overlapping address space operations, \vm needs a data structure
-that can track this mapping and support \code{mmap}ing and
-\code{munmap}ing ranges of virtual address space while avoiding
-contention between operations on disjoint regions.
+% At its core, an address space is a mapping from virtual addresses to
+% physical addresses and metadata.  Hence, \vm needs a data structure
+% that can track this mapping and support \code{mmap}ing and
+% \code{munmap}ing ranges of virtual address space while avoiding
+% conflicts between operations on disjoint regions.
 
-One option to avoid contention is to avoid sharing altogether. For
-example, one could attempt to partition the address space of a process
-statically
-among the cores, and have each core manage its part of the address space.
-This option ensures that operations on non-overlapping memory regions
-that are in different partitions of the address space don't contend
-for cache lines because each region is in a different partition. The
-downside of this option is that static partitioning complicates
-sharing and requires the application developer to
-be aware of the partitioning, so that each thread manipulates
-regions that are in its partition.  A more desirable solution is
-to use some shared data structure that allows symmetric operations
-from all threads to manage the shared address space,
-as all current VM systems do.
+We first tackle \vm's internal address space representation.
+%
+Widely-used operating system kernels represent an address space as a
+balanced tree of mapped memory regions.  For example, Linux uses a
+red-black tree~\cite{linux-source}, FreeBSD uses a splay
+tree~\cite{freebsd-source}, and Solaris and Windows use AVL
+trees~\cite{windows:wrk,windows:slides}).  This ensures fast lookups
+and modifications for address spaces that can easily contain thousands
+of mapped regions, but these data structures are poorly suited for
+concurrent access: not only do they induce cache line conflicts
+between operations on disjoint regions, they force all of these
+kernels to use coarse-grained locking.
 
-In particular, a data structure that supports lock-free operations---such
-as the Bonsai tree does for read
-operations~\cite{clements:bonsai}---seems promising, since it avoids
-cache line contention due to locks.  Lock-free operation,
-however, doesn't imply \emph{no} cache line contention.  For example,
-\code{insert} and \code{lookup} operations for a lock-free concurrent skip
-list~\cite{herlihy:art} can result in contention for cache lines
-storing interior nodes in the skip list---even when the \code{lookup}
-and \code{insert} involve different keys---because \code{insert} must
-modify interior nodes to maintain $O(\log n)$ lookup time.  As we will show
-in \S\ref{sec:eval}, this read-write sharing scales badly with more cores,
-as more cores need to reread cache lines modified by unrelated
-operations on other cores.
+Lock-free data structures seem like a compelling solution to this
+problem.  However, while lock-free data structures such as the Bonsai
+tree used by the Bonsai VM~\cite{clements:bonsai} and lock-free skip
+lists~\cite{herlihy:art} eliminate the coarse-grained serialization
+that plagues popular VM systems, their operations are far from
+conflict-free.  For example, \code{insert} and \code{lookup}
+operations for a lock-free concurrent skip list can conflict on
+interior nodes in the skip list---even when the \code{lookup} and
+\code{insert} involve different keys and hence commute---because
+\code{insert} must modify interior nodes to maintain $O(\log n)$
+lookup time.  Indeed, any balanced data structure will suffer from
+such problems.
 
-Any balanced tree or similar data structure suffers from this unintended
-cache line contention.  A (completely impractical) strawman solution is
-to represent a process's virtual memory by storing the metadata for each
+A (completely impractical) way to achieve conflict-free commutative
+operations is to represent a process's address space by storing the
+metadata for each
 virtual page individually in a large linear array indexed by virtual
 page number.  In this linear representation, \code{mmap}, \code{munmap},
 and \code{pagefault} can lock and manipulate precisely the pages being
-mapped, unmapped, or faulted.  VM operations on non-overlapping
-memory regions will access disjoint parts of the linear array
-and thus scale perfectly.  The design presented in this section follows
-the same general scheme as this strawman design, but makes its memory
-consumption practical using a multilevel, compressed radix tree.
+mapped, unmapped, or faulted and operations on non-overlapping regions
+are clearly conflict-free.  The design of \vm follows the same general
+scheme as this strawman design, but reins in its memory consumption
+using a multilevel, compressed radix tree.
 
 \begin{figure}
 \centering
@@ -81,23 +227,22 @@ entries and lazily allocate the nodes of the radix tree.  Logically,
 any node that would consist entirely of identical values is folded
 into a single value stored in the parent node.  This continues up to
 the root node of the tree, allowing the radix tree to represent vast
-swaths of unused virtual address space with a handful of NULL values
+swaths of unused virtual address space with a handful of empty slots
 and to set large ranges to identical values very quickly.  This
-folding comes at a small cost: \code{mmap} operations that force
-expansion of the radix tree may conflict with each other, even if
-their regions do not ultimately overlap.  However, such conflicts are
-rare.
+folding comes at a small cost: operations that expand a subtree will
+conflict with other operations in that same subtree, even if their
+regions do not ultimately overlap.  However, after initial address
+space construction, the radix tree is largely ``fleshed out'' and
+these initialization conflicts becomd rare.
 
 To record each mapping, \vm stores a separate copy of the mapping metadata
 in the radix tree for each page in the mapped range.  This differs
 from a typical design that allocates a single metadata object
-to represent the entire range of a mapping (e.g., virtual memory areas
-in Linux).
-Storing a separate copy of the metadata for each page makes sense in \vm
-because the metadata is relatively small, and eliminating shared objects
-avoids contention when a single mapping needs to be split or merged by
-a subsequent \code{mmap} or \code{munmap} call.  Furthermore, the
-mapping metadata object is designed so that it will initially be
+to represent the entire range of a mapping (e.g., ``virtual memory
+areas'' in Linux).
+%
+This is practical because \vm's mapping metadata object is small and
+designed so that it will initially be byte-wise
 identical for every page of a mapping, meaning that large mappings can
 created efficiently and folded into just a few slots in the radix
 tree's nodes.
@@ -116,7 +261,7 @@ free memory.
 
 To keep the memory footprint of the radix tree in check, the OS must be
 able to free nodes that no longer contain any valid mapping metadata.
-To accomplish this without introducing contention, we leverage
+To accomplish this without introducing undue conflicts, we leverage
 \refcache to scalably track the number of used slots in each node.
 When this count drops to zero, the radix tree can remove the node from
 the tree and delete it.  Since \vm may begin using a node again before
@@ -125,9 +270,9 @@ using weak references, which allows the radix tree to revive nodes
 that go from empty to used before \refcache deletes them, and to
 safely detect when an empty child node has been deleted.
 
-Collapsing the radix tree does introduce additional contention;
-however, in
-contrast with more eager garbage collection schemes, rapidly changing
+Collapsing the radix tree does potentially introduce conflicts;
+however, unlike with eager garbage collection schemes, rapidly
+changing
 mappings cannot cause the radix tree to rapidly delete and recreate
 nodes.  Since a node must go unused for at least two \refcache epochs
 before it is deleted, any cost of deleting or recreating it (and any
@@ -137,34 +282,46 @@ analyze performance without \refcache, things would be even worse.
 Might be worth mentioning.}
 
 In contrast with more traditional balanced trees, using a radix tree
-to manage address space metadata allows \vm to achieve perfect
-scalability for operations on non-overlapping ranges of an address
+to manage address space metadata allows \vm to achieve near-perfect
+conflict-freedom (and hence scalability) for metadata operations on
+non-overlapping regions of an address
 space.  This comes at the cost of a potentially larger memory
 overhead; however, address space layouts tend to exhibit good
 locality and folding efficiently compresses large ranges, making radix
 trees a good fit for a VM system.
+\XXX[AC]{We show this in the \vm paper.  Pull that in here or in the
+  evaluation?}
 
-\subsubsection{TLB shootdown}
+\subsubsection{TLB management}
 \label{sec:radixvm:tlb}
 
-One complication with scaling \code{mmap} or \code{munmap} operations
-is the per-core hardware page translation cache, which requires
-explicit notifications (``TLB shootdowns'') when a page mapping changes.
-Because TLB shootdowns must be delivered to every CPU that may have
-cached a page mapping that's being modified, and because hardware does not provide
+The other major impediment to scaling \code{mmap} and \code{munmap}
+operations is the need to explicitly invalidate cached
+virtual-to-physical mappings in per-core TLBs when a page is unmapped
+(or remapped).
+%
+Because TLB shootdowns must be performed on every CPU that may have
+cached a page mapping that's being modified, and because hardware does
+not provide
 information about which CPUs may have cached a particular mapping,
-a conservative design must send TLB shootdown interrupts to all
-CPUs using the same address space, which limits scalability.
+typical UNIX VM systems send TLB shootdown interrupts to all
+CPUs using the modified address space, inducing cache line conflicts
+and limiting scalability.
 
-\vm achieves better scalability for \code{mmap} and \code{munmap} by
-keeping track of more precise information about the set of CPUs that
-may have accessed a given mapping, as part of the mapping metadata.
-With a software-filled TLB, the kernel can use TLB miss faults to track
-exactly which CPUs have a given mapping cached.  When a later \code{mmap}
-or \code{munmap} changes this mapping, it can deliver shootdowns
+\vm addresses this problem by precisely tracking the set of CPUs that
+have accessed each page mapping.
+%
+In architectures with software-filled TLBs (such as the MIPS or
+UltraSPARC) this is easy, since the MMU informs the kernel of each
+miss in the TLB.  The kernel can use these TLB miss faults to track
+exactly which CPUs have a given mapping cached and, when a later
+\code{mmap} or \code{munmap} changes this mapping, it can deliver
+shootdown requests
 only to cores that have accessed this mapping.  On architectures
-with hardware-filled TLBs such as the x86, our design achieves the
-same effect using per-core page tables.  If a thread in an application
+with hardware-filled TLBs such as the x86, \vm achieves the
+same effect using per-core page tables.
+%
+With TLB tracking, if an application thread
 allocates, accesses, and frees memory on one core, with no other threads
 accessing the same memory region, then \vm will perform no TLB shootdowns.
 
@@ -174,46 +331,51 @@ overhead is small in practice compared to the total memory footprint
 of an application, but for applications with poor partitioning, it may
 be necessary for the application to provide hints about widely shared
 regions so the kernel can share page tables (similar to Corey address
-ranges~\cite{boyd-wickizer:corey}) or
-the kernel could detect such regions automatically.  The kernel could
-also reduce overhead by sharing page tables between small groups of
-cores or by simply
-discarding page table pages when memory is low.
+ranges~\cite{boyd-wickizer:corey}) or for the kernel to detect such
+regions.
+%
+\XXX![AC]{Do we show this in \cref{eval:memory}?}
+%
+The kernel could also reduce overhead by simply discarding page table
+pages when memory is low.
 
 \subsubsection{VM operations}
+\label{sec:radixvm:ops}
 
-The POSIX semantics of VM operations can make a scalable implementation
-of the operations challenging~\cite{clements:bonsai}. But, with the
-components described above, the \vm implementation of the VM operations is
-surprisingly straightforward.  The POSIX semantics that are challenging
-are the ones that relate to ordering. For example, after the return
-of an \code{munmap}, no thread should be able to access the unmapped
-pages.  Similarly, after \code{mmap}, every thread that experiences a
-\code{pagefault} should be able to access the mapped pages.  There is
-also some
-complexity in \code{pagefault} because it is not just a read operation:
-it may have to allocate physical pages and modify the address space.
+With the components described above, \vm's implementation of the core
+VM operations is surprisingly straightforward.
+%
+One of the most difficult aspects of the POSIX VM interface in a
+multicore setting is its strict ordering and global visibility
+requirements~\cite{clements:bonsai}.  For example, after the return
+of an \code{munmap}, no thread on any core should be able to access
+the unmapped
+region.  Similarly, after \code{mmap} returns, any thread on any core
+must be able to access the mapped region.  Furthermore, though not
+required by POSIX, it is generally assumed that these operations are
+atomic.
 
-\vm primarily enforces correct ordering semantics by always locking,
-from left to right, the radix tree entries for the region affected by
-an operation.  Each slot in the radix tree (in both interior and leaf
-nodes) reserves one bit for this purpose.  As a result, two concurrent
-VM operations on overlapping ranges will serialize when locking the
-leftmost overlapping page.
+\vm enforces these semantics by always locking, from left to right,
+the bottom-most radix tree entries for the region of an operation.
+This simple mechanism ensures all operations on an address space are
+linearizable~\cite{herlihy:linearizability} and, for fully expanded
+subtrees, prevents cache line conflicts between operations on disjoint
+regions.
 
-When locking a region that has not been expanded out to leaf nodes
-yet, \vm acquires locks on the corresponding internal node slots instead.
-When \vm expands the tree by allocating new nodes, it propagates the
-lock bit to every entry in the newly allocated node, and unlocks the
-parent interior node slot.  Releasing the lock clears the lock bits in the
-newly allocated child node.  Tree traversal does not require locks
-because it increments each node's reference count through a \refcache
-weak reference.
+% When locking a region that has not been expanded out to leaf nodes
+% yet, \vm acquires locks on the corresponding internal node slots
+% instead.  When \vm expands the tree by allocating new nodes, it
+% propagates the lock bit to every entry in the newly allocated node,
+% and unlocks the parent interior node slot.  Releasing the lock
+% clears the lock bits in the newly allocated child node.  Tree
+% traversal does not require locks or indeuce conflicts because it
+% increments each node's reference count through a \refcache weak
+% reference.
 
-An \code{mmap} invocation first locks the range being mapped.  As above,
-if the leaf nodes for the range have already been allocated, \code{mmap}
-locks the mapping metadata in the leaf nodes, and if not, it locks the
-corresponding interior nodes.  If there are existing mappings within the
+An \code{mmap} invocation, like all \vm operations, first locks the
+range being mapped.
+%
+If there are existing mappings within the
 range, \code{mmap} unmaps them, as described later for \code{munmap}.
 \code{mmap} then fills in mapping metadata for the new mapping (protection
 level and flags arguments to \code{mmap}, as well as what backs this virtual
@@ -229,7 +391,9 @@ so that pages are allocated only when they are used.
 
 A \code{pagefault} invocation traverses the radix tree to find the
 mapping metadata for the faulting address, and acquires a lock on it.
-It then allocates a physical page, if one has not been allocated yet, and
+It then allocates a physical page if one has not been allocated yet
+(for anonymous memory), or fetches it from the buffer cache (for file
+mappings) and
 stores it in the mapping metadata.  Finally, \code{pagefault} fills in the
 page table entry in the local core's page table, and adds the local core
 number to the TLB shootdown list in the mapping metadata for that address.
@@ -255,7 +419,7 @@ access a page that another core is in the process of unmapping,
 but the mapping metadata lock makes this work out correctly: either
 \code{pagefault} acquires the lock first or \code{munmap} does.  In the
 first case, the page fault succeeds, which is okay since the pages must be
-inaccessible only after \code{munmap} returns.  In the second case, the
+inaccessible only after \code{munmap} returns.  In the second case,
 \code{munmap} runs first and removes the mapping for the unmapped range
 before releasing the locks. Then, \code{pagefault} will see that there
 is no mapping for the faulting address and will halt the faulting thread.
@@ -264,12 +428,14 @@ is no mapping for the faulting address and will halt the faulting thread.
 
 By combining \refcache for scalable reference counting, radix trees
 for maintaining address space metadata, and per-core page tables for
-precise TLB tracking and shootdown, \vm is able to execute concurrent
-\code{mmap}, \code{munmap}, and \code{pagefault} operations on the
-same address space in a way that shares cache lines only when two operations
-manipulate overlapping regions and must be serialized.  With the right
-data structures in place, \vm can achieve this with a straightforward
-concurrency plan based on precise range locking.  We confirm that
-\vm's design translates into scalable performance for non-overlapping
-VM operations in \S\ref{sec:eval}.
-
+precise TLB tracking and shootdown, \vm achieves conflict-freedom for
+the vast majority of commutative VM operations.  The clear
+commutativity properties of the POSIX VM interface, combined with the
+right data structures makes this possible with a straightforward
+concurrency plan based on precise range locking.
+%
+As shown in \cref{fig:testcase-breakdown-sv6}, \tool confirmed that
+most commutative operations in \vm are conflict-free.  In
+\cref{sec:eval}, we further confirm that \vm's design translates into
+scalable performance for application workloads. \XXX![AC]{Do we
+  confirm this?}
