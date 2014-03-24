@@ -206,9 +206,13 @@ doOps(int cpu, void *opaque)
         if (opts.kde_limit)
                 hist.limit = opts.kde_limit;
 
-        if (cpu == 0)
-                // Make sure buf is faulted
+        if (cpu == 0) {
+                // Make sure buf is allocated here and faulted
+                buf = numa_alloc_local(4096);
+                if (!buf)
+                        epanic("numa_alloc_local failed");
                 buf[0] = 0;
+        }
 
         // Start barrier
         if (__sync_sub_and_fetch(&startCount, 1) == 0) {
@@ -345,10 +349,6 @@ main(int argc, char **argv)
         char *sum = Args_Summarize(argsInfo);
         printf("# %s\n", sum);
         free(sum);
-
-        buf = numa_alloc_onnode(4096, numa_node_of_cpu(0));
-        if (!buf)
-                epanic("numa_alloc_onnode failed");
 
         double tscStddev;
         tscOverhead = Time_TSCOverhead(&tscStddev);
