@@ -14,7 +14,7 @@ for path in sys.argv[1:] or glob.glob("*.tex"):
     if path == "pyexpr.tex": continue
     orig = lintlib.Text(path)
     # Ignore comments
-    t = orig.ignore(r"(?:^|[^\\])(%.*\n?)")
+    t = nocomments = orig.ignore(r"(?:^|[^\\])(%.*\n?)")
     # Ignore non-text commands arguments
     t = t.ignore(r"\\(?:label|[cC]?ref|cite|const|defconst|input?)\{.*?\}")
     # Ignore code text
@@ -35,7 +35,7 @@ for path in sys.argv[1:] or glob.glob("*.tex"):
     t.mark("Use a non-breaking space", r"Linux%s[0-9]" % TEXSPACE)
 #    t.mark("Use \\S", "section~", re.I)
 #    t.mark("Don't use a ~", r"\\S~")
-    t.mark("Use \\cref or \\Cref", r'\\ref\{')
+    nocomments.mark("Use \\cref or \\Cref", r'\\ref\{')
     # (POSIX is always singular, so apostrophe is okay)
     t.warn("Maybe eliminate apostrophe", "[A-Z]+(?<!POSIX)'s")
     t.ignore(r"\\bibpunct.*")\
