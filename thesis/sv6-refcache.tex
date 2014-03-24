@@ -88,7 +88,7 @@ probability and \refcache itself induces only a small constant rate of
 conflicts for global maintenance.
 
 Furthermore, in contrast with most scalable
-reference counting mechanisms (see \S\ref{sec:related}), \refcache
+reference counting mechanisms (see \cref{sec:related}), \refcache
 requires space proportional to the sum of the number of reference
 counted objects and the number of cores, rather than the product, and
 the per-core overhead can be adjusted to trade off space and
@@ -147,7 +147,7 @@ reference count is zero.
   \label{fig:refcache-ex}
 \end{figure*}
 
-Figure~\ref{fig:refcache-ex} gives an example of a single object over
+\Cref{fig:refcache-ex} gives an example of a single object over
 the course of eight epochs.  Epoch 1 demonstrates the power of
 batching: despite six reference count manipulations spread over three
 cores, the object's global reference count is never written to and
@@ -206,7 +206,7 @@ by which clears the dying bit first.
 
 \paragraph{Algorithm.}
 The pseudocode for \refcache is given in
-Figure~\ref{fig:refcache-code}.  Each core maintains a hash table
+\cref{fig:refcache-code}.  Each core maintains a hash table
 storing its reference delta cache and the review queue that tracks
 objects whose global reference counts reached zero.  A core reviews an
 object after two epoch boundaries have passed so it can guarantee
@@ -287,7 +287,7 @@ reference caches at least once.
   \label{fig:refcache-code}
 \end{figure}
 
-All of the functions in Figure~\ref{fig:refcache-code} execute with
+All of the functions in \cref{fig:refcache-code} execute with
 preemption disabled, meaning they are atomic with respect to each
 other on a given core, which protects the consistency of per-core data
 structures.  Individual objects are protected by fine-grained locks

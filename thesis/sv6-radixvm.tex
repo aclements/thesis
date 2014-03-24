@@ -107,8 +107,8 @@ implement standard VM operations.
 
 Between the POSIX VM interface on one side and the hardware virtual
 memory interface on the other, \vm's general architecture necessarily
-resembles typical UNIX VM systems.  \Cref{fig:vm-structures} shows the
-principle structures any UNIX VM system must manage.  On the left is
+resembles typical Unix VM systems.  \Cref{fig:vm-structures} shows the
+principle structures any Unix VM system must manage.  On the left is
 the kernel's internal representation of the address space.  Logically,
 this consists of a set of mapped regions of the virtual address space,
 where each region may map either a file or ``anonymous'' (heap)
@@ -136,7 +136,7 @@ MMU using the kernel-provided page table.  However, the VM system has
 a key hook into the MMU: when the virtual address of a read or a write
 is marked ``not present'' in the page table or fails a permission
 check, the MMU invokes the VM system's \code{pagefault} operation.
-Modern UNIX kernels exploit this mechanism to implement \emph{demand
+Modern Unix kernels exploit this mechanism to implement \emph{demand
   paging}, populating page table entries by allocating pages or
 reading them from disk only once a page is first accessed, rather than
 when it is mapped.
@@ -220,7 +220,7 @@ using a multilevel, compressed radix tree.
 The index data structure of \vm resembles a hardware page table
 structurally, storing mapping metadata in a fixed-depth radix tree,
 where each level of the tree is indexed by nine (or fewer) bits of the
-virtual page number (Figure~\ref{fig:radix}).  Like the linear array,
+virtual page number (\cref{fig:radix}).  Like the linear array,
 the radix tree supports only point queries (not range queries) and
 iteration, but unlike the linear array, \vm can compress repeated
 entries and lazily allocate the nodes of the radix tree.  Logically,
@@ -253,7 +253,7 @@ been allocated.  This is easy to do in \vm because, modulo folding,
 there is a single mapping metadata object for each page.  It's also
 important to have this canonical representation of the physical memory
 backing a virtual address space because of the way \vm handles TLB
-shootdown (see \S\ref{sec:radixvm:tlb}).  This does increase the space
+shootdown (see \cref{sec:radixvm:tlb}).  This does increase the space
 required by the radix tree, but, asymptotically, it's no worse than
 the hardware page tables, and it means that the hardware page tables
 themselves are cacheable memory that can be discarded by the OS to
@@ -304,7 +304,7 @@ Because TLB shootdowns must be performed on every CPU that may have
 cached a page mapping that's being modified, and because hardware does
 not provide
 information about which CPUs may have cached a particular mapping,
-typical UNIX VM systems send TLB shootdown interrupts to all
+typical Unix VM systems send TLB shootdown interrupts to all
 CPUs using the modified address space, inducing cache line conflicts
 and limiting scalability.
 
@@ -326,7 +326,7 @@ allocates, accesses, and frees memory on one core, with no other threads
 accessing the same memory region, then \vm will perform no TLB shootdowns.
 
 The obvious downside to this approach is the extra memory required for
-per-core page tables.  We show in \S\ref{eval:memory} that this
+per-core page tables.  We show in \cref{eval:memory} that this
 overhead is small in practice compared to the total memory footprint
 of an application, but for applications with poor partitioning, it may
 be necessary for the application to provide hints about widely shared
