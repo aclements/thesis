@@ -172,7 +172,7 @@ pthread_mutex_t accumLock = PTHREAD_MUTEX_INITIALIZER;
 struct StreamStats_Uint totalWriteStats, totalReadStats;
 struct Histogram totalWriteHist, totalReadHist;
 
-__attribute__((noinline)) void
+void
 doRead()
 {
         uint64_t result;
@@ -181,7 +181,7 @@ doRead()
                      : "m" (buf[128]));
 }
 
-__attribute__((noinline)) void
+void
 doWrite()
 {
         /* 
