@@ -33,6 +33,7 @@ int CPU_GetCount(CPU_Set_t *cs);
 CPU_Set_t *CPU_ParseSet(const char *s);
 CPU_Set_t *CPU_GetPossible(void);
 CPU_Set_t *CPU_GetAffinity(void);
+void CPU_SetAffinity(CPU_Set_t *cs);
 int CPU_MaxPossible(void);
 void CPU_RunOnSet(int (*fn)(int, void*), void *opaque, CPU_Set_t *mask,
                   int **results, int *nResults);

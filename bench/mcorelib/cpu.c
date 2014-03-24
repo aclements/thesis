@@ -146,6 +146,14 @@ CPU_GetAffinity(void)
         return cs;
 }
 
+void
+CPU_SetAffinity(CPU_Set_t *cs)
+{
+        int res = numa_sched_setaffinity(0, cs);
+        if (res < 0)
+                epanic("numa_sched_setaffinity");
+}
+
 int
 CPU_MaxPossible(void)
 {
@@ -191,11 +199,9 @@ CPU_RunOnSet(int (*fn)(int, void*), void *opaque, CPU_Set_t *cs,
 {
         int r;
 
-        CPU_Set_t *aff = NULL;
-        if (!cs) {
-                aff = CPU_GetAffinity();
+        CPU_Set_t *aff = CPU_GetAffinity();
+        if (!cs)
                 cs = aff;
-        }
 
         int count = CPU_GetCount(cs);
         int cpus = cpuSetMax(cs);
@@ -213,7 +219,6 @@ CPU_RunOnSet(int (*fn)(int, void*), void *opaque, CPU_Set_t *cs,
         if (nResults)
                 *nResults = count;
 
-        // XXX This serializes thread start-up
         int i = 0;
         for (int cpu = 0; cpu < cpus; ++cpu) {
                 if (numa_bitmask_isbitset(cs, cpu)) {
@@ -222,6 +227,9 @@ CPU_RunOnSet(int (*fn)(int, void*), void *opaque, CPU_Set_t *cs,
                         roc[cpu].i = i++;
                         roc[cpu].results = results ? *results : NULL;
                         roc[cpu].barrier = &barrier;
+                        // Make sure the stack and such are allocated
+                        // on this core.
+                        CPU_Bind(cpu);
                         r = pthread_create(&threads[cpu], NULL, runOnCPUThread,
                                            &roc[cpu]);
                         if (r != 0) {
@@ -230,6 +238,7 @@ CPU_RunOnSet(int (*fn)(int, void*), void *opaque, CPU_Set_t *cs,
                         }
                 }
         }
+        CPU_SetAffinity(aff);
 
         pthread_barrier_wait(&barrier);
 
@@ -244,8 +253,7 @@ CPU_RunOnSet(int (*fn)(int, void*), void *opaque, CPU_Set_t *cs,
         }
 
         pthread_barrier_destroy(&barrier);
-        if (aff)
-                CPU_FreeSet(aff);
+        CPU_FreeSet(aff);
 }
 
 static bool
