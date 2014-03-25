@@ -183,6 +183,12 @@ std_normal(double x)
         return exp(-x * x / 2) * factor;
 }
 
+double
+std_normal_integral(double l, double h)
+{
+        return (erf(h / M_SQRT2) - erf(l / M_SQRT2)) / 2;
+}
+
 void
 Histogram_ToKDE(const struct Histogram *hist, const struct StreamStats_Uint *s,
                 double *xs, double *ys, size_t out_len)
@@ -200,17 +206,36 @@ Histogram_ToKDE(const struct Histogram *hist, const struct StreamStats_Uint *s,
 
         // Sample KDE
         for (size_t outi = 0; outi < out_len; ++outi) {
-                double x = (double)(outi * hist->limit) / out_len;
+                double x1 = (double)(outi * hist->limit) / out_len;
+                double x2 = (double)((outi + 1) * hist->limit) / out_len;
+                double x = (x1 + x2) / 2;
                 double y = 0;
 
+                // Sum over (weighted) input points
                 for (size_t i = 0; i < HISTOGRAM_BINS; ++i) {
                         double xi = Histogram_Bin2Value(hist, i, 0.5);
-                        double arg = (x - xi) / h;
-                        double K = std_normal(arg);
+
+                        // Single point sample of KDE.  For very small
+                        // bandwidths, this can miss features.
+                        //double arg = (x - xi) / h;
+                        //double K = std_normal(arg);
+
+                        // Average over this range of the KDE sample
+                        // by integrating.  The actual contribution is
+                        // K*h/(x2-x1), but we factor out the
+                        // constants to below.
+                        double low = (x1 - xi) / h;
+                        double high = (x2 - xi) / h;
+                        double K = std_normal_integral(low, high);
+
                         y += hist->bins[i] * K;
                 }
 
-                y /= (s->count * h);
+                // For point samples
+                //y /= (s->count * h);
+
+                y /= s->count * (x2 - x1);
+
                 xs[outi] = x;
                 ys[outi] = y;
         }
