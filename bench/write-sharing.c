@@ -176,6 +176,13 @@ Histogram_IQR(const struct Histogram *h)
         return Histogram_Percentile(h, 0.75) - Histogram_Percentile(h, 0.25);
 }
 
+double
+std_normal(double x)
+{
+        const double factor = 0.3989422804014327; // 1/sqrt(2 * PI)
+        return exp(-x * x / 2) * factor;
+}
+
 void
 Histogram_ToKDE(const struct Histogram *hist, const struct StreamStats_Uint *s,
                 double *xs, double *ys, size_t out_len)
@@ -197,10 +204,9 @@ Histogram_ToKDE(const struct Histogram *hist, const struct StreamStats_Uint *s,
                 double y = 0;
 
                 for (size_t i = 0; i < HISTOGRAM_BINS; ++i) {
-                        double xi = (double)(i * hist->limit) / HISTOGRAM_BINS;
+                        double xi = Histogram_Bin2Value(hist, i, 0.5);
                         double arg = (x - xi) / h;
-                        double factor = 0.3989422804014327; // 1/sqrt(2 * PI)
-                        double K = exp(-arg * arg / 2) * factor;
+                        double K = std_normal(arg);
                         y += hist->bins[i] * K;
                 }
 
