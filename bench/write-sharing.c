@@ -142,12 +142,54 @@ Histogram_Sum(struct Histogram *out, const struct Histogram *hist)
         out->over += hist->over;
 }
 
+// Return the range that would fall in bin between the lowest value
+// (where==0) and the highest value (where==1)
+double
+Histogram_Bin2Value(const struct Histogram *h, size_t bin, double where)
+{
+        return (double)(bin + where) * h->limit / HISTOGRAM_BINS;
+}
+
+double
+Histogram_Percentile(const struct Histogram *h, double pctile)
+{
+        uint64_t total = h->over;
+        for (size_t i = 0; i < HISTOGRAM_BINS; ++i)
+                total += h->bins[i];
+        uint64_t goal = total * pctile;
+        for (size_t i = 0; i < HISTOGRAM_BINS; ++i) {
+                if (h->bins[i] > goal) {
+                        // Assume values are evenly distributed in the
+                        // bin
+                        return Histogram_Bin2Value(
+                                h, i, (double)goal / h->bins[i]);
+                }
+                goal -= h->bins[i];
+        }
+        panic("%g%% percentile falls outside captured histogram\n",
+              100 * pctile);
+}
+
+double
+Histogram_IQR(const struct Histogram *h)
+{
+        return Histogram_Percentile(h, 0.75) - Histogram_Percentile(h, 0.25);
+}
+
 void
 Histogram_ToKDE(const struct Histogram *hist, const struct StreamStats_Uint *s,
                 double *xs, double *ys, size_t out_len)
 {
-        // Compute bandwidth using Silverman's rule of thumb
-        double h = 1.06 * StreamStats_UintStdDev(s) * pow(s->count, -1.0 / 5);
+        // Compute bandwidth using Silverman's rule of thumb,
+        // augmented with Sheather and Jones (1991) to be robust to
+        // outliers.
+        double h_scale = 1.06 * pow(s->count, -1.0 / 5), h;
+        double std = StreamStats_UintStdDev(s);
+        double iqr = Histogram_IQR(hist);
+        if (std < iqr / 1.349)
+                h = h_scale * std;
+        else
+                h = h_scale * (iqr / 1.349);
 
         // Sample KDE
         for (size_t outi = 0; outi < out_len; ++outi) {
