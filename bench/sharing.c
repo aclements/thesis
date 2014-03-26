@@ -281,24 +281,34 @@ doOps(int cpu, void *opaque)
 {
         struct StreamStats_Uint stats = {};
         struct Histogram hist = {};
-        bool reader = false;
+        // CPU 0 alternates between readSetup and readMain.  Other
+        // CPUs always follow readMain.  On all CPUs, readMain is the
+        // measured operation.
+        bool readSetup = false, readMain = false;
         uint64_t myperiod = opts.wait;
-        uint64_t myphase = 0;
+        uint64_t setupPhaseMask = cpu == 0 ? 1 : 0;
 
         switch (opts.mode) {
         case MODE_W:
+                if (cpu > 0)
+                        // Let CPU 0 do the setup operation in-between
+                        myperiod *= 2;
                 break;
         case MODE_RW:
-                reader = cpu > 0;
-                myperiod *= 2;
-                myphase = reader ? myperiod / 2 : 0;
+                if (cpu > 0)
+                        // Let CPU 0 do the setup operation in-between
+                        myperiod *= 2;
+                readMain = true;
                 break;
         case MODE_R:
-                reader = true;
+                readMain = true;
+                // No setup phase on CPU 0
+                setupPhaseMask = 0;
                 break;
         }
 
-        uint64_t kdeLimit = reader ? opts.read_kde_limit : opts.write_kde_limit;
+        uint64_t kdeLimit = readMain ? opts.read_kde_limit
+                : opts.write_kde_limit;
         if (kdeLimit)
                 hist.limit = kdeLimit;
 
@@ -318,27 +328,46 @@ doOps(int cpu, void *opaque)
                 while (!startFlag) /**/;
 
         uint64_t missed = 0;
+        uint64_t phase = Time_TSC() / myperiod;
         while (!stop) {
-                uint64_t startTSC = Time_TSCBefore();
-                if (reader)
-                        doRead();
-                else
-                        doWrite();
-                uint64_t endTSC = Time_TSCAfter();
-
-                uint64_t deltaTSC = endTSC - startTSC;
-                if (deltaTSC < tscOverhead)
-                        deltaTSC = 0;
-                else
-                        deltaTSC -= tscOverhead;
-                StreamStats_UintAdd(&stats, deltaTSC);
-                if (kdeLimit)
-                        Histogram_Add(&hist, deltaTSC);
-
+                // Synchronize operations
+                uint64_t newPhase;
                 bool good = false;
-                while ((Time_TSC() - myphase) / myperiod ==
-                       (startTSC - myphase) / myperiod)
+                while ((newPhase = Time_TSC() / myperiod) == phase) {
                         good = true;
+                }
+
+                // Perform operation
+                if (newPhase & setupPhaseMask) {
+                        if (readSetup)
+                                doRead();
+                        else
+                                doWrite();
+                } else {
+                        uint64_t startTSC, endTSC;
+                        if (readMain) {
+                                startTSC = Time_TSCBefore();
+                                doRead();
+                                endTSC = Time_TSCAfter();
+                        } else {
+                                startTSC = Time_TSCBefore();
+                                doWrite();
+                                endTSC = Time_TSCAfter();
+                        }
+
+                        // Do time accounting
+                        uint64_t deltaTSC = endTSC - startTSC;
+                        if (deltaTSC < tscOverhead)
+                                deltaTSC = 0;
+                        else
+                                deltaTSC -= tscOverhead;
+                        StreamStats_UintAdd(&stats, deltaTSC);
+                        if (kdeLimit)
+                                Histogram_Add(&hist, deltaTSC);
+                }
+
+                // Do synchronization accounting
+                phase = newPhase;
                 missed += !good;
         }
 
@@ -347,7 +376,7 @@ doOps(int cpu, void *opaque)
                 endTime = Time_WallSec();
 
         pthread_mutex_lock(&accumLock);
-        if (reader) {
+        if (readMain) {
                 StreamStats_UintCombine(&totalReadStats, &stats);
                 if (kdeLimit)
                         Histogram_Sum(&totalReadHist, &hist);
