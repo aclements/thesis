@@ -1,0 +1,94 @@
+#!/bin/zsh
+
+set -e
+
+NCPU=$(list-cpus --space thread==0 | wc -w)
+STEP=
+TRIALS=1
+ORDER=seq
+ARGS=(--duration=1)
+
+while (( $# )); do
+    arg=$1
+    shift
+    case $arg in
+        --step)
+            STEP=$1; shift;;
+        --trials)
+            TRIALS=$1; shift;;
+        --step)
+            STEP=$1; shift;;
+        --seq)
+            ORDER=seq;;
+        --rr)
+            ORDER=rr;;
+        --note)
+            shift;;
+        --)
+            ARGS=($ARGS $*); shift $#;;
+        *)
+            echo "Unknown argument $arg" >&2
+            exit 2;;
+    esac
+done
+
+if [[ $HOST == ben ]]; then
+    ORDER=($ORDER socket@0,1,2,7,3-6)
+elif [[ $HOST == tom ]]; then
+    # Default order is fine
+else
+    echo "Unknown host; using default socket order" >&2
+fi
+
+if [[ -z $STEP ]]; then
+    if [[ $HOST == ben ]]; then
+        STEP=10
+    elif [[ $HOST == tom ]]; then
+        STEP=6
+    else
+        echo "No default step size (unknown host)" >&2
+        exit 2
+    fi
+fi
+
+function mvif() {
+    [[ -e $1 ]] && mv $1 $2
+}
+
+setopt nullglob
+rm -f sharing-kde-{read,write}-all.data
+
+echo "== --host=$(hostname) --kernel=$(uname -r) --order=\"$ORDER\" =="
+
+for ncpu in `seq $STEP $STEP $NCPU`; do
+    echo "==== --ncores=$ncpu ===="
+    echo
+    CPUS=$(list-cpus --compact-set --limit=$ncpu $ORDER thread==0)
+    BEST=99999999999
+    BEST_OUT=
+    BEST_TRIAL=0
+    rm -f sharing-kde-{read,write}-best.data
+    for trial in $(seq $TRIALS); do
+        sleep 0.1
+        rm -f sharing-kde-{read,write}.data
+        OUT=$(./sharing --cores=$CPUS $ARGS)
+        TIME=$(awk '$2 == "cycles/read" || $2 == "cycles/write" {print $1;exit}' <<< "$OUT")
+        if (( $TIME < $BEST )); then
+            # Something annoying causes write-bench to occasionally
+            # run much slower overall.  Just take the best run.
+            BEST=$TIME
+            BEST_OUT=$OUT
+            BEST_TRIAL=$trial
+            mvif sharing-kde-read.data sharing-kde-read-best.data
+            mvif sharing-kde-write.data sharing-kde-write-best.data
+        fi
+    done
+    echo "$BEST_OUT"
+    echo
+    [[ -e sharing-kde-read-best.data ]] && \
+        cat sharing-kde-read-best.data >> sharing-kde-read-all.data
+    [[ -e sharing-kde-write-best.data ]] && \
+        cat sharing-kde-write-best.data >> sharing-kde-write-all.data
+done
+
+rm -f sharing-kde-{read,write}{,-best}.data

@@ -1,0 +1,27 @@
+#!/bin/zsh
+
+set -e
+
+conf=(--step 1 --trials 6)
+
+function run1() {
+    local label=$1
+    shift
+    mkdir -p sharing.out/$HOST/$label
+    ./run-sharing $* | tee sharing.out/$HOST/$label/data
+    for kde in read write; do
+        local f=sharing-kde-$kde-all.data
+        if [[ -e $f ]]; then
+            mv $f sharing.out/$HOST/$label/kde-$kde
+        fi
+    done
+}
+
+if [[ $HOST == ben ]]; then
+    run1 w  $conf -- --mode=w  --write-kde=60000
+    run1 rw $conf -- --mode=rw --read-kde=6000 --write-kde=1000
+elif [[ $HOST == tom ]]; then
+    run1 w  $conf -- --mode=w  --write-kde=20000
+    run1 rw $conf -- --mode=rw --read-kde=20000 --write-kde=1000
+fi
+run1 r  $conf -- --mode=r  --read-kde=16
