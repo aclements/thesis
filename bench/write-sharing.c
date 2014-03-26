@@ -12,17 +12,23 @@
 #include <assert.h>
 #include <numa.h>
 
+enum mode { MODE_W, MODE_RW, MODE_R };
+
+struct Args_Choice modeChoices[] = {
+        {"w", MODE_W}, {"rw", MODE_RW}, {"r", MODE_R}, {NULL}
+};
+
 struct
 {
         int duration;
-        bool rw;
+        int mode;
         int wait;
         CPU_Set_t *cores;
         int write_kde_limit;
         int read_kde_limit;
 } opts = {
         .duration = 1,
-        .rw = false,
+        .mode = MODE_W,
         .wait = 100000,
         .cores = NULL,
         .write_kde_limit = 0,
@@ -32,8 +38,8 @@ struct
 struct Args_Info argsInfo[] = {
         {"duration", ARGS_INT(&opts.duration),
          .varname = "SECS", .help = "Maximum seconds to run for"},
-        {"rw", ARGS_BOOL(&opts.rw),
-         .help = "One core writes, rest read; measure read ops"},
+        {"mode", ARGS_CHOICE(&opts.mode, modeChoices),
+         .help = "All cores write; core 1 writes and all read; all cores read"},
         {"wait", ARGS_INT(&opts.wait),
          .varname = "CYCLES", .help = "Period between operations"},
         {"cores", ARGS_CPUSET(&opts.cores),
@@ -275,10 +281,22 @@ doOps(int cpu, void *opaque)
 {
         struct StreamStats_Uint stats = {};
         struct Histogram hist = {};
-        bool reader = opts.rw && (cpu > 0);
+        bool reader = false;
+        uint64_t myperiod = opts.wait;
+        uint64_t myphase = 0;
 
-        uint64_t myperiod = opts.rw ? opts.wait * 2 : opts.wait;
-        uint64_t myphase = reader ? myperiod / 2 : myperiod;
+        switch (opts.mode) {
+        case MODE_W:
+                break;
+        case MODE_RW:
+                reader = cpu > 0;
+                myperiod *= 2;
+                myphase = reader ? myperiod / 2 : 0;
+                break;
+        case MODE_R:
+                reader = true;
+                break;
+        }
 
         uint64_t kdeLimit = reader ? opts.read_kde_limit : opts.write_kde_limit;
         if (kdeLimit)
