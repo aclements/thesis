@@ -426,10 +426,8 @@ showStats(const char *op, const struct StreamStats_Uint *stats,
 
         printf("%"PRIu64" %ss\n", ops, op);
         printf("%"PRIu64" %ss/sec\n", (uint64_t)((double)(ops)/(end-start)), op);
-        printf("%"PRIu64" cycles/%s\n",
-               (uint64_t)StreamStats_UintMean(stats), op);
-        printf("%g stddev cycles/%s\n",
-               StreamStats_UintStdDev(stats), op);
+        printf("%g cycles/%s\n", StreamStats_UintMean(stats), op);
+        printf("%g stddev cycles/%s\n", StreamStats_UintStdDev(stats), op);
 }
 
 int
