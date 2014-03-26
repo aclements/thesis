@@ -14,7 +14,7 @@ quiet =
 Q =
 endif
 
-graph/%.tex: graph/%.gnuplot graph/common.gnuplot data/*
+graph/%.tex: graph/%.gnuplot graph/common.gnuplot $(shell find data -type f)
 	$(call quiet,GNUPLOT)
 	$(Q)(cd $(<D) && TARGET=paper-tikz gnuplot $(<F)) > $@.tmp
 	$(Q)mv $@.tmp $@
