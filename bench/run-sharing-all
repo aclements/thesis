@@ -2,7 +2,7 @@
 
 set -e
 
-conf=(--step 1 --trials 6)
+conf=(--step 1 --trials 5 -- --hugetlb=true)
 
 function run1() {
     local label=$1
@@ -18,10 +18,10 @@ function run1() {
 }
 
 if [[ $HOST == ben ]]; then
-    run1 w  $conf -- --mode=w  --write-kde=60000
-    run1 rw $conf -- --mode=rw --read-kde=6000 --write-kde=1000
+    run1 w  $conf --mode=w  --write-kde=60000
+    run1 rw $conf --mode=rw --read-kde=6000 --write-kde=1000
 elif [[ $HOST == tom ]]; then
-    run1 w  $conf -- --mode=w  --write-kde=20000
-    run1 rw $conf -- --mode=rw --read-kde=20000 --write-kde=1000
+    run1 w  $conf --mode=w  --write-kde=20000
+    run1 rw $conf --mode=rw --read-kde=20000 --write-kde=1000
 fi
-run1 r  $conf -- --mode=r  --read-kde=16
+run1 r  $conf --mode=r  --read-kde=16

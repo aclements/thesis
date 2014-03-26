@@ -11,6 +11,7 @@
 #include <math.h>
 #include <assert.h>
 #include <numa.h>
+#include <sys/mman.h>
 
 enum mode { MODE_W, MODE_RW, MODE_R };
 
@@ -26,6 +27,7 @@ struct
         CPU_Set_t *cores;
         int write_kde_limit;
         int read_kde_limit;
+        bool hugetlb;
 } opts = {
         .duration = 1,
         .mode = MODE_W,
@@ -33,6 +35,7 @@ struct
         .cores = NULL,
         .write_kde_limit = 0,
         .read_kde_limit = 0,
+        .hugetlb = false,
 };
 
 struct Args_Info argsInfo[] = {
@@ -48,6 +51,8 @@ struct Args_Info argsInfo[] = {
          .varname = "LIMIT", .help = "If set, generate KDE up to LIMIT cycles"},
         {"read-kde", ARGS_INT(&opts.read_kde_limit),
          .varname = "LIMIT", .help = "If set, generate KDE up to LIMIT cycles"},
+        {"hugetlb", ARGS_BOOL(&opts.hugetlb),
+         .help = "Put buffer on a huge page"},
         {NULL}
 };
 
@@ -261,7 +266,7 @@ doRead()
         uint64_t result;
         asm volatile("mov %1, %0"
                      : "=g" (result)
-                     : "m" (buf[128]));
+                     : "m" (*buf));
 }
 
 void
@@ -273,7 +278,7 @@ doWrite()
          * __sync_synchronize();
          */
         
-        __sync_fetch_and_add(&buf[128], 1);
+        __sync_fetch_and_add(buf, 1);
 }
 
 int
@@ -304,9 +309,24 @@ doOps(int cpu, void *opaque)
 
         if (cpu == 0) {
                 // Make sure buf is allocated here and faulted
-                buf = numa_alloc_local(4096);
-                if (!buf)
-                        epanic("numa_alloc_local failed");
+                if (opts.hugetlb) {
+                        // This makes a huge difference in
+                        // reproducability on ben, I think because it
+                        // gives us enough control over the physical
+                        // address to control which L3 slice the cache
+                        // line falls in.  Offset 0 seems to be best
+                        // (but, e.g., offset 128 is ~1500 cycles
+                        // slower under high contention!).
+                        buf = mmap(0, 2*1024*1024, PROT_READ|PROT_WRITE,
+                                   MAP_ANONYMOUS|MAP_PRIVATE|MAP_HUGETLB, -1, 0);
+                        if (buf == MAP_FAILED)
+                                epanic("mmap buf failed (did you set /proc/sys/vm/nr_hugepages?)");
+                } else {
+                        buf = numa_alloc_local(4096);
+                        if (!buf)
+                                epanic("numa_alloc_local failed");
+                }
+
                 buf[0] = 0;
         }
 
