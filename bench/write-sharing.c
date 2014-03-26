@@ -29,7 +29,7 @@ struct
 } opts = {
         .duration = 1,
         .mode = MODE_W,
-        .wait = 100000,
+        .wait = 200000,
         .cores = NULL,
         .write_kde_limit = 0,
         .read_kde_limit = 0,
