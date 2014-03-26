@@ -1,3 +1,6 @@
 # Disable text diffs of large JSON data files
 model.out -diff
 mscan-*.out -diff
+
+# Disable diffs on large sharing benchmark dumps
+sharing.out/*/*/* -diff

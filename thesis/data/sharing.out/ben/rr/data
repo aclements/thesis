@@ -1,0 +1,721 @@
+== --host=ben --kernel=3.12-0.bpo.1-amd64 --order="seq socket@0,1,2,7,3-6" ==
+==== --ncores=1 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0 --write-kde=0 --read-kde=16 --hugetlb 
+0.999507 sec
+11995 reads
+12000 reads/sec
+0.979075 cycles/read
+1.74299 stddev cycles/read
+
+==== --ncores=2 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41 --write-kde=0 --read-kde=16 --hugetlb 
+0.999722 sec
+23996 reads
+24002 reads/sec
+1.0065 cycles/read
+3.29728 stddev cycles/read
+
+==== --ncores=3 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-42 --write-kde=0 --read-kde=16 --hugetlb 
+0.999621 sec
+35988 reads
+36001 reads/sec
+1.00044 cycles/read
+3.69642 stddev cycles/read
+
+==== --ncores=4 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-43 --write-kde=0 --read-kde=16 --hugetlb 
+0.999409 sec
+47976 reads
+48004 reads/sec
+1.00233 cycles/read
+3.39644 stddev cycles/read
+
+==== --ncores=5 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-44 --write-kde=0 --read-kde=16 --hugetlb 
+0.999317 sec
+59965 reads
+60005 reads/sec
+0.970366 cycles/read
+3.85938 stddev cycles/read
+
+==== --ncores=6 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-45 --write-kde=0 --read-kde=16 --hugetlb 
+0.999016 sec
+71934 reads
+72004 reads/sec
+0.990352 cycles/read
+4.10677 stddev cycles/read
+
+==== --ncores=7 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-46 --write-kde=0 --read-kde=16 --hugetlb 
+0.998926 sec
+83916 reads
+84006 reads/sec
+1.00972 cycles/read
+3.82387 stddev cycles/read
+
+==== --ncores=8 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-47 --write-kde=0 --read-kde=16 --hugetlb 
+0.998846 sec
+95896 reads
+96006 reads/sec
+1.01009 cycles/read
+3.94113 stddev cycles/read
+
+==== --ncores=9 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-48 --write-kde=0 --read-kde=16 --hugetlb 
+0.998486 sec
+107847 reads
+108010 reads/sec
+1.02022 cycles/read
+3.9613 stddev cycles/read
+
+==== --ncores=10 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-49 --write-kde=0 --read-kde=16 --hugetlb 
+0.998361 sec
+119810 reads
+120006 reads/sec
+1.00997 cycles/read
+4.41615 stddev cycles/read
+
+==== --ncores=11 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-50 --write-kde=0 --read-kde=16 --hugetlb 
+0.998235 sec
+131777 reads
+132009 reads/sec
+1.05502 cycles/read
+10.135 stddev cycles/read
+
+==== --ncores=12 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-51 --write-kde=0 --read-kde=16 --hugetlb 
+0.997866 sec
+143697 reads
+144004 reads/sec
+1.06894 cycles/read
+8.63259 stddev cycles/read
+
+==== --ncores=13 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-52 --write-kde=0 --read-kde=16 --hugetlb 
+0.99775 sec
+155662 reads
+156013 reads/sec
+1.08671 cycles/read
+9.62609 stddev cycles/read
+
+==== --ncores=14 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-53 --write-kde=0 --read-kde=16 --hugetlb 
+0.997648 sec
+167622 reads
+168017 reads/sec
+1.08499 cycles/read
+10.6021 stddev cycles/read
+
+==== --ncores=15 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-54 --write-kde=0 --read-kde=16 --hugetlb 
+0.997298 sec
+179520 reads
+180006 reads/sec
+1.0961 cycles/read
+12.6269 stddev cycles/read
+
+==== --ncores=16 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-55 --write-kde=0 --read-kde=16 --hugetlb 
+0.997455 sec
+191517 reads
+192005 reads/sec
+1.08826 cycles/read
+11.8205 stddev cycles/read
+
+==== --ncores=17 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-56 --write-kde=0 --read-kde=16 --hugetlb 
+0.996989 sec
+203405 reads
+204019 reads/sec
+1.07734 cycles/read
+10.111 stddev cycles/read
+
+==== --ncores=18 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-57 --write-kde=0 --read-kde=16 --hugetlb 
+0.996927 sec
+215352 reads
+216015 reads/sec
+1.08643 cycles/read
+12.0845 stddev cycles/read
+
+==== --ncores=19 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-58 --write-kde=0 --read-kde=16 --hugetlb 
+0.996656 sec
+227256 reads
+228018 reads/sec
+1.07921 cycles/read
+10.8017 stddev cycles/read
+
+==== --ncores=20 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-59 --write-kde=0 --read-kde=16 --hugetlb 
+0.996571 sec
+239200 reads
+240023 reads/sec
+1.09696 cycles/read
+11.7348 stddev cycles/read
+
+==== --ncores=21 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-60 --write-kde=0 --read-kde=16 --hugetlb 
+0.995904 sec
+250992 reads
+252024 reads/sec
+1.08574 cycles/read
+10.3546 stddev cycles/read
+
+==== --ncores=22 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-61 --write-kde=0 --read-kde=16 --hugetlb 
+0.995866 sec
+262922 reads
+264013 reads/sec
+1.04598 cycles/read
+7.1983 stddev cycles/read
+
+==== --ncores=23 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-62 --write-kde=0 --read-kde=16 --hugetlb 
+0.995561 sec
+274780 reads
+276005 reads/sec
+1.08306 cycles/read
+9.60118 stddev cycles/read
+
+==== --ncores=24 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-63 --write-kde=0 --read-kde=16 --hugetlb 
+0.995509 sec
+286728 reads
+288021 reads/sec
+1.05965 cycles/read
+7.53744 stddev cycles/read
+
+==== --ncores=25 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-64 --write-kde=0 --read-kde=16 --hugetlb 
+0.995241 sec
+298600 reads
+300027 reads/sec
+1.05634 cycles/read
+8.92674 stddev cycles/read
+
+==== --ncores=26 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-65 --write-kde=0 --read-kde=16 --hugetlb 
+0.995181 sec
+310515 reads
+312018 reads/sec
+1.06914 cycles/read
+8.28319 stddev cycles/read
+
+==== --ncores=27 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-66 --write-kde=0 --read-kde=16 --hugetlb 
+0.994829 sec
+322350 reads
+324025 reads/sec
+1.07226 cycles/read
+7.90479 stddev cycles/read
+
+==== --ncores=28 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-67 --write-kde=0 --read-kde=16 --hugetlb 
+0.994914 sec
+334320 reads
+336029 reads/sec
+1.06761 cycles/read
+9.72059 stddev cycles/read
+
+==== --ncores=29 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-68 --write-kde=0 --read-kde=16 --hugetlb 
+0.994816 sec
+346202 reads
+348006 reads/sec
+1.06844 cycles/read
+8.73665 stddev cycles/read
+
+==== --ncores=30 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-69 --write-kde=0 --read-kde=16 --hugetlb 
+0.994536 sec
+358050 reads
+360017 reads/sec
+1.06919 cycles/read
+9.54033 stddev cycles/read
+
+==== --ncores=31 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-70 --write-kde=0 --read-kde=16 --hugetlb 
+0.993894 sec
+369737 reads
+372008 reads/sec
+1.07736 cycles/read
+9.90526 stddev cycles/read
+
+==== --ncores=32 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-71 --write-kde=0 --read-kde=16 --hugetlb 
+0.99388 sec
+381664 reads
+384014 reads/sec
+1.1067 cycles/read
+12.647 stddev cycles/read
+
+==== --ncores=33 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-72 --write-kde=0 --read-kde=16 --hugetlb 
+0.993542 sec
+393459 reads
+396016 reads/sec
+1.10544 cycles/read
+13.3909 stddev cycles/read
+
+==== --ncores=34 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-73 --write-kde=0 --read-kde=16 --hugetlb 
+0.993352 sec
+405314 reads
+408026 reads/sec
+1.08986 cycles/read
+10.5367 stddev cycles/read
+
+==== --ncores=35 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-74 --write-kde=0 --read-kde=16 --hugetlb 
+0.993092 sec
+417130 reads
+420031 reads/sec
+1.08908 cycles/read
+11.1505 stddev cycles/read
+
+==== --ncores=36 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-75 --write-kde=0 --read-kde=16 --hugetlb 
+0.992978 sec
+428976 reads
+432009 reads/sec
+1.08481 cycles/read
+11.0285 stddev cycles/read
+
+==== --ncores=37 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-76 --write-kde=0 --read-kde=16 --hugetlb 
+0.992983 sec
+440892 reads
+444007 reads/sec
+1.11601 cycles/read
+12.279 stddev cycles/read
+
+==== --ncores=38 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-77 --write-kde=0 --read-kde=16 --hugetlb 
+0.992773 sec
+452729 reads
+456024 reads/sec
+1.09911 cycles/read
+11.8714 stddev cycles/read
+
+==== --ncores=39 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-78 --write-kde=0 --read-kde=16 --hugetlb 
+0.992644 sec
+464568 reads
+468010 reads/sec
+1.09472 cycles/read
+12.231 stddev cycles/read
+
+==== --ncores=40 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.992358 sec
+476360 reads
+480028 reads/sec
+1.11916 cycles/read
+13.8838 stddev cycles/read
+
+==== --ncores=41 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-1,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.992161 sec
+488146 reads
+492002 reads/sec
+1.11231 cycles/read
+13.0475 stddev cycles/read
+
+==== --ncores=42 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-2,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.991789 sec
+499884 reads
+504022 reads/sec
+1.1277 cycles/read
+14.9256 stddev cycles/read
+
+==== --ncores=43 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-3,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.991502 sec
+511611 reads
+515995 reads/sec
+1.12156 cycles/read
+13.9811 stddev cycles/read
+
+==== --ncores=44 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-4,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.991396 sec
+523468 reads
+528011 reads/sec
+1.12446 cycles/read
+14.4494 stddev cycles/read
+
+==== --ncores=45 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-5,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.99124 sec
+535273 reads
+540003 reads/sec
+1.11598 cycles/read
+13.9017 stddev cycles/read
+
+==== --ncores=46 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-6,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.991095 sec
+547084 reads
+551999 reads/sec
+1.12857 cycles/read
+14.6734 stddev cycles/read
+
+==== --ncores=47 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-7,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.990783 sec
+558828 reads
+564026 reads/sec
+1.12236 cycles/read
+14.5386 stddev cycles/read
+
+==== --ncores=48 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-8,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.990653 sec
+570622 reads
+576005 reads/sec
+1.12001 cycles/read
+15.1024 stddev cycles/read
+
+==== --ncores=49 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-9,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.990616 sec
+582511 reads
+588029 reads/sec
+1.11955 cycles/read
+14.3078 stddev cycles/read
+
+==== --ncores=50 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-10,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.990362 sec
+594247 reads
+600029 reads/sec
+1.15029 cycles/read
+16.2865 stddev cycles/read
+
+==== --ncores=51 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-11,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.989718 sec
+605725 reads
+612017 reads/sec
+1.13127 cycles/read
+14.8774 stddev cycles/read
+
+==== --ncores=52 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-12,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.989926 sec
+617706 reads
+623992 reads/sec
+1.1586 cycles/read
+19.3222 stddev cycles/read
+
+==== --ncores=53 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-13,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.989612 sec
+629426 reads
+636033 reads/sec
+1.14903 cycles/read
+16.7864 stddev cycles/read
+
+==== --ncores=54 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-14,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.98937 sec
+641139 reads
+648027 reads/sec
+1.16058 cycles/read
+18.2776 stddev cycles/read
+
+==== --ncores=55 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-15,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.989277 sec
+652958 reads
+660035 reads/sec
+1.12715 cycles/read
+15.4762 stddev cycles/read
+
+==== --ncores=56 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-16,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.988795 sec
+664493 reads
+672022 reads/sec
+1.15665 cycles/read
+16.9413 stddev cycles/read
+
+==== --ncores=57 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-17,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.988826 sec
+676360 reads
+684003 reads/sec
+1.14338 cycles/read
+17.4386 stddev cycles/read
+
+==== --ncores=58 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-18,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.988458 sec
+687994 reads
+696027 reads/sec
+1.13674 cycles/read
+15.6631 stddev cycles/read
+
+==== --ncores=59 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-19,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.98807 sec
+699558 reads
+708004 reads/sec
+1.1591 cycles/read
+19.1269 stddev cycles/read
+
+==== --ncores=60 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-20,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.988266 sec
+711538 reads
+719986 reads/sec
+1.16436 cycles/read
+18.2266 stddev cycles/read
+
+==== --ncores=61 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-21,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.988035 sec
+723276 reads
+732034 reads/sec
+1.14497 cycles/read
+17.3932 stddev cycles/read
+
+==== --ncores=62 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-22,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.987578 sec
+734759 reads
+744000 reads/sec
+1.15089 cycles/read
+16.6271 stddev cycles/read
+
+==== --ncores=63 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-23,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.987718 sec
+746674 reads
+755958 reads/sec
+1.153 cycles/read
+18.4037 stddev cycles/read
+
+==== --ncores=64 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-24,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.987139 sec
+758078 reads
+767954 reads/sec
+1.15721 cycles/read
+17.3681 stddev cycles/read
+
+==== --ncores=65 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-25,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.986975 sec
+769858 reads
+780017 reads/sec
+1.14503 cycles/read
+17.1562 stddev cycles/read
+
+==== --ncores=66 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-26,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.986777 sec
+781503 reads
+791975 reads/sec
+1.15553 cycles/read
+18.1394 stddev cycles/read
+
+==== --ncores=67 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-27,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.986636 sec
+793211 reads
+803955 reads/sec
+1.13584 cycles/read
+16.4806 stddev cycles/read
+
+==== --ncores=68 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-28,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.986448 sec
+804915 reads
+815973 reads/sec
+1.16596 cycles/read
+18.6372 stddev cycles/read
+
+==== --ncores=69 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-29,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.986607 sec
+816888 reads
+827977 reads/sec
+1.15915 cycles/read
+18.6099 stddev cycles/read
+
+==== --ncores=70 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-30,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.985624 sec
+827957 reads
+840033 reads/sec
+1.13967 cycles/read
+15.226 stddev cycles/read
+
+==== --ncores=71 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-31,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.985972 sec
+840070 reads
+852022 reads/sec
+1.15278 cycles/read
+17.3774 stddev cycles/read
+
+==== --ncores=72 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-32,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.985821 sec
+851758 reads
+864008 reads/sec
+1.14929 cycles/read
+18.2135 stddev cycles/read
+
+==== --ncores=73 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-33,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.985612 sec
+863366 reads
+875969 reads/sec
+1.14388 cycles/read
+17.4327 stddev cycles/read
+
+==== --ncores=74 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-34,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.985224 sec
+874899 reads
+888020 reads/sec
+1.14091 cycles/read
+16.2891 stddev cycles/read
+
+==== --ncores=75 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-35,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.985019 sec
+886498 reads
+899980 reads/sec
+1.14757 cycles/read
+16.9141 stddev cycles/read
+
+==== --ncores=76 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-36,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.984726 sec
+898090 reads
+912020 reads/sec
+1.12353 cycles/read
+15.5844 stddev cycles/read
+
+==== --ncores=77 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-37,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.984852 sec
+909984 reads
+923980 reads/sec
+1.15479 cycles/read
+18.4354 stddev cycles/read
+
+==== --ncores=78 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-38,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.98489 sec
+921802 reads
+935944 reads/sec
+1.14954 cycles/read
+16.9248 stddev cycles/read
+
+==== --ncores=79 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-39,41-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.984243 sec
+933067 reads
+948004 reads/sec
+1.15788 cycles/read
+18.2642 stddev cycles/read
+
+==== --ncores=80 ====
+
+# --duration=1 --mode=r --wait=200000 --cores=0-79 --write-kde=0 --read-kde=16 --hugetlb 
+0.983937 sec
+944556 reads
+959976 reads/sec
+1.12934 cycles/read
+15.6996 stddev cycles/read
+

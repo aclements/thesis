@@ -1,0 +1,621 @@
+== --host=tom --kernel=3.2.0-3-amd64 --order="seq" ==
+==== --ncores=1 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.999683 sec
+6026 writes
+6027 writes/sec
+22.1709 cycles/write
+2.39758 stddev cycles/write
+
+==== --ncores=2 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-1 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.999731 sec
+6027 reads
+6028 reads/sec
+87.2937 cycles/read
+111.278 stddev cycles/read
+6026 writes
+6027 writes/sec
+488.31 cycles/write
+491.526 stddev cycles/write
+
+==== --ncores=3 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-2 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.999614 sec
+12050 reads
+12054 reads/sec
+183.404 cycles/read
+183.473 stddev cycles/read
+6025 writes
+6027 writes/sec
+477.792 cycles/write
+380.118 stddev cycles/write
+
+==== --ncores=4 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-3 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.999509 sec
+18075 reads
+18083 reads/sec
+246.553 cycles/read
+212.086 stddev cycles/read
+6025 writes
+6027 writes/sec
+493.189 cycles/write
+510.85 stddev cycles/write
+
+==== --ncores=5 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-4 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.999506 sec
+24100 reads
+24111 reads/sec
+307.038 cycles/read
+220.862 stddev cycles/read
+6024 writes
+6026 writes/sec
+478.266 cycles/write
+368.607 stddev cycles/write
+
+==== --ncores=6 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-5 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.999384 sec
+30120 reads
+30138 reads/sec
+374.464 cycles/read
+189.872 stddev cycles/read
+6024 writes
+6027 writes/sec
+502.892 cycles/write
+638.292 stddev cycles/write
+
+==== --ncores=7 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-6 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.999316 sec
+36144 reads
+36168 reads/sec
+461.14 cycles/read
+248.748 stddev cycles/read
+6024 writes
+6028 writes/sec
+471.931 cycles/write
+320.841 stddev cycles/write
+
+==== --ncores=8 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-7 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.999221 sec
+42168 reads
+42200 reads/sec
+582.123 cycles/read
+325.893 stddev cycles/read
+6023 writes
+6027 writes/sec
+488.62 cycles/write
+670.367 stddev cycles/write
+
+==== --ncores=9 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-8 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.99916 sec
+48184 reads
+48224 reads/sec
+701.262 cycles/read
+463.198 stddev cycles/read
+6023 writes
+6028 writes/sec
+481.034 cycles/write
+351.632 stddev cycles/write
+
+==== --ncores=10 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-9 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.998922 sec
+54198 reads
+54256 reads/sec
+803.518 cycles/read
+467.617 stddev cycles/read
+6021 writes
+6027 writes/sec
+491.068 cycles/write
+770.019 stddev cycles/write
+
+==== --ncores=11 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-10 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.998885 sec
+60210 reads
+60277 reads/sec
+921.343 cycles/read
+534.136 stddev cycles/read
+6022 writes
+6028 writes/sec
+471 cycles/write
+213.479 stddev cycles/write
+
+==== --ncores=12 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-11 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.998876 sec
+66231 reads
+66305 reads/sec
+1031.33 cycles/read
+600.62 stddev cycles/read
+6021 writes
+6027 writes/sec
+469.994 cycles/write
+270.15 stddev cycles/write
+
+==== --ncores=13 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-12 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.998876 sec
+72252 reads
+72333 reads/sec
+1148.61 cycles/read
+675.084 stddev cycles/read
+6021 writes
+6027 writes/sec
+480.85 cycles/write
+763.117 stddev cycles/write
+
+==== --ncores=14 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-13 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.998761 sec
+78260 reads
+78357 reads/sec
+1264.33 cycles/read
+743.363 stddev cycles/read
+6021 writes
+6028 writes/sec
+469.345 cycles/write
+210.634 stddev cycles/write
+
+==== --ncores=15 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-14 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.998678 sec
+84280 reads
+84391 reads/sec
+1382.98 cycles/read
+815.414 stddev cycles/read
+6020 writes
+6027 writes/sec
+474.947 cycles/write
+293.599 stddev cycles/write
+
+==== --ncores=16 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-15 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.99846 sec
+90285 reads
+90424 reads/sec
+1496.7 cycles/read
+880.348 stddev cycles/read
+6018 writes
+6027 writes/sec
+493.489 cycles/write
+610.419 stddev cycles/write
+
+==== --ncores=17 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-16 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.998387 sec
+96288 reads
+96443 reads/sec
+1609.9 cycles/read
+950.166 stddev cycles/read
+6018 writes
+6027 writes/sec
+490.212 cycles/write
+579.658 stddev cycles/write
+
+==== --ncores=18 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-17 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.998406 sec
+102323 reads
+102486 reads/sec
+1735.81 cycles/read
+1024.97 stddev cycles/read
+6018 writes
+6027 writes/sec
+466.931 cycles/write
+186.928 stddev cycles/write
+
+==== --ncores=19 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-18 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.998154 sec
+108288 reads
+108488 reads/sec
+1871.74 cycles/read
+1119.15 stddev cycles/read
+6016 writes
+6027 writes/sec
+488.458 cycles/write
+674.339 stddev cycles/write
+
+==== --ncores=20 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-19 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.998024 sec
+114304 reads
+114530 reads/sec
+2006.18 cycles/read
+1219.19 stddev cycles/read
+6015 writes
+6026 writes/sec
+464.384 cycles/write
+163.371 stddev cycles/write
+
+==== --ncores=21 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-20 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.99804 sec
+120320 reads
+120556 reads/sec
+2148.03 cycles/read
+1321.86 stddev cycles/read
+6016 writes
+6027 writes/sec
+466.461 cycles/write
+187.019 stddev cycles/write
+
+==== --ncores=22 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-21 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.997878 sec
+126315 reads
+126583 reads/sec
+2290.17 cycles/read
+1425.91 stddev cycles/read
+6015 writes
+6027 writes/sec
+478.018 cycles/write
+380.772 stddev cycles/write
+
+==== --ncores=23 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-22 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.997947 sec
+132352 reads
+132624 reads/sec
+2438.23 cycles/read
+1524.71 stddev cycles/read
+6015 writes
+6027 writes/sec
+471.203 cycles/write
+209.782 stddev cycles/write
+
+==== --ncores=24 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-23 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.997682 sec
+138322 reads
+138643 reads/sec
+2603.05 cycles/read
+1871.72 stddev cycles/read
+6014 writes
+6027 writes/sec
+477.718 cycles/write
+359.646 stddev cycles/write
+
+==== --ncores=25 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-24 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.997606 sec
+144336 reads
+144682 reads/sec
+2736.23 cycles/read
+1722.36 stddev cycles/read
+6012 writes
+6026 writes/sec
+465.881 cycles/write
+245.922 stddev cycles/write
+
+==== --ncores=26 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-25 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.997706 sec
+150350 reads
+150695 reads/sec
+2884.39 cycles/read
+1825.76 stddev cycles/read
+6014 writes
+6027 writes/sec
+466.621 cycles/write
+245.528 stddev cycles/write
+
+==== --ncores=27 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-26 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.997555 sec
+156338 reads
+156721 reads/sec
+3025.44 cycles/read
+1936.26 stddev cycles/read
+6014 writes
+6028 writes/sec
+480.619 cycles/write
+683.033 stddev cycles/write
+
+==== --ncores=28 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-27 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.997504 sec
+162351 reads
+162757 reads/sec
+3176.87 cycles/read
+2035.94 stddev cycles/read
+6013 writes
+6028 writes/sec
+473.241 cycles/write
+378.046 stddev cycles/write
+
+==== --ncores=29 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-28 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.997343 sec
+168336 reads
+168784 reads/sec
+3325.25 cycles/read
+2201.06 stddev cycles/read
+6012 writes
+6028 writes/sec
+482.702 cycles/write
+670.245 stddev cycles/write
+
+==== --ncores=30 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-29 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.997271 sec
+174348 reads
+174825 reads/sec
+3478.65 cycles/read
+2248.43 stddev cycles/read
+6011 writes
+6027 writes/sec
+471.091 cycles/write
+349.036 stddev cycles/write
+
+==== --ncores=31 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-30 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.997014 sec
+180300 reads
+180839 reads/sec
+3642.02 cycles/read
+2384.06 stddev cycles/read
+6010 writes
+6027 writes/sec
+483.908 cycles/write
+396.474 stddev cycles/write
+
+==== --ncores=32 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-31 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.997055 sec
+186310 reads
+186860 reads/sec
+3815.81 cycles/read
+2522.13 stddev cycles/read
+6010 writes
+6027 writes/sec
+485.957 cycles/write
+381.123 stddev cycles/write
+
+==== --ncores=33 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-32 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.997068 sec
+192320 reads
+192885 reads/sec
+3991.36 cycles/read
+2668.33 stddev cycles/read
+6010 writes
+6027 writes/sec
+493.122 cycles/write
+557.796 stddev cycles/write
+
+==== --ncores=34 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-33 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.996702 sec
+198264 reads
+198920 reads/sec
+4163.23 cycles/read
+2801.65 stddev cycles/read
+6008 writes
+6027 writes/sec
+486.841 cycles/write
+311.878 stddev cycles/write
+
+==== --ncores=35 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-34 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.996762 sec
+204272 reads
+204935 reads/sec
+4346.46 cycles/read
+2944.82 stddev cycles/read
+6009 writes
+6028 writes/sec
+484.98 cycles/write
+288.172 stddev cycles/write
+
+==== --ncores=36 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-35 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.996627 sec
+210245 reads
+210956 reads/sec
+4533.02 cycles/read
+3092.25 stddev cycles/read
+6008 writes
+6028 writes/sec
+493.394 cycles/write
+364.208 stddev cycles/write
+
+==== --ncores=37 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-36 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.996722 sec
+216288 reads
+216999 reads/sec
+4724 cycles/read
+3238.55 stddev cycles/read
+6007 writes
+6026 writes/sec
+500.139 cycles/write
+607.395 stddev cycles/write
+
+==== --ncores=38 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-37 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.996524 sec
+222259 reads
+223034 reads/sec
+4931.12 cycles/read
+3487.22 stddev cycles/read
+6007 writes
+6027 writes/sec
+489.99 cycles/write
+437.017 stddev cycles/write
+
+==== --ncores=39 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-38 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.996451 sec
+228228 reads
+229040 reads/sec
+5128.91 cycles/read
+3543.84 stddev cycles/read
+6006 writes
+6027 writes/sec
+501.591 cycles/write
+645.206 stddev cycles/write
+
+==== --ncores=40 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-39 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.996133 sec
+234195 reads
+235104 reads/sec
+5326.88 cycles/read
+3689.64 stddev cycles/read
+6004 writes
+6027 writes/sec
+489.992 cycles/write
+339.086 stddev cycles/write
+
+==== --ncores=41 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-40 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.996134 sec
+240200 reads
+241132 reads/sec
+5526.18 cycles/read
+3844.72 stddev cycles/read
+6004 writes
+6027 writes/sec
+502.354 cycles/write
+732.746 stddev cycles/write
+
+==== --ncores=42 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-41 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.996057 sec
+246164 reads
+247138 reads/sec
+5740.16 cycles/read
+4002.59 stddev cycles/read
+6004 writes
+6027 writes/sec
+520.987 cycles/write
+1168.15 stddev cycles/write
+
+==== --ncores=43 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-42 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.995782 sec
+252126 reads
+253193 reads/sec
+5962.75 cycles/read
+4171.85 stddev cycles/read
+6001 writes
+6026 writes/sec
+508.224 cycles/write
+778.104 stddev cycles/write
+
+==== --ncores=44 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-43 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.995881 sec
+258086 reads
+259153 reads/sec
+6195.38 cycles/read
+4346.08 stddev cycles/read
+6003 writes
+6027 writes/sec
+490.844 cycles/write
+383.484 stddev cycles/write
+
+==== --ncores=45 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-44 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.99578 sec
+264088 reads
+265207 reads/sec
+6422.28 cycles/read
+4513.14 stddev cycles/read
+6003 writes
+6028 writes/sec
+485.57 cycles/write
+523.442 stddev cycles/write
+
+==== --ncores=46 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-45 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.995457 sec
+270045 reads
+271277 reads/sec
+6652.06 cycles/read
+4679.98 stddev cycles/read
+5999 writes
+6026 writes/sec
+484.096 cycles/write
+526.427 stddev cycles/write
+
+==== --ncores=47 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-46 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.994745 sec
+275816 reads
+277273 reads/sec
+6882.57 cycles/read
+4905.39 stddev cycles/read
+5996 writes
+6027 writes/sec
+476.87 cycles/write
+55.8284 stddev cycles/write
+
+==== --ncores=48 ====
+
+# --duration=1 --mode=rw --wait=200000 --cores=0-47 --write-kde=1000 --read-kde=20000 --hugetlb 
+0.995503 sec
+282000 reads
+283273 reads/sec
+7087.41 cycles/read
+5021.08 stddev cycles/read
+6000 writes
+6027 writes/sec
+481.628 cycles/write
+376.778 stddev cycles/write
+
