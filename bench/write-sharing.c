@@ -18,13 +18,15 @@ struct
         bool rw;
         int wait;
         CPU_Set_t *cores;
-        int kde_limit;
+        int write_kde_limit;
+        int read_kde_limit;
 } opts = {
         .duration = 1,
         .rw = false,
         .wait = 100000,
         .cores = NULL,
-        .kde_limit = 0,
+        .write_kde_limit = 0,
+        .read_kde_limit = 0,
 };
 
 struct Args_Info argsInfo[] = {
@@ -36,7 +38,9 @@ struct Args_Info argsInfo[] = {
          .varname = "CYCLES", .help = "Period between operations"},
         {"cores", ARGS_CPUSET(&opts.cores),
          .varname = "SET", .help = "Set of cores to run on"},
-        {"kde", ARGS_INT(&opts.kde_limit),
+        {"write-kde", ARGS_INT(&opts.write_kde_limit),
+         .varname = "LIMIT", .help = "If set, generate KDE up to LIMIT cycles"},
+        {"read-kde", ARGS_INT(&opts.read_kde_limit),
          .varname = "LIMIT", .help = "If set, generate KDE up to LIMIT cycles"},
         {NULL}
 };
@@ -276,8 +280,9 @@ doOps(int cpu, void *opaque)
         uint64_t myperiod = opts.rw ? opts.wait * 2 : opts.wait;
         uint64_t myphase = reader ? myperiod / 2 : myperiod;
 
-        if (opts.kde_limit)
-                hist.limit = opts.kde_limit;
+        uint64_t kdeLimit = reader ? opts.read_kde_limit : opts.write_kde_limit;
+        if (kdeLimit)
+                hist.limit = kdeLimit;
 
         if (cpu == 0) {
                 // Make sure buf is allocated here and faulted
@@ -309,7 +314,7 @@ doOps(int cpu, void *opaque)
                 else
                         deltaTSC -= tscOverhead;
                 StreamStats_UintAdd(&stats, deltaTSC);
-                if (opts.kde_limit)
+                if (kdeLimit)
                         Histogram_Add(&hist, deltaTSC);
 
                 bool good = false;
@@ -326,11 +331,11 @@ doOps(int cpu, void *opaque)
         pthread_mutex_lock(&accumLock);
         if (reader) {
                 StreamStats_UintCombine(&totalReadStats, &stats);
-                if (opts.kde_limit)
+                if (kdeLimit)
                         Histogram_Sum(&totalReadHist, &hist);
         } else {
                 StreamStats_UintCombine(&totalWriteStats, &stats);
-                if (opts.kde_limit)
+                if (kdeLimit)
                         Histogram_Sum(&totalWriteHist, &hist);
         }
         pthread_mutex_unlock(&accumLock);
@@ -343,7 +348,7 @@ doOps(int cpu, void *opaque)
                 fprintf(stderr, "CPU %d missed deadline %"PRIu64" times\n",
                         cpu, missed);
 
-        if (0 && opts.kde_limit) {
+        if (0 && kdeLimit) {
                 enum {KDE_SAMPLES = 500};
                 double xs[KDE_SAMPLES], ys[KDE_SAMPLES];
                 Histogram_ToKDE(&hist, &stats, xs, ys, KDE_SAMPLES);
@@ -378,7 +383,7 @@ showStats(const char *op, const struct StreamStats_Uint *stats,
         if (!ops)
                 return;
 
-        if (opts.kde_limit) {
+        if (hist->limit) {
                 enum {KDE_SAMPLES = 500};
                 double xs[KDE_SAMPLES], ys[KDE_SAMPLES];
                 Histogram_ToKDE(hist, stats, xs, ys, KDE_SAMPLES);
