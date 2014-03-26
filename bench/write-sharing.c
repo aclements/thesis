@@ -354,7 +354,7 @@ doOps(int cpu, void *opaque)
                 Histogram_ToKDE(&hist, &stats, xs, ys, KDE_SAMPLES);
                 char buf[128];
                 sprintf(buf, "write-sharing-kde-%d.data", cpu);
-                FILE *kde = fopen(buf, "a");
+                FILE *kde = fopen(buf, "w");
                 for (size_t i = 0; i < KDE_SAMPLES; ++i)
                         fprintf(kde, "%d %g %g\n", CPU_GetCount(opts.cores),
                                 xs[i], ys[i]);
@@ -390,7 +390,7 @@ showStats(const char *op, const struct StreamStats_Uint *stats,
 
                 char fname[128];
                 sprintf(fname, "write-sharing-kde-%s.data", op);
-                FILE *kde = fopen(fname, "a");
+                FILE *kde = fopen(fname, "w");
                 for (size_t i = 0; i < KDE_SAMPLES; ++i)
                         fprintf(kde, "%d %g %g\n", CPU_GetCount(opts.cores),
                                 xs[i], ys[i]);
