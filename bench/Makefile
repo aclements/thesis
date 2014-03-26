@@ -1,15 +1,15 @@
 CFLAGS += -std=gnu99 -g -O2 -Wall
 
-all: write-sharing
+all: sharing
 
-write-sharing: write-sharing.c mcorelib/mcorelib.a
-write-sharing: CFLAGS += -lpthread -lnuma -lm
+sharing: sharing.c mcorelib/mcorelib.a
+sharing: CFLAGS += -lpthread -lnuma -lm
 
 mcorelib/mcorelib.a: FORCE
 	$(MAKE) -C mcorelib
 
 clean:
-	rm -f write-sharing
+	rm -f sharing
 	$(MAKE) -C mcorelib clean
 
 .PHONY: FORCE
