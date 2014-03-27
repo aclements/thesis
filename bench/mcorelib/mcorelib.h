@@ -66,12 +66,21 @@ Time_TSCBefore(void)
         // See the "Improved Benchmarking Method" in Intel's "How to
         // Benchmark Code Execution Times on Intel® IA-32 and IA-64
         // Instruction Set Architectures"
+        uint64_t tsc;
+#if defined(__x86_64__)
+        // This generates tighter code than the __i386__ version
+        __asm __volatile("cpuid; rdtsc; shl $32, %%rdx; or %%rdx, %%rax"
+                         : "=a" (tsc)
+                         : : "%rbx", "%rcx", "%rdx");
+#elif defined(__i386__)
         uint32_t a, d;
         __asm __volatile("cpuid; rdtsc; mov %%eax, %0; mov %%edx, %1"
                          : "=r" (a), "=r" (d)
                          : : "%rax", "%rbx", "%rcx", "%rdx");
+        tsc = ((uint64_t) a) | (((uint64_t) d) << 32);
+#endif
         barrier();
-        return ((uint64_t) a) | (((uint64_t) d) << 32);
+        return tsc;
 }
 
 static inline uint64_t __attribute__((__always_inline__))
