@@ -292,6 +292,9 @@ doOps(int cpu, void *opaque)
 
         switch (opts.mode) {
         case MODE_W:
+                // Make sure CPU 0 always homes the line before the flood
+                myperiod *= 2;
+                myphase = (cpu > 0) ? myperiod / 2 : 0;
                 break;
         case MODE_RW:
                 reader = cpu > 0;
