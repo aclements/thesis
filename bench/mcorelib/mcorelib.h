@@ -16,6 +16,7 @@
                  const __typeof__(((type *)0)->member) *__mptr = (ptr); \
                  (type *)((char *)__mptr - offsetof(type, member));     \
          }))
+#define barrier() __asm__ __volatile__("": : :"memory")
 
 // msg.c
 void panic(const char *fmt, ...)
@@ -57,6 +58,11 @@ Time_TSC(void)
 static inline uint64_t __attribute__((__always_inline__))
 Time_TSCBefore(void)
 {
+        // Don't let anything float into or out of the TSC region.
+        // (The memory clobber on this is actually okay as long as GCC
+        // knows that no one ever took the address of things it has in
+        // registers.)
+        barrier();
         // See the "Improved Benchmarking Method" in Intel's "How to
         // Benchmark Code Execution Times on Intel® IA-32 and IA-64
         // Instruction Set Architectures"
@@ -64,16 +70,19 @@ Time_TSCBefore(void)
         __asm __volatile("cpuid; rdtsc; mov %%eax, %0; mov %%edx, %1"
                          : "=r" (a), "=r" (d)
                          : : "%rax", "%rbx", "%rcx", "%rdx");
+        barrier();
         return ((uint64_t) a) | (((uint64_t) d) << 32);
 }
 
 static inline uint64_t __attribute__((__always_inline__))
 Time_TSCAfter(void)
 {
+        barrier();
         uint32_t a, d;
         __asm __volatile("rdtscp; mov %%eax, %0; mov %%edx, %1; cpuid"
                          : "=r" (a), "=r" (d)
                          : : "%rax", "%rbx", "%rcx", "%rdx");
+        barrier();
         return ((uint64_t) a) | (((uint64_t) d) << 32);
 }
 
