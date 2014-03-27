@@ -157,15 +157,15 @@ Histogram_Sum(struct Histogram *out, const struct Histogram *hist)
         out->over += hist->over;
 }
 
-// Return the range that would fall in bin between the lowest value
-// (where==0) and the highest value (where==1)
-double
+// Return the range of values that would fall in bin between the
+// lowest value (where==0) and the highest value (where==1)
+uint64_t
 Histogram_Bin2Value(const struct Histogram *h, size_t bin, double where)
 {
-        return (double)(bin + where) * h->limit / HISTOGRAM_BINS;
+        return (uint64_t)((bin + where) * h->limit / HISTOGRAM_BINS);
 }
 
-double
+uint64_t
 Histogram_Percentile(const struct Histogram *h, double pctile)
 {
         uint64_t total = h->over;
@@ -185,7 +185,7 @@ Histogram_Percentile(const struct Histogram *h, double pctile)
               100 * pctile);
 }
 
-double
+uint64_t
 Histogram_IQR(const struct Histogram *h)
 {
         return Histogram_Percentile(h, 0.75) - Histogram_Percentile(h, 0.25);
@@ -213,7 +213,7 @@ Histogram_ToKDE(const struct Histogram *hist, const struct StreamStats_Uint *s,
         // outliers.
         double h_scale = 1.06 * pow(s->count, -1.0 / 5), h;
         double std = StreamStats_UintStdDev(s);
-        double iqr = Histogram_IQR(hist);
+        uint64_t iqr = Histogram_IQR(hist);
         if (std < iqr / 1.349)
                 h = h_scale * std;
         else
@@ -239,9 +239,18 @@ Histogram_ToKDE(const struct Histogram *hist, const struct StreamStats_Uint *s,
                         // by integrating.  The actual contribution is
                         // K*h/(x2-x1), but we factor out the
                         // constants to below.
-                        double low = (x1 - xi) / h;
-                        double high = (x2 - xi) / h;
-                        double K = std_normal_integral(low, high);
+                        double K;
+                        if (h == 0) {
+                                // Use a delta function at xi
+                                if (x1 <= xi && xi < x2)
+                                        K = 1;
+                                else
+                                        K = 0;
+                        } else {
+                                double low = (x1 - xi) / h;
+                                double high = (x2 - xi) / h;
+                                K = std_normal_integral(low, high);
+                        }
 
                         y += hist->bins[i] * K;
                 }
