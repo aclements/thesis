@@ -382,7 +382,9 @@ doOps(int cpu, void *opaque)
                 printf("CPU %d: min %"PRIu64" max %"PRIu64" mean %g stddev %g\n",
                        cpu, stats.min, stats.max, StreamStats_UintMean(&stats),
                        StreamStats_UintStdDev(&stats));
-        if (missed)
+        if (missed > 1)
+                // We're likely to miss one deadline on the first
+                // iteration, so just ignore that.
                 fprintf(stderr, "CPU %d missed deadline %"PRIu64" times\n",
                         cpu, missed);
 
