@@ -60,5 +60,9 @@ Time_TSCOverhead(double *stddev_out)
 
         if (stddev_out)
                 *stddev_out = stddev;
-        return (uint64_t)mean;
+        uint64_t min = samples[0];
+        for (size_t i = 0; i < SAMPLES; ++i)
+                if (samples[i] < min)
+                        min = samples[i];
+        return min;
 }

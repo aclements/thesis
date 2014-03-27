@@ -4,6 +4,11 @@ set -e
 
 conf=(--step 1 --trials 5 -- --hugetlb=true)
 
+if [[ $(cat /proc/sys/vm/nr_hugepages) == 0 ]]; then
+    echo Please "echo 8 | sudo tee /proc/sys/vm/nr_hugepages" >&2
+    exit 1
+fi
+
 function run1() {
     local label=$1
     shift
