@@ -13,10 +13,10 @@
 #include <numa.h>
 #include <sys/mman.h>
 
-enum mode { MODE_W, MODE_RW, MODE_R };
+enum mode { MODE_WW, MODE_RW, MODE_RR };
 
 struct Args_Choice modeChoices[] = {
-        {"w", MODE_W}, {"rw", MODE_RW}, {"r", MODE_R}, {NULL}
+        {"ww", MODE_WW}, {"rw", MODE_RW}, {"rr", MODE_RR}, {NULL}
 };
 
 struct
@@ -30,7 +30,7 @@ struct
         bool hugetlb;
 } opts = {
         .duration = 1,
-        .mode = MODE_W,
+        .mode = MODE_WW,
         .wait = 200000,
         .cores = NULL,
         .write_kde_limit = 0,
@@ -300,7 +300,7 @@ doOps(int cpu, void *opaque)
         uint64_t myphase = 0;
 
         switch (opts.mode) {
-        case MODE_W:
+        case MODE_WW:
                 // Make sure CPU 0 always homes the line before the flood
                 myperiod *= 2;
                 myphase = (cpu > 0) ? myperiod / 2 : 0;
@@ -310,7 +310,7 @@ doOps(int cpu, void *opaque)
                 myperiod *= 2;
                 myphase = reader ? myperiod / 2 : 0;
                 break;
-        case MODE_R:
+        case MODE_RR:
                 reader = true;
                 break;
         }
