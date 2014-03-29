@@ -1,3 +1,217 @@
 \section{Scalability and conflict-freedom}
+\label{sec:scalability}
 
 \XXX![AC]{Write me.}
+
+% Directory-based
+
+% Interconnect
+
+% cc-NUMA
+
+% Should I explain cache coherence and directories and such here or
+% assume that's understood?  How ``introductory'' should this chapter
+% be?
+
+% What really matters is what *doesn't* require coordination in the
+% steady-state.  What can be done purely locally.  Any transition that
+% involves coordination represents a scalability hazard.
+
+We prove the connection between commutativity and conflict-free
+implementations in \cref{sec:rule}, but what ultimately matters to
+practitioners is scalability.  This chapter shows that
+conflict-freedom is a good predictor of linear scalability on modern
+multicore hardware, closing the gap between the theoretical basis of
+the scalability commutativity rule and its utility in practice.
+
+The connection between conflict-freedom and scalability mustn't taken
+for granted.  Indeed, some early multi-processor architectures such as
+the Intel Pentium depended on shared buses with global lock
+lines~\cite[\S8.1.4]{intel-sdm-3}, so even conflict-free operations
+did not scale.
+
+Today's multicores avoid these centralized components.  Modern, large,
+cache-coherent multicores utilize peer-to-peer interconnects between
+cores, partitioned physical memory (NUMA), and per-core write-back
+caches.
+%
+To maintain a unified, globally consistent view of memory despite
+their distributed architecture, multicores depend on MESI-like
+coherence protocols~\cite{papamarcos:mesi} to coordinate ownership of
+cached memory.
+%
+A key invariant of these coherence protocols is that a cache line is
+either not present in any cache, a mutable copy is present in a single
+cache, or it is present in any number of caches but is immutable.
+%
+Maintaining this invariant requires coordination, and this is where
+the connection to scalability lies.
+
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[x=2cm,y=2cm,bend angle=10,
+%    every node/.style={draw},
+    rfo/.style={->,red,ultra thick},
+    local/.style={->,green!50!black,thick},
+    remote/.style={->,dotted}]
+
+    \begin{scope}[every node/.append style={shape=ellipse}]
+      \node (I) at (90:1) {invalid};
+      \node (S) at (200:1) {shared};
+      \node (M) at (340:1) {modified};
+    \end{scope}
+
+    \begin{scope}[every node/.append style={shape=circle,inner sep=2pt}]
+      \draw[rfo] (I) to[bend right] node[auto=right] {R} (S);
+      \draw[rfo] (I) to[bend left] node[auto=left] {W} (M);
+
+      \draw[rfo] (S) to[bend right] node[auto=right] {W} (M);
+      \draw[local,<-] (S) to[loop left,distance=5mm] node {R} (S);
+      \draw[remote] (S) to[bend right] node[auto=right] {rW} (I);
+
+      \draw[local] (M) to[loop right,distance=5mm] node {R/W} (M);
+      \draw[remote] (M) to[bend left] node[auto=left] {rW} (I);
+      \draw[remote] (M) to[bend right] node[auto=right] {rR} (S);
+    \end{scope}
+  \end{tikzpicture}
+  %
+  \splitcaption{The cache-coherence state machine.}{``R'' and ``W''
+    indicate local read and write operations, while ``rR'' and ``rW''
+    indicate remote read and write operations.  Thick red lines show
+    operations that cause communication.  Thin green lines show
+    operations that occur without communication.}
+  \label{fig:mesi}
+\end{figure}
+
+\Cref{fig:mesi} shows the basic state machine implemented by each
+cache for each cache line.  This maintains the key invariant by
+ensuring a cache line is either invalid in all caches, modified in one
+cache and invalid in all others, or shared by any number of caches.
+Practical implementations add further states---MESI's ``exclusive''
+state, Intel's ``forward'' state~\cite{goodman:mesif}, and AMD's
+``owned'' state~\cite[\S7.3]{amd-arch-2}---but these do not change the
+basic properties of the protocol.
+
+Roughly, a set of operations scales when the coherence protocol does
+not require communication in the steady state.  This is precisely when
+those operations are conflict-free.  Multiple cores reading the same
+cache line scales because the line can be stored in each reading
+core's cache, allowing the reads to proceed independently and in
+parallel with no coordination.  Likewise, a single core reading or
+writing a cache line that is not read or written by any other core
+also scales because, once that line is exclusive to that core's cache,
+no coordination is required to access it, so no concurrent operations
+will slow down the access.
+
+Furthermore, any state transition that does involve coordination
+represents a scalability hazard.  If a cache line is written by one
+core and read or written by other cores, those operations must
+coordinate and, as a result, will slow each other down.  While this
+doesn't directly concern the scalable commutativity rule (which says
+only when operations can be conflict-free, not when they must be
+conflicted), the huge effect that conflicts can have on scalability
+reaffirms our assiduous focus on conflict-freedom.
+
+\Cref{sec:scalability:conflict-free} verifies that conflict-free
+operations scale on real hardware and examines the cost of conflicting
+operations, while \cref{sec:scalability:limits} explores the practical
+limitations of conflict-freedom.
+
+
+\subsection{The cost of conflicts}
+\label{sec:scalability:conflict-free}
+
+\XXX![AC]{Put conflict-free $\implies$ scalable foremost, since that's
+  what really matters.  Note that this reverses the sense of this
+  section.}
+
+We use two machines to evaluate the cost of conflicts on real
+hardware: an 80-core (8 sockets $\times$ 10 cores) Intel Xeon E7-8870
+(the same machine used for evaluation in \cref{sec:eval}) and a
+48-core (8 sockets $\times$ 6 cores) AMD Opteron 8431.  Both are
+cc-NUMA x86 machines with directory-based cache coherence, but the
+details of their architectures, interconnects, and coherence protocols
+differ between the manufacturers.  \Cref{fig:machines} shows how the
+two machines are broadly organized.
+
+\begin{figure}
+  \centering
+  \XXX!{Interconnect, memory, and cache layout.}
+  \caption{Organization of Intel and AMD machines.}
+  \label{fig:machines}
+\end{figure}
+
+To evaluate the various transitions and communication patterns, we use
+a benchmark that alternates between reading or writing a cache line
+from core 0 and simultaneously reading or writing that same cache line
+from $N$ cores.  \Cref{fig:sharing-cycles} shows the time required by
+the second step in various configurations as $N$ varies.
+
+\begin{figure}
+  \centering
+  \input{graph/sharing}
+  %
+  \splitcaption{The cost of conflicts.}{Each graph shows the cycles
+    required to read or write a cache line from $N$ cores after core 0
+    has read or written it.  Shading indicates the latency
+    distribution for each $N$ (estimated using kernel density
+    estimation).  The top two rows show that write/write and
+    read/write sharing do not scale.  The bottom row shows that
+    read/read sharing does scale.}
+  \label{fig:sharing-cycles}
+\end{figure}
+
+\XXX[AC]{For comparison, a fairly complex system call like \code{open}
+  takes roughly 1,000--2,000 cycles.}
+
+The top row of \cref{fig:sharing-cycles} shows the latency of $N$
+cores writing the same cache line.  The cost of a write/write conflict
+grows dramatically as the number of writing cores increases because
+ownership of the cache line must pass through each writing core, one
+at a time.  On both machines, we also see a uniform distribution of
+write latencies, which further illustrates this serialization.
+% On the AMD machine, the growth of the mean latency and the spread of
+% the distribution are noticeably super-linear as the benchmark adds
+% cores further from core 0.
+
+The results for reading a cache line last written by core 0---the
+second row of \cref{fig:sharing-cycles}---are nearly identical for the
+AMD machine, since this machine serializes requests for the cache line
+at the home socket.  On the Intel machine, the cost of read/write
+conflicts also grows with the number of readers, as all readers must
+ultimately contact the home socket for this cache line.  However, this
+machine aggregates these requests at each socket, causing the cost of
+read/write conflicts to stair-step up as the benchmark adds more
+sockets.  We see this effect in the latency distribution, as well, as
+requests fall in to one of several latency modes based on when their
+socket's aggregated read request arrives at the home socket (notably,
+all sockets exhibit all modes, so this is not simply an effect of
+distance from the home socket).  Intel's optimization helps reduce the
+absolute latency of reads, but nevertheless, read/write conflicts do
+not scale on either machine.
+
+Finally, we examine the cost of read/read sharing, shown in the bottom
+row of \cref{fig:sharing-cycles}.  In contrast with the two conflicted
+configurations, the latency in this conflict-free configuration
+remains roughly constant regardless of the number of reading cores
+(growing slightly on the AMD machine because of increasing noise).
+Since these accesses are conflict-free, the cache line remains in each
+core's local caches, enabling operations that are not only orders of
+magnitude faster, but scale perfectly on these machines.
+
+\XXX[AC]{Should I also show non-conflicted writes?}
+
+\subsection{Limitations of conflict-freedom}
+\label{sec:scalability:limits}
+
+\XXX![AC]{Write me.  Cache capacity (and associativity), directory
+  capacity, compulsory misses (we assume a useful level of cache
+  locality), false sharing.  Put in the benchmark from the OSDI paper,
+  which covers the limitations.}
+
+So far, we've treated each cache line as isolated and affected only by
+reads and writes of that cache line.  But there are more cache lines
+than there is space in a cache (otherwise it wouldn't be a cache), and
+limits on cache capacity and associativity can cause cache lines to be
+evicted from a cache, even in the absence of coherence traffic.  This
+affects not only sequential performance, but scalability as well.
