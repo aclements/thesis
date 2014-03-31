@@ -2,720 +2,720 @@
 ==== --ncores=1 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0 --write-kde=40 --read-kde=0 --hugetlb 
-0.999962 sec
+0.999856 sec
 6000 writes
 6000 writes/sec
-28.978 cycles/write
-1.89775 stddev cycles/write
+28.9933 cycles/write
+1.98543 stddev cycles/write
 
 ==== --ncores=2 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41 --write-kde=40 --read-kde=0 --hugetlb 
-0.999838 sec
-11999 writes
+0.999799 sec
+11998 writes
 12000 writes/sec
-29.0178 cycles/write
-4.62239 stddev cycles/write
+28.9815 cycles/write
+4.46309 stddev cycles/write
 
 ==== --ncores=3 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-42 --write-kde=40 --read-kde=0 --hugetlb 
-0.999648 sec
-17995 writes
-18001 writes/sec
-29.0274 cycles/write
-4.87878 stddev cycles/write
+0.999619 sec
+17994 writes
+18000 writes/sec
+28.999 cycles/write
+4.88499 stddev cycles/write
 
 ==== --ncores=4 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-43 --write-kde=40 --read-kde=0 --hugetlb 
-0.999561 sec
-23992 writes
-24002 writes/sec
-29.03 cycles/write
-5.27818 stddev cycles/write
+0.999448 sec
+23988 writes
+24001 writes/sec
+29.0334 cycles/write
+5.37187 stddev cycles/write
 
 ==== --ncores=5 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-44 --write-kde=40 --read-kde=0 --hugetlb 
-0.999255 sec
-29980 writes
+0.999584 sec
+29990 writes
 30002 writes/sec
-29.0454 cycles/write
-5.02944 stddev cycles/write
+29.0558 cycles/write
+5.32546 stddev cycles/write
 
 ==== --ncores=6 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-45 --write-kde=40 --read-kde=0 --hugetlb 
-0.999263 sec
-35976 writes
-36002 writes/sec
-28.9692 cycles/write
-5.09455 stddev cycles/write
+0.999013 sec
+35969 writes
+36004 writes/sec
+29.001 cycles/write
+5.06657 stddev cycles/write
 
 ==== --ncores=7 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-46 --write-kde=40 --read-kde=0 --hugetlb 
-0.99904 sec
+0.999037 sec
 41959 writes
 41999 writes/sec
-28.9929 cycles/write
-6.09103 stddev cycles/write
+29.0381 cycles/write
+5.49293 stddev cycles/write
 
 ==== --ncores=8 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-47 --write-kde=40 --read-kde=0 --hugetlb 
-0.99885 sec
-47951 writes
-48006 writes/sec
-29.0277 cycles/write
-5.97936 stddev cycles/write
+0.998762 sec
+47944 writes
+48003 writes/sec
+28.9826 cycles/write
+5.49704 stddev cycles/write
 
 ==== --ncores=9 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-48 --write-kde=40 --read-kde=0 --hugetlb 
-0.998614 sec
-53928 writes
-54002 writes/sec
-29.0151 cycles/write
-5.26689 stddev cycles/write
+0.998651 sec
+53929 writes
+54001 writes/sec
+29.0313 cycles/write
+5.7705 stddev cycles/write
 
 ==== --ncores=10 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-49 --write-kde=40 --read-kde=0 --hugetlb 
-0.998503 sec
-59918 writes
-60007 writes/sec
-29.0406 cycles/write
-6.28461 stddev cycles/write
+0.998519 sec
+59911 writes
+59999 writes/sec
+29.0419 cycles/write
+6.23768 stddev cycles/write
 
 ==== --ncores=11 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-50 --write-kde=40 --read-kde=0 --hugetlb 
-0.998145 sec
+0.998157 sec
 65889 writes
-66011 writes/sec
-29.0643 cycles/write
-9.01524 stddev cycles/write
+66010 writes/sec
+29.0813 cycles/write
+14.293 stddev cycles/write
 
 ==== --ncores=12 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-51 --write-kde=40 --read-kde=0 --hugetlb 
-0.997964 sec
+0.997969 sec
 71856 writes
 72002 writes/sec
-29.1283 cycles/write
-11.6411 stddev cycles/write
+29.12 cycles/write
+11.5282 stddev cycles/write
 
 ==== --ncores=13 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-52 --write-kde=40 --read-kde=0 --hugetlb 
-0.997672 sec
-77830 writes
-78011 writes/sec
-29.1104 cycles/write
-11.6237 stddev cycles/write
+0.99775 sec
+77831 writes
+78006 writes/sec
+29.0801 cycles/write
+11.2295 stddev cycles/write
 
 ==== --ncores=14 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-53 --write-kde=40 --read-kde=0 --hugetlb 
-0.99771 sec
-83817 writes
-84009 writes/sec
-29.1475 cycles/write
-12.0104 stddev cycles/write
+0.997603 sec
+83804 writes
+84005 writes/sec
+29.1433 cycles/write
+12.3061 stddev cycles/write
 
 ==== --ncores=15 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-54 --write-kde=40 --read-kde=0 --hugetlb 
-0.997654 sec
-89791 writes
-90002 writes/sec
-29.1383 cycles/write
-11.9463 stddev cycles/write
+0.997462 sec
+89775 writes
+90003 writes/sec
+29.1268 cycles/write
+11.5151 stddev cycles/write
 
 ==== --ncores=16 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-55 --write-kde=40 --read-kde=0 --hugetlb 
-0.997122 sec
-95728 writes
-96004 writes/sec
-29.1381 cycles/write
-13.2753 stddev cycles/write
+0.997384 sec
+95759 writes
+96010 writes/sec
+29.1284 cycles/write
+13.3465 stddev cycles/write
 
 ==== --ncores=17 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-56 --write-kde=40 --read-kde=0 --hugetlb 
-0.997184 sec
-101727 writes
-102014 writes/sec
-29.1491 cycles/write
-13.0105 stddev cycles/write
+0.996977 sec
+101695 writes
+102003 writes/sec
+29.1326 cycles/write
+12.9398 stddev cycles/write
 
 ==== --ncores=18 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-57 --write-kde=40 --read-kde=0 --hugetlb 
-0.997127 sec
-107694 writes
-108004 writes/sec
-29.1499 cycles/write
-13.0627 stddev cycles/write
+0.996945 sec
+107676 writes
+108005 writes/sec
+29.1627 cycles/write
+13.7019 stddev cycles/write
 
 ==== --ncores=19 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-58 --write-kde=40 --read-kde=0 --hugetlb 
-0.996851 sec
-113657 writes
-114016 writes/sec
-29.1573 cycles/write
-14.0016 stddev cycles/write
+0.996929 sec
+113658 writes
+114008 writes/sec
+29.1409 cycles/write
+14.2758 stddev cycles/write
 
 ==== --ncores=20 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-59 --write-kde=40 --read-kde=0 --hugetlb 
-0.996557 sec
-119599 writes
-120012 writes/sec
-29.123 cycles/write
-13.1387 stddev cycles/write
+0.996697 sec
+119619 writes
+120015 writes/sec
+29.135 cycles/write
+13.9757 stddev cycles/write
 
 ==== --ncores=21 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-60 --write-kde=40 --read-kde=0 --hugetlb 
-0.996043 sec
-125516 writes
-126014 writes/sec
-29.1364 cycles/write
-12.668 stddev cycles/write
+0.996012 sec
+125497 writes
+125999 writes/sec
+29.138 cycles/write
+12.3708 stddev cycles/write
 
 ==== --ncores=22 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-61 --write-kde=40 --read-kde=0 --hugetlb 
-0.995948 sec
-131472 writes
-132006 writes/sec
-29.1048 cycles/write
-11.1698 stddev cycles/write
+0.995819 sec
+131451 writes
+132002 writes/sec
+29.1072 cycles/write
+11.1373 stddev cycles/write
 
 ==== --ncores=23 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-62 --write-kde=40 --read-kde=0 --hugetlb 
-0.995643 sec
+0.995607 sec
 137402 writes
-138003 writes/sec
-29.1179 cycles/write
-11.2962 stddev cycles/write
+138008 writes/sec
+29.093 cycles/write
+10.7582 stddev cycles/write
 
 ==== --ncores=24 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-63 --write-kde=40 --read-kde=0 --hugetlb 
-0.995513 sec
-143353 writes
-143999 writes/sec
-29.1126 cycles/write
-11.5128 stddev cycles/write
+0.99579 sec
+143400 writes
+144006 writes/sec
+29.0698 cycles/write
+10.9471 stddev cycles/write
 
 ==== --ncores=25 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-64 --write-kde=40 --read-kde=0 --hugetlb 
-0.99542 sec
-149325 writes
-150012 writes/sec
-29.1219 cycles/write
-11.6001 stddev cycles/write
+0.995403 sec
+149324 writes
+150013 writes/sec
+29.0967 cycles/write
+11.0584 stddev cycles/write
 
 ==== --ncores=26 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-65 --write-kde=40 --read-kde=0 --hugetlb 
-0.995251 sec
-155272 writes
-156012 writes/sec
-29.1144 cycles/write
-11.9841 stddev cycles/write
+0.995171 sec
+155271 writes
+156024 writes/sec
+29.1098 cycles/write
+11.1943 stddev cycles/write
 
 ==== --ncores=27 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-66 --write-kde=40 --read-kde=0 --hugetlb 
-0.994932 sec
-161190 writes
-162011 writes/sec
-29.1392 cycles/write
-11.212 stddev cycles/write
+0.994881 sec
+161164 writes
+161993 writes/sec
+29.1075 cycles/write
+12.6817 stddev cycles/write
 
 ==== --ncores=28 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-67 --write-kde=40 --read-kde=0 --hugetlb 
-0.994741 sec
-167131 writes
-168014 writes/sec
-29.1131 cycles/write
-12.7534 stddev cycles/write
+0.994922 sec
+167159 writes
+168012 writes/sec
+29.1146 cycles/write
+11.1456 stddev cycles/write
 
 ==== --ncores=29 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-68 --write-kde=40 --read-kde=0 --hugetlb 
-0.994623 sec
-173072 writes
-174007 writes/sec
-29.1341 cycles/write
-11.6542 stddev cycles/write
+0.994552 sec
+173044 writes
+173991 writes/sec
+29.1253 cycles/write
+12.9451 stddev cycles/write
 
 ==== --ncores=30 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-69 --write-kde=40 --read-kde=0 --hugetlb 
-0.994664 sec
-179069 writes
-180029 writes/sec
-29.1224 cycles/write
-11.7618 stddev cycles/write
+0.994535 sec
+179011 writes
+179994 writes/sec
+29.1314 cycles/write
+12.0858 stddev cycles/write
 
 ==== --ncores=31 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-70 --write-kde=40 --read-kde=0 --hugetlb 
-0.993919 sec
-184884 writes
-186015 writes/sec
-29.1211 cycles/write
-13.1077 stddev cycles/write
+0.99384 sec
+184883 writes
+186028 writes/sec
+29.1482 cycles/write
+13.1411 stddev cycles/write
 
 ==== --ncores=32 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-71 --write-kde=40 --read-kde=0 --hugetlb 
-0.993749 sec
+0.993761 sec
 190816 writes
-192016 writes/sec
-29.1741 cycles/write
-16.5737 stddev cycles/write
+192013 writes/sec
+29.1333 cycles/write
+13.7081 stddev cycles/write
 
 ==== --ncores=33 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-72 --write-kde=40 --read-kde=0 --hugetlb 
-0.993629 sec
-196746 writes
-198007 writes/sec
-29.1526 cycles/write
-14.7887 stddev cycles/write
+0.99351 sec
+196714 writes
+197999 writes/sec
+29.1596 cycles/write
+13.8481 stddev cycles/write
 
 ==== --ncores=34 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-73 --write-kde=40 --read-kde=0 --hugetlb 
-0.993405 sec
-202674 writes
-204019 writes/sec
-29.1681 cycles/write
-14.674 stddev cycles/write
+0.993103 sec
+202606 writes
+204013 writes/sec
+29.1611 cycles/write
+14.7588 stddev cycles/write
 
 ==== --ncores=35 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-74 --write-kde=40 --read-kde=0 --hugetlb 
-0.993128 sec
-208565 writes
-210008 writes/sec
-29.156 cycles/write
-14.3734 stddev cycles/write
+0.993022 sec
+208531 writes
+209996 writes/sec
+29.1793 cycles/write
+15.5906 stddev cycles/write
 
 ==== --ncores=36 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-75 --write-kde=40 --read-kde=0 --hugetlb 
-0.993049 sec
+0.993046 sec
 214523 writes
-216024 writes/sec
-29.1813 cycles/write
-17.3878 stddev cycles/write
+216025 writes/sec
+29.1514 cycles/write
+14.5986 stddev cycles/write
 
 ==== --ncores=37 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-76 --write-kde=40 --read-kde=0 --hugetlb 
-0.99296 sec
-220446 writes
+0.992796 sec
+220409 writes
 222008 writes/sec
-29.1919 cycles/write
-15.5817 stddev cycles/write
+29.1708 cycles/write
+15.5009 stddev cycles/write
 
 ==== --ncores=38 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-77 --write-kde=40 --read-kde=0 --hugetlb 
-0.992838 sec
-226403 writes
-228036 writes/sec
-29.1754 cycles/write
-16.6205 stddev cycles/write
+0.992515 sec
+226327 writes
+228033 writes/sec
+29.1881 cycles/write
+15.2197 stddev cycles/write
 
 ==== --ncores=39 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-78 --write-kde=40 --read-kde=0 --hugetlb 
-0.992664 sec
-232285 writes
-234001 writes/sec
-29.1726 cycles/write
-16.2522 stddev cycles/write
+0.992487 sec
+232245 writes
+234003 writes/sec
+29.1885 cycles/write
+15.263 stddev cycles/write
 
 ==== --ncores=40 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.992465 sec
-238200 writes
-240008 writes/sec
-29.2097 cycles/write
-17.6725 stddev cycles/write
+0.99251 sec
+238201 writes
+239998 writes/sec
+29.1907 cycles/write
+16.4139 stddev cycles/write
 
 ==== --ncores=41 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-1,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.99205 sec
-244033 writes
-245988 writes/sec
-29.2456 cycles/write
-18.5889 stddev cycles/write
+0.992048 sec
+244071 writes
+246027 writes/sec
+29.2187 cycles/write
+17.7218 stddev cycles/write
 
 ==== --ncores=42 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-2,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.991788 sec
-249941 writes
-252010 writes/sec
-29.2236 cycles/write
-18.4367 stddev cycles/write
+0.99185 sec
+249983 writes
+252037 writes/sec
+29.2306 cycles/write
+19.0494 stddev cycles/write
 
 ==== --ncores=43 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-3,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.991929 sec
-255936 writes
-258018 writes/sec
-29.2088 cycles/write
-16.4088 stddev cycles/write
+0.991745 sec
+255892 writes
+258021 writes/sec
+29.2258 cycles/write
+18.6991 stddev cycles/write
 
 ==== --ncores=44 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-4,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.991376 sec
-261713 writes
-263989 writes/sec
-29.2142 cycles/write
-18.8444 stddev cycles/write
+0.991421 sec
+261756 writes
+264021 writes/sec
+29.2236 cycles/write
+20.1774 stddev cycles/write
 
 ==== --ncores=45 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-5,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.991241 sec
-267660 writes
-270025 writes/sec
-29.2209 cycles/write
-18.7036 stddev cycles/write
+0.991209 sec
+267658 writes
+270031 writes/sec
+29.2404 cycles/write
+19.4011 stddev cycles/write
 
 ==== --ncores=46 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-6,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.990944 sec
-273516 writes
-276015 writes/sec
-29.2371 cycles/write
-19.8273 stddev cycles/write
+0.990999 sec
+273517 writes
+276001 writes/sec
+29.2092 cycles/write
+17.332 stddev cycles/write
 
 ==== --ncores=47 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-7,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.990657 sec
-279368 writes
-282002 writes/sec
-29.2354 cycles/write
-19.3183 stddev cycles/write
+0.990364 sec
+279275 writes
+281992 writes/sec
+29.2528 cycles/write
+21.6246 stddev cycles/write
 
 ==== --ncores=48 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-8,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.990603 sec
-285312 writes
-288018 writes/sec
-29.2116 cycles/write
-18.5932 stddev cycles/write
+0.990467 sec
+285264 writes
+288009 writes/sec
+29.2177 cycles/write
+17.4898 stddev cycles/write
 
 ==== --ncores=49 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-9,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.990395 sec
-291207 writes
-294031 writes/sec
-29.247 cycles/write
-20.4612 stddev cycles/write
+0.990299 sec
+291158 writes
+294010 writes/sec
+29.2504 cycles/write
+22.0701 stddev cycles/write
 
 ==== --ncores=50 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-10,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.990324 sec
-297101 writes
-300003 writes/sec
-29.253 cycles/write
-20.6155 stddev cycles/write
+0.990104 sec
+297047 writes
+300015 writes/sec
+29.2528 cycles/write
+19.6385 stddev cycles/write
 
 ==== --ncores=51 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-11,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.98994 sec
+0.990006 sec
 302940 writes
-306018 writes/sec
-29.2878 cycles/write
-23.3373 stddev cycles/write
+305998 writes/sec
+29.2681 cycles/write
+21.9956 stddev cycles/write
 
 ==== --ncores=52 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-12,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.989534 sec
-308725 writes
-311990 writes/sec
-29.2671 cycles/write
-21.1446 stddev cycles/write
+0.989584 sec
+308776 writes
+312026 writes/sec
+29.2729 cycles/write
+22.6996 stddev cycles/write
 
 ==== --ncores=53 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-13,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.989464 sec
-314661 writes
-318011 writes/sec
-29.259 cycles/write
-22.1459 stddev cycles/write
+0.989558 sec
+314713 writes
+318033 writes/sec
+29.2787 cycles/write
+23.7726 stddev cycles/write
 
 ==== --ncores=54 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-14,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.989266 sec
-320544 writes
-324022 writes/sec
-29.2689 cycles/write
-23.2746 stddev cycles/write
+0.989398 sec
+320598 writes
+324033 writes/sec
+29.2467 cycles/write
+21.3625 stddev cycles/write
 
 ==== --ncores=55 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-15,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.98926 sec
-326480 writes
-330024 writes/sec
-29.2697 cycles/write
-21.2763 stddev cycles/write
+0.989134 sec
+326425 writes
+330010 writes/sec
+29.2643 cycles/write
+21.6615 stddev cycles/write
 
 ==== --ncores=56 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-16,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.988875 sec
-332303 writes
-336041 writes/sec
-29.2141 cycles/write
-17.5935 stddev cycles/write
+0.988963 sec
+332304 writes
+336012 writes/sec
+29.2861 cycles/write
+24.8872 stddev cycles/write
 
 ==== --ncores=57 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-17,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.988831 sec
-338181 writes
-342000 writes/sec
-29.3087 cycles/write
-25.1049 stddev cycles/write
+0.988628 sec
+338124 writes
+342013 writes/sec
+29.2803 cycles/write
+23.1852 stddev cycles/write
 
 ==== --ncores=58 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-18,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.988357 sec
-343941 writes
-347992 writes/sec
-29.2514 cycles/write
-22.482 stddev cycles/write
+0.988708 sec
+344057 writes
+347986 writes/sec
+29.2535 cycles/write
+21.6571 stddev cycles/write
 
 ==== --ncores=59 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-19,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.98832 sec
+0.988297 sec
 349870 writes
-354004 writes/sec
-29.2761 cycles/write
-23.734 stddev cycles/write
+354013 writes/sec
+29.2654 cycles/write
+22.4695 stddev cycles/write
 
 ==== --ncores=60 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-20,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.98831 sec
-355800 writes
-360008 writes/sec
-29.2762 cycles/write
-23.0296 stddev cycles/write
+0.98802 sec
+355738 writes
+360051 writes/sec
+29.2711 cycles/write
+21.446 stddev cycles/write
 
 ==== --ncores=61 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-21,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.988197 sec
-361670 writes
-365989 writes/sec
-29.2877 cycles/write
-23.7335 stddev cycles/write
+0.987822 sec
+361548 writes
+366005 writes/sec
+29.2897 cycles/write
+24.4086 stddev cycles/write
 
 ==== --ncores=62 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-22,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.987702 sec
-367473 writes
-372048 writes/sec
-29.3087 cycles/write
-24.578 stddev cycles/write
+0.98763 sec
+367411 writes
+372012 writes/sec
+29.296 cycles/write
+24.0649 stddev cycles/write
 
 ==== --ncores=63 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-23,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.987426 sec
-373274 writes
-378027 writes/sec
-29.1711 cycles/write
-16.7843 stddev cycles/write
+0.987252 sec
+373212 writes
+378031 writes/sec
+29.3118 cycles/write
+25.3526 stddev cycles/write
 
 ==== --ncores=64 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-24,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.986955 sec
-379008 writes
-384017 writes/sec
-29.2985 cycles/write
-24.9953 stddev cycles/write
+0.98727 sec
+379135 writes
+384023 writes/sec
+29.3021 cycles/write
+24.5035 stddev cycles/write
 
 ==== --ncores=65 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-25,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.987203 sec
-384995 writes
-389985 writes/sec
-29.3018 cycles/write
-24.9494 stddev cycles/write
+0.986818 sec
+384865 writes
+390006 writes/sec
+29.2495 cycles/write
+21.3039 stddev cycles/write
 
 ==== --ncores=66 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-26,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.986581 sec
-390718 writes
-396032 writes/sec
-29.281 cycles/write
-23.2805 stddev cycles/write
+0.986548 sec
+390654 writes
+395980 writes/sec
+29.3185 cycles/write
+26.1305 stddev cycles/write
 
 ==== --ncores=67 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-27,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.986646 sec
-396640 writes
-402008 writes/sec
-29.3356 cycles/write
-27.4254 stddev cycles/write
+0.986435 sec
+396573 writes
+402026 writes/sec
+29.3062 cycles/write
+25.5871 stddev cycles/write
 
 ==== --ncores=68 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-28,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.986248 sec
-402424 writes
-408035 writes/sec
-29.2769 cycles/write
-23.7852 stddev cycles/write
+0.986186 sec
+402356 writes
+407991 writes/sec
+29.3032 cycles/write
+24.7179 stddev cycles/write
 
 ==== --ncores=69 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-29,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.986089 sec
-408273 writes
-414032 writes/sec
-29.2846 cycles/write
-25.0545 stddev cycles/write
+0.985962 sec
+408203 writes
+414014 writes/sec
+29.2836 cycles/write
+22.9269 stddev cycles/write
 
 ==== --ncores=70 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-30,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.985851 sec
-414051 writes
-419993 writes/sec
-29.3143 cycles/write
-24.7333 stddev cycles/write
+0.985902 sec
+414118 writes
+420039 writes/sec
+29.3288 cycles/write
+26.9601 stddev cycles/write
 
 ==== --ncores=71 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-31,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.985907 sec
-420036 writes
-426040 writes/sec
-29.2932 cycles/write
-24.6446 stddev cycles/write
+0.985525 sec
+419823 writes
+425989 writes/sec
+29.3259 cycles/write
+26.5859 stddev cycles/write
 
 ==== --ncores=72 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-32,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.985649 sec
-425808 writes
-432007 writes/sec
-29.3252 cycles/write
-25.4703 stddev cycles/write
+0.98545 sec
+425736 writes
+432022 writes/sec
+29.3016 cycles/write
+25.2705 stddev cycles/write
 
 ==== --ncores=73 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-33,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.985529 sec
-431649 writes
-437987 writes/sec
-29.3252 cycles/write
-26.2472 stddev cycles/write
+0.985259 sec
+431575 writes
+438032 writes/sec
+29.2942 cycles/write
+23.4905 stddev cycles/write
 
 ==== --ncores=74 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-34,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.985356 sec
-437488 writes
-443989 writes/sec
-29.3173 cycles/write
-25.1279 stddev cycles/write
+0.985013 sec
+437339 writes
+443993 writes/sec
+29.2937 cycles/write
+25.5415 stddev cycles/write
 
 ==== --ncores=75 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-35,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.984674 sec
-443101 writes
-449997 writes/sec
-29.3144 cycles/write
-25.3015 stddev cycles/write
+0.984901 sec
+443174 writes
+449968 writes/sec
+29.3018 cycles/write
+25.4004 stddev cycles/write
 
 ==== --ncores=76 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-36,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.984425 sec
-448931 writes
-456033 writes/sec
-29.3131 cycles/write
-25.631 stddev cycles/write
+0.984419 sec
+448930 writes
+456035 writes/sec
+29.2838 cycles/write
+24.3035 stddev cycles/write
 
 ==== --ncores=77 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-37,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.984529 sec
-454840 writes
-461987 writes/sec
-29.2993 cycles/write
-23.6783 stddev cycles/write
+0.984293 sec
+454762 writes
+462018 writes/sec
+29.3024 cycles/write
+24.4181 stddev cycles/write
 
 ==== --ncores=78 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-38,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.984432 sec
-460745 writes
-468031 writes/sec
-29.3053 cycles/write
-25.1254 stddev cycles/write
+0.984171 sec
+460591 writes
+467998 writes/sec
+29.2676 cycles/write
+24.0371 stddev cycles/write
 
 ==== --ncores=79 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-39,41-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.984371 sec
-466575 writes
-473982 writes/sec
-29.2666 cycles/write
-22.339 stddev cycles/write
+0.983927 sec
+466415 writes
+474034 writes/sec
+29.2942 cycles/write
+25.4181 stddev cycles/write
 
 ==== --ncores=80 ====
 
 # --duration=1 --mode=ww --addr-skew=128 --wait=200000 --cores=0-79 --write-kde=40 --read-kde=0 --hugetlb 
-0.983908 sec
-472320 writes
-480044 writes/sec
-29.2958 cycles/write
-24.1974 stddev cycles/write
+0.983749 sec
+472032 writes
+479829 writes/sec
+29.2941 cycles/write
+24.3762 stddev cycles/write
 

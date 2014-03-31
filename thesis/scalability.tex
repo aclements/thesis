@@ -141,15 +141,14 @@ two machines are broadly organized.
 \XXX[AC]{The conflict-free benchmarks wait between accesses.  Maybe
   they should be run at full tilt?}
 
-\XXX[AC]{The shading on cfree should be discretized.}
-
 \begin{figure}
   \centering
   \input{graph/cfree-cycles}
   %
   \splitcaption{Conflict-free accesses scale.}{Each graph shows the
     cycles required to perform a conflict-free read or write from $N$
-    cores.  Shading indicates the latency distribution for each $N$.}
+    cores.  Shading indicates the latency distribution for each $N$
+    where darker indicates higher frequency.}
   \label{fig:cfree-cycles}
 \end{figure}
 
