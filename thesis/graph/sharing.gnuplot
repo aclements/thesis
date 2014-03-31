@@ -17,10 +17,15 @@ NEXT='\
       unset label 1; \
       if (NPLOT%2) {unset ylabel}; \
       if (NPLOT>0) {unset key}; \
+      if (NPLOT==0) {set title "80-core Intel"; @xaxis_ben}; \
+      if (NPLOT==1) {set title "48-core AMD"; @xaxis_tom}; \
       if (NPLOT>1) {unset title}; \
       NPLOT=NPLOT+1'
 
-set multiplot layout 3,2
+# Set Y axis label such that it aligns regardless of tic width
+SET_LABEL(lbl) = sprintf('set label 1 "%s" at graph -0.25,0.5 center rotate',lbl)
+
+set multiplot layout 5,2
 #set palette gray negative gamma 0.3
 #set palette defined (0 "#ffffff", 1/6. "#f0f9e8", 2/6. "#ccebc5", 3/6. "#a8ddb5", 4/6. "#7bccc4", 5/6. "#43a2ca", 1 "#0868ac")
 set palette cubehelix cycles -2.5 saturation 1.5 negative gamma 0.3
@@ -32,32 +37,27 @@ set ytics format "%.0s%c"
 set lt 1 lw 5
 
 @NEXT
-set title "80-core Intel"
-set label 1 "Write after write latency (cycles)" at graph -0.25,0.5 center rotate
-@xaxis_ben
+#set key left Left            # XXX Broken
+eval SET_LABEL("Write after write latency (cycles)")
 set xlabel "\\# writer cores"
 plot '../data/sharing.out/ben/ww/kde-write' with image notitle, \
      '<../data/text-to-table ../data/sharing.out/ben/ww/data' \
      using 'iv.ncores':'dv.cycles/write' with lines title 'mean'
 
 @NEXT
-set title "48-core AMD"
-@xaxis_tom
 set xlabel "\\# writer cores"
 plot '../data/sharing.out/tom/ww/kde-write' with image notitle, \
      '<../data/text-to-table ../data/sharing.out/tom/ww/data' \
      using 'iv.ncores':'dv.cycles/write' with lines title 'mean'
 
 @NEXT
-set label 1 "Read after write latency (cycles)" at graph -0.25,0.5 center rotate
-@xaxis_ben
+eval SET_LABEL("Read after write latency (cycles)")
 set xlabel "\\# reader cores"
 plot '../data/sharing.out/ben/rw/kde-read' with image notitle, \
      '<../data/text-to-table ../data/sharing.out/ben/rw/data' \
      using 'iv.ncores':'dv.cycles/read' with lines title 'mean'
 
 @NEXT
-@xaxis_tom
 set xlabel "\\# reader cores"
 plot '../data/sharing.out/tom/rw/kde-read' with image notitle, \
      '<../data/text-to-table ../data/sharing.out/tom/rw/data' \
@@ -66,18 +66,44 @@ plot '../data/sharing.out/tom/rw/kde-read' with image notitle, \
 set cbrange [0:2]
 
 @NEXT
-set label 1 "Read after read latency (cycles)" at graph -0.25,0.5 center rotate
-@xaxis_ben
+eval SET_LABEL("Read after read latency (cycles)")
 set xlabel "\\# reader cores"
 plot '../data/sharing.out/ben/rr/kde-read' with image notitle, \
      '<../data/text-to-table ../data/sharing.out/ben/rr/data' \
      using 'iv.ncores':'dv.cycles/read' with lines title 'mean'
 
 @NEXT
-@xaxis_tom
 set xlabel "\\# reader cores"
 plot '../data/sharing.out/tom/rr/kde-read' with image notitle, \
      '<../data/text-to-table ../data/sharing.out/tom/rr/data' \
+     using 'iv.ncores':'dv.cycles/read' with lines title 'mean'
+
+
+
+@NEXT
+eval SET_LABEL("Independent write latency (cycles)")
+set xlabel "\\# writer cores"
+plot '../data/sharing.out/ben/wx/kde-write' with image notitle, \
+     '<../data/text-to-table ../data/sharing.out/ben/wx/data' \
+     using 'iv.ncores':'dv.cycles/write' with lines title 'mean'
+
+@NEXT
+set xlabel "\\# writer cores"
+plot '../data/sharing.out/tom/wx/kde-write' with image notitle, \
+     '<../data/text-to-table ../data/sharing.out/tom/wx/data' \
+     using 'iv.ncores':'dv.cycles/write' with lines title 'mean'
+
+@NEXT
+eval SET_LABEL("Independent read latency (cycles)")
+set xlabel "\\# reader cores"
+plot '../data/sharing.out/ben/rx/kde-read' with image notitle, \
+     '<../data/text-to-table ../data/sharing.out/ben/rx/data' \
+     using 'iv.ncores':'dv.cycles/read' with lines title 'mean'
+
+@NEXT
+set xlabel "\\# reader cores"
+plot '../data/sharing.out/tom/rx/kde-read' with image notitle, \
+     '<../data/text-to-table ../data/sharing.out/tom/rx/data' \
      using 'iv.ncores':'dv.cycles/read' with lines title 'mean'
 
 unset multiplot
