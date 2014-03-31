@@ -205,6 +205,9 @@ std_normal(double x)
 double
 std_normal_integral(double l, double h)
 {
+        // XXX Numerically unstable for small differences in l and h.
+        // Use point sampling instead of integration in the caller
+        // when bandwidth is large.
         return (erf(h / M_SQRT2) - erf(l / M_SQRT2)) / 2;
 }
 
@@ -435,14 +438,17 @@ showStats(const char *op, const struct StreamStats_Uint *stats,
                 return;
 
         if (hist->limit) {
-                enum {KDE_SAMPLES = 500};
-                double xs[KDE_SAMPLES], ys[KDE_SAMPLES];
-                Histogram_ToKDE(hist, stats, xs, ys, KDE_SAMPLES);
+                enum {MAX_KDE_SAMPLES = 500};
+                double xs[MAX_KDE_SAMPLES], ys[MAX_KDE_SAMPLES];
+                size_t kde_samples = MAX_KDE_SAMPLES;
+                if (hist->limit < kde_samples)
+                        kde_samples = hist->limit;
+                Histogram_ToKDE(hist, stats, xs, ys, kde_samples);
 
                 char fname[128];
                 sprintf(fname, "sharing-kde-%s.data", op);
                 FILE *kde = fopen(fname, "w");
-                for (size_t i = 0; i < KDE_SAMPLES; ++i)
+                for (size_t i = 0; i < kde_samples; ++i)
                         fprintf(kde, "%d %g %g\n", CPU_GetCount(opts.cores),
                                 xs[i], ys[i]);
                 fprintf(kde, "\n");
