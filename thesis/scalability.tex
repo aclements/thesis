@@ -191,7 +191,8 @@ dramatically as the number of writing cores increases because
 ownership of the modified cache line must pass through each writing
 core, one at a time.  On both machines, we also see a uniform
 distribution of write latencies, which further illustrates this
-serialization.
+serialization.  For comparison, a single complex system call like
+\code{open} typically takes 1,000--2,000 cycles on these machines.
 % On the AMD machine, the growth of the mean latency and the spread of
 % the distribution are noticeably super-linear as the benchmark adds
 % cores further from core 0.
