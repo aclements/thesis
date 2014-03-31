@@ -23,6 +23,7 @@ struct
 {
         int duration;
         int mode;
+        int addr_skew;
         int wait;
         CPU_Set_t *cores;
         int write_kde_limit;
@@ -31,6 +32,7 @@ struct
 } opts = {
         .duration = 1,
         .mode = MODE_WW,
+        .addr_skew = 0,
         .wait = 200000,
         .cores = NULL,
         .write_kde_limit = 0,
@@ -43,6 +45,8 @@ struct Args_Info argsInfo[] = {
          .varname = "SECS", .help = "Maximum seconds to run for"},
         {"mode", ARGS_CHOICE(&opts.mode, modeChoices),
          .help = "All cores write; core 1 writes and all read; all cores read"},
+        {"addr-skew", ARGS_INT(&opts.addr_skew),
+         .help = "Bytes to skew each CPU's access by"},
         {"wait", ARGS_INT(&opts.wait),
          .varname = "CYCLES", .help = "Period between operations"},
         {"cores", ARGS_CPUSET(&opts.cores),
@@ -270,24 +274,18 @@ struct StreamStats_Uint totalWriteStats, totalReadStats;
 struct Histogram totalWriteHist, totalReadHist;
 
 void
-doRead()
+doRead(volatile uint64_t *pos)
 {
         uint64_t result;
         asm volatile("mov %1, %0"
                      : "=g" (result)
-                     : "m" (*buf));
+                     : "m" (*pos));
 }
 
 void
-doWrite()
+doWrite(volatile uint64_t *pos)
 {
-        /* 
-         * __sync_synchronize();
-         * buf[128] = 1;
-         * __sync_synchronize();
-         */
-        
-        __sync_fetch_and_add(buf, 1);
+        __sync_fetch_and_add(pos, 1);
 }
 
 int
@@ -349,13 +347,14 @@ doOps(int cpu, void *opaque)
         } else
                 while (!startFlag) /**/;
 
+        volatile uint64_t *mybuf = (volatile void*)buf + opts.addr_skew * cpu;
         uint64_t missed = 0;
         while (!stop) {
                 uint64_t startTSC = Time_TSCBefore();
                 if (reader)
-                        doRead();
+                        doRead(mybuf);
                 else
-                        doWrite();
+                        doWrite(mybuf);
                 uint64_t endTSC = Time_TSCAfter();
 
                 uint64_t deltaTSC = endTSC - startTSC;

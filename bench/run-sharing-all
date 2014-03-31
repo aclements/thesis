@@ -23,10 +23,12 @@ function run1() {
 }
 
 if [[ $HOST == ben ]]; then
-    run1 ww $conf --mode=ww  --write-kde=60000
+    run1 ww $conf --mode=ww --write-kde=60000
     run1 rw $conf --mode=rw --read-kde=6000 --write-kde=1000
 elif [[ $HOST == tom ]]; then
-    run1 ww $conf --mode=ww  --write-kde=20000
+    run1 ww $conf --mode=ww --write-kde=20000
     run1 rw $conf --mode=rw --read-kde=20000 --write-kde=1000
 fi
-run1 rr $conf --mode=rr  --read-kde=16
+run1 rr $conf --mode=rr --read-kde=16
+run1 wx $conf --mode=ww --addr-skew=128 --write-kde=40
+run1 rx $conf --mode=rr --addr-skew=128 --read-kde=16
