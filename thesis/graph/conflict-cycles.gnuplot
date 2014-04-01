@@ -18,7 +18,8 @@ set ytics format "%.0s%c"
 set lt 1 lw 5
 
 eval mpNext
-#set key left Left            # XXX Broken
+# "inside" overrides setting in common.gnuplot
+set key inside left Left reverse samplen 3
 eval mpRowLabel("Write latency (cycles)")
 set xlabel "\\# writer cores"
 plot '../data/sharing.out/ben/ww/kde-write' with image notitle, \

@@ -18,6 +18,8 @@ set ytics format "%.0s%c"
 set lt 1 lw 5
 
 eval mpNext
+# "inside" overrides setting in common.gnuplot
+set key inside left Left reverse samplen 3
 eval mpRowLabel("Read latency (cycles)")
 set xlabel "\\# reader cores"
 plot '../data/sharing.out/ben/rr/kde-read' with image notitle, \
