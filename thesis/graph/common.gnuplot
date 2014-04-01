@@ -60,29 +60,38 @@ set key at graph 1,0.85
 # Multiplot stuff
 #
 
-mp_startx=0.15                  # Left edge of col 0 graph
-mp_width=0.825                  # Total width of graph area
+mp_startx=0.125                 # Left edge of col 0 plot area
+mp_starty=0.075                 # Top of row 0 plot area
+mp_width=0.825                  # Total width of plot area
+mp_height=0.825                 # Total height of plot area
 mp_colgap=0.1                   # Gap between columns
+mp_rowgap=0.15                  # Gap between rows
+mp_rowLabelGap=0.01             # Gap between plot area and row label
 # The screen coordinate of the left edge of column col
-mp_lmargin(col)=mp_startx + col*((mp_width+mp_colgap)/mp_ncols)
+mp_left(col)=mp_startx + col*((mp_width+mp_colgap)/real(mp_ncols))
+# The screen coordinate of the top edge of row row
+mp_top(row)=1 - (mp_starty + row*((mp_height+mp_rowgap)/real(mp_nrows)))
 
 # Set up a multiplot with w columns and h rows
 mpSetup(w,h) = sprintf('\
-    mp_nplot=0; \
-    mp_ncols=real(%d); \
-    set multiplot layout %d,%d', w, h, w)
+    mp_nplot=-1; \
+    mp_ncols=%d; \
+    mp_nrows=%d; \
+    set multiplot', w, h)
 # Start the next graph in the multiplot
 mpNext = '\
-    set lmargin at screen mp_lmargin(mp_nplot%2); \
-    set rmargin at screen mp_lmargin(mp_nplot%2+1)-mp_colgap; \
+    mp_nplot=mp_nplot+1; \
+    set lmargin at screen mp_left(mp_nplot%mp_ncols); \
+    set rmargin at screen mp_left(mp_nplot%mp_ncols+1)-mp_colgap; \
+    set tmargin at screen mp_top(mp_nplot/mp_ncols); \
+    set bmargin at screen mp_top(mp_nplot/mp_ncols+1)+mp_rowgap; \
     unset label 1; \
     if (mp_nplot%2) {unset ylabel}; \
     if (mp_nplot>0) {unset key}; \
     if (mp_nplot%2==0) {@xaxis_ben} else {@xaxis_tom}; \
     if (mp_nplot==0) {set title "80-core Intel"}; \
     if (mp_nplot==1) {set title "48-core AMD"}; \
-    if (mp_nplot>1) {unset title}; \
-    mp_nplot=mp_nplot+1'
+    if (mp_nplot>1) {unset title}'
 # Set Y axis row label such that it aligns regardless of tic width
 mpRowLabel(lbl) = \
     sprintf('set label 1 "%s" at graph -0.25,0.5 center rotate',lbl)
