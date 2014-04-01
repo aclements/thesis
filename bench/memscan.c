@@ -216,9 +216,11 @@ doOps(int cpu, void *opaque)
                 uint64_t endTSC = Time_TSCAfter();
                 ops += i * ((opts.size + 63) / 64);
                 opCycles += (endTSC - startTSC);
-                uint64_t waitTSC;
-                waitTSC = endTSC + opts.wait;
-                while (Time_TSC() < waitTSC);
+                if (opts.wait) {
+                        uint64_t waitTSC;
+                        waitTSC = endTSC + opts.wait;
+                        while (Time_TSC() < waitTSC);
+                }
         }
 
         __sync_fetch_and_add(&totalOps, ops);
