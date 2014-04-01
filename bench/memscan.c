@@ -209,6 +209,8 @@ doOps(int cpu, void *opaque)
                 case ATOMIC_INC:
                         DO_OP(opAtomicInc);
                         break;
+                default:
+                        panic("Bad operation mode");
                 }
 
                 uint64_t endTSC = Time_TSCAfter();
@@ -221,6 +223,7 @@ doOps(int cpu, void *opaque)
 
         __sync_fetch_and_add(&totalOps, ops);
         __sync_fetch_and_add(&totalOpCycles, opCycles);
+        return 0;
 }
 
 void*
@@ -230,6 +233,7 @@ timerThread(void *a)
         sleep(opts.duration);
         if (!stop)
                 stop = 1;
+        return NULL;
 }
 
 int main(int argc, char **argv)
