@@ -5,28 +5,8 @@ if (TARGET eq "") {
   set term wxt size 640,768
 }
 
-NPLOT=0
-STARTX=0.15
-WIDTH=0.825
-COLGAP=0.1
-NCOLS=2.0
-LMARGIN(col)=STARTX + col*((WIDTH+COLGAP)/NCOLS)
-NEXT='\
-      set lmargin at screen LMARGIN(NPLOT%2); \
-      set rmargin at screen LMARGIN(NPLOT%2+1)-COLGAP; \
-      unset label 1; \
-      if (NPLOT%2) {unset ylabel}; \
-      if (NPLOT>0) {unset key}; \
-      if (NPLOT%2==0) {@xaxis_ben} else {@xaxis_tom}; \
-      if (NPLOT==0) {set title "80-core Intel"}; \
-      if (NPLOT==1) {set title "48-core AMD"}; \
-      if (NPLOT>1) {unset title}; \
-      NPLOT=NPLOT+1'
+eval mpSetup(2, 2)
 
-# Set Y axis label such that it aligns regardless of tic width
-SET_LABEL(lbl) = sprintf('set label 1 "%s" at graph -0.25,0.5 center rotate',lbl)
-
-set multiplot layout 2,2
 #set palette gray negative gamma 0.3
 #set palette defined (0 "#ffffff", 1/6. "#f0f9e8", 2/6. "#ccebc5", 3/6. "#a8ddb5", 4/6. "#7bccc4", 5/6. "#43a2ca", 1 "#0868ac")
 set palette cubehelix cycles -2.5 saturation 1.5 negative gamma 0.3
@@ -37,28 +17,28 @@ set grid front
 set ytics format "%.0s%c"
 set lt 1 lw 5
 
-@NEXT
+eval mpNext
 #set key left Left            # XXX Broken
-eval SET_LABEL("Write latency (cycles)")
+eval mpRowLabel("Write latency (cycles)")
 set xlabel "\\# writer cores"
 plot '../data/sharing.out/ben/ww/kde-write' with image notitle, \
      '<../data/text-to-table ../data/sharing.out/ben/ww/data' \
      using 'iv.ncores':'dv.cycles/write' with lines title 'mean'
 
-@NEXT
+eval mpNext
 set xlabel "\\# writer cores"
 plot '../data/sharing.out/tom/ww/kde-write' with image notitle, \
      '<../data/text-to-table ../data/sharing.out/tom/ww/data' \
      using 'iv.ncores':'dv.cycles/write' with lines title 'mean'
 
-@NEXT
-eval SET_LABEL("Read latency (cycles)")
+eval mpNext
+eval mpRowLabel("Read latency (cycles)")
 set xlabel "\\# reader cores"
 plot '../data/sharing.out/ben/rw/kde-read' with image notitle, \
      '<../data/text-to-table ../data/sharing.out/ben/rw/data' \
      using 'iv.ncores':'dv.cycles/read' with lines title 'mean'
 
-@NEXT
+eval mpNext
 set xlabel "\\# reader cores"
 plot '../data/sharing.out/tom/rw/kde-read' with image notitle, \
      '<../data/text-to-table ../data/sharing.out/tom/rw/data' \
