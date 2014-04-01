@@ -84,6 +84,8 @@ struct Args_Info argsInfo[] = {
         {NULL}
 };
 
+uint64_t tscOverhead;
+
 int startCount;
 double startTime;
 volatile bool startFlag;
@@ -215,7 +217,12 @@ doOps(int cpu, void *opaque)
 
                 uint64_t endTSC = Time_TSCAfter();
                 ops += i * ((opts.size + 63) / 64);
-                opCycles += (endTSC - startTSC);
+                uint64_t deltaTSC = endTSC - startTSC;
+                if (deltaTSC < tscOverhead)
+                        deltaTSC = 0;
+                else
+                        deltaTSC -= tscOverhead;
+                opCycles += deltaTSC;
                 if (opts.wait) {
                         uint64_t waitTSC;
                         waitTSC = endTSC + opts.wait;
@@ -265,6 +272,12 @@ int main(int argc, char **argv)
                 buf = numa_alloc_interleaved(bufbytes);
         if (opts.shared)
                 fillBuffer(0);
+
+        double tscStddev;
+        tscOverhead = Time_TSCOverhead(&tscStddev);
+        if (tscStddev >= 5)
+                panic("TSC overhead standard deviation of %g too high",
+                      tscStddev);
 
         pthread_t timer;
         pthread_create(&timer, NULL, timerThread, NULL);
