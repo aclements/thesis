@@ -89,9 +89,14 @@ def maybeFloat(s):
     except ValueError:
         return s
 
+SIZES = 'KMGTPEZY'
+
 def maybeNum(s):
     if s.strip().isdigit():
         return int(s)
+    m = re.match('([0-9]+)([' + SIZES + '])$', s)
+    if m:
+        return int(m.group(1)) << (10 * SIZES.index(m.group(2)) + 10)
     return maybeFloat(s)
 
 def parseVal(s):
