@@ -84,7 +84,7 @@ class Gnuplot(object):
         p.stdin.close()
         p.wait()
 
-    def data(self, file=sys.stdout):
+    def data(self, file=sys.stdout, col_headers=False):
         for curve in self.__curves:
             print("# " + self.__title(curve), file=file)
             labels = [self.__x, self.__y]
@@ -101,7 +101,10 @@ class Gnuplot(object):
                     fmt.append("%s")
             proj = eval("lambda row: %r %% (%s,)" %
                         (" ".join(fmt), ",".join(indexes)))
-            print("# %s" % " ".join(labels))
+            if col_headers:
+                print("%s" % " ".join(labels))
+            else:
+                print("# %s" % " ".join(labels))
             for row in curve["$curve"]:
                 print(proj(row), file=file)
 
