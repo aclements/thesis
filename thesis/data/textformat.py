@@ -54,9 +54,13 @@ def parse(fp):
     The configuration values given in the heading are propagated to
     all results in the group.  The syntax is identical to the
     per-result configuration values, except that the "--"s are
-    optional.  Groups may be further grouped using the same syntax,
+    optional.  Groups may be further subdivided using the same syntax,
     but by increasing the number of "="s at the beginning and end of
-    the line.
+    the line.  E.g.,
+
+      = a=1 =
+      == b=2 ==
+      # Here a is 1 and b is 2
 
     Lines beginning with "#" but not "# --" are ignored.
 
