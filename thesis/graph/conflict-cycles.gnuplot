@@ -23,26 +23,26 @@ set key inside left Left reverse samplen 3
 eval mpRowLabel("Write latency (cycles)")
 set xlabel "\\# writer cores"
 plot '../data/sharing.out/ben/ww/kde-write' with image notitle, \
-     '<../data/text-to-table ../data/sharing.out/ben/ww/data' \
-     using 'iv.ncores':'dv.cycles/write' with lines title 'mean'
+     '<../data/ttt iv.ncores dv.cycles/write ../data/sharing.out/ben/ww/data' \
+     with lines title 'mean'
 
 eval mpNext
 set xlabel "\\# writer cores"
 plot '../data/sharing.out/tom/ww/kde-write' with image notitle, \
-     '<../data/text-to-table ../data/sharing.out/tom/ww/data' \
-     using 'iv.ncores':'dv.cycles/write' with lines title 'mean'
+     '<../data/ttt iv.ncores dv.cycles/write ../data/sharing.out/tom/ww/data' \
+     with lines title 'mean'
 
 eval mpNext
 eval mpRowLabel("Read latency (cycles)")
 set xlabel "\\# reader cores"
 plot '../data/sharing.out/ben/rw/kde-read' with image notitle, \
-     '<../data/text-to-table ../data/sharing.out/ben/rw/data' \
-     using 'iv.ncores':'dv.cycles/read' with lines title 'mean'
+     '<../data/ttt iv.ncores dv.cycles/read ../data/sharing.out/ben/rw/data' \
+     with lines title 'mean'
 
 eval mpNext
 set xlabel "\\# reader cores"
 plot '../data/sharing.out/tom/rw/kde-read' with image notitle, \
-     '<../data/text-to-table ../data/sharing.out/tom/rw/data' \
-     using 'iv.ncores':'dv.cycles/read' with lines title 'mean'
+     '<../data/ttt iv.ncores dv.cycles/read ../data/sharing.out/tom/rw/data' \
+     with lines title 'mean'
 
 unset multiplot

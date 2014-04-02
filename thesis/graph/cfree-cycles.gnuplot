@@ -23,39 +23,39 @@ set key inside left Left reverse samplen 3
 eval mpRowLabel("Read latency (cycles)")
 set xlabel "\\# reader cores"
 plot '../data/sharing.out/ben/rr/kde-read' with image notitle, \
-     '<../data/text-to-table ../data/sharing.out/ben/rr/data' \
-     using 'iv.ncores':'dv.cycles/read' with lines title 'mean'
+     '<../data/ttt iv.ncores dv.cycles/read ../data/sharing.out/ben/rr/data' \
+     with lines title 'mean'
 
 eval mpNext
 set xlabel "\\# reader cores"
 plot '../data/sharing.out/tom/rr/kde-read' with image notitle, \
-     '<../data/text-to-table ../data/sharing.out/tom/rr/data' \
-     using 'iv.ncores':'dv.cycles/read' with lines title 'mean'
+     '<../data/ttt iv.ncores dv.cycles/read ../data/sharing.out/tom/rr/data' \
+     with lines title 'mean'
 
 eval mpNext
 eval mpRowLabel("Write latency (cycles)")
 set xlabel "\\# writer cores"
 plot '../data/sharing.out/ben/wx/kde-write' with image notitle, \
-     '<../data/text-to-table ../data/sharing.out/ben/wx/data' \
-     using 'iv.ncores':'dv.cycles/write' with lines title 'mean'
+     '<../data/ttt iv.ncores dv.cycles/write ../data/sharing.out/ben/wx/data' \
+     with lines title 'mean'
 
 eval mpNext
 set xlabel "\\# writer cores"
 plot '../data/sharing.out/tom/wx/kde-write' with image notitle, \
-     '<../data/text-to-table ../data/sharing.out/tom/wx/data' \
-     using 'iv.ncores':'dv.cycles/write' with lines title 'mean'
+     '<../data/ttt iv.ncores dv.cycles/write ../data/sharing.out/tom/wx/data' \
+     with lines title 'mean'
 
 # eval mpNext
 # eval SET_LABEL("Independent read latency (cycles)")
 # set xlabel "\\# reader cores"
 # plot '../data/sharing.out/ben/rx/kde-read' with image notitle, \
-#      '<../data/text-to-table ../data/sharing.out/ben/rx/data' \
-#      using 'iv.ncores':'dv.cycles/read' with lines title 'mean'
+#      '<../data/ttt iv.ncores dv.cycles/read ../data/sharing.out/ben/rx/data' \
+#      with lines title 'mean'
 
 # eval mpNext
 # set xlabel "\\# reader cores"
 # plot '../data/sharing.out/tom/rx/kde-read' with image notitle, \
-#      '<../data/text-to-table ../data/sharing.out/tom/rx/data' \
-#      using 'iv.ncores':'dv.cycles/read' with lines title 'mean'
+#      '<../data/ttt iv.ncores dv.cycles/read ../data/sharing.out/tom/rx/data' \
+#      with lines title 'mean'
 
 unset multiplot
