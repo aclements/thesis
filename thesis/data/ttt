@@ -1,0 +1,30 @@
+#!/usr/bin/env python
+
+import argparse
+import sys
+import common
+import re
+import plot
+
+arg_parser = argparse.ArgumentParser(
+    description='Text-to-table')
+arg_parser.add_argument('--layer', action='append', default=[],
+                        help='Regexp matching columns to use a plot layers')
+arg_parser.add_argument('--hdr', action='store_true', default=False,
+                        help='Include column headers')
+arg_parser.add_argument('x', help='Column to use for X coordinate')
+arg_parser.add_argument('y', help='Column to use for Y coordinate')
+arg_parser.add_argument('file', nargs='+', help='Input benchmark text files')
+args = arg_parser.parse_args()
+
+d = common.files_to_table(*args.file)
+
+props = list(d.properties().prop('name'))
+layer = []
+for lre in args.layer:
+    matching = [prop for prop in props if re.match(lre, prop)]
+    if not matching:
+        arg_parser.error('%r did not match any columns' % lre)
+    layer.extend(matching)
+
+plot.Gnuplot(d, x=args.x, y=args.y, layer=layer).data(col_headers=args.hdr)
