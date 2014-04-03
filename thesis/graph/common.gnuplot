@@ -85,13 +85,15 @@ mpNext = '\
     set rmargin at screen mp_left(mp_nplot%mp_ncols+1)-mp_colgap; \
     set tmargin at screen mp_top(mp_nplot/mp_ncols); \
     set bmargin at screen mp_top(mp_nplot/mp_ncols+1)+mp_rowgap; \
-    unset label 1; \
-    if (mp_nplot%2) {unset ylabel}; \
+    unset label 1'
+# Set Y axis row label such that it aligns regardless of tic width
+mpRowLabel(lbl) = \
+    sprintf('set label 1 "%s" at graph -0.25,0.5 center rotate',lbl)
+
+mpNextSharing = '\
+    eval mpNext; \
     if (mp_nplot>0) {unset key}; \
     if (mp_nplot%2==0) {@xaxis_ben} else {@xaxis_tom}; \
     if (mp_nplot==0) {set title "80-core Intel"}; \
     if (mp_nplot==1) {set title "48-core AMD"}; \
     if (mp_nplot>1) {unset title}'
-# Set Y axis row label such that it aligns regardless of tic width
-mpRowLabel(lbl) = \
-    sprintf('set label 1 "%s" at graph -0.25,0.5 center rotate',lbl)

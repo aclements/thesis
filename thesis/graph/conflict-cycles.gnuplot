@@ -17,7 +17,7 @@ set grid front
 set ytics format "%.0s%c"
 set lt 1 lw 5
 
-eval mpNext
+eval mpNextSharing
 # "inside" overrides setting in common.gnuplot
 set key inside left Left reverse samplen 3
 eval mpRowLabel("Write latency (cycles)")
@@ -26,20 +26,20 @@ plot '../data/sharing.out/ben/ww/kde-write' with image notitle, \
      '<../data/ttt iv.ncores dv.cycles/write ../data/sharing.out/ben/ww/data' \
      with lines title 'mean'
 
-eval mpNext
+eval mpNextSharing
 set xlabel "\\# writer cores"
 plot '../data/sharing.out/tom/ww/kde-write' with image notitle, \
      '<../data/ttt iv.ncores dv.cycles/write ../data/sharing.out/tom/ww/data' \
      with lines title 'mean'
 
-eval mpNext
+eval mpNextSharing
 eval mpRowLabel("Read latency (cycles)")
 set xlabel "\\# reader cores"
 plot '../data/sharing.out/ben/rw/kde-read' with image notitle, \
      '<../data/ttt iv.ncores dv.cycles/read ../data/sharing.out/ben/rw/data' \
      with lines title 'mean'
 
-eval mpNext
+eval mpNextSharing
 set xlabel "\\# reader cores"
 plot '../data/sharing.out/tom/rw/kde-read' with image notitle, \
      '<../data/ttt iv.ncores dv.cycles/read ../data/sharing.out/tom/rw/data' \
