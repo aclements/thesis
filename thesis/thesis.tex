@@ -145,6 +145,9 @@
 \crefname{figure}{Figure}{Figures}
 \crefname{mysubfigure}{Figure}{Figures}
 \Crefname{mysubfigure}{Figure}{Figures}
+% These depend on NOT passing "capitalize" to cleveref.
+\newcommand{\thiscref}[1]{this \namecref{#1}}
+\newcommand{\Thiscref}[1]{This \namecref{#1}}
 
 \makeatother
 
