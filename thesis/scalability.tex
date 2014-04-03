@@ -115,7 +115,7 @@ reaffirms our focus on conflict-freedom.
 \Cref{sec:scalability:conflict-free} verifies that conflict-free
 operations scale on real hardware and examines the cost of conflicting
 operations, while \cref{sec:scalability:limits} explores the practical
-limitations of conflict-freedom.
+limitations of conflict-free scalability.
 
 
 \subsection{Conflict-free operations scale}
@@ -133,6 +133,7 @@ two machines are broadly organized.
 
 \begin{figure}
   \centering
+  \includegraphics{figures/machines.pdf}
   \XXX!{Interconnect, memory, and cache layout.}
   \caption{Organization of Intel and AMD machines.}
   \label{fig:machines}
@@ -216,7 +217,7 @@ latency of reads, but nevertheless, read/write conflicts do not scale
 on either machine.
 
 
-\subsection{Limitations of conflict-freedom}
+\subsection{Limitations of conflict-free scalability}
 \label{sec:scalability:limits}
 
 \XXX![AC]{Write me.  Cache capacity (and associativity), directory
@@ -225,17 +226,69 @@ on either machine.
   which covers the limitations.}
 
 Conflict-freedom is a good predictor of scalability on real hardware,
-but it's not perfect.  In practice, limits on cache capacity and
-associativity can cause cache lines to be evicted from a cache even in
-the absence of coherence traffic.  Such misses directly affect
-sequential performance, but they may also affect the scalability of
-conflict-free operations.
+but it's not perfect.  In practice, limited cache capacity and
+associativity cause cache lines to be evicted from a cache (later
+resulting in cache misses) even in the absence of coherence traffic.
+And, naturally, the very first access to a cache line will miss.  Such
+misses directly affect sequential performance, but they may also
+affect the scalability of conflict-free operations.
+%
+Satisfying a cache miss (for any reason) requires the cache to fetch
+the cache line from another cache or from memory.  If this requires
+communicating with remote cores or remote memory, it may contend with
+concurrent operations for interconnect resources or the remote memory
+controller.
+
+\begin{figure}
+  \centering
+  \input{graph/memscan}
+  \caption{Latencies for repeatedly reading a shared region of memory
+    (top) and writing separate per-core regions (bottom), as a
+    function of region size and number of cores.  All operations scale
+    until they exceed cache or directory capacity.}
+  \label{fig:memscan}
+\end{figure}
+
+\Cref{fig:memscan} shows the results of a benchmark that explores some
+of these limits by performing conflict-free accesses to regions of
+varying sizes on varying numbers of cores.  This benchmark stresses
+the worst case: all memory is physically allocated from CPU 0's NUMA
+node and each core reads or writes in a tight loop.  The top row of
+\cref{fig:memscan} shows reads to a shared region of memory.  On both
+machines, we observe slight increases in latency as the region exceeds
+the L1 cache and later the L2 cache, but the operations continue to
+scale until the region exceeds the L3 cache.  At this point the
+benchmark becomes bottlenecked by the DRAM controller of CPU 0's NUMA
+node, so the reads no longer scale, despite being conflict-free.
+
+We observe a similar effect for writes, shown in the bottom row of
+\cref{fig:memscan}.  On the Intel machine, the operations scale until
+the combined working set of the cores on a socket exceeds the socket's
+L3 cache size.  On the AMD machine, we observe an additional
+limitation for smaller regions at high core counts: in this machine,
+each socket has a 1~MB directory for tracking ownership of that
+socket's physical memory, which this benchmark quickly exceeds.  The
+Intel machine has a similar directory, but it's integrated into the
+L3~\cite{intel:e7-8870} and sufficiently provisioned even for this
+benchmark.
+
+Despite these limitations, conflict-freedom remains a good predictor
+of scalability in practice.  Most software has good cache locality and
+high cache hit rates both because this is crucial for sequential
+performance, and because it's in the interest of CPU manufacturers to
+design caches so that typical working sets fit.  For workloads that
+exceed cache capacity, NUMA-aware allocation spreads physical memory
+use across sockets and DRAM controllers, partitioning physical memory
+access, distributing the DRAM bottleneck, and giving cores greater
+aggregate DRAM bandwidth.
+%
+\Cref{sec:eval} returns to performance evaluation from an application
+perspective.  \XXX{the effect of conflict-freedom on scalability at
+  the scope of an OS kernel and applications.}
+
+\XXX[AC]{False sharing is another common limitation.}
 
 
-
-
-So far, we've largely ignored \emph{compulsory misses}, which occur
-the first time a core accesses a cache line, \emph{capacity misses}...
 
 % Causes home node access.  If the missing core is not the line's home
 % node, then it has to make a remote request, which takes longer
@@ -247,13 +300,23 @@ the first time a core accesses a cache line, \emph{capacity misses}...
 % Assume some cache locality so compulsory misses are rare (enough to
 % keep DRAM bandwidth demand within the capacity of the hardware),
 % NUMA-aware memory allocation so that, when there is a miss, it can
-% generally be serviced locally.  These things are standard sequential
-% performance best practice, as well.
+% generally be serviced locally.  Such optimizations are standard
+% practice, as they are important for sequential performance as they
+% are for scalability.
 
 
-So far, we've treated each cache line as isolated and affected only by
-reads and writes of that cache line.  But there are more cache lines
-than there is space in a cache (otherwise it wouldn't be a cache), and
-limits on cache capacity and associativity can cause cache lines to be
-evicted from a cache, even in the absence of coherence traffic.  This
-affects not only sequential performance, but scalability as well.
+% In the abstract model, two types of memory access scale:
+% different cores reading the same read-only memory,
+% and different cores writing distinct memory locations.
+% Figure~\ref{fig:read-scaling} shows the costs of performing these two types of
+% operations simultaneously from 6~cores, 24~cores, and 48~cores.  This benchmark
+% stresses the worst case: all memory is physically allocated from NUMA node 0
+% and each core reads or writes memory in a tight loop.  The behavior
+% depends on how much memory is used by each core.  In both cases, the
+% operations scale perfectly until the combined working set on a chip exceeds
+% that chip's L3 cache.  After this, the benchmark is bottlenecked by
+% node 0's DRAM controller, which can be saturated by even a single chip.  This
+% indicates that physical hardware agrees with our abstract model for working sets
+% that fit in cache.  Beyond this, hardware does not scale, though in practice
+% NUMA-aware allocation and lower bandwidth requirements lessen the impact of
+% overflowing the cache.
