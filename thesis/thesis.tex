@@ -42,7 +42,7 @@
 \usepackage{mathrsfs}
 \usepackage{etoolbox}
 \usepackage{ifdraft}
-\usepackage[capitalise]{cleveref} % After hyperref, listings
+\usepackage{cleveref} % After hyperref, listings
 \IfFileExists{microtype.sty}{
   \usepackage{microtype}
 }{
@@ -141,7 +141,8 @@
 
 \bibpunct[: ]{[}{]}{,}{n}{XXX}{XXX}
 
-\crefname{figure}{Figure}{Figures} % Default is "Fig.".
+% Do always capitalize "Figure".  Also override the default "Fig."
+\crefname{figure}{Figure}{Figures}
 \crefname{mysubfigure}{Figure}{Figures}
 \Crefname{mysubfigure}{Figure}{Figures}
 
