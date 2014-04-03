@@ -1,0 +1,1086 @@
+= --probe-filter=not-AMD10h =
+
+== --host=ben --kernel=3.12-0.bpo.1-amd64 --ncores=1 --order=seq ==
+# --duration=3 --wait=0 --size=8K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00026 sec
+3292458496 ops
+1097392149 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=8K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00024 sec
+3292862720 ops
+1097532025 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=8K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00024 sec
+3292714496 ops
+1097484452 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=16K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00025 sec
+3437823488 ops
+1145844908 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=16K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00024 sec
+3437758208 ops
+1145827338 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=16K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00024 sec
+3437961984 ops
+1145895349 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=32K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00023 sec
+3514869760 ops
+1171532662 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=32K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00023 sec
+3515323392 ops
+1171684233 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=32K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00024 sec
+3515514368 ops
+1171746304 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=64K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00025 sec
+1350448128 ops
+450112459 ops/sec
+5 cycles/op
+
+# --duration=3 --wait=0 --size=64K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00025 sec
+1943074816 ops
+647637665 ops/sec
+3 cycles/op
+
+# --duration=3 --wait=0 --size=64K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00025 sec
+1886314496 ops
+628718284 ops/sec
+3 cycles/op
+
+# --duration=3 --wait=0 --size=128K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00024 sec
+1928939520 ops
+642928386 ops/sec
+3 cycles/op
+
+# --duration=3 --wait=0 --size=128K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00024 sec
+1887602688 ops
+629149945 ops/sec
+3 cycles/op
+
+# --duration=3 --wait=0 --size=128K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00025 sec
+1576906752 ops
+525592644 ops/sec
+4 cycles/op
+
+# --duration=3 --wait=0 --size=256K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00024 sec
+1347899392 ops
+449263236 ops/sec
+5 cycles/op
+
+# --duration=3 --wait=0 --size=256K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00024 sec
+1329254400 ops
+443049519 ops/sec
+5 cycles/op
+
+# --duration=3 --wait=0 --size=256K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00024 sec
+1453330432 ops
+484405365 ops/sec
+4 cycles/op
+
+# --duration=3 --wait=0 --size=512K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00024 sec
+1243332608 ops
+414411597 ops/sec
+5 cycles/op
+
+# --duration=3 --wait=0 --size=512K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00024 sec
+1175994368 ops
+391966753 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=512K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00024 sec
+1219264512 ops
+406388722 ops/sec
+5 cycles/op
+
+# --duration=3 --wait=0 --size=1M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00028 sec
+1176485888 ops
+392125252 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=1M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00025 sec
+1176223744 ops
+392041274 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=1M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00026 sec
+1176502272 ops
+392133299 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=2M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00028 sec
+1175453696 ops
+391781064 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=2M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00028 sec
+1175584768 ops
+391824751 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=2M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00024 sec
+1175519232 ops
+391808387 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=4M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00037 sec
+1165623296 ops
+388493304 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=4M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.0003 sec
+1166082048 ops
+388654912 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=4M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00035 sec
+1166213120 ops
+388692081 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=8M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00037 sec
+1166147584 ops
+388668323 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=8M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.0004 sec
+1166409728 ops
+388751276 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=8M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00054 sec
+1165754368 ops
+388515101 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=16M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00048 sec
+1097072640 ops
+365631776 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=16M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00101 sec
+988807168 ops
+329491022 ops/sec
+7 cycles/op
+
+# --duration=3 --wait=0 --size=16M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00082 sec
+1072693248 ops
+357466348 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=32M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.0011 sec
+235929600 ops
+78614454 ops/sec
+30 cycles/op
+
+# --duration=3 --wait=0 --size=32M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00473 sec
+235405312 ops
+78344889 ops/sec
+30 cycles/op
+
+# --duration=3 --wait=0 --size=32M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00172 sec
+236978176 ops
+78947569 ops/sec
+30 cycles/op
+
+# --duration=3 --wait=0 --size=64M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00158 sec
+145752064 ops
+48558431 ops/sec
+49 cycles/op
+
+# --duration=3 --wait=0 --size=64M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00263 sec
+145752064 ops
+48541485 ops/sec
+49 cycles/op
+
+# --duration=3 --wait=0 --size=64M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00451 sec
+145752064 ops
+48511171 ops/sec
+49 cycles/op
+
+# --duration=3 --wait=0 --size=128M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00533 sec
+144703488 ops
+48148934 ops/sec
+49 cycles/op
+
+# --duration=3 --wait=0 --size=128M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.0056 sec
+144703488 ops
+48144595 ops/sec
+49 cycles/op
+
+# --duration=3 --wait=0 --size=128M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0 
+3.00497 sec
+144703488 ops
+48154752 ops/sec
+49 cycles/op
+
+== --host=ben --kernel=3.12-0.bpo.1-amd64 --ncores=10 --order=seq ==
+# --duration=3 --wait=0 --size=8K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00029 sec
+32927581568 ops
+10974814754 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=8K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00025 sec
+32926923392 ops
+10974734049 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=8K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00025 sec
+32926769408 ops
+10974664411 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=16K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00024 sec
+34380376320 ops
+11459197441 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=16K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00039 sec
+34381409536 ops
+11458961765 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=16K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00025 sec
+34380778496 ops
+11459312366 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=32K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00025 sec
+35153130496 ops
+11716745480 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=32K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00026 sec
+35153549312 ops
+11716849692 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=32K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00025 sec
+35153863680 ops
+11716961921 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=64K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00026 sec
+19175379968 ops
+6391237139 ops/sec
+3 cycles/op
+
+# --duration=3 --wait=0 --size=64K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.0006 sec
+19358636032 ops
+6451596860 ops/sec
+3 cycles/op
+
+# --duration=3 --wait=0 --size=64K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00055 sec
+19356190720 ops
+6450874692 ops/sec
+3 cycles/op
+
+# --duration=3 --wait=0 --size=128K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00034 sec
+16182237184 ops
+5393467828 ops/sec
+4 cycles/op
+
+# --duration=3 --wait=0 --size=128K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00058 sec
+15554326528 ops
+5183768245 ops/sec
+4 cycles/op
+
+# --duration=3 --wait=0 --size=128K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00025 sec
+19022407680 ops
+6340271974 ops/sec
+3 cycles/op
+
+# --duration=3 --wait=0 --size=256K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00039 sec
+15073460224 ops
+5023827167 ops/sec
+4 cycles/op
+
+# --duration=3 --wait=0 --size=256K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00046 sec
+15242006528 ops
+5079896537 ops/sec
+4 cycles/op
+
+# --duration=3 --wait=0 --size=256K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00023 sec
+14232862720 ops
+4743930164 ops/sec
+5 cycles/op
+
+# --duration=3 --wait=0 --size=512K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00027 sec
+11799273472 ops
+3932737042 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=512K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00025 sec
+11710750720 ops
+3903258480 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=512K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00025 sec
+12013944832 ops
+4004318586 ops/sec
+5 cycles/op
+
+# --duration=3 --wait=0 --size=1M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00026 sec
+11433148416 ops
+3810720578 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=1M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00026 sec
+11434508288 ops
+3811171406 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=1M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00026 sec
+11435032576 ops
+3811349788 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=2M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00032 sec
+11435376640 ops
+3811385719 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=2M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00031 sec
+11434655744 ops
+3811153017 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=2M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00027 sec
+11435147264 ops
+3811372871 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=4M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00035 sec
+11388125184 ops
+3795594989 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=4M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00039 sec
+11390091264 ops
+3796202308 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=4M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00034 sec
+11389894656 ops
+3796201334 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=8M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00055 sec
+11391336448 ops
+3796413686 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=8M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00058 sec
+11390550016 ops
+3796113584 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=8M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00056 sec
+11388583936 ops
+3795490017 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=16M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00072 sec
+10268180480 ops
+3421905541 ops/sec
+7 cycles/op
+
+# --duration=3 --wait=0 --size=16M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00035 sec
+9272033280 ops
+3090314032 ops/sec
+7 cycles/op
+
+# --duration=3 --wait=0 --size=16M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00059 sec
+10404495360 ops
+3467479776 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=32M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00467 sec
+2479882240 ops
+825343442 ops/sec
+29 cycles/op
+
+# --duration=3 --wait=0 --size=32M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00359 sec
+2474639360 ops
+823893569 ops/sec
+29 cycles/op
+
+# --duration=3 --wait=0 --size=32M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00655 sec
+2490368000 ops
+828313897 ops/sec
+28 cycles/op
+
+# --duration=3 --wait=0 --size=64M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.0095 sec
+1772093440 ops
+588832236 ops/sec
+40 cycles/op
+
+# --duration=3 --wait=0 --size=64M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00956 sec
+1772093440 ops
+588821647 ops/sec
+40 cycles/op
+
+# --duration=3 --wait=0 --size=64M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00892 sec
+1772093440 ops
+588946267 ops/sec
+40 cycles/op
+
+# --duration=3 --wait=0 --size=128M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00642 sec
+1761607680 ops
+585948045 ops/sec
+40 cycles/op
+
+# --duration=3 --wait=0 --size=128M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00635 sec
+1761607680 ops
+585961847 ops/sec
+40 cycles/op
+
+# --duration=3 --wait=0 --size=128M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-49 
+3.00621 sec
+1761607680 ops
+585989172 ops/sec
+40 cycles/op
+
+== --host=ben --kernel=3.12-0.bpo.1-amd64 --ncores=40 --order=seq ==
+# --duration=3 --wait=0 --size=8K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00159 sec
+131507554304 ops
+43812574862 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=8K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00178 sec
+131509339648 ops
+43810451864 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=8K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00157 sec
+131506208640 ops
+43812457150 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=16K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00159 sec
+137314082560 ops
+45747067438 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=16K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00086 sec
+137306546432 ops
+45755765253 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=16K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00189 sec
+137308412160 ops
+45740636795 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=32K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00096 sec
+140376686592 ops
+46777262117 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=32K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00088 sec
+140371769344 ops
+46776898251 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=32K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00154 sec
+140362010112 ops
+46763376948 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=64K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00198 sec
+77877428224 ops
+25942055460 ops/sec
+3 cycles/op
+
+# --duration=3 --wait=0 --size=64K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00166 sec
+77738825728 ops
+25898575437 ops/sec
+3 cycles/op
+
+# --duration=3 --wait=0 --size=64K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00076 sec
+77870080000 ops
+25950120686 ops/sec
+3 cycles/op
+
+# --duration=3 --wait=0 --size=128K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00087 sec
+59933571072 ops
+19972044567 ops/sec
+4 cycles/op
+
+# --duration=3 --wait=0 --size=128K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00105 sec
+60019265536 ops
+19999395067 ops/sec
+4 cycles/op
+
+# --duration=3 --wait=0 --size=128K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00094 sec
+63988598784 ops
+21322829144 ops/sec
+4 cycles/op
+
+# --duration=3 --wait=0 --size=256K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00085 sec
+54108110848 ops
+18030939873 ops/sec
+5 cycles/op
+
+# --duration=3 --wait=0 --size=256K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00092 sec
+56336883712 ops
+18773179898 ops/sec
+5 cycles/op
+
+# --duration=3 --wait=0 --size=256K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00176 sec
+59713781760 ops
+19892936005 ops/sec
+4 cycles/op
+
+# --duration=3 --wait=0 --size=512K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00088 sec
+45626179584 ops
+15204282298 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=512K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00164 sec
+46775271424 ops
+15583258923 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=512K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00151 sec
+46937268224 ops
+15637859416 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=1M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00088 sec
+46214856704 ops
+15400439652 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=1M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00085 sec
+45650608128 ops
+15212533960 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=1M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.0008 sec
+45650608128 ops
+15212827665 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=2M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00086 sec
+45659553792 ops
+15215494448 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=2M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00085 sec
+45658406912 ops
+15215147321 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=2M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00115 sec
+45655719936 ops
+15212766475 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=4M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00105 sec
+45482835968 ops
+15155631239 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=4M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00113 sec
+45478379520 ops
+15153746585 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=4M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00108 sec
+45468483584 ops
+15150701943 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=8M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00153 sec
+45488668672 ops
+15155170399 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=8M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00089 sec
+45482508288 ops
+15156334814 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=8M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00078 sec
+45483819008 ops
+15157317111 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=16M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00132 sec
+44176506880 ops
+14719040515 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=16M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00148 sec
+41956147200 ops
+13978463661 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=16M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.0013 sec
+42186833920 ops
+14056171991 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=32M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.0026 sec
+6899630080 ops
+2297885045 ops/sec
+41 cycles/op
+
+# --duration=3 --wait=0 --size=32M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.01014 sec
+6857687040 ops
+2278191634 ops/sec
+42 cycles/op
+
+# --duration=3 --wait=0 --size=32M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00134 sec
+6857687040 ops
+2284877347 ops/sec
+42 cycles/op
+
+# --duration=3 --wait=0 --size=64M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.0226 sec
+3523215360 ops
+1165622547 ops/sec
+82 cycles/op
+
+# --duration=3 --wait=0 --size=64M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.01687 sec
+3523215360 ops
+1167838338 ops/sec
+82 cycles/op
+
+# --duration=3 --wait=0 --size=64M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.01962 sec
+3523215360 ops
+1166775543 ops/sec
+82 cycles/op
+
+# --duration=3 --wait=0 --size=128M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.00258 sec
+3439329280 ops
+1145458027 ops/sec
+83 cycles/op
+
+# --duration=3 --wait=0 --size=128M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.06873 sec
+3523215360 ops
+1148103930 ops/sec
+83 cycles/op
+
+# --duration=3 --wait=0 --size=128M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0,41-79 
+3.07383 sec
+3523215360 ops
+1146197159 ops/sec
+83 cycles/op
+
+== --host=ben --kernel=3.12-0.bpo.1-amd64 --ncores=80 --order=seq ==
+# --duration=3 --wait=0 --size=8K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.01137 sec
+262939025536 ops
+87315272879 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=8K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.01383 sec
+263160035328 ops
+87317507381 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=8K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.01546 sec
+263351494144 ops
+87333708785 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=16K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.0125 sec
+274736152832 ops
+91198663746 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=16K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.01353 sec
+274782230784 ops
+91182841826 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=16K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.00792 sec
+274203031552 ops
+91160469226 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=32K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.00729 sec
+280082035712 ops
+93134336051 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=32K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.00739 sec
+280071714304 ops
+93127928494 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=32K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.01892 sec
+281281411584 ops
+93172736969 ops/sec
+2 cycles/op
+
+# --duration=3 --wait=0 --size=64K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.0138 sec
+145641351168 ops
+48324805266 ops/sec
+3 cycles/op
+
+# --duration=3 --wait=0 --size=64K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.01542 sec
+155568420864 ops
+51590979739 ops/sec
+3 cycles/op
+
+# --duration=3 --wait=0 --size=64K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.01254 sec
+154091486208 ops
+51149955143 ops/sec
+3 cycles/op
+
+# --duration=3 --wait=0 --size=128K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.01583 sec
+129463662592 ops
+42928107952 ops/sec
+4 cycles/op
+
+# --duration=3 --wait=0 --size=128K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.01291 sec
+126764226560 ops
+42073656677 ops/sec
+4 cycles/op
+
+# --duration=3 --wait=0 --size=128K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.01584 sec
+151097700352 ops
+50101316491 ops/sec
+3 cycles/op
+
+# --duration=3 --wait=0 --size=256K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.01346 sec
+104102551552 ops
+34545798292 ops/sec
+5 cycles/op
+
+# --duration=3 --wait=0 --size=256K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.0189 sec
+106789257216 ops
+35373577748 ops/sec
+5 cycles/op
+
+# --duration=3 --wait=0 --size=256K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.01871 sec
+119868338176 ops
+39708490701 ops/sec
+4 cycles/op
+
+# --duration=3 --wait=0 --size=512K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.02092 sec
+91281522688 ops
+30216492983 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=512K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.00699 sec
+91002068992 ops
+30263519063 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=512K --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.01357 sec
+95876538368 ops
+31814935817 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=1M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.01348 sec
+91229487104 ops
+30273789706 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=1M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.01517 sec
+91305263104 ops
+30281953752 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=1M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.01571 sec
+91306131456 ops
+30276819158 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=2M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.01312 sec
+91266514944 ops
+30289702919 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=2M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.016 sec
+91351351296 ops
+30288940382 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=2M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.01512 sec
+91349549056 ops
+30297170908 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=4M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.01601 sec
+90959249408 ops
+30158780410 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=4M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.012 sec
+90855112704 ops
+30164429349 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=4M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.01083 sec
+90866450432 ops
+30179846726 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=8M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.01376 sec
+90950598656 ops
+30178456388 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=8M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.01146 sec
+90823720960 ops
+30159383321 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=8M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.00945 sec
+90875232256 ops
+30196672976 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=16M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.01172 sec
+86090186752 ops
+28585009658 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=16M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.00548 sec
+88181309440 ops
+29340193215 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=16M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.00455 sec
+86663757824 ops
+28844145004 ops/sec
+6 cycles/op
+
+# --duration=3 --wait=0 --size=32M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.00961 sec
+15733882880 ops
+5227872392 ops/sec
+36 cycles/op
+
+# --duration=3 --wait=0 --size=32M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.02319 sec
+16404447232 ops
+5426213464 ops/sec
+35 cycles/op
+
+# --duration=3 --wait=0 --size=32M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.01994 sec
+15913189376 ops
+5269381190 ops/sec
+36 cycles/op
+
+# --duration=3 --wait=0 --size=64M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.0378 sec
+4526702592 ops
+1490124781 ops/sec
+128 cycles/op
+
+# --duration=3 --wait=0 --size=64M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.06137 sec
+4567597056 ops
+1492009789 ops/sec
+128 cycles/op
+
+# --duration=3 --wait=0 --size=64M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.05086 sec
+4714397696 ops
+1545269450 ops/sec
+124 cycles/op
+
+# --duration=3 --wait=0 --size=128M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.06677 sec
+4441767936 ops
+1448353297 ops/sec
+132 cycles/op
+
+# --duration=3 --wait=0 --size=128M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.08944 sec
+4441767936 ops
+1437724972 ops/sec
+133 cycles/op
+
+# --duration=3 --wait=0 --size=128M --op=read --dependent=false --random=false --shared --numa=node0 --cores=0-79 
+3.10601 sec
+4504682496 ops
+1450312673 ops/sec
+131 cycles/op
+
