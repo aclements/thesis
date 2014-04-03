@@ -1,0 +1,23 @@
+#!/bin/zsh
+
+# Probe filter control is function F3x1D4, which is a 32-bit register
+# in little-endian order (AMD Family 10h Processor BKDG, page 340).
+# The bottom 2 bits are 0 if the probe filter is disabled.
+
+if [[ $(awk '/^vendor_id/{print $3;exit}' /proc/cpuinfo) != AuthenticAMD ||
+            $(awk '/^cpu family/{print $4;exit}' /proc/cpuinfo) != 16 ]]; then
+    echo not-AMD10h
+    exit
+fi
+
+val=$(sudo -p "[$0] password for %p: " lspci -xxxx -s 00:18.3 | awk '$1=="1d0:" { print $6 }')
+if [[ -z $val ]]; then
+    echo unknown
+elif (( 0x$val & 3 == 0 )); then
+    echo false
+elif (( 0x$val & 3 == 2 )); then
+    echo true
+else
+    echo "Bad probe filter configuration value" >&2
+    echo unknown
+fi

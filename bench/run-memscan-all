@@ -1,0 +1,26 @@
+#!/bin/zsh
+
+if [[ $HOST == ben ]]; then
+    NCPUS=(1 10 40 80)
+elif [[ $HOST == tom ]]; then
+    NCPUS=(1 6 24 48)
+else
+    echo "Unknown host; no CPU sequence" >&2
+fi
+
+pf=$(./check-probe-filter)
+
+function cpuSweep() {
+    echo "= --probe-filter=$pf ="
+    echo
+    for NCPU in $NCPUS; do
+        ./run-memscan --ncores $NCPU --trials 3 --seq -- \
+            --duration=3 $*
+    done
+}
+
+mkdir -p memscan.out/$HOST/read
+cpuSweep --op=read --shared=true | tee memscan.out/$HOST/read/data
+
+mkdir -p memscan.out/$HOST/write
+cpuSweep --op=write --shared=false | tee memscan.out/$HOST/write/data

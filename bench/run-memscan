@@ -1,0 +1,55 @@
+#!/bin/zsh
+
+set -e
+
+NCORES=$(list-cpus --space thread==0 | wc -w)
+START=$((8 * 1024))
+STOP=$((128 * 1024 * 1024))
+TRIALS=1
+ORDER=socket
+ORDERNAME=seq
+ARGS=(--duration=3)
+
+while (( $# )); do
+    arg=$1
+    shift
+    case $arg in
+        --ncores)
+            NCORES=$1; shift;;
+        --trials)
+            TRIALS=$1; shift;;
+        --seq)
+            ORDER=socket; ORDERNAME=seq;;
+        --rr)
+            ORDER=coreid; ORDERNAME=rr;;
+        --note)
+            shift;;
+        --)
+            ARGS=($ARGS $*); shift $#;;
+        *)
+            echo "Unknown argument $arg" >&2
+            exit 2;;
+    esac
+done
+
+if [[ $HOST == ben ]]; then
+    ORDER=($ORDER socket@0,1,2,7,3-6)
+elif [[ $HOST == tom ]]; then
+    # Default order is fine
+else
+    echo "Unknown host; using default socket order" >&2
+fi
+
+echo "== --host=$(hostname) --kernel=$(uname -r) --ncores=$NCORES --order=$ORDERNAME =="
+
+CORES=$(list-cpus --compact-set --limit=$NCORES $ORDER thread==0)
+
+size=$START
+while (( size <= STOP )); do
+    for trial in $(seq $TRIALS); do
+        sleep 0.1
+        ./memscan --size=$size --cores=$CORES $ARGS
+        echo
+    done
+    size=$((size * 2))
+done
