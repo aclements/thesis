@@ -35,9 +35,11 @@ for path in sys.argv[1:] or glob.glob("*.tex"):
     t.mark("Use a non-breaking space", r"Linux%s[0-9]" % TEXSPACE)
 #    t.mark("Use \\S", "section~", re.I)
 #    t.mark("Don't use a ~", r"\\S~")
-    nocomments.mark("Use \\cref or \\Cref", r'\\ref\{')
+    if path != 'figures/tool.tex':
+        nocomments.mark("Use \\cref or \\Cref", r'\\ref\{')
     # (POSIX is always singular, so apostrophe is okay)
-    t.warn("Maybe eliminate apostrophe", "[A-Z]+(?<!POSIX)'s")
+    t.warn("Maybe eliminate apostrophe",
+           "(?<!the )\<[A-Z]+(?<!POSIX)(?<!MESI)(?<!AMD)'s")
     t.ignore(r"\\bibpunct.*")\
         .mark("Use \\XXX", r"(?<!\\)XXX")
 #    t.mark("Contraction", "n't")
