@@ -42,6 +42,7 @@
 \usepackage{mathrsfs}
 \usepackage{etoolbox}
 \usepackage{ifdraft}
+\usepackage{titlesec}
 \usepackage{cleveref} % After hyperref, listings
 \IfFileExists{microtype.sty}{
   \usepackage{microtype}
@@ -155,6 +156,9 @@
 % These depend on NOT passing "capitalize" to cleveref.
 \newcommand{\thiscref}[1]{this \namecref{#1}}
 \newcommand{\Thiscref}[1]{This \namecref{#1}}
+
+\titleformat{\chapter}[hang]{%
+  \huge\bfseries}{\thechapter\hspace{15pt}\rule[-1.2em]{.5pt}{3em}\hspace{15pt}}{0pt}{\huge\bfseries}
 
 \makeatother
 
