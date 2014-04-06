@@ -66,19 +66,37 @@ concerns.
   strongly states that, unlike Refcache and RadixVM, \fs is all known
   techniques and \tool-guided elbow grease.}
 
-\fs makes extensive use of existing techniques for scalable
+\fs encompasses \sys's unified buffer cache and VFS layers, providing
+operations such as \code{read}, \code{write}, \code{open}, and
+\code{unlink}.  We focused on the VFS and buffer cache layers because
+these are the common denominators of all file systems in a Unix
+kernel.
+%
+In contrast with \vm,
+\fs makes extensive use of well-known techniques for scalable
 implementations, such as per-core resource
 allocation, double-checked locking, lock-free readers using
 RCU~\cite{rcu:linux},
-scalable reference counts using Refcache~\cite{clements:radixvm},
-and seqlocks~\cite[\S6]{lameter:linuxsync}.  These techniques lead to
-several common patterns, as follows; we illustrate the patterns with
-example test cases from \tool{} that led us to discover these situations:
+and seqlocks~\cite[\S6]{lameter:linuxsync},
+as well as scalable reference counts using Refcache.
+%
+\fs is also structured much like contemporary Unix VFS subsystems,
+with inode and directory caches represented as concurrent hash tables
+and per-file page caches.
+%
+What sets \fs apart is that the details of its implementation were
+guided by the scalable commutativity rule and, in particular, by
+\tool.
+%
+This led to several common design patters, which we illustrate with
+example test cases from \tool{}:
+%
+\XXX[AC]{\fs is more irregular than \vm, so \tool was more important.}
 
 
 \paragraph{Layer scalability.}  \fs uses data structures that
 themselves naturally satisfy the commutativity rule, such as linear
-arrays, radix arrays~\cite{clements:radixvm}, and hash tables.  In
+arrays, radix arrays, and hash tables.  In
 contrast with structures like balanced trees, these data
 structures
 typically share no cache lines when different elements are accessed
@@ -88,21 +106,23 @@ file pages scale, even in the presence of operations
 extending or truncating the file.
 % , as long as they don't access the part
 % of the file that's being extended or truncated.
-Many operations also use this radix array to determine if some offset
-is within the file's bounds without risking conflicts with operations
+\tool led us to an additional benefit of this representation:
+many operations also use this radix array to determine if some offset
+is within the file's bounds without reading the size and conflicting
+with operations
 that change the file's size.
 
-\XXX[AC]{Nir's book calls such data structures ``naturally parallel''
-or something.}
+\XXX[AC]{``Radix tree'' or ``radix array''?}
 
 
-\paragraph{Defer work.} Many kernel resources are shared,
-such as files and pages, and must be freed when no longer referenced.
+\paragraph{Defer work.} Many \fs resources are shared,
+such as file descriptions and inode objects, and must be freed when no
+longer referenced.
 Typically, kernels release resources immediately, but this requires
 eagerly tracking references to resources, causing
 commutative operations that access the same resource to conflict.  Where
 releasing a resource is not time-sensitive, \fs
-uses Refcache~\cite{clements:radixvm} to batch reference count
+uses Refcache to batch reference count
 reconciliation and zero detection.  This way, resources are eventually
 released, but within each Refcache epoch commutative operations can be
 conflict-free.
@@ -173,7 +193,12 @@ ensure atomicity of the update stage, and performs updates.  For
 example, \code{lseek} first computes the new offset using a lock-free
 read-only protocol and returns early if the new offset is invalid or
 equal to the current offset.  Otherwise, \code{lseek} locks the file
-offset, and re-computes the new offset to ensure consistency.
+offset and re-computes the new offset to ensure consistency.
+%
+In fact, \code{lseek} has surprisingly complex interactions with
+system state and other operations, and arriving at a protocol that was
+both correct and conflict-free in all commutative cases would have
+been difficult without \tool.
 
 \code{rename} is similar.  If two file names \code{a} and \code{b}
 point to the
@@ -183,6 +208,11 @@ same inode, \code{rename(a, b)} should remove the directory entry for
 it already points at the right inode.  By checking the directory
 entry for \code{b} before updating it, \code{rename(a, b)} avoids
 conflicts with other operations that look up \code{b}.
+%
+As we saw in \cref{sec:topic:rename-conditions}, \code{rename} has
+many surprising and subtle commutative cases and, much like
+\code{lseek}, \tool was instrumental in helping us arrive at an
+implementation that was conflict-free in these cases.
 
 
 \paragraph{Don't read unless necessary.}  A common internal interface
