@@ -101,7 +101,7 @@ remaining physical memory.
 
 \XXX[AC]{Any other trade-offs from the RadixVM talk?}
 
-\paragraph{Basic \refcache.}
+\subsubsection{Basic \refcache}
 In \refcache, each reference counted object has a global reference
 count (much like a regular reference count) and each core also
 maintains a local, fixed-size cache of deltas to objects' reference
@@ -178,7 +178,7 @@ reference count was temporarily non-zero during the epoch.  We call
 this a \emph{dirty} zero and in this situation \refcache will
 queue the object to be examined again two epochs later, in epoch 8.
 
-\paragraph{Weak references.}
+\subsubsection{Weak references}
 As described, \refcache is well suited to reference counts that track
 the true number of references to an object, since there is no danger
 of the count going back up once the object becomes unreachable.
@@ -204,7 +204,7 @@ If this fails, it reexamines the object again two epochs later.  In a
 race between \code{tryget} and deletion, which operation succeeds is determined
 by which clears the dying bit first.
 
-\paragraph{Algorithm.}
+\subsubsection{Algorithm}
 The pseudocode for \refcache is given in
 \cref{fig:refcache-code}.  Each core maintains a hash table
 storing its reference delta cache and the review queue that tracks
@@ -300,7 +300,7 @@ scheme suffices for our benchmarks, but more scalable schemes are
 possible, such as the tree-based quiescent state detection used
 by Linux's hierarchical RCU implementation~\cite{lwn:treercu}.
 
-\paragraph{Discussion.}
+\subsubsection{Discussion}
 \refcache trades latency for scalability by batching increment and
 decrement operations in per-core caches.  As a result, except when
 collisions in the reference delta cache cause evictions, \code{inc}
