@@ -7,9 +7,9 @@ if (TARGET eq "") {
 
 eval mpSetup(2, 2)
 
-#set palette gray negative gamma 0.3
+set palette gray negative gamma 0.3
 #set palette defined (0 "#ffffff", 1/6. "#f0f9e8", 2/6. "#ccebc5", 3/6. "#a8ddb5", 4/6. "#7bccc4", 5/6. "#43a2ca", 1 "#0868ac")
-set palette cubehelix cycles -2.5 saturation 1.5 negative gamma 0.3
+#set palette cubehelix cycles -2.5 saturation 1.5 negative gamma 0.3
 set zeroaxis
 set cbrange [0:0.001]
 unset colorbox
