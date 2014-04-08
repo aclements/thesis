@@ -1,8 +1,8 @@
 \section{Achieving conflict-freedom in POSIX}
 
 \XXX[STATUS]{Split from ``Finding scalability opportunities'' in SOSP.
-  New intro.  Added \refcache and \vm sections.  Needs some
-  smoothing.}
+  New intro.  Copied \refcache and \vm sections from EuroSys,
+  reworked, and added new section intros.  Needs some smoothing.}
 
 Given that many commutative operations are not conflict-free in Linux,
 is it feasible to build file system and virtual memory systems that
@@ -35,17 +35,16 @@ conflicts, which we later validated using \tool.
 
 \Cref{fig:testcase-breakdown-sv6} shows the result of applying \tool
 to \sys.  In contrast with Linux, \sys is conflict-free for nearly
-every commutative test case.  The rest of this chapter explores how we
-accomplish this in \sys to answer the following questions:
+every commutative test case.  The rest of this chapter explores the
+design of \sys and answers the following questions:
 
 \begin{CompactItemize}
 
-\item What techniques are necessary to achieve scalability for
-      cases where current file and virtual memory systems do not
-      scale?
+\item What techniques are necessary to achieve conflict-freedom for
+      cases where current file and virtual memory systems are not?
 
 \item What situations might be too difficult or impractical to
-      make scale, despite being commutative?
+      make conflict-free, despite being commutative?
 
 \end{CompactItemize}
 
