@@ -13,8 +13,8 @@ scalable reference counting using per-core \emph{reference delta
   caches}.  \refcache targets uses of reference counting that can
 tolerate some latency in releasing reference counted resources and is
 particularly suited to uses where increment and decrement operations
-often occur on the same core (e.g., the same thread that faulted pages
-into a mapped memory region also unmaps that region).
+often occur on the same core (e.g., the same thread that allocated
+pages also frees them).
 
 % Since two virtual memory regions may share the same physical
 % pages, such as when forking a process, \vm must have a way
@@ -36,7 +36,7 @@ In its simplest form, a reference counter has two operations,
 reference count.  These operations trivially commute when applied to
 different objects, so we focus on the case of a single object.  When
 applied to the same object, these operations \emph{never} commute (any
-reordering will change their results) and cannot be made
+reordering will change their responses) and cannot be made
 conflict-free.
 
 A better (and more common) interface returns nothing from \code{inc}
@@ -56,36 +56,42 @@ no per-core partition drops to zero in the commutative region.
 However, a practical, \emph{general-purpose} conflict-free
 implementation of this interface remains elusive.
 
-\refcache exploits a further weakening of this interface, targeted at
+\refcache exploits a further weakening of this interface, designed for
 reference counters that can tolerate some latency between when the
 count reaches zero and when the system detects that it's reached zero.
-In \refcache, both \code{inc} and \code{dec} return nothing and hence
-always commute, even if the count reaches zero.  A new, conceptually
-global \code{review()} operation finds objects whose reference counts
+%
+\XXX[AC]{Emphasize here that this is suitable for many uses of
+  reference counting, like memory reclamation?}
+%
+In \refcache, \emph{both} \code{inc} and \code{dec} return nothing and
+hence always commute, even if the count reaches zero.  A new
+\code{review()} operation finds all objects whose reference counts
 recently reached zero (and, in practice, calls their destructors).
 \code{review} does not commute in any sequence where \emph{any}
-object's reference count has reached zero.
+object's reference count has reached zero and its implementation
+conflicts on a small number of cache lines even when it does commute.
 %
-\XXX[AC]{In the pseudo-code, \code{review} is called from each core,
-  so it's not really a ``global'' operation.}
+However, unlike \code{dec}, the system can control when and how often
+it invokes \code{review}.
 %
-In effect, \refcache concentrates non-commutativity and the resulting
-cache-line conflicts into \code{review}.  Even though \code{review} is
-expensive and non-scalable, the \refcache implementation invokes it
+\sys invokes it
 only at 10ms intervals---several orders of magnitude longer than the
 time required by even the most expensive conflicts on current
 multicores.
+%
+\refcache strikes a balance between broad conflict-freedom, strict
+adherence to the scalable commutativity rule, and practical
+implementation concerns, providing a general-purpose, efficient
+implementation of an interface suitable for many uses of referencing
+counting.
 
-\XXX[AC]{This could be read as \refcache is perfectly scalably
-  commutative.  It isn't, but it makes sensible trade-offs.}
-
-This separation of concerns between count manipulation and zero
-detection allows \refcache to batch increments and decrements,
-reducing cache line conflicts while offering an adjustable time bound
+By separating count manipulation and zero detection, \refcache can
+batch increments and decrements and
+reduce cache line conflicts while offering an adjustable time bound
 on when an object will be garbage collected after its reference count
 drops to zero.  \code{inc} and \code{dec} are conflict-free with high
-probability and \refcache itself induces only a small constant rate of
-conflicts for global maintenance.
+probability and \code{review} induces only a small constant rate of
+conflicts for global epoch maintenance.
 
 Furthermore, in contrast with most scalable
 reference counting mechanisms (see \cref{sec:related}), \refcache
@@ -93,7 +99,8 @@ requires space proportional to the sum of the number of reference
 counted objects and the number of cores, rather than the product, and
 the per-core overhead can be adjusted to trade off space and
 scalability by controlling the reference delta cache collision rate.
-This importance of space overhead is exacerbated by \vm, which must
+%
+Space overhead is particularly important for \vm, which must
 track every physical page; at large core counts, typical scalable
 reference counters
 would require more than half of physical memory just to track the
@@ -169,7 +176,7 @@ was not a true zero and the object should not be freed.
 It is necessary but not sufficient for the global reference count to
 be zero when an object is reexamined; there must also have been no
 deltas flushed to the object's global count in the interim, even if
-those deltas canceled or were zero.
+those changes canceled out or the deltas themselves were zero.
 %
 For example, core 0 will observe a zero global reference count
 at the end of epoch 4, and again when it reexamines the object in
@@ -180,10 +187,10 @@ queue the object to be examined again two epochs later, in epoch 8.
 
 \subsubsection{Weak references}
 As described, \refcache is well suited to reference counts that track
-the true number of references to an object, since there is no danger
-of the count going back up once the object becomes unreachable.
+the number of true references to an object, since there is no danger
+of the count going back up from zero once the object becomes unreachable.
 However, operating systems often need untracked references to objects;
-for example, OS caches track objects that may be deleted at any time,
+for example, \fs's caches track objects that may be deleted at any time,
 and may even need to bring an object's reference count back up from
 zero.  \vm's radix tree has similar requirements.  To support such
 uses, we extend \refcache with \emph{weak references}, which provide a
@@ -204,12 +211,18 @@ If this fails, it reexamines the object again two epochs later.  In a
 race between \code{tryget} and deletion, which operation succeeds is determined
 by which clears the dying bit first.
 
+This protocol can be extended to support multiple weak references per
+object using a two phase approach in which all weak references are
+first put in an intermediate state that can be rolled back if any
+reference turns out to be revived.  Our current implementation does
+not support this because it was not necessary for \vm or \fs.
+
 \subsubsection{Algorithm}
-The pseudocode for \refcache is given in
-\cref{fig:refcache-code}.  Each core maintains a hash table
+\Cref{fig:refcache-code} gives pseudocode for \refcache.  Each core
+maintains a hash table
 storing its reference delta cache and the review queue that tracks
 objects whose global reference counts reached zero.  A core reviews an
-object after two epoch boundaries have passed so it can guarantee
+object after two epoch boundaries have passed, which guarantees
 that all cores have flushed their
 reference caches at least once.
 
@@ -290,13 +303,14 @@ reference caches at least once.
 All of the functions in \cref{fig:refcache-code} execute with
 preemption disabled, meaning they are atomic with respect to each
 other on a given core, which protects the consistency of per-core data
-structures.  Individual objects are protected by fine-grained locks
-that protect the consistency of the object's fields.
+structures.  Fine-grained locks protect the \refcache-related fields
+of individual objects.
 
 For epoch management, our current implementation uses a barrier scheme
 that tracks a global epoch counter, per-core epochs, and a count of
 how many per-core epochs have reached the current global epoch.  This
-scheme suffices for our benchmarks, but more scalable schemes are
+scheme suffices for our benchmarks, but schemes with fewer cache-line
+conflicts are
 possible, such as the tree-based quiescent state detection used
 by Linux's hierarchical RCU implementation~\cite{lwn:treercu}.
 
