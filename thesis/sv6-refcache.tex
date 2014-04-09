@@ -95,20 +95,34 @@ drops to zero.  \code{inc} and \code{dec} are conflict-free with high
 probability and \code{review} induces only a small constant rate of
 conflicts for global epoch maintenance.
 
-Furthermore, in contrast with most scalable
-reference counting mechanisms (see \cref{sec:related}), \refcache
+\refcache inherits ideas from sloppy
+counters~\cite{boyd-wickizer:scaling}, Scalable NonZero Indicators
+(SNZI)~\cite{snzi:podc}, distributed counters~\cite{appavoo:k42},
+shared vs.\ local counts in Modula-2+~\cite{detreville:concurrent-gc},
+and approximate counters~\cite{approx:counter}.
+%
+All of these techniques speed up increment and decrement operations
+using per-core counters, but make different trade-offs between
+conflict-freedom, zero-detection cost, and space.  With the exception
+of SNZIs, these techniques do not detect when a count reaches zero, so
+the system must poll each counter for this condition.  SNZIs detect
+when a count reaches zero immediately, but at the cost of conflicts
+when a count is small.  \refcache balances these extremes, enabling
+conflict-free operations and efficient zero-detection, but with a
+short delay.
+%
+Furthermore, in contrast with sloppy, SNZI, distributed, and
+approximate counters, \refcache
 requires space proportional to the sum of the number of reference
 counted objects and the number of cores, rather than the product, and
 the per-core overhead can be adjusted to trade off space and
 scalability by controlling the reference delta cache collision rate.
 %
-Space overhead is particularly important for \vm, which must
-track every physical page; at large core counts, typical scalable
+Space overhead is particularly important for \vm, which must reference
+count every physical page; at large core counts, other scalable
 reference counters
 would require more than half of physical memory just to track the
 remaining physical memory.
-
-\XXX[AC]{Any other trade-offs from the RadixVM talk?}
 
 \subsubsection{Basic \refcache}
 In \refcache, each reference counted object has a global reference
