@@ -1,4 +1,5 @@
 \section{Achieving conflict-freedom in POSIX}
+\label{sec:sv6}
 
 \XXX[STATUS]{Draft ready.  Split from ``Finding scalability
   opportunities'' in SOSP.  Copied and reworked \refcache and \vm
@@ -35,7 +36,7 @@ conflicts, which we later validated using \tool.
 
 \Cref{fig:testcase-breakdown-sv6} shows the result of applying \tool
 to \sys.  In contrast with Linux, \sys is conflict-free for nearly
-every commutative test case.  The rest of this chapter explores the
+every commutative test case.  The rest of \thiscref{sec:sv6} explores the
 design of \sys and answers the following questions:
 
 \begin{CompactItemize}
@@ -48,7 +49,7 @@ design of \sys and answers the following questions:
 
 \end{CompactItemize}
 
-This chapter starts with the design of Refcache, a scalable reference
+\Thiscref{sec:sv6} starts with the design of Refcache, a scalable reference
 counting mechanism used throughout \sys.  It then covers the designs
 of RadixVM and \fs.  Finally, it discusses operations that are
 difficult to make conflict-free without sacrificing other practical

@@ -1,4 +1,5 @@
 \subsection{Refcache: Scalable reference counting}
+\label{sec:sv6:refcache}
 
 Reference counting is critical to many OS functions and used
 throughout \vm and \fs.  \vm must reference count physical pages
@@ -7,7 +8,8 @@ as nodes in its internal radix tree.  Likewise, \fs must reference
 count file descriptions, FD tables, and entries in various caches as
 well as scalably maintain other counts such as link counts.
 %
-This section introduces \refcache, a novel reference counting scheme
+\Thiscref{sec:sv6:refcache} introduces \refcache, a novel reference
+counting scheme
 used by \vm and \fs.  \refcache implements space-efficient, lazy,
 scalable reference counting using per-core \emph{reference delta
   caches}.  \refcache targets uses of reference counting that can
