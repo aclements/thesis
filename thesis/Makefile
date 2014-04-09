@@ -28,6 +28,7 @@ gnuplot-lua-tikz.sty:
 	$(Q)inkscape -z --export-text-to-path --export-pdf=$@ $(INKARGS) $<
 
 figures/refcache.pdf: INKARGS+=--export-area-drawing
+figures/radix.pdf: INKARGS+=--export-area-drawing
 
 # linuxcomp.tex: data/filebench-*.data data/dirbench-*.data mklinuxcomp
 # 	./mklinuxcomp > $@~ && mv $@~ $@

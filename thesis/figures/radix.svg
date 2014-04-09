@@ -14,7 +14,7 @@
    height="765"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.3.1 r9886"
+   inkscape:version="0.48.4 r9939"
    sodipodi:docname="radix.svg">
   <defs
      id="defs4">
@@ -33,7 +33,6 @@
          inkscape:connector-curvature="0" />
     </marker>
     <linearGradient
-       inkscape:collect="always"
        id="linearGradient3025">
       <stop
          style="stop-color:#ffffff;stop-opacity:1"
@@ -296,11 +295,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.7005108"
-     inkscape:cx="184.29602"
-     inkscape:cy="32.093657"
+     inkscape:zoom="7.638198"
+     inkscape:cx="227.73672"
+     inkscape:cy="33.604928"
      inkscape:document-units="px"
-     inkscape:current-layer="g4090"
+     inkscape:current-layer="layer1"
      showgrid="true"
      fit-margin-top="0"
      fit-margin-left="0"
@@ -347,7 +346,7 @@
        y="14.913193" />
     <text
        xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:cmr10"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Times New Roman;-inkscape-font-specification:Times New Roman"
        x="-2.579674"
        y="9.2264633"
        id="text5822"
@@ -356,7 +355,7 @@
          id="tspan5824"
          x="-2.579674"
          y="9.2264633"
-         style="font-size:8px">VPN:</tspan></text>
+         style="font-size:8px;-inkscape-font-specification:Times New Roman;font-family:Times New Roman">VPN:</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:cmr10;-inkscape-font-specification:cmr10"
@@ -378,16 +377,16 @@
        y="14.913193" />
     <text
        xml:space="preserve"
-       style="font-size:8px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="32.7467"
+       style="font-size:8px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Times New Roman;-inkscape-font-specification:Times New Roman"
+       x="39.965248"
        y="9.9131927"
        id="text5767"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan5769"
-         x="32.7467"
+         x="39.965248"
          y="9.9131927"
-         style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier 10 Pitch;-inkscape-font-specification:Courier 10 Pitch">000</tspan></text>
+         style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Times New Roman;-inkscape-font-specification:Times New Roman">000</tspan></text>
     <rect
        style="color:#000000;fill:#729fcf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect3831"
@@ -414,16 +413,16 @@
          y="14.913193" />
       <text
          xml:space="preserve"
-         style="font-size:8px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-         x="18.3092"
+         style="font-size:8px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Times New Roman;-inkscape-font-specification:Times New Roman"
+         x="39.965248"
          y="9.9131927"
          id="text3123"
          sodipodi:linespacing="125%"><tspan
            sodipodi:role="line"
            id="tspan3125"
-           x="18.3092"
+           x="39.965248"
            y="9.9131927"
-           style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier 10 Pitch;-inkscape-font-specification:Courier 10 Pitch">000000000</tspan></text>
+           style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Times New Roman;-inkscape-font-specification:Times New Roman">000000000</tspan></text>
       <rect
          style="color:#000000;fill:#729fcf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
          id="rect3127"
@@ -452,16 +451,16 @@
          y="14.913193" />
       <text
          xml:space="preserve"
-         style="font-size:8px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-         x="18.3092"
+         style="font-size:8px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Times New Roman;-inkscape-font-specification:Times New Roman"
+         x="39.641029"
          y="9.9131927"
          id="text3850"
          sodipodi:linespacing="125%"><tspan
            sodipodi:role="line"
            id="tspan3852"
-           x="18.3092"
+           x="39.641029"
            y="9.9131927"
-           style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier 10 Pitch;-inkscape-font-specification:Courier 10 Pitch">110000000</tspan></text>
+           style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Times New Roman;-inkscape-font-specification:Times New Roman">110000000</tspan></text>
       <rect
          style="color:#000000;fill:#729fcf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
          id="rect3854"
@@ -491,12 +490,12 @@
          sodipodi:linespacing="125%"
          id="text3874"
          y="9.9131927"
-         x="18.3092"
-         style="font-size:8px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+         x="39.965248"
+         style="font-size:8px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Times New Roman;-inkscape-font-specification:Times New Roman"
          xml:space="preserve"><tspan
-           style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier 10 Pitch;-inkscape-font-specification:Courier 10 Pitch"
+           style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Times New Roman;-inkscape-font-specification:Times New Roman"
            y="9.9131927"
-           x="18.3092"
+           x="39.965248"
            id="tspan3876"
            sodipodi:role="line">001010010</tspan></text>
       <rect
@@ -539,19 +538,14 @@
          sodipodi:linespacing="125%"
          id="text5019-5"
          y="31.11454"
-         x="232.50456"
-         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:cmr10"
+         x="234.54568"
+         style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Times New Roman;-inkscape-font-specification:Times New Roman"
          xml:space="preserve"><tspan
-           id="tspan8808-4"
-           style="font-size:6px"
-           y="31.11454"
-           x="232.50456"
-           sodipodi:role="line">RW (anon)</tspan><tspan
            id="tspan8806-4"
-           style="font-size:6px"
-           y="38.61454"
-           x="232.50456"
-           sodipodi:role="line" /></text>
+           style="font-size:6px;font-family:Times New Roman;-inkscape-font-specification:Times New Roman"
+           y="31.11454"
+           x="234.54568"
+           sodipodi:role="line">RW (anon)</tspan></text>
     </g>
     <path
        style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Send)"
@@ -573,16 +567,16 @@
        sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
-       style="font-size:8px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="233.08694"
+       style="font-size:8px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Times New Roman;-inkscape-font-specification:Times New Roman"
+       x="247.52425"
        y="9.9131927"
        id="text3874-6"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3876-5"
-         x="233.08694"
+         x="247.52425"
          y="9.9131927"
-         style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier 10 Pitch;-inkscape-font-specification:Courier 10 Pitch">010010</tspan></text>
+         style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Times New Roman;-inkscape-font-specification:Times New Roman">010010</tspan></text>
     <path
        sodipodi:nodetypes="cc"
        inkscape:connector-curvature="0"
@@ -598,20 +592,20 @@
        y="34.784592" />
     <text
        xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:cmr10"
-       x="232.76643"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Times New Roman;-inkscape-font-specification:Times New Roman"
+       x="234.39973"
        y="41.618202"
        id="text5019-5-8"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         x="232.76643"
+         x="234.39973"
          y="41.618202"
-         style="font-size:6px;fill:#000000;fill-opacity:1"
+         style="font-size:6px;fill:#000000;fill-opacity:1;font-family:Times New Roman;-inkscape-font-specification:Times New Roman"
          id="tspan8808-4-7">RW (anon)</tspan><tspan
          sodipodi:role="line"
-         x="232.76643"
+         x="234.39973"
          y="49.118202"
-         style="font-size:6px;fill:#000000;fill-opacity:1"
+         style="font-size:6px;fill:#000000;fill-opacity:1;font-family:Times New Roman;-inkscape-font-specification:Times New Roman"
          id="tspan8806-4-9" /></text>
     <rect
        style="color:#000000;fill:none;stroke:#585858;stroke-width:0.50000000000000000;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
@@ -622,20 +616,20 @@
        y="45.258266" />
     <text
        xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:cmr10"
-       x="232.06184"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Times New Roman;-inkscape-font-specification:Times New Roman"
+       x="234.71761"
        y="52.091885"
        id="text5019-5-8-4"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         x="232.06184"
+         x="234.71761"
          y="52.091885"
-         style="font-size:6px;fill:#000000;fill-opacity:1"
+         style="font-size:6px;fill:#000000;fill-opacity:1;font-family:Times New Roman;-inkscape-font-specification:Times New Roman"
          id="tspan8808-4-7-2">RW /bin/ls</tspan><tspan
          sodipodi:role="line"
-         x="232.06184"
+         x="234.71761"
          y="59.591885"
-         style="font-size:6px;fill:#000000;fill-opacity:1"
+         style="font-size:6px;fill:#000000;fill-opacity:1;font-family:Times New Roman;-inkscape-font-specification:Times New Roman"
          id="tspan8806-4-9-2" /></text>
   </g>
   <g

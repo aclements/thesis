@@ -205,14 +205,15 @@ scheme as this strawman design, but reins in its memory consumption
 using a multilevel, compressed radix tree.
 
 \begin{figure}
-\centering
-\includegraphics{figures/radix.pdf}
-\caption{A radix tree containing both an anonymous mapping
-  and a file mapping.  Blue indicates the path for looking up the 36-bit
-  virtual page number shown in bits at the top of the figure.  The last
-  level of the tree contains separate mapping metadata for each page.
-}
-\label{fig:radix}
+  \centering
+  \includegraphics{figures/radix.pdf}
+  %
+  \splitcaption{A radix tree containing an anonymous mapping and a
+    file mapping.}{Blue indicates the path for looking up the 36-bit
+    virtual page number shown in bits at the top of the figure.  The
+    last level of the tree contains separate mapping metadata for each
+    page.  \XXX![AC]{Make this figure suck less.}}
+  \label{fig:radix}
 \end{figure}
 
 \vm's internal address space representation resembles a hardware page table
