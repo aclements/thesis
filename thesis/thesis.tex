@@ -153,9 +153,8 @@
 \crefname{figure}{Figure}{Figures}
 \crefname{mysubfigure}{Figure}{Figures}
 \Crefname{mysubfigure}{Figure}{Figures}
-% These depend on NOT passing "capitalize" to cleveref.
-\newcommand{\thiscref}[1]{this \namecref{#1}}
-\newcommand{\Thiscref}[1]{This \namecref{#1}}
+\newcommand{\thiscref}[1]{this \lcnamecref{#1}}
+\newcommand{\Thiscref}[1]{This \lcnamecref{#1}}
 
 \titleformat{\chapter}[hang]{%
   \huge\bfseries}{\thechapter\hspace{15pt}\rule[-1.2em]{.5pt}{3em}\hspace{15pt}}{0pt}{\huge\bfseries}
