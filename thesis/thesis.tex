@@ -208,7 +208,12 @@
 
 {
 \begin{singlespace}
-\bibliographystyle{plainnat}
+% Since we're using natbib in numbers mode, we don't need plainnat,
+% which exists to feed authors and years back in to natbib.  As a
+% result, it complains about entries without years, which we don't
+% care about.
+%\bibliographystyle{plainnat}
+\bibliographystyle{plain}
 \bibliography{n-str,local,n,n-conf,kpubs}
 \end{singlespace}
 }
