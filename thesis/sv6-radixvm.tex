@@ -84,8 +84,6 @@ implement standard VM operations.
   rule forced us to explicitly recognize, evaluate, and justify where
   we made such trade-offs.}
 
-\XXX![AC]{Copy in some related work section bits from EuroSys.}
-
 \subsubsection{POSIX VM architecture}
 \label{sec:radixvm:arch}
 
@@ -172,7 +170,7 @@ Widely-used operating system kernels represent an address space as a
 balanced tree of mapped memory regions.  For example, Linux uses a
 red-black tree~\cite{linux-source}, FreeBSD uses a splay
 tree~\cite{freebsd-source}, and Solaris and Windows use AVL
-trees~\cite{windows:wrk,windows:slides}.  This ensures fast lookups
+trees~\cite{windows:wrk,windows:slides}.  This ensures $O(\log n)$ lookups
 and modifications for address spaces that can easily contain thousands
 of mapped regions, but these data structures are poorly suited for
 concurrent access: not only do they induce cache line conflicts
@@ -180,8 +178,10 @@ between operations on non-overlapping regions, they force all of these
 kernels to use coarse-grained locking.
 
 Lock-free data structures seem like a compelling solution to this
-problem.  However, while lock-free data structures such as the Bonsai
-tree used by the Bonsai VM~\cite{clements:bonsai} and lock-free skip
+problem.  However, while lock-free (or partially lock-free) data
+structures such as the Bonsai tree used by the Bonsai
+VM~\cite{clements:bonsai}, relativistic red-black
+trees~\cite{howard:relrbtree}, and lock-free skip
 lists~\cite{herlihy:art} eliminate the coarse-grained serialization
 that plagues popular VM systems, their operations are far from
 conflict-free.  For example, \code{insert} and \code{lookup}
@@ -189,18 +189,29 @@ operations for a lock-free concurrent skip list can conflict on
 interior nodes in the skip list---even when the \code{lookup} and
 \code{insert} involve different keys and hence commute---because
 \code{insert} must modify interior nodes to maintain $O(\log n)$
-lookup time.  Any balanced data structure will suffer from
-such problems.
+lookup time.
+% Any balanced data structure will suffer from such problems.
+Furthermore, while these data structures maintain their own integrity
+under concurrent operations, a VM system must maintain higher-level
+invariants across the address space representation, page tables, and
+TLBs, and it is difficult to extend the precision design of a single
+lock-free data structure to cover these broader invariants.
 
 A (completely impractical) way to achieve conflict-free commutative
+address space
 operations is to represent a process's address space as a large linear
 array indexed by virtual page number that stores each virtual page's
 metadata individually.
 %
 In this linear representation, \code{mmap}, \code{munmap},
-and \code{pagefault} can lock and manipulate precisely the pages being
-mapped, unmapped, or faulted and operations on non-overlapping regions
-are clearly conflict-free.  The design of \vm follows the same general
+and \code{pagefault} can lock and manipulate precisely the range of
+pages being mapped, unmapped, or faulted.
+%
+Operations on non-overlapping regions are clearly conflict-free and
+precise range locking makes maintaining invariants across structures
+relatively straightforward.
+%
+The design of \vm follows the same general
 scheme as this strawman design, but reins in its memory consumption
 using a multilevel, compressed radix tree.
 
@@ -311,7 +322,8 @@ not provide
 information about which CPUs may have cached a particular mapping,
 typical Unix VM systems conservatively broadcast TLB shootdown
 interrupts to all
-CPUs using the modified address space, inducing cache line conflicts
+CPUs using the modified address space~\cite{mach:tlb}, inducing cache
+line conflicts
 and limiting scalability.
 
 \vm addresses this problem by precisely tracking the set of CPUs that
