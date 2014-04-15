@@ -435,7 +435,11 @@ reserved.\par\permission}}
 \newbox\@titlesupervisor 	\newbox\@abstractsupervisor
 
 \def\supervisor#1#2{\setbox\@titlesupervisor\vbox
-  {\unvbox\@titlesupervisor \vskip 10pt% plus 1fil minus 1fil
+  {\unvbox\@titlesupervisor
+  % Austin Clements: Use \vfill so multiple supervisor lines are
+  % evenly spaced with other signature lines
+  % \vskip 10pt% plus 1fil minus 1fil
+  \vfill
   \def\baselinestretch{1}\large
   \signature{Certified by}{#1 \\ #2 \\ Thesis Supervisor}}
   \setbox\@abstractsupervisor\vbox{\unvbox\@abstractsupervisor
