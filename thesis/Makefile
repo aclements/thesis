@@ -49,13 +49,18 @@ CLEAN+=gitinfo.tex gitinfo.tex.tmp
 
 thesis.pdf: $(GRAPHS:.gnuplot=.tex) gnuplot-lua-tikz.sty \
 	   gitinfo.tex pyexpr.tex figures/testcases-linux.tex \
-	   figures/testcases-sv6.tex
+	   figures/testcases-sv6.tex \
+	   FORCE
 	-@./lint $(SPELLTEX)
-	$(call quiet,RUBBER)
-	$(Q)( echo '#!/bin/sh' ; echo 'exec '$(shell which bibtex)' -min-crossrefs=100 "$$@"' ) > bibtex
-	$(Q)@chmod 755 bibtex
-	$(Q)PATH=.:$$PATH $(RUBBER) --pdf thesis.tex
-.PHONY: thesis.pdf
+	$(call quiet,LATEX)
+	$(Q)if which latexrun >/dev/null 2>&1; then \
+		latexrun --bibtex-args=-min-crossrefs=100 thesis.tex; \
+	else \
+		( echo '#!/bin/sh' ; echo 'exec '$(shell which bibtex)' -min-crossrefs=100 "$$@"' ) > bibtex; \
+		chmod 755 bibtex; \
+		PATH=.:$$PATH $(RUBBER) --pdf thesis.tex; \
+	fi
+.PHONY: FORCE
 
 thesis.ps: thesis.pdf
 	acroread -toPostScript $<
@@ -65,7 +70,11 @@ lint:
 	./lint $(SPELLTEX)
 
 clean:
-	$(RUBBER) --pdf --clean thesis.tex
+	if which latexrun >/dev/null 2>&1; then \
+		latexrun --clean-all; \
+	else \
+		$(RUBBER) --pdf --clean thesis.tex; \
+	fi
 	rm -f $(GRAPHS:.gnuplot=.tex) gnuplot-lua-tikz.sty gnuplot-lua-tikz-common.tex
 .PHONY: clean
 
