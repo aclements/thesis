@@ -102,7 +102,7 @@ class Gnuplot(object):
             proj = eval("lambda row: %r %% (%s,)" %
                         (" ".join(fmt), ",".join(indexes)))
             if col_headers:
-                print("%s" % " ".join(labels))
+                print("%s" % " ".join(l.replace(' ', '_') for l in labels))
             else:
                 print("# %s" % " ".join(labels))
             for row in curve["$curve"]:
