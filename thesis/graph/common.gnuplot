@@ -57,6 +57,14 @@ set linetype 3 lw 2 lc rgb '#ff0000'
 set key at graph 1,0.85
 
 #
+# RadixVM stuff
+#
+
+radix='with lp lt 1'
+linux='with lp lt 2'
+bonsai='with lp lt 3'
+
+#
 # Multiplot stuff
 #
 
