@@ -1,0 +1,679 @@
+== id=2013-02-21T02:04:47-0500 bench=mapbench kernel=Linux host=ben krel=2.6.37-amdragon-cbtree-all+ kver="#7 SMP Sun Jul 17 13:53:55 EDT 2011" ==
+
+# --cores=1 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+0 cycles start skew
+0 cycles stop skew
+12000329744 cycles
+904409 iterations
+904409 page touches
+13268 cycles/iteration
+
+# --cores=10 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+541224 cycles start skew
+695312 cycles stop skew
+12000577164 cycles
+185450 iterations
+185450 page touches
+647105 cycles/iteration
+
+# --cores=20 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+1419235 cycles start skew
+1621712 cycles stop skew
+12000406295 cycles
+134048 iterations
+134048 page touches
+1790464 cycles/iteration
+
+# --cores=30 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+3078333 cycles start skew
+3090218 cycles stop skew
+12000519031 cycles
+114221 iterations
+114221 page touches
+3151921 cycles/iteration
+
+# --cores=40 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+5011534 cycles start skew
+4854728 cycles stop skew
+11999846889 cycles
+93736 iterations
+93736 page touches
+5120699 cycles/iteration
+
+# --cores=50 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+7307577 cycles start skew
+7220970 cycles stop skew
+12000455162 cycles
+82967 iterations
+82967 page touches
+7232065 cycles/iteration
+
+# --cores=60 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+9656280 cycles start skew
+10090115 cycles stop skew
+12001308892 cycles
+71014 iterations
+71014 page touches
+10139951 cycles/iteration
+
+# --cores=70 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+10935542 cycles start skew
+11690197 cycles stop skew
+12000100601 cycles
+72843 iterations
+72843 page touches
+11531746 cycles/iteration
+
+# --cores=80 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+13635642 cycles start skew
+14693038 cycles stop skew
+11999330022 cycles
+67717 iterations
+67717 page touches
+14175855 cycles/iteration
+
+# --cores=1 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+0 cycles start skew
+0 cycles stop skew
+12000263152 cycles
+756100 iterations
+756100 page touches
+15871 cycles/iteration
+
+# --cores=10 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+523274 cycles start skew
+629424 cycles stop skew
+12000449488 cycles
+184708 iterations
+184708 page touches
+649698 cycles/iteration
+
+# --cores=20 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+1656579 cycles start skew
+1467706 cycles stop skew
+12000241612 cycles
+135223 iterations
+135223 page touches
+1774881 cycles/iteration
+
+# --cores=30 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+3102574 cycles start skew
+3141960 cycles stop skew
+12000449039 cycles
+110173 iterations
+110173 page touches
+3267710 cycles/iteration
+
+# --cores=40 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+5453810 cycles start skew
+5036742 cycles stop skew
+11999644063 cycles
+86820 iterations
+86820 page touches
+5528516 cycles/iteration
+
+# --cores=50 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+7049500 cycles start skew
+7590444 cycles stop skew
+12000931785 cycles
+83063 iterations
+83063 page touches
+7223993 cycles/iteration
+
+# --cores=60 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+10106552 cycles start skew
+10517099 cycles stop skew
+12000695660 cycles
+71256 iterations
+71256 page touches
+10104998 cycles/iteration
+
+# --cores=70 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+11805231 cycles start skew
+12544319 cycles stop skew
+12000257585 cycles
+70912 iterations
+70912 page touches
+11845922 cycles/iteration
+
+# --cores=80 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+13675546 cycles start skew
+14710576 cycles stop skew
+12000548261 cycles
+67806 iterations
+67806 page touches
+14158685 cycles/iteration
+
+# --cores=1 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+0 cycles start skew
+0 cycles stop skew
+12000541716 cycles
+757435 iterations
+757435 page touches
+15843 cycles/iteration
+
+# --cores=10 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+635637 cycles start skew
+641449 cycles stop skew
+12000565414 cycles
+183439 iterations
+183439 page touches
+654199 cycles/iteration
+
+# --cores=20 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+1563369 cycles start skew
+1714738 cycles stop skew
+12000702990 cycles
+135660 iterations
+135660 page touches
+1769232 cycles/iteration
+
+# --cores=30 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+3138810 cycles start skew
+3284780 cycles stop skew
+12000441509 cycles
+111367 iterations
+111367 page touches
+3232674 cycles/iteration
+
+# --cores=40 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+5261257 cycles start skew
+4913680 cycles stop skew
+12000379338 cycles
+90682 iterations
+90682 page touches
+5293389 cycles/iteration
+
+# --cores=50 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+7772652 cycles start skew
+7024576 cycles stop skew
+11999567968 cycles
+82027 iterations
+82027 page touches
+7314401 cycles/iteration
+
+# --cores=60 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+9191847 cycles start skew
+10302943 cycles stop skew
+12000290657 cycles
+74589 iterations
+74589 page touches
+9653131 cycles/iteration
+
+# --cores=70 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+10956018 cycles start skew
+12012710 cycles stop skew
+11999607177 cycles
+71999 iterations
+71999 page touches
+11666446 cycles/iteration
+
+# --cores=80 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+10679904 cycles start skew
+13991438 cycles stop skew
+12001340433 cycles
+71514 iterations
+71514 page touches
+13425444 cycles/iteration
+
+# --cores=1 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+0 cycles start skew
+0 cycles stop skew
+12000581100 cycles
+208808 iterations
+3340928 page touches
+57471 cycles/iteration
+
+# --cores=10 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+898 cycles start skew
+6720 cycles stop skew
+12001744318 cycles
+27100 iterations
+2914450 page touches
+4428687 cycles/iteration
+
+# --cores=20 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+2002 cycles start skew
+35666 cycles stop skew
+12016506612 cycles
+7140 iterations
+1536180 page touches
+33659682 cycles/iteration
+
+# --cores=30 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+2798 cycles start skew
+108322 cycles stop skew
+11956551745 cycles
+3600 iterations
+1111500 page touches
+99637931 cycles/iteration
+
+# --cores=40 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+3548 cycles start skew
+131446 cycles stop skew
+11863492459 cycles
+2600 iterations
+1118320 page touches
+182515268 cycles/iteration
+
+# --cores=50 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+3716 cycles start skew
+175104 cycles stop skew
+11949667494 cycles
+3000 iterations
+1534300 page touches
+199161124 cycles/iteration
+
+# --cores=60 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+4542 cycles start skew
+278936 cycles stop skew
+12013606637 cycles
+2940 iterations
+1820220 page touches
+245175645 cycles/iteration
+
+# --cores=70 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+5252 cycles start skew
+321958 cycles stop skew
+11970099529 cycles
+1960 iterations
+1399160 page touches
+427503554 cycles/iteration
+
+# --cores=80 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+6122 cycles start skew
+486108 cycles stop skew
+11492099631 cycles
+1520 iterations
+1308720 page touches
+604847349 cycles/iteration
+
+# --cores=1 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+0 cycles start skew
+0 cycles stop skew
+12000380000 cycles
+204369 iterations
+3269904 page touches
+58719 cycles/iteration
+
+# --cores=10 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+958 cycles start skew
+14718 cycles stop skew
+11999153922 cycles
+24380 iterations
+2618840 page touches
+4921720 cycles/iteration
+
+# --cores=20 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+1850 cycles start skew
+42266 cycles stop skew
+11991512362 cycles
+7100 iterations
+1524480 page touches
+33778908 cycles/iteration
+
+# --cores=30 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+2710 cycles start skew
+125794 cycles stop skew
+12060140179 cycles
+3540 iterations
+1097700 page touches
+102204577 cycles/iteration
+
+# --cores=40 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+3410 cycles start skew
+171472 cycles stop skew
+12000253463 cycles
+3160 iterations
+1361000 page touches
+151901942 cycles/iteration
+
+# --cores=50 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+4010 cycles start skew
+167264 cycles stop skew
+12104869937 cycles
+2950 iterations
+1511100 page touches
+205167287 cycles/iteration
+
+# --cores=60 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+3956 cycles start skew
+295210 cycles stop skew
+11913483202 cycles
+2400 iterations
+1486860 page touches
+297837080 cycles/iteration
+
+# --cores=70 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+5240 cycles start skew
+348174 cycles stop skew
+11757091409 cycles
+1820 iterations
+1294930 page touches
+452195823 cycles/iteration
+
+# --cores=80 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+6054 cycles start skew
+483064 cycles stop skew
+12385668756 cycles
+1600 iterations
+1379760 page touches
+619283437 cycles/iteration
+
+# --cores=1 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+0 cycles start skew
+0 cycles stop skew
+12000338668 cycles
+223635 iterations
+3578160 page touches
+53660 cycles/iteration
+
+# --cores=10 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+900 cycles start skew
+11330 cycles stop skew
+12000623503 cycles
+24640 iterations
+2650040 page touches
+4870382 cycles/iteration
+
+# --cores=20 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+1868 cycles start skew
+40862 cycles stop skew
+11997506239 cycles
+7100 iterations
+1526820 page touches
+33795792 cycles/iteration
+
+# --cores=30 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+2588 cycles start skew
+97026 cycles stop skew
+12054662234 cycles
+3570 iterations
+1104540 page touches
+101299682 cycles/iteration
+
+# --cores=40 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+3410 cycles start skew
+135658 cycles stop skew
+12028762356 cycles
+2640 iterations
+1133400 page touches
+182253975 cycles/iteration
+
+# --cores=50 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+3916 cycles start skew
+178760 cycles stop skew
+11923725061 cycles
+2800 iterations
+1436950 page touches
+212923661 cycles/iteration
+
+# --cores=60 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+4670 cycles start skew
+268456 cycles stop skew
+11966654460 cycles
+2340 iterations
+1447080 page touches
+306837293 cycles/iteration
+
+# --cores=70 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+5040 cycles start skew
+392096 cycles stop skew
+12129664611 cycles
+1890 iterations
+1343860 page touches
+449246837 cycles/iteration
+
+# --cores=80 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+6296 cycles start skew
+546194 cycles stop skew
+12186922486 cycles
+1600 iterations
+1378000 page touches
+609346124 cycles/iteration
+
+== id=2013-02-21T20:23:43-0500 bench=mapbench kernel=Linux host=ben krel=2.6.37-amdragon-cbtree-all+ kver="#7 SMP Sun Jul 17 13:53:55 EDT 2011" ==
+
+# --cores=1 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+0 cycles start skew
+0 cycles stop skew
+12000652872 cycles
+712853 iterations
+1425706 page touches
+0 underflows
+16834 cycles/iteration
+
+# --cores=10 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+553490 cycles start skew
+178492 cycles stop skew
+12000496198 cycles
+198994 iterations
+397988 page touches
+0 underflows
+603058 cycles/iteration
+
+# --cores=20 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+1754197 cycles start skew
+637455 cycles stop skew
+12000299235 cycles
+137511 iterations
+275022 page touches
+0 underflows
+1745358 cycles/iteration
+
+# --cores=30 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+2939586 cycles start skew
+1227685 cycles stop skew
+11999819812 cycles
+121238 iterations
+242476 page touches
+0 underflows
+2969321 cycles/iteration
+
+# --cores=40 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+4698356 cycles start skew
+1481504 cycles stop skew
+11999861394 cycles
+104648 iterations
+209296 page touches
+0 underflows
+4586752 cycles/iteration
+
+# --cores=50 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+5024462 cycles start skew
+2832669 cycles stop skew
+12000656797 cycles
+95050 iterations
+190100 page touches
+0 underflows
+6312812 cycles/iteration
+
+# --cores=60 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+7454493 cycles start skew
+4510312 cycles stop skew
+11999292473 cycles
+87508 iterations
+175016 page touches
+0 underflows
+8227334 cycles/iteration
+
+# --cores=70 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+7691320 cycles start skew
+4072442 cycles stop skew
+11997474014 cycles
+86564 iterations
+173128 page touches
+0 underflows
+9701760 cycles/iteration
+
+# --cores=80 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+12219138 cycles start skew
+3928112 cycles stop skew
+11995800899 cycles
+86634 iterations
+173268 page touches
+0 underflows
+11077222 cycles/iteration
+
+# --cores=1 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+0 cycles start skew
+0 cycles stop skew
+12000673688 cycles
+709217 iterations
+1418434 page touches
+0 underflows
+16921 cycles/iteration
+
+# --cores=10 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+543235 cycles start skew
+375682 cycles stop skew
+12000542475 cycles
+197890 iterations
+395780 page touches
+0 underflows
+606424 cycles/iteration
+
+# --cores=20 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+1898212 cycles start skew
+514134 cycles stop skew
+12000265943 cycles
+137552 iterations
+275104 page touches
+0 underflows
+1744833 cycles/iteration
+
+# --cores=30 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+2999118 cycles start skew
+891072 cycles stop skew
+11999924152 cycles
+121202 iterations
+242404 page touches
+0 underflows
+2970229 cycles/iteration
+
+# --cores=40 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+3483535 cycles start skew
+1870586 cycles stop skew
+11999693568 cycles
+106736 iterations
+213472 page touches
+0 underflows
+4496962 cycles/iteration
+
+# --cores=50 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+5173946 cycles start skew
+3824859 cycles stop skew
+11999787351 cycles
+94590 iterations
+189180 page touches
+0 underflows
+6343052 cycles/iteration
+
+# --cores=60 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+7322976 cycles start skew
+3341134 cycles stop skew
+11998803260 cycles
+91519 iterations
+183038 page touches
+0 underflows
+7866434 cycles/iteration
+
+# --cores=70 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+9153459 cycles start skew
+4562706 cycles stop skew
+11999170560 cycles
+93124 iterations
+186248 page touches
+0 underflows
+9019607 cycles/iteration
+
+# --cores=80 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+10886129 cycles start skew
+5095654 cycles stop skew
+11999254280 cycles
+88148 iterations
+176296 page touches
+0 underflows
+10890097 cycles/iteration
+
+# --cores=1 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+0 cycles start skew
+0 cycles stop skew
+12001636552 cycles
+713228 iterations
+1426456 page touches
+0 underflows
+16827 cycles/iteration
+
+# --cores=10 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+477952 cycles start skew
+239553 cycles stop skew
+12000504532 cycles
+200861 iterations
+401722 page touches
+0 underflows
+597453 cycles/iteration
+
+# --cores=20 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+1745270 cycles start skew
+935123 cycles stop skew
+12000359247 cycles
+140789 iterations
+281578 page touches
+0 underflows
+1704729 cycles/iteration
+
+# --cores=30 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+2852058 cycles start skew
+1350837 cycles stop skew
+11999911663 cycles
+127325 iterations
+254650 page touches
+0 underflows
+2827389 cycles/iteration
+
+# --cores=40 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+3325665 cycles start skew
+2123909 cycles stop skew
+12000470136 cycles
+109920 iterations
+219840 page touches
+0 underflows
+4366983 cycles/iteration
+
+# --cores=50 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+5694732 cycles start skew
+2623690 cycles stop skew
+11999514263 cycles
+102863 iterations
+205726 page touches
+0 underflows
+5832765 cycles/iteration
+
+# --cores=60 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+7428969 cycles start skew
+2823900 cycles stop skew
+11998349932 cycles
+89880 iterations
+179760 page touches
+0 underflows
+8009579 cycles/iteration
+
+# --cores=70 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+6678044 cycles start skew
+4111768 cycles stop skew
+11998730499 cycles
+94260 iterations
+188520 page touches
+0 underflows
+8910578 cycles/iteration
+
+# --cores=80 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+10285824 cycles start skew
+5378220 cycles stop skew
+11997081178 cycles
+91768 iterations
+183536 page touches
+0 underflows
+10458618 cycles/iteration
+

@@ -1,0 +1,2692 @@
+== id=2013-03-01T13:21:51-0500 bench=mapbench kernel=xv6 host=ben krel=osdi12-submit-983-gc88e0de+ kver="Fri Mar  1 13:19:26 EST 2013" NPROC=64 KSTACKSIZE=8192 NOFILE=64 NFILE=100 NBUF=10000 NINODE=5000 NDEV=16 ROOTDEV=1 MAXARG=32 MAXARGLEN=64 MAXNAME=16 UNIX_PATH_MAX=128 NEPOCH=4 CACHELINE=64 CPUKSTACKS="(64 + 80*2)" VICTIMAGE=1000000 VERBOSE=0 SPINLOCK_DEBUG=0 RCU_TYPE_DEBUG=0 LOCKSTAT=0 ALLOC_MEMSET=0 BUDDY_DEBUG=0 REFCACHE_DEBUG=0 RADIX_DEBUG=0 USTACKPAGES=8 EXECSWITCH=1 GCINTERVAL=10000 GC_GLOBAL=true MMU_SCHEME=mmu_shared_page_table TLB_SCHEME=core_tracking_shootdown PAGE_REFCOUNT=refcache:: KALLOC_HOT_PAGES=128 KALLOC_LOAD_BALANCE=0 KALLOC_BUDDY_PER_CPU=1 SCHED_LOAD_BALANCE=1 CODEX=0 MTRACE=0 E1000_PORT=0 TZ_SECS="(5*60*60)" RTC_TZ_SECS=0 QUANTUM=10 ==
+
+# --cores=1 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+0 cycles start skew
+0 cycles stop skew
+12001520804 cycles
+1429446 iterations
+1429446 page touches
+57918158 total llc_misses
+5.00004 secs
+285886.52420 iterations/sec
+285886.52420 page touches/sec
+2 TLB shootdowns
+0.00000 TLB shootdowns/page touch
+0.00000 TLB shootdowns/iteration
+1.00000 targets/TLB shootdown
+10870 cycles/TLB shootdown
+1717771 page faults
+1.20170 page faults/page touch
+1.20170 page faults/iteration
+3611 cycles/page fault
+1717771 alloc page faults
+3549 cycles/alloc page fault
+0 fill page faults
+1717771 mmaps
+1.20170 mmaps/page touch
+1.20170 mmaps/iteration
+1129 cycles/mmap
+1717771 munmaps
+1.20170 munmaps/page touch
+1.20170 munmaps/iteration
+1603 cycles/munmap
+14 PT pages
+8395 cycles/iteration
+
+# --cores=10 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+63622 cycles start skew
+290082 cycles stop skew
+12001566544 cycles
+2588750 iterations
+2588750 page touches
+125441255 total llc_misses
+5.00006 secs
+517743.18087 iterations/sec
+517743.18087 page touches/sec
+3097231 TLB shootdowns
+1.19641 TLB shootdowns/page touch
+1.19641 TLB shootdowns/iteration
+8.84494 targets/TLB shootdown
+28668 cycles/TLB shootdown
+3097231 page faults
+1.19641 page faults/page touch
+1.19641 page faults/iteration
+10547 cycles/page fault
+3097231 alloc page faults
+10475 cycles/alloc page fault
+0 fill page faults
+3097231 mmaps
+1.19641 mmaps/page touch
+1.19641 mmaps/iteration
+1419 cycles/mmap
+3097231 munmaps
+1.19641 munmaps/page touch
+1.19641 munmaps/iteration
+31276 cycles/munmap
+18 PT pages
+46360 cycles/iteration
+
+# --cores=20 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+492262 cycles start skew
+583680 cycles stop skew
+12001608604 cycles
+2608223 iterations
+2608223 page touches
+213521166 total llc_misses
+5.00008 secs
+521635.90148 iterations/sec
+521635.90148 page touches/sec
+3124518 TLB shootdowns
+1.19794 TLB shootdowns/page touch
+1.19794 TLB shootdowns/iteration
+18.80578 targets/TLB shootdown
+70390 cycles/TLB shootdown
+3124507 page faults
+1.19794 page faults/page touch
+1.19794 page faults/iteration
+5727 cycles/page fault
+3124509 alloc page faults
+5553 cycles/alloc page fault
+0 fill page faults
+3124504 mmaps
+1.19794 mmaps/page touch
+1.19794 mmaps/iteration
+2901 cycles/mmap
+3124516 munmaps
+1.19794 munmaps/page touch
+1.19794 munmaps/iteration
+75073 cycles/munmap
+23 PT pages
+92029 cycles/iteration
+
+# --cores=30 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+245756 cycles start skew
+642180 cycles stop skew
+12024233835 cycles
+2456398 iterations
+2456398 page touches
+278866117 total llc_misses
+5.00950 secs
+490347.01386 iterations/sec
+490347.01386 page touches/sec
+2932471 TLB shootdowns
+1.19380 TLB shootdowns/page touch
+1.19380 TLB shootdowns/iteration
+28.73299 targets/TLB shootdown
+120008 cycles/TLB shootdown
+2932444 page faults
+1.19379 page faults/page touch
+1.19379 page faults/iteration
+4852 cycles/page fault
+2932447 alloc page faults
+4596 cycles/alloc page fault
+0 fill page faults
+2932417 mmaps
+1.19378 mmaps/page touch
+1.19378 mmaps/iteration
+4039 cycles/mmap
+2932447 munmaps
+1.19379 munmaps/page touch
+1.19379 munmaps/iteration
+126351 cycles/munmap
+28 PT pages
+146852 cycles/iteration
+
+# --cores=40 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+445070 cycles start skew
+663772 cycles stop skew
+12001606267 cycles
+2150767 iterations
+2150767 page touches
+340317224 total llc_misses
+5.00008 secs
+430146.31087 iterations/sec
+430146.31087 page touches/sec
+2549968 TLB shootdowns
+1.18560 TLB shootdowns/page touch
+1.18560 TLB shootdowns/iteration
+38.62021 targets/TLB shootdown
+193223 cycles/TLB shootdown
+2549965 page faults
+1.18560 page faults/page touch
+1.18560 page faults/iteration
+5094 cycles/page fault
+2549966 alloc page faults
+4819 cycles/alloc page fault
+0 fill page faults
+2549932 mmaps
+1.18559 mmaps/page touch
+1.18559 mmaps/iteration
+4816 cycles/mmap
+2549904 munmaps
+1.18557 munmaps/page touch
+1.18557 munmaps/iteration
+200742 cycles/munmap
+33 PT pages
+223206 cycles/iteration
+
+# --cores=50 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+551508 cycles start skew
+520942 cycles stop skew
+12001492792 cycles
+1869358 iterations
+1869358 page touches
+379097762 total llc_misses
+5.00003 secs
+373868.97334 iterations/sec
+373868.97334 page touches/sec
+2207463 TLB shootdowns
+1.18086 TLB shootdowns/page touch
+1.18086 TLB shootdowns/iteration
+48.48455 targets/TLB shootdown
+280574 cycles/TLB shootdown
+2207459 page faults
+1.18086 page faults/page touch
+1.18086 page faults/iteration
+6613 cycles/page fault
+2207460 alloc page faults
+6299 cycles/alloc page fault
+0 fill page faults
+2207413 mmaps
+1.18084 mmaps/page touch
+1.18084 mmaps/iteration
+8182 cycles/mmap
+2207460 munmaps
+1.18086 munmaps/page touch
+1.18086 munmaps/iteration
+290292 cycles/munmap
+38 PT pages
+321005 cycles/iteration
+
+# --cores=60 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+693990 cycles start skew
+534830 cycles stop skew
+12001580027 cycles
+1665273 iterations
+1665273 page touches
+411572981 total llc_misses
+5.00007 secs
+333049.83927 iterations/sec
+333049.83927 page touches/sec
+1941018 TLB shootdowns
+1.16558 TLB shootdowns/page touch
+1.16558 TLB shootdowns/iteration
+58.30156 targets/TLB shootdown
+383263 cycles/TLB shootdown
+1941009 page faults
+1.16558 page faults/page touch
+1.16558 page faults/iteration
+7811 cycles/page fault
+1941010 alloc page faults
+7467 cycles/alloc page fault
+0 fill page faults
+1940958 mmaps
+1.16554 mmaps/page touch
+1.16554 mmaps/iteration
+7022 cycles/mmap
+1941011 munmaps
+1.16558 munmaps/page touch
+1.16558 munmaps/iteration
+394854 cycles/munmap
+43 PT pages
+432418 cycles/iteration
+
+# --cores=70 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+1389786 cycles start skew
+776410 cycles stop skew
+12001345629 cycles
+1393335 iterations
+1393335 page touches
+408724083 total llc_misses
+4.99997 secs
+278668.45926 iterations/sec
+278668.45926 page touches/sec
+1619408 TLB shootdowns
+1.16225 TLB shootdowns/page touch
+1.16225 TLB shootdowns/iteration
+67.99079 targets/TLB shootdown
+536089 cycles/TLB shootdown
+1619407 page faults
+1.16225 page faults/page touch
+1.16225 page faults/iteration
+10483 cycles/page fault
+1619407 alloc page faults
+10097 cycles/alloc page fault
+0 fill page faults
+1619339 mmaps
+1.16220 mmaps/page touch
+1.16220 mmaps/iteration
+26270 cycles/mmap
+1619407 munmaps
+1.16225 munmaps/page touch
+1.16225 munmaps/iteration
+552231 cycles/munmap
+48 PT pages
+602937 cycles/iteration
+
+# --cores=80 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+1214148 cycles start skew
+1066870 cycles stop skew
+12001382427 cycles
+1401667 iterations
+1401667 page touches
+467296358 total llc_misses
+4.99998 secs
+280334.00844 iterations/sec
+280334.00844 page touches/sec
+1617105 TLB shootdowns
+1.15370 TLB shootdowns/page touch
+1.15370 TLB shootdowns/iteration
+77.85447 targets/TLB shootdown
+589414 cycles/TLB shootdown
+1617105 page faults
+1.15370 page faults/page touch
+1.15370 page faults/iteration
+15339 cycles/page fault
+1617105 alloc page faults
+14949 cycles/alloc page fault
+0 fill page faults
+1617105 mmaps
+1.15370 mmaps/page touch
+1.15370 mmaps/iteration
+43971 cycles/mmap
+1617105 munmaps
+1.15370 munmaps/page touch
+1.15370 munmaps/iteration
+611863 cycles/munmap
+53 PT pages
+684977 cycles/iteration
+
+# --cores=1 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+0 cycles start skew
+0 cycles stop skew
+12001468860 cycles
+1403418 iterations
+1403418 page touches
+51975176 total llc_misses
+5.00002 secs
+280682.18774 iterations/sec
+280682.18774 page touches/sec
+2 TLB shootdowns
+0.00000 TLB shootdowns/page touch
+0.00000 TLB shootdowns/iteration
+1.00000 targets/TLB shootdown
+33658 cycles/TLB shootdown
+1686433 page faults
+1.20166 page faults/page touch
+1.20166 page faults/iteration
+3523 cycles/page fault
+1686433 alloc page faults
+3461 cycles/alloc page fault
+0 fill page faults
+1686433 mmaps
+1.20166 mmaps/page touch
+1.20166 mmaps/iteration
+1179 cycles/mmap
+1686433 munmaps
+1.20166 munmaps/page touch
+1.20166 munmaps/iteration
+1740 cycles/munmap
+14 PT pages
+8551 cycles/iteration
+
+# --cores=10 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+49490 cycles start skew
+288846 cycles stop skew
+12025380084 cycles
+2588181 iterations
+2588181 page touches
+125330988 total llc_misses
+5.00998 secs
+516604.33468 iterations/sec
+516604.33468 page touches/sec
+3095301 TLB shootdowns
+1.19593 TLB shootdowns/page touch
+1.19593 TLB shootdowns/iteration
+8.84595 targets/TLB shootdown
+28788 cycles/TLB shootdown
+3095298 page faults
+1.19593 page faults/page touch
+1.19593 page faults/iteration
+10510 cycles/page fault
+3095298 alloc page faults
+10428 cycles/alloc page fault
+0 fill page faults
+3095298 mmaps
+1.19593 mmaps/page touch
+1.19593 mmaps/iteration
+1441 cycles/mmap
+3095300 munmaps
+1.19593 munmaps/page touch
+1.19593 munmaps/iteration
+31385 cycles/munmap
+18 PT pages
+46462 cycles/iteration
+
+# --cores=20 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+112632 cycles start skew
+492594 cycles stop skew
+12001604801 cycles
+2649672 iterations
+2649672 page touches
+217684782 total llc_misses
+5.00008 secs
+529925.73116 iterations/sec
+529925.73116 page touches/sec
+3173829 TLB shootdowns
+1.19781 TLB shootdowns/page touch
+1.19781 TLB shootdowns/iteration
+18.80745 targets/TLB shootdown
+68409 cycles/TLB shootdown
+3173826 page faults
+1.19781 page faults/page touch
+1.19781 page faults/iteration
+5786 cycles/page fault
+3173828 alloc page faults
+5612 cycles/alloc page fault
+0 fill page faults
+3173809 mmaps
+1.19781 mmaps/page touch
+1.19781 mmaps/iteration
+2981 cycles/mmap
+3173828 munmaps
+1.19781 munmaps/page touch
+1.19781 munmaps/iteration
+73128 cycles/munmap
+23 PT pages
+90589 cycles/iteration
+
+# --cores=30 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+154720 cycles start skew
+605230 cycles stop skew
+12001681037 cycles
+2454403 iterations
+2454403 page touches
+279350320 total llc_misses
+5.00011 secs
+490869.45194 iterations/sec
+490869.45194 page touches/sec
+2936198 TLB shootdowns
+1.19629 TLB shootdowns/page touch
+1.19629 TLB shootdowns/iteration
+28.72947 targets/TLB shootdown
+119894 cycles/TLB shootdown
+2936193 page faults
+1.19629 page faults/page touch
+1.19629 page faults/iteration
+4839 cycles/page fault
+2936193 alloc page faults
+4595 cycles/alloc page fault
+0 fill page faults
+2936193 mmaps
+1.19629 mmaps/page touch
+1.19629 mmaps/iteration
+3834 cycles/mmap
+2936198 munmaps
+1.19629 munmaps/page touch
+1.19629 munmaps/iteration
+126195 cycles/munmap
+28 PT pages
+146695 cycles/iteration
+
+# --cores=40 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+302152 cycles start skew
+288750 cycles stop skew
+12001600535 cycles
+2179441 iterations
+2179441 page touches
+343766234 total llc_misses
+5.00008 secs
+435881.22453 iterations/sec
+435881.22453 page touches/sec
+2595859 TLB shootdowns
+1.19106 TLB shootdowns/page touch
+1.19106 TLB shootdowns/iteration
+38.62420 targets/TLB shootdown
+186691 cycles/TLB shootdown
+2595848 page faults
+1.19106 page faults/page touch
+1.19106 page faults/iteration
+5632 cycles/page fault
+2595853 alloc page faults
+5337 cycles/alloc page fault
+0 fill page faults
+2595821 mmaps
+1.19104 mmaps/page touch
+1.19104 mmaps/iteration
+4914 cycles/mmap
+2595854 munmaps
+1.19106 munmaps/page touch
+1.19106 munmaps/iteration
+194603 cycles/munmap
+33 PT pages
+220269 cycles/iteration
+
+# --cores=50 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+1222034 cycles start skew
+570602 cycles stop skew
+12024186233 cycles
+1870303 iterations
+1870303 page touches
+377784204 total llc_misses
+5.00948 secs
+373352.00636 iterations/sec
+373352.00636 page touches/sec
+2224473 TLB shootdowns
+1.18936 TLB shootdowns/page touch
+1.18936 TLB shootdowns/iteration
+48.48690 targets/TLB shootdown
+275607 cycles/TLB shootdown
+2224471 page faults
+1.18936 page faults/page touch
+1.18936 page faults/iteration
+7545 cycles/page fault
+2224472 alloc page faults
+7172 cycles/alloc page fault
+0 fill page faults
+2224440 mmaps
+1.18934 mmaps/page touch
+1.18934 mmaps/iteration
+8706 cycles/mmap
+2224472 munmaps
+1.18936 munmaps/page touch
+1.18936 munmaps/iteration
+285934 cycles/munmap
+38 PT pages
+321450 cycles/iteration
+
+# --cores=60 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+674130 cycles start skew
+470640 cycles stop skew
+12001572789 cycles
+1718697 iterations
+1718697 page touches
+423363196 total llc_misses
+5.00006 secs
+343734.69385 iterations/sec
+343734.69385 page touches/sec
+2020097 TLB shootdowns
+1.17536 TLB shootdowns/page touch
+1.17536 TLB shootdowns/iteration
+58.31932 targets/TLB shootdown
+369927 cycles/TLB shootdown
+2020091 page faults
+1.17536 page faults/page touch
+1.17536 page faults/iteration
+7985 cycles/page fault
+2020094 alloc page faults
+7631 cycles/alloc page fault
+0 fill page faults
+2020042 mmaps
+1.17533 mmaps/page touch
+1.17533 mmaps/iteration
+10480 cycles/mmap
+2020094 munmaps
+1.17536 munmaps/page touch
+1.17536 munmaps/iteration
+381609 cycles/munmap
+43 PT pages
+418976 cycles/iteration
+
+# --cores=70 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+619070 cycles start skew
+840814 cycles stop skew
+12001782017 cycles
+1410900 iterations
+1410900 page touches
+411820623 total llc_misses
+5.00015 secs
+282171.21746 iterations/sec
+282171.21746 page touches/sec
+1630005 TLB shootdowns
+1.15529 TLB shootdowns/page touch
+1.15529 TLB shootdowns/iteration
+67.98522 targets/TLB shootdown
+513720 cycles/TLB shootdown
+1629997 page faults
+1.15528 page faults/page touch
+1.15528 page faults/iteration
+12782 cycles/page fault
+1630002 alloc page faults
+12406 cycles/alloc page fault
+0 fill page faults
+1629937 mmaps
+1.15524 mmaps/page touch
+1.15524 mmaps/iteration
+21759 cycles/mmap
+1630003 munmaps
+1.15529 munmaps/page touch
+1.15529 munmaps/iteration
+530933 cycles/munmap
+48 PT pages
+595453 cycles/iteration
+
+# --cores=80 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+917456 cycles start skew
+897850 cycles stop skew
+12001616255 cycles
+1484014 iterations
+1484014 page touches
+491596352 total llc_misses
+5.00008 secs
+296797.66155 iterations/sec
+296797.66155 page touches/sec
+1652741 TLB shootdowns
+1.11369 TLB shootdowns/page touch
+1.11369 TLB shootdowns/iteration
+77.87784 targets/TLB shootdown
+556923 cycles/TLB shootdown
+1652741 page faults
+1.11369 page faults/page touch
+1.11369 page faults/iteration
+15493 cycles/page fault
+1652741 alloc page faults
+15108 cycles/alloc page fault
+0 fill page faults
+1652741 mmaps
+1.11369 mmaps/page touch
+1.11369 mmaps/iteration
+60613 cycles/mmap
+1652741 munmaps
+1.11369 munmaps/page touch
+1.11369 munmaps/iteration
+578265 cycles/munmap
+53 PT pages
+646981 cycles/iteration
+
+# --cores=1 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+0 cycles start skew
+0 cycles stop skew
+12001518332 cycles
+1399200 iterations
+1399200 page touches
+52421031 total llc_misses
+5.00004 secs
+279837.43845 iterations/sec
+279837.43845 page touches/sec
+2 TLB shootdowns
+0.00000 TLB shootdowns/page touch
+0.00000 TLB shootdowns/iteration
+1.00000 targets/TLB shootdown
+9156 cycles/TLB shootdown
+1680791 page faults
+1.20125 page faults/page touch
+1.20125 page faults/iteration
+3526 cycles/page fault
+1680791 alloc page faults
+3465 cycles/alloc page fault
+0 fill page faults
+1680791 mmaps
+1.20125 mmaps/page touch
+1.20125 mmaps/iteration
+1188 cycles/mmap
+1680791 munmaps
+1.20125 munmaps/page touch
+1.20125 munmaps/iteration
+1739 cycles/munmap
+14 PT pages
+8577 cycles/iteration
+
+# --cores=10 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+43976 cycles start skew
+46218 cycles stop skew
+12001535766 cycles
+2578955 iterations
+2578955 page touches
+125025423 total llc_misses
+5.00005 secs
+515785.52940 iterations/sec
+515785.52940 page touches/sec
+3085034 TLB shootdowns
+1.19623 TLB shootdowns/page touch
+1.19623 TLB shootdowns/iteration
+8.84494 targets/TLB shootdown
+28915 cycles/TLB shootdown
+3085034 page faults
+1.19623 page faults/page touch
+1.19623 page faults/iteration
+10493 cycles/page fault
+3085034 alloc page faults
+10421 cycles/alloc page fault
+0 fill page faults
+3085034 mmaps
+1.19623 mmaps/page touch
+1.19623 mmaps/iteration
+1401 cycles/mmap
+3085034 munmaps
+1.19623 munmaps/page touch
+1.19623 munmaps/iteration
+31513 cycles/munmap
+18 PT pages
+46536 cycles/iteration
+
+# --cores=20 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+343994 cycles start skew
+709652 cycles stop skew
+12001579965 cycles
+2608529 iterations
+2608529 page touches
+211690491 total llc_misses
+5.00007 secs
+521698.34537 iterations/sec
+521698.34537 page touches/sec
+3129823 TLB shootdowns
+1.19984 TLB shootdowns/page touch
+1.19984 TLB shootdowns/iteration
+18.80631 targets/TLB shootdown
+69397 cycles/TLB shootdown
+3129814 page faults
+1.19983 page faults/page touch
+1.19983 page faults/iteration
+5822 cycles/page fault
+3129816 alloc page faults
+5640 cycles/alloc page fault
+0 fill page faults
+3129803 mmaps
+1.19983 mmaps/page touch
+1.19983 mmaps/iteration
+2988 cycles/mmap
+3129817 munmaps
+1.19983 munmaps/page touch
+1.19983 munmaps/iteration
+74165 cycles/munmap
+23 PT pages
+92017 cycles/iteration
+
+# --cores=30 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+386694 cycles start skew
+672452 cycles stop skew
+12001710524 cycles
+2465823 iterations
+2465823 page touches
+280224402 total llc_misses
+5.00012 secs
+493152.18844 iterations/sec
+493152.18844 page touches/sec
+2944474 TLB shootdowns
+1.19411 TLB shootdowns/page touch
+1.19411 TLB shootdowns/iteration
+28.72828 targets/TLB shootdown
+120430 cycles/TLB shootdown
+2944469 page faults
+1.19411 page faults/page touch
+1.19411 page faults/iteration
+4672 cycles/page fault
+2944470 alloc page faults
+4414 cycles/alloc page fault
+0 fill page faults
+2944465 mmaps
+1.19411 mmaps/page touch
+1.19411 mmaps/iteration
+3721 cycles/mmap
+2944474 munmaps
+1.19411 munmaps/page touch
+1.19411 munmaps/iteration
+126563 cycles/munmap
+28 PT pages
+146016 cycles/iteration
+
+# --cores=40 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+385504 cycles start skew
+714286 cycles stop skew
+12001627630 cycles
+2211426 iterations
+2211426 page touches
+348247623 total llc_misses
+5.00009 secs
+442277.12367 iterations/sec
+442277.12367 page touches/sec
+2634911 TLB shootdowns
+1.19149 TLB shootdowns/page touch
+1.19149 TLB shootdowns/iteration
+38.62530 targets/TLB shootdown
+182305 cycles/TLB shootdown
+2634908 page faults
+1.19149 page faults/page touch
+1.19149 page faults/iteration
+5877 cycles/page fault
+2634910 alloc page faults
+5537 cycles/alloc page fault
+0 fill page faults
+2634875 mmaps
+1.19148 mmaps/page touch
+1.19148 mmaps/iteration
+5957 cycles/mmap
+2634911 munmaps
+1.19149 munmaps/page touch
+1.19149 munmaps/iteration
+190368 cycles/munmap
+33 PT pages
+217083 cycles/iteration
+
+# --cores=50 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+751536 cycles start skew
+635464 cycles stop skew
+12023812665 cycles
+1883824 iterations
+1883824 page touches
+379289139 total llc_misses
+5.00933 secs
+376062.76725 iterations/sec
+376062.76725 page touches/sec
+2230531 TLB shootdowns
+1.18404 TLB shootdowns/page touch
+1.18404 TLB shootdowns/iteration
+48.48932 targets/TLB shootdown
+274101 cycles/TLB shootdown
+2230530 page faults
+1.18404 page faults/page touch
+1.18404 page faults/iteration
+7456 cycles/page fault
+2230531 alloc page faults
+7106 cycles/alloc page fault
+0 fill page faults
+2230489 mmaps
+1.18402 mmaps/page touch
+1.18402 mmaps/iteration
+7820 cycles/mmap
+2230531 munmaps
+1.18404 munmaps/page touch
+1.18404 munmaps/iteration
+284264 cycles/munmap
+38 PT pages
+319133 cycles/iteration
+
+# --cores=60 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+838422 cycles start skew
+594676 cycles stop skew
+12001397896 cycles
+1681025 iterations
+1681025 page touches
+413117426 total llc_misses
+4.99999 secs
+336205.29635 iterations/sec
+336205.29635 page touches/sec
+1985667 TLB shootdowns
+1.18122 TLB shootdowns/page touch
+1.18122 TLB shootdowns/iteration
+58.31177 targets/TLB shootdown
+368338 cycles/TLB shootdown
+1985663 page faults
+1.18122 page faults/page touch
+1.18122 page faults/iteration
+9712 cycles/page fault
+1985664 alloc page faults
+9337 cycles/alloc page fault
+0 fill page faults
+1985613 mmaps
+1.18119 mmaps/page touch
+1.18119 mmaps/iteration
+14088 cycles/mmap
+1985665 munmaps
+1.18122 munmaps/page touch
+1.18122 munmaps/iteration
+381232 cycles/munmap
+43 PT pages
+428360 cycles/iteration
+
+# --cores=70 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+619864 cycles start skew
+544412 cycles stop skew
+12001608681 cycles
+1434219 iterations
+1434219 page touches
+418121540 total llc_misses
+5.00008 secs
+286839.01498 iterations/sec
+286839.01498 page touches/sec
+1639423 TLB shootdowns
+1.14307 TLB shootdowns/page touch
+1.14307 TLB shootdowns/iteration
+68.02138 targets/TLB shootdown
+513407 cycles/TLB shootdown
+1639424 page faults
+1.14307 page faults/page touch
+1.14307 page faults/iteration
+12403 cycles/page fault
+1639424 alloc page faults
+12020 cycles/alloc page fault
+0 fill page faults
+1639423 mmaps
+1.14307 mmaps/page touch
+1.14307 mmaps/iteration
+38031 cycles/mmap
+1639423 munmaps
+1.14307 munmaps/page touch
+1.14307 munmaps/iteration
+531314 cycles/munmap
+48 PT pages
+585763 cycles/iteration
+
+# --cores=80 --duration=5s --warmup=1s --mode=local --fault=true --npg=1
+1067250 cycles start skew
+680354 cycles stop skew
+12001545706 cycles
+1461387 iterations
+1461387 page touches
+485809765 total llc_misses
+5.00005 secs
+292274.05797 iterations/sec
+292274.05797 page touches/sec
+1771886 TLB shootdowns
+1.21246 TLB shootdowns/page touch
+1.21246 TLB shootdowns/iteration
+77.89443 targets/TLB shootdown
+566574 cycles/TLB shootdown
+1771886 page faults
+1.21246 page faults/page touch
+1.21246 page faults/iteration
+14767 cycles/page fault
+1771886 alloc page faults
+14329 cycles/alloc page fault
+0 fill page faults
+1771886 mmaps
+1.21246 mmaps/page touch
+1.21246 mmaps/iteration
+39856 cycles/mmap
+1771886 munmaps
+1.21246 munmaps/page touch
+1.21246 munmaps/iteration
+586891 cycles/munmap
+53 PT pages
+656994 cycles/iteration
+
+# --cores=1 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+0 cycles start skew
+0 cycles stop skew
+12001526460 cycles
+1389296 iterations
+2778592 page touches
+0 underflows
+50768854 total llc_misses
+5.00004 secs
+277856.46841 iterations/sec
+555712.93682 page touches/sec
+2 TLB shootdowns
+0.00000 TLB shootdowns/page touch
+0.00000 TLB shootdowns/iteration
+1.00000 targets/TLB shootdown
+10452 cycles/TLB shootdown
+1668732 page faults
+0.60056 page faults/page touch
+1.20113 page faults/iteration
+3549 cycles/page fault
+1668732 alloc page faults
+3493 cycles/alloc page fault
+0 fill page faults
+1668732 mmaps
+0.60056 mmaps/page touch
+1.20113 mmaps/iteration
+1283 cycles/mmap
+1668732 munmaps
+0.60056 munmaps/page touch
+1.20113 munmaps/iteration
+1719 cycles/munmap
+53 PT pages
+8638 cycles/iteration
+
+# --cores=10 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+52686 cycles start skew
+324408 cycles stop skew
+12001485368 cycles
+2138982 iterations
+4277964 page touches
+0 underflows
+90483519 total llc_misses
+5.00003 secs
+427793.65912 iterations/sec
+855587.31825 page touches/sec
+2558657 TLB shootdowns
+0.59810 TLB shootdowns/page touch
+1.19620 TLB shootdowns/iteration
+8.92767 targets/TLB shootdown
+28809 cycles/TLB shootdown
+2558648 page faults
+0.59809 page faults/page touch
+1.19619 page faults/iteration
+7809 cycles/page fault
+2558648 alloc page faults
+7741 cycles/alloc page fault
+0 fill page faults
+2558648 mmaps
+0.59809 mmaps/page touch
+1.19619 mmaps/iteration
+1555 cycles/mmap
+2558657 munmaps
+0.59810 munmaps/page touch
+1.19620 munmaps/iteration
+31320 cycles/munmap
+422 PT pages
+56108 cycles/iteration
+
+# --cores=20 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+397952 cycles start skew
+737716 cycles stop skew
+12001497402 cycles
+2070663 iterations
+4141326 page touches
+0 underflows
+155528236 total llc_misses
+5.00003 secs
+414129.53141 iterations/sec
+828259.06283 page touches/sec
+2483602 TLB shootdowns
+0.59971 TLB shootdowns/page touch
+1.19942 TLB shootdowns/iteration
+18.84525 targets/TLB shootdown
+67860 cycles/TLB shootdown
+2483601 page faults
+0.59971 page faults/page touch
+1.19942 page faults/iteration
+3758 cycles/page fault
+2483601 alloc page faults
+3627 cycles/alloc page fault
+0 fill page faults
+2483600 mmaps
+0.59971 mmaps/page touch
+1.19942 mmaps/iteration
+2565 cycles/mmap
+2483601 munmaps
+0.59971 munmaps/page touch
+1.19942 munmaps/iteration
+71679 cycles/munmap
+832 PT pages
+115919 cycles/iteration
+
+# --cores=30 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+238704 cycles start skew
+422108 cycles stop skew
+12001668258 cycles
+1933969 iterations
+3867938 page touches
+0 underflows
+224368771 total llc_misses
+5.00010 secs
+386785.42762 iterations/sec
+773570.85525 page touches/sec
+2322450 TLB shootdowns
+0.60043 TLB shootdowns/page touch
+1.20087 TLB shootdowns/iteration
+28.75840 targets/TLB shootdown
+114902 cycles/TLB shootdown
+2322444 page faults
+0.60043 page faults/page touch
+1.20086 page faults/iteration
+3635 cycles/page fault
+2322445 alloc page faults
+3447 cycles/alloc page fault
+0 fill page faults
+2322443 mmaps
+0.60043 mmaps/page touch
+1.20086 mmaps/iteration
+3113 cycles/mmap
+2322450 munmaps
+0.60043 munmaps/page touch
+1.20087 munmaps/iteration
+119670 cycles/munmap
+1243 PT pages
+186171 cycles/iteration
+
+# --cores=40 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+698616 cycles start skew
+547734 cycles stop skew
+12001607208 cycles
+1892879 iterations
+3785758 page touches
+0 underflows
+299207874 total llc_misses
+5.00008 secs
+378569.53121 iterations/sec
+757139.06242 page touches/sec
+2276614 TLB shootdowns
+0.60136 TLB shootdowns/page touch
+1.20272 TLB shootdowns/iteration
+38.62666 targets/TLB shootdown
+159955 cycles/TLB shootdown
+2276634 page faults
+0.60136 page faults/page touch
+1.20273 page faults/iteration
+3929 cycles/page fault
+2276634 alloc page faults
+3711 cycles/alloc page fault
+0 fill page faults
+2276633 mmaps
+0.60136 mmaps/page touch
+1.20273 mmaps/iteration
+3641 cycles/mmap
+2276614 munmaps
+0.60136 munmaps/page touch
+1.20272 munmaps/iteration
+165738 cycles/munmap
+1653 PT pages
+253615 cycles/iteration
+
+# --cores=50 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+649892 cycles start skew
+731038 cycles stop skew
+12001460406 cycles
+1681408 iterations
+3362816 page touches
+0 underflows
+339508827 total llc_misses
+5.00002 secs
+336280.14489 iterations/sec
+672560.28978 page touches/sec
+2013686 TLB shootdowns
+0.59880 TLB shootdowns/page touch
+1.19761 TLB shootdowns/iteration
+48.50896 targets/TLB shootdown
+218005 cycles/TLB shootdown
+2013627 page faults
+0.59879 page faults/page touch
+1.19758 page faults/iteration
+4908 cycles/page fault
+2013627 alloc page faults
+4685 cycles/alloc page fault
+0 fill page faults
+2013615 mmaps
+0.59878 mmaps/page touch
+1.19757 mmaps/iteration
+4279 cycles/mmap
+2013626 munmaps
+0.59879 munmaps/page touch
+1.19758 munmaps/iteration
+225074 cycles/munmap
+2063 PT pages
+356887 cycles/iteration
+
+# --cores=60 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+1935884 cycles start skew
+659216 cycles stop skew
+12001188032 cycles
+1179888 iterations
+2359776 page touches
+0 underflows
+294115444 total llc_misses
+4.99990 secs
+235981.93453 iterations/sec
+471963.86907 page touches/sec
+1407046 TLB shootdowns
+0.59626 TLB shootdowns/page touch
+1.19252 TLB shootdowns/iteration
+58.44039 targets/TLB shootdown
+294018 cycles/TLB shootdown
+1407048 page faults
+0.59626 page faults/page touch
+1.19252 page faults/iteration
+4603 cycles/page fault
+1407048 alloc page faults
+4387 cycles/alloc page fault
+0 fill page faults
+1407041 mmaps
+0.59626 mmaps/page touch
+1.19252 mmaps/iteration
+4204 cycles/mmap
+1407046 munmaps
+0.59626 munmaps/page touch
+1.19252 munmaps/iteration
+301379 cycles/munmap
+2474 PT pages
+610287 cycles/iteration
+
+# --cores=70 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+3403394 cycles start skew
+1312216 cycles stop skew
+12000901922 cycles
+755467 iterations
+1510934 page touches
+0 underflows
+223405220 total llc_misses
+4.99978 secs
+151099.77758 iterations/sec
+302199.55517 page touches/sec
+914092 TLB shootdowns
+0.60498 TLB shootdowns/page touch
+1.20996 TLB shootdowns/iteration
+68.54339 targets/TLB shootdown
+409886 cycles/TLB shootdown
+914101 page faults
+0.60499 page faults/page touch
+1.20998 page faults/iteration
+3849 cycles/page fault
+914108 alloc page faults
+3686 cycles/alloc page fault
+0 fill page faults
+914059 mmaps
+0.60496 mmaps/page touch
+1.20992 mmaps/iteration
+4371 cycles/mmap
+914091 munmaps
+0.60498 munmaps/page touch
+1.20996 munmaps/iteration
+416688 cycles/munmap
+2884 PT pages
+1111978 cycles/iteration
+
+# --cores=80 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+1396062 cycles start skew
+673022 cycles stop skew
+12000491986 cycles
+876384 iterations
+1752768 page touches
+0 underflows
+290743236 total llc_misses
+4.99961 secs
+175290.18605 iterations/sec
+350580.37211 page touches/sec
+1041887 TLB shootdowns
+0.59442 TLB shootdowns/page touch
+1.18884 TLB shootdowns/iteration
+78.45488 targets/TLB shootdown
+483163 cycles/TLB shootdown
+1041941 page faults
+0.59445 page faults/page touch
+1.18890 page faults/iteration
+4689 cycles/page fault
+1041941 alloc page faults
+4490 cycles/alloc page fault
+0 fill page faults
+1041940 mmaps
+0.59445 mmaps/page touch
+1.18890 mmaps/iteration
+5080 cycles/mmap
+1041887 munmaps
+0.59442 munmaps/page touch
+1.18884 munmaps/iteration
+491498 cycles/munmap
+3295 PT pages
+1095455 cycles/iteration
+
+# --cores=1 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+0 cycles start skew
+0 cycles stop skew
+12001509352 cycles
+1387531 iterations
+2775062 page touches
+0 underflows
+50533174 total llc_misses
+5.00004 secs
+277503.86746 iterations/sec
+555007.73492 page touches/sec
+2 TLB shootdowns
+0.00000 TLB shootdowns/page touch
+0.00000 TLB shootdowns/iteration
+1.00000 targets/TLB shootdown
+8496 cycles/TLB shootdown
+1666420 page faults
+0.60049 page faults/page touch
+1.20099 page faults/iteration
+3544 cycles/page fault
+1666420 alloc page faults
+3477 cycles/alloc page fault
+0 fill page faults
+1666420 mmaps
+0.60049 mmaps/page touch
+1.20099 mmaps/iteration
+1299 cycles/mmap
+1666419 munmaps
+0.60049 munmaps/page touch
+1.20099 munmaps/iteration
+1658 cycles/munmap
+53 PT pages
+8649 cycles/iteration
+
+# --cores=10 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+55592 cycles start skew
+10636 cycles stop skew
+12001507010 cycles
+2119470 iterations
+4238940 page touches
+0 underflows
+93440391 total llc_misses
+5.00004 secs
+423890.51973 iterations/sec
+847781.03947 page touches/sec
+2534095 TLB shootdowns
+0.59781 TLB shootdowns/page touch
+1.19562 TLB shootdowns/iteration
+8.92681 targets/TLB shootdown
+28912 cycles/TLB shootdown
+2534098 page faults
+0.59781 page faults/page touch
+1.19562 page faults/iteration
+8138 cycles/page fault
+2534098 alloc page faults
+8066 cycles/alloc page fault
+0 fill page faults
+2534098 mmaps
+0.59781 mmaps/page touch
+1.19562 mmaps/iteration
+1567 cycles/mmap
+2534095 munmaps
+0.59781 munmaps/page touch
+1.19562 munmaps/iteration
+31464 cycles/munmap
+422 PT pages
+56625 cycles/iteration
+
+# --cores=20 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+181604 cycles start skew
+654788 cycles stop skew
+12024193441 cycles
+2056735 iterations
+4113470 page touches
+0 underflows
+153740279 total llc_misses
+5.00949 secs
+410567.52755 iterations/sec
+821135.05511 page touches/sec
+2461540 TLB shootdowns
+0.59840 TLB shootdowns/page touch
+1.19681 TLB shootdowns/iteration
+18.84844 targets/TLB shootdown
+69649 cycles/TLB shootdown
+2461534 page faults
+0.59840 page faults/page touch
+1.19681 page faults/iteration
+3647 cycles/page fault
+2461534 alloc page faults
+3513 cycles/alloc page fault
+0 fill page faults
+2461533 mmaps
+0.59840 mmaps/page touch
+1.19681 mmaps/iteration
+2528 cycles/mmap
+2461540 munmaps
+0.59840 munmaps/page touch
+1.19681 munmaps/iteration
+73349 cycles/munmap
+832 PT pages
+116925 cycles/iteration
+
+# --cores=30 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+389828 cycles start skew
+830690 cycles stop skew
+12001631536 cycles
+1879577 iterations
+3759154 page touches
+0 underflows
+218831155 total llc_misses
+5.00009 secs
+375908.41327 iterations/sec
+751816.82655 page touches/sec
+2251045 TLB shootdowns
+0.59881 TLB shootdowns/page touch
+1.19763 TLB shootdowns/iteration
+28.76003 targets/TLB shootdown
+114663 cycles/TLB shootdown
+2251058 page faults
+0.59882 page faults/page touch
+1.19764 page faults/iteration
+4696 cycles/page fault
+2251058 alloc page faults
+4503 cycles/alloc page fault
+0 fill page faults
+2251058 mmaps
+0.59882 mmaps/page touch
+1.19764 mmaps/iteration
+3882 cycles/mmap
+2251045 munmaps
+0.59881 munmaps/page touch
+1.19763 munmaps/iteration
+120140 cycles/munmap
+1243 PT pages
+191558 cycles/iteration
+
+# --cores=40 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+455090 cycles start skew
+812380 cycles stop skew
+12024101500 cycles
+1871209 iterations
+3742418 page touches
+0 underflows
+295703622 total llc_misses
+5.00945 secs
+373535.49537 iterations/sec
+747070.99074 page touches/sec
+2244395 TLB shootdowns
+0.59971 TLB shootdowns/page touch
+1.19943 TLB shootdowns/iteration
+38.64278 targets/TLB shootdown
+160091 cycles/TLB shootdown
+2244385 page faults
+0.59971 page faults/page touch
+1.19943 page faults/iteration
+4535 cycles/page fault
+2244388 alloc page faults
+4313 cycles/alloc page fault
+0 fill page faults
+2244369 mmaps
+0.59971 mmaps/page touch
+1.19942 mmaps/iteration
+4056 cycles/mmap
+2244394 munmaps
+0.59971 munmaps/page touch
+1.19943 munmaps/iteration
+166236 cycles/munmap
+1653 PT pages
+257033 cycles/iteration
+
+# --cores=50 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+1009676 cycles start skew
+497684 cycles stop skew
+12001524469 cycles
+1665616 iterations
+3331232 page touches
+0 underflows
+338454828 total llc_misses
+5.00004 secs
+333119.98038 iterations/sec
+666239.96076 page touches/sec
+2001783 TLB shootdowns
+0.60091 TLB shootdowns/page touch
+1.20182 TLB shootdowns/iteration
+48.51354 targets/TLB shootdown
+219080 cycles/TLB shootdown
+2001777 page faults
+0.60091 page faults/page touch
+1.20182 page faults/iteration
+5001 cycles/page fault
+2001779 alloc page faults
+4781 cycles/alloc page fault
+0 fill page faults
+2001770 mmaps
+0.60090 mmaps/page touch
+1.20181 mmaps/iteration
+4343 cycles/mmap
+2001783 munmaps
+0.60091 munmaps/page touch
+1.20182 munmaps/iteration
+226157 cycles/munmap
+2063 PT pages
+360272 cycles/iteration
+
+# --cores=60 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+1349416 cycles start skew
+696256 cycles stop skew
+12020397066 cycles
+1296713 iterations
+2593426 page touches
+0 underflows
+320232357 total llc_misses
+5.00791 secs
+258932.91714 iterations/sec
+517865.83429 page touches/sec
+1512833 TLB shootdowns
+0.58333 TLB shootdowns/page touch
+1.16666 TLB shootdowns/iteration
+58.43396 targets/TLB shootdown
+289339 cycles/TLB shootdown
+1512853 page faults
+0.58334 page faults/page touch
+1.16668 page faults/iteration
+5704 cycles/page fault
+1512853 alloc page faults
+5484 cycles/alloc page fault
+0 fill page faults
+1512832 mmaps
+0.58333 mmaps/page touch
+1.16666 mmaps/iteration
+5116 cycles/mmap
+1512833 munmaps
+0.58333 munmaps/page touch
+1.16666 munmaps/iteration
+297459 cycles/munmap
+2474 PT pages
+556193 cycles/iteration
+
+# --cores=70 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+1917204 cycles start skew
+1549142 cycles stop skew
+12001027242 cycles
+654375 iterations
+1308750 page touches
+0 underflows
+196524320 total llc_misses
+4.99984 secs
+130879.15746 iterations/sec
+261758.31493 page touches/sec
+789476 TLB shootdowns
+0.60322 TLB shootdowns/page touch
+1.20645 TLB shootdowns/iteration
+68.61652 targets/TLB shootdown
+423901 cycles/TLB shootdown
+789491 page faults
+0.60324 page faults/page touch
+1.20648 page faults/iteration
+3623 cycles/page fault
+789496 alloc page faults
+3482 cycles/alloc page fault
+0 fill page faults
+789451 mmaps
+0.60320 mmaps/page touch
+1.20641 mmaps/iteration
+4388 cycles/mmap
+789474 munmaps
+0.60322 munmaps/page touch
+1.20645 munmaps/iteration
+430230 cycles/munmap
+2884 PT pages
+1283777 cycles/iteration
+
+# --cores=80 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+1464470 cycles start skew
+608720 cycles stop skew
+12000921721 cycles
+967797 iterations
+1935594 page touches
+0 underflows
+317446725 total llc_misses
+4.99979 secs
+193567.25071 iterations/sec
+387134.50142 page touches/sec
+1189403 TLB shootdowns
+0.61448 TLB shootdowns/page touch
+1.22897 TLB shootdowns/iteration
+78.36450 targets/TLB shootdown
+454624 cycles/TLB shootdown
+1189447 page faults
+0.61451 page faults/page touch
+1.22902 page faults/iteration
+5955 cycles/page fault
+1189447 alloc page faults
+5753 cycles/alloc page fault
+0 fill page faults
+1189446 mmaps
+0.61451 mmaps/page touch
+1.22902 mmaps/iteration
+6094 cycles/mmap
+1189403 munmaps
+0.61448 munmaps/page touch
+1.22897 munmaps/iteration
+464158 cycles/munmap
+3295 PT pages
+992019 cycles/iteration
+
+# --cores=1 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+0 cycles start skew
+0 cycles stop skew
+12001513304 cycles
+1403728 iterations
+2807456 page touches
+0 underflows
+53463713 total llc_misses
+5.00004 secs
+280743.14778 iterations/sec
+561486.29557 page touches/sec
+2 TLB shootdowns
+0.00000 TLB shootdowns/page touch
+0.00000 TLB shootdowns/iteration
+1.00000 targets/TLB shootdown
+8028 cycles/TLB shootdown
+1685911 page faults
+0.60051 page faults/page touch
+1.20102 page faults/iteration
+3511 cycles/page fault
+1685911 alloc page faults
+3454 cycles/alloc page fault
+0 fill page faults
+1685911 mmaps
+0.60051 mmaps/page touch
+1.20102 mmaps/iteration
+1270 cycles/mmap
+1685910 munmaps
+0.60051 munmaps/page touch
+1.20102 munmaps/iteration
+1664 cycles/munmap
+53 PT pages
+8549 cycles/iteration
+
+# --cores=10 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+91014 cycles start skew
+169322 cycles stop skew
+12025395317 cycles
+2118578 iterations
+4237156 page touches
+0 underflows
+93056499 total llc_misses
+5.00999 secs
+422870.42203 iterations/sec
+845740.84406 page touches/sec
+2532611 TLB shootdowns
+0.59771 TLB shootdowns/page touch
+1.19542 TLB shootdowns/iteration
+8.92674 targets/TLB shootdown
+28904 cycles/TLB shootdown
+2532605 page faults
+0.59771 page faults/page touch
+1.19542 page faults/iteration
+8139 cycles/page fault
+2532605 alloc page faults
+8067 cycles/alloc page fault
+0 fill page faults
+2532605 mmaps
+0.59771 mmaps/page touch
+1.19542 mmaps/iteration
+1565 cycles/mmap
+2532609 munmaps
+0.59771 munmaps/page touch
+1.19542 munmaps/iteration
+31492 cycles/munmap
+422 PT pages
+56761 cycles/iteration
+
+# --cores=20 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+441176 cycles start skew
+480102 cycles stop skew
+12001515019 cycles
+2081531 iterations
+4163062 page touches
+0 underflows
+157634913 total llc_misses
+5.00004 secs
+416302.50422 iterations/sec
+832605.00844 page touches/sec
+2496813 TLB shootdowns
+0.59975 TLB shootdowns/page touch
+1.19950 TLB shootdowns/iteration
+18.84708 targets/TLB shootdown
+68209 cycles/TLB shootdown
+2496823 page faults
+0.59975 page faults/page touch
+1.19951 page faults/iteration
+3676 cycles/page fault
+2496823 alloc page faults
+3541 cycles/alloc page fault
+0 fill page faults
+2496818 mmaps
+0.59975 mmaps/page touch
+1.19951 mmaps/iteration
+2522 cycles/mmap
+2496813 munmaps
+0.59975 munmaps/page touch
+1.19950 munmaps/iteration
+71897 cycles/munmap
+832 PT pages
+115314 cycles/iteration
+
+# --cores=30 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+568456 cycles start skew
+808526 cycles stop skew
+12001469661 cycles
+1941908 iterations
+3883816 page touches
+0 underflows
+224225503 total llc_misses
+5.00002 secs
+388379.61994 iterations/sec
+776759.23989 page touches/sec
+2329934 TLB shootdowns
+0.59990 TLB shootdowns/page touch
+1.19981 TLB shootdowns/iteration
+28.76154 targets/TLB shootdown
+114549 cycles/TLB shootdown
+2329933 page faults
+0.59990 page faults/page touch
+1.19981 page faults/iteration
+3623 cycles/page fault
+2329933 alloc page faults
+3437 cycles/alloc page fault
+0 fill page faults
+2329933 mmaps
+0.59990 mmaps/page touch
+1.19981 mmaps/iteration
+3129 cycles/mmap
+2329934 munmaps
+0.59990 munmaps/page touch
+1.19981 munmaps/iteration
+119292 cycles/munmap
+1243 PT pages
+185407 cycles/iteration
+
+# --cores=40 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+510768 cycles start skew
+613348 cycles stop skew
+12001551995 cycles
+1897152 iterations
+3794304 page touches
+0 underflows
+300104852 total llc_misses
+5.00005 secs
+379425.86259 iterations/sec
+758851.72519 page touches/sec
+2278428 TLB shootdowns
+0.60048 TLB shootdowns/page touch
+1.20097 TLB shootdowns/iteration
+38.63393 targets/TLB shootdown
+160165 cycles/TLB shootdown
+2278355 page faults
+0.60046 page faults/page touch
+1.20093 page faults/iteration
+3871 cycles/page fault
+2278356 alloc page faults
+3670 cycles/alloc page fault
+0 fill page faults
+2278340 mmaps
+0.60046 mmaps/page touch
+1.20092 mmaps/iteration
+3558 cycles/mmap
+2278351 munmaps
+0.60046 munmaps/page touch
+1.20093 munmaps/iteration
+165889 cycles/munmap
+1653 PT pages
+253043 cycles/iteration
+
+# --cores=50 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+912342 cycles start skew
+586730 cycles stop skew
+12001430581 cycles
+1647885 iterations
+3295770 page touches
+0 underflows
+333705798 total llc_misses
+5.00000 secs
+329576.39293 iterations/sec
+659152.78587 page touches/sec
+1970759 TLB shootdowns
+0.59796 TLB shootdowns/page touch
+1.19593 TLB shootdowns/iteration
+48.51606 targets/TLB shootdown
+219344 cycles/TLB shootdown
+1970761 page faults
+0.59796 page faults/page touch
+1.19593 page faults/iteration
+4977 cycles/page fault
+1970762 alloc page faults
+4761 cycles/alloc page fault
+0 fill page faults
+1970755 mmaps
+0.59796 mmaps/page touch
+1.19592 mmaps/iteration
+4370 cycles/mmap
+1970759 munmaps
+0.59796 munmaps/page touch
+1.19593 munmaps/iteration
+226384 cycles/munmap
+2063 PT pages
+364146 cycles/iteration
+
+# --cores=60 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+898020 cycles start skew
+537872 cycles stop skew
+12001317647 cycles
+1134282 iterations
+2268564 page touches
+0 underflows
+283625884 total llc_misses
+4.99996 secs
+226858.11688 iterations/sec
+453716.23377 page touches/sec
+1346749 TLB shootdowns
+0.59365 TLB shootdowns/page touch
+1.18731 TLB shootdowns/iteration
+58.45645 targets/TLB shootdown
+296348 cycles/TLB shootdown
+1346770 page faults
+0.59366 page faults/page touch
+1.18733 page faults/iteration
+4585 cycles/page fault
+1346771 alloc page faults
+4403 cycles/alloc page fault
+0 fill page faults
+1346762 mmaps
+0.59366 mmaps/page touch
+1.18732 mmaps/iteration
+4252 cycles/mmap
+1346749 munmaps
+0.59365 munmaps/page touch
+1.18731 munmaps/iteration
+303686 cycles/munmap
+2474 PT pages
+634832 cycles/iteration
+
+# --cores=70 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+2079040 cycles start skew
+513498 cycles stop skew
+12000860275 cycles
+679985 iterations
+1359970 page touches
+0 underflows
+203794265 total llc_misses
+4.99977 secs
+136003.21235 iterations/sec
+272006.42470 page touches/sec
+832575 TLB shootdowns
+0.61220 TLB shootdowns/page touch
+1.22440 TLB shootdowns/iteration
+68.59202 targets/TLB shootdown
+417796 cycles/TLB shootdown
+832594 page faults
+0.61221 page faults/page touch
+1.22442 page faults/iteration
+3252 cycles/page fault
+832599 alloc page faults
+3117 cycles/alloc page fault
+0 fill page faults
+832574 mmaps
+0.61220 mmaps/page touch
+1.22440 mmaps/iteration
+3897 cycles/mmap
+832574 munmaps
+0.61220 munmaps/page touch
+1.22440 munmaps/iteration
+424117 cycles/munmap
+2884 PT pages
+1235409 cycles/iteration
+
+# --cores=80 --duration=5s --warmup=1s --mode=pipeline --fault=true --npg=1
+2295488 cycles start skew
+1735848 cycles stop skew
+12001151148 cycles
+1003091 iterations
+2006182 page touches
+0 underflows
+330679365 total llc_misses
+4.99989 secs
+200622.50162 iterations/sec
+401245.00325 page touches/sec
+1194611 TLB shootdowns
+0.59546 TLB shootdowns/page touch
+1.19092 TLB shootdowns/iteration
+78.36635 targets/TLB shootdown
+465834 cycles/TLB shootdown
+1194658 page faults
+0.59548 page faults/page touch
+1.19097 page faults/iteration
+5691 cycles/page fault
+1194658 alloc page faults
+5506 cycles/alloc page fault
+0 fill page faults
+1194657 mmaps
+0.59548 mmaps/page touch
+1.19097 mmaps/iteration
+5812 cycles/mmap
+1194611 munmaps
+0.59546 munmaps/page touch
+1.19092 munmaps/iteration
+475311 cycles/munmap
+3295 PT pages
+957133 cycles/iteration
+
+# --cores=1 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+0 cycles start skew
+0 cycles stop skew
+12001515448 cycles
+111167 iterations
+1778672 page touches
+95019491 total llc_misses
+5.00004 secs
+22233.20182 iterations/sec
+355731.22923 page touches/sec
+0 TLB shootdowns
+0.00000 TLB shootdowns/page touch
+0.00000 TLB shootdowns/iteration
+2136688 page faults
+1.20128 page faults/page touch
+19.22052 page faults/iteration
+3870 cycles/page fault
+2136688 alloc page faults
+3812 cycles/alloc page fault
+0 fill page faults
+133543 mmaps
+0.07508 mmaps/page touch
+1.20128 mmaps/iteration
+18722 cycles/mmap
+0 munmaps
+0.00000 munmaps/page touch
+0.00000 munmaps/iteration
+14 PT pages
+107959 cycles/iteration
+
+# --cores=10 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+452 cycles start skew
+8128 cycles stop skew
+12001681607 cycles
+239170 iterations
+25726363 page touches
+195225908 total llc_misses
+5.00011 secs
+47832.91140 iterations/sec
+5145155.50485 page touches/sec
+286860 TLB shootdowns
+0.01115 TLB shootdowns/page touch
+1.19939 TLB shootdowns/iteration
+8.98381 targets/TLB shootdown
+37410 cycles/TLB shootdown
+5710618 page faults
+0.22197 page faults/page touch
+23.87681 page faults/iteration
+11720 cycles/page fault
+4589871 alloc page faults
+11343 cycles/alloc page fault
+1120747 fill page faults
+12821 cycles/fill page fault
+286860 mmaps
+0.01115 mmaps/page touch
+1.19939 mmaps/iteration
+58579 cycles/mmap
+0 munmaps
+0.00000 munmaps/page touch
+0.00000 munmaps/iteration
+14 PT pages
+501805 cycles/iteration
+
+# --cores=20 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+984 cycles start skew
+723238 cycles stop skew
+12000726727 cycles
+198660 iterations
+42738550 page touches
+224651122 total llc_misses
+4.99971 secs
+39734.25713 iterations/sec
+8548195.58594 page touches/sec
+238060 TLB shootdowns
+0.00557 TLB shootdowns/page touch
+1.19832 TLB shootdowns/iteration
+18.91309 targets/TLB shootdown
+109403 cycles/TLB shootdown
+4459043 page faults
+0.10433 page faults/page touch
+22.44560 page faults/iteration
+16954 cycles/page fault
+3808960 alloc page faults
+14712 cycles/alloc page fault
+650083 fill page faults
+26465 cycles/fill page fault
+238060 mmaps
+0.00557 mmaps/page touch
+1.19832 mmaps/iteration
+133396 cycles/mmap
+0 munmaps
+0.00000 munmaps/page touch
+0.00000 munmaps/iteration
+14 PT pages
+1208167 cycles/iteration
+
+# --cores=30 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+2232 cycles start skew
+814640 cycles stop skew
+12023775831 cycles
+173460 iterations
+53684796 page touches
+218911562 total llc_misses
+5.00931 secs
+34627.46384 iterations/sec
+10716985.65823 page touches/sec
+208140 TLB shootdowns
+0.00387 TLB shootdowns/page touch
+1.19993 TLB shootdowns/iteration
+28.86573 targets/TLB shootdown
+252707 cycles/TLB shootdown
+3654304 page faults
+0.06806 page faults/page touch
+21.06712 page faults/iteration
+26006 cycles/page fault
+3330240 alloc page faults
+23882 cycles/alloc page fault
+324064 fill page faults
+44209 cycles/fill page fault
+208140 mmaps
+0.00387 mmaps/page touch
+1.19993 mmaps/iteration
+282545 cycles/mmap
+0 munmaps
+0.00000 munmaps/page touch
+0.00000 munmaps/iteration
+14 PT pages
+2079518 cycles/iteration
+
+# --cores=40 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+436492 cycles start skew
+668858 cycles stop skew
+12003489803 cycles
+137200 iterations
+59032267 page touches
+218353598 total llc_misses
+5.00086 secs
+27435.24208 iterations/sec
+11804406.23684 page touches/sec
+164240 TLB shootdowns
+0.00278 TLB shootdowns/page touch
+1.19708 TLB shootdowns/iteration
+38.90689 targets/TLB shootdown
+441050 cycles/TLB shootdown
+3090109 page faults
+0.05234 page faults/page touch
+22.52266 page faults/iteration
+43960 cycles/page fault
+2628480 alloc page faults
+39719 cycles/alloc page fault
+461629 fill page faults
+62482 cycles/fill page fault
+164240 mmaps
+0.00278 mmaps/page touch
+1.19708 mmaps/iteration
+475781 cycles/mmap
+0 munmaps
+0.00000 munmaps/page touch
+0.00000 munmaps/iteration
+15 PT pages
+3499559 cycles/iteration
+
+# --cores=50 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+707956 cycles start skew
+947974 cycles stop skew
+12004385824 cycles
+124250 iterations
+63572796 page touches
+214613453 total llc_misses
+5.00124 secs
+24843.83665 iterations/sec
+12711405.71254 page touches/sec
+148650 TLB shootdowns
+0.00233 TLB shootdowns/page touch
+1.19637 TLB shootdowns/iteration
+48.72900 targets/TLB shootdown
+718758 cycles/TLB shootdown
+2592274 page faults
+0.04077 page faults/page touch
+20.86337 page faults/iteration
+57020 cycles/page fault
+2379200 alloc page faults
+54399 cycles/alloc page fault
+213074 fill page faults
+78949 cycles/fill page fault
+148650 mmaps
+0.00233 mmaps/page touch
+1.19637 mmaps/iteration
+760131 cycles/mmap
+0 munmaps
+0.00000 munmaps/page touch
+0.00000 munmaps/iteration
+15 PT pages
+4830738 cycles/iteration
+
+# --cores=60 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+4196 cycles start skew
+837140 cycles stop skew
+12001361543 cycles
+107460 iterations
+66513818 page touches
+208698235 total llc_misses
+4.99998 secs
+21492.08404 iterations/sec
+13302815.62120 page touches/sec
+127800 TLB shootdowns
+0.00192 TLB shootdowns/page touch
+1.18927 TLB shootdowns/iteration
+58.74048 targets/TLB shootdown
+1061419 cycles/TLB shootdown
+2226027 page faults
+0.03346 page faults/page touch
+20.71493 page faults/iteration
+75592 cycles/page fault
+2044800 alloc page faults
+72075 cycles/alloc page fault
+181227 fill page faults
+103954 cycles/fill page fault
+127800 mmaps
+0.00192 mmaps/page touch
+1.18927 mmaps/iteration
+1121024 cycles/mmap
+0 munmaps
+0.00000 munmaps/page touch
+0.00000 munmaps/iteration
+15 PT pages
+6700927 cycles/iteration
+
+# --cores=70 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+4462 cycles start skew
+868574 cycles stop skew
+11998267613 cycles
+101430 iterations
+72410448 page touches
+197988272 total llc_misses
+4.99869 secs
+20291.31039 iterations/sec
+14485880.66770 page touches/sec
+121590 TLB shootdowns
+0.00167 TLB shootdowns/page touch
+1.19875 TLB shootdowns/iteration
+68.53627 targets/TLB shootdown
+1522468 cycles/TLB shootdown
+2085967 page faults
+0.02880 page faults/page touch
+20.56558 page faults/iteration
+76730 cycles/page fault
+1946561 alloc page faults
+73884 cycles/alloc page fault
+139406 fill page faults
+108098 cycles/fill page fault
+121660 mmaps
+0.00168 mmaps/page touch
+1.19944 mmaps/iteration
+1593412 cycles/mmap
+0 munmaps
+0.00000 munmaps/page touch
+0.00000 munmaps/iteration
+16 PT pages
+8280377 cycles/iteration
+
+# --cores=80 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+5556 cycles start skew
+561900 cycles stop skew
+11993939208 cycles
+95760 iterations
+82404373 page touches
+209093034 total llc_misses
+4.99688 secs
+19163.92697 iterations/sec
+16491138.12148 page touches/sec
+114800 TLB shootdowns
+0.00139 TLB shootdowns/page touch
+1.19883 TLB shootdowns/iteration
+78.45249 targets/TLB shootdown
+1666391 cycles/TLB shootdown
+2157035 page faults
+0.02617 page faults/page touch
+22.52542 page faults/iteration
+117403 cycles/page fault
+1836800 alloc page faults
+103240 cycles/alloc page fault
+320235 fill page faults
+161393 cycles/fill page fault
+114880 mmaps
+0.00139 mmaps/page touch
+1.19966 mmaps/iteration
+1818773 cycles/mmap
+0 munmaps
+0.00000 munmaps/page touch
+0.00000 munmaps/iteration
+16 PT pages
+10019999 cycles/iteration
+
+# --cores=1 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+0 cycles start skew
+0 cycles stop skew
+12001451724 cycles
+111366 iterations
+1781856 page touches
+95649465 total llc_misses
+5.00001 secs
+22273.11973 iterations/sec
+356369.91576 page touches/sec
+0 TLB shootdowns
+0.00000 TLB shootdowns/page touch
+0.00000 TLB shootdowns/iteration
+2140816 page faults
+1.20145 page faults/page touch
+19.22324 page faults/iteration
+3909 cycles/page fault
+2140816 alloc page faults
+3850 cycles/alloc page fault
+0 fill page faults
+133801 mmaps
+0.07509 mmaps/page touch
+1.20145 mmaps/iteration
+18536 cycles/mmap
+0 munmaps
+0.00000 munmaps/page touch
+0.00000 munmaps/iteration
+14 PT pages
+107765 cycles/iteration
+
+# --cores=10 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+464 cycles start skew
+6730 cycles stop skew
+12001403989 cycles
+238820 iterations
+25691295 page touches
+194921587 total llc_misses
+4.99999 secs
+47764.01785 iterations/sec
+5138260.92062 page touches/sec
+286240 TLB shootdowns
+0.01114 TLB shootdowns/page touch
+1.19855 TLB shootdowns/iteration
+8.98442 targets/TLB shootdown
+37964 cycles/TLB shootdown
+5616709 page faults
+0.21862 page faults/page touch
+23.51858 page faults/iteration
+11912 cycles/page fault
+4579764 alloc page faults
+11475 cycles/alloc page fault
+1036945 fill page faults
+13382 cycles/fill page fault
+286240 mmaps
+0.01114 mmaps/page touch
+1.19855 mmaps/iteration
+59073 cycles/mmap
+0 munmaps
+0.00000 munmaps/page touch
+0.00000 munmaps/iteration
+14 PT pages
+502529 cycles/iteration
+
+# --cores=20 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+1444 cycles start skew
+931814 cycles stop skew
+12001622599 cycles
+207180 iterations
+44572860 page touches
+238284046 total llc_misses
+5.00008 secs
+41435.26072 iterations/sec
+8914412.95285 page touches/sec
+248380 TLB shootdowns
+0.00557 TLB shootdowns/page touch
+1.19886 TLB shootdowns/iteration
+18.85393 targets/TLB shootdown
+115456 cycles/TLB shootdown
+4598861 page faults
+0.10317 page faults/page touch
+22.19741 page faults/iteration
+15369 cycles/page fault
+3974080 alloc page faults
+13625 cycles/alloc page fault
+624781 fill page faults
+24807 cycles/fill page fault
+248380 mmaps
+0.00557 mmaps/page touch
+1.19886 mmaps/iteration
+140065 cycles/mmap
+0 munmaps
+0.00000 munmaps/page touch
+0.00000 munmaps/iteration
+14 PT pages
+1158569 cycles/iteration
+
+# --cores=30 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+383738 cycles start skew
+663238 cycles stop skew
+12001848710 cycles
+165420 iterations
+51196983 page touches
+208936183 total llc_misses
+5.00018 secs
+33082.78645 iterations/sec
+10239021.01279 page touches/sec
+198240 TLB shootdowns
+0.00387 TLB shootdowns/page touch
+1.19840 TLB shootdowns/iteration
+28.88915 targets/TLB shootdown
+256719 cycles/TLB shootdown
+3460708 page faults
+0.06759 page faults/page touch
+20.92073 page faults/iteration
+25925 cycles/page fault
+3172058 alloc page faults
+23947 cycles/alloc page fault
+288652 fill page faults
+42270 cycles/fill page fault
+198240 mmaps
+0.00387 mmaps/page touch
+1.19840 mmaps/iteration
+286079 cycles/mmap
+0 munmaps
+0.00000 munmaps/page touch
+0.00000 munmaps/iteration
+14 PT pages
+2176613 cycles/iteration
+
+# --cores=40 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+2860 cycles start skew
+966518 cycles stop skew
+12001339642 cycles
+139760 iterations
+60136828 page touches
+219461417 total llc_misses
+4.99997 secs
+27952.16031 iterations/sec
+12027434.58227 page touches/sec
+167280 TLB shootdowns
+0.00278 TLB shootdowns/page touch
+1.19690 TLB shootdowns/iteration
+38.95262 targets/TLB shootdown
+475502 cycles/TLB shootdown
+3124784 page faults
+0.05196 page faults/page touch
+22.35821 page faults/iteration
+38017 cycles/page fault
+2677120 alloc page faults
+34841 cycles/alloc page fault
+447664 fill page faults
+54088 cycles/fill page fault
+167280 mmaps
+0.00278 mmaps/page touch
+1.19690 mmaps/iteration
+512810 cycles/mmap
+0 munmaps
+0.00000 munmaps/page touch
+0.00000 munmaps/iteration
+15 PT pages
+3434842 cycles/iteration
+
+# --cores=50 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+372622 cycles start skew
+703770 cycles stop skew
+12003566448 cycles
+120100 iterations
+61463385 page touches
+209238461 total llc_misses
+5.00089 secs
+24015.68174 iterations/sec
+12290467.05138 page touches/sec
+143850 TLB shootdowns
+0.00234 TLB shootdowns/page touch
+1.19775 TLB shootdowns/iteration
+48.77239 targets/TLB shootdown
+818512 cycles/TLB shootdown
+2489570 page faults
+0.04050 page faults/page touch
+20.72914 page faults/iteration
+50408 cycles/page fault
+2302400 alloc page faults
+47795 cycles/alloc page fault
+187170 fill page faults
+70660 cycles/fill page fault
+143850 mmaps
+0.00234 mmaps/page touch
+1.19775 mmaps/iteration
+863850 cycles/mmap
+0 munmaps
+0.00000 munmaps/page touch
+0.00000 munmaps/iteration
+15 PT pages
+4997321 cycles/iteration
+
+# --cores=60 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+3876 cycles start skew
+850940 cycles stop skew
+11997439259 cycles
+119460 iterations
+73941528 page touches
+234768984 total llc_misses
+4.99834 secs
+23899.90439 iterations/sec
+14793198.14231 page touches/sec
+143040 TLB shootdowns
+0.00193 TLB shootdowns/page touch
+1.19738 TLB shootdowns/iteration
+58.62673 targets/TLB shootdown
+984757 cycles/TLB shootdown
+2474972 page faults
+0.03347 page faults/page touch
+20.71799 page faults/iteration
+59089 cycles/page fault
+2288640 alloc page faults
+56955 cycles/alloc page fault
+186332 fill page faults
+81066 cycles/fill page fault
+143040 mmaps
+0.00193 mmaps/page touch
+1.19738 mmaps/iteration
+1035912 cycles/mmap
+0 munmaps
+0.00000 munmaps/page touch
+0.00000 munmaps/iteration
+15 PT pages
+6025835 cycles/iteration
+
+# --cores=70 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+952844 cycles start skew
+1417888 cycles stop skew
+12017855949 cycles
+104860 iterations
+74857756 page touches
+214751746 total llc_misses
+5.00685 secs
+20943.29800 iterations/sec
+14951061.33890 page touches/sec
+125370 TLB shootdowns
+0.00167 TLB shootdowns/page touch
+1.19559 TLB shootdowns/iteration
+68.52635 targets/TLB shootdown
+1563727 cycles/TLB shootdown
+2172343 page faults
+0.02901 page faults/page touch
+20.71660 page faults/iteration
+87984 cycles/page fault
+2007040 alloc page faults
+84038 cycles/alloc page fault
+165303 fill page faults
+127976 cycles/fill page fault
+125370 mmaps
+0.00167 mmaps/page touch
+1.19559 mmaps/iteration
+1625125 cycles/mmap
+0 munmaps
+0.00000 munmaps/page touch
+0.00000 munmaps/iteration
+16 PT pages
+8022600 cycles/iteration
+
+# --cores=80 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+5586 cycles start skew
+954866 cycles stop skew
+11999231029 cycles
+92240 iterations
+79380308 page touches
+198215912 total llc_misses
+4.99909 secs
+18451.34767 iterations/sec
+15878942.55684 page touches/sec
+110480 TLB shootdowns
+0.00139 TLB shootdowns/page touch
+1.19774 TLB shootdowns/iteration
+78.44508 targets/TLB shootdown
+1731772 cycles/TLB shootdown
+2066104 page faults
+0.02602 page faults/page touch
+22.39921 page faults/iteration
+128809 cycles/page fault
+1768960 alloc page faults
+115432 cycles/alloc page fault
+297144 fill page faults
+174519 cycles/fill page fault
+110560 mmaps
+0.00139 mmaps/page touch
+1.19861 mmaps/iteration
+1816204 cycles/mmap
+0 munmaps
+0.00000 munmaps/page touch
+0.00000 munmaps/iteration
+16 PT pages
+10406965 cycles/iteration
+
+# --cores=1 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+0 cycles start skew
+0 cycles stop skew
+12001461200 cycles
+111082 iterations
+1777312 page touches
+95597213 total llc_misses
+5.00002 secs
+22216.30239 iterations/sec
+355460.83837 page touches/sec
+0 TLB shootdowns
+0.00000 TLB shootdowns/page touch
+0.00000 TLB shootdowns/iteration
+2135296 page faults
+1.20141 page faults/page touch
+19.22270 page faults/iteration
+3730 cycles/page fault
+2135296 alloc page faults
+3674 cycles/alloc page fault
+0 fill page faults
+133457 mmaps
+0.07508 mmaps/page touch
+1.20142 mmaps/iteration
+21627 cycles/mmap
+0 munmaps
+0.00000 munmaps/page touch
+0.00000 munmaps/iteration
+14 PT pages
+108041 cycles/iteration
+
+# --cores=10 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+516 cycles start skew
+8398 cycles stop skew
+12001425265 cycles
+238780 iterations
+25687553 page touches
+194964026 total llc_misses
+5.00000 secs
+47755.93318 iterations/sec
+5137503.41262 page touches/sec
+286120 TLB shootdowns
+0.01113 TLB shootdowns/page touch
+1.19825 TLB shootdowns/iteration
+8.98391 targets/TLB shootdown
+38660 cycles/TLB shootdown
+5605024 page faults
+0.21819 page faults/page touch
+23.47359 page faults/iteration
+11861 cycles/page fault
+4577853 alloc page faults
+11463 cycles/alloc page fault
+1027171 fill page faults
+13174 cycles/fill page fault
+286120 mmaps
+0.01113 mmaps/page touch
+1.19825 mmaps/iteration
+59904 cycles/mmap
+0 munmaps
+0.00000 munmaps/page touch
+0.00000 munmaps/iteration
+14 PT pages
+502614 cycles/iteration
+
+# --cores=20 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+256468 cycles start skew
+677220 cycles stop skew
+12001195259 cycles
+204140 iterations
+43916819 page touches
+233684242 total llc_misses
+4.99991 secs
+40828.72535 iterations/sec
+8783519.84726 page touches/sec
+244540 TLB shootdowns
+0.00556 TLB shootdowns/page touch
+1.19790 TLB shootdowns/iteration
+18.86541 targets/TLB shootdown
+110315 cycles/TLB shootdown
+4529712 page faults
+0.10314 page faults/page touch
+22.18924 page faults/iteration
+16395 cycles/page fault
+3912754 alloc page faults
+14340 cycles/alloc page fault
+616963 fill page faults
+24872 cycles/fill page fault
+244540 mmaps
+0.00556 mmaps/page touch
+1.19790 mmaps/iteration
+134727 cycles/mmap
+0 munmaps
+0.00000 munmaps/page touch
+0.00000 munmaps/iteration
+14 PT pages
+1175780 cycles/iteration
+
+# --cores=30 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+410018 cycles start skew
+871570 cycles stop skew
+12001200734 cycles
+164310 iterations
+50854509 page touches
+207668428 total llc_misses
+4.99991 secs
+32862.56884 iterations/sec
+10171077.85849 page touches/sec
+197310 TLB shootdowns
+0.00387 TLB shootdowns/page touch
+1.20083 TLB shootdowns/iteration
+28.90737 targets/TLB shootdown
+254247 cycles/TLB shootdown
+3462932 page faults
+0.06809 page faults/page touch
+21.07560 page faults/iteration
+30037 cycles/page fault
+3156960 alloc page faults
+26546 cycles/alloc page fault
+305972 fill page faults
+52138 cycles/fill page fault
+197310 mmaps
+0.00387 mmaps/page touch
+1.20083 mmaps/iteration
+283623 cycles/mmap
+0 munmaps
+0.00000 munmaps/page touch
+0.00000 munmaps/iteration
+14 PT pages
+2191199 cycles/iteration
+
+# --cores=40 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+507792 cycles start skew
+1133570 cycles stop skew
+12001605428 cycles
+125880 iterations
+54166716 page touches
+204254479 total llc_misses
+5.00008 secs
+25175.58684 iterations/sec
+10833165.41883 page touches/sec
+150360 TLB shootdowns
+0.00277 TLB shootdowns/page touch
+1.19447 TLB shootdowns/iteration
+38.87710 targets/TLB shootdown
+453822 cycles/TLB shootdown
+2963406 page faults
+0.05470 page faults/page touch
+23.54151 page faults/iteration
+44410 cycles/page fault
+2406400 alloc page faults
+40049 cycles/alloc page fault
+557006 fill page faults
+59715 cycles/fill page fault
+150360 mmaps
+0.00277 mmaps/page touch
+1.19447 mmaps/iteration
+489729 cycles/mmap
+0 munmaps
+0.00000 munmaps/page touch
+0.00000 munmaps/iteration
+15 PT pages
+3813665 cycles/iteration
+
+# --cores=50 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+3024 cycles start skew
+573452 cycles stop skew
+12000568666 cycles
+120750 iterations
+61783713 page touches
+209222586 total llc_misses
+4.99965 secs
+24151.69003 iterations/sec
+12357607.33432 page touches/sec
+144550 TLB shootdowns
+0.00233 TLB shootdowns/page touch
+1.19710 TLB shootdowns/iteration
+48.72248 targets/TLB shootdown
+692942 cycles/TLB shootdown
+2526489 page faults
+0.04089 page faults/page touch
+20.92330 page faults/iteration
+67247 cycles/page fault
+2313600 alloc page faults
+62705 cycles/alloc page fault
+212889 fill page faults
+102711 cycles/fill page fault
+144550 mmaps
+0.00233 mmaps/page touch
+1.19710 mmaps/iteration
+736312 cycles/mmap
+0 munmaps
+0.00000 munmaps/page touch
+0.00000 munmaps/iteration
+15 PT pages
+4969179 cycles/iteration
+
+# --cores=60 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+3800 cycles start skew
+1150804 cycles stop skew
+12001630597 cycles
+116460 iterations
+72082643 page touches
+228464742 total llc_misses
+5.00009 secs
+23291.56891 iterations/sec
+14416261.78390 page touches/sec
+138240 TLB shootdowns
+0.00191 TLB shootdowns/page touch
+1.18701 TLB shootdowns/iteration
+58.65812 targets/TLB shootdown
+930832 cycles/TLB shootdown
+2414836 page faults
+0.03350 page faults/page touch
+20.73532 page faults/iteration
+72742 cycles/page fault
+2212800 alloc page faults
+68310 cycles/alloc page fault
+202036 fill page faults
+103667 cycles/fill page fault
+138240 mmaps
+0.00191 mmaps/page touch
+1.18701 mmaps/iteration
+1003560 cycles/mmap
+0 munmaps
+0.00000 munmaps/page touch
+0.00000 munmaps/iteration
+15 PT pages
+6183220 cycles/iteration
+
+# --cores=70 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+787486 cycles start skew
+991628 cycles stop skew
+12005522069 cycles
+103460 iterations
+73869827 page touches
+209860989 total llc_misses
+5.00171 secs
+20684.91005 iterations/sec
+14768903.22152 page touches/sec
+122640 TLB shootdowns
+0.00166 TLB shootdowns/page touch
+1.18538 TLB shootdowns/iteration
+68.55291 targets/TLB shootdown
+1398254 cycles/TLB shootdown
+2125884 page faults
+0.02877 page faults/page touch
+20.54788 page faults/iteration
+97444 cycles/page fault
+1963360 alloc page faults
+92693 cycles/alloc page fault
+162524 fill page faults
+137590 cycles/fill page fault
+122640 mmaps
+0.00166 mmaps/page touch
+1.18538 mmaps/iteration
+1482815 cycles/mmap
+0 munmaps
+0.00000 munmaps/page touch
+0.00000 munmaps/iteration
+16 PT pages
+8122816 cycles/iteration
+
+# --cores=80 --duration=5s --warmup=1s --mode=global --fault=true --npg=16
+707048 cycles start skew
+758646 cycles stop skew
+12000537026 cycles
+90880 iterations
+78207457 page touches
+198681841 total llc_misses
+4.99963 secs
+18177.31989 iterations/sec
+15642627.24600 page touches/sec
+108640 TLB shootdowns
+0.00138 TLB shootdowns/page touch
+1.19542 TLB shootdowns/iteration
+78.46122 targets/TLB shootdown
+1704432 cycles/TLB shootdown
+2089662 page faults
+0.02671 page faults/page touch
+22.99363 page faults/iteration
+119395 cycles/page fault
+1739520 alloc page faults
+103683 cycles/alloc page fault
+350142 fill page faults
+158856 cycles/fill page fault
+108720 mmaps
+0.00139 mmaps/page touch
+1.19630 mmaps/iteration
+1788969 cycles/mmap
+0 munmaps
+0.00000 munmaps/page touch
+0.00000 munmaps/iteration
+16 PT pages
+10563853 cycles/iteration
