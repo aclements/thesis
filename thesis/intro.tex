@@ -1,8 +1,7 @@
 \section{Introduction}
 \label{sec:intro}
 
-\XXX[STATUS]{Re-organized and expanded from SOSP.  Draft almost
-  ready.}
+\XXX[STATUS]{Draft ready.  Re-organized and expanded from SOSP.}
 
 This dissertation presents a pragmatic and formal approach to the
 design and implementation of scalable multicore software that spans
@@ -10,10 +9,10 @@ from the earliest stages of software interface conception through
 testing and maintenance of complete implementations.
 
 The rest of \thiscref{sec:intro} introduces the multicore
-architectures that have taken over general-purpose computing, the
+architectures that now dominate general-purpose computing, the
 problematic ways in which software developers are coping with these
-new architectures, and our solution to the design and implementation
-of software for multicore architectures.
+new architectures, and our interface-drive approach to the design and
+implementation of software for multicore architectures.
 
 
 %\subsection{The rise of multicore architectures}
@@ -29,8 +28,8 @@ limits of a few square centimeters of silicon.
 %
 CPU architects could no longer significantly increase clock speeds, so
 instead they began increasing parallelism, putting more cores on the
-same chip, providing more and more independent processing units, while
-maintaining shared access to memory and I/O resources.
+same chip, providing more and more parallel processing units that
+share access to memory and I/O resources.
 % maintaining a ``coherent'' view of memory and shared access to I/O
 % resources.
 %
@@ -45,7 +44,7 @@ All software must now be parallel to perform.
 But, while software performance naturally scales with clock speed,
 scaling with parallelism is an untamed problem.  Even with careful
 engineering, software rarely achieves the holy grail of \emph{linear
-  scalability}, where doubling the hardware parallelism doubles the
+  scalability}, where doubling hardware parallelism doubles the
 software's performance.
 
 Operating system kernels are a poignant example of both the importance
@@ -95,8 +94,9 @@ Each new hardware model and workload powers a Sisyphean cycle of
 finding and fixing new bottlenecks.
 %
 Projects such as Linux require continuous infusions of manpower to
-maintain their scalability edge and even then, workloads and hardware
-that kernel developers don't have access to are a scalability gamble.
+maintain their scalability edge and even then, the scalability of
+workloads and hardware that kernel developers don't have access to is
+a gamble.
 %
 But the deeper problem with this workload-driven approach is that many
 scalability problems lie not in the implementation, but in the
@@ -140,9 +140,12 @@ at scalable software interface design.
 %
 This makes reasoning about multicore scalability possible before an
 implementation exists and before the necessary hardware is available
-to measure the implementation's scalability.  It can highlight
-inherent scalability problems, leading to alternate interface designs.
-And it sets a clear scaling target for the implementation of a
+to measure the implementation's scalability.
+%
+It can highlight inherent scalability problems, leading to alternate
+interface designs.
+%
+It sets a clear scaling target for the implementation of a
 scalable interface and enables systematic testing of an
 implementation's scalability.
 
@@ -151,7 +154,7 @@ interface property, not least because what scales depends on hardware.
 %
 However, modern shared-memory multicores use local caches and
 protocols like MESI~\cite{papamarcos:mesi} to provide a globally
-consistent ``coherent'' view of memory.  This general architecture
+consistent, \emph{coherent} view of memory.  This general architecture
 enables general arguments about scalability.
 %
 On such processors, a core can scalably read and write data it has
@@ -191,7 +194,7 @@ The commutativity rule leads to a new way to design scalable
 software:
 %
 analyze the interface's commutativity; if possible, refine or redesign
-the interface to improve its commutativity, and then design an
+the interface to improve its commutativity; and then design an
 implementation that scales in commutative situations.
 %
 For example,
@@ -268,13 +271,15 @@ indistinguishable via the interface.
 implementation, enabling developers to apply the rule directly to
 interface design.
 
-Putting the rule into practice, in \cref{sec:posix} this dissertation
-contributes a set of general guidelines for designing interfaces that
+In \cref{sec:posix}, this dissertation puts the rule into practice,
+contributing a set of general guidelines for designing interfaces that
 enable scalable implementations, inspired by both the successes and
-failures of POSIX.  In these guidelines, we propose specific
-modifications to POSIX that would allow for greater scalability.
+failures of POSIX.
+%
+Using these guidelines, we propose specific modifications to POSIX
+that would enable greater scalability.
 
-However, complex interfaces are still complex, and even given the rule
+However, complex interfaces are still complex, and even with the rule
 and these interface design guidelines, it can be difficult to spot and
 reason about all commutative cases.
 %
@@ -290,10 +295,10 @@ in the form of a simplified, symbolic implementation, computes precise
 conditions under which sets of operations commute, and tests an
 implementation for conflict-freedom under these conditions.  This tool can be
 integrated into the software development process to drive initial design and
-implementation, to incrementally improve existing implementations, or to
+implementation, to incrementally improve existing implementations, and to
 help developers understand the commutativity of an interface.
 
-In \cref{sec:topic:model}, we apply \tool to a simplified model of
+In \cref{sec:topic:model}, we apply \tool to a model of
 \pyexpr{len(mscan.calls)} POSIX file system and virtual memory system
 calls.
 %
@@ -310,14 +315,15 @@ these cases.
 Many of the commutative cases where Linux is not conflict-free are
 important to applications---such as commutative
 \code{mmap}s and creating different files in a shared directory---and
-reflect findings in previous work~\cite{boyd-wickizer:scaling}.
+reflect bottlenecks found in previous
+work~\cite{boyd-wickizer:scaling}.
 
 Finally, to demonstrate the application of the rule and \tool to the
 design and implementation of a real system, we use these tests to
 guide the implementation of a new research operating system kernel
 named \sys.
 %
-\sys doubles as an existence proof showing that the rule can be
+\sys doubles as both an existence proof showing that the rule can be
 applied fruitfully to the design and implementation of a large
 software system, and as an embodiment of novel scalable kernel
 implementation techniques.
@@ -334,8 +340,8 @@ sources of conflicts found in the Linux kernel.
 %
 \Cref{sec:eval} confirms that \sys's conflict-free implementations of
 commutative system calls translate to dramatic improvements in
-scalability for both microbenchmarks and application benchmarks on an
-80-core x86 machine.
+measured scalability for both microbenchmarks and application
+benchmarks on an 80-core x86 machine.
 
 % The paper is organized as follows.  \S\ref{sec:related} relates our thinking
 % about scalability to previous work. \S\ref{sec:rule} introduces the
