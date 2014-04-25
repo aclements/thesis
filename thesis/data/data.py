@@ -116,6 +116,9 @@ class AbstractTable(object):
         * func - Apply func to each row and record its result in a
           property named "$"+func.__name__."""
         # XXX Could optimize for maps that simply permute the schema
+        # XXX This makes it a pain to write a transformer that just
+        # takes a row and computed a new whole row (e.g., adding
+        # multiple columns)
         parts = []
         flocals = {}
         # XXX Very similar to group_by specs.  Can these be unified?

@@ -5,6 +5,7 @@ import sys
 import common
 import re
 import plot
+import data
 
 arg_parser = argparse.ArgumentParser(
     description='Text-to-table')
@@ -12,12 +13,39 @@ arg_parser.add_argument('--layer', action='append', default=[],
                         help='Regexp matching columns to use a plot layers')
 arg_parser.add_argument('--hdr', action='store_true', default=False,
                         help='Include column headers')
+arg_parser.add_argument('--computed', action='store_true', default=False,
+                        help='Add computed columns')
 arg_parser.add_argument('x', help='Column to use for X coordinate')
 arg_parser.add_argument('y', help='Column to use for Y coordinate')
 arg_parser.add_argument('file', nargs='+', help='Input benchmark text files')
 args = arg_parser.parse_args()
 
+def compute_cols(row):
+    """Add computed columns to row."""
+
+    # Convert cycles to secs
+    if row.get('iv.host') in ['tom', 'ben']:
+        for k in row.keys():
+            if k.startswith('dv.cycles') and row[k] is not None:
+                nk = 'dv.secs' + k[len('dv.cycles'):]
+                if nk not in row or row[nk] is None:
+                    row[nk] = float(row[k]) / 2.4e9
+    # Create X/sec
+    if 'dv.secs' in row:
+        for x in ['dv.iterations', 'dv.page touches']:
+            nk = x + '/sec'
+            if row[x] is not None and (nk not in row or row[nk] is None):
+                row[nk] = row[x] / float(row['dv.secs'])
+    if 'dv.page touches' in row:
+        for k in row.keys():
+            if k.startswith('dv.pmc '):
+                row[k + '/page touch'] = float(row[k]) / row['dv.page touches']
+    return row
+
 d = common.files_to_table(*args.file)
+
+if args.computed:
+    d = data.Table(map(compute_cols, d))
 
 props = list(d.properties().prop('name'))
 layer = []
