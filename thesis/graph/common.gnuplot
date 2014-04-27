@@ -64,6 +64,8 @@ radix='with lp lt 1'
 linux='with lp lt 2'
 bonsai='with lp lt 3'
 
+vmusing="using 'iv.cores':(column('min')/column('iv.cores'))"
+
 #
 # Multiplot stuff
 #
