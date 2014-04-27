@@ -6,7 +6,7 @@ set yrange [0:]
 set xlabel "\\# cores"
 set ylabel "page writes/sec/core"
 set ytics format "  %.0s%c"
-set title "(b) pipeline throughput"
+set title "(b) vmpipeline throughput"
 
 unset key
 unset ylabel

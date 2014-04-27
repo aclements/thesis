@@ -6,7 +6,7 @@ set yrange [0:]
 set xlabel "\\# cores"
 set ylabel "page writes/sec/core"
 set ytics format "  %.0s%c"
-set title "(a) local throughput"
+set title "(a) vmlocal throughput"
 
 set key inside top right
 
