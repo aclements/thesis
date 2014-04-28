@@ -12,11 +12,13 @@ if ("$0" eq "" || "$0"[0:1] eq "$$"[0:1]) {
   }
 }
 
-TIKZ_FONT=exists("TIKZ_FONT") ? TIKZ_FONT : "',7'"
+# Note: If you change the default font size, change \gpcode
+TIKZ_FONT=exists("TIKZ_FONT") ? TIKZ_FONT : "',10'"
 if (TARGET eq "paper-tikz") {
   set term tikz size @SIZE font @TIKZ_FONT
   set output
   set pointsize 1.5
+  set key spacing 1.35
 } else {
   if (TARGET eq "pdf") {
     set term pdfcairo size @SIZE linewidth 2 rounded font ',10'
