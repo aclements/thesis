@@ -5,6 +5,7 @@
 
 \XXX![AC]{Make graph style match \cref{sec:scalability}.}
 \XXX![AC]{Fix overfull width for three column graphs.}
+\XXX![AC]{Put mailbench graph in its own figure.}
 \XXX[AC]{Make sure sections explicitly tie in to evaluation
   questions.}
 
@@ -98,14 +99,14 @@ Direct comparison is difficult because
 Linux implements many features \sys does not, but this comparison
 confirms \sys's sequential performance is sensible.
 \XXX[AC]{Different version from mtrace, which is a little awkward.}
-%
-In the virtual memory benchmarks, we additionally compare against
-Linux with the Bonsai VM system~\cite{clements:bonsai} (based on
-kernel version 2.6.37).
-%
-Bonsai implements a \code{pagefault} operation that is usually
-conflict-free with commutative \code{pagefault}s, but still serializes
-\code{mmap} and \code{munmap} operations.
+% %
+% In the virtual memory benchmarks, we additionally compare against
+% Linux with the Bonsai VM system~\cite{clements:bonsai} (based on
+% kernel version 2.6.37).
+% %
+% Bonsai implements a \code{pagefault} operation that is usually
+% conflict-free with commutative \code{pagefault}s, but still serializes
+% \code{mmap} and \code{munmap} operations.
 
 \subsection{File system microbenchmarks}
 \label{sec:eval:fs-microbenchmarks}
@@ -455,19 +456,35 @@ To understand the scalability and performance of \sys's \vm virtual
 memory system, we use three microbenchmarks, each of which exercises a
 specific pattern of address space usage.
 
+As in the earlier benchmarks, we compare \vm against Linux~3.5.7.  We
+additionally compare against the Bonsai VM
+system~\cite{clements:bonsai} (which is based on Linux~2.6.37).
+%
+As discussed in \cref{sec:topic:linux-coarse}, in the Linux kernel
+\code{mmap}, \code{munmap}, and \code{pagefault} all acquire a
+per-address space lock.  This serializes \code{mmap} and \code{munmap}
+operations.  Linux's \code{pagefault} acquires the lock in shared
+mode, allowing \code{pagefault}s to proceed in parallel, but acquiring
+the address space lock in shared mode still induces conflicts on the
+cache line storing the lock.
+%
+Bonsai modifies the Linux virtual memory system so that
+\code{pagefault}s do not acquire this lock.  This makes most
+commutative \code{pagefault}s conflict-free in Bonsai, though Bonsai
+does not modify the locking behavior of \code{mmap} and \code{munmap}.
+
 \Cref{fig:vm-tput} shows the throughput of our three microbenchmarks
 on \sys, Bonsai, and Linux.
 %
 For consistency, we measure the number of pages written per second per
 core in all three benchmarks.
 %
-In \sys, because of per-core page tables, each of these writes
+Because \sys uses per-core page tables, each of these writes
 translates into a page fault, even if the page has already been
-allocated by another core.
+faulted by another core.
 %
 Linux and Bonsai incur fewer page faults than \sys for the pipeline
-and global microbenchmarks because every core uses the same page
-table.
+and global microbenchmarks because all cores use the same page table.
 
 \begin{figure*}
   \centering
@@ -664,42 +681,42 @@ core in to the per-core page tables.
   \input{graph/wrmem.tex}
   %
   \splitcaption{Metis application scalability}{for different VM
-    systems and allocation block sizes.}
+    systems and allocation unit sizes.}
   \label{fig:metis}
 \end{figure}
 
-\XXX![AC]{Text below here needs some work.}
 \XXX![AC]{Re-run Metis on \sys.  Something went wonky.  Maybe figure
   out why it doesn't scale perfectly with 64~KB regions?}
 
 \Cref{fig:metis} shows how Metis scales for the inverse indexing
-application for the three VM systems.  Metis on \sys scales well with
-both large and small allocation sizes, substantially out-performing
-and out-scaling Linux in both configurations, and out-performing
-Bonsai in the 64~KB \code{mmap}-heavy configuration.  For the 8~MB
-\code{pagefault}-heavy configuration, both \sys and Bonsai scale
-near-linearly, since both have conflict-free \code{pagefault}
-implementations.
+application for the three VM systems.
 %
-\sys is $\sim5\%$ slower than Bonsai at all core counts, suggesting
-that there is little or no performance penalty to \vm's very different
-design; it's likely we could close this gap with further work on the
-sequential performance of \sys.
+Metis scales poorly on Linux in both configurations, spending most of
+its time at high core counts in the virtual memory system acquiring
+the address space lock rather than performing useful computation.
 %
-Unlike Bonsai, \sys achieves highly scalable \code{mmap} and
-\code{munmap}, in addition to scalable \code{pagefaults}.
+This is true even in the \code{pagefault}-heavy configuration because,
+while \code{pagefault}s run in parallel on Linux, acquiring the
+address space lock in shared mode induces cache line conflicts.
 
-On Linux, both concurrent \code{mmap}s and concurrent
-\code{pagefault}s contend for the address space lock and, as a result,
-Metis on Linux scales poorly with both small and large allocation
-units.
+Metis on \sys scales comparatively well with both large and small
+allocation sizes.
 %
-For small allocation units, the workload is largely serialized by
-\code{mmap}s.
+For the 8~MB \code{pagefault}-heavy configuration, both \sys and
+Bonsai scale near-linearly, both as a result of conflict-free
+\code{pagefault} implementations.
 %
-For large allocations, the workload is dominated by \code{pagefault}s;
-these process in parallel, but on after incurring cache line conflicts
-to acquire the address space lock in shared mode.
-\XXX[AC]{I think the previous sentence could be more direct.}
+Furthermore, in this configuration \sys and Bonsai perform
+similarly---\sys is $\sim5\%$ slower than Bonsai at all core
+counts---suggesting that there is little or no sequential performance
+penalty to \vm's very different design.  It's likely we could close
+this gap with further work on the sequential performance of \sys.
+%
+Unlike Bonsai, \sys achieves conflict-free \code{mmap} and
+\code{munmap} in addition to conflict-free \code{pagefault}s, enabling
+it to out-scale Bonsai in the \code{mmap}-heavy 64~KB configuration.
+
+
+\XXX![AC]{Memory evaluation.  Discussion or something.}
 
 % LocalWords:  microbenchmark microbenchmarks vmlocal vmpipeline vmglobal
