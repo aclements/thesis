@@ -1,4 +1,4 @@
-call "common.gnuplot" "3col"
+call "common.gnuplot" "2col"
 
 set zeroaxis
 @xaxis_ben

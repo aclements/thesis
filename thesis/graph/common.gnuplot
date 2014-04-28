@@ -3,12 +3,21 @@ TARGET="`echo $TARGET`"
 set macros
 
 if ("$0" eq "" || "$0"[0:1] eq "$$"[0:1]) {
-  SIZE="3.05in,1.8in"
+  # Sized for one column of a two column, 7.5" wide body
+  # SIZE="3.05in,1.8in"
+
+  # Sized for one column 6" wide body
+  SIZE="3in,2.2in"
 } else {
-  if ("$0" eq "3col") {
-    SIZE="2.25in,1.6in"
+  if ("$0" eq "2col") {
+    # Sized for 6" wide body
+    SIZE="2.95in,2.2in"
   } else {
-    SIZE="$0"
+    if ("$0" eq "3col") {
+      SIZE="2.25in,1.6in"
+    } else {
+      SIZE="$0"
+    }
   }
 }
 

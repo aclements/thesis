@@ -1,4 +1,4 @@
-call "common.gnuplot" "3col"
+call "common.gnuplot" "2col"
 
 set zeroaxis
 @xaxis_ben
@@ -9,7 +9,7 @@ set ytics format "  %.0s%c"
 set title "(b) vmpipeline throughput"
 
 unset key
-unset ylabel
+#unset ylabel
 
 plot \
 "<../data/ttt --hdr --compute --layer iv.mode --layer iv.kernel --layer iv.krel iv.cores 'dv.page touches/sec' ../data/mapbench-xv6.raw ../data/mapbench-linux.raw ../data/mapbench-bonsai.raw" \

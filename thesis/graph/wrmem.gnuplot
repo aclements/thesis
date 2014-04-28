@@ -1,4 +1,4 @@
-call "common.gnuplot" "4.05in,1.8in"
+call "common.gnuplot" "5in,2.2in"
 
 set zeroaxis
 @xaxis_ben

@@ -3,9 +3,6 @@
 
 \XXX[STATUS]{Merged SOSP and \vm evaluations.  Draft almost ready.}
 
-\XXX![AC]{Make graph style match \cref{sec:scalability}.}
-\XXX![AC]{Fix overfull width for three column graphs.}
-\XXX![AC]{Put mailbench graph in its own figure.}
 \XXX[AC]{Make sure sections explicitly tie in to evaluation
   questions.}
 
@@ -185,28 +182,20 @@ disjoint-access parallelism assertion on real hardware.}
 \renewcommand{\themysubfigure}{\thefigure(\alph{mysubfigure})}
 
 \begin{figure*}
-  % hbox prevents wrapping and fixes nasty vertical space when we
-  % overfill
-  \hbox{
-    % Make subfigure labels refer to correct figure
-    \stepcounter{figure}
-    \input{graph/linkbench.tex}
-    \refstepcounter{mysubfigure}
-    \label{fig:linkbench}
-    \hspace{-.22in}
-    \input{graph/fdbench.tex}
-    \refstepcounter{mysubfigure}
-    \label{fig:fdbench}
-    \hspace{-.22in}
-    \input{graph/mailbench.tex}
-    \refstepcounter{mysubfigure}
-    \label{fig:mailbench}
-    \addtocounter{figure}{-1}
-  }
+  % Make subfigure labels refer to correct figure
+  \stepcounter{figure}
+  \input{graph/linkbench.tex}
+  \refstepcounter{mysubfigure}
+  \label{fig:linkbench}
+  \hspace{-.22in}
+  \input{graph/fdbench.tex}
+  \refstepcounter{mysubfigure}
+  \label{fig:fdbench}
+  \addtocounter{figure}{-1}
   \caption{Benchmark throughput in operations per second per core with
     varying core counts on \sys.
     The blue dots indicate single core Linux
-    performance for comparison. \XXX{Split out mailbench.}}
+    performance for comparison.}
 \end{figure*}
 
 % \begin{figure}
@@ -402,6 +391,15 @@ including operations on
 \code{O_CLOEXEC} files (except those specifically \code{dup}ed into the
 new process).
 
+\begin{figure}
+  \centering
+  \input{graph/mailbench.tex}
+  %
+  \splitcaption{Mail server benchmark throughput.}{The blue dot
+    indicates single core Linux performance for comparison.}
+  \label{fig:mailbench}
+\end{figure}
+
 \Cref{fig:mailbench} shows the resulting scalability of these two
 configurations.  Even though the mail server performs a much broader mix
 of operations than the microbenchmarks and doesn't focus solely on
@@ -488,7 +486,6 @@ and global microbenchmarks because all cores use the same page table.
 
 \begin{figure*}
   \centering
-  \hbox{
     \stepcounter{figure}
     \input{graph/vm-local-tput.tex}
     \refstepcounter{mysubfigure}
@@ -502,7 +499,6 @@ and global microbenchmarks because all cores use the same page table.
     \refstepcounter{mysubfigure}
     \label{fig:vm-tput:global}
     \addtocounter{figure}{-1}
-  }
   %
   \splitcaption{Virtual memory microbenchmark throughput}{in page
     writes per second per core with varying core counts.}
