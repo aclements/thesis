@@ -1,30 +1,53 @@
 \section{Performance evaluation}
 \label{sec:eval}
 
-\XXX[STATUS]{Unchanged from SOSP.  Needs some \vm text integrated.}
+\XXX[STATUS]{Merged SOSP and \vm evaluations.  Draft almost ready.}
 
-The previous section showed that \fs and RadixVM achieve conflict-freedom
-for nearly all commutative operations, which should result
-in perfect scalability in
-theory.  \Thiscref{sec:eval} shows that these results translate to scalability on
-real hardware for a complete operating system by answering the following
-questions:
+\XXX![AC]{Make graph style match \cref{sec:scalability}.}
+\XXX![AC]{Fix overfull width for three column graphs.}
+\XXX[AC]{Make sure sections explicitly tie in to evaluation
+  questions.}
+
+The previous \lcnamecref{sec:sv6} showed that \fs and \vm achieve
+conflict-freedom for nearly all commutative operations, which in
+principle should result in perfect scalability for these operations.
+%
+\Thiscref{sec:eval} confirms this, completing a pyramid whose
+foundations were set in \cref{sec:scalability} when we demonstrated
+that conflict-free memory accesses scale in most circumstances on real
+hardware.
+%
+\Thiscref{sec:eval} extends these results, showing that complex
+operating system calls built on conflict-free memory accesses scale
+and that, in turn, applications built on these operations scale.
+%
+We focus on the following questions:
 
 \begin{CompactItemize}
+
+\item Do conflict-free implementations of commutative operations and
+  applications built using them scale on real hardware?
 
 \item Do non-commutative operations limit performance on real
   hardware?
 
-\item Do conflict-free implementations of commutative operations scale
-  on real hardware?
-
-\item Does optimizing for scalability sacrifice sequential performance?
+% \item Does optimizing for scalability sacrifice sequential performance?
 
 \end{CompactItemize}
 
+Since real systems cannot focus on scalability to the exclusion of
+other performance characteristics, we also consider the balance of
+performance requirements by exploring the following question:
 
-\subsection{Experimental setup}
-\label{sec:topic:ben}
+\begin{CompactItemize}
+
+\item Can implementations optimized for linear scalability of
+  commutative operations also achieve competitive sequential
+  performance, reasonable (albeit sub-linear) scalability of
+  non-commutative operations, and acceptable memory use?
+
+\end{CompactItemize}
+
 
 To answer these questions, we use \sys.
 In addition to the operations analyzed in \cref{sec:sv6}, we scalably
@@ -36,13 +59,25 @@ and many of the modified POSIX APIs from
 All told, \sys
 totals \pyexpr{const["xv6-loc"]["all"]} lines of code, including user
 space and library code.
+%
+Using \sys, we evaluate two microbenchmarks and one application
+benchmark focused on file system operations, and three microbenchmarks
+and one application benchmark focused on virtual memory operations.
+
+
+\subsection{Experimental setup}
+\label{sec:topic:ben}
+
 
 We ran experiments on an 80-core machine with eight 2.4~GHz 10-core
-Intel E7-8870 chips and 256~GB of RAM.  When varying the number of
+Intel E7-8870 chips and 256~GB of RAM (detailed earlier in
+\cref{fig:machines}).
+%
+When varying the number of
 cores, benchmarks enable whole sockets at a time, so each 30~MB
 socket-level L3 cache is shared by exactly 10~enabled cores.
 We also report single-core numbers for
-comparison, though these are expected to be higher because, without
+comparison, though these are expected to be higher because without
 competition from other cores in the socket, the one
 core can use the entire 30~MB cache.
 
@@ -52,17 +87,28 @@ not ultimately access those cache lines, causing significant
 variability in our benchmark results and hampering our efforts to
 precisely control sharing.  We believe that, as large multicores and
 highly parallel applications become more prevalent, prefetcher
-heuristics will likewise evolve to avoid inducing this false sharing.
+heuristics will likewise evolve to not induce this false sharing.
 
-As a single core performance baseline, we compare against the same
-benchmarks running on Linux~3.5.7 from Ubuntu Quantal.  Direct
-comparison is difficult because
+As a performance baseline, we compare against the same
+benchmarks running on Linux~3.5.7 from Ubuntu Quantal.
+%
+All benchmarks compile an run on Linux and \sys without modifications.
+%
+Direct comparison is difficult because
 Linux implements many features \sys does not, but this comparison
-indicates \sys's performance is sensible.
+confirms \sys's sequential performance is sensible.
 \XXX[AC]{Different version from mtrace, which is a little awkward.}
+%
+In the virtual memory benchmarks, we additionally compare against
+Linux with the Bonsai VM system~\cite{clements:bonsai} (based on
+kernel version 2.6.37).
+%
+Bonsai implements a \code{pagefault} operation that is usually
+conflict-free with commutative \code{pagefault}s, but still serializes
+\code{mmap} and \code{munmap} operations.
 
-\subsection{Microbenchmarks}
-\label{sec:eval:microbenchmarks}
+\subsection{File system microbenchmarks}
+\label{sec:eval:fs-microbenchmarks}
 
 % Many interfaces provide stricter or more complex semantics than
 % generally required by applications.  \code{fstat}, for example, combines
@@ -90,8 +136,7 @@ indicates \sys's performance is sensible.
 % section 6, and we could do without section 6, and turning it into a
 % future work and discussion section.}
 
-We evaluate scalability and performance on real hardware using two
-microbenchmarks and an application-level benchmark.  Each benchmark has
+Each file system benchmark has
 two variants, one that uses standard, non-commutative POSIX APIs and
 another that accomplishes the same task using the modified, more broadly
 commutative APIs from \cref{sec:posix}.
@@ -105,6 +150,9 @@ We run each benchmark three times and report the mean.  Variance from
 the mean is always under 4\% and typically under 1\%.  \XXX[AC]{Except
 mailbench with regular APIs on 80 cores, where something clearly went
 bonkers.}
+%
+\XXX![AC]{This is true of mailbench, Metis for all but \sys, 8~MB at
+  20 cores, and almost all points in the VM microbenchmark.}
 
 % We examine three different classes of
 % non-commutativity: statbench exercises \code{fstat}, which combines
@@ -157,7 +205,7 @@ disjoint-access parallelism assertion on real hardware.}
   \caption{Benchmark throughput in operations per second per core with
     varying core counts on \sys.
     The blue dots indicate single core Linux
-    performance for comparison.}
+    performance for comparison. \XXX{Split out mailbench.}}
 \end{figure*}
 
 % \begin{figure}
@@ -173,12 +221,13 @@ not commute with the \code{link} and \code{unlink} operations performed
 by the other threads, and the other mode uses \code{fstatx} to request
 all fields except the link count, an operation that \emph{does} commute
 with \code{link} and \code{unlink}.  We use a \refcache scalable
-counter~\cite{clements:radixvm} for the link count so that the
-\code{link}s and \code{unlink}s do not conflict, and place it on
+counter for the link count so that the
+\code{link}s and \code{unlink}s are conflict-free, and place it on
 its own cache line to avoid false sharing.
 \Cref{fig:linkbench} shows the results.  With the commutative
 \code{fstatx}, statbench scales perfectly and experiences zero L2 cache
-misses in \code{fstatx}, while \code{fstat} severely limits the
+misses in \code{fstatx}, while the traditional \code{fstat} severely
+limits the
 scalability of statbench.  
 
 %This is no implementation fluke. 
@@ -192,25 +241,28 @@ still does not scale.  With a shared link count, each \code{fstat}
 call experiences exactly one L2 cache miss (for the cache line
 containing the link count), which means this is the most scalable that
 \code{fstat} can possibly be in the presence of concurrent \code{link}s
-and \code{unlink}s.  Yet, despite sharing only a single cache line, this
-seemingly innocuous non-commutativity limits the
+and \code{unlink}s.  Yet, despite sharing only a single cache line, the
+seemingly innocuous conflict arising from the non-commutative
+interface limits the
 implementation's scalability.  One small tweak to make the operation
 commute by omitting \code{st_nlink} eliminates the barrier to scaling,
-demonstrating the cost of non-commutativity.
+demonstrating that even an optimal implementation of a non-commutative
+operation can have severely limited scalability.
 
 In the case of \code{fstat}, optimizing for scalability sacrifices some
 sequential performance.  Tracking the link count with \refcache
 (or some scalable counter) is necessary to make \code{link} and
 \code{unlink} scale linearly, but requires \code{fstat} to reconcile the
 distributed link count to return \code{st_nlink}.  The exact overhead
-depends on the core count (which determines the number of \refcache
-caches), but with 80~cores, \code{fstat} is \pyexpr{times(
+depends on the core count, which determines the number of \refcache
+caches, but with 80 \refcache caches, \code{fstat} is \pyexpr{times(
   mean(linkbench.filter(("iv.st_nlink",True),("iv.stats",1),("iv.FS_NLINK_REFCOUNT","refcache::"))["dv.cycles/stat"]),
   mean(linkbench.filter(("iv.st_nlink",True),("iv.stats",1),("iv.kernel","Linux"))["dv.cycles/stat"]))}
 more expensive than on Linux.  \XXX[AC]{Haven't tried optimizing this.}
-In contrast, \code{fstatx} can avoid this overhead unless link counts are
-requested; like \code{fstat} with a shared count, it performs similarly to Linux's \code{fstat} on
-a single core.
+%
+In contrast, \code{fstatx} can avoid this overhead unless the caller
+requests link counts; like \code{fstat} with a shared count, it
+performs similarly to Linux's \code{fstat} on a single core.
 %\pyexpr{int(mean(linkbench.filter(("iv.st_nlink",True),("iv.stats",1),("iv.FS_NLINK_REFCOUNT","::"))["dv.cycles/stat"]))}~cycles
 % Above 20~cores, the shared link count and \refcache link count
 % implementations of \code{fstat} scale similarly.
@@ -310,14 +362,11 @@ somewhere that we have a model for unordered and ordered sockets.}
 %     thread-level mmap?
 %     stat vs. fstat (name lookup)
 
-\subsection{Application performance}
+\subsection{File system application performance}
 \label{sec:eval:app}
 
-\XXX[FK/AC]{Cite RadixVM on importance of scalable VM for application
-performance. This may be unnecessary given what section 6.2 already says.}
-
-Finally, we perform a similar experiment using a simple mail server to
-produce a system call workload more representative of a real
+We perform a similar experiment using a simple mail server to
+produce a file system workload more representative of a real
 application.  Our mail server uses a sequence of separate, communicating
 processes, each with a specific task, roughly like qmail~\cite{qmail}.
 {mail-enqueue} takes a mailbox name and a single message on
@@ -398,3 +447,259 @@ does would matter more.}
   \label{fig:forktest}
 \end{figure}
 \end{comment}
+
+
+\subsection{Virtual memory microbenchmarks}
+
+To understand the scalability and performance of \sys's \vm virtual
+memory system, we use three microbenchmarks, each of which exercises a
+specific pattern of address space usage.
+
+\Cref{fig:vm-tput} shows the throughput of our three microbenchmarks
+on \sys, Bonsai, and Linux.
+%
+For consistency, we measure the number of pages written per second per
+core in all three benchmarks.
+%
+In \sys, because of per-core page tables, each of these writes
+translates into a page fault, even if the page has already been
+allocated by another core.
+%
+Linux and Bonsai incur fewer page faults than \sys for the pipeline
+and global microbenchmarks because every core uses the same page
+table.
+
+\begin{figure*}
+  \centering
+  \hbox{
+    \stepcounter{figure}
+    \input{graph/vm-local-tput.tex}
+    \refstepcounter{mysubfigure}
+    \label{fig:vm-tput:local}
+    \hspace{-.25in}
+    \input{graph/vm-pipeline-tput.tex}
+    \refstepcounter{mysubfigure}
+    \label{fig:vm-tput:pipeline}
+    \hspace{-.25in}
+    \input{graph/vm-global-tput.tex}
+    \refstepcounter{mysubfigure}
+    \label{fig:vm-tput:global}
+    \addtocounter{figure}{-1}
+  }
+  %
+  \splitcaption{Virtual memory microbenchmark throughput}{in page
+    writes per second per core with varying core counts.}
+  \label{fig:vm-tput}
+\end{figure*}
+
+\paragraph{vmlocal.} The vmlocal microbenchmark exercises completely
+disjoint address space usage.
+%
+In vmlocal, each thread \code{mmap}s a single page in the shared
+address space, writes to the page (invoking \code{pagefault}), and
+then \code{munmap}s the page.
+%
+Because each thread maps a page at a different virtual address, all
+operations performed by vmlocal commute.
+
+Many concurrent memory allocators use per-thread memory pools that
+specifically optimize for thread-local allocations and exhibit this
+pattern of address space manipulation~\cite{jemalloc,tcmalloc}.
+However, such memory allocators typically map memory in large batches
+and conservatively return memory to the operating system to avoid
+burdening on the virtual memory system.
+%
+Our microbenchmark does the opposite, using 4~KB regions to maximally
+stress the VM system.
+
+The vmlocal microbenchmark scales linearly on \sys.
+%
+While this benchmark does incur cache misses, none are conflict misses
+and none require cross-core communication.
+%
+Regardless of the number of cores, we observe about 75 L2 cache misses
+per iteration and about 50 L3 cache misses, almost all a result of
+page zeroing.
+%
+None of these require cross-socket communication as all are satisfied
+from the core's local DRAM, which is consistent with \tool's
+determination that these operations are conflict-free.
+%
+Likewise, because \sys can track remote TLBs precisely, the vmlocal
+microbenchmark sends no TLB shootdowns.
+%
+Because these operations are conflict-free---there is no lock
+contention, a small and fixed number of cache misses, no remote DRAM
+accesses, and no TLB shootdowns---the time required to \code{mmap},
+\code{pagefault}, and \code{munmap} is constant regardless of the
+number of cores.
+%
+Linux and Bonsai, on the other hand, slow down as we add more cores.
+%
+This is not unexpected: Linux acquires the address space lock three
+times per iteration and Bonsai twice per iteration, effectively
+serializing the benchmark.
+% \XXX[AC]{Non-scalable locks are the reason for slow down beyond
+% serialization.}
+%
+\sys also demonstrates good sequential performance: at one core,
+\sys's performance is within 8\% of Linux, and it is likely this could
+be improved.
+
+\paragraph{vmpipeline.} The vmpipeline benchmark captures the pattern
+of streaming or pipeline communication, such as a \emph{map} task
+communicating with a \emph{reduce} task in
+MapReduce~\cite{dean:mapreduce}.
+%
+In vmpipeline, each thread \code{mmap}s a page of memory, writes to
+the page, and passes the page to the next thread in sequence, which
+also writes to the page and then \code{munmap}s it.
+%
+These operations do not commute and the implementation is not
+conflict-free.
+%
+However, unlike the non-commutative cases in the file system
+benchmarks, in vmpipeline, the number of cores conflicting on each
+cache line remains constant as we increase the total number of cores.
+\XXX[AC]{This introduces a new concept, but it's not really because of
+  that new concept.}
+%
+As a result, vmpipeline still scales well on \sys, but not linearly.
+%
+We observe similar cache miss rates as vmlocal, but vmpipeline induces
+cross-socket memory references for pipeline synchronization, returning
+freed pages to their home nodes when they are passed between sockets,
+and cross-socket shootdown IPIs.
+% 0.07 cache lines moved per iteration
+For Linux and Bonsai, vmpipeline is almost identical to vmlocal except
+that it writes twice to each page; hence we see almost identical
+performance, scaled up by a factor of two.
+%
+Again, \sys's single core performance is within 8\% of Linux.
+
+% TLB shootdowns/iteration is fixed at 1.2, but cycles/TLB shootdown
+% grows from ~7000 at 10 cores to 37000 at 80 cores (not enough to add
+% up to the cycles/iteration growth).  cycles/munmap tracks this.
+% cycles/mmap is relatively constant.  cycles/alloc page fault also
+% grows from ~6000 at 10 cores to ~12000 at 80 cores.
+
+\paragraph{vmglobal.} Finally, vmglobal simulates a widely shared
+region such as a memory-mapped library or a shared data structure like
+a hash table.
+%
+In vmglobal, each thread \code{mmap}s a 64~KB part of a large region
+of memory, then all threads access all of the pages in the large
+region in a random order.
+%
+These operations commute within each phase, but not between phases.
+
+Vmglobal also scales well on \sys, despite being conceptually poorly
+suited to \sys's per-core page tables and targeted TLB shootdown.  In
+this benchmark, \sys performance is limited by the cost of TLB
+shootdowns: at 80 cores, delivering shootdown IPIs to the other 79
+cores and waiting for acknowledgments takes nearly a millisecond.
+% 1.8 million cycles
+However, at 80~cores, the shared region is 20~MB, so this cost is
+amortized over a large number of page faults.
+%
+Linux and Bonsai perform better on this benchmark than on vmlocal and
+vmpipeline because it has a higher ratio of page faults to \code{mmap}
+and \code{munmap} calls, but they still fail to scale.
+
+
+\subsection{Virtual memory application benchmark}
+
+To evaluate the impact of \vm on application performance, we use
+Metis, a high-performance single-server multithreaded MapReduce
+library, to compute a word position index from a 4~GB in-memory text
+file~\cite{dean:mapreduce,metis:tr}.
+%
+Metis exhibits all of the sharing patterns exercised by the
+microbenchmarks: it uses core-local memory, it uses a globally shared
+B+-tree to store key-value pairs, and it also has pairwise sharing of
+intermediate results between \emph{map} tasks and \emph{reduce} tasks.
+%
+Metis also allows a direct comparison with the Bonsai virtual memory
+system~\cite{clements:bonsai}, which used Metis as its main benchmark.
+
+By default Metis uses the Streamflow memory
+allocator~\cite{schneider:streamflow}, which is designed to minimize
+pressure on the VM system, but nonetheless suffers from contention in
+the VM system when running on Linux~\cite{clements:bonsai}.  Previous
+systems that used this library avoided contention for in-kernel locks
+by using super pages and improving the granularity of the super page
+allocation lock in Linux~\cite{boyd-wickizer:scaling}, or by having
+the memory allocator pre-allocate all memory upfront~\cite{metis:tr}.
+While these workarounds do allow Metis to scale on Linux, we wanted to
+focus on the root scalability problem in the VM system rather than the
+efficacy of workarounds and to eliminate compounding factors from
+differing library implementations, so we use a custom allocator on
+both Linux and \sys designed specifically for Metis.  In contrast with
+general-purpose memory allocators, this allocator is simple and
+designed to have no internal contention: memory is mapped in
+fixed-sized blocks, free lists are exclusively per-core, and the
+allocator never returns memory to the OS.
+
+Two factors determine the scalability of Metis: conflicts between
+concurrent \code{mmap}s during the \emph{map} phase and conflicts
+between concurrent \code{pagefault}s during the \emph{reduce} phase.
+%
+If the memory allocator uses a large allocation unit, Metis
+can avoid the first source of contention by minimizing the number of
+\code{mmap} invocations.
+%
+Therefore, we measure Metis using two different allocation units: 8~MB
+to stress \code{pagefault} and 64~KB to stress \code{mmap}.
+%
+At 80 cores, Metis invokes \code{mmap} 5,987 times in the 8~MB
+configuration, and 572,292 in the 64~KB configuration.
+%
+In both cases, it invokes \code{pagefault} approximately 12~million
+times, where 70\% of these page faults cause it to allocate new
+physical pages and the rest bring pages already faulted on another
+core in to the per-core page tables.
+
+\begin{figure}
+  \centering
+  \input{graph/wrmem.tex}
+  %
+  \splitcaption{Metis application scalability}{for different VM
+    systems and allocation block sizes.}
+  \label{fig:metis}
+\end{figure}
+
+\XXX![AC]{Text below here needs some work.}
+\XXX![AC]{Re-run Metis on \sys.  Something went wonky.  Maybe figure
+  out why it doesn't scale perfectly with 64~KB regions?}
+
+\Cref{fig:metis} shows how Metis scales for the inverse indexing
+application for the three VM systems.  Metis on \sys scales well with
+both large and small allocation sizes, substantially out-performing
+and out-scaling Linux in both configurations, and out-performing
+Bonsai in the 64~KB \code{mmap}-heavy configuration.  For the 8~MB
+\code{pagefault}-heavy configuration, both \sys and Bonsai scale
+near-linearly, since both have conflict-free \code{pagefault}
+implementations.
+%
+\sys is $\sim5\%$ slower than Bonsai at all core counts, suggesting
+that there is little or no performance penalty to \vm's very different
+design; it's likely we could close this gap with further work on the
+sequential performance of \sys.
+%
+Unlike Bonsai, \sys achieves highly scalable \code{mmap} and
+\code{munmap}, in addition to scalable \code{pagefaults}.
+
+On Linux, both concurrent \code{mmap}s and concurrent
+\code{pagefault}s contend for the address space lock and, as a result,
+Metis on Linux scales poorly with both small and large allocation
+units.
+%
+For small allocation units, the workload is largely serialized by
+\code{mmap}s.
+%
+For large allocations, the workload is dominated by \code{pagefault}s;
+these process in parallel, but on after incurring cache line conflicts
+to acquire the address space lock in shared mode.
+\XXX[AC]{I think the previous sentence could be more direct.}
+
+% LocalWords:  microbenchmark microbenchmarks vmlocal vmpipeline vmglobal
