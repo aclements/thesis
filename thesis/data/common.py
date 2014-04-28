@@ -17,5 +17,5 @@ def argv_to_table():
 def files_to_table(*fnames):
     raw = []
     for fname in fnames:
-        raw.extend(textformat.parse(file(fname)))
+        raw.extend(textformat.parse(sys.stdin if fname == '-' else file(fname)))
     return data.Table(raw)
