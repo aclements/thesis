@@ -22,7 +22,7 @@
 % incomplete or incorrect text.  These are things that must not remain
 % in a final copy and will produce warnings if they are.
 
-\newcommand{\XXX}{\@ifnextchar!{\@@XXXhigh}{\@XXXlow}}
+\DeclareRobustCommand{\XXX}{\@ifnextchar!{\@@XXXhigh}{\@XXXlow}}
 \def\@@XXXhigh!{\@XXXhigh}
 
 \newcommand{\@XXXhigh}[2][]{%
