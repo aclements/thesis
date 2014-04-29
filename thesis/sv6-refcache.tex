@@ -160,8 +160,9 @@ reference count is zero.
 \begin{figure*}
   \centering
   \includegraphics[width=\textwidth]{figures/refcache.pdf}
-  \caption{\refcache example showing a single object over eight
-    epochs.  Plus and minus symbols represent increment and decrement
+  %
+  \splitcaption{\refcache example showing a single object over eight
+    epochs.}{Plus and minus symbols represent increment and decrement
     operations, dotted lines show when cores flush these to the object's
     global count, and blue circles show when each core flushes its
     local reference cache.  The loops around the global count show
