@@ -159,6 +159,10 @@
 \titleformat{\chapter}[hang]{%
   \huge\bfseries}{\thechapter\hspace{15pt}\rule[-1.2em]{.5pt}{3em}\hspace{15pt}}{0pt}{\huge\bfseries}
 
+% Make tables use the same numbering and format as figures
+\makeatletter
+\let\thetable\thefigure
+\let\c@table\c@figure
 \makeatother
 
 
