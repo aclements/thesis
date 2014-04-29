@@ -567,14 +567,14 @@ In vmpipeline, each thread \code{mmap}s a page of memory, writes to
 the page, and passes the page to the next thread in sequence, which
 also writes to the page and then \code{munmap}s it.
 %
-These operations do not commute and the implementation is not
-conflict-free.
+The operations performed by neighboring cores do not commute and their
+implementation is not conflict-free.
 %
-However, unlike the non-commutative cases in the file system
-benchmarks, in vmpipeline, the number of cores conflicting on each
-cache line remains constant as we increase the total number of cores.
-\XXX[AC]{This introduces a new concept, but it's not really because of
-  that new concept.}
+However, the operations of non-neighboring cores do commute, so unlike
+the non-commutative cases in the file system benchmarks, increasing
+the number of cores in vmlocal increases the number of conflicted
+cache lines without increasing the number of cores conflicting on each
+cache line.
 %
 As a result, vmpipeline still scales well on \sys, but not linearly.
 %
