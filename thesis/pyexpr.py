@@ -84,6 +84,32 @@ class mscan(object):
     ntestcases = xv6.total
 
 #
+# VM size data
+#
+
+import vmsize
+
+vmsizes = {}
+for workload in ["chrome-used", "firefox-10.0.6-init", "firefox-10.0.6-used",
+                 "eurosys-apache", "eurosys-mysql"]:
+    maps = list(vmsize.parse_maps(file("data/vmsize/%s-maps" % workload)))
+    pagemap = list(vmsize.parse_saved_pagemap(file(
+                "data/vmsize/%s-pagemap" % workload)))
+    vmsizes[workload] = {"tree": vmsize.tree_size(maps),
+                         "skip": vmsize.skip_list_size(maps),
+                         "linux": vmsize.linux_size(maps, pagemap),
+                         "radix": vmsize.radix_size(maps, pagemap),
+                         "rss": vmsize.rss(pagemap)}
+
+def vmsize_row(workload):
+    return "%s & %s & %s & %s & ($%.1f\\times$)" % (
+        bytes(vmsizes[workload]["rss"]),
+        bytes(vmsizes[workload]["linux"][0]),
+        bytes(vmsizes[workload]["linux"][1]),
+        bytes(vmsizes[workload]["radix"]),
+        float(vmsizes[workload]["radix"]) / sum(vmsizes[workload]["linux"]))
+
+#
 # Generate
 #
 

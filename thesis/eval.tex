@@ -149,8 +149,8 @@ the mean is always under 4\% and typically under 1\%.  \XXX[AC]{Except
 mailbench with regular APIs on 80 cores, where something clearly went
 bonkers.}
 %
-\XXX![AC]{This is true of mailbench, Metis for all but \sys, 8~MB at
-  20 cores, and almost all points in the VM microbenchmark.}
+\XXX![AC]{This is true of mailbench, Metis, and almost all points in
+  the VM microbenchmark.}
 
 % We examine three different classes of
 % non-commutativity: statbench exercises \code{fstat}, which combines
@@ -681,8 +681,8 @@ core in to the per-core page tables.
   \label{fig:metis}
 \end{figure}
 
-\XXX![AC]{Re-run Metis on \sys.  Something went wonky.  Maybe figure
-  out why it doesn't scale perfectly with 64~KB regions?}
+\XXX[AC]{Metis's scalability on \sys for 64~KB units is limited by
+  umalloc being dumb, not by \vm as far as I can tell.}
 
 \Cref{fig:metis} shows how Metis scales for the inverse indexing
 application for the three VM systems.
@@ -713,6 +713,70 @@ Unlike Bonsai, \sys achieves conflict-free \code{mmap} and
 it to out-scale Bonsai in the \code{mmap}-heavy 64~KB configuration.
 
 
-\XXX![AC]{Memory evaluation.  Discussion or something.}
+\subsection{Memory overhead}
+\label{sec:eval:memory}
 
-% LocalWords:  microbenchmark microbenchmarks vmlocal vmpipeline vmglobal
+Thus far, we've considered two measures of throughput: scalability and
+sequential performance.  \Thiscref{sec:eval:memory} turns to memory
+overhead, another important performance metric.
+
+While \fs's data structures closely resemble those of traditional Unix
+kernels, \vm's scalability depends on a less-compact representation of
+virtual memory than a traditional binary tree of memory regions and
+per-core page tables.
+
+To quantify the memory overhead of \vm's radix tree, we took snapshots
+of the virtual memory state of various memory-intensive applications
+and servers running on Linux and measured the space required to
+represent the address space metadata in both Linux and \vm.
+%
+Linux uses a single object to represent each contiguous range of
+mapped memory (a \emph{virtual memory area} or VMA), arranged in a
+red-black tree, which makes its basic address space layout metadata
+very compact.
+%
+As a result, Linux must store information about the physical pages
+backing mapped virtual pages separately, which it cleverly does in the
+hardware page table itself, making the hardware page table a crucial
+part of the address space metadata.
+%
+\vm, on the other hand, stores both OS-specific metadata and physical
+page mappings together in the radix tree.
+%
+This makes the radix tree larger than the equivalent VMA tree, but
+means \vm can freely discard memory used for per-core hardware page
+tables.
+
+\begin{table}
+  \centering
+  \begin{tabular}{@{}l@{~ ~}r@{~}r@{~ ~}rr@{ }r@{}} \toprule
+    & & \multicolumn{2}{c}{Linux} & \multicolumn{2}{c}{Radix tree} \\
+    & \multicolumn{1}{c}{RSS}
+    & VMA tree & Page table & \multicolumn{2}{c}{(rel. to Linux)} \\
+    \midrule
+    Firefox & \pyexpr{vmsize_row("firefox-10.0.6-used")} \\
+    Chrome & \pyexpr{vmsize_row("chrome-used")} \\
+    Apache & \pyexpr{vmsize_row("eurosys-apache")} \\
+    MySQL & \pyexpr{vmsize_row("eurosys-mysql")} \\
+    \bottomrule
+  \end{tabular}
+  \caption{Memory usage for alternate VM representations.}
+  \label{tab:memuse}
+\end{table}
+
+\Cref{tab:memuse} summarizes the memory overhead of these two
+representations for four applications: the Firefox and Chrome web
+browsers, after significant use, and the Apache web server and MySQL
+database server used by the EuroSys 2013 paper submission web site.
+%
+Compared to each application's resident set size (the memory directly
+allocated by the application), the radix tree incurred at most a
+3.7\% overhead in total memory footprint.
+
+
+\subsection{Discussion}
+
+\XXX![AC]{Write me.}
+
+% LocalWords:  microbenchmark microbenchmarks vmlocal vmpipeline
+% LocalWords:  vmglobal Metis
