@@ -105,6 +105,13 @@ confirms \sys's sequential performance is sensible.
 % conflict-free with commutative \code{pagefault}s, but still serializes
 % \code{mmap} and \code{munmap} operations.
 
+We run each benchmark three times and report the mean.  Variance from
+the mean is always under 5\% and typically under 1\%.
+% \XXX[AC]{Except mailbench with regular APIs on 80 cores, where
+% something clearly went bonkers, and a few VM microbenchmark points
+% on Linux and Bonsai, but they're so collapsed that mean variance
+% doesn't mean much.}
+
 \subsection{File system microbenchmarks}
 \label{sec:eval:fs-microbenchmarks}
 
@@ -143,14 +150,6 @@ By benchmarking the standard interfaces against
 their commutative counterparts, we can isolate the cost of
 non-commutativity and also examine the scalability of
 conflict-free implementations of commutative operations.
-
-We run each benchmark three times and report the mean.  Variance from
-the mean is always under 4\% and typically under 1\%.  \XXX[AC]{Except
-mailbench with regular APIs on 80 cores, where something clearly went
-bonkers.}
-%
-\XXX![AC]{This is true of mailbench, Metis, and almost all points in
-  the VM microbenchmark.}
 
 % We examine three different classes of
 % non-commutativity: statbench exercises \code{fstat}, which combines
