@@ -345,15 +345,13 @@ allocates, accesses, and frees memory on one core, with no other threads
 accessing the same memory region, then \vm will perform no TLB shootdowns.
 
 The obvious downside to this approach is the extra memory required for
-per-core page tables.  We show in \cref{eval:memory} that this
+per-core page tables.  We show in \cref{sec:eval:memory} that this
 overhead is small in practice compared to the total memory footprint
 of an application, but for applications with poor partitioning, it may
 be necessary for the application to provide hints about widely shared
 regions so the kernel can share page tables (similar to Corey address
 ranges~\cite{boyd-wickizer:corey}) or for the kernel to detect such
 regions.
-%
-\XXX![AC]{Do we show this in \cref{eval:memory}?}
 %
 The kernel can also reduce overhead by simply discarding page table
 pages when memory is low.
