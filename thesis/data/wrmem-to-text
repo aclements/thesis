@@ -1,0 +1,41 @@
+#!/usr/bin/python
+
+import argparse
+
+def toTextFormat(fp):
+    """Convert raw wrmem output to text benchmark format."""
+
+    # It's almost the text format, so it's easier to convert it than
+    # to parse it directly.
+    out = []
+    state, div = None, 1
+    for line in fp:
+        if line == "\n" or line.startswith("=") or line.startswith("#"):
+            out.append(line)
+        elif line.startswith("Runtime"):
+            state, div = "secs", 1000.0
+            continue
+        elif line.startswith("Number"):
+            state, div = "tasks", 1
+            continue
+        elif line.startswith("done with"):
+            pass
+        elif line.startswith("\t"):
+            parts = line.strip().split("\t")
+            while parts:
+                (label, val), parts = parts[:2], parts[2:]
+                assert label.endswith(":")
+                val = int(val) / div
+                out.append("%s %s %s\n" % (val, label[:-1].lower(), state))
+                if label == "Real:" and state == "secs":
+                    jph = 3600 / val
+                    out.append("%s jobs/hour\n" % jph)
+        state = None
+    return "".join(out)
+
+arg_parser = argparse.ArgumentParser()
+arg_parser.add_argument('file', nargs='+', type=open, help='Metis output files')
+args = arg_parser.parse_args()
+
+for f in args.file:
+    print toTextFormat(f)
