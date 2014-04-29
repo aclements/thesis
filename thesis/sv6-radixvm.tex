@@ -256,8 +256,8 @@ To record each mapping, \vm logically stores a separate instance of
 the mapping metadata
 in the radix tree for each page in the mapped range.  This differs
 from a typical design that allocates a single metadata object
-to represent the entire range of a mapping (e.g., ``virtual memory
-areas'' in Linux).
+to represent the entire range of a mapping (e.g., \emph{virtual memory
+areas} in Linux).
 %
 This is practical because \vm's mapping metadata object is small and
 foldable (the mapping metadata objects of all pages in a mapped range
