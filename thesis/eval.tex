@@ -776,7 +776,20 @@ allocated by the application), the radix tree incurred at most a
 
 \subsection{Discussion}
 
-\XXX![AC]{Write me.}
+\Thiscref{sec:eval} completes our trajectory from theory to practice.
+%
+The benchmarks herein have demonstrated that commutative operations
+can be implemented to scale, confirming the scalable commutativity
+rule for complex interfaces and real hardware and validating the
+designs and design methodologies set out in \cref{sec:sv6}.
+%
+Several of these benchmarks have also demonstrated the necessity of
+commutativity and conflict-freedom for scalability by showing that
+even a single contended cache line in a complex operation can severely
+limit scalability.
+%
+Furthermore, all of this can be accomplished at little cost to
+sequential performance or memory use.
 
 % LocalWords:  microbenchmark microbenchmarks vmlocal vmpipeline
 % LocalWords:  vmglobal Metis
