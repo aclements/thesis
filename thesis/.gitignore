@@ -19,3 +19,7 @@
 /gnuplot-lua-tikz-common.tex
 *~
 /bibtex
+
+# Latexrun ignores
+/.latexrun.db
+/latex.out
