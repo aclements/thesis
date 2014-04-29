@@ -1,0 +1,70 @@
+#!/usr/bin/env python3
+
+# This script downloads the Google Fonts used by the presentation to
+# make the slides work offline.
+#
+# To use Google fonts directly, add to the SVG defs:
+#  <xhtml:link href="..." rel="stylesheet" type="text/css" />
+# where the href is the CSS URL below.
+
+CSS = 'https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700,300italic|Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800|Source+Code+Pro:200,300,400,500,600,700,900'
+CHROME_UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.16 Safari/537.36'
+
+import os
+import re
+import urllib.request
+
+def fetch(url, ua=None):
+    print('Fetching %s%s' % (url, (' as ' + ua) if ua else ''))
+    headers = {}
+    if ua:
+        headers['User-Agent'] = ua
+    req = urllib.request.Request(url, headers=headers)
+    return urllib.request.urlopen(req).read()
+
+def fetch_to(url, path):
+    if os.path.exists(path):
+        print('Already have', path)
+        return
+    open(path, 'wb').write(fetch(url))
+
+def parse_line(line):
+    m = re.search(r'url\(([^)]*)\)', line)
+    if not m:
+        return
+    url = m.group(1)
+    m = re.search(r"local\('([^ ']*)'\)", line)
+    if not m:
+        return
+    name = m.group(1)
+    return url, name
+
+# Get TrueType files.  With an unknown User-Agent, Google Fonts
+# returns TrueType fonts.
+css_ttf = fetch(CSS).decode('utf-8')
+ttfs = {}
+for line in css_ttf.splitlines():
+    parsed = parse_line(line)
+    if not parsed:
+        continue
+    url, name = parsed
+    assert url.endswith('.ttf')
+    fname = name + '.ttf'
+    fetch_to(url, os.path.join('fonts', fname))
+    ttfs[name] = fname
+
+# Get WOFF files and WOFF CSS by spoofing Chrome.
+css = fetch(CSS, ua=CHROME_UA).decode('utf-8')
+lines = []
+for line in css.splitlines():
+    parsed = parse_line(line)
+    if not parsed:
+        lines.append(line)
+        continue
+    url, name = parsed
+    assert url.endswith('.woff')
+    fname = name + '.woff'
+    fetch_to(url, os.path.join('fonts', fname))
+    lines.append(line.replace(';', ', url(%s) format(\'woff\'), local(sans-serif);' % fname))
+
+open(os.path.join('fonts', 'faces.css'), 'w').write('\n'.join(lines))

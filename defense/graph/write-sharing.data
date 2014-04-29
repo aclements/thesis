@@ -1,0 +1,4880 @@
+== --host=ben --kernel=3.2.0-4-amd64 --order=seq ==
+==== --ncores=2 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41 
+3.00003 sec
+5965835 ops
+1988589 ops/sec
+142 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41 
+2.99991 sec
+6108105 ops
+2036095 ops/sec
+128 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41 
+2.99994 sec
+5888681 ops
+1962933 ops/sec
+154 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41 
+2.99988 sec
+5844048 ops
+1948091 ops/sec
+164 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41 
+3 sec
+5993202 ops
+1997731 ops/sec
+150 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41 
+2.99998 sec
+5961265 ops
+1987100 ops/sec
+143 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41 
+2.99992 sec
+6063783 ops
+2021317 ops/sec
+137 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41 
+2.99994 sec
+6124368 ops
+2041494 ops/sec
+126 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41 
+2.99997 sec
+6072475 ops
+2024178 ops/sec
+139 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41 
+2.99992 sec
+5887869 ops
+1962678 ops/sec
+154 cycles/op
+
+==== --ncores=3 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-42 
+2.99999 sec
+12111010 ops
+4037013 ops/sec
+132 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-42 
+2.99982 sec
+11980691 ops
+3993803 ops/sec
+146 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-42 
+2.99992 sec
+11963898 ops
+3988072 ops/sec
+144 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-42 
+2.99981 sec
+12202705 ops
+4067827 ops/sec
+130 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-42 
+2.99979 sec
+12157553 ops
+4052806 ops/sec
+134 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-42 
+2.9998 sec
+12162900 ops
+4054570 ops/sec
+134 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-42 
+2.99988 sec
+11970128 ops
+3990203 ops/sec
+143 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-42 
+2.99986 sec
+11918484 ops
+3973014 ops/sec
+149 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-42 
+2.99991 sec
+12083359 ops
+4027911 ops/sec
+134 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-42 
+2.99997 sec
+12039267 ops
+4013133 ops/sec
+147 cycles/op
+
+==== --ncores=4 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-43 
+2.99978 sec
+18131756 ops
+6044353 ops/sec
+142 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-43 
+2.99974 sec
+18123083 ops
+6041541 ops/sec
+143 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-43 
+2.99976 sec
+17926177 ops
+5975870 ops/sec
+150 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-43 
+2.99966 sec
+17955161 ops
+5985737 ops/sec
+154 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-43 
+2.9997 sec
+17871897 ops
+5957894 ops/sec
+153 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-43 
+2.99975 sec
+18170901 ops
+6057470 ops/sec
+134 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-43 
+2.99971 sec
+17809931 ops
+5937209 ops/sec
+157 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-43 
+2.99972 sec
+17744900 ops
+5915514 ops/sec
+162 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-43 
+2.9997 sec
+17746938 ops
+5916239 ops/sec
+162 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-43 
+2.99979 sec
+17873475 ops
+5958236 ops/sec
+153 cycles/op
+
+==== --ncores=5 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-44 
+2.99969 sec
+24327314 ops
+8109950 ops/sec
+130 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-44 
+2.99968 sec
+23542940 ops
+7848494 ops/sec
+169 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-44 
+2.99971 sec
+24364561 ops
+8122316 ops/sec
+128 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-44 
+2.99963 sec
+23686566 ops
+7896482 ops/sec
+165 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-44 
+2.99968 sec
+23853608 ops
+7952056 ops/sec
+152 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-44 
+2.99972 sec
+24332027 ops
+8111443 ops/sec
+130 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-44 
+2.99974 sec
+24501835 ops
+8167978 ops/sec
+126 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-44 
+2.9997 sec
+23535880 ops
+7846088 ops/sec
+169 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-44 
+2.99963 sec
+24040129 ops
+8014375 ops/sec
+143 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-44 
+2.99972 sec
+23538076 ops
+7846747 ops/sec
+169 cycles/op
+
+==== --ncores=6 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-45 
+2.9997 sec
+30427797 ops
+10143613 ops/sec
+134 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-45 
+2.99955 sec
+29927685 ops
+9977404 ops/sec
+150 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-45 
+2.99972 sec
+29953813 ops
+9985542 ops/sec
+149 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-45 
+2.99966 sec
+30071111 ops
+10024829 ops/sec
+144 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-45 
+2.99956 sec
+30297826 ops
+10100773 ops/sec
+135 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-45 
+2.99963 sec
+30065965 ops
+10023240 ops/sec
+144 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-45 
+2.99966 sec
+30111464 ops
+10038309 ops/sec
+143 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-45 
+2.99955 sec
+30017849 ops
+10007467 ops/sec
+146 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-45 
+2.99959 sec
+29652160 ops
+9885398 ops/sec
+161 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-45 
+2.99965 sec
+30060061 ops
+10021193 ops/sec
+144 cycles/op
+
+==== --ncores=7 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-46 
+2.99955 sec
+35739192 ops
+11914850 ops/sec
+156 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-46 
+2.99938 sec
+36089688 ops
+12032378 ops/sec
+144 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-46 
+2.99946 sec
+35593250 ops
+11866561 ops/sec
+161 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-46 
+2.99926 sec
+36041795 ops
+12016879 ops/sec
+146 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-46 
+2.99948 sec
+36082413 ops
+12029552 ops/sec
+144 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-46 
+2.99943 sec
+35950190 ops
+11985669 ops/sec
+149 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-46 
+2.99945 sec
+36123131 ops
+12043235 ops/sec
+143 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-46 
+2.99961 sec
+36557931 ops
+12187574 ops/sec
+129 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-46 
+2.99959 sec
+35598999 ops
+11867947 ops/sec
+161 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-46 
+2.99937 sec
+36535247 ops
+12180960 ops/sec
+130 cycles/op
+
+==== --ncores=8 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-47 
+2.99931 sec
+41833660 ops
+13947752 ops/sec
+153 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-47 
+2.99918 sec
+42055113 ops
+14022194 ops/sec
+146 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-47 
+2.99951 sec
+41718791 ops
+13908513 ops/sec
+156 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-47 
+2.99901 sec
+42261597 ops
+14091848 ops/sec
+140 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-47 
+2.99932 sec
+41441256 ops
+13816902 ops/sec
+164 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-47 
+2.99924 sec
+42073798 ops
+14028166 ops/sec
+146 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-47 
+2.9995 sec
+42098728 ops
+14035243 ops/sec
+145 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-47 
+2.9992 sec
+42540091 ops
+14183821 ops/sec
+132 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-47 
+2.99928 sec
+42170262 ops
+14060115 ops/sec
+143 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-47 
+2.99893 sec
+41947997 ops
+13987669 ops/sec
+149 cycles/op
+
+==== --ncores=9 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-48 
+2.99927 sec
+47939796 ops
+15983827 ops/sec
+152 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-48 
+2.99948 sec
+47768940 ops
+15925761 ops/sec
+154 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-48 
+2.99946 sec
+48189372 ops
+16065989 ops/sec
+144 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-48 
+2.99909 sec
+47789547 ops
+15934661 ops/sec
+154 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-48 
+2.99914 sec
+48145446 ops
+16053083 ops/sec
+145 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-48 
+2.99927 sec
+47791013 ops
+15934203 ops/sec
+154 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-48 
+2.9991 sec
+47841473 ops
+15951916 ops/sec
+153 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-48 
+2.9992 sec
+47759393 ops
+15924038 ops/sec
+154 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-48 
+2.99931 sec
+48323824 ops
+16111668 ops/sec
+140 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-48 
+2.99893 sec
+48129204 ops
+16048770 ops/sec
+145 cycles/op
+
+==== --ncores=10 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-49 
+2.9994 sec
+53997073 ops
+18002625 ops/sec
+149 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-49 
+2.99872 sec
+54086811 ops
+18036638 ops/sec
+148 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-49 
+2.99915 sec
+53791679 ops
+17935665 ops/sec
+155 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-49 
+2.99925 sec
+53566190 ops
+17859854 ops/sec
+158 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-49 
+2.99902 sec
+54214842 ops
+18077501 ops/sec
+145 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-49 
+2.99972 sec
+53675066 ops
+17893352 ops/sec
+158 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-49 
+2.99917 sec
+53963037 ops
+17992633 ops/sec
+149 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-49 
+2.99931 sec
+53106454 ops
+17706205 ops/sec
+169 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-49 
+2.99952 sec
+53157665 ops
+17722086 ops/sec
+168 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-49 
+2.99924 sec
+53938308 ops
+17983985 ops/sec
+150 cycles/op
+
+==== --ncores=11 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-50 
+2.99896 sec
+46330914 ops
+15449019 ops/sec
+503 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-50 
+2.99962 sec
+46727481 ops
+15577820 ops/sec
+490 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-50 
+2.99863 sec
+47871004 ops
+15964271 ops/sec
+452 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-50 
+2.99918 sec
+46717816 ops
+15576883 ops/sec
+490 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-50 
+2.99884 sec
+49133968 ops
+16384341 ops/sec
+414 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-50 
+2.99924 sec
+48148723 ops
+16053630 ops/sec
+444 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-50 
+2.99908 sec
+49018997 ops
+16344662 ops/sec
+418 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-50 
+2.99939 sec
+46353935 ops
+15454469 ops/sec
+502 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-50 
+2.99902 sec
+47649240 ops
+15888286 ops/sec
+459 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-50 
+2.99917 sec
+48133763 ops
+16049022 ops/sec
+445 cycles/op
+
+==== --ncores=12 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-51 
+2.99913 sec
+43868041 ops
+14626898 ops/sec
+754 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-51 
+2.99891 sec
+42233624 ops
+14083006 ops/sec
+824 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-51 
+2.99905 sec
+42989778 ops
+14334464 ops/sec
+791 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-51 
+2.99927 sec
+42900585 ops
+14303684 ops/sec
+794 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-51 
+2.99893 sec
+43207277 ops
+14407540 ops/sec
+781 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-51 
+2.99913 sec
+43514393 ops
+14509000 ops/sec
+769 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-51 
+2.99928 sec
+42099159 ops
+14036417 ops/sec
+830 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-51 
+2.99888 sec
+43768701 ops
+14595020 ops/sec
+758 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-51 
+2.99909 sec
+42966974 ops
+14326651 ops/sec
+792 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-51 
+2.99886 sec
+43530154 ops
+14515567 ops/sec
+768 cycles/op
+
+==== --ncores=13 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-52 
+2.99898 sec
+47744945 ops
+15920384 ops/sec
+760 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-52 
+2.99889 sec
+49183378 ops
+16400526 ops/sec
+706 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-52 
+2.99886 sec
+46039156 ops
+15352203 ops/sec
+825 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-52 
+2.99919 sec
+46320473 ops
+15444348 ops/sec
+814 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-52 
+2.99865 sec
+46653290 ops
+15558118 ops/sec
+801 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-52 
+2.99904 sec
+46032183 ops
+15348952 ops/sec
+825 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-52 
+2.99893 sec
+46929821 ops
+15648870 ops/sec
+790 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-52 
+2.99922 sec
+46942200 ops
+15651463 ops/sec
+790 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-52 
+2.99909 sec
+46617784 ops
+15543966 ops/sec
+802 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-52 
+2.99899 sec
+46835260 ops
+15617036 ops/sec
+794 cycles/op
+
+==== --ncores=14 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-53 
+2.99874 sec
+50482376 ops
+16834528 ops/sec
+803 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-53 
+2.99892 sec
+50498198 ops
+16838806 ops/sec
+803 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-53 
+2.9988 sec
+49670339 ops
+16563410 ops/sec
+833 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-53 
+2.99891 sec
+49616278 ops
+16544776 ops/sec
+835 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-53 
+2.99904 sec
+50511695 ops
+16842609 ops/sec
+802 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-53 
+2.99889 sec
+50427090 ops
+16815224 ops/sec
+805 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-53 
+2.99892 sec
+51292069 ops
+17103530 ops/sec
+773 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-53 
+2.99883 sec
+49882454 ops
+16633978 ops/sec
+825 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-53 
+2.99859 sec
+51326243 ops
+17116803 ops/sec
+772 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-53 
+2.99846 sec
+50382439 ops
+16802794 ops/sec
+806 cycles/op
+
+==== --ncores=15 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-54 
+2.99889 sec
+53846542 ops
+17955472 ops/sec
+821 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-54 
+2.99922 sec
+52850051 ops
+17621247 ops/sec
+856 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-54 
+2.99878 sec
+53275627 ops
+17765748 ops/sec
+841 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-54 
+2.99882 sec
+53484201 ops
+17835111 ops/sec
+833 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-54 
+2.999 sec
+53512620 ops
+17843476 ops/sec
+832 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-54 
+2.99843 sec
+53791371 ops
+17939869 ops/sec
+822 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-54 
+2.99873 sec
+53847331 ops
+17956682 ops/sec
+821 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-54 
+2.99898 sec
+53547378 ops
+17855173 ops/sec
+831 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-54 
+2.99867 sec
+53814807 ops
+17946224 ops/sec
+822 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-54 
+2.99914 sec
+53850298 ops
+17955252 ops/sec
+821 cycles/op
+
+==== --ncores=16 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-55 
+2.99863 sec
+56897464 ops
+18974493 ops/sec
+847 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-55 
+2.99876 sec
+56900699 ops
+18974724 ops/sec
+847 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-55 
+2.99886 sec
+57233361 ops
+19085058 ops/sec
+836 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-55 
+2.99886 sec
+57661477 ops
+19227767 ops/sec
+822 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-55 
+2.99894 sec
+56446594 ops
+18822211 ops/sec
+862 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-55 
+2.99848 sec
+57841575 ops
+19290298 ops/sec
+816 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-55 
+2.99882 sec
+57675561 ops
+19232759 ops/sec
+821 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-55 
+2.99898 sec
+56913186 ops
+18977488 ops/sec
+847 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-55 
+2.99913 sec
+57756000 ops
+19257604 ops/sec
+819 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-55 
+2.99873 sec
+57362027 ops
+19128779 ops/sec
+831 cycles/op
+
+==== --ncores=17 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-56 
+2.99884 sec
+60679824 ops
+20234412 ops/sec
+847 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-56 
+2.99858 sec
+60225836 ops
+20084799 ops/sec
+861 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-56 
+2.99867 sec
+60830031 ops
+20285703 ops/sec
+842 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-56 
+2.99886 sec
+60442933 ops
+20155289 ops/sec
+855 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-56 
+2.9992 sec
+60775489 ops
+20263920 ops/sec
+844 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-56 
+2.99877 sec
+60470022 ops
+20164954 ops/sec
+854 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-56 
+2.99862 sec
+60783986 ops
+20270672 ops/sec
+844 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-56 
+2.99816 sec
+60582587 ops
+20206602 ops/sec
+850 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-56 
+2.99923 sec
+60487033 ops
+20167494 ops/sec
+854 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-56 
+2.9987 sec
+60426114 ops
+20150777 ops/sec
+855 cycles/op
+
+==== --ncores=18 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-57 
+2.99868 sec
+64026164 ops
+21351484 ops/sec
+860 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-57 
+2.99853 sec
+64011751 ops
+21347675 ops/sec
+861 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-57 
+2.99828 sec
+64294549 ops
+21443789 ops/sec
+852 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-57 
+2.99866 sec
+63590641 ops
+21206373 ops/sec
+873 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-57 
+2.99876 sec
+64079880 ops
+21368770 ops/sec
+859 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-57 
+2.99911 sec
+64068954 ops
+21362647 ops/sec
+860 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-57 
+2.99897 sec
+63711877 ops
+21244621 ops/sec
+870 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-57 
+2.9987 sec
+63855277 ops
+21294291 ops/sec
+866 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-57 
+2.99858 sec
+63981754 ops
+21337364 ops/sec
+862 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-57 
+2.99892 sec
+64346011 ops
+21456372 ops/sec
+851 cycles/op
+
+==== --ncores=19 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-58 
+2.99899 sec
+67167293 ops
+22396667 ops/sec
+879 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-58 
+2.99847 sec
+66891333 ops
+22308452 ops/sec
+886 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-58 
+2.99884 sec
+67032828 ops
+22352941 ops/sec
+882 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-58 
+2.99823 sec
+66891035 ops
+22310160 ops/sec
+886 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-58 
+2.99898 sec
+67263549 ops
+22428794 ops/sec
+876 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-58 
+2.99857 sec
+67030398 ops
+22354157 ops/sec
+882 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-58 
+2.99869 sec
+67180675 ops
+22403349 ops/sec
+878 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-58 
+2.99842 sec
+67528652 ops
+22521426 ops/sec
+868 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-58 
+2.99879 sec
+66990039 ops
+22339008 ops/sec
+884 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-58 
+2.99849 sec
+67036882 ops
+22356851 ops/sec
+882 cycles/op
+
+==== --ncores=20 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-59 
+2.99869 sec
+70668342 ops
+23566381 ops/sec
+885 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-59 
+2.99849 sec
+70446002 ops
+23493856 ops/sec
+891 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-59 
+2.99846 sec
+70725520 ops
+23587312 ops/sec
+883 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-59 
+2.99898 sec
+70448168 ops
+23490709 ops/sec
+891 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-59 
+2.99821 sec
+70630747 ops
+23557614 ops/sec
+885 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-59 
+2.99873 sec
+70755778 ops
+23595240 ops/sec
+882 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-59 
+2.9985 sec
+70091746 ops
+23375626 ops/sec
+900 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-59 
+2.99872 sec
+70277134 ops
+23435696 ops/sec
+896 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-59 
+2.99862 sec
+70303937 ops
+23445415 ops/sec
+895 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-59 
+2.99828 sec
+70625489 ops
+23555343 ops/sec
+886 cycles/op
+
+==== --ncores=21 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-60 
+2.99809 sec
+40484716 ops
+13503511 ops/sec
+2504 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-60 
+2.9979 sec
+41782720 ops
+13937342 ops/sec
+2394 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-60 
+2.99861 sec
+41000637 ops
+13673214 ops/sec
+2460 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-60 
+2.99814 sec
+39761243 ops
+13261961 ops/sec
+2569 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-60 
+2.99798 sec
+41791816 ops
+13939987 ops/sec
+2393 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-60 
+2.99899 sec
+41823853 ops
+13946002 ops/sec
+2392 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-60 
+2.99859 sec
+41839000 ops
+13952872 ops/sec
+2389 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-60 
+2.9982 sec
+42256573 ops
+14093957 ops/sec
+2355 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-60 
+2.99813 sec
+38553788 ops
+12859273 ops/sec
+2682 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-60 
+2.99836 sec
+41746528 ops
+13923097 ops/sec
+2397 cycles/op
+
+==== --ncores=22 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-61 
+2.99803 sec
+39869593 ops
+13298615 ops/sec
+2740 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-61 
+2.99872 sec
+39204180 ops
+13073642 ops/sec
+2805 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-61 
+2.99822 sec
+38142345 ops
+12721675 ops/sec
+2912 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-61 
+2.99819 sec
+39879505 ops
+13301193 ops/sec
+2739 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-61 
+2.99874 sec
+39196982 ops
+13071168 ops/sec
+2805 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-61 
+2.99814 sec
+37847699 ops
+12623725 ops/sec
+2942 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-61 
+2.99825 sec
+39503989 ops
+13175686 ops/sec
+2775 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-61 
+2.99816 sec
+39247723 ops
+13090606 ops/sec
+2800 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-61 
+2.9982 sec
+38235221 ops
+12752720 ops/sec
+2901 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-61 
+2.99791 sec
+38835921 ops
+12954335 ops/sec
+2841 cycles/op
+
+==== --ncores=23 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-62 
+2.99839 sec
+38229968 ops
+12750182 ops/sec
+3090 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-62 
+2.99775 sec
+38958899 ops
+12996029 ops/sec
+3012 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-62 
+2.99803 sec
+40180866 ops
+13402431 ops/sec
+2889 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-62 
+2.99856 sec
+39129637 ops
+13049493 ops/sec
+2996 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-62 
+2.99779 sec
+39141409 ops
+13056776 ops/sec
+2994 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-62 
+2.99818 sec
+39569677 ops
+13197891 ops/sec
+2951 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-62 
+2.99803 sec
+39511438 ops
+13179129 ops/sec
+2955 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-62 
+2.99764 sec
+38877066 ops
+12969223 ops/sec
+3020 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-62 
+2.99823 sec
+39428852 ops
+13150705 ops/sec
+2964 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-62 
+2.99815 sec
+39565985 ops
+13196790 ops/sec
+2951 cycles/op
+
+==== --ncores=24 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-63 
+2.9984 sec
+38257950 ops
+12759455 ops/sec
+3276 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-63 
+2.99775 sec
+39782634 ops
+13270830 ops/sec
+3109 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-63 
+2.99822 sec
+38862465 ops
+12961863 ops/sec
+3208 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-63 
+2.99786 sec
+38358999 ops
+12795443 ops/sec
+3264 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-63 
+2.99821 sec
+37886059 ops
+12636230 ops/sec
+3318 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-63 
+2.99797 sec
+39149638 ops
+13058706 ops/sec
+3176 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-63 
+2.99796 sec
+39136311 ops
+13054318 ops/sec
+3178 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-63 
+2.99795 sec
+39719059 ops
+13248748 ops/sec
+3116 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-63 
+2.99793 sec
+39138812 ops
+13055270 ops/sec
+3178 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-63 
+2.99772 sec
+37948213 ops
+12659012 ops/sec
+3311 cycles/op
+
+==== --ncores=25 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-64 
+2.99801 sec
+38428308 ops
+12817938 ops/sec
+3444 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-64 
+2.99802 sec
+38214572 ops
+12746586 ops/sec
+3469 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-64 
+2.99789 sec
+39163753 ops
+13063760 ops/sec
+3359 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-64 
+2.99803 sec
+39164787 ops
+13063494 ops/sec
+3359 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-64 
+2.9978 sec
+38238621 ops
+12755565 ops/sec
+3466 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-64 
+2.99798 sec
+38407145 ops
+12811025 ops/sec
+3446 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-64 
+2.99788 sec
+39795038 ops
+13274405 ops/sec
+3289 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-64 
+2.99825 sec
+38802587 ops
+12941758 ops/sec
+3401 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-64 
+2.99813 sec
+40139881 ops
+13388327 ops/sec
+3252 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-64 
+2.99764 sec
+38217618 ops
+12749226 ops/sec
+3468 cycles/op
+
+==== --ncores=26 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-65 
+2.99803 sec
+39270445 ops
+13098766 ops/sec
+3530 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-65 
+2.9981 sec
+38912018 ops
+12978914 ops/sec
+3572 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-65 
+2.99803 sec
+39785708 ops
+13270617 ops/sec
+3470 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-65 
+2.99761 sec
+39233912 ops
+13088376 ops/sec
+3533 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-65 
+2.99813 sec
+39980084 ops
+13335015 ops/sec
+3449 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-65 
+2.99808 sec
+39813379 ops
+13279625 ops/sec
+3468 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-65 
+2.99804 sec
+38153707 ops
+12726234 ops/sec
+3664 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-65 
+2.99774 sec
+39959238 ops
+13329809 ops/sec
+3450 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-65 
+2.99795 sec
+39811206 ops
+13279463 ops/sec
+3468 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-65 
+2.99782 sec
+38435681 ops
+12821193 ops/sec
+3630 cycles/op
+
+==== --ncores=27 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-66 
+2.99826 sec
+38262474 ops
+12761580 ops/sec
+3838 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-66 
+2.99778 sec
+39634591 ops
+13221322 ops/sec
+3669 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-66 
+2.99773 sec
+39772187 ops
+13267430 ops/sec
+3652 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-66 
+2.99809 sec
+39200246 ops
+13075094 ops/sec
+3722 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-66 
+2.99774 sec
+38195625 ops
+12741473 ops/sec
+3847 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-66 
+2.99772 sec
+38262579 ops
+12763906 ops/sec
+3838 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-66 
+2.99771 sec
+39174509 ops
+13068157 ops/sec
+3724 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-66 
+2.99784 sec
+39146346 ops
+13058183 ops/sec
+3728 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-66 
+2.99786 sec
+39608420 ops
+13212209 ops/sec
+3672 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-66 
+2.99788 sec
+38891377 ops
+12972959 ops/sec
+3759 cycles/op
+
+==== --ncores=28 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-67 
+2.99834 sec
+38490942 ops
+12837404 ops/sec
+3997 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-67 
+2.99836 sec
+39155806 ops
+13059078 ops/sec
+3912 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-67 
+2.99811 sec
+39755665 ops
+13260228 ops/sec
+3836 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-67 
+2.99795 sec
+39640415 ops
+13222524 ops/sec
+3850 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-67 
+2.99785 sec
+38300241 ops
+12775903 ops/sec
+4022 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-67 
+2.99813 sec
+39799644 ops
+13274844 ops/sec
+3831 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-67 
+2.99799 sec
+38888252 ops
+12971428 ops/sec
+3945 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-67 
+2.99782 sec
+38175560 ops
+12734452 ops/sec
+4038 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-67 
+2.99806 sec
+39174152 ops
+13066504 ops/sec
+3909 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-67 
+2.99837 sec
+38985976 ops
+13002394 ops/sec
+3933 cycles/op
+
+==== --ncores=29 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-68 
+2.99821 sec
+40019949 ops
+13347965 ops/sec
+3984 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-68 
+2.99776 sec
+39994142 ops
+13341337 ops/sec
+3987 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-68 
+2.99765 sec
+41038085 ops
+13690089 ops/sec
+3859 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-68 
+2.99786 sec
+38132224 ops
+12719814 ops/sec
+4232 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-68 
+2.9978 sec
+39636231 ops
+13221759 ops/sec
+4032 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-68 
+2.9978 sec
+39981701 ops
+13337014 ops/sec
+3989 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-68 
+2.99743 sec
+38438201 ops
+12823737 ops/sec
+4189 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-68 
+2.99819 sec
+39663044 ops
+13228974 ops/sec
+4029 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-68 
+2.99757 sec
+39782280 ops
+13271523 ops/sec
+4013 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-68 
+2.99823 sec
+38964971 ops
+12995995 ops/sec
+4120 cycles/op
+
+==== --ncores=30 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-69 
+2.9979 sec
+41158942 ops
+13729276 ops/sec
+4019 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-69 
+2.99782 sec
+39084326 ops
+13037587 ops/sec
+4288 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-69 
+2.9978 sec
+39139130 ops
+13055959 ops/sec
+4280 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-69 
+2.99803 sec
+38311653 ops
+12778938 ops/sec
+4394 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-69 
+2.99788 sec
+38792679 ops
+12940025 ops/sec
+4327 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-69 
+2.99746 sec
+39230618 ops
+13087940 ops/sec
+4267 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-69 
+2.99749 sec
+39772826 ops
+13268692 ops/sec
+4194 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-69 
+2.99781 sec
+38149827 ops
+12725890 ops/sec
+4419 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-69 
+2.99801 sec
+40189479 ops
+13405363 ops/sec
+4141 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-69 
+2.99741 sec
+38769490 ops
+12934317 ops/sec
+4329 cycles/op
+
+==== --ncores=31 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-70 
+2.99745 sec
+33947044 ops
+11325303 ops/sec
+5306 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-70 
+2.99758 sec
+35090332 ops
+11706216 ops/sec
+5100 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-70 
+2.99762 sec
+34212266 ops
+11413128 ops/sec
+5258 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-70 
+2.99764 sec
+34704317 ops
+11577228 ops/sec
+5168 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-70 
+2.99803 sec
+33680237 ops
+11234107 ops/sec
+5358 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-70 
+2.99718 sec
+33374498 ops
+11135299 ops/sec
+5415 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-70 
+2.99738 sec
+35057516 ops
+11696068 ops/sec
+5105 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-70 
+2.99747 sec
+33901200 ops
+11309952 ops/sec
+5315 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-70 
+2.99778 sec
+34388883 ops
+11471445 ops/sec
+5226 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-70 
+2.99748 sec
+35189493 ops
+11739680 ops/sec
+5082 cycles/op
+
+==== --ncores=32 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-71 
+2.99763 sec
+30053767 ops
+10025832 ops/sec
+6369 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-71 
+2.99705 sec
+29707533 ops
+9912274 ops/sec
+6455 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-71 
+2.99704 sec
+29351891 ops
+9793626 ops/sec
+6545 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-71 
+2.9975 sec
+29862194 ops
+9962360 ops/sec
+6408 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-71 
+2.99796 sec
+29343799 ops
+9787931 ops/sec
+6550 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-71 
+2.99734 sec
+28335929 ops
+9453679 ops/sec
+6819 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-71 
+2.99745 sec
+29346988 ops
+9790644 ops/sec
+6547 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-71 
+2.99803 sec
+29643085 ops
+9887531 ops/sec
+6473 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-71 
+2.99737 sec
+29269462 ops
+9765061 ops/sec
+6569 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-71 
+2.99729 sec
+31399881 ops
+10476075 ops/sec
+6051 cycles/op
+
+==== --ncores=33 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-72 
+2.99767 sec
+32573153 ops
+10866139 ops/sec
+6018 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-72 
+2.99745 sec
+29964118 ops
+9996550 ops/sec
+6631 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-72 
+2.99701 sec
+29658589 ops
+9896065 ops/sec
+6709 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-72 
+2.99768 sec
+30006941 ops
+10010062 ops/sec
+6621 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-72 
+2.99772 sec
+29804536 ops
+9942394 ops/sec
+6673 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-72 
+2.99742 sec
+29637348 ops
+9887612 ops/sec
+6716 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-72 
+2.99726 sec
+29974580 ops
+10000664 ops/sec
+6628 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-72 
+2.99761 sec
+29701548 ops
+9908413 ops/sec
+6699 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-72 
+2.99768 sec
+28302773 ops
+9441555 ops/sec
+7082 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-72 
+2.99715 sec
+29958366 ops
+9995604 ops/sec
+6631 cycles/op
+
+==== --ncores=34 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-73 
+2.99764 sec
+29863821 ops
+9962457 ops/sec
+6898 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-73 
+2.99704 sec
+29859933 ops
+9963128 ops/sec
+6898 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-73 
+2.99725 sec
+29511333 ops
+9846142 ops/sec
+6992 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-73 
+2.99749 sec
+29813791 ops
+9946259 ops/sec
+6911 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-73 
+2.99782 sec
+29249602 ops
+9756947 ops/sec
+7066 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-73 
+2.99768 sec
+29512863 ops
+9845241 ops/sec
+6993 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-73 
+2.99763 sec
+29736014 ops
+9919828 ops/sec
+6932 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-73 
+2.9977 sec
+29927617 ops
+9983536 ops/sec
+6881 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-73 
+2.99697 sec
+29581682 ops
+9870523 ops/sec
+6972 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-73 
+2.99755 sec
+29832271 ops
+9952224 ops/sec
+6901 cycles/op
+
+==== --ncores=35 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-74 
+2.9973 sec
+30826895 ops
+10284898 ops/sec
+6883 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-74 
+2.99692 sec
+29951176 ops
+9993975 ops/sec
+7112 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-74 
+2.99759 sec
+29436916 ops
+9820190 ops/sec
+7257 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-74 
+2.99809 sec
+29997039 ops
+10005399 ops/sec
+7103 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-74 
+2.99734 sec
+29650608 ops
+9892297 ops/sec
+7197 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-74 
+2.99749 sec
+30145836 ops
+10057039 ops/sec
+7062 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-74 
+2.99763 sec
+29750265 ops
+9924591 ops/sec
+7170 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-74 
+2.99749 sec
+29478020 ops
+9834234 ops/sec
+7245 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-74 
+2.99727 sec
+29803793 ops
+9943639 ops/sec
+7155 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-74 
+2.99772 sec
+28468854 ops
+9496835 ops/sec
+7542 cycles/op
+
+==== --ncores=36 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-75 
+2.99748 sec
+29585030 ops
+9869963 ops/sec
+7459 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-75 
+2.99695 sec
+29692572 ops
+9907600 ops/sec
+7427 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-75 
+2.99751 sec
+29732405 ops
+9919044 ops/sec
+7416 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-75 
+2.99759 sec
+29609651 ops
+9877831 ops/sec
+7451 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-75 
+2.9975 sec
+30081361 ops
+10035473 ops/sec
+7319 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-75 
+2.99682 sec
+29339048 ops
+9790056 ops/sec
+7528 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-75 
+2.99743 sec
+29719170 ops
+9914877 ops/sec
+7420 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-75 
+2.99746 sec
+29244439 ops
+9756416 ops/sec
+7558 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-75 
+2.99733 sec
+30092160 ops
+10039655 ops/sec
+7316 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-75 
+2.99756 sec
+29831867 ops
+9952034 ops/sec
+7388 cycles/op
+
+==== --ncores=37 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-76 
+2.99763 sec
+29596261 ops
+9873217 ops/sec
+7699 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-76 
+2.99728 sec
+29685386 ops
+9904115 ops/sec
+7671 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-76 
+2.99721 sec
+29649678 ops
+9892436 ops/sec
+7682 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-76 
+2.99697 sec
+29230457 ops
+9753346 ops/sec
+7806 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-76 
+2.99747 sec
+29721241 ops
+9915455 ops/sec
+7648 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-76 
+2.99768 sec
+29258799 ops
+9760464 ops/sec
+7800 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-76 
+2.99708 sec
+28383322 ops
+9470340 ops/sec
+8070 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-76 
+2.99776 sec
+29821268 ops
+9947856 ops/sec
+7632 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-76 
+2.99749 sec
+29339273 ops
+9787930 ops/sec
+7775 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-76 
+2.99734 sec
+29277725 ops
+9767905 ops/sec
+7793 cycles/op
+
+==== --ncores=38 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-77 
+2.99778 sec
+29588666 ops
+9870202 ops/sec
+7944 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-77 
+2.99706 sec
+29740801 ops
+9923314 ops/sec
+7897 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-77 
+2.99751 sec
+29537901 ops
+9854142 ops/sec
+7959 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-77 
+2.99709 sec
+29694211 ops
+9907684 ops/sec
+7911 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-77 
+2.99766 sec
+29730683 ops
+9917959 ops/sec
+7901 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-77 
+2.99762 sec
+29346083 ops
+9789807 ops/sec
+8019 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-77 
+2.99707 sec
+29691124 ops
+9906719 ops/sec
+7913 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-77 
+2.9973 sec
+29665999 ops
+9897574 ops/sec
+7920 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-77 
+2.99719 sec
+29966376 ops
+9998163 ops/sec
+7830 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-77 
+2.99718 sec
+29904935 ops
+9977704 ops/sec
+7847 cycles/op
+
+==== --ncores=39 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-78 
+2.9978 sec
+29049486 ops
+9690255 ops/sec
+8359 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-78 
+2.99687 sec
+29285951 ops
+9772176 ops/sec
+8280 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-78 
+2.99783 sec
+29689116 ops
+9903548 ops/sec
+8156 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-78 
+2.99732 sec
+29790927 ops
+9939198 ops/sec
+8099 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-78 
+2.99711 sec
+29522492 ops
+9850326 ops/sec
+8206 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-78 
+2.99756 sec
+29725226 ops
+9916470 ops/sec
+8144 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-78 
+2.99719 sec
+29674054 ops
+9900621 ops/sec
+8160 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-78 
+2.99934 sec
+29574590 ops
+9860365 ops/sec
+8191 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-78 
+2.99726 sec
+29538035 ops
+9855025 ops/sec
+8201 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-78 
+2.99732 sec
+29258555 ops
+9761575 ops/sec
+8289 cycles/op
+
+==== --ncores=40 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-79 
+2.99762 sec
+29756333 ops
+9926652 ops/sec
+8376 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-79 
+2.99677 sec
+29692486 ops
+9908162 ops/sec
+8394 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-79 
+2.99866 sec
+29751079 ops
+9921460 ops/sec
+8376 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-79 
+2.99751 sec
+29753226 ops
+9925970 ops/sec
+8377 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-79 
+2.99727 sec
+30147275 ops
+10058261 ops/sec
+8252 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-79 
+2.99662 sec
+29579390 ops
+9870907 ops/sec
+8430 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-79 
+2.99915 sec
+29584575 ops
+9864307 ops/sec
+8429 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-79 
+2.99756 sec
+29701573 ops
+9908570 ops/sec
+8394 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-79 
+2.99759 sec
+29944313 ops
+9989459 ops/sec
+8316 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0,41-79 
+2.99937 sec
+30559395 ops
+10188605 ops/sec
+8128 cycles/op
+
+==== --ncores=41 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-1,41-79 
+2.99746 sec
+33262850 ops
+11097005 ops/sec
+7600 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-1,41-79 
+2.99715 sec
+29168375 ops
+9732049 ops/sec
+8812 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-1,41-79 
+2.99775 sec
+28901013 ops
+9640892 ops/sec
+8902 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-1,41-79 
+2.99791 sec
+29144398 ops
+9721575 ops/sec
+8822 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-1,41-79 
+2.99742 sec
+28886334 ops
+9637074 ops/sec
+8909 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-1,41-79 
+2.99739 sec
+28557091 ops
+9527315 ops/sec
+9023 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-1,41-79 
+2.99691 sec
+29132296 ops
+9720793 ops/sec
+8823 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-1,41-79 
+2.99839 sec
+29181218 ops
+9732288 ops/sec
+8809 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-1,41-79 
+2.99695 sec
+29027986 ops
+9685839 ops/sec
+8858 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-1,41-79 
+2.99702 sec
+29364060 ops
+9797758 ops/sec
+8745 cycles/op
+
+==== --ncores=42 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-2,41-79 
+2.99709 sec
+28642159 ops
+9556643 ops/sec
+9243 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-2,41-79 
+2.9969 sec
+28393910 ops
+9474417 ops/sec
+9333 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-2,41-79 
+2.99733 sec
+29090175 ops
+9705378 ops/sec
+9086 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-2,41-79 
+2.99739 sec
+28749834 ops
+9591619 ops/sec
+9205 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-2,41-79 
+2.99698 sec
+27559295 ops
+9195685 ops/sec
+9647 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-2,41-79 
+2.99755 sec
+28512687 ops
+9511994 ops/sec
+9292 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-2,41-79 
+2.99684 sec
+28474462 ops
+9501495 ops/sec
+9304 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-2,41-79 
+2.99856 sec
+29061591 ops
+9691849 ops/sec
+9090 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-2,41-79 
+2.99803 sec
+28177790 ops
+9398777 ops/sec
+9414 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-2,41-79 
+2.99713 sec
+28428460 ops
+9485227 ops/sec
+9319 cycles/op
+
+==== --ncores=43 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-3,41-79 
+2.99732 sec
+27736695 ops
+9253831 ops/sec
+9839 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-3,41-79 
+2.99906 sec
+28687516 ops
+9565505 ops/sec
+9478 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-3,41-79 
+2.99855 sec
+28694382 ops
+9569422 ops/sec
+9476 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-3,41-79 
+2.99756 sec
+27994844 ops
+9339203 ops/sec
+9739 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-3,41-79 
+2.99736 sec
+27725668 ops
+9250026 ops/sec
+9844 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-3,41-79 
+2.99707 sec
+28418876 ops
+9482235 ops/sec
+9576 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-3,41-79 
+2.99939 sec
+28500118 ops
+9501974 ops/sec
+9549 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-3,41-79 
+2.99756 sec
+28396055 ops
+9473050 ops/sec
+9586 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-3,41-79 
+2.99684 sec
+28551714 ops
+9527279 ops/sec
+9527 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-3,41-79 
+2.99678 sec
+28007318 ops
+9345816 ops/sec
+9733 cycles/op
+
+==== --ncores=44 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-4,41-79 
+2.99908 sec
+27812325 ops
+9273619 ops/sec
+10066 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-4,41-79 
+2.99887 sec
+28757480 ops
+9589442 ops/sec
+9701 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-4,41-79 
+2.99834 sec
+28728408 ops
+9581444 ops/sec
+9712 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-4,41-79 
+2.9983 sec
+28240366 ops
+9418798 ops/sec
+9898 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-4,41-79 
+2.99686 sec
+28759776 ops
+9596623 ops/sec
+9701 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-4,41-79 
+2.99722 sec
+28782692 ops
+9603123 ops/sec
+9693 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-4,41-79 
+2.99785 sec
+28272961 ops
+9431091 ops/sec
+9888 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-4,41-79 
+2.99686 sec
+28652053 ops
+9560685 ops/sec
+9740 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-4,41-79 
+2.99748 sec
+31821172 ops
+10615964 ops/sec
+8668 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-4,41-79 
+2.99734 sec
+28593031 ops
+9539480 ops/sec
+9765 cycles/op
+
+==== --ncores=45 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-5,41-79 
+2.99623 sec
+33964450 ops
+11335724 ops/sec
+8264 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-5,41-79 
+2.9972 sec
+30729406 ops
+10252707 ops/sec
+9247 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-5,41-79 
+2.99681 sec
+28517482 ops
+9515945 ops/sec
+10044 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-5,41-79 
+2.99655 sec
+28088364 ops
+9373561 ops/sec
+10212 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-5,41-79 
+2.99664 sec
+34293950 ops
+11444118 ops/sec
+8175 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-5,41-79 
+2.99592 sec
+28414241 ops
+9484308 ops/sec
+10081 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-5,41-79 
+2.99687 sec
+28192821 ops
+9407421 ops/sec
+10172 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-5,41-79 
+2.99895 sec
+28687428 ops
+9565814 ops/sec
+9977 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-5,41-79 
+2.99749 sec
+28396690 ops
+9473479 ops/sec
+10092 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-5,41-79 
+2.99715 sec
+28542627 ops
+9523269 ops/sec
+10034 cycles/op
+
+==== --ncores=46 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-6,41-79 
+2.99902 sec
+27878017 ops
+9295712 ops/sec
+10557 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-6,41-79 
+2.99665 sec
+27840080 ops
+9290388 ops/sec
+10571 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-6,41-79 
+2.99832 sec
+28091475 ops
+9369087 ops/sec
+10467 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-6,41-79 
+2.99692 sec
+28724225 ops
+9584591 ops/sec
+10213 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-6,41-79 
+2.997 sec
+28172932 ops
+9400371 ops/sec
+10435 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-6,41-79 
+2.99651 sec
+32197685 ops
+10745051 ops/sec
+8998 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-6,41-79 
+2.99709 sec
+28435554 ops
+9487727 ops/sec
+10328 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-6,41-79 
+2.99696 sec
+29199724 ops
+9743110 ops/sec
+10031 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-6,41-79 
+2.9972 sec
+28435542 ops
+9487374 ops/sec
+10328 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-6,41-79 
+2.9971 sec
+28433879 ops
+9487127 ops/sec
+10329 cycles/op
+
+==== --ncores=47 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-7,41-79 
+2.9969 sec
+28097975 ops
+9375689 ops/sec
+10720 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-7,41-79 
+2.99659 sec
+28846539 ops
+9626445 ops/sec
+10414 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-7,41-79 
+2.99687 sec
+28419999 ops
+9483230 ops/sec
+10588 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-7,41-79 
+2.99661 sec
+28458658 ops
+9496938 ops/sec
+10570 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-7,41-79 
+2.99745 sec
+28523001 ops
+9515770 ops/sec
+10547 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-7,41-79 
+2.99555 sec
+27908192 ops
+9316550 ops/sec
+10797 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-7,41-79 
+2.99677 sec
+28608336 ops
+9546405 ops/sec
+10509 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-7,41-79 
+2.99681 sec
+28316020 ops
+9448720 ops/sec
+10630 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-7,41-79 
+2.99699 sec
+28392597 ops
+9473691 ops/sec
+10598 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-7,41-79 
+2.99739 sec
+29202905 ops
+9742783 ops/sec
+10277 cycles/op
+
+==== --ncores=48 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-8,41-79 
+2.9972 sec
+33465575 ops
+11165616 ops/sec
+9049 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-8,41-79 
+2.99614 sec
+28558624 ops
+9531802 ops/sec
+10779 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-8,41-79 
+2.99884 sec
+28576242 ops
+9529099 ops/sec
+10774 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-8,41-79 
+2.9973 sec
+29127812 ops
+9718019 ops/sec
+10551 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-8,41-79 
+2.99634 sec
+28108956 ops
+9381093 ops/sec
+10967 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-8,41-79 
+2.99838 sec
+28735316 ops
+9583604 ops/sec
+10708 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-8,41-79 
+2.99649 sec
+28082317 ops
+9371725 ops/sec
+10981 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-8,41-79 
+2.99752 sec
+28604815 ops
+9542814 ops/sec
+10765 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-8,41-79 
+2.99699 sec
+28755383 ops
+9594753 ops/sec
+10673 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-8,41-79 
+2.99662 sec
+28553968 ops
+9528734 ops/sec
+10782 cycles/op
+
+==== --ncores=49 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-9,41-79 
+2.99699 sec
+28437032 ops
+9488515 ops/sec
+11085 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-9,41-79 
+2.99635 sec
+28078551 ops
+9370918 ops/sec
+11238 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-9,41-79 
+2.99708 sec
+28569163 ops
+9532332 ops/sec
+11028 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-9,41-79 
+2.99659 sec
+28445419 ops
+9492589 ops/sec
+11081 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-9,41-79 
+2.99658 sec
+28738950 ops
+9590592 ops/sec
+10956 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-9,41-79 
+2.99669 sec
+29165921 ops
+9732718 ops/sec
+10779 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-9,41-79 
+2.99679 sec
+28051319 ops
+9360467 ops/sec
+11250 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-9,41-79 
+2.99702 sec
+28553852 ops
+9527402 ops/sec
+11034 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-9,41-79 
+2.99655 sec
+28537105 ops
+9523326 ops/sec
+11041 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-9,41-79 
+2.99679 sec
+28760043 ops
+9596933 ops/sec
+10948 cycles/op
+
+==== --ncores=50 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-10,41-79 
+2.99703 sec
+28438972 ops
+9489039 ops/sec
+11338 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-10,41-79 
+2.99628 sec
+28729225 ops
+9588297 ops/sec
+11211 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-10,41-79 
+2.99692 sec
+27864425 ops
+9297699 ops/sec
+11592 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-10,41-79 
+2.9978 sec
+28747237 ops
+9589460 ops/sec
+11205 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-10,41-79 
+2.99742 sec
+28439824 ops
+9488103 ops/sec
+11337 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-10,41-79 
+2.9967 sec
+27856067 ops
+9295586 ops/sec
+11598 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-10,41-79 
+2.99674 sec
+28571761 ops
+9534270 ops/sec
+11279 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-10,41-79 
+2.99698 sec
+28049376 ops
+9359219 ops/sec
+11510 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-10,41-79 
+2.99695 sec
+26636796 ops
+8887967 ops/sec
+12174 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-10,41-79 
+2.99728 sec
+27996692 ops
+9340693 ops/sec
+11534 cycles/op
+
+==== --ncores=51 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-11,41-79 
+2.99688 sec
+25907674 ops
+8644881 ops/sec
+12824 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-11,41-79 
+2.99721 sec
+26231304 ops
+8751904 ops/sec
+12654 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-11,41-79 
+2.9967 sec
+26151566 ops
+8726774 ops/sec
+12694 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-11,41-79 
+2.99681 sec
+25988245 ops
+8671966 ops/sec
+12782 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-11,41-79 
+2.9969 sec
+25846007 ops
+8624249 ops/sec
+12857 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-11,41-79 
+2.9975 sec
+26293807 ops
+8771897 ops/sec
+12621 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-11,41-79 
+2.99682 sec
+26261215 ops
+8763018 ops/sec
+12638 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-11,41-79 
+2.99718 sec
+27172544 ops
+9066042 ops/sec
+12178 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-11,41-79 
+2.99655 sec
+27110326 ops
+9047170 ops/sec
+12205 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-11,41-79 
+2.99599 sec
+26353125 ops
+8796126 ops/sec
+12587 cycles/op
+
+==== --ncores=52 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-12,41-79 
+2.99716 sec
+26484972 ops
+8836697 ops/sec
+12792 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-12,41-79 
+2.99714 sec
+26984293 ops
+9003344 ops/sec
+12536 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-12,41-79 
+2.9967 sec
+26847259 ops
+8958943 ops/sec
+12604 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-12,41-79 
+2.99713 sec
+26453635 ops
+8826318 ops/sec
+12811 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-12,41-79 
+2.99718 sec
+26514183 ops
+8846388 ops/sec
+12780 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-12,41-79 
+2.99722 sec
+27067565 ops
+9030880 ops/sec
+12497 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-12,41-79 
+2.99671 sec
+26324897 ops
+8784605 ops/sec
+12875 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-12,41-79 
+2.99724 sec
+25785754 ops
+8603168 ops/sec
+13170 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-12,41-79 
+2.99659 sec
+25971042 ops
+8666876 ops/sec
+13066 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-12,41-79 
+2.99713 sec
+26376431 ops
+8800554 ops/sec
+12851 cycles/op
+
+==== --ncores=53 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-13,41-79 
+2.99643 sec
+26344385 ops
+8791927 ops/sec
+13137 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-13,41-79 
+2.99651 sec
+26858632 ops
+8963308 ops/sec
+12866 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-13,41-79 
+2.99657 sec
+26267487 ops
+8765850 ops/sec
+13178 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-13,41-79 
+2.99743 sec
+26392916 ops
+8805187 ops/sec
+13116 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-13,41-79 
+2.99764 sec
+25982365 ops
+8667616 ops/sec
+13337 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-13,41-79 
+2.9971 sec
+29476120 ops
+9834890 ops/sec
+11633 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-13,41-79 
+2.99722 sec
+25914685 ops
+8646240 ops/sec
+13375 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-13,41-79 
+2.99732 sec
+26362968 ops
+8795498 ops/sec
+13129 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-13,41-79 
+2.9972 sec
+26392462 ops
+8805699 ops/sec
+13114 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-13,41-79 
+2.9973 sec
+26343523 ops
+8789093 ops/sec
+13141 cycles/op
+
+==== --ncores=54 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-14,41-79 
+2.99717 sec
+26301644 ops
+8775492 ops/sec
+13435 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-14,41-79 
+2.99669 sec
+26812397 ops
+8947337 ops/sec
+13159 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-14,41-79 
+2.99691 sec
+26386849 ops
+8804682 ops/sec
+13389 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-14,41-79 
+2.99701 sec
+26336391 ops
+8787552 ops/sec
+13416 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-14,41-79 
+2.99753 sec
+26370743 ops
+8797499 ops/sec
+13398 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-14,41-79 
+2.99666 sec
+25930069 ops
+8653001 ops/sec
+13641 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-14,41-79 
+2.99696 sec
+26016959 ops
+8681113 ops/sec
+13594 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-14,41-79 
+2.99693 sec
+26279268 ops
+8768728 ops/sec
+13447 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-14,41-79 
+2.99741 sec
+26341220 ops
+8787979 ops/sec
+13414 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-14,41-79 
+2.99714 sec
+26425524 ops
+8816913 ops/sec
+13369 cycles/op
+
+==== --ncores=55 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-15,41-79 
+2.9966 sec
+26273213 ops
+8767688 ops/sec
+13723 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-15,41-79 
+2.99704 sec
+26476611 ops
+8834259 ops/sec
+13612 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-15,41-79 
+2.99697 sec
+26262762 ops
+8763113 ops/sec
+13730 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-15,41-79 
+2.9973 sec
+26398083 ops
+8807299 ops/sec
+13649 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-15,41-79 
+2.99699 sec
+29205046 ops
+9744805 ops/sec
+12241 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-15,41-79 
+2.99689 sec
+26433779 ops
+8820408 ops/sec
+13634 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-15,41-79 
+2.99633 sec
+26467317 ops
+8833236 ops/sec
+13614 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-15,41-79 
+2.99746 sec
+32150655 ops
+10725976 ops/sec
+11026 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-15,41-79 
+2.99764 sec
+26283276 ops
+8767980 ops/sec
+13720 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-15,41-79 
+2.99663 sec
+25920190 ops
+8649768 ops/sec
+13926 cycles/op
+
+==== --ncores=56 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-16,41-79 
+2.99702 sec
+29929403 ops
+9986400 ops/sec
+12159 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-16,41-79 
+2.99702 sec
+26252282 ops
+8759464 ops/sec
+14009 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-16,41-79 
+2.99724 sec
+26455508 ops
+8826632 ops/sec
+13883 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-16,41-79 
+2.99712 sec
+26242656 ops
+8755951 ops/sec
+14015 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-16,41-79 
+2.99688 sec
+29237618 ops
+9756031 ops/sec
+12472 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-16,41-79 
+2.9966 sec
+25918355 ops
+8649250 ops/sec
+14202 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-16,41-79 
+2.99635 sec
+26492807 ops
+8841690 ops/sec
+13868 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-16,41-79 
+2.9972 sec
+26367614 ops
+8797421 ops/sec
+13944 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-16,41-79 
+2.99667 sec
+27016974 ops
+9015662 ops/sec
+13581 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-16,41-79 
+2.99616 sec
+26541349 ops
+8858443 ops/sec
+13842 cycles/op
+
+==== --ncores=57 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-17,41-79 
+2.99725 sec
+25902656 ops
+8642149 ops/sec
+14490 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-17,41-79 
+2.99708 sec
+26302818 ops
+8776145 ops/sec
+14254 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-17,41-79 
+2.99728 sec
+25932603 ops
+8652059 ops/sec
+14472 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-17,41-79 
+2.99731 sec
+29811191 ops
+9945984 ops/sec
+12444 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-17,41-79 
+2.99652 sec
+26402120 ops
+8810918 ops/sec
+14192 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-17,41-79 
+2.99694 sec
+25953542 ops
+8660005 ops/sec
+14459 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-17,41-79 
+2.99675 sec
+26301447 ops
+8776668 ops/sec
+14253 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-17,41-79 
+2.99603 sec
+26520473 ops
+8851874 ops/sec
+14123 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-17,41-79 
+2.99695 sec
+26288426 ops
+8771724 ops/sec
+14261 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-17,41-79 
+2.99698 sec
+28748352 ops
+9592433 ops/sec
+12953 cycles/op
+
+==== --ncores=58 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-18,41-79 
+2.99718 sec
+26556337 ops
+8860426 ops/sec
+14378 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-18,41-79 
+2.99611 sec
+25867955 ops
+8633832 ops/sec
+14783 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-18,41-79 
+2.99663 sec
+26354462 ops
+8794697 ops/sec
+14493 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-18,41-79 
+2.99611 sec
+26954070 ops
+8996358 ops/sec
+14146 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-18,41-79 
+2.99721 sec
+26333535 ops
+8786010 ops/sec
+14508 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-18,41-79 
+2.99766 sec
+28826836 ops
+9616437 ops/sec
+13164 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-18,41-79 
+2.99695 sec
+25932713 ops
+8653040 ops/sec
+14749 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-18,41-79 
+2.99665 sec
+26529021 ops
+8852898 ops/sec
+14390 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-18,41-79 
+2.99717 sec
+26352659 ops
+8792505 ops/sec
+14497 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-18,41-79 
+2.99749 sec
+26421930 ops
+8814696 ops/sec
+14457 cycles/op
+
+==== --ncores=59 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-19,41-79 
+2.99679 sec
+26380914 ops
+8803060 ops/sec
+14751 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-19,41-79 
+2.99661 sec
+26945074 ops
+8991866 ops/sec
+14418 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-19,41-79 
+2.99659 sec
+26337006 ops
+8788980 ops/sec
+14776 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-19,41-79 
+2.99727 sec
+26368188 ops
+8797410 ops/sec
+14761 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-19,41-79 
+2.99746 sec
+26305258 ops
+8775843 ops/sec
+14795 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-19,41-79 
+2.99655 sec
+25935573 ops
+8655144 ops/sec
+15021 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-19,41-79 
+2.99679 sec
+26963569 ops
+8997468 ops/sec
+14409 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-19,41-79 
+2.99667 sec
+26960400 ops
+8996789 ops/sec
+14412 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-19,41-79 
+2.99731 sec
+25951300 ops
+8658188 ops/sec
+15013 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-19,41-79 
+2.99651 sec
+26318869 ops
+8783174 ops/sec
+14788 cycles/op
+
+==== --ncores=60 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-20,41-79 
+2.9976 sec
+26401500 ops
+8807549 ops/sec
+15009 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-20,41-79 
+2.997 sec
+25994415 ops
+8673469 ops/sec
+15263 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-20,41-79 
+2.99724 sec
+26510722 ops
+8845036 ops/sec
+14944 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-20,41-79 
+2.99704 sec
+25943829 ops
+8656475 ops/sec
+15295 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-20,41-79 
+2.99738 sec
+25892180 ops
+8638265 ops/sec
+15327 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-20,41-79 
+2.99724 sec
+26346489 ops
+8790235 ops/sec
+15047 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-20,41-79 
+2.99715 sec
+26334588 ops
+8786537 ops/sec
+15052 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-20,41-79 
+2.99763 sec
+26370147 ops
+8796995 ops/sec
+15032 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-20,41-79 
+2.99704 sec
+26411293 ops
+8812447 ops/sec
+15006 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-20,41-79 
+2.99653 sec
+26364234 ops
+8798246 ops/sec
+15032 cycles/op
+
+==== --ncores=61 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-21,41-79 
+2.99759 sec
+24808636 ops
+8276204 ops/sec
+16333 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-21,41-79 
+2.99661 sec
+23871075 ops
+7966013 ops/sec
+17015 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-21,41-79 
+2.99638 sec
+25124377 ops
+8384915 ops/sec
+16110 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-21,41-79 
+2.99645 sec
+24821235 ops
+8283533 ops/sec
+16321 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-21,41-79 
+2.99734 sec
+24248260 ops
+8089918 ops/sec
+16733 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-21,41-79 
+2.99675 sec
+25079069 ops
+8368753 ops/sec
+16143 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-21,41-79 
+2.99668 sec
+25090148 ops
+8372656 ops/sec
+16131 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-21,41-79 
+2.99786 sec
+25114345 ops
+8377419 ops/sec
+16119 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-21,41-79 
+2.99787 sec
+24843526 ops
+8287059 ops/sec
+16309 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-21,41-79 
+2.99663 sec
+25216114 ops
+8414835 ops/sec
+16048 cycles/op
+
+==== --ncores=62 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-22,41-79 
+2.99722 sec
+24929403 ops
+8317505 ops/sec
+16536 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-22,41-79 
+2.99724 sec
+24755574 ops
+8259451 ops/sec
+16659 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-22,41-79 
+2.99709 sec
+24246691 ops
+8090078 ops/sec
+17031 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-22,41-79 
+2.99714 sec
+24932395 ops
+8318723 ops/sec
+16532 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-22,41-79 
+2.99734 sec
+25299138 ops
+8440532 ops/sec
+16279 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-22,41-79 
+2.99779 sec
+24006618 ops
+8008097 ops/sec
+17209 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-22,41-79 
+2.99577 sec
+27717065 ops
+9252081 ops/sec
+14762 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-22,41-79 
+2.99795 sec
+24802948 ops
+8273316 ops/sec
+16625 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-22,41-79 
+2.997 sec
+25213327 ops
+8412841 ops/sec
+16336 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-22,41-79 
+2.99653 sec
+23774876 ops
+7934125 ops/sec
+17386 cycles/op
+
+==== --ncores=63 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-23,41-79 
+2.99725 sec
+25266694 ops
+8429967 ops/sec
+16586 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-23,41-79 
+2.99637 sec
+25244940 ops
+8425185 ops/sec
+16598 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-23,41-79 
+2.99663 sec
+24723565 ops
+8250465 ops/sec
+16971 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-23,41-79 
+2.99737 sec
+24680773 ops
+8234131 ops/sec
+17002 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-23,41-79 
+2.99679 sec
+23645968 ops
+7890429 ops/sec
+17792 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-23,41-79 
+2.99696 sec
+23903305 ops
+7975853 ops/sec
+17591 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-23,41-79 
+2.9971 sec
+24128284 ops
+8050535 ops/sec
+17417 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-23,41-79 
+2.99628 sec
+24125571 ops
+8051830 ops/sec
+17415 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-23,41-79 
+2.99763 sec
+24164948 ops
+8061356 ops/sec
+17390 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-23,41-79 
+2.99745 sec
+23877583 ops
+7965960 ops/sec
+17588 cycles/op
+
+==== --ncores=64 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-24,41-79 
+2.99688 sec
+25220885 ops
+8415703 ops/sec
+16900 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-24,41-79 
+2.99736 sec
+25240486 ops
+8420911 ops/sec
+16888 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-24,41-79 
+2.9972 sec
+24796630 ops
+8273265 ops/sec
+17211 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-24,41-79 
+2.99759 sec
+23968976 ops
+7996069 ops/sec
+17838 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-24,41-79 
+2.99775 sec
+24833430 ops
+8284028 ops/sec
+17183 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-24,41-79 
+2.99709 sec
+24180268 ops
+8067907 ops/sec
+17675 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-24,41-79 
+2.99664 sec
+24109755 ops
+8045601 ops/sec
+17726 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-24,41-79 
+2.99695 sec
+24850679 ops
+8291990 ops/sec
+17169 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-24,41-79 
+2.99663 sec
+23865949 ops
+7964268 ops/sec
+17918 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-24,41-79 
+2.99678 sec
+23952124 ops
+7992615 ops/sec
+17852 cycles/op
+
+==== --ncores=65 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-25,41-79 
+2.99697 sec
+25213642 ops
+8413052 ops/sec
+17189 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-25,41-79 
+2.99699 sec
+25027157 ops
+8350750 ops/sec
+17324 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-25,41-79 
+2.99651 sec
+24306239 ops
+8111513 ops/sec
+17868 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-25,41-79 
+2.99784 sec
+27604755 ops
+9208211 ops/sec
+15611 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-25,41-79 
+2.99693 sec
+23947300 ops
+7990621 ops/sec
+18152 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-25,41-79 
+2.99699 sec
+24070251 ops
+8031464 ops/sec
+18055 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-25,41-79 
+2.99643 sec
+24302558 ops
+8110514 ops/sec
+17869 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-25,41-79 
+2.99714 sec
+23911625 ops
+7978136 ops/sec
+18181 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-25,41-79 
+2.99618 sec
+25200204 ops
+8410778 ops/sec
+17196 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-25,41-79 
+2.99882 sec
+25169474 ops
+8393131 ops/sec
+17224 cycles/op
+
+==== --ncores=66 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-26,41-79 
+2.99699 sec
+25224366 ops
+8416560 ops/sec
+17464 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-26,41-79 
+2.99738 sec
+24058846 ops
+8026620 ops/sec
+18365 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-26,41-79 
+2.99813 sec
+24099662 ops
+8038244 ops/sec
+18333 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-26,41-79 
+2.99767 sec
+24956214 ops
+8325206 ops/sec
+17666 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-26,41-79 
+2.99747 sec
+25084219 ops
+8368455 ops/sec
+17571 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-26,41-79 
+2.99667 sec
+23916872 ops
+7981146 ops/sec
+18478 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-26,41-79 
+2.99728 sec
+24064367 ops
+8028734 ops/sec
+18280 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-26,41-79 
+2.99716 sec
+24994338 ops
+8339340 ops/sec
+17638 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-26,41-79 
+2.99682 sec
+25132285 ops
+8386325 ops/sec
+17532 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-26,41-79 
+2.99622 sec
+25264804 ops
+8432212 ops/sec
+17431 cycles/op
+
+==== --ncores=67 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-27,41-79 
+2.99623 sec
+27818247 ops
+9284431 ops/sec
+15995 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-27,41-79 
+2.9972 sec
+28420215 ops
+9482258 ops/sec
+15636 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-27,41-79 
+2.9974 sec
+25082291 ops
+8368005 ops/sec
+17858 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-27,41-79 
+2.99623 sec
+24925176 ops
+8318854 ops/sec
+17976 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-27,41-79 
+2.99704 sec
+24006766 ops
+8010164 ops/sec
+18703 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-27,41-79 
+2.99652 sec
+25252308 ops
+8427206 ops/sec
+17722 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-27,41-79 
+2.99704 sec
+25001876 ops
+8342178 ops/sec
+17919 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-27,41-79 
+2.99743 sec
+24844383 ops
+8288575 ops/sec
+18039 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-27,41-79 
+2.9971 sec
+25322441 ops
+8448981 ops/sec
+17677 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-27,41-79 
+2.99676 sec
+24993904 ops
+8340303 ops/sec
+17923 cycles/op
+
+==== --ncores=68 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-28,41-79 
+2.99754 sec
+28368085 ops
+9463782 ops/sec
+15924 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-28,41-79 
+2.99657 sec
+25045239 ops
+8357960 ops/sec
+18168 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-28,41-79 
+2.99683 sec
+23959421 ops
+7994924 ops/sec
+19039 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-28,41-79 
+2.99718 sec
+23953965 ops
+7992156 ops/sec
+19043 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-28,41-79 
+2.99776 sec
+25298920 ops
+8439261 ops/sec
+17984 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-28,41-79 
+2.99664 sec
+24290722 ops
+8105978 ops/sec
+18765 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-28,41-79 
+2.99734 sec
+23930148 ops
+7983792 ops/sec
+19067 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-28,41-79 
+2.99724 sec
+24944917 ops
+8322623 ops/sec
+18199 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-28,41-79 
+2.99758 sec
+24105579 ops
+8041685 ops/sec
+18923 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-28,41-79 
+2.99674 sec
+24982164 ops
+8336441 ops/sec
+18219 cycles/op
+
+==== --ncores=69 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-29,41-79 
+2.99771 sec
+24099027 ops
+8039156 ops/sec
+19224 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-29,41-79 
+2.99793 sec
+24019613 ops
+8012053 ops/sec
+19290 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-29,41-79 
+2.99667 sec
+25003795 ops
+8343873 ops/sec
+18431 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-29,41-79 
+2.99628 sec
+25039431 ops
+8356825 ops/sec
+18458 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-29,41-79 
+2.99721 sec
+24921430 ops
+8314887 ops/sec
+18554 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-29,41-79 
+2.99743 sec
+23938704 ops
+7986396 ops/sec
+19361 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-29,41-79 
+2.99754 sec
+25016547 ops
+8345683 ops/sec
+18484 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-29,41-79 
+2.99722 sec
+28931546 ops
+9652806 ops/sec
+15838 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-29,41-79 
+2.99737 sec
+27550222 ops
+9191465 ops/sec
+16685 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-29,41-79 
+2.99718 sec
+24901419 ops
+8308293 ops/sec
+18557 cycles/op
+
+==== --ncores=70 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-30,41-79 
+2.99745 sec
+25347119 ops
+8456235 ops/sec
+18506 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-30,41-79 
+2.99667 sec
+23974238 ops
+8000282 ops/sec
+19626 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-30,41-79 
+2.99699 sec
+24835208 ops
+8286716 ops/sec
+18913 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-30,41-79 
+2.99722 sec
+24865642 ops
+8296229 ops/sec
+18886 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-30,41-79 
+2.99776 sec
+28519097 ops
+9513481 ops/sec
+16337 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-30,41-79 
+2.998 sec
+24175040 ops
+8063733 ops/sec
+19461 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-30,41-79 
+2.99847 sec
+24963331 ops
+8325358 ops/sec
+18810 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-30,41-79 
+2.99625 sec
+24055035 ops
+8028375 ops/sec
+19556 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-30,41-79 
+2.99659 sec
+25411567 ops
+8480161 ops/sec
+18458 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-30,41-79 
+2.9968 sec
+28170002 ops
+9400018 ops/sec
+16548 cycles/op
+
+==== --ncores=71 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-31,41-79 
+2.99735 sec
+26095459 ops
+8706167 ops/sec
+18224 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-31,41-79 
+2.99727 sec
+23612392 ops
+7877976 ops/sec
+20251 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-31,41-79 
+2.99745 sec
+23664819 ops
+7894996 ops/sec
+20201 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-31,41-79 
+2.99644 sec
+22706861 ops
+7577953 ops/sec
+21096 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-31,41-79 
+2.9972 sec
+23377316 ops
+7799720 ops/sec
+20464 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-31,41-79 
+2.99788 sec
+22932506 ops
+7649577 ops/sec
+20881 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-31,41-79 
+2.99664 sec
+23610067 ops
+7878838 ops/sec
+20248 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-31,41-79 
+2.99701 sec
+22988314 ops
+7670418 ops/sec
+20829 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-31,41-79 
+2.99754 sec
+23356242 ops
+7791795 ops/sec
+20487 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-31,41-79 
+2.99679 sec
+23459138 ops
+7828080 ops/sec
+20387 cycles/op
+
+==== --ncores=72 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-32,41-79 
+2.99728 sec
+22423008 ops
+7481109 ops/sec
+21698 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-32,41-79 
+2.99716 sec
+22352729 ops
+7457959 ops/sec
+21769 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-32,41-79 
+2.99646 sec
+21447969 ops
+7157759 ops/sec
+22731 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-32,41-79 
+2.99619 sec
+22029258 ops
+7352426 ops/sec
+22102 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-32,41-79 
+2.99677 sec
+21485009 ops
+7169393 ops/sec
+22688 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-32,41-79 
+2.99743 sec
+22196132 ops
+7405061 ops/sec
+21934 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-32,41-79 
+2.99752 sec
+21843852 ops
+7287303 ops/sec
+22303 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-32,41-79 
+2.99699 sec
+22043699 ops
+7355288 ops/sec
+22088 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-32,41-79 
+2.99733 sec
+22035092 ops
+7351566 ops/sec
+22061 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-32,41-79 
+2.99738 sec
+21477092 ops
+7165280 ops/sec
+22704 cycles/op
+
+==== --ncores=73 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-33,41-79 
+2.99745 sec
+26388085 ops
+8803501 ops/sec
+18554 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-33,41-79 
+2.99654 sec
+22313140 ops
+7446308 ops/sec
+22126 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-33,41-79 
+2.99712 sec
+21520861 ops
+7180520 ops/sec
+22988 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-33,41-79 
+2.99652 sec
+21962386 ops
+7329290 ops/sec
+22501 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-33,41-79 
+2.99687 sec
+22282997 ops
+7435423 ops/sec
+22163 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-33,41-79 
+2.9978 sec
+22011973 ops
+7342706 ops/sec
+22452 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-33,41-79 
+2.99723 sec
+25311219 ops
+8444873 ops/sec
+19388 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-33,41-79 
+2.99681 sec
+21543450 ops
+7188789 ops/sec
+22961 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-33,41-79 
+2.99636 sec
+21800853 ops
+7275774 ops/sec
+22672 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-33,41-79 
+2.99569 sec
+22017178 ops
+7349613 ops/sec
+22434 cycles/op
+
+==== --ncores=74 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-34,41-79 
+2.99729 sec
+22279472 ops
+7433200 ops/sec
+22490 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-34,41-79 
+2.99645 sec
+21579224 ops
+7201586 ops/sec
+23247 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-34,41-79 
+2.99791 sec
+22255022 ops
+7423507 ops/sec
+22516 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-34,41-79 
+2.99721 sec
+21556921 ops
+7192331 ops/sec
+23280 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-34,41-79 
+2.99736 sec
+25587703 ops
+8536741 ops/sec
+19447 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-34,41-79 
+2.99589 sec
+22594307 ops
+7541775 ops/sec
+22154 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-34,41-79 
+2.99745 sec
+22308243 ops
+7442414 ops/sec
+22458 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-34,41-79 
+2.99734 sec
+22219442 ops
+7413051 ops/sec
+22555 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-34,41-79 
+2.9966 sec
+22624327 ops
+7549989 ops/sec
+22126 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-34,41-79 
+2.9971 sec
+25864967 ops
+8630010 ops/sec
+19228 cycles/op
+
+==== --ncores=75 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-35,41-79 
+2.99688 sec
+25276928 ops
+8434420 ops/sec
+19984 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-35,41-79 
+2.99584 sec
+22642369 ops
+7557941 ops/sec
+22422 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-35,41-79 
+2.99734 sec
+22290748 ops
+7436848 ops/sec
+22799 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-35,41-79 
+2.99813 sec
+22614873 ops
+7542997 ops/sec
+22453 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-35,41-79 
+2.9972 sec
+25941634 ops
+8655286 ops/sec
+19444 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-35,41-79 
+2.99711 sec
+22427974 ops
+7483195 ops/sec
+22650 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-35,41-79 
+2.99746 sec
+21986698 ops
+7335109 ops/sec
+23127 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-35,41-79 
+2.99686 sec
+22242301 ops
+7421878 ops/sec
+22847 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-35,41-79 
+2.99712 sec
+21697679 ops
+7239504 ops/sec
+23452 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-35,41-79 
+2.99738 sec
+22061795 ops
+7360349 ops/sec
+23048 cycles/op
+
+==== --ncores=76 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-36,41-79 
+2.99716 sec
+22220590 ops
+7413871 ops/sec
+23195 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-36,41-79 
+2.99722 sec
+22307022 ops
+7442568 ops/sec
+23099 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-36,41-79 
+2.99821 sec
+22379140 ops
+7464159 ops/sec
+23026 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-36,41-79 
+2.99775 sec
+22252555 ops
+7423085 ops/sec
+23164 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-36,41-79 
+2.99711 sec
+26339430 ops
+8788275 ops/sec
+19407 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-36,41-79 
+2.99766 sec
+22343379 ops
+7453596 ops/sec
+23062 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-36,41-79 
+2.99919 sec
+21577775 ops
+7194531 ops/sec
+23916 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-36,41-79 
+2.9971 sec
+22219227 ops
+7413575 ops/sec
+23199 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-36,41-79 
+2.99761 sec
+22399399 ops
+7472429 ops/sec
+23003 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-36,41-79 
+2.99748 sec
+26032189 ops
+8684679 ops/sec
+19644 cycles/op
+
+==== --ncores=77 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-37,41-79 
+2.99712 sec
+30342818 ops
+10123991 ops/sec
+16944 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-37,41-79 
+2.99699 sec
+22031868 ops
+7351334 ops/sec
+23724 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-37,41-79 
+2.99798 sec
+22299227 ops
+7438083 ops/sec
+23435 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-37,41-79 
+2.99749 sec
+21673110 ops
+7230414 ops/sec
+24143 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-37,41-79 
+2.99704 sec
+22348623 ops
+7456906 ops/sec
+23375 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-37,41-79 
+2.99714 sec
+22384152 ops
+7468494 ops/sec
+23340 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-37,41-79 
+2.99786 sec
+22208405 ops
+7408093 ops/sec
+23530 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-37,41-79 
+2.99733 sec
+22263299 ops
+7427722 ops/sec
+23475 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-37,41-79 
+2.99825 sec
+21591112 ops
+7201228 ops/sec
+24241 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-37,41-79 
+2.99635 sec
+25987846 ops
+8673167 ops/sec
+19957 cycles/op
+
+==== --ncores=78 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-38,41-79 
+2.99715 sec
+26839389 ops
+8954978 ops/sec
+19559 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-38,41-79 
+2.99768 sec
+22284814 ops
+7434030 ops/sec
+23767 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-38,41-79 
+2.99844 sec
+21637910 ops
+7216389 ops/sec
+24512 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-38,41-79 
+2.99733 sec
+25534757 ops
+8519179 ops/sec
+20612 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-38,41-79 
+2.9967 sec
+22283385 ops
+7435984 ops/sec
+23768 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-38,41-79 
+2.99713 sec
+22302568 ops
+7441316 ops/sec
+23749 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-38,41-79 
+2.99715 sec
+22258526 ops
+7426571 ops/sec
+23798 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-38,41-79 
+2.99722 sec
+21981212 ops
+7333866 ops/sec
+24111 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-38,41-79 
+2.99722 sec
+22373893 ops
+7464879 ops/sec
+23673 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-38,41-79 
+2.99778 sec
+22311961 ops
+7442825 ops/sec
+23739 cycles/op
+
+==== --ncores=79 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-39,41-79 
+2.99757 sec
+22646245 ops
+7554877 ops/sec
+23690 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-39,41-79 
+2.99797 sec
+21674833 ops
+7229829 ops/sec
+24801 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-39,41-79 
+2.99771 sec
+22248890 ops
+7421966 ops/sec
+24130 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-39,41-79 
+2.99776 sec
+22667285 ops
+7561404 ops/sec
+23668 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-39,41-79 
+2.99646 sec
+22342251 ops
+7456213 ops/sec
+24021 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-39,41-79 
+2.99653 sec
+21661280 ops
+7228797 ops/sec
+24812 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-39,41-79 
+2.99776 sec
+21658303 ops
+7224824 ops/sec
+24819 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-39,41-79 
+2.9976 sec
+23629427 ops
+7882786 ops/sec
+22661 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-39,41-79 
+2.99699 sec
+21951715 ops
+7324596 ops/sec
+24468 cycles/op
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-39,41-79 
+2.99722 sec
+22657921 ops
+7559645 ops/sec
+23677 cycles/op
+
+==== --ncores=80 ====
+
+# --duration=3 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-79 
+2.99724 sec
+22358059 ops
+7459561 ops/sec
+24334 cycles/op
+
+# --duration=1 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-79 
+0.997158 sec
+7300785 ops
+7321592 ops/sec
+24735 cycles/op
+
+# --duration=1 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-79 
+0.997129 sec
+7570989 ops
+7592786 ops/sec
+23810 cycles/op
+
+# --duration=1 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-79 
+0.996607 sec
+7386194 ops
+7411340 ops/sec
+24416 cycles/op
+
+# --duration=1 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-79 
+0.997088 sec
+7412157 ops
+7433804 ops/sec
+24344 cycles/op
+
+# --duration=1 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-79 
+0.997312 sec
+7389561 ops
+7409477 ops/sec
+24400 cycles/op
+
+# --duration=1 --rw --wait=1000 --minwait=1000 --readwait=1000 --cores=0-79 
+0.997901 sec
+7317821 ops
+7333211 ops/sec
+24677 cycles/op

@@ -1,0 +1,5 @@
+Web browsers will find these files automatically using the @font-face
+declarations in faces.css, but Inkscape only knows how to use system
+fonts, so you'll have to install the TTFs locally to edit the SVG.
+
+In Linux, the simplest thing to do is to copy the TTFs to ~/.fonts

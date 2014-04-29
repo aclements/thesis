@@ -1,0 +1,27 @@
+#!/usr/bin/env python
+
+import sys
+import mscan
+import render
+
+calls = [
+    # Things that deal with names
+    'open', 'link', 'unlink', 'rename', 'stat',
+    # Things that deal with FDs
+    'fstat', 'lseek', 'close', 'pipe', 'read', 'write', 'pread', 'pwrite',
+    # VM
+    'mmap', 'munmap', 'mprotect', 'memread', 'memwrite']
+cell = 20
+
+ctx = render.SVG()
+ctx.font_size = 15
+m = mscan.mscan(file(sys.argv[1]))
+table = m.table_ul(calls)
+hm = render.heat_map(ctx, table.mapget('nonshared_frac'), cell, cell, sep=False)
+hm.left_labels().top_labels()
+
+ctx.translate(hm.width + cell, 0)
+hm.key(cell * 1.5, hm.height, cell, side='left',
+       l0='All tests conflicted', l1='All tests conflict-free')
+
+ctx.write_to(sys.stdout, {'font-family':'Open Sans', 'font-weight':'300'})

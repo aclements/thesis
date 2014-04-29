@@ -1,0 +1,323 @@
+# guk-exim
+# path                  cores messages/sec/core real    user/message sys/message idle/message 
+named/guk-exim/cores-1  1     611.846           15.0054 0.000443307  0.00119159  0            
+named/guk-exim/cores-4  4     459.223           15.0036 0.000487663  0.00169013  0            
+named/guk-exim/cores-8  8     421.696           15.0031 0.000519422  0.00185225  0            
+named/guk-exim/cores-12 12    396.781           15.0026 0.000493189  0.00202693  0            
+named/guk-exim/cores-16 16    385.674           15.0023 0.000494837  0.00209784  0            
+named/guk-exim/cores-20 20    376.174           15.0029 0.00050109   0.00215692  0            
+named/guk-exim/cores-24 24    364.419           15.0038 0.000504405  0.00223991  0            
+named/guk-exim/cores-28 28    350.673           15.0028 0.000499423  0.00235245  0            
+named/guk-exim/cores-32 32    338.258           15.0037 0.000519753  0.00243682  6.15748e-08  
+named/guk-exim/cores-36 36    320.026           15.0038 0.000527774  0.00259676  3.47106e-07  
+named/guk-exim/cores-40 40    303.603           15.0042 0.000534155  0.00275875  1.09762e-06  
+named/guk-exim/cores-44 44    292.816           15.004  0.000548652  0.00286473  1.96575e-06  
+named/guk-exim/cores-48 48    274.529           15.0105 0.00055339   0.00308328  5.86454e-06  
+
+
+# guk-gmake
+# path                   cores builds/sec/core real    user/build sys/build idle/build 
+named/guk-gmake/cores-1  1     0.00162715      614.572 562.39     52.22     0          
+named/guk-gmake/cores-4  4     0.00153836      162.511 585.55     57.82     6.63       
+named/guk-gmake/cores-8  8     0.00148714      84.0542 592.37     63.19     17.58      
+named/guk-gmake/cores-12 12    0.00143991      57.8741 598.11     66.48     32         
+named/guk-gmake/cores-16 16    0.00141282      44.2378 597.37     66.17     47.78      
+named/guk-gmake/cores-20 20    0.00136509      36.6277 598.42     66.57     67.52      
+named/guk-gmake/cores-24 24    0.00137093      30.3929 603.64     68.13     52.08      
+named/guk-gmake/cores-28 28    0.00134338      26.5853 603.89     68.81     61.31      
+named/guk-gmake/cores-32 32    0.00132461      23.5919 606.57     68.53     83.78      
+named/guk-gmake/cores-36 36    0.00128438      21.6273 609.65     69.27     103.66     
+named/guk-gmake/cores-40 40    0.00127524      19.6042 611.84     69.77     108.69     
+named/guk-gmake/cores-44 44    0.00124629      18.2359 613.48     70.29     120.59     
+named/guk-gmake/cores-48 48    0.00121118      17.2009 615.29     70.87     129.26     
+
+
+# guk-metis/model-default
+# path                                 cores jobs/sec/core real    user/job sys/job idle/job 
+named/guk-metis/model-default/cores-1  1     0.00718954    139.091 134.26   4.84    0        
+named/guk-metis/model-default/cores-4  4     0.00714807    34.9745 134.98   4.85    1.7      
+named/guk-metis/model-default/cores-8  8     0.0071365     17.5156 135.05   4.82    4.13     
+named/guk-metis/model-default/cores-12 12    0.00675814    12.3308 140.97   6.44    5.02     
+named/guk-metis/model-default/cores-16 16    0.00683445    9.14485 138.72   6.64    8.13     
+named/guk-metis/model-default/cores-20 20    0.00653103    7.65576 143.55   8.07    8.95     
+named/guk-metis/model-default/cores-24 24    0.00630377    6.6098  145.7    10.85   15.13    
+named/guk-metis/model-default/cores-28 28    0.0057533     6.20762 157.25   13.44   17.08    
+named/guk-metis/model-default/cores-32 32    0.00589385    5.30214 151.33   14.65   22.83    
+named/guk-metis/model-default/cores-36 36    0.00571783    4.8581  153.98   16.4    26.98    
+named/guk-metis/model-default/cores-40 40    0.00553563    4.5162  154.08   20.4    22.1     
+named/guk-metis/model-default/cores-44 44    0.00516801    4.39768 160.97   24.4    32.73    
+named/guk-metis/model-default/cores-48 48    0.00500692    4.16091 161.72   28.14   39.6     
+
+
+# guk-metis/model-hugetlb
+# path                                 cores jobs/sec/core real    user/job sys/job idle/job 
+named/guk-metis/model-hugetlb/cores-1  1     0.00878295    113.857 111.62   2.24    0        
+named/guk-metis/model-hugetlb/cores-4  4     0.00871329    28.6918 113.35   1.39    1.56     
+named/guk-metis/model-hugetlb/cores-8  8     0.00874034    14.3015 112.95   1.38    1.4      
+named/guk-metis/model-hugetlb/cores-12 12    0.00838436    9.93914 117.03   2.05    3.66     
+named/guk-metis/model-hugetlb/cores-16 16    0.00830977    7.52127 118.09   1.92    6.09     
+named/guk-metis/model-hugetlb/cores-20 20    0.00803253    6.22469 121.7    2.37    8.56     
+named/guk-metis/model-hugetlb/cores-24 24    0.00767876    5.42622 126.97   2.73    10.51    
+named/guk-metis/model-hugetlb/cores-28 28    0.00712344    5.01363 136.2    3.4     14.99    
+named/guk-metis/model-hugetlb/cores-32 32    0.00733618    4.25971 132.33   3.03    18.05    
+named/guk-metis/model-hugetlb/cores-36 36    0.00718089    3.86829 134.22   3.78    17.49    
+named/guk-metis/model-hugetlb/cores-40 40    0.0069629     3.59046 137.77   4.49    23.41    
+named/guk-metis/model-hugetlb/cores-44 44    0.00655514    3.46709 145.41   5.32    26.34    
+named/guk-metis/model-hugetlb/cores-48 48    0.00646151    3.22422 146.72   5.65    27.7     
+
+
+# guk-postgres/randomWritePct-0/lwScale-False/lockScale-False/lockPartitions-16
+# path                                                                                       cores queries/sec/core real    user/query  sys/query   idle/query  
+named/guk-postgres/randomWritePct-0/lwScale-False/lockScale-False/lockPartitions-16/cores-1  1     22679.6          15.0239 4.19973e-05 6.16313e-07 1.43806e-06 
+named/guk-postgres/randomWritePct-0/lwScale-False/lockScale-False/lockPartitions-16/cores-4  4     22394.5          15.0341 4.23695e-05 8.16798e-07 1.58162e-06 
+named/guk-postgres/randomWritePct-0/lwScale-False/lockScale-False/lockPartitions-16/cores-8  8     21430.4          15.0273 4.44974e-05 7.29721e-07 1.64963e-06 
+named/guk-postgres/randomWritePct-0/lwScale-False/lockScale-False/lockPartitions-16/cores-12 12    20904.9          15.0222 4.55067e-05 7.21781e-07 1.87345e-06 
+named/guk-postgres/randomWritePct-0/lwScale-False/lockScale-False/lockPartitions-16/cores-16 16    20314.1          15.0278 4.66935e-05 9.23346e-07 1.85488e-06 
+named/guk-postgres/randomWritePct-0/lwScale-False/lockScale-False/lockPartitions-16/cores-20 20    19772.3          15.0191 4.8129e-05  9.07522e-07 1.80157e-06 
+named/guk-postgres/randomWritePct-0/lwScale-False/lockScale-False/lockPartitions-16/cores-24 24    19282.8          15.0197 4.93732e-05 8.97721e-07 1.88176e-06 
+named/guk-postgres/randomWritePct-0/lwScale-False/lockScale-False/lockPartitions-16/cores-28 28    18454.2          15.0451 5.1781e-05  8.52833e-07 1.86388e-06 
+named/guk-postgres/randomWritePct-0/lwScale-False/lockScale-False/lockPartitions-16/cores-32 32    15803.1          15.0209 6.05076e-05 1.05844e-06 2.1182e-06  
+named/guk-postgres/randomWritePct-0/lwScale-False/lockScale-False/lockPartitions-16/cores-36 36    14465.8          15.0297 6.64188e-05 1.0451e-06  2.08254e-06 
+named/guk-postgres/randomWritePct-0/lwScale-False/lockScale-False/lockPartitions-16/cores-40 40    9552.1           15.0306 0.000100382 1.28854e-06 3.5191e-06  
+named/guk-postgres/randomWritePct-0/lwScale-False/lockScale-False/lockPartitions-16/cores-44 44    4442.45          15.0179 0.000216228 2.03031e-06 7.43311e-06 
+named/guk-postgres/randomWritePct-0/lwScale-False/lockScale-False/lockPartitions-16/cores-48 48    4933.18          15.0185 0.00019077  2.51668e-06 9.45653e-06 
+
+
+# guk-postgres/randomWritePct-0/lwScale-True/lockScale-True/lockPartitions-1024
+# path                                                                                       cores queries/sec/core real    user/query  sys/query   idle/query  
+named/guk-postgres/randomWritePct-0/lwScale-True/lockScale-True/lockPartitions-1024/cores-1  1     22557.9          15.0202 4.21163e-05 5.90277e-07 1.56423e-06 
+named/guk-postgres/randomWritePct-0/lwScale-True/lockScale-True/lockPartitions-1024/cores-4  4     21599            15.0178 4.40933e-05 7.3219e-07  1.61082e-06 
+named/guk-postgres/randomWritePct-0/lwScale-True/lockScale-True/lockPartitions-1024/cores-8  8     21024.4          15.0318 4.5189e-05  8.1083e-07  1.81547e-06 
+named/guk-postgres/randomWritePct-0/lwScale-True/lockScale-True/lockPartitions-1024/cores-12 12    20728.8          15.0222 4.59067e-05 7.60026e-07 1.82513e-06 
+named/guk-postgres/randomWritePct-0/lwScale-True/lockScale-True/lockPartitions-1024/cores-16 16    20305.8          15.0148 4.6718e-05  9.61418e-07 1.86339e-06 
+named/guk-postgres/randomWritePct-0/lwScale-True/lockScale-True/lockPartitions-1024/cores-20 20    19642.4          15.0233 4.83762e-05 9.89517e-07 1.82654e-06 
+named/guk-postgres/randomWritePct-0/lwScale-True/lockScale-True/lockPartitions-1024/cores-24 24    19395.6          15.0306 4.9042e-05  9.04717e-07 1.91663e-06 
+named/guk-postgres/randomWritePct-0/lwScale-True/lockScale-True/lockPartitions-1024/cores-28 28    18654.6          15.0156 5.11521e-05 8.87407e-07 1.89977e-06 
+named/guk-postgres/randomWritePct-0/lwScale-True/lockScale-True/lockPartitions-1024/cores-32 32    17966.8          15.0248 5.32372e-05 8.74013e-07 1.91357e-06 
+named/guk-postgres/randomWritePct-0/lwScale-True/lockScale-True/lockPartitions-1024/cores-36 36    17614.4          15.0505 5.43442e-05 9.37782e-07 1.89966e-06 
+named/guk-postgres/randomWritePct-0/lwScale-True/lockScale-True/lockPartitions-1024/cores-40 40    16792.4          15.0288 5.70789e-05 9.23248e-07 1.95744e-06 
+named/guk-postgres/randomWritePct-0/lwScale-True/lockScale-True/lockPartitions-1024/cores-44 44    16364            15.0494 5.85845e-05 9.76393e-07 1.9574e-06  
+named/guk-postgres/randomWritePct-0/lwScale-True/lockScale-True/lockPartitions-1024/cores-48 48    16161.2          15.0196 5.95043e-05 9.10631e-07 1.97403e-06 
+
+
+# guk-postgres/randomWritePct-5/lwScale-False/lockScale-False/lockPartitions-16
+# path                                                                                       cores queries/sec/core real    user/query  sys/query   idle/query  
+named/guk-postgres/randomWritePct-5/lwScale-False/lockScale-False/lockPartitions-16/cores-1  1     20526.7          15.032  4.57614e-05 1.16672e-06 1.8149e-06  
+named/guk-postgres/randomWritePct-5/lwScale-False/lockScale-False/lockPartitions-16/cores-4  4     20025.7          15.0294 4.73878e-05 9.8015e-07  1.74434e-06 
+named/guk-postgres/randomWritePct-5/lwScale-False/lockScale-False/lockPartitions-16/cores-8  8     19335.2          15.0225 4.88745e-05 1.07156e-06 1.99681e-06 
+named/guk-postgres/randomWritePct-5/lwScale-False/lockScale-False/lockPartitions-16/cores-12 12    18569.3          15.0204 5.06898e-05 1.23692e-06 2.15117e-06 
+named/guk-postgres/randomWritePct-5/lwScale-False/lockScale-False/lockPartitions-16/cores-16 16    17993.6          15.0297 5.24519e-05 1.17864e-06 2.214e-06   
+named/guk-postgres/randomWritePct-5/lwScale-False/lockScale-False/lockPartitions-16/cores-20 20    17036.2          15.0194 5.54218e-05 1.20176e-06 2.32536e-06 
+named/guk-postgres/randomWritePct-5/lwScale-False/lockScale-False/lockPartitions-16/cores-24 24    16706.2          15.0198 5.63069e-05 1.32178e-06 2.53065e-06 
+named/guk-postgres/randomWritePct-5/lwScale-False/lockScale-False/lockPartitions-16/cores-28 28    15387.1          15.0148 5.9345e-05  1.5072e-06  4.66845e-06 
+named/guk-postgres/randomWritePct-5/lwScale-False/lockScale-False/lockPartitions-16/cores-32 32    13181.3          15.0253 6.54433e-05 1.65517e-06 9.69752e-06 
+named/guk-postgres/randomWritePct-5/lwScale-False/lockScale-False/lockPartitions-16/cores-36 36    9573.07          15.0198 9.2265e-05  2.02848e-06 1.1344e-05  
+named/guk-postgres/randomWritePct-5/lwScale-False/lockScale-False/lockPartitions-16/cores-40 40    7636.63          15.0171 0.000105075 2.50697e-06 2.5545e-05  
+named/guk-postgres/randomWritePct-5/lwScale-False/lockScale-False/lockPartitions-16/cores-44 44    6626.41          15.0157 0.000121939 2.70214e-06 2.88807e-05 
+named/guk-postgres/randomWritePct-5/lwScale-False/lockScale-False/lockPartitions-16/cores-48 48    4314.78          15.0166 0.000196963 3.39862e-06 3.54396e-05 
+
+
+# guk-postgres/randomWritePct-5/lwScale-True/lockScale-True/lockPartitions-1024
+# path                                                                                       cores queries/sec/core real    user/query  sys/query   idle/query  
+named/guk-postgres/randomWritePct-5/lwScale-True/lockScale-True/lockPartitions-1024/cores-1  1     20531.1          15.034  4.57779e-05 1.03673e-06 1.87907e-06 
+named/guk-postgres/randomWritePct-5/lwScale-True/lockScale-True/lockPartitions-1024/cores-4  4     19710.8          15.0227 4.80987e-05 9.54037e-07 1.84053e-06 
+named/guk-postgres/randomWritePct-5/lwScale-True/lockScale-True/lockPartitions-1024/cores-8  8     19031.7          15.0236 5.00045e-05 8.61243e-07 1.95419e-06 
+named/guk-postgres/randomWritePct-5/lwScale-True/lockScale-True/lockPartitions-1024/cores-12 12    18454.8          15.0173 5.13847e-05 9.83253e-07 2.04469e-06 
+named/guk-postgres/randomWritePct-5/lwScale-True/lockScale-True/lockPartitions-1024/cores-16 16    17850.9          15.0151 5.31068e-05 1.07263e-06 2.08696e-06 
+named/guk-postgres/randomWritePct-5/lwScale-True/lockScale-True/lockPartitions-1024/cores-20 20    17521.9          15.0161 5.42834e-05 9.63476e-07 2.10938e-06 
+named/guk-postgres/randomWritePct-5/lwScale-True/lockScale-True/lockPartitions-1024/cores-24 24    17257.3          15.0229 5.5065e-05  1.07359e-06 2.21629e-06 
+named/guk-postgres/randomWritePct-5/lwScale-True/lockScale-True/lockPartitions-1024/cores-28 28    16411.8          15.0313 5.7698e-05  1.09883e-06 2.62619e-06 
+named/guk-postgres/randomWritePct-5/lwScale-True/lockScale-True/lockPartitions-1024/cores-32 32    15966.4          15.0177 5.907e-05   1.17817e-06 3.04186e-06 
+named/guk-postgres/randomWritePct-5/lwScale-True/lockScale-True/lockPartitions-1024/cores-36 36    15083.6          15.0204 6.25399e-05 1.12674e-06 3.19878e-06 
+named/guk-postgres/randomWritePct-5/lwScale-True/lockScale-True/lockPartitions-1024/cores-40 40    14336.5          15.0313 6.54163e-05 1.19839e-06 4.04995e-06 
+named/guk-postgres/randomWritePct-5/lwScale-True/lockScale-True/lockPartitions-1024/cores-44 44    14087.5          15.0195 6.62513e-05 1.22558e-06 4.56076e-06 
+named/guk-postgres/randomWritePct-5/lwScale-True/lockScale-True/lockPartitions-1024/cores-48 48    13515.2          15.0187 6.85728e-05 1.35481e-06 5.32481e-06 
+
+
+# stock-exim
+# path                    cores messages/sec/core real    user/message sys/message idle/message 
+named/stock-exim/cores-1  1     641.656           15.0096 0.000477624  0.00108088  0            
+named/stock-exim/cores-4  4     460.106           15.0036 0.000480933  0.00169268  0            
+named/stock-exim/cores-8  8     406.997           15.0035 0.000472866  0.0019842   0            
+named/stock-exim/cores-12 12    378.535           15.003  0.000481585  0.00215979  0            
+named/stock-exim/cores-16 16    365.049           15.0028 0.000493678  0.0022454   0            
+named/stock-exim/cores-20 20    352.554           15.0028 0.000486548  0.00234955  0            
+named/stock-exim/cores-24 24    338.338           15.0024 0.000485138  0.00247108  0            
+named/stock-exim/cores-28 28    320.996           15.0042 0.000501572  0.0026139   0            
+named/stock-exim/cores-32 32    303.708           15.0031 0.00050168   0.00279062  6.85824e-08  
+named/stock-exim/cores-36 36    277.626           15.0034 0.000514231  0.00308779  3.3344e-07   
+named/stock-exim/cores-40 40    250.956           15.0035 0.00052301   0.00346055  1.52713e-06  
+named/stock-exim/cores-44 44    118.352           15.0049 0.000512939  0.00792559  1.06222e-05  
+named/stock-exim/cores-48 48    84.7641           15.0066 0.000517058  0.0112487   3.32476e-05  
+
+
+# stock-gmake
+# path                     cores builds/sec/core real    user/build sys/build idle/build 
+named/stock-gmake/cores-1  1     0.00160207      624.191 577        47.23     0          
+named/stock-gmake/cores-4  4     0.0015253       163.902 590.28     58.46     6.16       
+named/stock-gmake/cores-8  8     0.00148757      84.0295 592.83     62.78     16.3       
+named/stock-gmake/cores-12 12    0.00143551      58.0515 599.56     68.72     26.63      
+named/stock-gmake/cores-16 16    0.00142014      44.0099 597.3      65.6      41.13      
+named/stock-gmake/cores-20 20    0.00139192      35.9216 598.47     67.33     52.45      
+named/stock-gmake/cores-24 24    0.00136684      30.4839 601.07     68.31     62.08      
+named/stock-gmake/cores-28 28    0.0013572       26.3146 599.44     68.94     64.19      
+named/stock-gmake/cores-32 32    0.00131122      23.8328 601.04     71.25     80.65      
+named/stock-gmake/cores-36 36    0.00129334      21.4775 603.75     72.61     98.62      
+named/stock-gmake/cores-40 40    0.00124735      20.0425 601.97     73.94     124.64     
+named/stock-gmake/cores-44 44    0.00124221      18.2958 602.6      75.34     120.01     
+named/stock-gmake/cores-48 48    0.00119001      17.5069 605        76.12     156.37     
+
+
+# stock-metis/model-default
+# path                                   cores jobs/sec/core real    user/job sys/job idle/job 
+named/stock-metis/model-default/cores-1  1     0.00725547    137.827 133.63   4.2     0        
+named/stock-metis/model-default/cores-4  4     0.00729301    34.2794 132.65   4.4     1.67     
+named/stock-metis/model-default/cores-8  8     0.00728307    17.1631 132.05   4.89    4.24     
+named/stock-metis/model-default/cores-12 12    0.00690063    12.0762 138.29   6.06    5.18     
+named/stock-metis/model-default/cores-16 16    0.0070595     8.85332 134.54   6.21    9.71     
+named/stock-metis/model-default/cores-20 20    0.00658703    7.59068 142.24   8       9.23     
+named/stock-metis/model-default/cores-24 24    0.00638705    6.52362 143.23   11.07   19.55    
+named/stock-metis/model-default/cores-28 28    0.00580631    6.15094 156.15   12.98   23.81    
+named/stock-metis/model-default/cores-32 32    0.00603615    5.17714 146.94   14.65   26.38    
+named/stock-metis/model-default/cores-36 36    0.00589801    4.70969 147.59   16.7    19.48    
+named/stock-metis/model-default/cores-40 40    0.00573045    4.36266 146.84   20.56   25.4     
+named/stock-metis/model-default/cores-44 44    0.0053877     4.21836 152.94   24.26   33.4     
+named/stock-metis/model-default/cores-48 48    0.0052296     3.98373 150.84   29.55   36.33    
+
+
+# stock-metis/model-hugetlb
+# path                                   cores jobs/sec/core real    user/job sys/job idle/job 
+named/stock-metis/model-hugetlb/cores-1  1     0.00832078    120.181 116.69   3.5     0        
+named/stock-metis/model-hugetlb/cores-4  4     0.00786055    31.8044 121.99   4.12    2.01     
+named/stock-metis/model-hugetlb/cores-8  8     0.00744979    16.779  122.4    6.63    8.68     
+named/stock-metis/model-hugetlb/cores-12 12    0.00653549    12.7509 126.82   11.65   20.74    
+named/stock-metis/model-hugetlb/cores-16 16    0.00639155    9.77853 126.68   10.6    28       
+named/stock-metis/model-hugetlb/cores-20 20    0.00575155    8.69331 129.17   13.92   39.88    
+named/stock-metis/model-hugetlb/cores-24 24    0.00521729    7.98627 133.3    15.53   54.71    
+named/stock-metis/model-hugetlb/cores-28 28    0.00461471    7.73922 141.32   19.21   72.17    
+named/stock-metis/model-hugetlb/cores-32 32    0.00476463    6.55875 138.69   17.54   67.7     
+named/stock-metis/model-hugetlb/cores-36 36    0.00453673    6.12287 135.73   19.05   84.34    
+named/stock-metis/model-hugetlb/cores-40 40    0.00416585    6.00118 139.9    19.72   106.08   
+named/stock-metis/model-hugetlb/cores-44 44    0.00392056    5.79694 138.8    21.81   119.72   
+named/stock-metis/model-hugetlb/cores-48 48    0.00367871    5.66322 139.73   30.17   134.16   
+
+
+# stock-postgres/randomWritePct-0/lwScale-False/lockScale-False/lockPartitions-16
+# path                                                                                         cores queries/sec/core real    user/query  sys/query   idle/query  
+named/stock-postgres/randomWritePct-0/lwScale-False/lockScale-False/lockPartitions-16/cores-1  1     22676            15.021  4.18653e-05 6.1653e-07  1.58536e-06 
+named/stock-postgres/randomWritePct-0/lwScale-False/lockScale-False/lockPartitions-16/cores-4  4     22425.5          15.0256 4.21643e-05 8.68066e-07 1.63226e-06 
+named/stock-postgres/randomWritePct-0/lwScale-False/lockScale-False/lockPartitions-16/cores-8  8     21639.6          15.0222 4.3663e-05  9.84388e-07 1.80343e-06 
+named/stock-postgres/randomWritePct-0/lwScale-False/lockScale-False/lockPartitions-16/cores-12 12    20818.2          15.0293 4.53417e-05 9.90785e-07 1.93895e-06 
+named/stock-postgres/randomWritePct-0/lwScale-False/lockScale-False/lockPartitions-16/cores-16 16    20246.8          15.0326 4.66592e-05 1.12736e-06 1.87893e-06 
+named/stock-postgres/randomWritePct-0/lwScale-False/lockScale-False/lockPartitions-16/cores-20 20    19686.4          15.0199 4.80455e-05 1.15831e-06 1.89727e-06 
+named/stock-postgres/randomWritePct-0/lwScale-False/lockScale-False/lockPartitions-16/cores-24 24    19332.3          15.0311 4.88825e-05 1.26325e-06 1.87122e-06 
+named/stock-postgres/randomWritePct-0/lwScale-False/lockScale-False/lockPartitions-16/cores-28 28    18290.1          15.0222 5.1765e-05  1.36354e-06 1.84318e-06 
+named/stock-postgres/randomWritePct-0/lwScale-False/lockScale-False/lockPartitions-16/cores-32 32    16813.3          15.0315 5.63696e-05 1.66557e-06 1.79911e-06 
+named/stock-postgres/randomWritePct-0/lwScale-False/lockScale-False/lockPartitions-16/cores-36 36    12321.2          15.0178 6.30697e-05 1.65477e-05 1.97857e-06 
+named/stock-postgres/randomWritePct-0/lwScale-False/lockScale-False/lockPartitions-16/cores-40 40    4137.94          15.0181 5.46875e-05 0.000181236 7.97744e-06 
+named/stock-postgres/randomWritePct-0/lwScale-False/lockScale-False/lockPartitions-16/cores-44 44    2830.17          15.014  5.7187e-05  0.000272087 2.98237e-05 
+named/stock-postgres/randomWritePct-0/lwScale-False/lockScale-False/lockPartitions-16/cores-48 48    2238.11          15.0155 6.92082e-05 0.000322254 6.36785e-05 
+
+
+# stock-postgres/randomWritePct-0/lwScale-True/lockScale-True/lockPartitions-1024
+# path                                                                                         cores queries/sec/core real    user/query  sys/query   idle/query  
+named/stock-postgres/randomWritePct-0/lwScale-True/lockScale-True/lockPartitions-1024/cores-1  1     22355.7          15.024  4.24864e-05 6.84785e-07 1.57798e-06 
+named/stock-postgres/randomWritePct-0/lwScale-True/lockScale-True/lockPartitions-1024/cores-4  4     21949.9          15.0421 4.31593e-05 8.40471e-07 1.71123e-06 
+named/stock-postgres/randomWritePct-0/lwScale-True/lockScale-True/lockPartitions-1024/cores-8  8     21012.7          15.0403 4.47851e-05 1.15888e-06 1.91829e-06 
+named/stock-postgres/randomWritePct-0/lwScale-True/lockScale-True/lockPartitions-1024/cores-12 12    20531.8          15.0271 4.6081e-05  1.04527e-06 1.82585e-06 
+named/stock-postgres/randomWritePct-0/lwScale-True/lockScale-True/lockPartitions-1024/cores-16 16    19962.2          15.0384 4.73643e-05 1.12841e-06 1.83628e-06 
+named/stock-postgres/randomWritePct-0/lwScale-True/lockScale-True/lockPartitions-1024/cores-20 20    19576.9          15.0391 4.84122e-05 1.10726e-06 1.79676e-06 
+named/stock-postgres/randomWritePct-0/lwScale-True/lockScale-True/lockPartitions-1024/cores-24 24    19044.9          15.042  4.97718e-05 1.17666e-06 1.85444e-06 
+named/stock-postgres/randomWritePct-0/lwScale-True/lockScale-True/lockPartitions-1024/cores-28 28    18492.6          15.0284 5.12233e-05 1.29793e-06 1.9212e-06  
+named/stock-postgres/randomWritePct-0/lwScale-True/lockScale-True/lockPartitions-1024/cores-32 32    17927.1          15.0275 5.26714e-05 1.6031e-06  1.8351e-06  
+named/stock-postgres/randomWritePct-0/lwScale-True/lockScale-True/lockPartitions-1024/cores-36 36    12804            15.0328 5.57129e-05 2.08464e-05 1.98722e-06 
+named/stock-postgres/randomWritePct-0/lwScale-True/lockScale-True/lockPartitions-1024/cores-40 40    3832.64          15.0191 5.32506e-05 0.000203604 6.089e-06   
+named/stock-postgres/randomWritePct-0/lwScale-True/lockScale-True/lockPartitions-1024/cores-44 44    2770.32          15.0153 5.82863e-05 0.000281094 2.6914e-05  
+named/stock-postgres/randomWritePct-0/lwScale-True/lockScale-True/lockPartitions-1024/cores-48 48    2042.44          15.0166 6.15208e-05 0.000359174 8.04994e-05 
+
+
+# stock-postgres/randomWritePct-5/lwScale-False/lockScale-False/lockPartitions-16
+# path                                                                                         cores queries/sec/core real    user/query  sys/query   idle/query  
+named/stock-postgres/randomWritePct-5/lwScale-False/lockScale-False/lockPartitions-16/cores-1  1     20798.2          15.029  4.57489e-05 7.67813e-07 1.56762e-06 
+named/stock-postgres/randomWritePct-5/lwScale-False/lockScale-False/lockPartitions-16/cores-4  4     20222.4          15.0201 4.6849e-05  9.62988e-07 1.7449e-06  
+named/stock-postgres/randomWritePct-5/lwScale-False/lockScale-False/lockPartitions-16/cores-8  8     19497.1          15.0254 4.83869e-05 1.13927e-06 2.02252e-06 
+named/stock-postgres/randomWritePct-5/lwScale-False/lockScale-False/lockPartitions-16/cores-12 12    18527.2          15.0247 5.08714e-05 1.26034e-06 2.11952e-06 
+named/stock-postgres/randomWritePct-5/lwScale-False/lockScale-False/lockPartitions-16/cores-16 16    18175.9          15.0159 5.17056e-05 1.40147e-06 2.14343e-06 
+named/stock-postgres/randomWritePct-5/lwScale-False/lockScale-False/lockPartitions-16/cores-20 20    17321.2          15.0206 5.41827e-05 1.54319e-06 2.31575e-06 
+named/stock-postgres/randomWritePct-5/lwScale-False/lockScale-False/lockPartitions-16/cores-24 24    16932.8          15.0223 5.55163e-05 1.59217e-06 2.23428e-06 
+named/stock-postgres/randomWritePct-5/lwScale-False/lockScale-False/lockPartitions-16/cores-28 28    15954.8          15.0247 5.88555e-05 1.81614e-06 2.32865e-06 
+named/stock-postgres/randomWritePct-5/lwScale-False/lockScale-False/lockPartitions-16/cores-32 32    13574.5          15.0203 6.80996e-05 2.20858e-06 3.78416e-06 
+named/stock-postgres/randomWritePct-5/lwScale-False/lockScale-False/lockPartitions-16/cores-36 36    11617.9          15.0208 7.99714e-05 3.82976e-06 2.74896e-06 
+named/stock-postgres/randomWritePct-5/lwScale-False/lockScale-False/lockPartitions-16/cores-40 40    6902.2           15.0163 9.58338e-05 2.84093e-05 2.26807e-05 
+named/stock-postgres/randomWritePct-5/lwScale-False/lockScale-False/lockPartitions-16/cores-44 44    4090.82          15.0214 0.000103148 0.000116884 2.76315e-05 
+named/stock-postgres/randomWritePct-5/lwScale-False/lockScale-False/lockPartitions-16/cores-48 48    2522.03          15.0188 0.000102511 0.000254062 4.61021e-05 
+
+
+# stock-postgres/randomWritePct-5/lwScale-True/lockScale-True/lockPartitions-1024
+# path                                                                                         cores queries/sec/core real    user/query  sys/query   idle/query  
+named/stock-postgres/randomWritePct-5/lwScale-True/lockScale-True/lockPartitions-1024/cores-1  1     20684.2          15.0238 4.59846e-05 7.40131e-07 1.67334e-06 
+named/stock-postgres/randomWritePct-5/lwScale-True/lockScale-True/lockPartitions-1024/cores-4  4     19830.1          15.0353 4.77358e-05 9.13964e-07 1.97047e-06 
+named/stock-postgres/randomWritePct-5/lwScale-True/lockScale-True/lockPartitions-1024/cores-8  8     19063.3          15.0209 4.96424e-05 1.15244e-06 1.88582e-06 
+named/stock-postgres/randomWritePct-5/lwScale-True/lockScale-True/lockPartitions-1024/cores-12 12    18603.3          15.0194 5.09853e-05 1.14825e-06 1.87299e-06 
+named/stock-postgres/randomWritePct-5/lwScale-True/lockScale-True/lockPartitions-1024/cores-16 16    18309.5          15.0417 5.16579e-05 1.19596e-06 2.04244e-06 
+named/stock-postgres/randomWritePct-5/lwScale-True/lockScale-True/lockPartitions-1024/cores-20 20    17594.3          15.0333 5.37068e-05 1.37429e-06 2.01701e-06 
+named/stock-postgres/randomWritePct-5/lwScale-True/lockScale-True/lockPartitions-1024/cores-24 24    17143.7          15.0231 5.51281e-05 1.30233e-06 2.23094e-06 
+named/stock-postgres/randomWritePct-5/lwScale-True/lockScale-True/lockPartitions-1024/cores-28 28    16408.3          15.0217 5.73342e-05 1.52286e-06 2.46035e-06 
+named/stock-postgres/randomWritePct-5/lwScale-True/lockScale-True/lockPartitions-1024/cores-32 32    15814.6          15.0274 5.92422e-05 1.72521e-06 2.81661e-06 
+named/stock-postgres/randomWritePct-5/lwScale-True/lockScale-True/lockPartitions-1024/cores-36 36    14053.3          15.0191 6.16546e-05 6.94483e-06 3.46254e-06 
+named/stock-postgres/randomWritePct-5/lwScale-True/lockScale-True/lockPartitions-1024/cores-40 40    4940.42          15.019  5.94373e-05 0.000139885 4.76414e-06 
+named/stock-postgres/randomWritePct-5/lwScale-True/lockScale-True/lockPartitions-1024/cores-44 44    2919.03          15.02   6.26708e-05 0.00025666  2.91634e-05 
+named/stock-postgres/randomWritePct-5/lwScale-True/lockScale-True/lockPartitions-1024/cores-48 48    2510.54          15.0187 6.68789e-05 0.00028087  5.88837e-05 
+
+
+# stock-psearchy/mode-process/order-rr
+# path                                              cores jobs/sec/core real    user/job sys/job idle/job 
+named/stock-psearchy/mode-process/order-rr/cores-1  1     0.0125496     79.6836 77.25    2.43    0        
+named/stock-psearchy/mode-process/order-rr/cores-4  4     0.0127352     19.6307 75.12    2.72    0.69     
+named/stock-psearchy/mode-process/order-rr/cores-8  8     0.0125793     9.93698 74.96    2.89    1.69     
+named/stock-psearchy/mode-process/order-rr/cores-12 12    0.0121856     6.83866 76.03    3.25    2.81     
+named/stock-psearchy/mode-process/order-rr/cores-16 16    0.0118939     5.25479 77.3     3.12    4.24     
+named/stock-psearchy/mode-process/order-rr/cores-20 20    0.0115636     4.32391 78.22    3.6     5.03     
+named/stock-psearchy/mode-process/order-rr/cores-24 24    0.0111962     3.7215  79.34    3.81    8.99     
+named/stock-psearchy/mode-process/order-rr/cores-28 28    0.0108019     3.30631 81.58    4.12    7.27     
+named/stock-psearchy/mode-process/order-rr/cores-32 32    0.010506      2.97449 82.66    4.13    14.21    
+named/stock-psearchy/mode-process/order-rr/cores-36 36    0.0101456     2.73792 84.44    4.87    10.61    
+named/stock-psearchy/mode-process/order-rr/cores-40 40    0.00971013    2.57463 87.07    4.78    16.31    
+named/stock-psearchy/mode-process/order-rr/cores-44 44    0.00928129    2.44872 89.69    5.56    14.07    
+named/stock-psearchy/mode-process/order-rr/cores-48 48    0.00904664    2.30288 91.16    5.61    15.05    
+
+
+# stock-psearchy/mode-process/order-seq
+# path                                               cores jobs/sec/core real    user/job sys/job idle/job 
+named/stock-psearchy/mode-process/order-seq/cores-1  1     0.0125426     79.7283 77.29    2.44    0        
+named/stock-psearchy/mode-process/order-seq/cores-4  4     0.0118014     21.184  81.1     3       0.64     
+named/stock-psearchy/mode-process/order-seq/cores-8  8     0.0110273     11.3355 83.54    3.35    2.39     
+named/stock-psearchy/mode-process/order-seq/cores-12 12    0.0107999     7.7161  86.33    3.5     3.01     
+named/stock-psearchy/mode-process/order-seq/cores-16 16    0.0106925     5.84523 85.29    3.8     4.79     
+named/stock-psearchy/mode-process/order-seq/cores-20 20    0.0104267     4.79538 85.92    4       6.26     
+named/stock-psearchy/mode-process/order-seq/cores-24 24    0.0102378     4.0699  87.8     4.49    6.15     
+named/stock-psearchy/mode-process/order-seq/cores-28 28    0.00995013    3.58933 88.32    4.46    8.58     
+named/stock-psearchy/mode-process/order-seq/cores-32 32    0.00989071    3.15953 88.1     4.6     17.3     
+named/stock-psearchy/mode-process/order-seq/cores-36 36    0.00965535    2.87693 89.19    5       10.2     
+named/stock-psearchy/mode-process/order-seq/cores-40 40    0.00951167    2.62835 89.36    5.08    12.34    
+named/stock-psearchy/mode-process/order-seq/cores-44 44    0.00928994    2.44644 89.54    7.03    25.83    
+named/stock-psearchy/mode-process/order-seq/cores-48 48    0.00910611    2.28784 91.64    5.56    22.92    
+
+
+# stock-psearchy/mode-thread/order-seq
+# path                                              cores jobs/sec/core real    user/job sys/job idle/job 
+named/stock-psearchy/mode-thread/order-seq/cores-1  1     0.00820149    121.929 119.66   2.27    0        
+named/stock-psearchy/mode-thread/order-seq/cores-4  4     0.00783304    31.9161 122.4    4.02    1.17     
+named/stock-psearchy/mode-thread/order-seq/cores-8  8     0.00735255    17.0009 125.78   4.88    4.64     
+named/stock-psearchy/mode-thread/order-seq/cores-12 12    0.0072092     11.5593 128.27   5.46    5.16     
+named/stock-psearchy/mode-thread/order-seq/cores-16 16    0.00709998    8.80284 127.77   5.75    8.7      
+named/stock-psearchy/mode-thread/order-seq/cores-20 20    0.00679982    7.35314 129.45   6.53    12.34    
+named/stock-psearchy/mode-thread/order-seq/cores-24 24    0.006538      6.373   130.68   8.01    20.96    
+named/stock-psearchy/mode-thread/order-seq/cores-28 28    0.00622306    5.73902 131.05   10.02   20.88    
+named/stock-psearchy/mode-thread/order-seq/cores-32 32    0.00579325    5.39421 132.58   12.91   37.35    
+named/stock-psearchy/mode-thread/order-seq/cores-36 36    0.00525729    5.28367 134.39   17.46   39.64    
+named/stock-psearchy/mode-thread/order-seq/cores-40 40    0.00447181    5.59058 134.01   23.94   69.41    
+named/stock-psearchy/mode-thread/order-seq/cores-44 44    0.00403854    5.62759 134.87   30.04   86.02    
+named/stock-psearchy/mode-thread/order-seq/cores-48 48    0.00343006    6.07376 136.45   41.01   129.35   
+
+
