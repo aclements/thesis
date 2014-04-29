@@ -57,7 +57,7 @@ fields. An alternate API that gave applications
 control of which field or fields were returned
 would commute with more operations and enable a more scalable
 implementation of \code{stat}, as we show in
-\cref{sec:eval:microbenchmarks}.
+\cref{sec:eval:fs-microbenchmarks}.
 
 POSIX has many other examples of compound return values.
 \code{sigpending} returns all pending signals, even if the caller only
@@ -85,7 +85,7 @@ needed by applications and an alternate interface
 that could return any
 unused FD would allow FD allocation operations to commute and enable
 implementations to use well-known scalable allocation methods.  We will
-return to this example, too, in \cref{sec:eval:microbenchmarks}.
+return to this example, too, in \cref{sec:eval:fs-microbenchmarks}.
 Many other POSIX interfaces get this right: \code{mmap} can
 return any unused virtual address and \code{creat} can assign any unused
 inode number to a new file.
