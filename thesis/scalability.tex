@@ -1,8 +1,8 @@
 \section{Scalability and conflict-freedom}
 \label{sec:scalability}
 
-\XXX[STATUS]{Draft ready (have unapplied edits from Frans).  New
-  chapter.}
+\XXX[STATUS]{Draft v2 ready.  New chapter vs SOSP.  Applied Frans
+  edits from init-154-g6dbae76.}
 
 \XXX[AC]{Should this go \emph{after} the rule chapter?  To show
   commutative $\implies$ conflict-free and then conflict-free
@@ -35,7 +35,9 @@ conflict-freedom is a good predictor of linear scalability on modern
 multicore hardware, closing the gap between the theoretical basis of
 the scalability commutativity rule and its utility in practice.
 
-The connection between conflict-freedom and scalability mustn't taken
+\subsection{Conflict-freedom and multicore processors}
+
+The connection between conflict-freedom and scalability mustn't be taken
 for granted.  Indeed, some early multi-processor architectures such as
 the Intel Pentium depended on shared buses with global lock
 lines~\cite[\S8.1.4]{intel-sdm-3}, so even conflict-free operations
@@ -106,18 +108,26 @@ state, Intel's ``forward'' state~\cite{goodman:mesif}, and AMD's
 basic communication required to maintain cache coherence.
 
 Roughly, a set of operations scales when maintaining coherence does
-not require communication in the steady state.  This is precisely when
-those operations are conflict-free.  Multiple cores reading the same
-cache line scales because the line can be stored in each reading
-core's cache, allowing the reads to proceed independently and in
-parallel with no coordination.  Likewise, a single core reading or
-writing a cache line that is not read or written by any other core
-also scales because, once that line is exclusive to that core's cache,
-no coordination is required to access it, so, again, the operations
-can proceed independently of any concurrent operations.
+not require communication in the steady state.
 %
-Higher level operations composed of conflict-free reads and writes are
-likewise conflict-free and will also execute independently and in
+Multiple cores reading different cache lines scales because, once each
+cache line is in each core's cache, no further communication is
+required to access it, so further reads can proceed independently of
+concurrent operations.
+%
+Likewise, multiple cores writing different cache lines scales for much
+the same reason.
+%
+Multiple cores reading the \emph{same} cache line also scales because
+the line can be kept in each core's cache in shared mode, allowing
+further reads to proceed independently and in parallel with no
+coordination.
+%
+These three conditions are synonymous with conflict-freedom.
+%
+Furthermore, higher level operations composed of conflict-free reads
+and writes are
+themselves conflict-free and will also execute independently and in
 parallel.
 %
 In all of these cases, conflict-free operations execute in the same
@@ -125,7 +135,7 @@ time in isolation as they do concurrently, so the total throughput of
 $N$ such concurrent operations is proportional to $N$.  Therefore,
 conflict-free operations scale.
 
-Furthermore, the converse is also true: conflicting operations cause
+The converse is also true: conflicting operations cause
 cache state transitions and the resulting coordination limits
 scalability.
 %
@@ -137,8 +147,9 @@ only when operations can be conflict-free, not when they must be
 conflicted), the huge effect that conflicts can have on scalability
 affirms the importance of conflict-freedom.
 
-The following sections verify that conflict-free operations scale on
-real hardware, examine the cost of conflicting operations, and explore
+The following sections verify that conflict-free operations scale
+linearly on real hardware, show that conflicts can severely limit
+scalability, and explore
 the practical limitations of conflict-free scalability.
 
 
@@ -186,8 +197,9 @@ conflict-free memory accesses from varying numbers of cores.  The
 first benchmark, shown in the top row of \cref{fig:cfree-cycles},
 stresses read/read sharing by repeatedly reading the same cache line
 from $N$ cores.  The latency of these reads remains roughly constant
-regardless of $N$ (growing slightly on the AMD machine because of
-increasing noise).  After the first access from each core, the cache
+regardless of $N$.
+% (growing slightly on the AMD machine because of increasing noise).
+After the first access from each core, the cache
 line remains in each core's local cache, so later accesses occur
 locally and independently, allowing read/read accesses to scale
 perfectly.  Reads of different cache lines from different cores (not
@@ -223,10 +235,14 @@ core, one at a time.  On both machines, we also see a uniform
 distribution of write latencies, which further illustrates this
 serialization, as some cores acquire ownership quickly, while others
 take much longer.
-%
+
 For comparison, a single complex system call like \code{open}
 typically takes 1,000--2,000 cycles on these machines, while a single
 conflicting write can take upwards of 50,000 cycles.
+%
+In the time it takes one thread to perform a single write to a highly
+contended cache line, another could open 25 files.
+
 % On the AMD machine, the growth of the mean latency and the spread of
 % the distribution are noticeably super-linear as the benchmark adds
 % cores further from core 0.
@@ -240,9 +256,10 @@ Intel machine, the cost of read/write conflicts also grows, albeit
 more slowly, as Intel's architecture aggregates the read requests at
 each socket.
 %
-We see this effect in the latency distribution, as well, as requests
-fall in to one of at most eight latency modes based on when their
-socket's aggregated read request is serviced by CPU 0's socket.
+We see this effect in the latency distribution, as well, with read
+latency exhibiting up to eight different modes.  These modes reflect
+the order in which the eight sockets' aggregated read requests are
+served by CPU 0's socket.
 % (notably, all sockets exhibit all modes, so this is not simply an
 % effect of distance from the home socket).
 Intel's optimization helps reduce the absolute
@@ -269,6 +286,12 @@ cache to fetch the cache line from another cache or from memory.
 If this requires communicating with remote cores or remote memory, the
 fetch may contend with concurrent operations for interconnect
 resources or the remote memory controller.
+
+Applications with good cache behavior are unlikely to exhibit such
+issues, while applications with poor cache behavior usually have
+sequential performance problems that outweigh scalability concerns.
+Nevertheless, it's important to understand where our assumptions about
+conflict-freedom break down.
 
 \begin{figure}
   \centering
@@ -332,6 +355,9 @@ at the level of an entire OS kernel and its applications.
 \XXX[AC]{If this chapter winds up after the rule chapter, conclude by
   saying that we now have the rule in its full, pragmatic form.}
 
+\XXX![FK]{Should this section cite some other performance studies?
+  E.g., ``these results are consistent with that other SOSP paper in
+  your session.''}
 
 % Causes home node access.  If the missing core is not the line's home
 % node, then it has to make a remote request, which takes longer
