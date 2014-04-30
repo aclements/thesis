@@ -28,8 +28,8 @@
 % steady-state.  What can be done purely locally.  Any transition that
 % involves coordination represents a scalability hazard.
 
-We prove the connection between commutativity and conflict-free
-implementations in \cref{sec:rule}, but what ultimately matters to
+The previous \lcnamecref{sec:rule} proved that commutative operations
+have a conflict-free implementation, but what ultimately matters to
 practitioners is scalability.  \Thiscref{sec:scalability} shows that
 conflict-freedom is a good predictor of linear scalability on modern
 multicore hardware, closing the gap between the theoretical basis of
@@ -309,7 +309,12 @@ socket's physical memory, which this benchmark quickly exceeds.
 % the L3~\cite{intel:e7-8870} and sufficiently provisioned even for
 % this benchmark.
 
-Despite these limitations, conflict-freedom remains a good predictor
+\XXX[AC]{False sharing is another common limitation.}
+
+
+\subsection{Summary}
+
+Despite some limitations, conflict-freedom remains a good predictor
 of scalability in practice.  Most software has good cache locality and
 high cache hit rates both because this is crucial for sequential
 performance, and because it's in the interest of CPU manufacturers to
@@ -323,8 +328,6 @@ aggregate DRAM bandwidth.
 that conflict-free implementations of commutative interfaces enable
 software to scale not just at the level of memory microbenchmarks, but
 at the level of an entire OS kernel and its applications.
-
-\XXX[AC]{False sharing is another common limitation.}
 
 \XXX[AC]{If this chapter winds up after the rule chapter, conclude by
   saying that we now have the rule in its full, pragmatic form.}
