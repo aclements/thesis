@@ -401,6 +401,17 @@ Anim.prototype.reverse = function() {
 };
 
 /**
+ * Return a new animation that plays only between t0 and t1.
+ */
+Anim.prototype.slice = function(t0, t1) {
+    var a = this;
+    var sliceStep = function(t) {
+        return a.eval((t * (t1 - t0) + t0)/a.duration);
+    }
+    return new Anim(sliceStep, t1 - t0);
+};
+
+/**
  * Return a new animation that transforms this animation's time basis
  * using fn.  fn must take a time in [0,1] and return a time in [0,1].
  */
