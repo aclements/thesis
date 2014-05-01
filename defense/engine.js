@@ -23,6 +23,13 @@
 // adjusting SVG attributes, since they're wrapped up in
 // SVGAnimatedNumber and such.
 
+// XXX Actions have too much about SVG baked in to them.  They should
+// instead operate on general-purpose manipulators, which could
+// represent anything from the center of an object (what a handle is
+// right now), to its rotation, to an arbitrary property of an object.
+// abs and rel actions make sense on any numerically (or vector-ally)
+// typed manipulator.
+
 // XXX Replace undiscoverable key bindings with on-screen icons.
 
 var SLIDE_PREVIEWS = false;
