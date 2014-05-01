@@ -20,6 +20,9 @@ if ("$0" eq "" || "$0"[0:1] eq "$$"[0:1]) {
     }
   }
 }
+if (!exists("SLIDES_SIZE")) {
+  SLIDES_SIZE="720,500"
+}
 
 # Note: If you change the default font size, change \gpcode
 TIKZ_FONT=exists("TIKZ_FONT") ? TIKZ_FONT : "',10'"
@@ -33,8 +36,14 @@ if (TARGET eq "paper-tikz") {
     set term pdfcairo size @SIZE linewidth 2 rounded font ',10'
     set output
   } else {
-    if (!(TARGET eq "")) {
-      print sprintf("Unknown target %s!", TARGET)
+    if (TARGET eq "slides") {
+      set term svg size @SLIDES_SIZE font "Open Sans,20" dashed linewidth 2 enhanced
+#      set output
+      set output "|sed 's/<svg/& style=\"font-weight:300\"/'"
+    } else {
+      if (!(TARGET eq "")) {
+        print sprintf("Unknown target %s!", TARGET)
+      }
     }
   }
 }
@@ -118,3 +127,26 @@ mpNextSharing = '\
     if (mp_nplot==0) {set title "80-core Intel"}; \
     if (mp_nplot==1) {set title "48-core AMD"}; \
     if (mp_nplot>1) {unset title}'
+
+#
+# Slides stuff
+#
+
+if (TARGET eq "slides") {
+  set style line 1 lt 1 lc rgb "#8ae234" lw 3
+  set style line 2 lt 1 lc rgb "#000000" lw 3
+
+  # Based on
+  # http://youinfinitesnake.blogspot.com/2011/02/attractive-scientific-plots-with.html
+
+  # Line style for axes
+  set style line 80 lt 1
+  set style line 80 lt rgb "#808080"
+
+  # Line style for grid
+  set style line 81 lt 3  # Dotted
+  set style line 81 lt rgb "#808080" lw 0.5
+
+  set grid back linestyle 81
+  set border 3 back linestyle 80
+}
