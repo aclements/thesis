@@ -737,16 +737,18 @@ Action.propRel = function(objs, prop, timedVal) {
     return new Anim(propRelStep, propRelInit);
 };
 
+/**
+ * Return an action that translates points by a vector, where a vector
+ * of 0,0 is the current position of points.
+ */
 Action.translateRel = function(points, timedVector) {
     points = Action._array(points);
     var init = [];
     for (var i = 0; i < points.length; ++i)
         points[i] = autoHandle(points[i]);
     var translateInit = function() {
-        var offInit = timedVector.eval(0);
         for (var i = 0; i < points.length; ++i) {
-            var pt = points[i].pos;
-            init[i] = [pt[0] - offInit[0], pt[1] - offInit[1]];
+            init[i] = points[i].pos;
         }
     };
     var translateStep = function(t) {
