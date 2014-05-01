@@ -55,6 +55,53 @@ Ease = (function() {
     return fns;
 })();
 
+/**
+ * Cubic-bezier ease generator.  This is pretty lame.
+ */
+Ease.mkCubicBezier = function(x1, y1, x2, y2) {
+    // Evaluate at fraction t using Horner's scheme.  (Ported from
+    // Firefox's nsSMILKeySpline.cpp)
+    function eval(t, a1, a2) {
+        return ((A(a1, a2)*t + B(a1, a2))*t + C(a1))*t;
+    }
+    function A(a1, a2) { return 1.0 - 3.0 * a2 + 3.0 * a1; }
+    function B(a1, a2) { return 3.0 * a2 - 6.0 * a1; }
+    function C(a1)     { return 3.0 * a1; }
+
+    // Pre-compute 128 points on the curve
+    var xs = [], ys = [];
+    for (var i = 0; i <= 128; i++) {
+        xs.push(eval(i / 128, x1, x2));
+        ys.push(eval(i / 128, y1, y2));
+    }
+
+    // Create easing function
+    return function(t) {
+        if (t <= 0) return 0;
+        if (t >= 1) return 1;
+        // Find successor of t in xs
+        var l = 0, h = xs.length - 1;
+        while (h > l) {
+            var mid = l + Math.floor((h - l) / 2);
+            if (xs[mid] < t)
+                l = mid + 1;
+            else
+                h = mid;
+        }
+        // Interpolate
+        var frac = (t - xs[l - 1]) / (xs[l] - xs[l - 1]);
+        return ys[l - 1] + frac * (ys[l] - ys[l - 1]);
+    };
+};
+
+/**
+ * CSS standard easing functions
+ */
+Ease.ease = Ease.mkCubicBezier(0.25, 0.1, 0.25, 1.0);
+Ease.easeIn = Ease.mkCubicBezier(0.42, 0.0, 1.0, 1.0);
+Ease.easeInOut = Ease.mkCubicBezier(0.42, 0.0, 0.58, 1.0);
+Ease.easeOut = Ease.mkCubicBezier(0.0, 0.0, 0.58, 1.0);
+
 //////////////////////////////////////////////////////////////////
 // Animation objects
 //
@@ -366,8 +413,14 @@ Anim.prototype.easeBy = function(fn) {
 };
 
 $.each(Ease, function(name, fn) {
-    Anim.prototype['ease' + name.charAt(0).toUpperCase() + name.slice(1)] =
-        function() { return this.easeBy(fn); };
+    if (name.slice(0, 2) === 'mk')
+        return;
+    else if (name.slice(0, 4) === 'ease')
+        var prop = name;
+    else
+        var prop = 'ease' + name.charAt(0).toUpperCase() + name.slice(1);
+
+    Anim.prototype[prop] = function() { return this.easeBy(fn); };
 });
 
 /**
