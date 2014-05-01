@@ -917,7 +917,7 @@ jQuery.fn.inklabel = function () {
 };
 
 (function() {
-    var labelRe = /^\?(.+)/, idRe = /^#(.+)/;
+    var labelRe = /^\?(.+)/, idRe = /^#(.+)/, tagRe = /^[a-zA-Z]+$/;
 
     var SVGWrapper = function(doc, query) {
         this._doc = doc;
@@ -981,6 +981,9 @@ jQuery.fn.inklabel = function () {
             var elt = this._doc.getElementById(m[1]);
             if (elt !== null)
                 res.push(elt);
+        } else if (tagRe.exec(q)) {
+            for (var ei = 0; ei < this.length; ++ei)
+                $.merge(res, this[ei].getElementsByTagName(q));
         } else {
             throw "Bad svgWrap query " + q;
         }
