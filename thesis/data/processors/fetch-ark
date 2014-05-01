@@ -1,0 +1,7 @@
+#!/bin/sh
+
+set -e
+
+read -p "Intel ARK API key (http://odata.intel.com/): " KEY
+mkdir -p ark
+wget -O ark/processors.json "http://odata.intel.com/API/v1_0/Products/Processors()?\$format=json&api_key=$KEY"

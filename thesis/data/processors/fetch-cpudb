@@ -1,0 +1,7 @@
+#!/bin/sh
+
+set -e
+
+wget http://cpudb.stanford.edu/cpudb.1333574285.tar.gz
+tar xzf cpudb.1333574285.tar.gz
+rm cpudb.1333574285.tar.gz

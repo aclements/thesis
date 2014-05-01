@@ -1,0 +1,164 @@
+code_name_id,manufacturer_id,name
+1,1,DX
+2,1,Pluto
+3,1,Thunderbird
+4,1,ClawHammer
+5,1,SledgeHammer
+6,1,San Diego
+7,1,Toledo
+8,1,Windsor
+9,1,Manchester
+10,1,Brisbane
+11,1,Tyler
+12,1,Lion
+13,1,Propus
+14,1,Palomino
+15,1,Thoroughbred
+16,1,Kuma
+17,1,Barton
+18,1,SSA/5
+19,1,Model 6
+20,1,Little Foot
+21,1,Chomper
+22,1,Chomper Extended
+23,1,Sharptooth
+24,1,Venus
+25,1,Denmark
+26,1,Troy
+27,1,Italy
+28,1,Athens
+29,1,Egypt
+30,1,Santa Ana
+31,1,Budapest
+32,1,Santa Rosa
+33,1,Barcelona
+34,1,Shanghai
+35,1,Istanbul
+36,1,Heka
+37,1,Deneb
+38,1,Toliman
+39,1,Agena
+40,1,Lancaster
+41,1,Trinidad
+42,20,Zephyr
+43,21,M1
+44,21,M2
+45,21,Joshua
+46,3,EV4
+47,3,EV45
+48,3,LCA45
+49,3,EV5
+50,3,EV56
+51,3,PCA56
+52,3,PCA57
+53,3,EV6
+54,3,EV67
+55,3,EV68A
+56,3,EV68CB
+57,3,EV7
+58,3,EV7z
+59,4,Swift
+60,4,Zeus
+61,4,Olympus-B
+62,4,Jupiter
+63,6,Thunderbird
+64,6,Hummingbird
+65,6,Thunderbird'
+66,6,Onyx
+67,6,Vulcan
+68,6,Landshark
+69,6,Piranha
+70,7,P2SC
+71,7,RIOS2
+72,7,Power2+
+73,7,Giga Processor
+74,7,Arthur
+75,7,GP-UL
+76,7,Mach 5
+77,7,Sstar
+78,7,Northstar
+79,7,Pulsar
+80,9,Diamondville
+81,9,Pineview
+82,9,Tunnel Creek
+83,9,Stellarton
+84,9,Silverthorne
+85,9,Conroe-L
+86,9,Conroe-CL
+87,9,Mendocino
+88,9,Covington
+89,9,Wolfdale-3M
+90,9,Clarkdale
+91,9,Penryn-3M
+92,9,Merom
+93,9,Allendale
+94,9,Conroe
+95,9,Wolfdale
+96,9,Penryn
+97,9,Conroe XE
+98,9,Kentsfield
+99,9,Yorkfield
+100,9,Penryn-L
+101,9,Yonah
+102,9,Arrandale
+103,9,Lynnfield
+104,9,Clarksfield
+105,9,Bloomfield
+106,9,Gulftown
+107,9,Sandy Bridge
+108,9,Merced
+109,9,Montecito
+110,9,Montvale
+111,9,Mckinley
+112,9,Madison
+113,9,P54C
+114,9,P54LM
+115,9,P54CS
+116,9,Tillamook
+117,9,P5
+118,9,Prescott
+119,9,Prescott 2M
+120,9,Cedar Mill
+121,9,Willamette
+122,9,Northwood
+123,9,Smithfield
+124,9,Presler
+125,9,Klamath
+126,9,Deschutes
+127,9,Coppermine
+128,9,Tualatin
+129,9,Katmai
+130,9,Dothan
+131,9,Banias
+132,9,P55C
+133,9,Dempsey
+134,9,Woodcrest
+135,9,Paxville
+136,9,Tulsa
+137,9,Wolfdale-DP
+138,9,Clovertown
+139,9,Harpertown
+140,9,Gainestown
+141,9,Jasper Forest
+142,17,T5
+143,17,Orion
+144,10,Max
+145,10,Apollo 6
+146,24,Colorado 2
+147,24,Colorado 3
+148,24,Colorado 1
+149,19,Tsunami
+150,19,Viking
+151,19,Voyager
+152,19,Spitfire
+153,19,Blackbird
+154,19,Sapphire-Black
+155,19,Hummingbird
+156,19,Sabre
+157,19,Sapphire-Red
+158,19,Phantom
+159,19,Cheetah
+160,19,Cheetah+
+161,19,Jalepeno
+162,19,Niagara
+163,19,Niagara 2

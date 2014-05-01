@@ -1,0 +1,80 @@
+microarchitecture_id,manufacturer_id,name,isa,isa_version,isa_extensions,fp_pipestages,int_pipestages,max_uop_issued_per_cycle,ifu,lsfu,fpfu,tfu,max_inst_decoded,rob_size,iwindow,if_queue,bht_size,btb_size,bp_acc,arch_int_reg,arch_fp_reg,total_arch_reg,fp_coproc,out_of_order,memory_bw,integrated_mc,source
+1,1,K10,x86-64,,SSE4a,17,12,9,5,3,3,11,3,72,42,,16384,2048,,96,96,96,,true,,true,
+2,1,K5,x86-32,,,,5,4,2,2,1,6,4,16,11,,1024,,,,,,,true,,false,
+3,1,K6,x86-32,,MMX 3D-Now,2,6,6,4,2,3,10,2,,24,,8192,16,0,,,,,false,,false,
+4,1,K6-2,x86-32,,MMX 3D-Now,,,,,,,,,,,,,,,,,,,false,,false,
+5,1,K6-III,x86-32,,MMX 3D-Now,,,,,,,,,,,,,,,,,,,false,,false,
+6,1,K7,x86-32,,SSE Subset,15,10,9,3,4,3,9,3,72,32,,4096,2048,,1600,,,,true,,false,
+7,1,K8,x86-64,,SSE2,17,12,6,3,1,3,,3,72,,,16384,2048,,,,,,true,,true,http://www.hardwaresecrets.com/article/Inside-AMD64-Architecture/324/1
+8,3,EV4,Alpha,,,10,7,2,1,1,1,3,2,,,,2048,,0,32,32,32,,false,1600,,http://www.ece.umd.edu/~blj/microarchitecture/21064.pb.pdf
+9,3,EV5,Alpha,,,9,7,4,2,2,2,4,4,,,,4096,,,32,32,32,,false,1200,,http://dx.doi.org/10.1109/MWSCAS.1995.510295 http://www.cs.cmu.edu/afs/cs/academic/class/15740-f03/public/doc/alpha-21164-hw-ref-manual.pdf
+10,3,EV6,Alpha,,,7,7,6,4,2,2,6,4,80,35,4,29696,4096,0,39,31,,,true,,,http://dx.doi.org/10.1109/40.755465  http://www.google.com/url?http://download.majix.org/dec/21264ev68cb_ev68dc_hrm.pdf
+11,3,EV7,Alpha,,,7,7,6,4,2,2,6,4,80,35,4,29696,4096,0,39,31,,,true,,,http://dx.doi.org/10.1109/40.988687  http://doi.acm.org/10.1145/378239.379073 http://en.wikipedia.org/wiki/Alpha_21364
+12,6,PA-7300LC,,,,6,6,2,2,1,1,3,2,,,,,,,,,,,false,,false,www.hpl.hp.com/hpjournal/97jun/jun97a7.pdf http://www.openpa.net/pa-risc_architecture.html www.acsel-lab.com/Presentations/ISSCC-Tutorial97.PDF
+13,6,PA-8000,,,,9,7,4,4,2,4,10,4,56,56,,256,32,,,,,,true,,false,http://www.openpa.net/pa-risc_architecture.html ftp.parisc-linux.org/docs/whitepapers/PA-8700wp.pdf http://wapedia.mobi/en/PA-8000
+14,6,PA-8200,,,,9,7,4,4,2,4,10,4,56,56,,1024,32,,,,,,true,,false,http://www.openpa.net/pa-risc_architecture.html ftp.parisc-linux.org/docs/whitepapers/PA-8700wp.pdf http://wapedia.mobi/en/PA-8000
+15,6,PA-8500,,,,9,7,4,4,2,4,10,4,56,56,,2048,32,,,,,,true,2048,false,http://www.openpa.net/pa-risc_architecture.html ftp.parisc-linux.org/docs/whitepapers/PA-8700wp.pdf http://wapedia.mobi/en/PA-8000
+16,6,PA-8600,,,,9,7,4,4,2,4,10,4,56,56,,2048,32,,,,,,true,2048,false,http://www.openpa.net/pa-risc_architecture.html ftp.parisc-linux.org/docs/whitepapers/PA-8700wp.pdf http://wapedia.mobi/en/PA-8000
+17,6,PA-8700,,,,9,7,4,4,2,4,10,4,56,56,,2048,32,,,,,,true,2048,false,http://www.openpa.net/pa-risc_architecture.html ftp.parisc-linux.org/docs/whitepapers/PA-8700wp.pdf http://wapedia.mobi/en/PA-8000
+18,6,PA-8700+,,,,9,7,4,4,2,4,10,4,56,56,,2048,32,,,,,,true,2048,false,http://www.openpa.net/pa-risc_architecture.html ftp.parisc-linux.org/docs/whitepapers/PA-8700wp.pdf http://wapedia.mobi/en/PA-8000
+19,7,Power ISA v2.03,,,,19,14,5,2,2,2,8,8,100,48,,,,,,,,,true,,,
+20,7,PowerPC v2.00,,,,,,,,,,,,,,,,,,,,,,,,,
+21,7,PowerPC v2.02,,,,,,,,,,,,,,,,,,,,,,,,,
+22,7,PowerPC 601,,,,6,4,3,1,0,1,3,3,,,8,,,,,,,,,,,http://arstechnica.com/old/content/2004/08/ppc-1.ars/2
+23,7,PowerPC 602,,,,6,4,1,1,1,1,5,1,4,,4,,,,,,,,true,,,
+24,7,PowerPC 603e,,,,6,4,2,1,1,1,5,2,5,5,6,,,,,,,,true,,,http://arstechnica.com/old/content/2004/08/ppc-1.ars/4
+25,7,PowerPC 604,,,,8,6,4,3,1,1,6,4,16,10,8,512,64,,32,32,,,true,,,http://arstechnica.com/old/content/2004/08/ppc-1.ars/6
+26,7,PowerPC 620,,,,8,5,4,3,1,1,6,4,16,11,8,2048,256,,,,,,true,1000,,
+27,7,PowerPC 630,,,,10,7,4,3,2,2,7,8,32,23,,2048,,,,,,,true,,,http://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=5389121
+28,7,PowerPC 7400,,,,6,4,2,2,1,1,4,2,8,5,6,512,64,,32,32,,,true,640,,http://arstechnica.com/old/content/2004/10/ppc-2.ars/2
+29,7,PowerPC 7450,,,,11,7,3,4,1,1,6,3,16,13,12,2000,128,,32,32,,,true,640,,http://cache.freescale.com/files/product/doc/G4WP.pdf
+30,7,PowerPC 7xx,,,,6,4,2,2,1,1,4,2,6,5,6,512,64,,32,32,,,true,,,http://arstechnica.com/old/content/2004/10/ppc-2.ars/1
+31,9,Core:Merom,x86-64,,SSE3,,14,6,5,2,4,,5,96,32,,,,,8533,,,,true,,false,http://www.hardwaresecrets.com/article/Inside-Intel-Core-Microarchitecture/313/1
+32,9,Core:Conroe,x86-64,,SSE3,,14,6,5,2,4,,5,96,32,,,,,8533,,,,true,,false,http://www.hardwaresecrets.com/article/Inside-Intel-Core-Microarchitecture/313/1
+33,9,Core:Kentsfield,x86-64,,SSE3,,14,6,5,2,4,,5,96,32,,,,,8533,,,,true,,false,http://www.hardwaresecrets.com/article/Inside-Intel-Core-Microarchitecture/313/1
+34,9,Core:Penryn,x86-64,,SSE4.1,,14,6,5,2,4,,5,96,32,,,,,8533,,,,true,,false,http://www.hardwaresecrets.com/article/Inside-Intel-Core-Microarchitecture/313/1
+35,9,Core:Yorkfield,x86-64,,SSE4.1,,14,6,5,2,4,,5,96,32,,,,,8533,,,,true,,false,http://www.hardwaresecrets.com/article/Inside-Intel-Core-Microarchitecture/313/1
+36,9,Core:Wolfdale,x86-64,,SSE4.1,,14,6,5,2,4,,5,96,32,,,,,8533,,,,true,,false,http://www.hardwaresecrets.com/article/Inside-Intel-Core-Microarchitecture/313/1
+37,9,Madison,IA-64,,,,,,,,,,,,,,,,,,,,,,,,
+38,9,Mckinley,IA-64,,,10,10,20,4,2,4,17,6,,6,24,20000,64,,1064,128,,,,,,
+39,9,Merced,IA-64,,,8,8,11,2,4,2,11,6,,6,24,20000,64,,6400,128,,,,,,
+40,9,Montecito,,,,,,,,,,,,,,,,,,,,,,,,,
+41,9,Montvale,IA-64,,,,,,,,,,,,,,,,,,,,,,,,
+42,9,Nehalem,x86-64,,SSE4.2,16,16,5,3,2,3,5,4,128,36,18,,,,38400,,,,true,,true,
+43,9,NetBurst:Willamette,x86-32,,SSE2,,20,6,3,2,2,7,1,126,,,4096,4096,,128,128,256,,true,3200,true,http://studies.ac.upc.edu/ETSETB/SEGPAR/microprocessors/pentium4%20(mpr).pdf http://www.hardwaresecrets.com/article/Inside-Pentium-4-Architecture/235/7 http://www.hardwaresecrets.com/article/Inside-AMD64-Architecture/324/6
+44,9,NetBurst:Northwood,x86-32,,SSE2,,20,6,3,2,2,7,1,126,,,4096,4096,,128,128,256,,true,3200,true,http://studies.ac.upc.edu/ETSETB/SEGPAR/microprocessors/pentium4%20(mpr).pdf http://www.hardwaresecrets.com/article/Inside-Pentium-4-Architecture/235/7 http://www.hardwaresecrets.com/article/Inside-AMD64-Architecture/324/6
+45,9,NetBurst:Prescott,x86-32,,SSE3,,31,6,3,2,2,7,1,126,,,4096,,,128,128,256,,true,6400,true,http://studies.ac.upc.edu/ETSETB/SEGPAR/microprocessors/pentium4%20(mpr).pdf http://www.hardwaresecrets.com/article/Inside-Pentium-4-Architecture/235/7 http://www.hardwaresecrets.com/article/Inside-AMD64-Architecture/324/6 http://www.tomshardware.com/revi
+46,9,NetBurst:Cedar Mill,x86-32,,SSE3,,31,6,3,2,2,7,1,126,,,4096,,,128,128,256,,true,6400,true,http://studies.ac.upc.edu/ETSETB/SEGPAR/microprocessors/pentium4%20(mpr).pdf http://www.hardwaresecrets.com/article/Inside-Pentium-4-Architecture/235/7 http://www.hardwaresecrets.com/article/Inside-AMD64-Architecture/324/6 http://www.tomshardware.com/revi
+47,9,NetBurst:Smithfield,x86-32,,SSE3,,31,6,3,2,2,7,1,126,,,4096,,,128,128,256,,true,6400,true,http://studies.ac.upc.edu/ETSETB/SEGPAR/microprocessors/pentium4%20(mpr).pdf http://www.hardwaresecrets.com/article/Inside-Pentium-4-Architecture/235/7 http://www.hardwaresecrets.com/article/Inside-AMD64-Architecture/324/6 http://www.tomshardware.com/revi
+48,9,NetBurst:Presler,x86-32,,SSE3,,31,6,3,2,2,7,1,126,,,4096,,,128,128,256,,true,6400,true,http://studies.ac.upc.edu/ETSETB/SEGPAR/microprocessors/pentium4%20(mpr).pdf http://www.hardwaresecrets.com/article/Inside-Pentium-4-Architecture/235/7 http://www.hardwaresecrets.com/article/Inside-AMD64-Architecture/324/6 http://www.tomshardware.com/revi
+49,9,P5,x86-32,,MMX,6,5,2,2,,1,3,,,,,,256,,40,,,,false,,true,http://arstechnica.com/old/content/2004/07/pentium-1.ars/
+50,9,P6:Pentium II,x86-32,,MMX,,14,,,,,,,40,,,,512,,40,,,,true,,true,http://www.hardwaresecrets.com/article/Inside-Pentium-4-Architecture/235/7
+51,9,P6:Pentium III,x86-32,,,,10,,,,,,,,,,,512,,40,,,,true,,true,http://www.hardwaresecrets.com/article/Inside-Pentium-4-Architecture/235/7
+52,9,P6:Banias,x86-32,,SSE2,,,5,2,3,2,5,3,40,,,,,,40,40,40,,true,,false,http://www.hardwaresecrets.com/article/Inside-Pentium-M-Architecture/270/1
+53,9,P6:Yonah,x86-32,,SSE3,,12,5,,,,,3,80,24,,,,,,,,,true,,false,http://www.anandtech.com/show/1880
+54,9,Sandy Bridge,x86-64,,SSE4.2 AVX,,,6,3,3,3,5,6,168,,,,,,,,,,true,,false,http://www.lostcircuits.com/mambo//index.php?option=com_content&task=view&id=98&Itemid=1
+55,9,80386 DX,x86-32,,,,,1,1,1,0,1,1,,,,,,,8,,8,80387,false,,false,http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=4089530
+56,9,80486 DX,x86-32,,,,5,1,1,1,1,2,1,,,,,,,8,8,,,false,,false,http://webcache.googleusercontent.com/search?q=cache:http://www.skepticfiles.org/cowtext/comput~1/486vs040.htm
+57,17,R10000,,,,7,5,5,2,1,3,6,4,32,5,,512,512,,32,32,64,,true,3200,false,ftp://ftp.sgi.com/sgi/doc/R10000/Prod_Overview/R10000_Tech_Br.pdf
+58,18,R12000,,,,8,6,5,2,1,3,6,4,48,5,,2048,2048,,32,32,64,,true,,false,http://studies.ac.upc.edu/ETSETB/SEGPAR/microprocessors/r12000%20(mpr).pdf
+59,17,R2000,,,,,5,1,1,1,0,2,1,,,,,,,32,,32,R2020,false,,false,http://en.wikipedia.org/wiki/R2000_(microprocessor) http://ece552.ece.wisc.edu/lec09_intro_superscalar.pdf http://www.doc.ic.ac.uk/lab/secondyear/spim/node9.html
+60,17,R3000,,,,,5,1,1,1,0,2,1,,,,,,,32,,32,R3010,false,,false,http://en.wikipedia.org/wiki/R3000 http://psx.rules.org/system.txt
+61,17,R4000,,,,,8,1,1,1,3,5,1,,4,,,,,32,32,64,R4010,false,,false,http://en.wikipedia.org/wiki/R4000 http://en.wikipedia.org/wiki/R4000
+62,17,R4600,,,,,5,1,1,1,1,3,1,,,,,,,32,32,64,,false,,false,http://en.wikipedia.org/wiki/R4600 http://www.google.com/url?sa=t&source=web&cd=5&ved=0CC4QFjAE&url=http%3A%2F%2Fwww.sgistuff.net%2Fhardware%2Fother%2Fdocuments%2FR4600_Prod_OV.pdf&rct=j&q=IDT79R4600%20ORION%20Hardware%20User's%20Manual&ei=pjHPTK3rDoT0swP
+63,17,R5000,,,,,5,2,1,1,1,3,2,,2,,,,,32,32,64,,false,,false,https://www.mips.com/media/files/archives/R5000ProductInformation.pdf
+64,17,R8000,,,,,5,4,4,2,,6,4,,,,1024,,,32,32,64,R8010,,,,http://www.sgistuff.net/hardware/other/documents/R8000_design.html http://www.linux-mips.org/pub/mips/docs/r8000/r8000-um.pdf
+65,10,68000,,,,,,,,,,,,,,,,,,,,,,,,,
+66,10,68010,,,,,,,,,,,,,,,,,,,,,,,,,
+67,10,68020,,,,,,,,,,,,,,,,,,,,,,,,,
+68,10,68030,,,,,,,,,,,,,,,,,,,,,,,,,
+69,10,68040,,,,6,6,1,1,1,1,2,1,,,,,,,,,,,,,,
+70,10,68060,,,,9,9,2,2,2,1,3,2,,,,256,,,,,,,,,,
+71,19,SuperSPARC I,,,,4,4,3,3,1,1,5,3,,3,12,,12,,32,32,,,false,,false,http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=00186699
+72,19,SuperSPARC II,,,,5,4,3,3,1,1,5,3,,3,12,,12,,32,32,,,false,,,http://www.comms.scitech.sussex.ac.uk/fft/programming/STP1021UG.pdf
+73,19,UltraSPARC,,,,9,9,4,2,1,5,9,4,,4,12,2048,1024,,32,32,,,false,,,"http://en.wikipedia.org/wiki/UltraSPARC Robt. Yung ""Design Decisions Influencing the UltraSPARC's Instruction Fetch Architecture"""
+74,19,UltraSPARC II,,,,9,9,4,2,1,5,9,4,,4,12,2048,1024,,32,32,,,false,,,http://docs.sun.com/source/806-3568/ncg_sparc.html
+75,19,UltraSPARC III,,,,7,14,4,2,1,4,8,4,,6,20,16384,4,,32,32,0,,false,2400,,"http://en.wikipedia.org/wiki/UltraSPARC_III ""UltraSPARC III"" ppt slides"
+76,19,UltraSPARC T1,,,,7,6,1,,,,,1,,8,,,,,,,,,false,,,http://opensparc-t1.sunsource.net/specs/OpenSPARCT1_Micro_Arch.pdf
+77,1,K75,,,,,,,,,,,,,,,,,,,,,,,,,
+78,7,Power ISA v2.06,,,,,,,,,,,,,,,,,,,,,,,,,
+79,9,Bonnel,,,,,,,,,,,,,,,,,,,,,,,,,
