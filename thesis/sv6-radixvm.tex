@@ -305,9 +305,8 @@ non-overlapping regions of an address
 space.  This comes at the cost of a potentially larger memory
 overhead; however, address space layouts tend to exhibit good
 locality and folding efficiently compresses large ranges, making radix
-trees a good fit for a VM system.
-\XXX[AC]{We show this in the \vm paper.  Pull that in here or in the
-  evaluation?}
+trees a good fit for a VM system, as we'll confirm in
+\cref{sec:eval:memory}.
 
 \subsubsection{TLB management}
 \label{sec:radixvm:tlb}
@@ -460,5 +459,4 @@ concurrency plan based on precise range locking.
 As shown in \cref{fig:testcase-breakdown-sv6}, \tool confirmed that
 most commutative operations in \vm are conflict-free.  In
 \cref{sec:eval}, we further confirm that \vm's design translates into
-scalable performance for application workloads. \XXX![AC]{Do we
-  confirm this?}
+scalable performance for application workloads.
