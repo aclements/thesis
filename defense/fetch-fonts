@@ -6,6 +6,9 @@
 # To use Google fonts directly, add to the SVG defs:
 #  <xhtml:link href="..." rel="stylesheet" type="text/css" />
 # where the href is the CSS URL below.
+#
+# After this, run unpack-fonts to replace several of these with more
+# complete fonts from Font Squirrel.
 
 CSS = 'https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700,300italic|Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800|Source+Code+Pro:200,300,400,500,600,700,900'
 CHROME_UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.16 Safari/537.36'

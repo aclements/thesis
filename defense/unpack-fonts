@@ -1,0 +1,37 @@
+#!/bin/zsh
+
+# This script unpacks the font packs from FontSquirrel to replace the
+# subsetted fonts retrieved from Google Fonts with complete fonts.
+
+set -e
+
+dofont() {
+    mkdir tmp
+    unzip -d tmp $1
+    find tmp \( -name \*.ttf -o -name \*.woff \) -exec mv '{}' . ';'
+    rm -rf tmp
+}
+
+cd fonts
+dofont open-sans-fontfacekit.zip
+dofont open-sans-condensed-fontfacekit.zip
+
+# Strip Google Fonts references from CSS
+python -c '
+import sys, re, os
+for line in sys.stdin:
+    m = re.search(r"url\(([^/)]*\.woff)\)", line)
+    if m:
+         tgt = m.group(1)[:-5]
+         # Convert Google name to Font Squirrel name
+         base = tgt.replace("Condensed", "Cond").replace("Extrabold", "ExtraBold").replace("Light-Italic", "-LightItalic")
+         if "-" not in base: base += "-Regular"
+         base += "-webfont"
+         print >>sys.stderr, tgt, "<=", base, os.path.exists(base + ".woff")
+         if os.path.exists(base + ".woff"):
+             os.rename(base + ".woff", tgt + ".woff")
+             os.rename(base + ".ttf", tgt + ".ttf")
+             line = re.sub(r"url\(https[^)]*\) format\([^)]*\), ", "", line)
+    sys.stdout.write(line)
+' < faces.css > faces.css.new
+mv faces.css.new faces.css
