@@ -347,7 +347,7 @@ var transitions = {
             Action.translateAbs(
                 bh,
                 Inter.seg(bh.pos[0], bh.pos[1] + dist,
-                          bh.pos[0], bh.pos[1])).easeInOutQuad()).quick();
+                          bh.pos[0], bh.pos[1])).ease()).faster();
     },
 
     "Commutativity conditions+Test cases" :
@@ -363,7 +363,7 @@ var transitions = {
             Action.translateAbs(
                 bh,
                 Inter.seg(bh.pos[0], bh.pos[1] + dist,
-                          bh.pos[0], bh.pos[1])).easeInOutQuad()).quick();
+                          bh.pos[0], bh.pos[1])).ease()).faster();
     },
 
 
@@ -379,7 +379,7 @@ var transitions = {
             Action.translateAbs(
                 bh,
                 Inter.seg(bh.pos[0], bh.pos[1] + dist,
-                          bh.pos[0], bh.pos[1])).easeInOutQuad()).quick();
+                          bh.pos[0], bh.pos[1])).ease()).faster();
     },
 
     "Commuter finds non-scalable cases in Linux/Mask" : function(subslide) {
