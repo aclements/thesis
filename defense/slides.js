@@ -47,7 +47,140 @@ Anim.prototype.quick = function() {
     return this.scaleTo(0.25);
 };
 
+function genID() {
+    return 'genID-' + (genID._counter++);
+}
+genID._counter = 0;
+
+var svgNS = 'http://www.w3.org/2000/svg';
+
+function createLinearGradient(parent, stops) {
+    var gradient = parent.ownerDocument.createElementNS(svgNS, 'linearGradient');
+    gradient.id = genID();
+    for (var i = 0; i < stops.length; ++i) {
+        var stop = parent.ownerDocument.createElementNS(svgNS, 'stop');
+        stop.setAttribute('offset', '' + stops[i][0]);
+        stop.setAttribute('stop-color', stops[i][1]);
+        if (stops[i].length > 2)
+            stop.setAttribute('stop-opacity', stops[i][2]);
+        gradient.appendChild(stop);
+    }
+    parent.appendChild(gradient);
+    return gradient;
+}
+
+function createRect(parent, x, y, w, h) {
+    var rect = parent.ownerDocument.createElementNS(svgNS, 'rect');
+    rect.setAttribute('x', '' + x);
+    rect.setAttribute('y', '' + y);
+    rect.setAttribute('width', '' + w);
+    rect.setAttribute('height', '' + h);
+    parent.appendChild(rect);
+    return rect;
+}
+
+// Return a gradient reveal action over obj.  fadeFrac is the fraction
+// of obj's width spanned by the gradient at any moment.  fadeFrac
+// defaults to 0.2.
+function sweepLeftToRight(obj, fadeFrac) {
+    if (fadeFrac === undefined)
+        fadeFrac = 0.2;
+    var h = new BBoxHandle(obj);
+    var bbox = h._getBBox();
+
+    // Create mask
+    var mask = obj.ownerDocument.createElementNS(svgNS, 'mask');
+    mask.id = genID();
+    var rWidth = bbox.width * (1+fadeFrac);
+    var rect = createRect(mask, -rWidth, bbox.y-10, rWidth, bbox.height+20);
+    var gradient = createLinearGradient(obj.parentNode, [[1-fadeFrac, '#fff'],
+                                                         [1, '#000']]);
+    rect.setAttribute('fill', 'url(#' + gradient.id + ')');
+    obj.parentNode.appendChild(mask);
+    obj.setAttribute('mask', 'url(#' + mask.id + ')');
+
+    return Action.translateRel(rect, Inter.seg(rWidth, 0));
+}
+
 var transitions = {
+    // XXX "Cores are the new hertz"
+    "x86 CPU trends" : function() {
+        var _ = this.finder;
+
+        // Find the plot
+        var plot = $('g[id^="gnuplot_canvas"]', this[0])[0];
+
+        // Get plot layers and generate sweeps
+        var layers = [], sweeps = [];
+        $.each($('title', plot), function () {
+            if (this.textContent.substr(0, 13) === "gnuplot_plot_") {
+                var n = parseInt(this.textContent.substr(13)) - 1;
+                var layer = this.parentNode;
+                layers[n] = layer;
+                if (n % 3 != 2)
+                    sweeps[n] = sweepLeftToRight(layer);
+            }
+        });
+        function revealLayers(layer, start, end) {
+            start = start || 0;
+            end = end || 1;
+            var anim = Anim.par(sweeps[layer].slice(start, end),
+                                sweeps[layer + 1].slice(start, end));
+            if (start == 0)
+                anim = anim.par(Action.fade(layers[layer+2]).quick());
+            return anim;
+        }
+
+        // Get X tics
+        var x2005;
+        $.each($('g', plot), function () {
+            if (this.textContent.trim() === '2005') {
+                x2005 = [this, $(this).prev()[0]];
+                return false;
+            }
+        });
+        var xticsG = x2005[0].parentNode;
+        var xtics = $(xticsG).children().toArray();
+        // X border is last element
+        var xborder = xtics.pop();
+        var xothertics = [];
+        $.each(xtics, function () {
+            if (x2005.indexOf(this) === -1)
+                xothertics.push(this);
+        });
+
+        // Find all the other stuff
+        var chartjunk = $(plot).children().not(layers).not(xticsG);
+
+        return [
+            Anim.none,
+            // Show 2005 tic
+            Anim.par(
+                Action.fade(x2005), Action.fade(xborder),
+                Action.translateRel(xtics, Inter.seg(-160, -10, -160, 0)).
+                    easeOutQuad(),
+                Action.translateRel(xborder, Inter.seg(0, -10, 0, 0)).
+                    easeOutQuad()
+            ).quick(),
+            // Show other tics, chart junk, and reveal clock speed
+            Anim.par(
+                Action.translateRel(xtics, Inter.seg(0, 0, 160, 0)).ease(),
+                Action.fade(xothertics),
+                Action.fade(_('?sources')),
+                Action.fade(chartjunk),
+                revealLayers(0, 0, 0.63)
+            ),
+            // Reveal power
+            revealLayers(3, 0, 0.63),
+            // Finish reveal of clock and power
+            Anim.par(
+                revealLayers(0, 0.63, 1),
+                revealLayers(3, 0.63, 1)),
+            // Reveal cores
+            revealLayers(6)
+        ];
+    },
+
     "Current approach to scalable software development/Papers" : function() {
         var _ = this.finder;
         var timeline = autoHandle(_("?timeline")[0]);
