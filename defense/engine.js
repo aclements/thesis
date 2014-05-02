@@ -1837,7 +1837,7 @@ function Slide(n, elt, master, transitions, cur, slides, prev) {
     this._transitions = transitions;
     this.cur = cur;
     // XXX Ugly.  We need this to call the pre- and post-animation
-    // hooks.
+    // hooks and for exit transitions.
     this._slides = slides;
     // The slide preceding this one (for inter-slide transitions)
     this._prev = prev;
@@ -1855,6 +1855,8 @@ function Slide(n, elt, master, transitions, cur, slides, prev) {
 }
 
 Slide.prototype.show = function(step, end) {
+    var othis = this;
+
     // Stop any running animation
     if (this.cur.anim)
         this.cur.anim.stop();
@@ -1914,6 +1916,13 @@ Slide.prototype.show = function(step, end) {
 
         // Show this slide
         this.cur.anim = this.steps[this.step];
+
+        // If this is an exit transition, add in the step to the next
+        // slide.  We can't add this to the animation earlier or it
+        // will attempt to advance during slide stabilization.
+        if (this._hasExit && this.step === this.steps.length - 1)
+            this.cur.anim = this.cur.anim.seq(
+                new Anim(function () {othis._slides.show(othis.n + 1);}, 0));
     }
 
     // Show this slide
@@ -2007,6 +2016,12 @@ Slide.prototype._prepare = function() {
     } else {
         addSteps(Anim.none, this.title);
     }
+
+    // Is there an exit transition?
+    this._hasExit = (this.title + "/EXIT") in this._transitions;
+    if (this._hasExit)
+        addSteps(Anim.none, this.title + "/EXIT");
+
     this.steps = steps;
     this.nsteps = steps.length;
 
