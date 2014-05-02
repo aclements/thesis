@@ -62,11 +62,6 @@ concerns.
 
 \subsection{\fs: Conflict-free file system operations}
 
-\XXX![AC]{This section may end up with redundant parts.  It may need
-  more details about the design, or at least an intro that more
-  strongly states that, unlike Refcache and RadixVM, \fs is all known
-  techniques and \tool-guided elbow grease.}
-
 \fs encompasses \sys's unified buffer cache and VFS layers, providing
 operations such as \code{read}, \code{write}, \code{open}, and
 \code{unlink}.  We focused on the VFS and buffer cache layers because
@@ -113,7 +108,7 @@ is within the file's bounds without reading the size and conflicting
 with operations
 that change the file's size.
 
-\XXX[AC]{``Radix tree'' or ``radix array''?}
+\XXX[AC]{``Radix tree'' or ``radix array''?  Be consistent.}
 
 
 \paragraph{Defer work.} Many \fs resources are shared,
@@ -129,15 +124,6 @@ released, but within each Refcache epoch commutative operations can be
 conflict-free.
 
 \XXX[AC]{Discuss crazy pipe hybrid reference counting scheme?}
-
-\XXX[AC]{This seems uninteresting, and possibly false. \par
-Batching sometimes enables absorption, when a resource gets reused within
-a batch interval, thus requiring no non-scalable operations at all.
-For instance, if one process closes the last open file descriptor for
-a file, that file becomes eligible for eviction from the inode cache
-(using Refcache weak references~\cite{clements:radixvm}).  However,
-if another process re-opens the file on the same core, the inode can
-be revived without any conflicting memory accesses.}
 
 Some resources are artificially scarce, such as inode numbers in a typical
 Unix file system.  When a typical Unix file system runs out of free
