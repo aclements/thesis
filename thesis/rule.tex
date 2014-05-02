@@ -158,10 +158,10 @@ order; and the presence of region $\HSUFF$ in both histories requires
 that reorderings of
 actions in region $\HY$ are indistinguishable by future operations.
 %
-\XXX[E]{There was something about ``This literal transaltion of our
-informal definition of commutativity'' here, but it's not ``literal,''
-and then I'm not sure we have an informal definition of commutativity?
-Maybe the point was to imply this def actually isn't very hard?...}
+% \XXX[E]{There was something about ``This literal transaltion of our
+% informal definition of commutativity'' here, but it's not ``literal,''
+% and then I'm not sure we have an informal definition of commutativity?
+% Maybe the point was to imply this def actually isn't very hard?...}
 
 Unfortunately, \SI commutativity doesn't suffice for the proof
 because it is \emph{non-monotonic}.
@@ -235,10 +235,6 @@ calls will return the same error).
 operations are the same in each.  This, in turn, means the commutativity
 rule can tell us that scalable implementations exist in the commutative
 cases.
-
-\XXX[AC]{Talk about how there may not be a single implementation here?
-Maybe that's best left to the later discussion, once the formal rule has
-been stated.}
 
 \SIM\ commutativity is also interface-based.
 %
@@ -384,25 +380,25 @@ and where $\REFIMP$ can generate $H$.
 Then there exists a correct implementation $m$ of $\SPEC$ whose steps in
 the $\HY$ region of $H$ are conflict-free.
 
-\XXX[rtm]{``the ... $\HY$ region'' seems to imply that $m$ must
-generate the same B as $M$.
-is that generally true? what if the specification allows more
-than one response to an invocation? what if $m$ delays responses
-a different amount than $M$? maybe we mean ``there exists an $m$
-that generates the same $\HY$ as $M$ and is conflict-free.''}
+% \XXX[rtm]{``the ... $\HY$ region'' seems to imply that $m$ must
+% generate the same B as $M$.
+% is that generally true? what if the specification allows more
+% than one response to an invocation? what if $m$ delays responses
+% a different amount than $M$? maybe we mean ``there exists an $m$
+% that generates the same $\HY$ as $M$ and is conflict-free.''}
 
-\XXX[E]{In fact the construction does generate the same results as those
-in $\HY$, for any ordering of the invocations of $\HY$. And this is true
-even if the TRUE implementation, given a different order of invocations
-than the original $\HY$ order, WOULD GENERATE DIFFERENT RESULTS. This is
-important; it's what I'd like interface-based to mean.}
+% \XXX[E]{In fact the construction does generate the same results as those
+% in $\HY$, for any ordering of the invocations of $\HY$. And this is true
+% even if the TRUE implementation, given a different order of invocations
+% than the original $\HY$ order, WOULD GENERATE DIFFERENT RESULTS. This is
+% important; it's what I'd like interface-based to mean.}
 
-\XXX[AC]{The construction works not just for $\HX \HCONCAT \HY$, but for
-any $\HX \HCONCAT \HY'$ where $\HY'$ is a reordering of $\HY$.  Indeed
-this has to be
-the case, since, by its very nature, the construction can't tell the
-difference, but we write things as if it has to be $\HY$.  Should we be
-clearer that the construction is conflict-free in any $\HY'$?}
+% \XXX[AC]{The construction works not just for $\HX \HCONCAT \HY$, but for
+% any $\HX \HCONCAT \HY'$ where $\HY'$ is a reordering of $\HY$.  Indeed
+% this has to be
+% the case, since, by its very nature, the construction can't tell the
+% difference, but we write things as if it has to be $\HY$.  Should we be
+% clearer that the construction is conflict-free in any $\HY'$?}
 
 
 \subsection{Proof}
@@ -794,8 +790,6 @@ Suppose
    \scpline{\scpi{B}{2}}=\code{put(1)}, \scpline{\scpr{B}{2}},
    \scpline{\scpi{C}{3}}=\code{max()}, \scpline{\scpr{C}{3}}=1].
 \]
-%
-\XXX[E]{We put other similar histories inline and this uses lots of space}
 %
 An implementation could store per-thread maxima reconciled by
 \code{max} and be conflict-free for $\scpline{\scpir{A}{1}
