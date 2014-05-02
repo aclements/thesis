@@ -2,79 +2,79 @@
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300;
-  src: local('Open Sans Light'), local('OpenSans-Light'), url(https://themes.googleusercontent.com/static/fonts/opensans/v6/DXI1ORHCpsQm3Vp6mXoaTXhCUOGz7vYGh680lGh-uXM.woff) format('woff'), url(OpenSans-Light.woff) format('woff'), local(sans-serif);
+  src: local('Open Sans Light'), local('OpenSans-Light'), url(OpenSans-Light.woff) format('woff'), local(sans-serif);
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
-  src: local('Open Sans'), local('OpenSans'), url(https://themes.googleusercontent.com/static/fonts/opensans/v6/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format('woff'), url(OpenSans.woff) format('woff'), local(sans-serif);
+  src: local('Open Sans'), local('OpenSans'), url(OpenSans.woff) format('woff'), local(sans-serif);
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
-  src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(https://themes.googleusercontent.com/static/fonts/opensans/v6/MTP_ySUJH_bn48VBG8sNSnhCUOGz7vYGh680lGh-uXM.woff) format('woff'), url(OpenSans-Semibold.woff) format('woff'), local(sans-serif);
+  src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(OpenSans-Semibold.woff) format('woff'), local(sans-serif);
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 700;
-  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://themes.googleusercontent.com/static/fonts/opensans/v6/k3k702ZOKiLJc3WVjuplzHhCUOGz7vYGh680lGh-uXM.woff) format('woff'), url(OpenSans-Bold.woff) format('woff'), local(sans-serif);
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(OpenSans-Bold.woff) format('woff'), local(sans-serif);
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 800;
-  src: local('Open Sans Extrabold'), local('OpenSans-Extrabold'), url(https://themes.googleusercontent.com/static/fonts/opensans/v6/EInbV5DfGHOiMmvb1Xr-hnhCUOGz7vYGh680lGh-uXM.woff) format('woff'), url(OpenSans-Extrabold.woff) format('woff'), local(sans-serif);
+  src: local('Open Sans Extrabold'), local('OpenSans-Extrabold'), url(OpenSans-Extrabold.woff) format('woff'), local(sans-serif);
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: italic;
   font-weight: 300;
-  src: local('Open Sans Light Italic'), local('OpenSansLight-Italic'), url(https://themes.googleusercontent.com/static/fonts/opensans/v6/PRmiXeptR36kaC0GEAetxh_xHqYgAV9Bl_ZQbYUxnQU.woff) format('woff'), url(OpenSansLight-Italic.woff) format('woff'), local(sans-serif);
+  src: local('Open Sans Light Italic'), local('OpenSansLight-Italic'), url(OpenSansLight-Italic.woff) format('woff'), local(sans-serif);
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: italic;
   font-weight: 400;
-  src: local('Open Sans Italic'), local('OpenSans-Italic'), url(https://themes.googleusercontent.com/static/fonts/opensans/v6/xjAJXh38I15wypJXxuGMBobN6UDyHWBl620a-IRfuBk.woff) format('woff'), url(OpenSans-Italic.woff) format('woff'), local(sans-serif);
+  src: local('Open Sans Italic'), local('OpenSans-Italic'), url(OpenSans-Italic.woff) format('woff'), local(sans-serif);
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: italic;
   font-weight: 600;
-  src: local('Open Sans Semibold Italic'), local('OpenSans-SemiboldItalic'), url(https://themes.googleusercontent.com/static/fonts/opensans/v6/PRmiXeptR36kaC0GEAetxn5HxGBcBvicCpTp6spHfNo.woff) format('woff'), url(OpenSans-SemiboldItalic.woff) format('woff'), local(sans-serif);
+  src: local('Open Sans Semibold Italic'), local('OpenSans-SemiboldItalic'), url(OpenSans-SemiboldItalic.woff) format('woff'), local(sans-serif);
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: italic;
   font-weight: 700;
-  src: local('Open Sans Bold Italic'), local('OpenSans-BoldItalic'), url(https://themes.googleusercontent.com/static/fonts/opensans/v6/PRmiXeptR36kaC0GEAetxjqR_3kx9_hJXbbyU8S6IN0.woff) format('woff'), url(OpenSans-BoldItalic.woff) format('woff'), local(sans-serif);
+  src: local('Open Sans Bold Italic'), local('OpenSans-BoldItalic'), url(OpenSans-BoldItalic.woff) format('woff'), local(sans-serif);
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: italic;
   font-weight: 800;
-  src: local('Open Sans Extrabold Italic'), local('OpenSans-ExtraboldItalic'), url(https://themes.googleusercontent.com/static/fonts/opensans/v6/PRmiXeptR36kaC0GEAetxkCDe67GEgBv_HnyvHTfdew.woff) format('woff'), url(OpenSans-ExtraboldItalic.woff) format('woff'), local(sans-serif);
+  src: local('Open Sans Extrabold Italic'), local('OpenSans-ExtraboldItalic'), url(OpenSans-ExtraboldItalic.woff) format('woff'), local(sans-serif);
 }
 @font-face {
   font-family: 'Open Sans Condensed';
   font-style: normal;
   font-weight: 300;
-  src: local('Open Sans Cond Light'), local('OpenSans-CondensedLight'), url(https://themes.googleusercontent.com/static/fonts/opensanscondensed/v6/gk5FxslNkTTHtojXrkp-xF1YPouZEKgzpqZW9wN-3Ek.woff) format('woff'), url(OpenSans-CondensedLight.woff) format('woff'), local(sans-serif);
+  src: local('Open Sans Cond Light'), local('OpenSans-CondensedLight'), url(OpenSans-CondensedLight.woff) format('woff'), local(sans-serif);
 }
 @font-face {
   font-family: 'Open Sans Condensed';
   font-style: normal;
   font-weight: 700;
-  src: local('Open Sans Condensed Bold'), local('OpenSans-CondensedBold'), url(https://themes.googleusercontent.com/static/fonts/opensanscondensed/v6/gk5FxslNkTTHtojXrkp-xONSK5BxN3NFS4EJkViHIqo.woff) format('woff'), url(OpenSans-CondensedBold.woff) format('woff'), local(sans-serif);
+  src: local('Open Sans Condensed Bold'), local('OpenSans-CondensedBold'), url(OpenSans-CondensedBold.woff) format('woff'), local(sans-serif);
 }
 @font-face {
   font-family: 'Open Sans Condensed';
   font-style: italic;
   font-weight: 300;
-  src: local('Open Sans Cond Light Italic'), local('OpenSans-CondensedLightItalic'), url(https://themes.googleusercontent.com/static/fonts/opensanscondensed/v6/jIXlqT1WKafUSwj6s9AzV6XnXbwdDC8wAz6IIzmCDUP3rGVtsTkPsbDajuO5ueQw.woff) format('woff'), url(OpenSans-CondensedLightItalic.woff) format('woff'), local(sans-serif);
+  src: local('Open Sans Cond Light Italic'), local('OpenSans-CondensedLightItalic'), url(OpenSans-CondensedLightItalic.woff) format('woff'), local(sans-serif);
 }
 @font-face {
   font-family: 'Source Code Pro';
