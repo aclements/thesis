@@ -117,17 +117,17 @@ var transitions = {
                 var n = parseInt(this.textContent.substr(13)) - 1;
                 var layer = this.parentNode;
                 layers[n] = layer;
-                if (n % 3 != 2)
+                if (n < 8)
                     sweeps[n] = sweepLeftToRight(layer);
             }
         });
-        function revealLayers(layer, start, end) {
+        function revealLayers(layer, start, end, key) {
             start = start || 0;
             end = end || 1;
-            var anim = Anim.par(sweeps[layer].slice(start, end),
-                                sweeps[layer + 1].slice(start, end));
-            if (start == 0)
-                anim = anim.par(Action.fade(layers[layer+2]).quick());
+            var anim = Anim.par(sweeps[layer*2].slice(start, end),
+                                sweeps[layer*2+1].slice(start, end));
+            if (key !== undefined)
+                anim = anim.par(Action.fade(layers[key+8]).quick());
             return anim;
         }
 
@@ -168,16 +168,18 @@ var transitions = {
                 Action.fade(xothertics),
                 Action.fade(_('?sources')),
                 Action.fade(chartjunk),
-                revealLayers(0, 0, 0.63)
+                revealLayers(1, 0, 0.63, 0)
             ),
             // Reveal power
-            revealLayers(3, 0, 0.63),
+            revealLayers(2, 0, 0.63, 1),
             // Finish reveal of clock and power
             Anim.par(
-                revealLayers(0, 0.63, 1),
-                revealLayers(3, 0.63, 1)),
+                revealLayers(1, 0.63, 1),
+                revealLayers(2, 0.63, 1)),
             // Reveal cores
-            revealLayers(6)
+            revealLayers(3, 0, 1, 2),
+            // Reveal total cycles/sec
+            revealLayers(0, 0, 1, 3),
         ];
     },
 
