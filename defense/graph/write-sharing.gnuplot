@@ -5,10 +5,7 @@ set zeroaxis
 set xlabel "1 writer + N readers"
 set ylabel "Cycles to read"
 set format y "%.0s%c"
+set ytics add ("1.5k" 1500, "2.5k" 2500, "3.5k" 3500)
 
-!./summarize ops_vs_ncores < write-sharing.data > .write-sharing.data
-plot \
-     '.write-sharing.data' \
-     using ($1):2 title '' with points lc '#000000' ps 0.5, \
-     '.write-sharing.data' \
-     using ($1):2 title '' smooth sbezier lt 1 lw 3
+plot '<../../thesis/data/ttt iv.ncores dv.cycles/read ../../thesis/data/sharing.out/ben/rw/data' \
+     with lines title '' lt 1 lw 3
