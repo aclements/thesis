@@ -27,9 +27,9 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="0.703125"
-     inkscape:cx="476.44444"
-     inkscape:cy="375.46667"
-     inkscape:current-layer="g14346"
+     inkscape:cx="257.42222"
+     inkscape:cy="265.95556"
+     inkscape:current-layer="layer2"
      inkscape:document-units="px"
      showgrid="false"
      inkscape:window-width="1342"
@@ -4149,22 +4149,22 @@
          y="753.77777">Sources: Stanford CPUDB, Intel ARK</tspan></text>
     <g
        style="font-weight:300"
-       id="g15324"
+       id="g21248"
        transform="translate(0,132.35555)">
       <g
-         id="gnuplot_canvas-90">
+         id="gnuplot_canvas-7">
         <rect
-           id="rect14272"
+           id="rect20196"
            height="600"
            width="1024"
            y="0"
            x="0"
            style="fill:none" />
         <defs
-           id="defs14274">
+           id="defs20198">
           <circle
              r="0.5"
-             id="gpDot-6"
+             id="gpDot-9"
              cx="0"
              cy="0"
              sodipodi:cx="0"
@@ -4174,17 +4174,17 @@
              style="stroke-width:0.5" />
           <path
              d="M -1,0 H 1 M 0,-1 v 2"
-             id="gpPt0-5"
+             id="gpPt0-6"
              inkscape:connector-curvature="0"
              style="stroke:currentColor;stroke-width:0.133" />
           <path
              d="M -1,-1 1,1 M 1,-1 -1,1"
-             id="gpPt1-29"
+             id="gpPt1-299"
              inkscape:connector-curvature="0"
              style="stroke:currentColor;stroke-width:0.133" />
           <path
              d="M -1,0 1,0 M 0,-1 0,1 m -1,-2 2,2 m -2,0 2,-2"
-             id="gpPt2-2"
+             id="gpPt2-5"
              inkscape:connector-curvature="0"
              style="stroke:currentColor;stroke-width:0.133" />
           <rect
@@ -4192,28 +4192,28 @@
              width="2"
              y="-1"
              x="-1"
-             id="gpPt3-19"
+             id="gpPt3-0"
              style="stroke:currentColor;stroke-width:0.133" />
           <rect
              height="2"
              width="2"
              y="-1"
              x="-1"
-             id="gpPt4-5"
+             id="gpPt4-2"
              style="fill:currentColor;stroke:currentColor;stroke-width:0.133" />
           <circle
              r="1"
              cy="0"
              cx="0"
-             id="gpPt5-4"
+             id="gpPt5-1"
              sodipodi:cx="0"
              sodipodi:cy="0"
              sodipodi:rx="1"
              sodipodi:ry="1"
              style="stroke:currentColor;stroke-width:0.133" />
           <use
-             id="gpPt6-3"
-             xlink:href="#gpPt5-4"
+             id="gpPt6-8"
+             xlink:href="#gpPt5-1"
              style="fill:currentColor;stroke:none"
              x="0"
              y="0"
@@ -4221,12 +4221,12 @@
              height="1" />
           <path
              d="m 0,-1.33 -1.33,2 2.66,0 z"
-             id="gpPt7-9"
+             id="gpPt7-8"
              inkscape:connector-curvature="0"
              style="stroke:currentColor;stroke-width:0.133" />
           <use
-             id="gpPt8-9"
-             xlink:href="#gpPt7-9"
+             id="gpPt8-8"
+             xlink:href="#gpPt7-8"
              style="fill:currentColor;stroke:none"
              x="0"
              y="0"
@@ -4234,16 +4234,16 @@
              height="1" />
           <use
              transform="scale(-1,-1)"
-             id="gpPt9-7"
-             xlink:href="#gpPt7-9"
+             id="gpPt9-6"
+             xlink:href="#gpPt7-8"
              style="stroke:currentColor"
              x="0"
              y="0"
              width="1"
              height="1" />
           <use
-             id="gpPt10-7"
-             xlink:href="#gpPt9-7"
+             id="gpPt10-3"
+             xlink:href="#gpPt9-6"
              style="fill:currentColor;stroke:none"
              x="0"
              y="0"
@@ -4251,16 +4251,16 @@
              height="1" />
           <use
              transform="matrix(0.70710678,0.70710678,-0.70710678,0.70710678,0,0)"
-             id="gpPt11-2"
-             xlink:href="#gpPt3-19"
+             id="gpPt11-09"
+             xlink:href="#gpPt3-0"
              style="stroke:currentColor"
              x="0"
              y="0"
              width="1"
              height="1" />
           <use
-             id="gpPt12-8"
-             xlink:href="#gpPt11-2"
+             id="gpPt12-7"
+             xlink:href="#gpPt11-09"
              style="fill:currentColor;stroke:none"
              x="0"
              y="0"
@@ -4268,1184 +4268,1183 @@
              height="1" />
         </defs>
         <g
-           id="g14290"
+           id="g20214"
            style="color:#ffffff;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter" />
         <g
-           id="g14292"
+           id="g20216"
            style="color:#ffffff;fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter" />
         <g
-           id="g14294"
+           id="g20218"
            style="color:#ff0000;fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter" />
         <g
-           id="g14296"
+           id="g20220"
            style="color:#ff0000;fill:none;stroke:#808080;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" />
         <g
-           id="g14298"
+           id="g20222"
            style="color:#0000ff;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter">
           <path
-             id="path14300"
+             id="path20224"
              d="m 0,540 1023.9,0 h 0.01"
              class="gridline"
              inkscape:connector-curvature="0"
              style="stroke:#808080;stroke-dasharray:2, 4" />
         </g>
         <g
-           id="g14302"
+           id="g20226"
            style="color:#0000ff;fill:none;stroke:#808080;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter" />
         <g
-           id="g14304"
+           id="g20228-5"
            style="color:#ff0000;fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter">
           <path
-             id="path14306"
+             id="path20230-4"
              d="M 0,540 H 0.01"
              inkscape:connector-curvature="0"
              style="stroke:#808080" />
         </g>
         <g
-           id="g14308"
+           id="g20232"
            style="color:#ff0000;fill:none;stroke:#808080;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" />
         <g
-           id="g14310"
+           id="g20234"
            style="color:#0000ff;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter">
           <path
-             id="path14312"
+             id="path20236-2"
              d="m 0,437.6 1023.9,0 h 0.01"
              class="gridline"
              inkscape:connector-curvature="0"
              style="stroke:#808080;stroke-dasharray:2, 4" />
         </g>
         <g
-           id="g14314"
+           id="g20238"
            style="color:#0000ff;fill:none;stroke:#808080;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter" />
         <g
-           id="g14316"
+           id="g20240"
            style="color:#ff0000;fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter">
           <path
-             id="path14318"
+             id="path20242"
              d="M 0,437.6 H 0.01"
              inkscape:connector-curvature="0"
              style="stroke:#808080" />
         </g>
         <g
-           id="g14320"
+           id="g20244"
            style="color:#ff0000;fill:none;stroke:#808080;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" />
         <g
-           id="g14322"
+           id="g20246"
            style="color:#0000ff;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter">
           <path
-             id="path14324"
+             id="path20248"
              d="m 0,335.2 1023.9,0 h 0.01"
              class="gridline"
              inkscape:connector-curvature="0"
              style="stroke:#808080;stroke-dasharray:2, 4" />
         </g>
         <g
-           id="g14326"
+           id="g20250"
            style="color:#0000ff;fill:none;stroke:#808080;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter" />
         <g
-           id="g14328"
+           id="g20252"
            style="color:#ff0000;fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter">
           <path
-             id="path14330"
+             id="path20254"
              d="M 0,335.2 H 0.01"
              inkscape:connector-curvature="0"
              style="stroke:#808080" />
         </g>
         <g
-           id="g14332"
+           id="g20256"
            style="color:#ff0000;fill:none;stroke:#808080;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" />
         <g
-           id="g14334"
+           id="g20258"
            style="color:#0000ff;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter">
           <path
-             id="path14336"
+             id="path20260"
              d="m 0,232.9 1023.9,0 h 0.01"
              class="gridline"
              inkscape:connector-curvature="0"
              style="stroke:#808080;stroke-dasharray:2, 4" />
         </g>
         <g
-           id="g14338"
+           id="g20262"
            style="color:#0000ff;fill:none;stroke:#808080;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter" />
         <g
-           id="g14340"
+           id="g20264"
            style="color:#ff0000;fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter">
           <path
-             id="path14342"
+             id="path20266"
              d="M 0,232.9 H 0.01"
              inkscape:connector-curvature="0"
              style="stroke:#808080" />
         </g>
         <g
-           id="g14344"
+           id="g20268"
            style="color:#ff0000;fill:none;stroke:#808080;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" />
         <g
-           id="g14346"
+           id="g20270"
            style="color:#0000ff;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter">
           <path
-             id="path14348"
-             d="m 0,130.5 102.4,0 371.5,0 550,0 0.01,0"
+             id="path20272"
+             d="m 0,130.5 102.4,0 m 371.5,0 550,0 h 0.01"
              class="gridline"
              inkscape:connector-curvature="0"
-             style="stroke:#808080;stroke-dasharray:2, 4"
-             sodipodi:nodetypes="ccccc" />
+             style="stroke:#808080;stroke-dasharray:2, 4" />
         </g>
         <g
-           id="g14350"
+           id="g20274"
            style="color:#0000ff;fill:none;stroke:#808080;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter" />
         <g
-           id="g14352"
+           id="g20276"
            style="color:#ff0000;fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter">
           <path
-             id="path14354"
+             id="path20278"
              d="M 0,130.5 H 0.01"
              inkscape:connector-curvature="0"
              style="stroke:#808080" />
         </g>
         <g
-           id="g14356"
+           id="g20280"
            style="color:#ff0000;fill:none;stroke:#808080;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter" />
         <g
-           id="g14358"
+           id="g20282"
            style="color:#0000ff;fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter">
           <path
-             id="path14360"
+             id="path20284"
              d="m 0,28.1 1023.9,0 h 0.01"
              class="gridline"
              inkscape:connector-curvature="0"
              style="stroke:#808080;stroke-dasharray:2, 4" />
         </g>
         <g
-           id="g14362"
+           id="g20286"
            style="color:#0000ff;fill:none;stroke:#808080;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter" />
         <g
-           id="g14364"
+           id="g20288"
            style="color:#ff0000;fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter">
           <path
-             id="path14366"
+             id="path20290"
              d="M 0,28.1 M 32,540 32,525 h 0.01"
              inkscape:connector-curvature="0"
              style="stroke:#808080" />
           <g
-             id="g14368"
+             id="g20292"
              style="font-size:25px;text-anchor:middle;fill:#808080;stroke:none;font-family:Open Sans"
              transform="translate(32,577.5)">
             <text
-               id="text14370">
+               id="text20294">
               <tspan
-                 id="tspan14372">1985</tspan>
+                 id="tspan20296">1985</tspan>
             </text>
           </g>
           <path
-             id="path14374"
+             id="path20298"
              d="m 192,540 0,-15 h 0.01"
              inkscape:connector-curvature="0"
              style="stroke:#808080" />
           <g
-             id="g14376"
+             id="g20300"
              style="font-size:25px;text-anchor:middle;fill:#808080;stroke:none;font-family:Open Sans"
              transform="translate(192,577.5)">
             <text
-               id="text14378">
+               id="text20302">
               <tspan
-                 id="tspan14380">1990</tspan>
+                 id="tspan20304">1990</tspan>
             </text>
           </g>
           <path
-             id="path14382"
+             id="path20306"
              d="m 352,540 0,-15 h 0.01"
              inkscape:connector-curvature="0"
              style="stroke:#808080" />
           <g
-             id="g14384"
+             id="g20308"
              style="font-size:25px;text-anchor:middle;fill:#808080;stroke:none;font-family:Open Sans"
              transform="translate(352,577.5)">
             <text
-               id="text14386">
+               id="text20310">
               <tspan
-                 id="tspan14388">1995</tspan>
+                 id="tspan20312">1995</tspan>
             </text>
           </g>
           <path
-             id="path14390"
+             id="path20314"
              d="m 512,540 0,-15 h 0.01"
              inkscape:connector-curvature="0"
              style="stroke:#808080" />
           <g
-             id="g14392"
+             id="g20316"
              style="font-size:25px;text-anchor:middle;fill:#808080;stroke:none;font-family:Open Sans"
              transform="translate(512,577.5)">
             <text
-               id="text14394">
+               id="text20318">
               <tspan
-                 id="tspan14396">2000</tspan>
+                 id="tspan20320">2000</tspan>
             </text>
           </g>
           <path
-             id="path14398"
+             id="path20322"
              d="m 671.9,540 0,-15 h 0.01"
              inkscape:connector-curvature="0"
              style="stroke:#808080" />
           <g
-             id="g14400"
-             style="font-size:25px;text-anchor:middle;fill:#808080;stroke:none;font-family:Open Sans"
+             id="g20324"
+             style="font-size:25px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Open Sans"
              transform="translate(671.9,577.5)">
             <text
-               id="text14402"
+               id="text20326"
                style="fill:#000000;fill-opacity:1">
               <tspan
-                 id="tspan14404"
+                 id="tspan20328"
                  style="fill:#000000;fill-opacity:1">2005</tspan>
             </text>
           </g>
           <path
-             id="path14406"
+             id="path20330"
              d="m 831.9,540 0,-15 h 0.01"
              inkscape:connector-curvature="0"
              style="stroke:#808080" />
           <g
-             id="g14408"
+             id="g20332"
              style="font-size:25px;text-anchor:middle;fill:#808080;stroke:none;font-family:Open Sans"
              transform="translate(831.9,577.5)">
             <text
-               id="text14410">
+               id="text20334">
               <tspan
-                 id="tspan14412">2010</tspan>
+                 id="tspan20336">2010</tspan>
             </text>
           </g>
           <path
-             id="path14414"
+             id="path20338"
              d="m 991.9,540 0,-15 h 0.01"
              inkscape:connector-curvature="0"
              style="stroke:#808080" />
           <g
-             id="g14416"
+             id="g20340"
              style="font-size:25px;text-anchor:middle;fill:#808080;stroke:none;font-family:Open Sans"
              transform="translate(991.9,577.5)">
             <text
-               id="text14418">
+               id="text20342">
               <tspan
-                 id="tspan14420">2015</tspan>
+                 id="tspan20344">2015</tspan>
             </text>
           </g>
           <path
-             id="path14422"
+             id="path20346"
              d="m 0,28.1 m 0,511.9 1023.9,0 m 0,-511.9 M 0,28.1 h 0.01"
              inkscape:connector-curvature="0"
              style="stroke:#808080" />
         </g>
         <g
-           id="g14424"
+           id="g20348"
            style="color:#000000;fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter">
           <g
-             id="g14426"
+             id="g20350"
              style="font-size:25px;text-anchor:start;fill:#000000;stroke:none;font-family:Open Sans"
              transform="translate(10.2,532.5)">
             <text
-               id="text14428">
+               id="text20352">
               <tspan
-                 id="tspan14430">1</tspan>
+                 id="tspan20354">1</tspan>
             </text>
           </g>
           <g
-             id="g14432"
+             id="g20356"
              style="font-size:25px;text-anchor:start;fill:#000000;stroke:none;font-family:Open Sans"
              transform="translate(10.2,430.1)">
             <text
-               id="text14434">
+               id="text20358">
               <tspan
-                 id="tspan14436">10</tspan>
+                 id="tspan20360">10</tspan>
             </text>
           </g>
           <g
-             id="g14438"
+             id="g20362"
              style="font-size:25px;text-anchor:start;fill:#000000;stroke:none;font-family:Open Sans"
              transform="translate(10.2,327.7)">
             <text
-               id="text14440">
+               id="text20364">
               <tspan
-                 id="tspan14442">100</tspan>
+                 id="tspan20366">100</tspan>
             </text>
           </g>
           <g
-             id="g14444"
+             id="g20368"
              style="font-size:25px;text-anchor:start;fill:#000000;stroke:none;font-family:Open Sans"
              transform="translate(10.2,225.4)">
             <text
-               id="text14446">
+               id="text20370">
               <tspan
-                 id="tspan14448">1,000</tspan>
+                 id="tspan20372">1,000</tspan>
             </text>
           </g>
           <g
-             id="g14450"
+             id="g20374"
              style="font-size:25px;text-anchor:start;fill:#000000;stroke:none;font-family:Open Sans"
              transform="translate(10.2,123)">
             <text
-               id="text14452">
+               id="text20376">
               <tspan
-                 id="tspan14454">10,000</tspan>
+                 id="tspan20378">10,000</tspan>
             </text>
           </g>
           <g
-             id="g14456"
+             id="g20380"
              style="font-size:25px;text-anchor:start;fill:#000000;stroke:none;font-family:Open Sans"
              transform="translate(10.2,20.6)">
             <text
-               id="text14458">
+               id="text20382">
               <tspan
-                 id="tspan14460">100,000</tspan>
+                 id="tspan20384">100,000</tspan>
             </text>
           </g>
         </g>
         <g
-           id="g14462"
+           id="g20386"
            style="color:#ff0000;fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter" />
         <g
-           id="gnuplot_plot_1-7">
+           id="gnuplot_plot_1-9">
           <title
-             id="title14465">gnuplot_plot_1</title>
+             id="title20389">gnuplot_plot_1</title>
           <g
-             id="g14467"
+             id="g20391"
              style="color:#ff0000;fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter">
             <path
-               id="path14469"
+               id="path20393-4"
                d="m 0,422.6 27.6,-6.2 43.5,-9.3 39.2,-8.7 35,-8.1 31.5,-7.7 28.4,-7.5 25.9,-7.3 23.7,-6.9 21.8,-6.7 20.1,-6.5 18.6,-6.2 17.1,-6 15.9,-5.8 14.7,-5.7 13.6,-5.6 12.7,-5.5 11.9,-5.4 11.2,-5.3 10.7,-5.3 10.1,-5.1 9.7,-5.1 9.2,-5 8.9,-4.9 8.5,-4.9 8.2,-4.9 7.8,-4.7 7.6,-4.8 7.4,-4.7 7.1,-4.6 6.9,-4.6 6.8,-4.4 6.6,-4.3 6.4,-4.1 6.3,-3.9 6.1,-3.7 6,-3.4 5.7,-3.2 5.6,-2.8 5.4,-2.6 5.2,-2.2 5.1,-2 5,-1.8 5,-1.6 4.9,-1.5 4.9,-1.4 5.1,-1.4 5.2,-1.5 5.5,-1.5 5.6,-1.7 6,-1.8 6.2,-2.1 6.5,-2.3 6.8,-2.6 7,-2.9 7.3,-3.1 7.4,-3.5 7.6,-3.8 7.7,-4 7.7,-4.3 7.7,-4.4 7.7,-4.6 7.7,-4.6 7.6,-4.5 7.6,-4.4 7.6,-4.3 7.6,-4 7.6,-3.7 7.7,-3.4 7.8,-3 7.9,-2.8 8.1,-2.4 8.4,-2.2 8.6,-2 8.8,-1.8 9,-1.6 9.3,-1.5 9.3,-1.3 9.4,-1.1 9.3,-0.9 9,-0.7 8.8,-0.4 8.5,-0.3 8.2,-0.1 7.9,-0.3 7.8,-0.8 7.7,-1.5 7.9,-2.7 8.6,-4.1 10,-5.6 11.8,-7 12.1,-8.2 h 0.01"
                inkscape:connector-curvature="0"
-               style="stroke:#b8ed84" />
+               style="stroke:#fcaf3e" />
           </g>
         </g>
         <g
-           id="gnuplot_plot_2-1">
+           id="gnuplot_plot_2">
           <title
-             id="title14472">gnuplot_plot_2</title>
+             id="title20396">gnuplot_plot_2</title>
           <g
-             id="g14474"
+             id="g20398"
              style="color:#008000;fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter">
             <use
-               id="use14476"
+               id="use20400"
                transform="matrix(3.75,0,0,3.75,56,416.7)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14478"
+               id="use20402"
                transform="matrix(3.75,0,0,3.75,98.8,406.8)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14480"
+               id="use20404"
                transform="matrix(3.75,0,0,3.75,136,396.9)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14482"
+               id="use20406"
                transform="matrix(3.75,0,0,3.75,168,384.5)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14484"
+               id="use20408"
                transform="matrix(3.75,0,0,3.75,168,396.9)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14486"
+               id="use20410"
                transform="matrix(3.75,0,0,3.75,202.6,384.5)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14488"
+               id="use20412"
                transform="matrix(3.75,0,0,3.75,237.3,366.1)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14490"
+               id="use20414"
                transform="matrix(3.75,0,0,3.75,274.6,353.7)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14492"
+               id="use20416"
                transform="matrix(3.75,0,0,3.75,293.2,353.7)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14494"
+               id="use20418"
                transform="matrix(3.75,0,0,3.75,325.2,335.2)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14496"
+               id="use20420"
                transform="matrix(3.75,0,0,3.75,357.2,327.1)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14498"
+               id="use20422"
                transform="matrix(3.75,0,0,3.75,365.3,322.6)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14500"
+               id="use20424"
                transform="matrix(3.75,0,0,3.75,391.5,339.9)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14502"
+               id="use20426"
                transform="matrix(3.75,0,0,3.75,397.3,304.4)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14504"
+               id="use20428"
                transform="matrix(3.75,0,0,3.75,416,304.4)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14506"
+               id="use20430"
                transform="matrix(3.75,0,0,3.75,423.9,297.6)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14508"
+               id="use20432"
                transform="matrix(3.75,0,0,3.75,426.6,286.4)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14510"
+               id="use20434"
                transform="matrix(3.75,0,0,3.75,448,281.8)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14512"
+               id="use20436"
                transform="matrix(3.75,0,0,3.75,474.7,273.6)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14514"
+               id="use20438"
                transform="matrix(3.75,0,0,3.75,482.8,263.7)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14516"
+               id="use20440"
                transform="matrix(3.75,0,0,3.75,483.8,277.6)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14518"
+               id="use20442"
                transform="matrix(3.75,0,0,3.75,495.3,270.1)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14520"
+               id="use20444"
                transform="matrix(3.75,0,0,3.75,504,246.7)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14522"
+               id="use20446"
                transform="matrix(3.75,0,0,3.75,515.8,240.1)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14524"
+               id="use20448"
                transform="matrix(3.75,0,0,3.75,517.2,232.9)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14526"
+               id="use20450"
                transform="matrix(3.75,0,0,3.75,522.6,232.9)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14528"
+               id="use20452"
                transform="matrix(3.75,0,0,3.75,538.7,214.8)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14530"
+               id="use20454"
                transform="matrix(3.75,0,0,3.75,554.6,242.8)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14532"
+               id="use20456"
                transform="matrix(3.75,0,0,3.75,557.3,217.9)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14534"
+               id="use20458"
                transform="matrix(3.75,0,0,3.75,565.3,202)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14536"
+               id="use20460"
                transform="matrix(3.75,0,0,3.75,576,197.8)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14538"
+               id="use20462"
                transform="matrix(3.75,0,0,3.75,579.8,192.1)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14540"
+               id="use20464"
                transform="matrix(3.75,0,0,3.75,586.6,191.5)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14542"
+               id="use20466"
                transform="matrix(3.75,0,0,3.75,589.3,206.7)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14544"
+               id="use20468"
                transform="matrix(3.75,0,0,3.75,591.9,232.9)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14546"
+               id="use20470"
                transform="matrix(3.75,0,0,3.75,600.8,193.9)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14548"
+               id="use20472"
                transform="matrix(3.75,0,0,3.75,600.8,190.4)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14550"
+               id="use20474"
                transform="matrix(3.75,0,0,3.75,602.7,184)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14552"
+               id="use20476"
                transform="matrix(3.75,0,0,3.75,610.7,198.5)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14554"
+               id="use20478"
                transform="matrix(3.75,0,0,3.75,615.9,206.7)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14556"
+               id="use20480"
                transform="matrix(3.75,0,0,3.75,629.3,202)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14558"
+               id="use20482"
                transform="matrix(3.75,0,0,3.75,632.7,187.1)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14560"
+               id="use20484"
                transform="matrix(3.75,0,0,3.75,643.8,178.4)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14562"
+               id="use20486"
                transform="matrix(3.75,0,0,3.75,643.8,178.4)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14564"
+               id="use20488"
                transform="matrix(3.75,0,0,3.75,655,175.9)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14566"
+               id="use20490"
                transform="matrix(3.75,0,0,3.75,666.7,212)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14568"
+               id="use20492"
                transform="matrix(3.75,0,0,3.75,676.5,174.3)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14570"
+               id="use20494"
                transform="matrix(3.75,0,0,3.75,701.3,173.5)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14572"
+               id="use20496"
                transform="matrix(3.75,0,0,3.75,701.3,158.4)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14574"
+               id="use20498"
                transform="matrix(3.75,0,0,3.75,704,159.6)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14576"
+               id="use20500"
                transform="matrix(3.75,0,0,3.75,704,147.6)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14578"
+               id="use20502"
                transform="matrix(3.75,0,0,3.75,714.5,145.1)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14580"
+               id="use20504"
                transform="matrix(3.75,0,0,3.75,719.9,156.3)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14582"
+               id="use20506"
                transform="matrix(3.75,0,0,3.75,722.6,127.6)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14584"
+               id="use20508"
                transform="matrix(3.75,0,0,3.75,722.6,147.6)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14586"
+               id="use20510"
                transform="matrix(3.75,0,0,3.75,743.9,122.4)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14588"
+               id="use20512"
                transform="matrix(3.75,0,0,3.75,755.6,122.4)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14590"
+               id="use20514"
                transform="matrix(3.75,0,0,3.75,762.7,119.5)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14592"
+               id="use20516"
                transform="matrix(3.75,0,0,3.75,763.5,119.5)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14594"
+               id="use20518"
                transform="matrix(3.75,0,0,3.75,789.3,117.7)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14596"
+               id="use20520"
                transform="matrix(3.75,0,0,3.75,789.8,116.8)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14598"
+               id="use20522"
                transform="matrix(3.75,0,0,3.75,790.5,109.7)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14600"
+               id="use20524"
                transform="matrix(3.75,0,0,3.75,815.9,107.4)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14602"
+               id="use20526"
                transform="matrix(3.75,0,0,3.75,837.2,99.7)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14604"
+               id="use20528"
                transform="matrix(3.75,0,0,3.75,837.2,99.7)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14606"
+               id="use20530"
                transform="matrix(3.75,0,0,3.75,837.2,116)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14608"
+               id="use20532"
                transform="matrix(3.75,0,0,3.75,838.4,116)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14610"
+               id="use20534"
                transform="matrix(3.75,0,0,3.75,867.7,98)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14612"
+               id="use20536"
                transform="matrix(3.75,0,0,3.75,867.8,98)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14614"
+               id="use20538"
                transform="matrix(3.75,0,0,3.75,867.8,114.3)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14616"
+               id="use20540"
                transform="matrix(3.75,0,0,3.75,867.8,98)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14618"
+               id="use20542"
                transform="matrix(3.75,0,0,3.75,872.2,96.9)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14620"
+               id="use20544"
                transform="matrix(3.75,0,0,3.75,872.2,91.6)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14622"
+               id="use20546"
                transform="matrix(3.75,0,0,3.75,872.2,91.6)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14624"
+               id="use20548"
                transform="matrix(3.75,0,0,3.75,872.2,91.6)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14626"
+               id="use20550"
                transform="matrix(3.75,0,0,3.75,899.7,114.3)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14628"
+               id="use20552"
                transform="matrix(3.75,0,0,3.75,901.6,90.1)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14630"
+               id="use20554"
                transform="matrix(3.75,0,0,3.75,901.6,114.3)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14632"
+               id="use20556"
                transform="matrix(3.75,0,0,3.75,907.7,113)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14634"
+               id="use20558"
                transform="matrix(3.75,0,0,3.75,923.3,99.1)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14636"
+               id="use20560"
                transform="matrix(3.75,0,0,3.75,923.5,97.5)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14638"
+               id="use20562"
                transform="matrix(3.75,0,0,3.75,950,81.6)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14640"
+               id="use20564"
                transform="matrix(3.75,0,0,3.75,950,78.2)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14642"
+               id="use20566"
                transform="matrix(3.75,0,0,3.75,950,95)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14644"
+               id="use20568"
                transform="matrix(3.75,0,0,3.75,950,86)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14646"
+               id="use20570"
                transform="matrix(3.75,0,0,3.75,964.1,66.7)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14648"
+               id="use20572"
                transform="matrix(3.75,0,0,3.75,964.1,66.7)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14650"
+               id="use20574"
                transform="matrix(3.75,0,0,3.75,964.1,73.5)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14652"
+               id="use20576"
                transform="matrix(3.75,0,0,3.75,964.1,66.7)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14654"
+               id="use20578"
                transform="matrix(3.75,0,0,3.75,964.1,78.8)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14656"
+               id="use20580"
                transform="matrix(3.75,0,0,3.75,964.1,98.8)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14658"
+               id="use20582"
                transform="matrix(3.75,0,0,3.75,964.1,66.7)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
@@ -5453,849 +5452,849 @@
           </g>
         </g>
         <g
-           id="gnuplot_plot_3-3">
+           id="gnuplot_plot_3-0">
           <title
-             id="title14661">gnuplot_plot_3</title>
+             id="title20585">gnuplot_plot_3</title>
           <g
-             id="g14663"
+             id="g20587"
              style="color:#ff0000;fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter">
             <path
-               id="path14665"
+               id="path20589"
                d="m 0,422.6 27.6,-6.2 43.5,-9.3 39.2,-8.7 35,-8.1 31.5,-7.7 28.4,-7.5 25.9,-7.3 23.7,-6.9 21.8,-6.7 20.1,-6.5 18.6,-6.2 17.1,-6 15.9,-5.8 14.7,-5.7 13.6,-5.6 12.7,-5.5 11.9,-5.4 11.2,-5.3 10.7,-5.3 10.1,-5.1 9.7,-5.1 9.2,-5 8.9,-4.9 8.5,-4.9 8.2,-4.9 7.8,-4.7 7.6,-4.8 7.4,-4.7 7.1,-4.6 6.9,-4.6 6.8,-4.4 6.6,-4.3 6.4,-4.1 6.3,-3.9 6.1,-3.7 6,-3.4 5.7,-3.2 5.6,-2.8 5.4,-2.6 5.2,-2.2 5.1,-2 5,-1.8 5,-1.6 4.9,-1.4 4.9,-1.3 5.1,-1.3 5.2,-1.2 5.5,-1.2 5.6,-1.2 6,-1.3 6.2,-1.2 6.5,-1.3 6.8,-1.2 7,-1.2 7.3,-1.1 7.4,-1 7.6,-0.9 7.7,-0.8 7.7,-0.7 7.7,-0.6 7.7,-0.5 7.7,-0.4 7.6,-0.4 7.6,-0.2 7.6,-0.3 7.6,-0.1 7.6,-0.2 7.7,-0.1 7.8,-0.1 7.9,-0.1 8.1,-0.1 8.4,-0.1 8.6,-0.1 8.8,-0.2 9,-0.2 9.3,-0.2 9.3,-0.2 9.4,-0.2 9.3,-0.1 9,-0.1 8.8,-0.1 8.5,0 8.2,0 7.9,0.1 7.8,0.1 7.7,0.3 7.9,0.3 8.6,0.3 10,0.2 11.8,0.6 12.1,2 h 0.01"
                inkscape:connector-curvature="0"
                style="stroke:#73d216" />
           </g>
         </g>
         <g
-           id="gnuplot_plot_4-4">
+           id="gnuplot_plot_4">
           <title
-             id="title14668">gnuplot_plot_4</title>
+             id="title20592">gnuplot_plot_4</title>
           <g
-             id="g14670"
+             id="g20594"
              style="color:#00ffff;fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter">
             <use
-               id="use14672"
+               id="use20596"
                transform="matrix(3.75,0,0,3.75,56,416.7)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14674"
+               id="use20598"
                transform="matrix(3.75,0,0,3.75,98.8,406.8)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14676"
+               id="use20600"
                transform="matrix(3.75,0,0,3.75,136,396.9)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14678"
+               id="use20602"
                transform="matrix(3.75,0,0,3.75,168,384.5)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14680"
+               id="use20604"
                transform="matrix(3.75,0,0,3.75,168,396.9)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14682"
+               id="use20606"
                transform="matrix(3.75,0,0,3.75,202.6,384.5)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14684"
+               id="use20608"
                transform="matrix(3.75,0,0,3.75,237.3,366.1)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14686"
+               id="use20610"
                transform="matrix(3.75,0,0,3.75,274.6,353.7)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14688"
+               id="use20612"
                transform="matrix(3.75,0,0,3.75,293.2,353.7)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14690"
+               id="use20614"
                transform="matrix(3.75,0,0,3.75,325.2,335.2)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14692"
+               id="use20616"
                transform="matrix(3.75,0,0,3.75,357.2,327.1)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14694"
+               id="use20618"
                transform="matrix(3.75,0,0,3.75,365.3,322.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14696"
+               id="use20620"
                transform="matrix(3.75,0,0,3.75,391.5,339.9)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14698"
+               id="use20622"
                transform="matrix(3.75,0,0,3.75,397.3,304.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14700"
+               id="use20624"
                transform="matrix(3.75,0,0,3.75,416,304.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14702"
+               id="use20626"
                transform="matrix(3.75,0,0,3.75,423.9,297.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14704"
+               id="use20628"
                transform="matrix(3.75,0,0,3.75,426.6,286.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14706"
+               id="use20630"
                transform="matrix(3.75,0,0,3.75,448,281.8)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14708"
+               id="use20632"
                transform="matrix(3.75,0,0,3.75,474.7,273.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14710"
+               id="use20634"
                transform="matrix(3.75,0,0,3.75,482.8,263.7)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14712"
+               id="use20636"
                transform="matrix(3.75,0,0,3.75,483.8,277.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14714"
+               id="use20638"
                transform="matrix(3.75,0,0,3.75,495.3,270.1)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14716"
+               id="use20640"
                transform="matrix(3.75,0,0,3.75,504,246.7)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14718"
+               id="use20642"
                transform="matrix(3.75,0,0,3.75,515.8,240.1)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14720"
+               id="use20644"
                transform="matrix(3.75,0,0,3.75,517.2,232.9)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14722"
+               id="use20646"
                transform="matrix(3.75,0,0,3.75,522.6,232.9)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14724"
+               id="use20648"
                transform="matrix(3.75,0,0,3.75,538.7,214.8)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14726"
+               id="use20650"
                transform="matrix(3.75,0,0,3.75,554.6,242.8)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14728"
+               id="use20652"
                transform="matrix(3.75,0,0,3.75,557.3,217.9)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14730"
+               id="use20654"
                transform="matrix(3.75,0,0,3.75,565.3,202)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14732"
+               id="use20656"
                transform="matrix(3.75,0,0,3.75,576,197.8)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14734"
+               id="use20658"
                transform="matrix(3.75,0,0,3.75,579.8,192.1)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14736"
+               id="use20660"
                transform="matrix(3.75,0,0,3.75,586.6,191.5)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14738"
+               id="use20662"
                transform="matrix(3.75,0,0,3.75,589.3,206.7)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14740"
+               id="use20664"
                transform="matrix(3.75,0,0,3.75,591.9,232.9)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14742"
+               id="use20666"
                transform="matrix(3.75,0,0,3.75,600.8,193.9)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14744"
+               id="use20668"
                transform="matrix(3.75,0,0,3.75,600.8,190.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14746"
+               id="use20670"
                transform="matrix(3.75,0,0,3.75,602.7,184)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14748"
+               id="use20672"
                transform="matrix(3.75,0,0,3.75,610.7,198.5)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14750"
+               id="use20674"
                transform="matrix(3.75,0,0,3.75,615.9,206.7)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14752"
+               id="use20676"
                transform="matrix(3.75,0,0,3.75,629.3,202)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14754"
+               id="use20678"
                transform="matrix(3.75,0,0,3.75,632.7,187.1)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14756"
+               id="use20680"
                transform="matrix(3.75,0,0,3.75,643.8,178.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14758"
+               id="use20682"
                transform="matrix(3.75,0,0,3.75,643.8,178.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14760"
+               id="use20684"
                transform="matrix(3.75,0,0,3.75,655,175.9)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14762"
+               id="use20686"
                transform="matrix(3.75,0,0,3.75,666.7,212)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14764"
+               id="use20688"
                transform="matrix(3.75,0,0,3.75,676.5,174.3)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14766"
+               id="use20690"
                transform="matrix(3.75,0,0,3.75,701.3,173.5)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14768"
+               id="use20692"
                transform="matrix(3.75,0,0,3.75,701.3,189.2)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14770"
+               id="use20694"
                transform="matrix(3.75,0,0,3.75,704,190.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14772"
+               id="use20696"
                transform="matrix(3.75,0,0,3.75,704,178.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14774"
+               id="use20698"
                transform="matrix(3.75,0,0,3.75,714.5,175.9)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14776"
+               id="use20700"
                transform="matrix(3.75,0,0,3.75,719.9,187.1)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14778"
+               id="use20702"
                transform="matrix(3.75,0,0,3.75,722.6,189.2)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14780"
+               id="use20704"
                transform="matrix(3.75,0,0,3.75,722.6,178.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14782"
+               id="use20706"
                transform="matrix(3.75,0,0,3.75,743.9,184)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14784"
+               id="use20708"
                transform="matrix(3.75,0,0,3.75,755.6,184)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14786"
+               id="use20710"
                transform="matrix(3.75,0,0,3.75,762.7,181.1)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14788"
+               id="use20712"
                transform="matrix(3.75,0,0,3.75,763.5,181.1)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14790"
+               id="use20714"
                transform="matrix(3.75,0,0,3.75,789.3,179.3)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14792"
+               id="use20716"
                transform="matrix(3.75,0,0,3.75,789.8,178.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14794"
+               id="use20718"
                transform="matrix(3.75,0,0,3.75,790.5,189.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14796"
+               id="use20720"
                transform="matrix(3.75,0,0,3.75,815.9,187.1)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14798"
+               id="use20722"
                transform="matrix(3.75,0,0,3.75,837.2,179.3)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14800"
+               id="use20724"
                transform="matrix(3.75,0,0,3.75,837.2,179.3)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14802"
+               id="use20726"
                transform="matrix(3.75,0,0,3.75,837.2,177.7)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14804"
+               id="use20728"
                transform="matrix(3.75,0,0,3.75,838.4,177.7)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14806"
+               id="use20730"
                transform="matrix(3.75,0,0,3.75,867.7,177.7)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14808"
+               id="use20732"
                transform="matrix(3.75,0,0,3.75,867.8,177.7)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14810"
+               id="use20734"
                transform="matrix(3.75,0,0,3.75,867.8,175.9)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14812"
+               id="use20736"
                transform="matrix(3.75,0,0,3.75,867.8,177.7)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14814"
+               id="use20738"
                transform="matrix(3.75,0,0,3.75,872.2,189.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14816"
+               id="use20740"
                transform="matrix(3.75,0,0,3.75,872.2,193.9)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14818"
+               id="use20742"
                transform="matrix(3.75,0,0,3.75,872.2,193.9)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14820"
+               id="use20744"
                transform="matrix(3.75,0,0,3.75,872.2,193.9)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14822"
+               id="use20746"
                transform="matrix(3.75,0,0,3.75,899.7,175.9)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14824"
+               id="use20748"
                transform="matrix(3.75,0,0,3.75,901.6,182.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14826"
+               id="use20750"
                transform="matrix(3.75,0,0,3.75,901.6,175.9)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14828"
+               id="use20752"
                transform="matrix(3.75,0,0,3.75,907.7,174.7)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14830"
+               id="use20754"
                transform="matrix(3.75,0,0,3.75,923.3,191.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14832"
+               id="use20756"
                transform="matrix(3.75,0,0,3.75,923.5,177.2)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14834"
+               id="use20758"
                transform="matrix(3.75,0,0,3.75,950,184)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14836"
+               id="use20760"
                transform="matrix(3.75,0,0,3.75,950,188.7)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14838"
+               id="use20762"
                transform="matrix(3.75,0,0,3.75,950,174.7)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14840"
+               id="use20764"
                transform="matrix(3.75,0,0,3.75,950,178.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14842"
+               id="use20766"
                transform="matrix(3.75,0,0,3.75,964.1,187.1)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14844"
+               id="use20768"
                transform="matrix(3.75,0,0,3.75,964.1,187.1)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14846"
+               id="use20770"
                transform="matrix(3.75,0,0,3.75,964.1,184)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14848"
+               id="use20772"
                transform="matrix(3.75,0,0,3.75,964.1,187.1)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14850"
+               id="use20774"
                transform="matrix(3.75,0,0,3.75,964.1,181.1)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14852"
+               id="use20776"
                transform="matrix(3.75,0,0,3.75,964.1,178.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14854"
+               id="use20778"
                transform="matrix(3.75,0,0,3.75,964.1,187.1)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
@@ -6304,852 +6303,852 @@
           </g>
         </g>
         <g
-           id="gnuplot_plot_5-5">
+           id="gnuplot_plot_5">
           <title
-             id="title14857">gnuplot_plot_5</title>
+             id="title20781">gnuplot_plot_5</title>
           <g
-             id="g14859"
+             id="g20783"
              style="color:#ff0000;fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter">
             <path
-               id="path14861"
+               id="path20785"
                d="m 0,513.9 27.6,-2 43.5,-4.2 39.2,-5.1 35,-5.7 31.5,-6 28.4,-5.9 25.9,-5.5 23.7,-5 21.8,-4.5 20.1,-4.1 18.6,-3.6 17.1,-3.5 15.9,-3.3 14.7,-3.5 13.6,-3.5 12.7,-3.6 11.9,-3.8 11.2,-3.9 10.7,-3.9 10.1,-3.9 9.7,-4 9.2,-4 8.9,-4 8.5,-4 8.2,-4.1 7.8,-4.1 7.6,-4.3 7.4,-4.3 7.1,-4.4 6.9,-4.3 6.8,-4.3 6.6,-4.2 6.4,-4 6.3,-3.8 6.1,-3.4 6,-3.1 5.7,-2.8 5.6,-2.4 5.4,-2.2 5.2,-1.9 5.1,-1.7 5,-1.6 5,-1.5 4.9,-1.4 4.9,-1.3 5.1,-1.3 5.2,-1.3 5.5,-1.3 5.6,-1.3 6,-1.4 6.2,-1.3 6.5,-1.3 6.8,-1.3 7,-1.3 7.3,-1.3 7.4,-1.2 7.6,-1.2 7.7,-1.2 7.7,-1.1 7.7,-1.1 7.7,-1.2 7.7,-1.1 7.6,-1.1 7.6,-1.1 7.6,-0.9 7.6,-0.9 7.6,-0.7 7.7,-0.6 7.8,-0.3 7.9,-0.2 8.1,0 8.4,0.1 8.6,0.2 8.8,0.3 9,0.3 9.3,0.3 9.3,0.3 9.4,0.3 9.3,0.3 9,0.2 8.8,0.2 8.5,0.2 8.2,0.1 7.9,-0.1 7.8,-0.4 7.7,-0.8 7.9,-1.2 8.6,-1.4 10,-1 11.8,-0.5 12.1,-1.8 h 0.01"
                inkscape:connector-curvature="0"
                style="stroke:#ef2929" />
           </g>
         </g>
         <g
-           id="gnuplot_plot_6-8">
+           id="gnuplot_plot_6">
           <title
-             id="title14864">gnuplot_plot_6</title>
+             id="title20788">gnuplot_plot_6</title>
           <g
-             id="g14866"
+             id="g20790"
              style="color:#ffffff;fill:none;stroke:#ef2929;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter" />
           <g
-             id="g14868"
+             id="g20792"
              style="color:#000094;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter">
             <use
-               id="use14870"
+               id="use20794"
                transform="matrix(3.75,0,0,3.75,56,516.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14872"
+               id="use20796"
                transform="matrix(3.75,0,0,3.75,98.8,528.3)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14874"
+               id="use20798"
                transform="matrix(3.75,0,0,3.75,136,519.1)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14876"
+               id="use20800"
                transform="matrix(3.75,0,0,3.75,168,509.2)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14878"
+               id="use20802"
                transform="matrix(3.75,0,0,3.75,168,491.2)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14880"
+               id="use20804"
                transform="matrix(3.75,0,0,3.75,202.6,484.3)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14882"
+               id="use20806"
                transform="matrix(3.75,0,0,3.75,237.3,478.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14884"
+               id="use20808"
                transform="matrix(3.75,0,0,3.75,274.6,461.8)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14886"
+               id="use20810"
                transform="matrix(3.75,0,0,3.75,293.2,426)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14888"
+               id="use20812"
                transform="matrix(3.75,0,0,3.75,325.2,477.3)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14890"
+               id="use20814"
                transform="matrix(3.75,0,0,3.75,357.2,467.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14892"
+               id="use20816"
                transform="matrix(3.75,0,0,3.75,365.3,475.1)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14894"
+               id="use20818"
                transform="matrix(3.75,0,0,3.75,391.5,433.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14896"
+               id="use20820"
                transform="matrix(3.75,0,0,3.75,397.3,456.8)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14898"
+               id="use20822"
                transform="matrix(3.75,0,0,3.75,416,451.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14900"
+               id="use20824"
                transform="matrix(3.75,0,0,3.75,423.9,414)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14902"
+               id="use20826"
                transform="matrix(3.75,0,0,3.75,426.6,429.5)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14904"
+               id="use20828"
                transform="matrix(3.75,0,0,3.75,448,422.7)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14906"
+               id="use20830"
                transform="matrix(3.75,0,0,3.75,474.7,423.9)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14908"
+               id="use20832"
                transform="matrix(3.75,0,0,3.75,482.8,409.1)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14910"
+               id="use20834"
                transform="matrix(3.75,0,0,3.75,483.8,403.2)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14912"
+               id="use20836"
                transform="matrix(3.75,0,0,3.75,495.3,398.5)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14914"
+               id="use20838"
                transform="matrix(3.75,0,0,3.75,504,416.7)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14916"
+               id="use20840"
                transform="matrix(3.75,0,0,3.75,515.8,395.7)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14918"
+               id="use20842"
                transform="matrix(3.75,0,0,3.75,517.2,402.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14920"
+               id="use20844"
                transform="matrix(3.75,0,0,3.75,522.6,367)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14922"
+               id="use20846"
                transform="matrix(3.75,0,0,3.75,538.7,364.3)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14924"
+               id="use20848"
                transform="matrix(3.75,0,0,3.75,554.6,323.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14926"
+               id="use20850"
                transform="matrix(3.75,0,0,3.75,557.3,361)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14928"
+               id="use20852"
                transform="matrix(3.75,0,0,3.75,565.3,360.2)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14930"
+               id="use20854"
                transform="matrix(3.75,0,0,3.75,576,361.8)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14932"
+               id="use20856"
                transform="matrix(3.75,0,0,3.75,579.8,357.2)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14934"
+               id="use20858"
                transform="matrix(3.75,0,0,3.75,586.6,358.7)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14936"
+               id="use20860"
                transform="matrix(3.75,0,0,3.75,589.3,356.5)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14938"
+               id="use20862"
                transform="matrix(3.75,0,0,3.75,591.9,323.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14940"
+               id="use20864"
                transform="matrix(3.75,0,0,3.75,600.8,354.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14942"
+               id="use20866"
                transform="matrix(3.75,0,0,3.75,600.8,356.1)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14944"
+               id="use20868"
                transform="matrix(3.75,0,0,3.75,602.7,349.2)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14946"
+               id="use20870"
                transform="matrix(3.75,0,0,3.75,610.7,348.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14948"
+               id="use20872"
                transform="matrix(3.75,0,0,3.75,615.9,340.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14950"
+               id="use20874"
                transform="matrix(3.75,0,0,3.75,629.3,340.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14952"
+               id="use20876"
                transform="matrix(3.75,0,0,3.75,632.7,348.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14954"
+               id="use20878"
                transform="matrix(3.75,0,0,3.75,643.8,333.9)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14956"
+               id="use20880"
                transform="matrix(3.75,0,0,3.75,643.8,333.9)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14958"
+               id="use20882"
                transform="matrix(3.75,0,0,3.75,655,329)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14960"
+               id="use20884"
                transform="matrix(3.75,0,0,3.75,666.7,323.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14962"
+               id="use20886"
                transform="matrix(3.75,0,0,3.75,676.5,331.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14964"
+               id="use20888"
                transform="matrix(3.75,0,0,3.75,701.3,329)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14966"
+               id="use20890"
                transform="matrix(3.75,0,0,3.75,701.3,337.5)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14968"
+               id="use20892"
                transform="matrix(3.75,0,0,3.75,704,331)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14970"
+               id="use20894"
                transform="matrix(3.75,0,0,3.75,704,337.5)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14972"
+               id="use20896"
                transform="matrix(3.75,0,0,3.75,714.5,337.5)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14974"
+               id="use20898"
                transform="matrix(3.75,0,0,3.75,719.9,325.3)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14976"
+               id="use20900"
                transform="matrix(3.75,0,0,3.75,722.6,323.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14978"
+               id="use20902"
                transform="matrix(3.75,0,0,3.75,722.6,317.2)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14980"
+               id="use20904"
                transform="matrix(3.75,0,0,3.75,743.9,317.2)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14982"
+               id="use20906"
                transform="matrix(3.75,0,0,3.75,755.6,317.2)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14984"
+               id="use20908"
                transform="matrix(3.75,0,0,3.75,762.7,317.2)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14986"
+               id="use20910"
                transform="matrix(3.75,0,0,3.75,763.5,317.2)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14988"
+               id="use20912"
                transform="matrix(3.75,0,0,3.75,789.3,327.1)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14990"
+               id="use20914"
                transform="matrix(3.75,0,0,3.75,789.8,317.2)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14992"
+               id="use20916"
                transform="matrix(3.75,0,0,3.75,790.5,323.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14994"
+               id="use20918"
                transform="matrix(3.75,0,0,3.75,815.9,321.2)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14996"
+               id="use20920"
                transform="matrix(3.75,0,0,3.75,837.2,323.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use14998"
+               id="use20922"
                transform="matrix(3.75,0,0,3.75,837.2,323.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15000"
+               id="use20924"
                transform="matrix(3.75,0,0,3.75,837.2,323.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15002"
+               id="use20926"
                transform="matrix(3.75,0,0,3.75,838.4,323.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15004"
+               id="use20928"
                transform="matrix(3.75,0,0,3.75,867.7,323.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15006"
+               id="use20930"
                transform="matrix(3.75,0,0,3.75,867.8,323.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15008"
+               id="use20932"
                transform="matrix(3.75,0,0,3.75,867.8,323.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15010"
+               id="use20934"
                transform="matrix(3.75,0,0,3.75,867.8,323.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15012"
+               id="use20936"
                transform="matrix(3.75,0,0,3.75,872.2,323.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15014"
+               id="use20938"
                transform="matrix(3.75,0,0,3.75,872.2,323.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15016"
+               id="use20940"
                transform="matrix(3.75,0,0,3.75,872.2,323.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15018"
+               id="use20942"
                transform="matrix(3.75,0,0,3.75,872.2,323.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15020"
+               id="use20944"
                transform="matrix(3.75,0,0,3.75,899.7,323.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15022"
+               id="use20946"
                transform="matrix(3.75,0,0,3.75,901.6,317.2)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15024"
+               id="use20948"
                transform="matrix(3.75,0,0,3.75,901.6,323.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15026"
+               id="use20950"
                transform="matrix(3.75,0,0,3.75,907.7,341.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15028"
+               id="use20952"
                transform="matrix(3.75,0,0,3.75,923.3,311.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15030"
+               id="use20954"
                transform="matrix(3.75,0,0,3.75,923.5,317.2)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15032"
+               id="use20956"
                transform="matrix(3.75,0,0,3.75,950,323.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15034"
+               id="use20958"
                transform="matrix(3.75,0,0,3.75,950,323.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15036"
+               id="use20960"
                transform="matrix(3.75,0,0,3.75,950,323.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15038"
+               id="use20962"
                transform="matrix(3.75,0,0,3.75,950,317.2)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15040"
+               id="use20964"
                transform="matrix(3.75,0,0,3.75,964.1,315.8)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15042"
+               id="use20966"
                transform="matrix(3.75,0,0,3.75,964.1,315.8)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15044"
+               id="use20968"
                transform="matrix(3.75,0,0,3.75,964.1,323.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15046"
+               id="use20970"
                transform="matrix(3.75,0,0,3.75,964.1,315.8)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15048"
+               id="use20972"
                transform="matrix(3.75,0,0,3.75,964.1,315.8)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15050"
+               id="use20974"
                transform="matrix(3.75,0,0,3.75,964.1,315.8)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15052"
+               id="use20976"
                transform="matrix(3.75,0,0,3.75,964.1,315.8)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
@@ -7158,855 +7157,855 @@
           </g>
         </g>
         <g
-           id="gnuplot_plot_7-1">
+           id="gnuplot_plot_7">
           <title
-             id="title15055">gnuplot_plot_7</title>
+             id="title20979">gnuplot_plot_7</title>
           <g
-             id="g15057"
+             id="g20981"
              style="color:#ffffff;fill:none;stroke:#ef2929;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter" />
           <g
-             id="g15059"
+             id="g20983"
              style="color:#ff0000;fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter">
             <path
-               id="path15061"
+               id="path20985"
                d="m 0,540 27.6,0 43.5,0 39.2,0 35,0 31.5,0 28.4,0 25.9,0 23.7,0 21.8,0 20.1,0 18.6,0 17.1,0 15.9,0 14.7,0 13.6,0 12.7,0 11.9,0 11.2,0 10.7,0 10.1,0 9.7,0 9.2,0 8.9,0 8.5,0 8.2,0 7.8,0 7.6,0 7.4,0 7.1,0 6.9,0 6.8,0 6.6,0 6.4,0 6.3,0 6.1,0 6,0 5.7,0 5.6,0 5.4,0 5.2,0 5.1,0 5,-0.1 5,0 4.9,0 4.9,-0.1 5.1,-0.2 5.2,-0.2 5.5,-0.3 5.6,-0.5 6,-0.6 6.2,-0.8 6.5,-1 6.8,-1.4 7,-1.7 7.3,-2.1 7.4,-2.4 7.6,-2.9 7.7,-3.2 7.7,-3.5 7.7,-3.9 7.7,-4 7.7,-4.2 7.6,-4.2 7.6,-4.2 7.6,-4 7.6,-3.8 7.6,-3.6 7.7,-3.3 7.8,-2.9 7.9,-2.7 8.1,-2.3 8.4,-2.1 8.6,-1.9 8.8,-1.6 9,-1.4 9.3,-1.3 9.3,-1.1 9.4,-0.9 9.3,-0.8 9,-0.6 8.8,-0.3 8.5,-0.3 8.2,-0.2 7.9,-0.3 7.8,-0.9 7.7,-1.8 7.9,-3 8.6,-4.4 10,-5.8 11.8,-7.7 12.1,-10.1 h 0.01"
                inkscape:connector-curvature="0"
                style="stroke:#005fd8" />
           </g>
         </g>
         <g
-           id="gnuplot_plot_8-0">
+           id="gnuplot_plot_8">
           <title
-             id="title15064">gnuplot_plot_8</title>
+             id="title20988">gnuplot_plot_8</title>
           <g
-             id="g15066"
+             id="g20990"
              style="color:#ffffff;fill:none;stroke:#005fd8;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter" />
           <g
-             id="g15068"
+             id="g20992"
              style="color:#0099a1;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter">
             <use
-               id="use15070"
+               id="use20994"
                transform="matrix(3.75,0,0,3.75,56,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15072"
+               id="use20996"
                transform="matrix(3.75,0,0,3.75,98.8,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15074"
+               id="use20998"
                transform="matrix(3.75,0,0,3.75,136,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15076"
+               id="use21000"
                transform="matrix(3.75,0,0,3.75,168,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15078"
+               id="use21002"
                transform="matrix(3.75,0,0,3.75,168,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15080"
+               id="use21004"
                transform="matrix(3.75,0,0,3.75,202.6,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15082"
+               id="use21006"
                transform="matrix(3.75,0,0,3.75,237.3,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15084"
+               id="use21008"
                transform="matrix(3.75,0,0,3.75,274.6,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15086"
+               id="use21010"
                transform="matrix(3.75,0,0,3.75,293.2,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15088"
+               id="use21012"
                transform="matrix(3.75,0,0,3.75,325.2,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15090"
+               id="use21014"
                transform="matrix(3.75,0,0,3.75,357.2,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15092"
+               id="use21016"
                transform="matrix(3.75,0,0,3.75,365.3,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15094"
+               id="use21018"
                transform="matrix(3.75,0,0,3.75,391.5,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15096"
+               id="use21020"
                transform="matrix(3.75,0,0,3.75,397.3,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15098"
+               id="use21022"
                transform="matrix(3.75,0,0,3.75,416,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15100"
+               id="use21024"
                transform="matrix(3.75,0,0,3.75,423.9,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15102"
+               id="use21026"
                transform="matrix(3.75,0,0,3.75,426.6,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15104"
+               id="use21028"
                transform="matrix(3.75,0,0,3.75,448,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15106"
+               id="use21030"
                transform="matrix(3.75,0,0,3.75,474.7,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15108"
+               id="use21032"
                transform="matrix(3.75,0,0,3.75,482.8,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15110"
+               id="use21034"
                transform="matrix(3.75,0,0,3.75,483.8,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15112"
+               id="use21036"
                transform="matrix(3.75,0,0,3.75,495.3,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15114"
+               id="use21038"
                transform="matrix(3.75,0,0,3.75,504,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15116"
+               id="use21040"
                transform="matrix(3.75,0,0,3.75,515.8,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15118"
+               id="use21042"
                transform="matrix(3.75,0,0,3.75,517.2,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15120"
+               id="use21044"
                transform="matrix(3.75,0,0,3.75,522.6,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15122"
+               id="use21046"
                transform="matrix(3.75,0,0,3.75,538.7,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15124"
+               id="use21048"
                transform="matrix(3.75,0,0,3.75,554.6,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15126"
+               id="use21050"
                transform="matrix(3.75,0,0,3.75,557.3,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15128"
+               id="use21052"
                transform="matrix(3.75,0,0,3.75,565.3,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15130"
+               id="use21054"
                transform="matrix(3.75,0,0,3.75,576,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15132"
+               id="use21056"
                transform="matrix(3.75,0,0,3.75,579.8,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15134"
+               id="use21058"
                transform="matrix(3.75,0,0,3.75,586.6,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15136"
+               id="use21060"
                transform="matrix(3.75,0,0,3.75,589.3,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15138"
+               id="use21062"
                transform="matrix(3.75,0,0,3.75,591.9,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15140"
+               id="use21064"
                transform="matrix(3.75,0,0,3.75,600.8,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15142"
+               id="use21066"
                transform="matrix(3.75,0,0,3.75,600.8,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15144"
+               id="use21068"
                transform="matrix(3.75,0,0,3.75,602.7,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15146"
+               id="use21070"
                transform="matrix(3.75,0,0,3.75,610.7,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15148"
+               id="use21072"
                transform="matrix(3.75,0,0,3.75,615.9,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15150"
+               id="use21074"
                transform="matrix(3.75,0,0,3.75,629.3,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15152"
+               id="use21076"
                transform="matrix(3.75,0,0,3.75,632.7,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15154"
+               id="use21078"
                transform="matrix(3.75,0,0,3.75,643.8,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15156"
+               id="use21080"
                transform="matrix(3.75,0,0,3.75,643.8,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15158"
+               id="use21082"
                transform="matrix(3.75,0,0,3.75,655,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15160"
+               id="use21084"
                transform="matrix(3.75,0,0,3.75,666.7,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15162"
+               id="use21086"
                transform="matrix(3.75,0,0,3.75,676.5,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15164"
+               id="use21088"
                transform="matrix(3.75,0,0,3.75,701.3,540)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15166"
+               id="use21090"
                transform="matrix(3.75,0,0,3.75,701.3,509.2)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15168"
+               id="use21092"
                transform="matrix(3.75,0,0,3.75,704,509.2)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15170"
+               id="use21094"
                transform="matrix(3.75,0,0,3.75,704,509.2)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15172"
+               id="use21096"
                transform="matrix(3.75,0,0,3.75,714.5,509.2)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15174"
+               id="use21098"
                transform="matrix(3.75,0,0,3.75,719.9,509.2)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15176"
+               id="use21100"
                transform="matrix(3.75,0,0,3.75,722.6,478.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15178"
+               id="use21102"
                transform="matrix(3.75,0,0,3.75,722.6,509.2)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15180"
+               id="use21104"
                transform="matrix(3.75,0,0,3.75,743.9,478.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15182"
+               id="use21106"
                transform="matrix(3.75,0,0,3.75,755.6,478.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15184"
+               id="use21108"
                transform="matrix(3.75,0,0,3.75,762.7,478.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15186"
+               id="use21110"
                transform="matrix(3.75,0,0,3.75,763.5,478.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15188"
+               id="use21112"
                transform="matrix(3.75,0,0,3.75,789.3,478.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15190"
+               id="use21114"
                transform="matrix(3.75,0,0,3.75,789.8,478.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15192"
+               id="use21116"
                transform="matrix(3.75,0,0,3.75,790.5,460.3)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15194"
+               id="use21118"
                transform="matrix(3.75,0,0,3.75,815.9,460.3)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15196"
+               id="use21120"
                transform="matrix(3.75,0,0,3.75,837.2,460.3)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15198"
+               id="use21122"
                transform="matrix(3.75,0,0,3.75,837.2,460.3)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15200"
+               id="use21124"
                transform="matrix(3.75,0,0,3.75,837.2,478.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15202"
+               id="use21126"
                transform="matrix(3.75,0,0,3.75,838.4,478.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15204"
+               id="use21128"
                transform="matrix(3.75,0,0,3.75,867.7,460.3)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15206"
+               id="use21130"
                transform="matrix(3.75,0,0,3.75,867.8,460.3)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15208"
+               id="use21132"
                transform="matrix(3.75,0,0,3.75,867.8,478.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15210"
+               id="use21134"
                transform="matrix(3.75,0,0,3.75,867.8,460.3)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15212"
+               id="use21136"
                transform="matrix(3.75,0,0,3.75,872.2,447.5)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15214"
+               id="use21138"
                transform="matrix(3.75,0,0,3.75,872.2,437.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15216"
+               id="use21140"
                transform="matrix(3.75,0,0,3.75,872.2,437.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15218"
+               id="use21142"
                transform="matrix(3.75,0,0,3.75,872.2,437.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15220"
+               id="use21144"
                transform="matrix(3.75,0,0,3.75,899.7,478.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15222"
+               id="use21146"
                transform="matrix(3.75,0,0,3.75,901.6,447.5)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15224"
+               id="use21148"
                transform="matrix(3.75,0,0,3.75,901.6,478.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15226"
+               id="use21150"
                transform="matrix(3.75,0,0,3.75,907.7,478.4)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15228"
+               id="use21152"
                transform="matrix(3.75,0,0,3.75,923.3,447.5)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15230"
+               id="use21154"
                transform="matrix(3.75,0,0,3.75,923.5,460.3)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15232"
+               id="use21156"
                transform="matrix(3.75,0,0,3.75,950,437.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15234"
+               id="use21158"
                transform="matrix(3.75,0,0,3.75,950,429.5)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15236"
+               id="use21160"
                transform="matrix(3.75,0,0,3.75,950,460.3)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15238"
+               id="use21162"
                transform="matrix(3.75,0,0,3.75,950,447.5)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15240"
+               id="use21164"
                transform="matrix(3.75,0,0,3.75,964.1,419.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15242"
+               id="use21166"
                transform="matrix(3.75,0,0,3.75,964.1,419.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15244"
+               id="use21168"
                transform="matrix(3.75,0,0,3.75,964.1,429.5)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15246"
+               id="use21170"
                transform="matrix(3.75,0,0,3.75,964.1,419.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15248"
+               id="use21172"
                transform="matrix(3.75,0,0,3.75,964.1,437.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15250"
+               id="use21174"
                transform="matrix(3.75,0,0,3.75,964.1,460.3)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
                width="1"
                height="1" />
             <use
-               id="use15252"
+               id="use21176"
                transform="matrix(3.75,0,0,3.75,964.1,419.6)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
@@ -8015,34 +8014,34 @@
           </g>
         </g>
         <g
-           id="gnuplot_plot_9-0">
+           id="gnuplot_plot_9">
           <title
-             id="title15255">gnuplot_plot_9</title>
+             id="title21179">gnuplot_plot_9</title>
           <g
-             id="g15257"
+             id="g21181"
              style="color:#ffffff;fill:none;stroke:#005fd8;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter" />
           <g
-             id="g15259"
+             id="g21183"
              style="color:#ff0000;fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter">
             <g
-               id="g15261"
+               id="g21185"
                style="font-size:25px;text-anchor:start;fill:#000000;stroke:none;font-family:Open Sans"
                transform="translate(193.9,66)">
               <text
-                 id="text15263">
+                 id="text21187">
                 <tspan
-                   id="tspan15265">Clock speed (MHz)</tspan>
+                   id="tspan21189">Clock speed (MHz)</tspan>
               </text>
             </g>
             <path
-               id="path15267"
+               id="path21191"
                d="m 116.4,58.5 63.5,0 h 0.01"
                inkscape:connector-curvature="0"
                style="stroke:#73d216" />
             <use
-               id="use15269"
+               id="use21193"
                transform="matrix(3.75,0,0,3.75,148.2,58.5)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#73d216"
                x="0"
                y="0"
@@ -8051,31 +8050,31 @@
           </g>
         </g>
         <g
-           id="gnuplot_plot_10">
+           id="gnuplot_plot_10-1">
           <title
-             id="title15272">gnuplot_plot_10</title>
+             id="title21196">gnuplot_plot_10</title>
           <g
-             id="g15274"
+             id="g21198"
              style="color:#ff0000;fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter">
             <g
-               id="g15276"
+               id="g21200"
                style="font-size:25px;text-anchor:start;fill:#000000;stroke:none;font-family:Open Sans"
                transform="translate(193.9,96)">
               <text
-                 id="text15278">
+                 id="text21202">
                 <tspan
-                   id="tspan15280">Power (watts)</tspan>
+                   id="tspan21204">Power (watts)</tspan>
               </text>
             </g>
             <path
-               id="path15282"
+               id="path21206"
                d="m 116.4,88.5 63.5,0 h 0.01"
                inkscape:connector-curvature="0"
                style="stroke:#ef2929" />
             <use
-               id="use15284"
+               id="use21208"
                transform="matrix(3.75,0,0,3.75,148.2,88.5)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#ef2929"
                x="0"
                y="0"
@@ -8084,31 +8083,31 @@
           </g>
         </g>
         <g
-           id="gnuplot_plot_11">
+           id="gnuplot_plot_11-4">
           <title
-             id="title15287">gnuplot_plot_11</title>
+             id="title21211">gnuplot_plot_11</title>
           <g
-             id="g15289"
+             id="g21213"
              style="color:#ff0000;fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter">
             <g
-               id="g15291"
+               id="g21215"
                style="font-size:25px;text-anchor:start;fill:#000000;stroke:none;font-family:Open Sans"
                transform="translate(193.9,126)">
               <text
-                 id="text15293">
+                 id="text21217">
                 <tspan
-                   id="tspan15295">Cores per socket</tspan>
+                   id="tspan21219">Cores per socket</tspan>
               </text>
             </g>
             <path
-               id="path15297"
+               id="path21221"
                d="m 116.4,118.5 63.5,0 h 0.01"
                inkscape:connector-curvature="0"
                style="stroke:#005fd8" />
             <use
-               id="use15299"
+               id="use21223"
                transform="matrix(3.75,0,0,3.75,148.2,118.5)"
-               xlink:href="#gpPt6-3"
+               xlink:href="#gpPt6-8"
                style="color:#005fd8"
                x="0"
                y="0"
@@ -8117,32 +8116,32 @@
           </g>
         </g>
         <g
-           id="gnuplot_plot_12">
+           id="gnuplot_plot_12-8">
           <title
-             id="title15302">gnuplot_plot_12</title>
+             id="title21226">gnuplot_plot_12</title>
           <g
-             id="g15304"
+             id="g21228"
              style="color:#ff0000;fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter">
             <g
-               id="g15306"
+               id="g21230"
                style="font-size:25px;text-anchor:start;fill:#000000;stroke:none;font-family:Open Sans"
                transform="translate(193.9,156)">
               <text
-                 id="text15308">
+                 id="text21232">
                 <tspan
-                   id="tspan15310">Total megacycles/sec</tspan>
+                   id="tspan21234">Total megacycles/sec</tspan>
               </text>
             </g>
             <path
-               id="path15312"
+               id="path21236"
                d="m 116.4,148.5 63.5,0 h 0.01"
                inkscape:connector-curvature="0"
-               style="stroke:#b8ed84" />
+               style="stroke:#fcaf3e" />
             <use
-               id="use15314"
+               id="use21238"
                transform="matrix(3.75,0,0,3.75,148.2,148.5)"
-               xlink:href="#gpPt6-3"
-               style="color:#b8ed84"
+               xlink:href="#gpPt6-8"
+               style="color:#fcaf3e"
                x="0"
                y="0"
                width="1"
@@ -8150,7 +8149,7 @@
           </g>
         </g>
         <g
-           id="g15316"
+           id="g21240"
            style="color:#ff0000;fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter" />
       </g>
     </g>

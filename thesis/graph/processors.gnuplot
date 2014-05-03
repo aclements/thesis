@@ -24,7 +24,7 @@ set xrange [1984:2016]
 set lt 1 lw 2 lc rgb '#73d216'  # Dark green
 set lt 2 lw 2 lc rgb '#005fd8'  # Blue
 set lt 3 lw 2 lc rgb '#ef2929'  # Red
-set lt 4 lw 2 lc rgb '#b8ed84'  # Light green
+set lt 4 lw 2 lc rgb '#fcaf3e'  # Orange
 
 # plot \
 # "<cd ../data/processors && python moore.py" \
