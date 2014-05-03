@@ -26,10 +26,10 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.703125"
-     inkscape:cx="310.75556"
-     inkscape:cy="384"
-     inkscape:current-layer="layer48"
+     inkscape:zoom="0.49718446"
+     inkscape:cx="449.15666"
+     inkscape:cy="215.98938"
+     inkscape:current-layer="g9512"
      inkscape:document-units="px"
      showgrid="false"
      inkscape:window-width="1342"
@@ -4079,34 +4079,32 @@
          style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
          y="455.10349"
          x="27.313477"
-         sodipodi:role="line">M. Frans Kaashoek</tspan><tspan
+         sodipodi:role="line" /><tspan
+         style="font-size:28px;font-style:italic;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+         y="490.41611"
+         x="27.313477"
+         sodipodi:role="line"
+         id="tspan8480">Thesis committee:</tspan><tspan
+         style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+         y="525.10352"
+         x="27.313477"
+         sodipodi:role="line"
+         id="tspan8482">M. Frans Kaashoek</tspan><tspan
          id="tspan9026"
          style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
-         y="490.10349"
+         y="560.10352"
          x="27.313477"
          sodipodi:role="line">Nickolai Zeldovich</tspan><tspan
          id="tspan6380"
          style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
-         y="525.10352"
+         y="595.10352"
          x="27.313477"
          sodipodi:role="line">Robert Morris</tspan><tspan
          id="tspan6384"
          style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
-         y="560.54205"
+         y="630.10352"
          x="27.313477"
-         sodipodi:role="line">Eddie Kohler †</tspan></text>
-    <text
-       sodipodi:linespacing="125%"
-       id="text6135"
-       y="620.91711"
-       x="27.132751"
-       style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
-       xml:space="preserve"><tspan
-         id="tspan6388"
-         style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
-         y="620.91711"
-         x="27.132751"
-         sodipodi:role="line">MIT CSAIL and † Harvard</tspan></text>
+         sodipodi:role="line">Eddie Kohler</tspan></text>
     <rect
        style="color:#000000;fill:url(#linearGradient4114);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:5;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect4111"
@@ -8035,7 +8033,8 @@
   <g
      inkscape:groupmode="layer"
      id="layer48"
-     inkscape:label="OS kernels">
+     inkscape:label="OS kernels"
+     style="display:none">
     <text
        xml:space="preserve"
        style="font-size:32px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
@@ -8098,7 +8097,7 @@
            sodipodi:role="line">Linux scalability</tspan><tspan
            style="font-size:22px"
            id="tspan54570"
-           y="361.59692"
+           y="361.6069"
            x="115.62914"
            sodipodi:role="line">OSDI '10</tspan></text>
       <text
@@ -8115,7 +8114,7 @@
            y="506.04224">Bonsai VM</tspan><tspan
            sodipodi:role="line"
            x="115.62914"
-           y="536.23138"
+           y="536.24133"
            id="tspan54576"
            style="font-size:22px">ASPLOS '12</tspan></text>
       <text
@@ -8132,7 +8131,7 @@
            sodipodi:role="line">RadixVM</tspan><tspan
            style="font-size:22px"
            id="tspan54582"
-           y="708.33069"
+           y="708.34064"
            x="115.62914"
            sodipodi:role="line">EuroSys '13</tspan></text>
       <text
@@ -8149,7 +8148,7 @@
            y="156.203">Corey</tspan><tspan
            sodipodi:role="line"
            x="115.62914"
-           y="186.39214"
+           y="186.40213"
            id="tspan54588"
            style="font-size:22px">OSDI '08</tspan></text>
       <g
@@ -8179,7 +8178,7 @@
                sodipodi:role="line">2008</tspan></text>
           <path
              transform="translate(4.1726389,-23.905404)"
-             d="m 755.74104,69.064735 c 0,2.479322 -2.00989,4.489209 -4.48921,4.489209 -2.47932,0 -4.48921,-2.009887 -4.48921,-4.489209 0,-2.479321 2.00989,-4.489208 4.48921,-4.489208 2.47932,0 4.48921,2.009887 4.48921,4.489208 z"
+             d="m 755.74104,69.064735 a 4.4892087,4.4892087 0 1 1 -8.97842,0 4.4892087,4.4892087 0 1 1 8.97842,0 z"
              sodipodi:ry="4.4892087"
              sodipodi:rx="4.4892087"
              sodipodi:cy="69.064735"
@@ -8205,7 +8204,7 @@
                style="font-size:22px">2009</tspan></text>
           <path
              transform="translate(4.1726389,112.83761)"
-             d="m 755.74104,69.064735 c 0,2.479322 -2.00989,4.489209 -4.48921,4.489209 -2.47932,0 -4.48921,-2.009887 -4.48921,-4.489209 0,-2.479321 2.00989,-4.489208 4.48921,-4.489208 2.47932,0 4.48921,2.009887 4.48921,4.489208 z"
+             d="m 755.74104,69.064735 a 4.4892087,4.4892087 0 1 1 -8.97842,0 4.4892087,4.4892087 0 1 1 8.97842,0 z"
              sodipodi:ry="4.4892087"
              sodipodi:rx="4.4892087"
              sodipodi:cy="69.064735"
@@ -8231,7 +8230,7 @@
                sodipodi:role="line">2010</tspan></text>
           <path
              transform="translate(4.1726389,224.18584)"
-             d="m 755.74104,69.064735 c 0,2.479322 -2.00989,4.489209 -4.48921,4.489209 -2.47932,0 -4.48921,-2.009887 -4.48921,-4.489209 0,-2.479321 2.00989,-4.489208 4.48921,-4.489208 2.47932,0 4.48921,2.009887 4.48921,4.489208 z"
+             d="m 755.74104,69.064735 a 4.4892087,4.4892087 0 1 1 -8.97842,0 4.4892087,4.4892087 0 1 1 8.97842,0 z"
              sodipodi:ry="4.4892087"
              sodipodi:rx="4.4892087"
              sodipodi:cy="69.064735"
@@ -8257,7 +8256,7 @@
                style="font-size:22px">2011</tspan></text>
           <path
              transform="translate(4.1726389,335.53405)"
-             d="m 755.74104,69.064735 c 0,2.479322 -2.00989,4.489209 -4.48921,4.489209 -2.47932,0 -4.48921,-2.009887 -4.48921,-4.489209 0,-2.479321 2.00989,-4.489208 4.48921,-4.489208 2.47932,0 4.48921,2.009887 4.48921,4.489208 z"
+             d="m 755.74104,69.064735 a 4.4892087,4.4892087 0 1 1 -8.97842,0 4.4892087,4.4892087 0 1 1 8.97842,0 z"
              sodipodi:ry="4.4892087"
              sodipodi:rx="4.4892087"
              sodipodi:cy="69.064735"
@@ -8283,7 +8282,7 @@
                sodipodi:role="line">2012</tspan></text>
           <path
              transform="translate(4.1726389,446.88228)"
-             d="m 755.74104,69.064735 c 0,2.479322 -2.00989,4.489209 -4.48921,4.489209 -2.47932,0 -4.48921,-2.009887 -4.48921,-4.489209 0,-2.479321 2.00989,-4.489208 4.48921,-4.489208 2.47932,0 4.48921,2.009887 4.48921,4.489208 z"
+             d="m 755.74104,69.064735 a 4.4892087,4.4892087 0 1 1 -8.97842,0 4.4892087,4.4892087 0 1 1 8.97842,0 z"
              sodipodi:ry="4.4892087"
              sodipodi:rx="4.4892087"
              sodipodi:cy="69.064735"
@@ -8309,7 +8308,7 @@
                style="font-size:22px">2013</tspan></text>
           <path
              transform="translate(4.1726389,558.23049)"
-             d="m 755.74104,69.064735 c 0,2.479322 -2.00989,4.489209 -4.48921,4.489209 -2.47932,0 -4.48921,-2.009887 -4.48921,-4.489209 0,-2.479321 2.00989,-4.489208 4.48921,-4.489208 2.47932,0 4.48921,2.009887 4.48921,4.489208 z"
+             d="m 755.74104,69.064735 a 4.4892087,4.4892087 0 1 1 -8.97842,0 4.4892087,4.4892087 0 1 1 8.97842,0 z"
              sodipodi:ry="4.4892087"
              sodipodi:rx="4.4892087"
              sodipodi:cy="69.064735"
@@ -8335,7 +8334,7 @@
                sodipodi:role="line">2014</tspan></text>
           <path
              transform="translate(4.1726389,702.78728)"
-             d="m 755.74104,69.064735 c 0,2.479322 -2.00989,4.489209 -4.48921,4.489209 -2.47932,0 -4.48921,-2.009887 -4.48921,-4.489209 0,-2.479321 2.00989,-4.489208 4.48921,-4.489208 2.47932,0 4.48921,2.009887 4.48921,4.489208 z"
+             d="m 755.74104,69.064735 a 4.4892087,4.4892087 0 1 1 -8.97842,0 4.4892087,4.4892087 0 1 1 8.97842,0 z"
              sodipodi:ry="4.4892087"
              sodipodi:rx="4.4892087"
              sodipodi:cy="69.064735"
@@ -8404,7 +8403,7 @@
            sodipodi:cy="279.02158"
            sodipodi:rx="80.115105"
            sodipodi:ry="80.115105"
-           d="m 272.1151,279.02158 c 0,44.24635 -35.86875,80.1151 -80.1151,80.1151 -44.24635,0 -80.1151,-35.86875 -80.1151,-80.1151 0,-44.24635 35.86875,-80.11511 80.1151,-80.11511 44.24635,0 80.1151,35.86876 80.1151,80.11511 z"
+           d="m 272.1151,279.02158 a 80.115105,80.115105 0 1 1 -160.2302,0 80.115105,80.115105 0 1 1 160.2302,0 z"
            transform="translate(488.97842,248.63309)" />
         <text
            xml:space="preserve"
@@ -8442,7 +8441,7 @@
          inkscape:label="diff">
         <path
            transform="translate(239.77075,121.91351)"
-           d="m 272.1151,279.02158 c 0,44.24635 -35.86875,80.1151 -80.1151,80.1151 -44.24635,0 -80.1151,-35.86875 -80.1151,-80.1151 0,-44.24635 35.86875,-80.11511 80.1151,-80.11511 44.24635,0 80.1151,35.86876 80.1151,80.11511 z"
+           d="m 272.1151,279.02158 a 80.115105,80.115105 0 1 1 -160.2302,0 80.115105,80.115105 0 1 1 160.2302,0 z"
            sodipodi:ry="80.115105"
            sodipodi:rx="80.115105"
            sodipodi:cy="279.02158"
@@ -8492,7 +8491,7 @@
            sodipodi:cy="279.02158"
            sodipodi:rx="80.115105"
            sodipodi:ry="80.115105"
-           d="m 272.1151,279.02158 c 0,44.24635 -35.86875,80.1151 -80.1151,80.1151 -44.24635,0 -80.1151,-35.86875 -80.1151,-80.1151 0,-44.24635 35.86875,-80.11511 80.1151,-80.11511 44.24635,0 80.1151,35.86876 80.1151,80.11511 z"
+           d="m 272.1151,279.02158 a 80.115105,80.115105 0 1 1 -160.2302,0 80.115105,80.115105 0 1 1 160.2302,0 z"
            transform="translate(479.84033,-7.3680725)" />
         <text
            xml:space="preserve"
@@ -8587,7 +8586,7 @@
            sodipodi:cy="388.14389"
            sodipodi:rx="176.80576"
            sodipodi:ry="176.80576"
-           d="m 512.46042,388.14388 c 0,-94.13062 73.75062,-171.75705 167.75791,-176.57409"
+           d="M 512.46042,388.14388 A 176.80576,176.80576 0 0 1 680.21833,211.56979"
            transform="translate(-22.336647,22.016647)"
            sodipodi:open="true"
            inkscape:label="diff diff-edge" />
@@ -8595,7 +8594,7 @@
            sodipodi:end="6.7474089"
            sodipodi:start="5.2359878"
            transform="translate(-22.336647,22.016647)"
-           d="m 777.66906,235.02562 c 81.0359,46.7861 111.58638,148.60988 69.69142,232.27928"
+           d="M 777.66906,235.02562 A 176.80576,176.80576 0 0 1 847.36048,467.3049"
            sodipodi:ry="176.80576"
            sodipodi:rx="176.80576"
            sodipodi:cy="388.14389"
@@ -8613,7 +8612,7 @@
            sodipodi:cy="388.14389"
            sodipodi:rx="176.80576"
            sodipodi:ry="176.80576"
-           d="M 777.66904,541.26217 C 696.16162,588.3205 592.07595,563.27893 540.89208,484.29692"
+           d="M 777.66904,541.26217 A 176.80576,176.80576 0 0 1 540.89208,484.29692"
            transform="translate(-22.336647,22.016647)"
            sodipodi:start="1.0471976"
            sodipodi:end="2.5665933"
@@ -8632,7 +8631,7 @@
              sodipodi:cy="279.02158"
              sodipodi:rx="80.115105"
              sodipodi:ry="80.115105"
-             d="m 272.1151,279.02158 c 0,44.24635 -35.86875,80.1151 -80.1151,80.1151 -44.24635,0 -80.1151,-35.86875 -80.1151,-80.1151 0,-44.24635 35.86875,-80.11511 80.1151,-80.11511 44.24635,0 80.1151,35.86876 80.1151,80.11511 z"
+             d="m 272.1151,279.02158 a 80.115105,80.115105 0 1 1 -160.2302,0 80.115105,80.115105 0 1 1 160.2302,0 z"
              transform="translate(239.77075,121.91351)" />
           <text
              xml:space="preserve"
@@ -8659,7 +8658,7 @@
              sodipodi:cy="279.02158"
              sodipodi:rx="80.115105"
              sodipodi:ry="80.115105"
-             d="m 272.1151,279.02158 c 0,44.24635 -35.86875,80.1151 -80.1151,80.1151 -44.24635,0 -80.1151,-35.86875 -80.1151,-80.1151 0,-44.24635 35.86875,-80.11511 80.1151,-80.11511 44.24635,0 80.1151,35.86876 80.1151,80.11511 z"
+             d="m 272.1151,279.02158 a 80.115105,80.115105 0 1 1 -160.2302,0 80.115105,80.115105 0 1 1 160.2302,0 z"
              transform="translate(488.97842,248.63309)" />
           <text
              xml:space="preserve"
@@ -8684,7 +8683,7 @@
            inkscape:label="diff">
           <path
              transform="translate(239.77075,121.91351)"
-             d="m 272.1151,279.02158 c 0,44.24635 -35.86875,80.1151 -80.1151,80.1151 -44.24635,0 -80.1151,-35.86875 -80.1151,-80.1151 0,-44.24635 35.86875,-80.11511 80.1151,-80.11511 44.24635,0 80.1151,35.86876 80.1151,80.11511 z"
+             d="m 272.1151,279.02158 a 80.115105,80.115105 0 1 1 -160.2302,0 80.115105,80.115105 0 1 1 160.2302,0 z"
              sodipodi:ry="80.115105"
              sodipodi:rx="80.115105"
              sodipodi:cy="279.02158"
@@ -8721,7 +8720,7 @@
              sodipodi:cy="279.02158"
              sodipodi:rx="80.115105"
              sodipodi:ry="80.115105"
-             d="m 272.1151,279.02158 c 0,44.24635 -35.86875,80.1151 -80.1151,80.1151 -44.24635,0 -80.1151,-35.86875 -80.1151,-80.1151 0,-44.24635 35.86875,-80.11511 80.1151,-80.11511 44.24635,0 80.1151,35.86876 80.1151,80.11511 z"
+             d="m 272.1151,279.02158 a 80.115105,80.115105 0 1 1 -160.2302,0 80.115105,80.115105 0 1 1 160.2302,0 z"
              transform="translate(479.84033,-7.3680725)" />
           <text
              xml:space="preserve"
@@ -9092,8 +9091,12 @@
          y="394.13333"
          x="25"
          sodipodi:role="line"
-         id="tspan58658"> • New workloads expose new bottlenecks</tspan><tspan
+         id="tspan8484"> • Requires huge amounts of effort</tspan><tspan
          y="434.13333"
+         x="25"
+         sodipodi:role="line"
+         id="tspan58658"> • New workloads expose new bottlenecks</tspan><tspan
+         y="474.13333"
          x="25"
          sodipodi:role="line"
          id="tspan58662"> • More cores expose new bottlenecks</tspan></text>
@@ -9123,34 +9126,34 @@
     <text
        sodipodi:linespacing="125%"
        id="text58728"
-       y="511.61258"
+       y="541.47925"
        x="25"
        style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
        xml:space="preserve"><tspan
-         y="511.61258"
+         y="541.47925"
          x="25"
          sodipodi:role="line"
-         id="tspan58741">OTOH, it's not such a great approach in the long run because you never get to</tspan><tspan
-         y="546.61255"
+         id="tspan58741">OTOH, it's not such a great approach in the long run.  It requires huge amounts</tspan><tspan
+         y="576.47925"
          x="25"
          sodipodi:role="line"
-         id="tspan58743">the point where your software is *really* scalable.</tspan><tspan
-         y="581.61255"
+         id="tspan8492">of effort, which may be infeasible for small projects or a waste of resources on</tspan><tspan
+         y="611.47925"
          x="25"
          sodipodi:role="line"
-         id="tspan58745">New workloads inevitably expose new bottlenecks, as does the</tspan><tspan
-         y="616.61255"
+         id="tspan8494">large projects.  This effort is also perpetual: you never get to the point where</tspan><tspan
+         y="646.47925"
          x="25"
          sodipodi:role="line"
-         id="tspan59845">unstoppable march toward higher core counts.</tspan><tspan
-         y="651.61255"
+         id="tspan8496">your software is *really* scalable.  New workloads and higher core counts</tspan><tspan
+         y="681.47925"
          x="25"
          sodipodi:role="line"
-         id="tspan58757">But the deeper problem with the workload-driven approach is that STEP the</tspan><tspan
-         y="686.61255"
+         id="tspan8498">inevitably expose new bottlenecks.  But the deeper problem with the</tspan><tspan
+         y="716.47925"
          x="25"
          sodipodi:role="line"
-         id="tspan58759">real bottlenecks may be in the interface design.</tspan></text>
+         id="tspan58759">workload-driven approach is that STEP &lt;...&gt;</tspan></text>
     <text
        inkscape:label="disadvantages"
        xml:space="preserve"
@@ -9174,7 +9177,11 @@
          id="tspan59859"
          sodipodi:role="line"
          x="25"
-         y="474.13333"> • The real bottlenecks may be in the interface design</tspan></text>
+         y="474.13333"></tspan><tspan
+         sodipodi:role="line"
+         x="25"
+         y="514.1333"
+         id="tspan8486"> • The real bottlenecks may be in the interface design</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
@@ -9471,7 +9478,7 @@
            x="18.48889"
            sodipodi:role="line"
            id="tspan58555">you can make this scale.  But what if we could change not just the</tspan><tspan
-           y="670.48889"
+           y="670.80151"
            x="18.48889"
            sodipodi:role="line"
            id="tspan58557">implementation, but the <tspan
@@ -9538,17 +9545,17 @@
            id="tspan58613">it is far *more* useful to be told that an interface CAN scale:</tspan><tspan
            sodipodi:role="line"
            x="18.48889"
-           y="670.48889"
+           y="670.80151"
            id="tspan58615">that there is definitely <tspan
    style="font-style:italic"
    id="tspan59186">some</tspan> scalable implementation of that interface.</tspan><tspan
            sodipodi:role="line"
            x="18.48889"
-           y="705.48889"
+           y="705.80151"
            id="tspan58617">We have characterized a large class of interfaces that can scale.</tspan><tspan
            sodipodi:role="line"
            x="18.48889"
-           y="740.48889"
+           y="740.80151"
            id="tspan58619">That class is defined by the SC rule.</tspan></text>
     </g>
   </g>
@@ -9692,7 +9699,7 @@
            y="524.79999">creat → 3</tspan><tspan
            sodipodi:role="line"
            x="589.77374"
-           y="560.23853"
+           y="560.26648"
            id="tspan59554">creat → 4</tspan></text>
       <text
          xml:space="preserve"
@@ -9805,7 +9812,7 @@
            id="tspan59595"
            sodipodi:role="line">creat → 42</tspan><tspan
            id="tspan59597"
-           y="607.883"
+           y="607.91095"
            x="589.77374"
            sodipodi:role="line">creat → 17</tspan></text>
       <text
@@ -9825,16 +9832,21 @@
            id="tspan59642">first?  You can't tell and nothing you do in the future can reveal their order,</tspan><tspan
            sodipodi:role="line"
            x="36.377777"
-           y="718.14594"
+           y="718.45856"
            id="tspan59644">so these creats <tspan
    style="font-style:italic"
    id="tspan59654">do</tspan> commute, STEP and the rule tells us there is definitely</tspan><tspan
            id="tspan59494"
            sodipodi:role="line"
            x="36.377777"
-           y="753.14594">a scalable implementation.</tspan></text>
+           y="753.45856">a scalable implementation.</tspan></text>
     </g>
   </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer19"
+     inkscape:label="XXX Why interfaces matter"
+     style="display:none" />
   <g
      style="display:none"
      inkscape:label="Advantages of interface-driven scalability"
@@ -24689,44 +24701,44 @@
              sodipodi:role="line"
              x="610.95557"
              y="239.46336"
-             id="tspan68995">as are implementations. Even with the best of intitions, it's easy to make</tspan><tspan
+             id="tspan68995">as are implementations. Even with the best of intentions, it's easy to make</tspan><tspan
              sodipodi:role="line"
              x="610.95557"
              y="274.46338"
              id="tspan68993">mistakes. So, to help developers apply the rule in practice, we've developed a</tspan><tspan
              sodipodi:role="line"
              x="610.95557"
-             y="309.46338"
+             y="309.77597"
              id="tspan39785">  tool named Commuter.  Commuter helps developers <tspan
    style="font-style:italic"
    id="tspan58847">systematically</tspan></tspan><tspan
              sodipodi:role="line"
              x="610.95557"
-             y="344.46338"
+             y="344.77597"
              id="tspan39787">  evaluate the scalability of their implementations.</tspan><tspan
              sodipodi:role="line"
              x="610.95557"
-             y="379.46338"
+             y="379.77597"
              id="tspan39789">  Commuter takes an interface specification (for example, something</tspan><tspan
              sodipodi:role="line"
              x="610.95557"
-             y="414.46338"
+             y="414.77597"
              id="tspan35243">  like POSIX) and an implementation of that interface (for example,</tspan><tspan
              sodipodi:role="line"
              x="610.95557"
-             y="449.46338"
+             y="449.77597"
              id="tspan35245">  Linux) and systematically finds cases where the implementation isn't</tspan><tspan
              sodipodi:role="line"
              x="610.95557"
-             y="484.46338"
+             y="484.77597"
              id="tspan35247">  as scalable as it could be.  Unlike the traditional</tspan><tspan
              sodipodi:role="line"
              x="610.95557"
-             y="519.46338"
+             y="519.776"
              id="tspan35249">  workload-driven approach, using Commuter doesn't require a workload.</tspan><tspan
              sodipodi:role="line"
              x="610.95557"
-             y="554.46338"
+             y="554.776"
              id="tspan35408">  Or for that matter, even a multicore machine.</tspan></text>
       </g>
     </g>
@@ -25032,24 +25044,48 @@
      inkscape:groupmode="layer"
      id="layer54"
      inkscape:label="Commutativity conditions"
-     style="display:none">
-    <rect
-       style="color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#4e9a06;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:2, 4;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new"
-       id="rect39953-2"
-       width="189.86673"
-       height="438.75552"
-       x="781.51111"
-       y="197.68889" />
+     style="display:inline">
+    <text
+       xml:space="preserve"
+       style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+       x="25"
+       y="598.99451"
+       id="text8574"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan8576"
+         x="25"
+         y="598.99451">Important to have discriminating commutativity conditions</tspan><tspan
+         sodipodi:role="line"
+         x="25"
+         y="634.461"
+         id="tspan8578"> • ∀states, rename almost never commutes</tspan><tspan
+         sodipodi:role="line"
+         x="25"
+         y="669.92755"
+         id="tspan8580"> • More commutative cases ⇒ more opportunities to scale</tspan><tspan
+         sodipodi:role="line"
+         x="25"
+         y="704.92755"
+         id="tspan8582"> • Captures more operations applications actually do</tspan></text>
     <g
        inkscape:label="slide"
        id="g40170">
+      <rect
+         style="color:#000000;fill:#fffffd;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         id="rect8586"
+         width="832.59998"
+         height="483.79453"
+         x="25"
+         y="227.55557" />
       <text
          sodipodi:linespacing="125%"
          id="text31755"
          y="484.59036"
          x="25"
          style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
-         xml:space="preserve"><tspan
+         xml:space="preserve"
+         inkscape:label="conds"><tspan
            y="484.59036"
            x="25"
            id="tspan31757"
@@ -25077,11 +25113,11 @@
            id="tspan31794"
            y="659.59033"
            x="25"
-           sodipodi:role="line"> • One call is a self-rename of an existing file and a != c</tspan><tspan
+           sodipodi:role="line"> • One call is a self-rename of an existing file and a ≠ c</tspan><tspan
            id="tspan31798"
            y="694.59033"
            x="25"
-           sodipodi:role="line"> • a &amp; c are hard links to the same inode, a != c, and b == d</tspan></text>
+           sodipodi:role="line"> • a and c are hard links to the same inode, a ≠ c, and b = d</tspan></text>
       <use
          inkscape:label="listing"
          transform="translate(3.7499983e-7,-325.68889)"
@@ -25122,6 +25158,13 @@
            inkscape:transform-center-x="6.6568346e-05" />
       </g>
     </g>
+    <rect
+       style="color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#4e9a06;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:2, 4;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new"
+       id="rect39953-2"
+       width="189.86673"
+       height="438.75552"
+       x="781.51111"
+       y="197.68889" />
     <text
        xml:space="preserve"
        style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans"
@@ -25184,73 +25227,148 @@
          sodipodi:nodetypes="cc" />
     </g>
     <g
-       id="g40239-0"
-       style="display:inline;enable-background:new"
-       transform="translate(2.8491211e-7,3.8085938e-6)">
-      <rect
-         y="122.3111"
-         x="20.622227"
-         height="352.71109"
-         width="992.71112"
-         id="rect32578-9-4-7"
-         style="opacity:0.9;color:#000000;fill:#ffe3e3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new" />
-      <text
-         xml:space="preserve"
-         style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
-         x="22.755556"
-         y="147.91112"
-         id="text40186-1"
-         sodipodi:linespacing="125%"><tspan
-           sodipodi:role="line"
+       inkscape:groupmode="layer"
+       id="layer49"
+       inkscape:label="Base#2">
+      <g
+         id="g40239-0"
+         style="display:inline;enable-background:new"
+         transform="translate(2.8491211e-7,3.8085938e-6)">
+        <rect
+           y="122.3111"
+           x="20.622227"
+           height="352.71109"
+           width="992.71112"
+           id="rect32578-9-4-7"
+           style="opacity:0.9;color:#000000;fill:#ffe3e3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new" />
+        <text
+           xml:space="preserve"
+           style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
            x="22.755556"
            y="147.91112"
-           id="tspan40200-3">This analysis outputs a set of precise conditions under which each pair of</tspan><tspan
-           id="tspan40322"
-           sodipodi:role="line"
-           x="22.755556"
-           y="182.91112">   operations commutes.</tspan><tspan
-           id="tspan40326"
-           sodipodi:role="line"
-           x="22.755556"
-           y="217.91112">These are the conditions for two calls to rename.  The first one is sort of the</tspan><tspan
-           id="tspan40330"
-           sodipodi:role="line"
-           x="22.755556"
-           y="252.91112">obvious case: they commute if both source files exist and all names are distinct.</tspan><tspan
-           id="tspan40334"
-           sodipodi:role="line"
-           x="22.755556"
-           y="287.91113">They <tspan
+           id="text40186-1"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             x="22.755556"
+             y="147.91112"
+             id="tspan40200-3">This analysis outputs a set of precise conditions under which each pair of</tspan><tspan
+             id="tspan40322"
+             sodipodi:role="line"
+             x="22.755556"
+             y="182.91112">   operations commutes.</tspan><tspan
+             id="tspan40326"
+             sodipodi:role="line"
+             x="22.755556"
+             y="217.91112">These are the conditions for two calls to rename.  The first one is sort of the</tspan><tspan
+             id="tspan40330"
+             sodipodi:role="line"
+             x="22.755556"
+             y="252.91112">obvious case: they commute if both source files exist and all names are distinct.</tspan><tspan
+             id="tspan40334"
+             sodipodi:role="line"
+             x="22.755556"
+             y="288.22372">They <tspan
    style="font-style:italic"
    id="tspan58886">also</tspan> commute if neither source file exists, this is a little less obvious, but</tspan><tspan
-           sodipodi:role="line"
-           x="22.755556"
-           y="322.91113"
-           id="tspan58890">makes sense in retrospect because both calls will simply return an error.</tspan><tspan
-           id="tspan40338"
-           sodipodi:role="line"
-           x="22.755556"
-           y="357.91113">There are also a <tspan
+             sodipodi:role="line"
+             x="22.755556"
+             y="323.22372"
+             id="tspan58890">makes sense in retrospect because both calls will simply return an error.</tspan><tspan
+             id="tspan40338"
+             sodipodi:role="line"
+             x="22.755556"
+             y="358.53635">There are also a <tspan
    style="font-style:italic"
    id="tspan59829">bunch</tspan> of other cases that we may not have found by hand,</tspan><tspan
-           sodipodi:role="line"
-           x="22.755556"
-           y="392.91113"
-           id="tspan58900">but Commuter can easily extract from our model.  In fact, the list Commuter</tspan><tspan
-           id="tspan40368"
-           sodipodi:role="line"
-           x="22.755556"
-           y="427.91113">produces is <tspan
+             sodipodi:role="line"
+             x="22.755556"
+             y="393.53635"
+             id="tspan58900">but Commuter can easily extract from our model.  In fact, the list Commuter</tspan><tspan
+             id="tspan40368"
+             sodipodi:role="line"
+             x="22.755556"
+             y="428.84894">produces is <tspan
    style="font-style:italic"
    id="tspan58902">complete</tspan>, and each of these conditions represents a whole class</tspan><tspan
-           sodipodi:role="line"
+             sodipodi:role="line"
+             x="22.755556"
+             y="463.84894"
+             id="tspan58906">of operations that can be implemented scalably.</tspan><tspan
+             id="tspan40344"
+             sodipodi:role="line"
+             x="22.755556"
+             y="498.84894" /></text>
+      </g>
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer50"
+       inkscape:label="SIM good">
+      <g
+         transform="translate(2.8491211e-7,3.8085938e-6)"
+         style="display:inline;enable-background:new"
+         id="g9512">
+        <rect
+           style="opacity:0.9;color:#000000;fill:#ffe3e3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new"
+           id="rect9514"
+           width="992.71112"
+           height="352.71109"
+           x="20.622227"
+           y="122.3111" />
+        <text
+           sodipodi:linespacing="125%"
+           id="text9516"
+           y="147.91112"
            x="22.755556"
-           y="462.91113"
-           id="tspan58906">of operations that can be implemented scalably.</tspan><tspan
-           id="tspan40344"
-           sodipodi:role="line"
-           x="22.755556"
-           y="497.91113" /></text>
+           style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+           xml:space="preserve"><tspan
+             y="147.91112"
+             x="22.755556"
+             sodipodi:role="line"
+             id="tspan9544">BTW, this really highlights the importance of having discriminating commutativity</tspan><tspan
+             y="182.91112"
+             x="22.755556"
+             sodipodi:role="line"
+             id="tspan9640">conditions, and, in particular, the state-sensitivity of SIM commutativity.</tspan><tspan
+             y="217.91112"
+             x="22.755556"
+             sodipodi:role="line"
+             id="tspan9642"><tspan
+   style="font-weight:bold"
+   id="tspan9670">If</tspan> we required rename to commute regardless of state, it would almost never</tspan><tspan
+             y="253.27156"
+             x="22.755556"
+             sodipodi:role="line"
+             id="tspan9644">commute.  In fact, STEP this is the only case that doesn't depend on state, so</tspan><tspan
+             y="288.27158"
+             x="22.755556"
+             sodipodi:role="line"
+             id="tspan9646">if we were to use a standard definition of commutativity, it would tell us that</tspan><tspan
+             y="323.27158"
+             x="22.755556"
+             sodipodi:role="line"
+             id="tspan9648">two renames commute only if they're both self-renames.</tspan><tspan
+             y="358.27158"
+             x="22.755556"
+             sodipodi:role="line"
+             id="tspan9650"><tspan
+   style="font-weight:bold"
+   id="tspan9678">I don't</tspan> know about you, but I think that's the only *un*interesting case here. STEP</tspan><tspan
+             y="393.63202"
+             x="22.755556"
+             sodipodi:role="line"
+             id="tspan9652"><tspan
+   style="font-weight:bold"
+   id="tspan9674">Having</tspan> all of these commutative cases opens up more opportunities to scale, </tspan><tspan
+             y="428.99246"
+             x="22.755556"
+             sodipodi:role="line"
+             id="tspan9654">which means we'll capture more of the operations that applications do, </tspan><tspan
+             y="463.99246"
+             x="22.755556"
+             sodipodi:role="line"
+             id="tspan9664">which is, after all, the point.</tspan></text>
+      </g>
     </g>
   </g>
   <g
@@ -25411,11 +25529,11 @@
            id="tspan31794-8"
            y="659.59033"
            x="25"
-           sodipodi:role="line"> • One call is a self-rename of an existing file and a != c</tspan><tspan
+           sodipodi:role="line"> • One call is a self-rename of an existing file and a ≠ c</tspan><tspan
            id="tspan31798-2"
            y="694.59033"
            x="25"
-           sodipodi:role="line"> • a &amp; c are hard links to the same inode, a != c, and b == d</tspan></text>
+           sodipodi:role="line"> • a and c are hard links to the same inode, a ≠ c, and b = d</tspan></text>
       <use
          inkscape:label="listing"
          transform="translate(3.7499983e-7,-325.68889)"
@@ -25572,11 +25690,11 @@
            id="tspan40677"
            sodipodi:role="line"
            x="22.755556"
-           y="182.91112">concrete scalability tests; actual C code that puts the system in a specific state</tspan><tspan
+           y="182.91112">concrete scalability tests; actual C code that puts the system in the necessary</tspan><tspan
            id="tspan40679"
            sodipodi:role="line"
            x="22.755556"
-           y="217.91112">and invokes the two operations with specific arguments for which the</tspan><tspan
+           y="217.91112">state and invokes the two operations with specific arguments for which the</tspan><tspan
            sodipodi:role="line"
            x="22.755556"
            y="252.91112"
@@ -25801,11 +25919,11 @@
            id="tspan31794-8-0"
            y="659.59033"
            x="25"
-           sodipodi:role="line"> • One call is a self-rename of an existing file and a != c</tspan><tspan
+           sodipodi:role="line"> • One call is a self-rename of an existing file and a ≠ c</tspan><tspan
            id="tspan31798-2-1"
            y="694.59033"
            x="25"
-           sodipodi:role="line"> • a &amp; c are hard links to the same inode, a != c, and b == d</tspan></text>
+           sodipodi:role="line"> • a and c are hard links to the same inode, a ≠ c, and b == d</tspan></text>
       <use
          inkscape:label="listing"
          transform="translate(3.7499983e-7,-325.68889)"
@@ -26036,19 +26154,19 @@
            id="tspan56550">monitors every memory access to look for conflicts.  Since the rule says that</tspan><tspan
            sodipodi:role="line"
            x="22.755556"
-           y="252.91112"
+           y="253.22372"
            id="tspan56552">it is possible to make <tspan
    style="font-style:italic"
    id="tspan59766">all</tspan> of these test cases conflict-free, any conflict that</tspan><tspan
            sodipodi:role="line"
            x="22.755556"
-           y="287.91113"
+           y="288.53635"
            id="tspan56554">Commuter <tspan
    style="font-style:italic"
    id="tspan58916">does</tspan> find represents an opportunity for the developer to improve</tspan><tspan
            sodipodi:role="line"
            x="22.755556"
-           y="322.91113"
+           y="323.53635"
            id="tspan56556">the scalability of their implementation.</tspan></text>
     </g>
   </g>

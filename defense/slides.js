@@ -350,6 +350,23 @@ var transitions = {
                           bh.pos[0], bh.pos[1])).ease()).faster();
     },
 
+    "Commutativity conditions/SIM good" : function(subslide) {
+        var _ = this.finder;
+        var sbullets = $(">tspan", _("?conds")[0]).slice(1);
+        sbullets.splice(3, 1);
+        return [
+            Action.translateRel(_("?slide"), Inter.seg(0, -150)).ease().faster(),
+            Action.fadeTo(sbullets, 0.25).quick(),
+            Action.fadeTo(sbullets, 1).quick()
+        ];
+    },
+
+    "Commutativity conditions/EXIT" : function() {
+        var _ = this.finder;
+        return Action.translateRel(
+            _("?slide"), Inter.seg(0, 150)).ease().faster();
+    },
+
     "Commutativity conditions+Test cases" :
     function(a, b) {
         var _a = a.finder, _b = b.finder;
@@ -360,12 +377,13 @@ var transitions = {
             Action.unreveal(a[0]),
             Action.fadeOut(_b("?arrow-out")).scaleTo(0.5),
             Action.fade(_b("?arrow-in")).scaleTo(0.5),
+            // easeInOut is differentiable with the exit from the ease
+            // in the previous slide
             Action.translateAbs(
                 bh,
                 Inter.seg(bh.pos[0], bh.pos[1] + dist,
-                          bh.pos[0], bh.pos[1])).ease()).faster();
+                          bh.pos[0], bh.pos[1])).easeInOut()).faster();
     },
-
 
     "Test cases+Output: Conflicting cache lines" :
     function(a, b) {
