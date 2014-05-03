@@ -1114,15 +1114,17 @@ jQuery.fn.inklabel = function () {
  * be substituted with the current slide's title.
  *
  * The transitions dictionary maps from "<title>" (for slides without
- * sub-layers) or "<title>/<subtitle>" (for slides with sub-layers) to
- * transition generators.  A transition generator is a function that
- * returns an animation, or a (potentially nested) array of
- * animations.  Each of these animations will be used as a separate
- * step for that slide or sub-slide.  The transition generator is
- * called with "this" bound to the SVG wrapper of the SVG element
- * representing the slide.  If the transition generator is for a
- * sublayer, the transition generator will be passed the SVG wrapper
- * for the sublayer's SVG element as an argument.
+ * sub-layers) or "<title>/<subtitle>" or "@<title>" (for slides with
+ * sub-layers) to transition generators.  A transition generator is a
+ * function that returns an animation, or a (potentially nested) array
+ * of animations.  "@<title>" transition functions must return an
+ * object mapping sub-slide titles to animations.  Each of these
+ * animations will be used as a separate step for that slide or
+ * sub-slide.  The transition generator is called with "this" bound to
+ * the SVG wrapper of the SVG element representing the slide.  If the
+ * transition generator is for a sublayer, the transition generator
+ * will be passed the SVG wrapper for the sublayer's SVG element as an
+ * argument.
  *
  * The transitions dictionary can also contain inter-slide transitions
  * named "<title1>+<title2>".  These functions will be passed SVG
@@ -1961,16 +1963,12 @@ Slide.prototype._prepare = function() {
     // animation.
     var steps = [];
     var wrappedSlide = svgWrap(this.elt);
-    var addSteps = function(reveal, transTitle, args) {
-        var transition = othis._transitions[transTitle];
-        var tsteps = [];
-        if (transition) {
-            tsteps = transition.apply(wrappedSlide, args);
-            if ($.isArray(tsteps))
-                tsteps = flatten(tsteps);
-            else
-                tsteps = [tsteps];
-        }
+    var addSteps = function(reveal, tsteps) {
+        if ($.isArray(tsteps))
+            tsteps = flatten(tsteps);
+        else
+            tsteps = [tsteps];
+
         if (tsteps.length) {
             // Merge the reveal step with the first transition step
             tsteps[0] = reveal.seq(tsteps[0]);
@@ -1978,6 +1976,7 @@ Slide.prototype._prepare = function() {
             // We always need at least the one reveal step
             tsteps = [reveal];
         }
+
         // Append all of the transition steps
         for (var i = 0; i < tsteps.length; i++)
             steps.push(tsteps[i]);
@@ -1998,9 +1997,21 @@ Slide.prototype._prepare = function() {
             return new Anim(noteRevealStep, 0);
         }
 
+        // If there's a slide-level transition function, get sub-steps
+        // from that
+        var subSteps = null;
+        if (("@" + this.title) in this._transitions) {
+            subSteps = this._transitions["@" + this.title].apply(wrappedSlide);
+            if (typeof subSteps !== "object") {
+                console.error("Slide " + this.title + " has sub-slides, but transition function did not return an object");
+                subSteps = null;
+            }
+        }
+
         var prevNotes = [];
         $(this.elt).children(":inklayer").each(function() {
-            if ($(this).inklabel()[0] === ":")
+            var subTitle = $(this).inklabel();
+            if (subTitle[0] === ":")
                 return;
             var reveal = Action.reveal([this]);
             var notes = $(".notes", this);
@@ -2008,19 +2019,28 @@ Slide.prototype._prepare = function() {
                 reveal = Anim.seq(noteReveal(notes), reveal);
             if (prevNotes.length)
                 reveal = Anim.seq(noteReveal(prevNotes).reverse(), reveal);
-            addSteps(reveal,
-                     othis.title + "/" + $(this).inklabel(),
-                     [svgWrap(this)]);
+
+            var tsteps, tfunc;
+            if (subSteps !== null)
+                tsteps = subSteps[subTitle] || [];
+            else if (tfunc = othis._transitions[othis.title + "/" + subTitle])
+                tsteps = tfunc.apply(wrappedSlide, svgWrap(this));
+            else
+                tsteps = [];
+
+            addSteps(reveal, tsteps);
             prevNotes = notes;
         });
     } else {
-        addSteps(Anim.none, this.title);
+        var tfunc = this._transitions[this.title];
+        var tsteps = tfunc ? tfunc.apply(wrappedSlide) : [];
+        addSteps(Anim.none, tsteps);
     }
 
     // Is there an exit transition?
-    this._hasExit = (this.title + "/EXIT") in this._transitions;
+    this._hasExit = this._transitions[this.title + "/EXIT"];
     if (this._hasExit)
-        addSteps(Anim.none, this.title + "/EXIT");
+        addSteps(Anim.none, this._hasExit.apply(wrappedSlide));
 
     this.steps = steps;
     this.nsteps = steps.length;
