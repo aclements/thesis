@@ -27,9 +27,9 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="0.703125"
-     inkscape:cx="257.42222"
-     inkscape:cy="265.95556"
-     inkscape:current-layer="layer2"
+     inkscape:cx="479.95616"
+     inkscape:cy="361.24444"
+     inkscape:current-layer="g54564"
      inkscape:document-units="px"
      showgrid="false"
      inkscape:window-width="1342"
@@ -4134,7 +4134,7 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="x86 CPU trends"
-     style="display:inline">
+     style="display:none">
     <text
        xml:space="preserve"
        style="font-size:25px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#808080;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
@@ -8153,6 +8153,146 @@
            style="color:#ff0000;fill:none;stroke:currentColor;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter" />
       </g>
     </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer52"
+       inkscape:label="Clock">
+      <g
+         id="g22589"
+         transform="translate(-160.71111,83.911111)">
+        <rect
+           style="opacity:0.9;color:#000000;fill:#ffe3e3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new"
+           id="rect58571-1"
+           width="987.02216"
+           height="247.46664"
+           x="172.70953"
+           y="10.947089" />
+        <text
+           sodipodi:linespacing="125%"
+           id="text58573-9"
+           y="39.391518"
+           x="180.53175"
+           style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+           xml:space="preserve"><tspan
+             id="tspan58619-9"
+             y="39.391518"
+             x="180.53175"
+             sodipodi:role="line">Let's take a trip back, NEXT, to 2005, when we were on the cusp of a</tspan><tspan
+             y="74.391518"
+             x="180.53175"
+             sodipodi:role="line"
+             id="tspan22630">fundamental shift in software performance. NEXT. For decades, the industry</tspan><tspan
+             y="109.39152"
+             x="180.53175"
+             sodipodi:role="line"
+             id="tspan22632">had been riding the coat-tails of Moore's Law to higher and higher clock speeds.</tspan><tspan
+             y="144.70413"
+             x="180.53175"
+             sodipodi:role="line"
+             id="tspan22634">And software <tspan
+   style="font-style:italic"
+   id="tspan22636">got faster</tspan> because software performance naturally scales with</tspan><tspan
+             y="179.70413"
+             x="180.53175"
+             sodipodi:role="line"
+             id="tspan22638">clock speed.</tspan><tspan
+             y="214.70413"
+             x="180.53175"
+             sodipodi:role="line"
+             id="tspan22640">Unfortunately, with exponentially increasing clock speeds comes exponentially</tspan><tspan
+             y="249.70413"
+             x="180.53175"
+             sodipodi:role="line"
+             id="tspan22642">increasing power. NEXT.</tspan></text>
+      </g>
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer55"
+       inkscape:label="Power">
+      <g
+         style="display:inline;enable-background:new"
+         transform="translate(-160.71111,83.911111)"
+         id="g22646">
+        <rect
+           y="10.947089"
+           x="172.70953"
+           height="247.46664"
+           width="987.02216"
+           id="rect22648"
+           style="opacity:0.9;color:#000000;fill:#ffe3e3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new" />
+        <text
+           xml:space="preserve"
+           style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+           x="180.53175"
+           y="39.391518"
+           id="text22650"
+           sodipodi:linespacing="125%"><tspan
+             id="tspan22666"
+             sodipodi:role="line"
+             x="180.53175"
+             y="39.391518">And that means exponentially increasing heat. In 2005, we reached the</tspan><tspan
+             sodipodi:role="line"
+             x="180.53175"
+             y="74.704124"
+             id="tspan22709">breaking point. NEXT. In the end, <tspan
+   style="font-style:italic"
+   id="tspan22754">physics</tspan> won the megahertz wars.</tspan><tspan
+             sodipodi:role="line"
+             x="180.53175"
+             y="109.70412"
+             id="tspan22711">We could no longer make CPUs faster, but we're still doubling the number of</tspan><tspan
+             sodipodi:role="line"
+             x="180.53175"
+             y="144.70413"
+             id="tspan22713">transistors every 18 months, so what do we do with all those transistors? NEXT</tspan></text>
+      </g>
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer56"
+       inkscape:label="Cores"
+       style="display:inline">
+      <g
+         id="g22716"
+         transform="translate(-160.71111,83.911111)"
+         style="display:inline;enable-background:new">
+        <rect
+           style="opacity:0.9;color:#000000;fill:#ffe3e3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new"
+           id="rect22718"
+           width="987.02216"
+           height="247.46664"
+           x="172.70953"
+           y="10.947089" />
+        <text
+           sodipodi:linespacing="125%"
+           id="text22720"
+           y="39.391518"
+           x="180.53175"
+           style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+           xml:space="preserve"><tspan
+             id="tspan22728"
+             y="39.391518"
+             x="180.53175"
+             sodipodi:role="line">We put more CPUs on the same chip. The *total* number of cycles per second</tspan><tspan
+             y="74.391518"
+             x="180.53175"
+             sodipodi:role="line"
+             id="tspan22746">is still growing exponentially, NEXT</tspan><tspan
+             y="109.39152"
+             x="180.53175"
+             sodipodi:role="line"
+             id="tspan22748">but now software has to be increasingly parallel to take advantage of it.</tspan><tspan
+             y="144.39151"
+             x="180.53175"
+             sodipodi:role="line"
+             id="tspan22750">In many ways, this was nothing new -- we've had parallel machines for a long</tspan><tspan
+             y="179.39151"
+             x="180.53175"
+             sodipodi:role="line"
+             id="tspan22752">time -- but now parallelism is pervasive and inescapable.</tspan></text>
+      </g>
+    </g>
   </g>
   <g
      inkscape:groupmode="layer"
@@ -8178,6 +8318,37 @@
            x="25"
            y="178.99036"
            id="tspan24196">but scaling with parallelism is notoriously hard</tspan></text>
+      <g
+         id="g22716-6"
+         transform="translate(-159.95337,179.6307)"
+         style="display:inline;enable-background:new">
+        <rect
+           style="opacity:0.9;color:#000000;fill:#ffe3e3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new"
+           id="rect22718-8"
+           width="987.02216"
+           height="108.08886"
+           x="172.70953"
+           y="10.947089" />
+        <text
+           sodipodi:linespacing="125%"
+           id="text22720-2"
+           y="39.391518"
+           x="180.53175"
+           style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+           xml:space="preserve"><tspan
+             y="39.391518"
+             x="180.53175"
+             sodipodi:role="line"
+             id="tspan22752-4">Now, &lt;...&gt;.  But while software performance naturally scaled with clock speed,</tspan><tspan
+             y="74.391518"
+             x="180.53175"
+             sodipodi:role="line"
+             id="tspan22809">scaling with parallelism is notoriously hard.</tspan><tspan
+             y="109.39152"
+             x="180.53175"
+             sodipodi:role="line"
+             id="tspan22811">Even highly parallel software tends to scale something NEXT like this.</tspan></text>
+      </g>
     </g>
     <g
        inkscape:groupmode="layer"
@@ -8914,6 +9085,53 @@
              style="color:#ff0000;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter" />
         </g>
       </g>
+      <g
+         id="g22716-6-7"
+         transform="translate(-159.95337,179.6307)"
+         style="display:inline;enable-background:new">
+        <rect
+           style="opacity:0.9;color:#000000;fill:#ffe3e3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new"
+           id="rect22718-8-9"
+           width="987.02216"
+           height="248.88885"
+           x="172.70953"
+           y="10.947089" />
+        <text
+           sodipodi:linespacing="125%"
+           id="text22720-2-4"
+           y="39.391518"
+           x="180.53175"
+           style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+           xml:space="preserve"><tspan
+             y="39.391518"
+             x="180.53175"
+             sodipodi:role="line"
+             id="tspan22811-8">This is the Exim mail server going from 1 to 48 cores. </tspan><tspan
+             y="74.391518"
+             x="180.53175"
+             sodipodi:role="line"
+             id="tspan22851">This application has lots of natural parallelism because each message it delivers</tspan><tspan
+             y="109.39152"
+             x="180.53175"
+             sodipodi:role="line"
+             id="tspan22853">is independent.</tspan><tspan
+             y="144.39151"
+             x="180.53175"
+             sodipodi:role="line"
+             id="tspan22855">Yet above 24 cores, not only does it no longer take advantage of increasing</tspan><tspan
+             y="179.39151"
+             x="180.53175"
+             sodipodi:role="line"
+             id="tspan22857">parallelism, it's performance gets *worse*.</tspan><tspan
+             y="214.39151"
+             x="180.53175"
+             sodipodi:role="line"
+             id="tspan22859">This particular problem is especially insidious because it's not even really</tspan><tspan
+             y="249.39151"
+             x="180.53175"
+             sodipodi:role="line"
+             id="tspan22863">Exim's fault. Exim's doing perfectly reasonable things. NEXT This &lt;...&gt;</tspan></text>
+      </g>
     </g>
     <g
        inkscape:groupmode="layer"
@@ -8991,9 +9209,89 @@
          x="25"
          y="519.83484"
          id="tspan27210"> • Diverse and unknown workloads</tspan></text>
+    <g
+       id="g22716-6-7-6"
+       transform="translate(-159.95337,84.341811)"
+       style="display:inline;enable-background:new">
+      <rect
+         style="opacity:0.9;color:#000000;fill:#ffe3e3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new"
+         id="rect22718-8-9-6"
+         width="987.02216"
+         height="85.33329"
+         x="172.70953"
+         y="10.947089" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text22720-2-4-2"
+         y="39.391518"
+         x="180.53175"
+         style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+         xml:space="preserve"><tspan
+           y="39.391518"
+           x="180.53175"
+           sodipodi:role="line"
+           id="tspan22863-6">This is a pretty common pattern. &lt;Many...&gt;</tspan><tspan
+           y="74.391518"
+           x="180.53175"
+           sodipodi:role="line"
+           id="tspan22939">But scalability is a leaky abstraction: &lt;If...&gt;</tspan></text>
+    </g>
+    <g
+       style="display:inline;enable-background:new"
+       transform="translate(-159.95337,512.4307)"
+       id="g22941">
+      <rect
+         y="10.947089"
+         x="172.70953"
+         height="244.62218"
+         width="987.02216"
+         id="rect22943"
+         style="opacity:0.9;color:#000000;fill:#ffe3e3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new" />
+      <text
+         xml:space="preserve"
+         style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+         x="180.53175"
+         y="39.391518"
+         id="text22945"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan22949"
+           sodipodi:role="line"
+           x="180.53175"
+           y="39.391518">At the same time, scaling an OS kernel is a particularly hard problem.</tspan><tspan
+           sodipodi:role="line"
+           x="180.53175"
+           y="74.391518"
+           id="tspan22953">The kernel is effectively the most parallel program running on a computer</tspan><tspan
+           sodipodi:role="line"
+           x="180.53175"
+           y="109.39152"
+           id="tspan22955">because it has at least as many threads as all applications combined.</tspan><tspan
+           sodipodi:role="line"
+           x="180.53175"
+           y="144.39151"
+           id="tspan22957"><tspan
+   style="font-weight:bold"
+   id="tspan22965">But</tspan> it also has no idea what those threads are going to have to do.</tspan><tspan
+           sodipodi:role="line"
+           x="180.53175"
+           y="179.75197"
+           id="tspan22959">An application you can often parallelize using domain knowledge.</tspan><tspan
+           sodipodi:role="line"
+           x="180.53175"
+           y="214.75197"
+           id="tspan22961">Add some <tspan
+   style="font-weight:bold"
+   id="tspan22967">sharding</tspan> here, some <tspan
+   style="font-weight:bold"
+   id="tspan22969">streaming</tspan> there.</tspan><tspan
+           sodipodi:role="line"
+           x="180.53175"
+           y="250.11241"
+           id="tspan22963">But a kernel doesn't have that luxury.</tspan></text>
+    </g>
   </g>
   <g
-     style="display:none"
+     style="display:inline"
      inkscape:label="Current approach to scalable software development"
      id="g54562"
      inkscape:groupmode="layer">
@@ -9273,11 +9571,11 @@
            id="tspan54652"
            y="126.57777"
            x="204.80002"
-           sodipodi:role="line">We've been working on multicore kernel scalability for a while</tspan><tspan
+           sodipodi:role="line">This is why we've spent years on kernel scalability just in PDOS.</tspan><tspan
            id="tspan54654"
            y="161.57776"
            x="204.80002"
-           sodipodi:role="line">now.  Problems and solutions have changed, until recently, we</tspan><tspan
+           sodipodi:role="line">Problems and solutions have changed, until recently, we</tspan><tspan
            y="196.57776"
            x="204.80002"
            sodipodi:role="line"
@@ -9289,7 +9587,7 @@
            y="266.57776"
            x="204.80002"
            sodipodi:role="line"
-           id="tspan69048">scalable systems does.</tspan></text>
+           id="tspan69048">scalable systems does, kernels or otherwise.</tspan></text>
     </g>
     <g
        style="display:none"

@@ -104,7 +104,7 @@ function sweepLeftToRight(obj, fadeFrac) {
 
 var transitions = {
     // XXX "Cores are the new hertz"
-    "x86 CPU trends" : function() {
+    "@x86 CPU trends" : function() {
         var _ = this.finder;
 
         // Find the plot
@@ -152,35 +152,40 @@ var transitions = {
         // Find all the other stuff
         var chartjunk = $(plot).children().not(layers).not(xticsG);
 
-        return [
-            Anim.none,
-            // Show 2005 tic
-            Anim.par(
-                Action.fade(x2005), Action.fade(xborder),
-                Action.translateRel(xtics, Inter.seg(-160, -10, -160, 0)).
-                    easeOutQuad(),
-                Action.translateRel(xborder, Inter.seg(0, -10, 0, 0)).
-                    easeOutQuad()
-            ).quick(),
-            // Show other tics, chart junk, and reveal clock speed
-            Anim.par(
-                Action.translateRel(xtics, Inter.seg(0, 0, 160, 0)).ease(),
-                Action.fade(xothertics),
-                Action.fade(_('?sources')),
-                Action.fade(chartjunk),
-                revealLayers(1, 0, 0.63, 0)
-            ),
-            // Reveal power
-            revealLayers(2, 0, 0.63, 1),
-            // Finish reveal of clock and power
-            Anim.par(
-                revealLayers(1, 0.63, 1),
-                revealLayers(2, 0.63, 1)),
-            // Reveal cores
-            revealLayers(3, 0, 1, 2),
-            // Reveal total cycles/sec
-            revealLayers(0, 0, 1, 3),
-        ];
+        return {
+            'Clock': [
+                Anim.none,
+                // Show 2005 tic
+                Anim.par(
+                    Action.fade(x2005), Action.fade(xborder),
+                    Action.translateRel(xtics, Inter.seg(-160, -10, -160, 0)).
+                        easeOutQuad(),
+                    Action.translateRel(xborder, Inter.seg(0, -10, 0, 0)).
+                        easeOutQuad()
+                ).quick(),
+                // Show other tics, chart junk, and reveal clock speed
+                Anim.par(
+                    Action.translateRel(xtics, Inter.seg(0, 0, 160, 0)).ease(),
+                    Action.fade(xothertics),
+                    Action.fade(_('?sources')),
+                    Action.fade(chartjunk),
+                    revealLayers(1, 0, 0.63, 0)
+                )],
+            'Power': [
+                // Reveal power
+                revealLayers(2, 0, 0.63, 1),
+                // Finish reveal of clock and power
+                Anim.par(
+                    revealLayers(1, 0.63, 1),
+                    revealLayers(2, 0.63, 1)),
+            ],
+            'Cores': [
+                // Reveal cores
+                revealLayers(3, 0, 1, 2),
+                // Reveal total cycles/sec
+                revealLayers(0, 0, 1, 3),
+            ]
+        };
     },
 
     "Current approach to scalable software development/Papers" : function() {
