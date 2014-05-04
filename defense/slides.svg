@@ -27,9 +27,9 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="0.703125"
-     inkscape:cx="479.95616"
-     inkscape:cy="361.24444"
-     inkscape:current-layer="g54564"
+     inkscape:cx="604.86163"
+     inkscape:cy="403.91111"
+     inkscape:current-layer="layer19"
      inkscape:document-units="px"
      showgrid="false"
      inkscape:window-width="1342"
@@ -9291,7 +9291,7 @@
     </g>
   </g>
   <g
-     style="display:inline"
+     style="display:none"
      inkscape:label="Current approach to scalable software development"
      id="g54562"
      inkscape:groupmode="layer">
@@ -11062,7 +11062,7 @@
   <g
      inkscape:groupmode="layer"
      id="layer19"
-     inkscape:label="XXX Why interfaces matter"
+     inkscape:label=":XXX Why interfaces matter"
      style="display:none" />
   <g
      style="display:none"
@@ -19686,46 +19686,52 @@
              y="147.91112"
              x="22.755556"
              sodipodi:role="line"
-             id="tspan9544">BTW, this really highlights the importance of having discriminating commutativity</tspan><tspan
+             id="tspan9544">BTW, this really highlights the importance of having <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan23204">discriminating</tspan> commutativity</tspan><tspan
              y="182.91112"
              x="22.755556"
              sodipodi:role="line"
              id="tspan9640">conditions, and, in particular, the state-sensitivity of SIM commutativity.</tspan><tspan
-             y="217.91112"
+             y="217.93909"
              x="22.755556"
              sodipodi:role="line"
-             id="tspan9642"><tspan
-   style="font-weight:bold"
-   id="tspan9670">If</tspan> we required rename to commute regardless of state, it would almost never</tspan><tspan
-             y="253.27156"
+             id="tspan9642">If we required rename to commute <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan23210">regardless of state</tspan>, it would almost never</tspan><tspan
+             y="252.93909"
              x="22.755556"
              sodipodi:role="line"
              id="tspan9644">commute.  In fact, STEP this is the only case that doesn't depend on state, so</tspan><tspan
-             y="288.27158"
+             y="287.93909"
              x="22.755556"
              sodipodi:role="line"
              id="tspan9646">if we were to use a standard definition of commutativity, it would tell us that</tspan><tspan
-             y="323.27158"
+             y="322.96704"
              x="22.755556"
              sodipodi:role="line"
-             id="tspan9648">two renames commute only if they're both self-renames.</tspan><tspan
-             y="358.27158"
+             id="tspan9648">two renames commute only if they're <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan23212">both self-renames</tspan>.</tspan><tspan
+             y="357.995"
              x="22.755556"
              sodipodi:role="line"
-             id="tspan9650"><tspan
-   style="font-weight:bold"
-   id="tspan9678">I don't</tspan> know about you, but I think that's the only *un*interesting case here. STEP</tspan><tspan
-             y="393.63202"
+             id="tspan9650">I don't know about you, but I think that's the <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan23216">only uninteresting</tspan> case here. STEP</tspan><tspan
+             y="393.02298"
              x="22.755556"
              sodipodi:role="line"
-             id="tspan9652"><tspan
-   style="font-weight:bold"
-   id="tspan9674">Having</tspan> all of these commutative cases opens up more opportunities to scale, </tspan><tspan
-             y="428.99246"
+             id="tspan9652">Having all of these commutative cases opens up <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan23220">more opportunities to scale</tspan>, </tspan><tspan
+             y="428.05093"
              x="22.755556"
              sodipodi:role="line"
-             id="tspan9654">which means we'll capture more of the operations that applications do, </tspan><tspan
-             y="463.99246"
+             id="tspan9654">which means we'll capture more of the <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan23222">operations that applications do</tspan>, </tspan><tspan
+             y="463.05093"
              x="22.755556"
              sodipodi:role="line"
              id="tspan9664">which is, after all, the point.</tspan></text>
@@ -20086,11 +20092,15 @@
            sodipodi:role="line"
            x="22.755556"
            y="392.91113"
-           id="tspan9694">ways to satisfy each condition.</tspan></text>
+           id="tspan9694">ways to satisfy each condition.</tspan><tspan
+           sodipodi:role="line"
+           x="22.755556"
+           y="427.91113"
+           id="tspan23258">rename_rename_p92_0</tspan></text>
     </g>
   </g>
   <g
-     style="display:none"
+     style="display:inline"
      inkscape:label="Output: Conflicting cache lines"
      id="layer118"
      inkscape:groupmode="layer">
@@ -20509,6 +20519,56 @@
          id="path41737"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="cc" />
+      <text
+         xml:space="preserve"
+         style="font-size:22px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Source Code Pro;-inkscape-font-specification:Source Code Pro Light"
+         x="362.17334"
+         y="1248.7111"
+         id="text23224"
+         sodipodi:linespacing="125%"><tspan
+           sodipodi:role="line"
+           id="tspan23226"
+           x="362.17334"
+           y="1248.7111">d_entry.d_lock</tspan><tspan
+           sodipodi:role="line"
+           x="362.17334"
+           y="1276.2111"
+           id="tspan23228">inode_cache</tspan><tspan
+           sodipodi:role="line"
+           x="362.17334"
+           y="1303.7455"
+           id="tspan23230"
+           style="font-family:Open Sans;-inkscape-font-specification:Open Sans">+17 more conflicts</tspan></text>
+      <g
+         inkscape:label="arrow-in"
+         id="g23260"
+         transform="translate(0,588.8)">
+        <rect
+           style="color:#000000;fill:#eeeeec;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.99922228;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new"
+           id="rect23262"
+           width="142.41719"
+           height="21.118923"
+           x="328.03961"
+           y="407.97266" />
+        <path
+           sodipodi:type="star"
+           style="color:#000000;fill:#eeeeec;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.99922228;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new"
+           id="path23264"
+           sodipodi:sides="3"
+           sodipodi:cx="372.09531"
+           sodipodi:cy="441.15952"
+           sodipodi:r1="28.337578"
+           sodipodi:r2="14.168788"
+           sodipodi:arg1="-0.52359878"
+           sodipodi:arg2="0.52359878"
+           inkscape:flatsided="false"
+           inkscape:rounded="0"
+           inkscape:randomized="0"
+           d="m 396.63637,426.99073 -12.27053,21.25318 -12.27053,21.25318 -12.27053,-21.25318 -12.27054,-21.25318 24.54107,0 z"
+           inkscape:transform-center-y="5.073071"
+           transform="matrix(4.8110272,0,0,0.71609063,-1394.9352,119.21534)"
+           inkscape:transform-center-x="6.6568346e-05" />
+      </g>
     </g>
     <g
        id="g40239-0-0-6"
@@ -20517,7 +20577,7 @@
       <rect
          y="122.3111"
          x="20.622227"
-         height="216.17778"
+         height="248.8889"
          width="992.71112"
          id="rect32578-9-4-7-7-7"
          style="opacity:0.9;color:#000000;fill:#ffe3e3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new" />
@@ -20534,28 +20594,40 @@
            id="tspan56546">The final stage of Commuter uses these tests to determine whether a</tspan><tspan
            sodipodi:role="line"
            x="22.755556"
-           y="182.91112"
-           id="tspan56548">particular implementation scales. It runs the tests on the implementation and</tspan><tspan
+           y="182.93909"
+           id="tspan56548"><tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan23248">particular implementation</tspan> is CF. It runs the tests on the implementation and</tspan><tspan
            sodipodi:role="line"
            x="22.755556"
-           y="217.91112"
-           id="tspan56550">monitors every memory access to look for conflicts.  Since the rule says that</tspan><tspan
+           y="217.93909"
+           id="tspan56550">monitors every memory access to look for conflicts.</tspan><tspan
            sodipodi:role="line"
            x="22.755556"
-           y="253.22372"
-           id="tspan56552">it is possible to make <tspan
+           y="252.96704"
+           id="tspan23236"><tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan23250">For this test</tspan>, Commuter tells us that the renames conflict on &lt;...&gt;</tspan><tspan
+           sodipodi:role="line"
+           x="22.755556"
+           y="287.995"
+           id="tspan56552">Since the rule says that it is <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan23254">possible to make </tspan><tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan59766">all</tspan> of these test cases conflict-free,</tspan><tspan
+           sodipodi:role="line"
+           x="22.755556"
+           y="323.30762"
+           id="tspan56554">any conflict that Commuter <tspan
    style="font-style:italic"
-   id="tspan59766">all</tspan> of these test cases conflict-free, any conflict that</tspan><tspan
+   id="tspan58916">does</tspan> find represents an <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan23252">opportunity</tspan> for the</tspan><tspan
            sodipodi:role="line"
            x="22.755556"
-           y="288.53635"
-           id="tspan56554">Commuter <tspan
-   style="font-style:italic"
-   id="tspan58916">does</tspan> find represents an opportunity for the developer to improve</tspan><tspan
-           sodipodi:role="line"
-           x="22.755556"
-           y="323.53635"
-           id="tspan56556">the scalability of their implementation.</tspan></text>
+           y="358.30762"
+           id="tspan56556">developer to improve the scalability of their implementation.</tspan></text>
     </g>
   </g>
   <g
@@ -20599,7 +20671,7 @@
        inkscape:groupmode="layer"
        id="layer40"
        inkscape:label="Heat"
-       style="display:inline">
+       style="display:none">
       <text
          xml:space="preserve"
          style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:end;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:end;fill:#888a85;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
@@ -22148,11 +22220,11 @@
            sodipodi:role="line"
            x="43.361977"
            y="357.92444"
-           id="tspan69017">And, in fact, Commuter found several bottlenecks that we've encountered in</tspan><tspan
+           id="tspan69017">And, in fact, Commuter systematically uncovered several bottlenecks that</tspan><tspan
            sodipodi:role="line"
            x="43.361977"
            y="392.92444"
-           id="tspan69019">past work.</tspan><tspan
+           id="tspan69019">we've encountered in past work.</tspan><tspan
            sodipodi:role="line"
            x="43.361977"
            y="427.92444"
@@ -22238,110 +22310,145 @@
          width="80.000031"
          id="rect32776"
          style="opacity:0.8;color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.99922228;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
-      <rect
-         style="opacity:0.9;color:#000000;fill:#ffe3e3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new"
-         id="rect32578-9-5"
-         width="1012.6222"
-         height="103.82223"
-         x="4.9777803"
-         y="658.48889" />
-      <text
-         xml:space="preserve"
-         style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
-         x="9.9555569"
-         y="685.75006"
-         id="text37551"
-         sodipodi:linespacing="125%"><tspan
-           sodipodi:role="line"
-           x="9.9555569"
-           y="685.75006"
-           id="tspan56673">The rule tells that it should be possible to make 100% of these tests conflict-free.</tspan><tspan
-           sodipodi:role="line"
-           x="9.9555569"
-           y="720.75006"
-           id="tspan56675">But it doesn't tell us that it's <tspan
-   style="font-style:italic"
-   id="tspan59060">practical</tspan> to do so. To find out how close we can get</tspan><tspan
-           sodipodi:role="line"
-           x="9.9555569"
-           y="755.75006"
-           id="tspan59058">to 100% <tspan
-   style="font-style:italic"
-   id="tspan59064">in practice</tspan>, we built a new scalable OS called sv6.</tspan></text>
-      <rect
-         style="opacity:0.9;color:#000000;fill:#ffe3e3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new"
-         id="rect32578-9-6-1"
-         width="985.22076"
-         height="485.02417"
-         x="28.839514"
-         y="89.789619" />
-      <text
-         xml:space="preserve"
-         style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
-         x="43.361977"
-         y="112.92445"
-         id="text61934-6"
-         sodipodi:linespacing="125%"><tspan
-           sodipodi:role="line"
-           x="43.361977"
+      <g
+         id="g22976">
+        <rect
+           y="89.789619"
+           x="28.839514"
+           height="421.02417"
+           width="985.22076"
+           id="rect32578-9-6-1"
+           style="opacity:0.9;color:#000000;fill:#ffe3e3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new" />
+        <text
+           sodipodi:linespacing="125%"
+           id="text61934-6"
            y="112.92445"
-           id="tspan58918-1">* In the top right corner are operations that create and remove names from</tspan><tspan
-           sodipodi:role="line"
            x="43.361977"
-           y="147.92445"
-           id="tspan59032">directories.  This corner is bright red because these all lock the entire</tspan><tspan
+           style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+           xml:space="preserve"><tspan
+             id="tspan58918-1"
+             y="112.92445"
+             x="43.361977"
+             sodipodi:role="line">* In the top right corner are operations that create and remove names from</tspan><tspan
+             id="tspan59032"
+             y="147.92445"
+             x="43.361977"
+             sodipodi:role="line">directories.  This corner is bright red because these all lock the entire</tspan><tspan
+             id="tspan59034"
+             y="182.92445"
+             x="43.361977"
+             sodipodi:role="line">containing directory, even though operations on different names generally commute.</tspan><tspan
+             id="tspan59020"
+             y="217.92445"
+             x="43.361977"
+             sodipodi:role="line">* In the middle, we have operations that take FDs.  These all temporarily bump</tspan><tspan
+             id="tspan59038"
+             y="252.92445"
+             x="43.361977"
+             sodipodi:role="line">up the reference count on the FD to make sure it doesn't disappear from</tspan><tspan
+             id="tspan59042"
+             y="287.92444"
+             x="43.361977"
+             sodipodi:role="line">under the operation, but as a result, we see conflicts on these reference counts.</tspan><tspan
+             id="tspan59024"
+             y="322.92444"
+             x="43.361977"
+             sodipodi:role="line">* At the bottom are address space operations.  These have a similar problem</tspan><tspan
+             id="tspan59044"
+             y="357.92444"
+             x="43.361977"
+             sodipodi:role="line">to the first group: they lock the entire address space, regardless of what part</tspan><tspan
+             id="tspan59046"
+             y="392.92444"
+             x="43.361977"
+             sodipodi:role="line">of the address space they're working on.</tspan><tspan
+             id="tspan59028"
+             y="427.92444"
+             x="43.361977"
+             sodipodi:role="line">* We have personally seen application-level scalability collapses caused by</tspan><tspan
+             id="tspan59054"
+             y="462.92444"
+             x="43.361977"
+             sodipodi:role="line">each of these.  And here they are in bright red, and we didn't have to run a</tspan><tspan
+             id="tspan59030"
+             y="497.92444"
+             x="43.361977"
+             sodipodi:role="line">single workload.  NEXT</tspan></text>
+      </g>
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer57"
+       inkscape:label="Unmask"
+       style="display:inline">
+      <text
+         xml:space="preserve"
+         style="font-size:32px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+         x="529.46228"
+         y="623.5578"
+         id="text32806-4"
+         sodipodi:linespacing="125%"><tspan
            sodipodi:role="line"
-           x="43.361977"
-           y="182.92445"
-           id="tspan59034">containing directory, even though operations on different names generally commute.</tspan><tspan
+           x="529.46228"
+           y="623.5578"
+           id="tspan32817-5" /><tspan
            sodipodi:role="line"
-           x="43.361977"
-           y="217.92445"
-           id="tspan59020">* In the middle, we have operations that take FDs.  These all temporarily bump</tspan><tspan
+           x="529.46228"
+           y="663.5578"
+           id="tspan23198" /><tspan
            sodipodi:role="line"
-           x="43.361977"
-           y="252.92445"
-           id="tspan59038">up the reference count on the FD to make sure it doesn't disappear from</tspan><tspan
-           sodipodi:role="line"
-           x="43.361977"
-           y="287.92444"
-           id="tspan59042">under the operation, but as a result, we see conflicts on these reference counts.</tspan><tspan
-           sodipodi:role="line"
-           x="43.361977"
-           y="322.92444"
-           id="tspan59024">* At the bottom are address space operations.  These have a similar problem</tspan><tspan
-           sodipodi:role="line"
-           x="43.361977"
-           y="357.92444"
-           id="tspan59044">to the first group: they lock the entire address space, regardless of what part</tspan><tspan
-           sodipodi:role="line"
-           x="43.361977"
-           y="392.92444"
-           id="tspan59046">of the address space they're working on.</tspan><tspan
-           sodipodi:role="line"
-           x="43.361977"
-           y="427.92444"
-           id="tspan59028">* We have personally seen application-level scalability collapses caused by</tspan><tspan
-           sodipodi:role="line"
-           x="43.361977"
-           y="462.92444"
-           id="tspan59054">each of these.  And here they are in bright red, and we didn't have to run a</tspan><tspan
-           sodipodi:role="line"
-           x="43.361977"
-           y="497.92444"
-           id="tspan69007">single workload.  NEXT</tspan><tspan
-           sodipodi:role="line"
-           x="43.361977"
-           y="532.92444"
-           id="tspan69011">Commuter also found many previously unknown bottenecks that may be</tspan><tspan
-           sodipodi:role="line"
-           x="43.361977"
-           y="567.92444"
-           id="tspan69013">triggered by future workloads or hardware</tspan><tspan
-           sodipodi:role="line"
-           x="43.361977"
-           y="602.92444"
-           id="tspan59030" /></text>
+           x="529.46228"
+           y="703.5578"
+           id="tspan23200">Many potential future bottlenecks</tspan></text>
+      <g
+         style="display:inline;enable-background:new"
+         id="g22995"
+         transform="translate(0,-106.66667)">
+        <rect
+           y="658.48889"
+           x="4.9777803"
+           height="210.48888"
+           width="1012.6222"
+           id="rect32578-9-5"
+           style="opacity:0.9;color:#000000;fill:#ffe3e3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new" />
+        <text
+           sodipodi:linespacing="125%"
+           id="text37551"
+           y="685.75006"
+           x="9.9555569"
+           style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+           xml:space="preserve"><tspan
+             id="tspan56673"
+             y="685.75006"
+             x="9.9555569"
+             sodipodi:role="line">Commuter also found many previously <tspan
+   style="font-style:italic"
+   id="tspan23202">unknown</tspan> bottenecks that may be</tspan><tspan
+             y="720.75006"
+             x="9.9555569"
+             sodipodi:role="line"
+             id="tspan23152">triggered by future workloads or hardware</tspan><tspan
+             y="755.75006"
+             x="9.9555569"
+             sodipodi:role="line"
+             id="tspan23154"></tspan><tspan
+             y="790.75006"
+             x="9.9555569"
+             sodipodi:role="line"
+             id="tspan23156">The rule tells that it should be possible to make 100% of these tests conflict-free.</tspan><tspan
+             id="tspan56675"
+             y="826.06268"
+             x="9.9555569"
+             sodipodi:role="line">But it doesn't tell us that it's <tspan
+   id="tspan59060"
+   style="font-style:italic">practical</tspan> to do so. To find out how close we can get</tspan><tspan
+             id="tspan59058"
+             y="861.37531"
+             x="9.9555569"
+             sodipodi:role="line">to 100% <tspan
+   id="tspan59064"
+   style="font-style:italic">in practice</tspan>, we built a new scalable OS called sv6.</tspan></text>
+      </g>
     </g>
   </g>
   <g
@@ -23433,7 +23540,7 @@
    id="tspan31258-6"
    style="font-size:28px;font-weight:bold">Zero</tspan> cache</tspan><tspan
            id="tspan31252-3"
-           y="527.54352"
+           y="527.90399"
            x="10.7618"
            sodipodi:role="line">lines shared</tspan></text>
       <g
@@ -23459,13 +23566,13 @@
              y="623.5578">13,664 total test cases</tspan><tspan
              sodipodi:role="line"
              x="529.46228"
-             y="663.5578"
+             y="663.58978"
              id="tspan32817-2"><tspan
    style="font-size:32px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
    id="tspan33916">99%</tspan> are conflict-free</tspan><tspan
              sodipodi:role="line"
              x="529.46228"
-             y="703.5578"
+             y="703.58978"
              id="tspan33932">Remaining 1% are mostly &quot;idempotent updates&quot;</tspan></text>
       </g>
       <text

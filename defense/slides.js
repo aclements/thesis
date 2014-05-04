@@ -401,6 +401,7 @@ var transitions = {
         return Anim.par(
             Action.unreveal(a[0]),
             Action.fadeOut(_b("?arrow-out")).scaleTo(0.5),
+            Action.fade(_b("?arrow-in")).scaleTo(0.5),
             Action.translateAbs(
                 bh,
                 Inter.seg(bh.pos[0], bh.pos[1] + dist,
@@ -408,9 +409,12 @@ var transitions = {
     },
 
     "Commuter finds non-scalable cases in Linux/Mask" : function(subslide) {
-        return [Action.fade(subslide).quick(),
-                Action.fadeOut(subslide).quick(),
-               ];
+        return Action.fade(subslide).quick();
+    },
+
+    "Commuter finds non-scalable cases in Linux/Unmask" : function(subslide) {
+        var mask = this.finder('?Mask');
+        return Action.fadeOut(mask).quick();
     },
 
     "Commutative operations can be made to scale/Mask" : function(subslide) {
