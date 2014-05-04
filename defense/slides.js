@@ -308,6 +308,16 @@ var transitions = {
     //     return fadeBy($("tspan", _("?props")[0]), getTspanY, 0.6).quick();
     // },
 
+    "Example: Reference counter/Start" : function() {
+        var _ = this.finder;
+        return [Anim.none, Action.fade(_("?r1")).quick()];
+    },
+
+    "Example: Reference counter/r1a" : function() {
+        var _ = this.finder;
+        return [Anim.none, Action.fade(_("?r2")).quick()];
+    },
+
     "Example: Reference counter/R2p" : function() {
         var _ = this.finder;
         return [Anim.seq(

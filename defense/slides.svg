@@ -27,9 +27,9 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="0.703125"
-     inkscape:cx="604.86163"
-     inkscape:cy="403.91111"
-     inkscape:current-layer="layer19"
+     inkscape:cx="324.26667"
+     inkscape:cy="388.26667"
+     inkscape:current-layer="layer1"
      inkscape:document-units="px"
      showgrid="false"
      inkscape:window-width="1342"
@@ -4035,7 +4035,7 @@
        style="color:#000000;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.70866144;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
   </g>
   <g
-     style="display:none"
+     style="display:inline"
      inkscape:groupmode="layer"
      inkscape:label="Title"
      id="layer1">
@@ -4084,7 +4084,7 @@
          y="490.41611"
          x="27.313477"
          sodipodi:role="line"
-         id="tspan8480">Thesis committee:</tspan><tspan
+         id="tspan8480">Thesis advisors:</tspan><tspan
          style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
          y="525.10352"
          x="27.313477"
@@ -13885,23 +13885,27 @@
            id="tspan66321"
            sodipodi:role="line">dec() → 0</tspan></text>
     </g>
-    <path
-       style="color:#000000;fill:none;stroke:#8ae234;stroke-width:4;stroke-miterlimit:4;stroke-opacity:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-       d="m 446.51436,340.6647 0,15.08494 -369.07831,0 0,-15.08494"
-       id="rect66336"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccc" />
-    <text
-       xml:space="preserve"
-       style="font-size:32px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#4e9a06;fill-opacity:1;stroke:none;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
-       x="264.15491"
-       y="385.91956"
-       id="text66339"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan66341"
+    <g
+       id="g23303"
+       inkscape:label="r1">
+      <path
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0"
+         id="rect66336"
+         d="m 446.51436,340.6647 0,15.08494 -369.07831,0 0,-15.08494"
+         style="color:#000000;fill:none;stroke:#8ae234;stroke-width:4;stroke-miterlimit:4;stroke-opacity:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text66339"
+         y="385.91956"
          x="264.15491"
-         y="385.91956">R1</tspan></text>
+         style="font-size:32px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#4e9a06;fill-opacity:1;stroke:none;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+         xml:space="preserve"><tspan
+           y="385.91956"
+           x="264.15491"
+           id="tspan66341"
+           sodipodi:role="line">R1</tspan></text>
+    </g>
     <rect
        style="color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:4;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect66467"
@@ -14007,12 +14011,13 @@
     <g
        inkscape:groupmode="layer"
        id="layer30"
-       inkscape:label="Blank">
+       inkscape:label="Start"
+       style="display:none">
       <rect
          style="opacity:0.9;color:#000000;fill:#ffe3e3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new"
          id="rect32578-9-0"
          width="998.39996"
-         height="145.06668"
+         height="216.1778"
          x="16.355555"
          y="85.333328" />
       <text
@@ -14025,24 +14030,33 @@
            y="115.79344"
            x="46.475483"
            id="tspan4127-2"
-           sodipodi:role="line">To make this more concrete, here's a trace for a simple reference counter</tspan><tspan
+           sodipodi:role="line">To make this more concrete, let's start with an example.</tspan><tspan
            y="150.79344"
            x="46.475483"
            sodipodi:role="line"
-           id="tspan68075">interface. It has the usual increment/dec ops and just to liven things up a bit</tspan><tspan
+           id="tspan68075">Here's a trace for a simple reference counter interface.</tspan><tspan
            y="185.79344"
            x="46.475483"
            sodipodi:role="line"
-           id="tspan68077">&lt;iszero&gt;. We'll apply the rule to these two regions. Who thinks the ops in R1</tspan><tspan
+           id="tspan68077">It has the usual increment/dec ops and just to liven things up a bit &lt;iszero&gt;.</tspan><tspan
            y="220.79344"
            x="46.475483"
            sodipodi:role="line"
-           id="tspan68079">commute? &lt;wave hands&gt;</tspan></text>
+           id="tspan23276">In this trace, the counter starts at 3 and there are 5 ops performed by 5 threads.</tspan><tspan
+           y="255.79344"
+           x="46.475483"
+           sodipodi:role="line"
+           id="tspan68079">NEXT Let's start by applying the rule to this region of the trace.</tspan><tspan
+           y="290.79346"
+           x="46.475483"
+           sodipodi:role="line"
+           id="tspan23310">First we have to ask if it's commutative.  Well, &lt;shuffle&gt;, so yes.</tspan></text>
     </g>
     <g
        inkscape:groupmode="layer"
        id="layer24"
-       inkscape:label="r1a">
+       inkscape:label="r1a"
+       style="display:none">
       <text
          xml:space="preserve"
          style="font-size:32px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
@@ -14081,7 +14095,7 @@
            sodipodi:role="line"
            x="33.675484"
            y="185.79344"
-           id="tspan68170">Who thinks the ops in the second region commute?</tspan></text>
+           id="tspan68170">STEP What about this region?</tspan></text>
     </g>
     <g
        inkscape:groupmode="layer"
@@ -14108,7 +14122,7 @@
          style="opacity:0.9;color:#000000;fill:#ffe3e3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new"
          id="rect68172"
          width="998.39996"
-         height="209.06668"
+         height="245.27057"
          x="16.355555"
          y="85.333328" />
       <text
@@ -14130,11 +14144,21 @@
            x="33.675484"
            sodipodi:role="line"
            id="tspan68199">a conflict-free implementation of this, but you'd be hard-pressed to find one.</tspan><tspan
-           y="220.79344"
+           y="220.82141"
+           x="33.675484"
+           sodipodi:role="line"
+           id="tspan23314">This is great example of something where you can <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan23320">suffer endlessly</tspan> trying to</tspan><tspan
+           y="255.82141"
+           x="33.675484"
+           sodipodi:role="line"
+           id="tspan23318">make the implementation just a little more scalable.</tspan><tspan
+           y="290.82141"
            x="33.675484"
            sodipodi:role="line"
            id="tspan68201">But the rule points us in a direction: If we can't make the implementation scale,</tspan><tspan
-           y="255.79344"
+           y="325.82141"
            x="33.675484"
            sodipodi:role="line"
            id="tspan68209">maybe we can change the interface. Make it more commutative. What if &lt;dec&gt;</tspan></text>
@@ -14143,7 +14167,7 @@
        inkscape:groupmode="layer"
        id="layer26"
        inkscape:label="R2p"
-       style="display:inline">
+       style="display:none">
       <rect
          y="85.333328"
          x="16.355555"
@@ -14166,7 +14190,8 @@
     <g
        inkscape:groupmode="layer"
        id="layer27"
-       inkscape:label="R2pa">
+       inkscape:label="R2pa"
+       style="display:none">
       <text
          xml:space="preserve"
          style="font-size:32px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
@@ -14205,7 +14230,8 @@
     <g
        inkscape:groupmode="layer"
        id="layer28"
-       inkscape:label="R3">
+       inkscape:label="R3"
+       style="display:none">
       <g
          style="display:inline;enable-background:new"
          id="g66505"
@@ -14255,7 +14281,8 @@
     <g
        inkscape:groupmode="layer"
        id="layer29"
-       inkscape:label="R3a">
+       inkscape:label="R3a"
+       style="display:none">
       <g
          style="display:inline;enable-background:new"
          id="g67978"
@@ -14340,7 +14367,8 @@
     <g
        inkscape:groupmode="layer"
        id="layer31"
-       inkscape:label="Notes">
+       inkscape:label="Notes"
+       style="display:none">
       <rect
          y="85.333328"
          x="16.355555"
@@ -20100,7 +20128,7 @@
     </g>
   </g>
   <g
-     style="display:inline"
+     style="display:none"
      inkscape:label="Output: Conflicting cache lines"
      id="layer118"
      inkscape:groupmode="layer">
