@@ -92,7 +92,8 @@ function sweepLeftToRight(obj, fadeFrac) {
     var mask = obj.ownerDocument.createElementNS(svgNS, 'mask');
     mask.id = genID();
     var rWidth = bbox.width * (1+fadeFrac);
-    var rect = createRect(mask, -rWidth, bbox.y-10, rWidth, bbox.height+20);
+    var rect = createRect(mask, bbox.x-rWidth, bbox.y-10,
+                          rWidth, bbox.height+20);
     var gradient = createLinearGradient(obj.parentNode, [[1-fadeFrac, '#fff'],
                                                          [1, '#000']]);
     rect.setAttribute('fill', 'url(#' + gradient.id + ')');
@@ -169,15 +170,15 @@ var transitions = {
                     Action.fade(xothertics),
                     Action.fade(_('?sources')),
                     Action.fade(chartjunk),
-                    revealLayers(1, 0, 0.63, 0)
+                    revealLayers(1, 0, 0.6, 0)
                 )],
             'Power': [
                 // Reveal power
-                revealLayers(2, 0, 0.63, 1),
+                revealLayers(2, 0, 0.6, 1),
                 // Finish reveal of clock and power
                 Anim.par(
-                    revealLayers(1, 0.63, 1),
-                    revealLayers(2, 0.63, 1)),
+                    revealLayers(1, 0.6, 1),
+                    revealLayers(2, 0.6, 1)),
             ],
             'Cores': [
                 // Reveal cores
