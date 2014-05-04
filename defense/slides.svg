@@ -27,11 +27,11 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="0.703125"
-     inkscape:cx="324.26667"
-     inkscape:cy="388.26667"
-     inkscape:current-layer="layer1"
+     inkscape:cx="574.11993"
+     inkscape:cy="298.11076"
+     inkscape:current-layer="g23699-0"
      inkscape:document-units="px"
-     showgrid="false"
+     showgrid="true"
      inkscape:window-width="1342"
      inkscape:window-height="746"
      inkscape:window-x="0"
@@ -45,7 +45,7 @@
      inkscape:snap-grids="true"
      inkscape:object-paths="false"
      inkscape:snap-nodes="true"
-     inkscape:snap-bbox="false"
+     inkscape:snap-bbox="true"
      inkscape:snap-midpoints="false"
      inkscape:snap-smooth-nodes="false"
      inkscape:object-nodes="false"
@@ -4035,7 +4035,7 @@
        style="color:#000000;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.70866144;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
   </g>
   <g
-     style="display:inline"
+     style="display:none"
      inkscape:groupmode="layer"
      inkscape:label="Title"
      id="layer1">
@@ -14118,50 +14118,53 @@
    id="tspan66558">✗</tspan> R2 does <tspan
    style="font-size:32px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
    id="tspan66361">not</tspan> commute because dec() returns counter value</tspan></text>
-      <rect
-         style="opacity:0.9;color:#000000;fill:#ffe3e3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new"
-         id="rect68172"
-         width="998.39996"
-         height="245.27057"
-         x="16.355555"
-         y="85.333328" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text68174"
-         y="115.79344"
-         x="33.675484"
-         style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
-         xml:space="preserve"><tspan
-           id="tspan68182"
+      <g
+         id="g23699">
+        <rect
+           y="85.333328"
+           x="16.355555"
+           height="245.27057"
+           width="998.39996"
+           id="rect68172"
+           style="opacity:0.9;color:#000000;fill:#ffe3e3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new" />
+        <text
+           xml:space="preserve"
+           style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+           x="33.675484"
            y="115.79344"
-           x="33.675484"
-           sodipodi:role="line">This time it matters a great deal which order the ops execute in because ...</tspan><tspan
-           y="150.79344"
-           x="33.675484"
-           sodipodi:role="line"
-           id="tspan68197">so the caller can easily tell &lt;...&gt;. The rule doesn't actually say that there can't be</tspan><tspan
-           y="185.79344"
-           x="33.675484"
-           sodipodi:role="line"
-           id="tspan68199">a conflict-free implementation of this, but you'd be hard-pressed to find one.</tspan><tspan
-           y="220.82141"
-           x="33.675484"
-           sodipodi:role="line"
-           id="tspan23314">This is great example of something where you can <tspan
-   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
-   id="tspan23320">suffer endlessly</tspan> trying to</tspan><tspan
-           y="255.82141"
-           x="33.675484"
-           sodipodi:role="line"
-           id="tspan23318">make the implementation just a little more scalable.</tspan><tspan
-           y="290.82141"
-           x="33.675484"
-           sodipodi:role="line"
-           id="tspan68201">But the rule points us in a direction: If we can't make the implementation scale,</tspan><tspan
-           y="325.82141"
-           x="33.675484"
-           sodipodi:role="line"
-           id="tspan68209">maybe we can change the interface. Make it more commutative. What if &lt;dec&gt;</tspan></text>
+           id="text68174"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             x="33.675484"
+             y="115.79344"
+             id="tspan68182">This time it matters a great deal which order the ops execute in because ...</tspan><tspan
+             id="tspan68197"
+             sodipodi:role="line"
+             x="33.675484"
+             y="150.79344">so the caller can easily tell &lt;...&gt;. The rule doesn't actually say that there can't be</tspan><tspan
+             id="tspan68199"
+             sodipodi:role="line"
+             x="33.675484"
+             y="185.79344">a conflict-free implementation of this, but you'd be hard-pressed to find one.</tspan><tspan
+             id="tspan23314"
+             sodipodi:role="line"
+             x="33.675484"
+             y="220.82141">This is great example of something where you can <tspan
+   id="tspan23320"
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold">suffer endlessly</tspan> trying to</tspan><tspan
+             id="tspan23318"
+             sodipodi:role="line"
+             x="33.675484"
+             y="255.82141">make the implementation just a little more scalable.</tspan><tspan
+             id="tspan68201"
+             sodipodi:role="line"
+             x="33.675484"
+             y="290.82141">But the rule points us in a direction: If we can't make the implementation scale,</tspan><tspan
+             id="tspan68209"
+             sodipodi:role="line"
+             x="33.675484"
+             y="325.82141">maybe we can change the interface. Make it more commutative. What if &lt;dec&gt;</tspan></text>
+      </g>
     </g>
     <g
        inkscape:groupmode="layer"
@@ -14650,7 +14653,7 @@
            x="25"
            sodipodi:role="line" /><tspan
            id="tspan68531"
-           y="418.99036"
+           y="419.02231"
            x="25"
            sodipodi:role="line">A <tspan
    id="tspan68533"
@@ -14660,7 +14663,7 @@
    id="tspan68539"
    style="font-size:32px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold">legal</tspan> histories</tspan></tspan><tspan
            id="tspan68549"
-           y="462.3237"
+           y="462.35565"
            x="25"
            sodipodi:role="line"><tspan
    id="tspan68543"
@@ -14823,7 +14826,7 @@
    id="tspan67350">H</tspan> that maintains order for</tspan><tspan
          sodipodi:role="line"
          x="25"
-         y="178.99036"
+         y="179.34763"
          id="tspan67340">each individual thread (<tspan
    style="font-style:italic"
    id="tspan67352">H</tspan>|<tspan
@@ -15356,7 +15359,7 @@
    id="tspan68944">SIM-commutes</tspan> if every reordering </tspan><tspan
          sodipodi:role="line"
          x="25"
-         y="441.69763"
+         y="442.0549"
          id="tspan68857"><tspan
    style="font-style:italic"
    id="tspan68951">Y'</tspan> of <tspan
@@ -15368,17 +15371,17 @@
    id="tspan68914">XY</tspan> is</tspan><tspan
          sodipodi:role="line"
          x="25"
-         y="481.69763"
+         y="482.41217"
          id="tspan68911">also a legal extension of <tspan
    style="font-style:italic"
    id="tspan68861">XY'</tspan>.</tspan><tspan
          sodipodi:role="line"
          x="25"
-         y="521.69763"
+         y="522.76941"
          id="tspan67905" /><tspan
          sodipodi:role="line"
          x="25"
-         y="561.69763"
+         y="563.12671"
          id="tspan67907">(And this must be true for every prefix of every reordering of <tspan
    style="font-style:italic"
    id="tspan67909">Y</tspan>.)</tspan></text>
@@ -15750,24 +15753,28 @@
      inkscape:groupmode="layer"
      id="layer23"
      inkscape:label="The precise commutativity rule"
-     style="display:none">
-    <text
-       xml:space="preserve"
-       style="font-size:32px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
-       x="25"
-       y="138.99036"
-       id="text67912"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan67914"
+     style="display:inline">
+    <g
+       inkscape:groupmode="layer"
+       id="layer58"
+       inkscape:label="Base#3">
+      <text
+         xml:space="preserve"
+         style="font-size:32px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
          x="25"
-         y="138.99036">Let 𝒮  be a specification with a reference implementation <tspan
+         y="138.99036"
+         id="text67912"
+         sodipodi:linespacing="125%"><tspan
+           sodipodi:role="line"
+           id="tspan67914"
+           x="25"
+           y="138.99036">Let 𝒮  be a specification with a reference implementation <tspan
    style="font-style:italic"
    id="tspan67916">M</tspan>.</tspan><tspan
-         sodipodi:role="line"
-         x="25"
-         y="182.32368"
-         id="tspan67918">Consider <tspan
+           sodipodi:role="line"
+           x="25"
+           y="182.68095"
+           id="tspan67918">Consider <tspan
    style="font-style:italic"
    id="tspan67920">H</tspan> = <tspan
    style="font-style:italic"
@@ -15780,51 +15787,403 @@
    id="tspan67928">M</tspan> can generate <tspan
    style="font-style:italic"
    id="tspan67930">H</tspan>.</tspan></text>
-    <text
-       sodipodi:linespacing="125%"
-       id="text67934"
-       y="258.45706"
-       x="25"
-       style="font-size:32px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
-       xml:space="preserve"><tspan
-         id="tspan67940"
+      <text
+         sodipodi:linespacing="125%"
+         id="text67934"
          y="258.45706"
          x="25"
-         sodipodi:role="line">There exists a correct implementation of 𝒮  whose execution of <tspan
+         style="font-size:32px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+         xml:space="preserve"><tspan
+           id="tspan67940"
+           y="258.45706"
+           x="25"
+           sodipodi:role="line">There exists a correct implementation of 𝒮  whose execution of <tspan
    style="font-style:italic"
    id="tspan67961">H</tspan> is</tspan><tspan
-         y="301.79041"
-         x="25"
-         sodipodi:role="line"
-         id="tspan67957">conflict-free in the commutative region <tspan
+           y="302.14767"
+           x="25"
+           sodipodi:role="line"
+           id="tspan67957">conflict-free in the commutative region <tspan
    style="font-style:italic"
    id="tspan67959">Y</tspan>.</tspan></text>
-    <text
-       sodipodi:linespacing="125%"
-       id="text4125-2"
-       y="104.17648"
-       x="25.029043"
-       style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
-       xml:space="preserve"><tspan
+      <text
+         sodipodi:linespacing="125%"
+         id="text4125-2"
          y="104.17648"
          x="25.029043"
-         id="tspan4127-88"
-         sodipodi:role="line">Finally, we can state the scalable commutativity rule precisely.</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
-       x="6.9271169"
-       y="337.4903"
-       id="text69001"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan69003"
+         style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+         xml:space="preserve"><tspan
+           y="104.17648"
+           x="25.029043"
+           id="tspan4127-88"
+           sodipodi:role="line">Finally, we can state the scalable commutativity rule precisely.</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
          x="6.9271169"
-         y="337.4903">.. that is, it will do the right thing for any history, but if you're specifically executing</tspan><tspan
-         sodipodi:role="line"
-         x="6.9271169"
-         y="372.4903"
-         id="tspan69005">H, then when you reach the commutative part, it will be conflict-free.</tspan></text>
+         y="337.4903"
+         id="text69001"
+         sodipodi:linespacing="125%"><tspan
+           sodipodi:role="line"
+           id="tspan69003"
+           x="6.9271169"
+           y="337.4903">.. that is, it will do the right thing for any history, but if you're specifically executing</tspan><tspan
+           sodipodi:role="line"
+           x="6.9271169"
+           y="372.4903"
+           id="tspan69005">H, then when you reach the commutative part, it will be conflict-free.</tspan><tspan
+           sodipodi:role="line"
+           x="6.9271169"
+           y="407.4903"
+           id="tspan23791">To give you an idea of how to prove this NEXT</tspan></text>
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer59"
+       inkscape:label="Proof">
+      <text
+         xml:space="preserve"
+         style="font-size:32px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+         x="25.777779"
+         y="537.95557"
+         id="text23344"
+         sodipodi:linespacing="125%"
+         inkscape:label="mp"><tspan
+           sodipodi:role="line"
+           id="tspan23346"
+           x="25.777779"
+           y="537.95557"
+           style="font-style:italic">M'</tspan></text>
+      <g
+         id="g23607"
+         inkscape:label="mpX"
+         transform="translate(0,-48)">
+        <g
+           transform="translate(-24,0)"
+           id="g23453">
+          <path
+             sodipodi:type="arc"
+             style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+             id="path23350"
+             sodipodi:cx="112"
+             sodipodi:cy="576"
+             sodipodi:rx="8"
+             sodipodi:ry="8"
+             d="m 120,576 a 8,8 0 1 1 -16,0 8,8 0 1 1 16,0 z" />
+          <use
+             x="0"
+             y="0"
+             xlink:href="#path23350"
+             id="use23356"
+             transform="translate(64,0)"
+             width="1024"
+             height="768" />
+          <use
+             height="768"
+             width="1024"
+             transform="translate(128,0)"
+             id="use23358"
+             xlink:href="#path23350"
+             y="0"
+             x="0" />
+          <use
+             x="0"
+             y="0"
+             xlink:href="#path23350"
+             id="use23360"
+             transform="translate(192,0)"
+             width="1024"
+             height="768" />
+          <use
+             height="768"
+             width="1024"
+             transform="translate(256,0)"
+             id="use23362"
+             xlink:href="#path23350"
+             y="0"
+             x="0" />
+          <use
+             x="0"
+             y="0"
+             xlink:href="#path23350"
+             id="use23364"
+             transform="translate(320,0)"
+             width="1024"
+             height="768" />
+          <use
+             height="768"
+             width="1024"
+             transform="translate(384,0)"
+             id="use23366"
+             xlink:href="#path23350"
+             y="0"
+             x="0" />
+          <path
+             style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+             d="m 112,576 384,0"
+             id="path23368"
+             inkscape:connector-curvature="0" />
+        </g>
+        <g
+           transform="translate(-24,48)"
+           id="g23577">
+          <text
+             xml:space="preserve"
+             style="font-size:32px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+             x="296.07812"
+             y="576.5"
+             id="text23370"
+             sodipodi:linespacing="125%"><tspan
+               sodipodi:role="line"
+               id="tspan23372"
+               x="296.07812"
+               y="576.5"
+               style="font-style:italic">X</tspan></text>
+          <path
+             style="fill:none;stroke:#808080;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+             d="m 112,560.5 160,0"
+             id="path23374"
+             inkscape:connector-curvature="0" />
+          <use
+             x="0"
+             y="0"
+             xlink:href="#path23374"
+             id="use23376"
+             transform="translate(224,0)"
+             width="1024"
+             height="768" />
+        </g>
+      </g>
+      <g
+         id="g23623"
+         inkscape:label="mpDiverge"
+         transform="translate(0,-48)">
+        <path
+           inkscape:connector-curvature="0"
+           id="path23392"
+           d="m 216,576 64,-64"
+           style="color:#000000;fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:4, 4;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+        <use
+           x="0"
+           y="0"
+           xlink:href="#path23350"
+           id="use23356-1"
+           transform="translate(168,-64)"
+           width="1024"
+           height="768"
+           style="display:inline;enable-background:new" />
+        <text
+           sodipodi:linespacing="125%"
+           id="text23429"
+           y="522"
+           x="295"
+           style="font-size:32px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+           xml:space="preserve"><tspan
+             y="522"
+             x="295"
+             id="tspan23431"
+             sodipodi:role="line"><tspan
+               id="tspan23433"
+               style="font-style:italic"><tspan
+   id="tspan23605"
+   style="font-style:normal">Emulate </tspan>M</tspan></tspan></text>
+      </g>
+      <g
+         id="g23631"
+         inkscape:label="mpY"
+         transform="translate(0,-48)">
+        <g
+           transform="translate(424,-64)"
+           id="use23463">
+          <path
+             sodipodi:type="arc"
+             style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+             id="path23511"
+             sodipodi:cx="112"
+             sodipodi:cy="576"
+             sodipodi:rx="8"
+             sodipodi:ry="8"
+             d="m 120,576 a 8,8 0 1 1 -16,0 8,8 0 1 1 16,0 z" />
+          <use
+             x="0"
+             y="0"
+             xlink:href="#path23350"
+             id="use23513"
+             transform="translate(64,0)"
+             width="1024"
+             height="768" />
+          <use
+             height="768"
+             width="1024"
+             transform="translate(128,0)"
+             id="use23515"
+             xlink:href="#path23350"
+             y="0"
+             x="0" />
+          <use
+             x="0"
+             y="0"
+             xlink:href="#path23350"
+             id="use23517"
+             transform="translate(192,0)"
+             width="1024"
+             height="768" />
+          <path
+             sodipodi:nodetypes="cc"
+             style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+             d="m 112,576 192,0"
+             id="path23525"
+             inkscape:connector-curvature="0" />
+        </g>
+        <path
+           sodipodi:nodetypes="cc"
+           inkscape:connector-curvature="0"
+           id="path23392-5"
+           d="m 472,576 64,-64"
+           style="color:#000000;fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+        <path
+           style="color:#000000;fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+           d="m 472,576 64,0"
+           id="path23505"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cc" />
+        <path
+           sodipodi:nodetypes="cc"
+           inkscape:connector-curvature="0"
+           id="path23507"
+           d="m 472,576 64,64"
+           style="color:#000000;fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+        <use
+           height="768"
+           width="1024"
+           transform="translate(0,64)"
+           id="use23560"
+           xlink:href="#use23463"
+           y="0"
+           x="0" />
+        <use
+           x="0"
+           y="0"
+           xlink:href="#use23463"
+           id="use23562"
+           transform="translate(0,128)"
+           width="1024"
+           height="768" />
+        <g
+           id="g23583"
+           transform="translate(424.5,64)">
+          <text
+             sodipodi:linespacing="125%"
+             id="text23585"
+             y="624"
+             x="196.96875"
+             style="font-size:32px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+             xml:space="preserve"><tspan
+               style="font-style:italic"
+               y="624"
+               x="196.96875"
+               id="tspan23587"
+               sodipodi:role="line">Y</tspan></text>
+          <path
+             sodipodi:nodetypes="cc"
+             inkscape:connector-curvature="0"
+             id="path23589"
+             d="m 112,608 63.5,0"
+             style="fill:none;stroke:#808080;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <use
+             height="768"
+             width="1024"
+             transform="translate(127.5,0)"
+             id="use23591"
+             xlink:href="#path23589"
+             y="0"
+             x="0" />
+        </g>
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m 728,512 64,64 32,0"
+           id="path23593"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m 728,576 64,0"
+           id="path23595"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m 728,640 64,-64"
+           id="path23597"
+           inkscape:connector-curvature="0" />
+        <text
+           sodipodi:linespacing="125%"
+           id="text23599"
+           y="587.3125"
+           x="831.76562"
+           style="font-size:32px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+           xml:space="preserve"><tspan
+             y="587.3125"
+             x="831.76562"
+             id="tspan23601"
+             sodipodi:role="line">Emulate <tspan
+   id="tspan23603"
+   style="font-style:italic">M</tspan></tspan></text>
+      </g>
+      <g
+         transform="translate(4.1931152e-7,1.7529297e-6)"
+         style="display:inline;enable-background:new"
+         id="g23699-0">
+        <rect
+           y="85.333328"
+           x="16.355555"
+           height="245.27057"
+           width="998.39996"
+           id="rect68172-6"
+           style="opacity:0.9;color:#000000;fill:#ffe3e3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new" />
+        <text
+           xml:space="preserve"
+           style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+           x="33.675484"
+           y="115.79344"
+           id="text68174-2"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             x="33.675484"
+             y="115.79344"
+             id="tspan23789">think of building a <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan23795">new implementation</tspan><tspan
+   style="-inkscape-font-specification:Open Sans Semi-Bold;font-family:Open Sans;font-weight:600;font-style:normal;font-stretch:normal;font-variant:normal;font-size:28px;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%"
+   id="tspan23821"> M prime</tspan> that does exactly what M</tspan><tspan
+             sodipodi:role="line"
+             x="33.675484"
+             y="150.82141"
+             id="tspan23797">does, but <tspan
+   style="-inkscape-font-specification:Open Sans Semi-Bold;font-family:Open Sans;font-weight:600;font-style:normal;font-stretch:normal;font-variant:normal;font-size:28px;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%"
+   id="tspan23823">keeps track</tspan> of where it is in H.  If the caller <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan23801">diverges</tspan> from H, NEXT</tspan><tspan
+             sodipodi:role="line"
+             x="33.675484"
+             y="185.84937"
+             id="tspan23799">then just <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan23803">emulate</tspan> M.  NEXT</tspan><tspan
+             sodipodi:role="line"
+             x="33.675484"
+             y="220.87733"
+             id="tspan23805">If it reaches the commutative region, then each thread <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan23807">separately replays</tspan> its</tspan><tspan
+             sodipodi:role="line"
+             x="33.675484"
+             y="255.87733"
+             id="tspan23809">part the commutative region.  And it doesn't matter if this happens in a</tspan><tspan
+             sodipodi:role="line"
+             x="33.675484"
+             y="290.87732"
+             id="tspan23811">different order from H precisely because the region is commutative.</tspan></text>
+      </g>
+    </g>
   </g>
   <g
      inkscape:label=":Formalizing the rule"
@@ -15860,15 +16219,15 @@
    id="tspan36089">Y</tspan> ≔</tspan><tspan
              sodipodi:role="line"
              x="25"
-             y="179.49156"
+             y="179.52353"
              id="tspan36091" /><tspan
              sodipodi:role="line"
              x="25"
-             y="219.99277"
+             y="220.05669"
              id="tspan36093" /><tspan
              sodipodi:role="line"
              x="25"
-             y="260.49399"
+             y="260.58984"
              id="tspan36095"><tspan
    style="font-style:italic"
    id="tspan36097">Y SIM-commutes</tspan> in <tspan
@@ -15880,15 +16239,15 @@
    id="tspan36103">Y</tspan> ≔</tspan><tspan
              sodipodi:role="line"
              x="25"
-             y="300.99518"
+             y="301.12302"
              id="tspan36105" /><tspan
              sodipodi:role="line"
              x="25"
-             y="341.4964"
+             y="341.65619"
              id="tspan36107" /><tspan
              sodipodi:role="line"
              x="25"
-             y="381.99762"
+             y="382.18936"
              id="tspan36109">An <tspan
    style="font-style:italic"
    id="tspan36111">implementation m</tspan> is a step function: <tspan
@@ -15902,12 +16261,12 @@
    id="tspan36119">resp</tspan>.</tspan><tspan
              sodipodi:role="line"
              x="25"
-             y="422.49881"
+             y="422.72253"
              id="tspan36121" /><tspan
              id="tspan36123"
              sodipodi:role="line"
              x="25"
-             y="462.49881"><tspan
+             y="462.75449"><tspan
    id="tspan36125"
    style="font-size:32px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold">Given a specification </tspan>𝒮<tspan
    id="tspan36127"
@@ -15915,7 +16274,7 @@
              id="tspan36129"
              sodipodi:role="line"
              x="25"
-             y="505.83215"><tspan
+             y="506.08783"><tspan
                id="tspan36131"
                style="font-size:32px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold">a history <tspan
    style="font-style:italic"
@@ -15931,7 +16290,7 @@
              style="font-size:32px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
              sodipodi:role="line"
              x="25"
-             y="545.83215"
+             y="546.3924"
              id="tspan36143">and a reference implementation M that can generate <tspan
    style="font-style:italic"
    id="tspan36145">X </tspan><tspan
@@ -15941,7 +16300,7 @@
    id="tspan36149">Y</tspan>,</tspan><tspan
              sodipodi:role="line"
              x="25"
-             y="586.33337"
+             y="587.19818"
              id="tspan36151"><tspan
    id="tspan36153"
    style="font-size:32px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold">∃ an implementation <tspan
@@ -15953,11 +16312,11 @@
    id="tspan36159">Y</tspan> are conflict-free.</tspan></tspan><tspan
              sodipodi:role="line"
              x="25"
-             y="630.16791"
+             y="631.33728"
              id="tspan36161" /><tspan
              sodipodi:role="line"
              x="25"
-             y="673.50122"
+             y="674.94324"
              id="tspan36163">Proof by simulation construction.</tspan></text>
         <text
            sodipodi:linespacing="120%"
@@ -15971,7 +16330,7 @@
              x="999"
              sodipodi:role="line" /><tspan
              id="tspan36169"
-             y="177.87152"
+             y="177.90219"
              x="999"
              sodipodi:role="line">∀ <tspan
    style="font-style:italic;line-height:120.00000477%"
@@ -16001,15 +16360,15 @@
    style="font-style:italic;line-height:120.00000477%"
    id="tspan36195">Z</tspan> ∈ 𝒮.</tspan><tspan
              id="tspan36197"
-             y="219.95268"
+             y="220.01404"
              x="999"
              sodipodi:role="line" /><tspan
              id="tspan36199"
-             y="262.03384"
+             y="262.12589"
              x="999"
              sodipodi:role="line" /><tspan
              id="tspan36201"
-             y="304.11499"
+             y="304.23773"
              x="999"
              sodipodi:role="line">∀ <tspan
    style="font-style:italic;line-height:120.00000477%"

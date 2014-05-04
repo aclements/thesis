@@ -344,6 +344,19 @@ var transitions = {
                 ];
     },
 
+    "The precise commutativity rule/Proof" : function(subslide) {
+        var _ = this.finder;
+        var divergeSweep = sweepLeftToRight(_("?mpDiverge")[0]);
+        return [
+            Anim.par(
+                Action.fade(_("?mp")),
+                sweepLeftToRight(_("?mpX")[0])
+            ).quick(),
+            divergeSweep.quick(),
+            sweepLeftToRight(_("?mpY")[0]).quick(),
+        ];
+    },
+
     "Formalizing the rule/Bang" : function(subslide) {
         return Action.fade(subslide[0]).quick();
     },
