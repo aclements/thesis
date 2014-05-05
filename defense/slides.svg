@@ -29,10 +29,10 @@
      inkscape:zoom="0.50585938"
      inkscape:cx="534.10769"
      inkscape:cy="227.83012"
-     inkscape:current-layer="layer15"
+     inkscape:current-layer="layer65"
      inkscape:document-units="px"
      showgrid="false"
-     inkscape:window-width="1024"
+     inkscape:window-width="1342"
      inkscape:window-height="746"
      inkscape:window-x="0"
      inkscape:window-y="0"
@@ -8313,7 +8313,7 @@
            sodipodi:role="line"
            id="tspan24188"
            x="25"
-           y="138.99036">Increasing software performance requires increasing parallelism,</tspan><tspan
+           y="138.99036">Software must be increasingly parallel to keep up with hardware,</tspan><tspan
            sodipodi:role="line"
            x="25"
            y="178.99036"
@@ -8339,21 +8339,33 @@
              y="39.391518"
              x="180.53175"
              sodipodi:role="line"
-             id="tspan22752-4">Now, &lt;...&gt;.  But while software performance naturally scaled with clock speed,</tspan><tspan
+             id="tspan22809">Now, &lt;...&gt;.  But while software performance naturally scaled with clock speed,</tspan><tspan
              y="74.391518"
              x="180.53175"
              sodipodi:role="line"
-             id="tspan22809">scaling with parallelism is notoriously hard.</tspan><tspan
+             id="tspan25881">&lt;scaling with ...&gt;.</tspan><tspan
              y="109.39152"
              x="180.53175"
              sodipodi:role="line"
              id="tspan22811">Even highly parallel software tends to scale something NEXT like this.</tspan></text>
+        <text
+           sodipodi:linespacing="125%"
+           id="text22720-2-1"
+           y="-67.929253"
+           x="1053.5432"
+           style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+           xml:space="preserve"><tspan
+             y="-67.929253"
+             x="1053.5432"
+             sodipodi:role="line"
+             id="tspan22811-2">advances</tspan></text>
       </g>
     </g>
     <g
        inkscape:groupmode="layer"
        id="layer38"
-       inkscape:label="Graph#2">
+       inkscape:label="Graph#2"
+       style="display:none">
       <g
          style="font-weight:300;display:inline;enable-background:new"
          id="g26783"
@@ -9093,7 +9105,7 @@
            style="opacity:0.9;color:#000000;fill:#ffe3e3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new"
            id="rect22718-8-9"
            width="987.02216"
-           height="248.88885"
+           height="286.4487"
            x="172.70953"
            y="10.947089" />
         <text
@@ -9130,13 +9142,18 @@
              y="249.39151"
              x="180.53175"
              sodipodi:role="line"
-             id="tspan22863">Exim's fault. Exim's doing perfectly reasonable things. NEXT This &lt;...&gt;</tspan></text>
+             id="tspan22863">Exim's fault. Exim's doing perfectly reasonable things. NEXT This problem lies</tspan><tspan
+             y="284.39151"
+             x="180.53175"
+             sodipodi:role="line"
+             id="tspan25825">a dozen layers of abstraction away, &lt;...&gt;</tspan></text>
       </g>
     </g>
     <g
        inkscape:groupmode="layer"
        id="layer47"
-       inkscape:label="Problem">
+       inkscape:label="Problem"
+       style="display:none">
       <text
          sodipodi:linespacing="125%"
          id="text27146"
@@ -10145,7 +10162,7 @@
            style="opacity:0.9;color:#000000;fill:#ffe3e3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new"
            id="rect54760"
            width="802.1333"
-           height="182.36049"
+           height="215.96667"
            x="200.53334"
            y="467.9111"
            ry="0.99980092" />
@@ -10167,15 +10184,19 @@
              y="567.77777"
              x="204.80002"
              sodipodi:role="line"
-             id="tspan54770">40 and 80 cores and whatever moves up the most is top bottleneck;</tspan><tspan
+             id="tspan54770">40 and 80 cores, compare, and whatever moves up the most is</tspan><tspan
              y="602.77777"
              x="204.80002"
              sodipodi:role="line"
-             id="tspan54772">so NEXT you fix it. NEXT You plot your workload again and</tspan><tspan
+             id="tspan54772">top bottleneck; so NEXT you fix it. NEXT You plot your workload</tspan><tspan
              y="637.77777"
              x="204.80002"
              sodipodi:role="line"
-             id="tspan59831">repeat until, eventually, hopefully, maybe, you get a straight line</tspan></text>
+             id="tspan59831">again and repeat until, eventually, hopefully, maybe,</tspan><tspan
+             y="672.77777"
+             x="204.80002"
+             sodipodi:role="line"
+             id="tspan25835">you get a straight line</tspan></text>
       </g>
     </g>
     <g
@@ -24955,7 +24976,7 @@
    id="tspan25003">scalability wins</tspan> for apps.</tspan></text>
   </g>
   <g
-     style="display:inline"
+     style="display:none"
      inkscape:label="Commutative operations matter to app scalabiliy"
      id="layer15"
      inkscape:groupmode="layer">
@@ -25929,7 +25950,7 @@
      inkscape:groupmode="layer"
      id="layer65"
      inkscape:label="Related work"
-     style="display:none">
+     style="display:inline">
     <text
        sodipodi:linespacing="125%"
        id="text36315"
