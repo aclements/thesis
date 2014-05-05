@@ -366,6 +366,11 @@ var transitions = {
     //     return [Anim.fade(_("?common")).quick()];
     // },
 
+    "Applying the rule to real systems/In Out" : function(subslide) {
+        var _ = this.finder;
+        return Action.reveal(_("?inout"));
+    },
+
     "Input: Symbolic model+Commutativity conditions" :
     function(a, b) {
         var _a = a.finder, _b = b.finder;
@@ -443,6 +448,11 @@ var transitions = {
 
     "Commutative operations can be made to scale/Mask" : function(subslide) {
         return [Action.fade(subslide).quick()];
+    },
+
+    "Commutative operations matter to app scalabiliy/Comm" : function(subslide) {
+        var _ = this.finder;
+        return sweepLeftToRight(_("?comm-curve")[0]);
     },
 };
 
