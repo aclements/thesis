@@ -27,12 +27,12 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="0.50585938"
-     inkscape:cx="534.10769"
-     inkscape:cy="227.83012"
-     inkscape:current-layer="layer65"
+     inkscape:cx="514.46087"
+     inkscape:cy="150.73359"
+     inkscape:current-layer="layer73"
      inkscape:document-units="px"
      showgrid="false"
-     inkscape:window-width="1342"
+     inkscape:window-width="1024"
      inkscape:window-height="746"
      inkscape:window-x="0"
      inkscape:window-y="0"
@@ -8156,7 +8156,8 @@
     <g
        inkscape:groupmode="layer"
        id="layer52"
-       inkscape:label="Clock">
+       inkscape:label="Clock"
+       style="display:none">
       <g
          id="g22589"
          transform="translate(-160.71111,83.911111)">
@@ -8178,29 +8179,31 @@
              y="39.391518"
              x="180.53175"
              sodipodi:role="line">Let's take a trip back, NEXT, to 2005, when we were on the cusp of a</tspan><tspan
-             y="74.391518"
+             y="74.419479"
              x="180.53175"
              sodipodi:role="line"
-             id="tspan22630">fundamental shift in software performance. NEXT. For decades, the industry</tspan><tspan
-             y="109.39152"
+             id="tspan22630"><tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan25936">fundamental shift</tspan> in software performance. NEXT. For decades, the industry</tspan><tspan
+             y="109.41948"
              x="180.53175"
              sodipodi:role="line"
              id="tspan22632">had been riding the coat-tails of Moore's Law to higher and higher clock speeds.</tspan><tspan
-             y="144.70413"
+             y="144.44745"
              x="180.53175"
              sodipodi:role="line"
              id="tspan22634">And software <tspan
-   style="font-style:italic"
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
    id="tspan22636">got faster</tspan> because software performance naturally scales with</tspan><tspan
-             y="179.70413"
+             y="179.44745"
              x="180.53175"
              sodipodi:role="line"
              id="tspan22638">clock speed.</tspan><tspan
-             y="214.70413"
+             y="214.44745"
              x="180.53175"
              sodipodi:role="line"
-             id="tspan22640">Unfortunately, with exponentially increasing clock speeds comes exponentially</tspan><tspan
-             y="249.70413"
+             id="tspan22640">Unfortunately, exponentially increasing clock speeds means exponentially</tspan><tspan
+             y="249.44745"
              x="180.53175"
              sodipodi:role="line"
              id="tspan22642">increasing power. NEXT.</tspan></text>
@@ -8209,7 +8212,8 @@
     <g
        inkscape:groupmode="layer"
        id="layer55"
-       inkscape:label="Power">
+       inkscape:label="Power"
+       style="display:none">
       <g
          style="display:inline;enable-background:new"
          transform="translate(-160.71111,83.911111)"
@@ -8231,20 +8235,26 @@
              id="tspan22666"
              sodipodi:role="line"
              x="180.53175"
-             y="39.391518">And that means exponentially increasing heat. In 2005, we reached the</tspan><tspan
+             y="39.391518">And that means <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan25932">exponentially increasing heat</tspan>. In 2005, we reached the</tspan><tspan
              sodipodi:role="line"
              x="180.53175"
-             y="74.704124"
-             id="tspan22709">breaking point. NEXT. In the end, <tspan
-   style="font-style:italic"
-   id="tspan22754">physics</tspan> won the megahertz wars.</tspan><tspan
+             y="74.419479"
+             id="tspan22709"><tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan25934">breaking point</tspan>. NEXT. <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan25928">P</tspan><tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan22754">hysics</tspan> won the megahertz wars.</tspan><tspan
              sodipodi:role="line"
              x="180.53175"
-             y="109.70412"
+             y="109.41948"
              id="tspan22711">We could no longer make CPUs faster, but we're still doubling the number of</tspan><tspan
              sodipodi:role="line"
              x="180.53175"
-             y="144.70413"
+             y="144.41948"
              id="tspan22713">transistors every 18 months, so what do we do with all those transistors? NEXT</tspan></text>
       </g>
     </g>
@@ -8274,23 +8284,31 @@
              id="tspan22728"
              y="39.391518"
              x="180.53175"
-             sodipodi:role="line">We put more CPUs on the same chip. The *total* number of cycles per second</tspan><tspan
+             sodipodi:role="line">We put more CPUs on the same chip. The <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan25940">total</tspan> number of cycles per second</tspan><tspan
              y="74.391518"
              x="180.53175"
              sodipodi:role="line"
              id="tspan22746">is still growing exponentially, NEXT</tspan><tspan
-             y="109.39152"
+             y="109.41948"
              x="180.53175"
              sodipodi:role="line"
-             id="tspan22748">but now software has to be increasingly parallel to take advantage of it.</tspan><tspan
-             y="144.39151"
+             id="tspan22748">but now software has to be <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan25942">increasingly parallel to take advantage of it</tspan>.</tspan><tspan
+             y="144.41948"
              x="180.53175"
              sodipodi:role="line"
              id="tspan22750">In many ways, this was nothing new -- we've had parallel machines for a long</tspan><tspan
-             y="179.39151"
+             y="179.44745"
              x="180.53175"
              sodipodi:role="line"
-             id="tspan22752">time -- but now parallelism is both pervasive and inescapable.</tspan></text>
+             id="tspan22752">time -- but now parallelism is both <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan25944">pervasive</tspan> and <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan25946">inescapable</tspan>.</tspan></text>
       </g>
     </g>
   </g>
@@ -8302,7 +8320,8 @@
     <g
        inkscape:groupmode="layer"
        id="layer32"
-       inkscape:label="Base">
+       inkscape:label="Base"
+       style="display:none">
       <text
          xml:space="preserve"
          style="font-size:32px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
@@ -8365,7 +8384,7 @@
        inkscape:groupmode="layer"
        id="layer38"
        inkscape:label="Graph#2"
-       style="display:none">
+       style="display:inline">
       <g
          style="font-weight:300;display:inline;enable-background:new"
          id="g26783"
@@ -9105,7 +9124,7 @@
            style="opacity:0.9;color:#000000;fill:#ffe3e3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new"
            id="rect22718-8-9"
            width="987.02216"
-           height="286.4487"
+           height="324.00854"
            x="172.70953"
            y="10.947089" />
         <text
@@ -9118,35 +9137,49 @@
              y="39.391518"
              x="180.53175"
              sodipodi:role="line"
-             id="tspan22811-8">This is the Exim mail server going from 1 to 48 cores. </tspan><tspan
-             y="74.391518"
+             id="tspan22811-8">This is the Exim mail server <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan25948">running on between 1 to 48 cores</tspan>. </tspan><tspan
+             y="74.419479"
              x="180.53175"
              sodipodi:role="line"
-             id="tspan22851">This application has lots of natural parallelism because each message it delivers</tspan><tspan
-             y="109.39152"
+             id="tspan22851">This application has lots of <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan25950">natural parallelism</tspan> because each message it delivers</tspan><tspan
+             y="109.44745"
              x="180.53175"
              sodipodi:role="line"
-             id="tspan22853">is independent.</tspan><tspan
-             y="144.39151"
+             id="tspan22853">is independent.  And up to 24 cores, its performance is <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan25958">proportional</tspan> to hardware</tspan><tspan
+             y="144.44745"
              x="180.53175"
              sodipodi:role="line"
-             id="tspan22855">Yet above 24 cores, not only does it no longer take advantage of increasing</tspan><tspan
-             y="179.39151"
+             id="tspan25954">parallelism.  This is exactly what we want.</tspan><tspan
+             y="179.44745"
              x="180.53175"
              sodipodi:role="line"
-             id="tspan22857">parallelism, it's performance gets *worse*.</tspan><tspan
-             y="214.39151"
+             id="tspan22855">But above 24 cores, not only does it no longer take advantage of increasing</tspan><tspan
+             y="214.4754"
              x="180.53175"
              sodipodi:role="line"
-             id="tspan22859">This particular problem is especially insidious because it's not even really</tspan><tspan
-             y="249.39151"
+             id="tspan22857">parallelism, it's performance gets <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan25960">worse</tspan>.</tspan><tspan
+             y="249.50337"
              x="180.53175"
              sodipodi:role="line"
-             id="tspan22863">Exim's fault. Exim's doing perfectly reasonable things. NEXT This problem lies</tspan><tspan
-             y="284.39151"
+             id="tspan22859">This particular problem is <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan25962">especially insidious</tspan> because it's not even really</tspan><tspan
+             y="284.50339"
              x="180.53175"
              sodipodi:role="line"
-             id="tspan25825">a dozen layers of abstraction away, &lt;...&gt;</tspan></text>
+             id="tspan22863">Exim's fault. Exim's doing perfectly reasonable things.</tspan><tspan
+             y="319.50339"
+             x="180.53175"
+             sodipodi:role="line"
+             id="tspan25825">This problem lies half a dozen layers of abstraction away, NEXT &lt;...&gt;</tspan></text>
       </g>
     </g>
     <g
@@ -9277,25 +9310,27 @@
            y="39.391518">At the same time, scaling an OS kernel is a particularly hard problem.</tspan><tspan
            sodipodi:role="line"
            x="180.53175"
-           y="74.391518"
-           id="tspan22953">The kernel is effectively the most parallel program running on a computer</tspan><tspan
+           y="74.419479"
+           id="tspan22953">The kernel is effectively the <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan25976">most parallel program</tspan> running on a computer</tspan><tspan
            sodipodi:role="line"
            x="180.53175"
-           y="109.39152"
+           y="109.41948"
            id="tspan22955">because it has at least as many threads as all applications combined.</tspan><tspan
            sodipodi:role="line"
            x="180.53175"
-           y="144.39151"
-           id="tspan22957"><tspan
-   style="font-weight:bold"
-   id="tspan22965">But</tspan> it also has no idea what those threads are going to have to do.</tspan><tspan
+           y="144.44745"
+           id="tspan22957">But it also has <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan25974">no idea</tspan> what those threads are going to have to do.</tspan><tspan
            sodipodi:role="line"
            x="180.53175"
-           y="179.75197"
+           y="179.44745"
            id="tspan22959">An application you can often parallelize using domain knowledge.</tspan><tspan
            sodipodi:role="line"
            x="180.53175"
-           y="214.75197"
+           y="214.44745"
            id="tspan22961">Add some <tspan
    style="font-weight:bold"
    id="tspan22967">sharding</tspan> here, some <tspan
@@ -9303,7 +9338,7 @@
    id="tspan22969">streaming</tspan> there.</tspan><tspan
            sodipodi:role="line"
            x="180.53175"
-           y="250.11241"
+           y="249.80789"
            id="tspan22963">But a kernel doesn't have that luxury.</tspan></text>
     </g>
   </g>
@@ -10192,11 +10227,11 @@
              y="637.77777"
              x="204.80002"
              sodipodi:role="line"
-             id="tspan59831">again and repeat until, eventually, hopefully, maybe,</tspan><tspan
+             id="tspan59831">again and repeat until either you give up or, eventually, hopefully,</tspan><tspan
              y="672.77777"
              x="204.80002"
              sodipodi:role="line"
-             id="tspan25835">you get a straight line</tspan></text>
+             id="tspan25835">maybe, you get a straight line</tspan></text>
       </g>
     </g>
     <g
@@ -10364,7 +10399,7 @@
          sodipodi:role="line"
          x="25"
          y="243.99036"
-         id="tspan58697">vast but decentralized resources.  It's served us pretty well, too.</tspan></text>
+         id="tspan58697">vast but decentralized resources.  And we've gotten a bunch of papers out of it.</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text58728"
@@ -10395,7 +10430,11 @@
          y="716.47925"
          x="25"
          sodipodi:role="line"
-         id="tspan58759">workload-driven approach is that STEP &lt;...&gt;</tspan></text>
+         id="tspan58759">workload-driven approach is that you may simply be solving the wrong problem</tspan><tspan
+         y="751.47925"
+         x="25"
+         sodipodi:role="line"
+         id="tspan25982">STEP The real problems may not be in the implementation &lt;...&gt;</tspan></text>
     <text
        inkscape:label="disadvantages"
        xml:space="preserve"
@@ -10711,20 +10750,30 @@
            y="530.48889"
            x="18.48889"
            sodipodi:role="line"
-           id="tspan58549">POSIX requires that creat return the lowest available file descriptor,</tspan><tspan
-           y="565.48889"
+           id="tspan58549">POSIX requires that creat return the <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan25996">numerically lowest</tspan> available file descriptor</tspan><tspan
+           y="565.51685"
            x="18.48889"
            sodipodi:role="line"
-           id="tspan58551">which means the OS has to serialize file descriptor allocation.</tspan><tspan
-           y="600.48889"
+           id="tspan25988">to identify the open file, which means the <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan25998">OS has to serialize</tspan> file descriptor</tspan><tspan
+           y="600.5448"
+           x="18.48889"
+           sodipodi:role="line"
+           id="tspan25992">allocation.  These creats have to <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan25994">get in line</tspan> and go one at a time.</tspan><tspan
+           y="635.5448"
            x="18.48889"
            sodipodi:role="line"
            id="tspan58553">You can optimize the implementation all you want, but there's no way</tspan><tspan
-           y="635.48889"
+           y="670.5448"
            x="18.48889"
            sodipodi:role="line"
            id="tspan58555">you can make this scale.  But what if we could change not just the</tspan><tspan
-           y="670.80151"
+           y="705.85742"
            x="18.48889"
            sodipodi:role="line"
            id="tspan58557">implementation, but the <tspan
@@ -10759,50 +10808,163 @@
        id="g58569"
        inkscape:label="Any FD"
        style="display:inline">
-      <rect
-         y="502.04446"
-         x="10.666667"
-         height="241.77776"
-         width="987.02222"
-         id="rect58571"
-         style="opacity:0.9;color:#000000;fill:#ffe3e3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new" />
+      <g
+         id="g26000">
+        <rect
+           style="opacity:0.9;color:#000000;fill:#ffe3e3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new"
+           id="rect58571"
+           width="987.02222"
+           height="241.77776"
+           x="10.666667"
+           y="502.04446" />
+        <text
+           sodipodi:linespacing="125%"
+           id="text58573"
+           y="530.48889"
+           x="18.48889"
+           style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+           xml:space="preserve"><tspan
+             id="tspan58607"
+             y="530.48889"
+             x="18.48889"
+             sodipodi:role="line">If creat could return *any* available FD, then maybe we could make it scale.</tspan><tspan
+             id="tspan58609"
+             y="565.48889"
+             x="18.48889"
+             sodipodi:role="line">Though even then it's hard to be sure.  There may be other problems we</tspan><tspan
+             id="tspan58611"
+             y="600.48889"
+             x="18.48889"
+             sodipodi:role="line">haven't thought of.  While it is useful to be told that an interface *cannot* scale,</tspan><tspan
+             id="tspan58613"
+             y="635.48889"
+             x="18.48889"
+             sodipodi:role="line">it is far *more* useful to be told that an interface CAN scale:</tspan><tspan
+             id="tspan58615"
+             y="670.80151"
+             x="18.48889"
+             sodipodi:role="line">that there is definitely <tspan
+   id="tspan59186"
+   style="font-style:italic">some</tspan> scalable implementation of that interface.</tspan><tspan
+             id="tspan58617"
+             y="705.80151"
+             x="18.48889"
+             sodipodi:role="line">We have characterized a large class of interfaces that can scale.</tspan><tspan
+             id="tspan58619"
+             y="740.80151"
+             x="18.48889"
+             sodipodi:role="line">That class is defined by the SC rule.</tspan></text>
+      </g>
       <text
          xml:space="preserve"
-         style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
-         x="18.48889"
-         y="530.48889"
-         id="text58573"
+         style="font-size:32px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+         x="511.72656"
+         y="582.17761"
+         id="text26038"
          sodipodi:linespacing="125%"><tspan
            sodipodi:role="line"
+           id="tspan26040"
+           x="511.72656"
+           y="582.17761">Solution: Change the interface?</tspan></text>
+      <g
+         id="g26012">
+        <rect
+           y="502.04446"
+           x="10.666667"
+           height="241.77776"
+           width="987.02222"
+           id="rect26014"
+           style="opacity:0.9;color:#000000;fill:#ffe3e3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new" />
+        <text
+           xml:space="preserve"
+           style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
            x="18.48889"
            y="530.48889"
-           id="tspan58607">If creat could return *any* available FD, then maybe we could make it scale.</tspan><tspan
-           sodipodi:role="line"
+           id="text26016"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             x="18.48889"
+             y="530.48889"
+             id="tspan26018">If creat could return *any* available FD, then maybe we could make it scale.</tspan><tspan
+             sodipodi:role="line"
+             x="18.48889"
+             y="565.48889"
+             id="tspan26022">Though even then it's hard to be sure.  We could try it and see what happens,</tspan><tspan
+             sodipodi:role="line"
+             x="18.48889"
+             y="600.51685"
+             id="tspan26044">but is our prototype <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan26073">as scalable as it can be</tspan>? Is this actually the <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan26075">right change</tspan>?</tspan><tspan
+             sodipodi:role="line"
+             x="18.48889"
+             y="635.5448"
+             id="tspan26050">Are there <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan26077">other problems</tspan> with creat?  And even if this turns out to be</tspan><tspan
+             sodipodi:role="line"
+             x="18.48889"
+             y="670.57275"
+             id="tspan26091"><tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan26093">hands-down awesome</tspan>,</tspan><tspan
+             sodipodi:role="line"
+             x="18.48889"
+             y="705.60077"
+             id="tspan26052">how long is it going to take to <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan26095">widely deploy</tspan> this change and </tspan><tspan
+             sodipodi:role="line"
+             x="18.48889"
+             y="740.62872"
+             id="tspan26032">by then are we going to have so many cores we find <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan26097">more problems<tspan
+   style="font-weight:normal"
+   id="tspan26194"> with creat</tspan></tspan>?</tspan></text>
+      </g>
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer76"
+       inkscape:label="Notes#1"
+       style="display:none">
+      <g
+         style="display:inline;enable-background:new"
+         id="g26099">
+        <rect
+           style="opacity:0.9;color:#000000;fill:#ffe3e3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new"
+           id="rect26101"
+           width="987.02222"
+           height="241.77776"
+           x="10.666667"
+           y="502.04446" />
+        <text
+           sodipodi:linespacing="125%"
+           id="text26103"
+           y="530.48889"
            x="18.48889"
-           y="565.48889"
-           id="tspan58609">Though even then it's hard to be sure.  There may be other problems we</tspan><tspan
-           sodipodi:role="line"
-           x="18.48889"
-           y="600.48889"
-           id="tspan58611">haven't thought of.  While it is useful to be told that an interface *cannot* scale,</tspan><tspan
-           sodipodi:role="line"
-           x="18.48889"
-           y="635.48889"
-           id="tspan58613">it is far *more* useful to be told that an interface CAN scale:</tspan><tspan
-           sodipodi:role="line"
-           x="18.48889"
-           y="670.80151"
-           id="tspan58615">that there is definitely <tspan
-   style="font-style:italic"
-   id="tspan59186">some</tspan> scalable implementation of that interface.</tspan><tspan
-           sodipodi:role="line"
-           x="18.48889"
-           y="705.80151"
-           id="tspan58617">We have characterized a large class of interfaces that can scale.</tspan><tspan
-           sodipodi:role="line"
-           x="18.48889"
-           y="740.80151"
-           id="tspan58619">That class is defined by the SC rule.</tspan></text>
+           style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:125%;letter-spacing:0px;word-spacing:0px;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+           xml:space="preserve"><tspan
+             id="tspan26127"
+             y="530.48889"
+             x="18.48889"
+             sodipodi:role="line">What we really need is *know*, when we design an interface, that it definitely</tspan><tspan
+             y="565.48889"
+             x="18.48889"
+             sodipodi:role="line"
+             id="tspan26188">has some scalable implementation.</tspan><tspan
+             y="600.48889"
+             x="18.48889"
+             sodipodi:role="line"
+             id="tspan26190">We have characterized a large class of interfaces that can scale.</tspan><tspan
+             y="635.48889"
+             x="18.48889"
+             sodipodi:role="line"
+             id="tspan26192">That class is defined by the SC rule.</tspan></text>
+      </g>
     </g>
   </g>
   <g
@@ -11388,11 +11550,11 @@
          id="tspan35057"
          sodipodi:role="line"
          x="407.57779"
-         y="383.99036">an intuition for the rule, and talk about the</tspan><tspan
+         y="383.99036">an intuition for the rule, and I'll walk through</tspan><tspan
          id="tspan35087"
          sodipodi:role="line"
          x="407.57779"
-         y="418.99036">formalized version of the rule.</tspan><tspan
+         y="418.99036">formalizing the rule.</tspan><tspan
          id="tspan35089"
          sodipodi:role="line"
          x="407.57779"
@@ -13649,13 +13811,21 @@
              y="557.51111"
              x="36.977779"
              sodipodi:role="line"
-             id="tspan6922">Given this, we say ...  Of course, this is only an approximation of how the</tspan><tspan
+             id="tspan26204">Given this, we say ...  That is, the operations never write to the same cache</tspan><tspan
              y="592.51111"
+             x="36.977779"
+             sodipodi:role="line"
+             id="tspan26208">line or read a cache line written by another operation.</tspan><tspan
+             y="627.51111"
+             x="36.977779"
+             sodipodi:role="line"
+             id="tspan26198">Of course, this is only an approximation of how the</tspan><tspan
+             y="662.51111"
              x="36.977779"
              sodipodi:role="line"
              id="tspan6930">hardware behaves, but it's a pretty good approximation in practice.</tspan><tspan
              id="tspan58446"
-             y="627.51111"
+             y="697.51111"
              x="36.977779"
              sodipodi:role="line">Given this perspective, here's the intuition behind the rule.</tspan></text>
       </g>
@@ -14221,7 +14391,7 @@
        inkscape:groupmode="layer"
        id="layer26"
        inkscape:label="R2p"
-       style="display:none">
+       style="display:inline">
       <rect
          y="85.333328"
          x="16.355555"
@@ -14239,7 +14409,7 @@
            id="tspan68227"
            sodipodi:role="line"
            x="33.675484"
-           y="115.79344">Does R2' commute? Thanks to this change, it does, NEXT because &lt;...&gt;</tspan></text>
+           y="115.79344">Does R2' commute? Thanks to this change, it does, NEXT</tspan></text>
     </g>
     <g
        inkscape:groupmode="layer"
@@ -14442,7 +14612,7 @@
        inkscape:groupmode="layer"
        id="layer31"
        inkscape:label="Notes"
-       style="display:inline">
+       style="display:none">
       <rect
          y="85.333328"
          x="16.355555"
@@ -14490,6 +14660,70 @@
    style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
    id="tspan23957">how it differs</tspan> from the intuition, we formalized the rule.</tspan></text>
     </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer74"
+     inkscape:label="Formalizing the rule"
+     style="display:none">
+    <text
+       xml:space="preserve"
+       style="font-size:32px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+       x="43.490349"
+       y="319.2587"
+       id="text25885"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan25887"
+         x="43.490349"
+         y="319.2587">Definitions</tspan><tspan
+         sodipodi:role="line"
+         x="43.490349"
+         y="359.2587"
+         id="tspan25889"> • History</tspan><tspan
+         sodipodi:role="line"
+         x="43.490349"
+         y="399.2587"
+         id="tspan25891"> • Reordering</tspan><tspan
+         sodipodi:role="line"
+         x="43.490349"
+         y="439.2587"
+         id="tspan25893"> • Commutativity</tspan><tspan
+         sodipodi:role="line"
+         x="43.490349"
+         y="479.2587"
+         id="tspan25895" /><tspan
+         sodipodi:role="line"
+         x="43.490349"
+         y="519.25867"
+         id="tspan25897">Formal scalable commutativty rule</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text4125-0-8"
+       y="121.01659"
+       x="29.471008"
+       style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+       xml:space="preserve"><tspan
+         y="121.01659"
+         x="29.471008"
+         sodipodi:role="line"
+         id="tspan68705-9">Like any good formalism, I'll first need to build up some definitions.</tspan><tspan
+         y="156.01659"
+         x="29.471008"
+         sodipodi:role="line"
+         id="tspan25920" /><tspan
+         y="191.01659"
+         x="29.471008"
+         sodipodi:role="line"
+         id="tspan25922">I'll tell you what I really mean by &lt;...&gt;</tspan><tspan
+         y="226.01659"
+         x="29.471008"
+         sodipodi:role="line"
+         id="tspan25924" /><tspan
+         y="261.0166"
+         x="29.471008"
+         sodipodi:role="line"
+         id="tspan25926">Then I can give you the formal scalable commutativity rule and sketch its proof.</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
@@ -14687,7 +14921,7 @@
            y="100.04058"
            x="12.961087"
            sodipodi:role="line"
-           id="tspan23963"> Like any good formalism, first some definitions. We think of everything in terms of histories</tspan></text>
+           id="tspan23963">First, we think of everything in terms of histories</tspan></text>
       <text
          xml:space="preserve"
          style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
@@ -14719,7 +14953,8 @@
     <g
        inkscape:groupmode="layer"
        id="layer35"
-       inkscape:label="Spec">
+       inkscape:label="Spec"
+       style="display:inline">
       <text
          sodipodi:linespacing="125%"
          id="text68511"
@@ -14842,12 +15077,27 @@
            x="12.961087"
            sodipodi:role="line"
            id="tspan24015">A specification, which we denote 𝒮, is what distinguishes these and &lt;defines.&gt;</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
+         x="12.961087"
+         y="489.47687"
+         id="text26210"
+         sodipodi:linespacing="125%"><tspan
+           id="tspan26214"
+           sodipodi:role="line"
+           x="12.961087"
+           y="489.47687">So for the reference counter interface, the history on the left is in its set, while</tspan><tspan
+           sodipodi:role="line"
+           x="12.961087"
+           y="524.47687"
+           id="tspan26218">the one on the right is not.</tspan></text>
     </g>
     <g
        inkscape:groupmode="layer"
        id="layer37"
        inkscape:label="Impl"
-       style="display:inline">
+       style="display:none">
       <text
          sodipodi:linespacing="125%"
          id="text68596"
@@ -15479,16 +15729,16 @@
            x="25"
            id="tspan24155"
            sodipodi:role="line">A <tspan
+   id="tspan26220"
+   style="font-size:32px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold">reordering</tspan><tspan
    id="tspan24157"
-   style="font-style:italic"><tspan
-   id="tspan24159"
-   style="font-size:32px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold">reordering</tspan> H'</tspan> is a permutation of <tspan
+   style="font-style:italic"> H'</tspan> is a permutation of <tspan
    id="tspan24161"
-   style="font-style:italic">H</tspan> that maintains order for</tspan><tspan
+   style="font-style:italic">H</tspan> that maintains operation</tspan><tspan
            id="tspan24163"
            y="179.34763"
            x="25"
-           sodipodi:role="line">each individual thread (<tspan
+           sodipodi:role="line">order for each individual thread (<tspan
    id="tspan24165"
    style="font-style:italic">H</tspan>|<tspan
    id="tspan24167"
@@ -15513,17 +15763,17 @@
       <text
          sodipodi:linespacing="125%"
          id="text24179"
-         y="161.4259"
-         x="626.12451"
+         y="202.93942"
+         x="665.66119"
          style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
          xml:space="preserve"><tspan
-           y="161.4259"
-           x="626.12451"
+           y="202.93942"
+           x="665.66119"
            id="tspan24181"
            sodipodi:role="line">But may not maintain order of</tspan><tspan
            id="tspan24183"
-           y="196.4259"
-           x="626.12451"
+           y="237.93942"
+           x="665.66119"
            sodipodi:role="line">operations between threads</tspan></text>
     </g>
     <g
@@ -16431,18 +16681,18 @@
          y="764.03644"
          id="tspan24582">talk about the commutativity of an <tspan
    style="font-style:italic"
-   id="tspan24584">interface</tspan> without talking about the impl.</tspan></text>
+   id="tspan24584">interface</tspan> without depending on a particular impl</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer23"
-     inkscape:label="The precise commutativity rule"
+     inkscape:label="The formal scalable commutativity rule"
      style="display:none">
     <g
        inkscape:groupmode="layer"
        id="layer58"
        inkscape:label="Base#3"
-       style="display:none">
+       style="display:inline">
       <text
          xml:space="preserve"
          style="font-size:32px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
@@ -16499,7 +16749,7 @@
            y="104.17648"
            x="25.029043"
            id="tspan4127-88"
-           sodipodi:role="line">Finally, we can state the scalable commutativity rule precisely.</tspan></text>
+           sodipodi:role="line">Finally, I can state the scalable commutativity rule precisely.</tspan></text>
       <text
          xml:space="preserve"
          style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
@@ -16510,15 +16760,19 @@
            sodipodi:role="line"
            id="tspan69003"
            x="6.9271169"
-           y="337.4903">.. that is, it will do the right thing for any history, but if you're specifically executing</tspan><tspan
+           y="337.4903">.. that is, there's an impl that will do the right thing for any history, but if you're</tspan><tspan
            sodipodi:role="line"
            x="6.9271169"
            y="372.4903"
-           id="tspan69005">XY, then when you reach the commutative part, the impl will be conflict-free.</tspan><tspan
+           id="tspan69005">specifically executing XY, then when you reach the commutative part, the impl</tspan><tspan
            sodipodi:role="line"
            x="6.9271169"
            y="407.4903"
-           id="tspan23791">To give you an idea of how to prove this NEXT</tspan></text>
+           id="tspan23791">will be conflict-free.</tspan><tspan
+           sodipodi:role="line"
+           x="6.9271169"
+           y="442.4903"
+           id="tspan26234">To give you an idea of how to prove this NEXT</tspan></text>
       <text
          xml:space="preserve"
          style="font-size:28px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
@@ -16535,7 +16789,7 @@
        inkscape:groupmode="layer"
        id="layer59"
        inkscape:label="Proof"
-       style="display:inline">
+       style="display:none">
       <text
          xml:space="preserve"
          style="font-size:32px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Open Sans;-inkscape-font-specification:Open Sans Light"
@@ -20056,7 +20310,7 @@
              sodipodi:role="line"
              x="610.95557"
              y="204.46336"
-             id="tspan35241">Enough math. Being a hacker at heart, I care about building real systems.</tspan><tspan
+             id="tspan35241">Being a hacker at heart, I care about building real systems.</tspan><tspan
              sodipodi:role="line"
              x="610.95557"
              y="239.46336"
@@ -20205,7 +20459,7 @@
        inkscape:groupmode="layer"
        id="layer64"
        inkscape:label="In Out"
-       style="display:inline">
+       style="display:none">
       <g
          style="display:inline;enable-background:new"
          transform="translate(-585.95557,-65.473004)"
@@ -20747,7 +21001,8 @@
     <g
        inkscape:groupmode="layer"
        id="layer49"
-       inkscape:label="Base#2">
+       inkscape:label="Base#2"
+       style="display:none">
       <g
          id="g40239-0"
          style="display:inline;enable-background:new"
@@ -20769,7 +21024,9 @@
              sodipodi:role="line"
              x="22.755556"
              y="147.91112"
-             id="tspan40200-3">This analysis outputs a set of precise conditions under which each pair of</tspan><tspan
+             id="tspan40200-3">This analysis outputs a set of <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan26239">precise conditions</tspan> under which each pair of</tspan><tspan
              id="tspan40322"
              sodipodi:role="line"
              x="22.755556"
@@ -20781,47 +21038,56 @@
              id="tspan40330"
              sodipodi:role="line"
              x="22.755556"
-             y="252.91112">obvious case: they commute if both source files exist and all names are distinct.</tspan><tspan
+             y="252.93909"><tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan26241">obvious case</tspan>: they commute if <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan26243">both source files exist </tspan>and all names are distinct.</tspan><tspan
              id="tspan40334"
              sodipodi:role="line"
              x="22.755556"
-             y="288.22372">They <tspan
-   style="font-style:italic"
-   id="tspan58886">also</tspan> commute if neither source file exists, this is a little less obvious, but</tspan><tspan
+             y="287.96704">They <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan58886">also</tspan><tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan26245"> commute</tspan> if neither source file exists, this is a little less obvious, but</tspan><tspan
              sodipodi:role="line"
              x="22.755556"
-             y="323.22372"
-             id="tspan58890">makes sense in retrospect because both calls will simply return an error.</tspan><tspan
+             y="322.995"
+             id="tspan58890">makes sense in <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan26247">retrospect</tspan> because both calls will simply return an error.</tspan><tspan
              id="tspan40338"
              sodipodi:role="line"
              x="22.755556"
-             y="358.53635">There are also a <tspan
+             y="358.30762">There are also a <tspan
    style="font-style:italic"
    id="tspan59829">bunch</tspan> of other cases that we may not have found by hand,</tspan><tspan
              sodipodi:role="line"
              x="22.755556"
-             y="393.53635"
+             y="393.30762"
              id="tspan58900">but Commuter can easily extract from our model.  In fact, the list Commuter</tspan><tspan
              id="tspan40368"
              sodipodi:role="line"
              x="22.755556"
-             y="428.84894">produces is <tspan
-   style="font-style:italic"
+             y="428.33557">produces is <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
    id="tspan58902">complete</tspan>, and each of these conditions represents a whole class</tspan><tspan
              sodipodi:role="line"
              x="22.755556"
-             y="463.84894"
+             y="463.33557"
              id="tspan58906">of operations that can be implemented scalably.</tspan><tspan
              id="tspan40344"
              sodipodi:role="line"
              x="22.755556"
-             y="498.84894" /></text>
+             y="498.33557" /></text>
       </g>
     </g>
     <g
        inkscape:groupmode="layer"
        id="layer50"
-       inkscape:label="SIM good">
+       inkscape:label="SIM good"
+       style="display:none">
       <g
          transform="translate(2.8491211e-7,3.8085938e-6)"
          style="display:inline;enable-background:new"
@@ -20843,52 +21109,46 @@
              y="147.91112"
              x="22.755556"
              sodipodi:role="line"
-             id="tspan9544">BTW, this really highlights the importance of having <tspan
-   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
-   id="tspan23204">discriminating</tspan> commutativity</tspan><tspan
-             y="182.91112"
-             x="22.755556"
-             sodipodi:role="line"
-             id="tspan9640">conditions, and, in particular, the state-sensitivity of SIM commutativity.</tspan><tspan
-             y="217.93909"
+             id="tspan9640">BTW, this really highlights the importance of the state-sensitivity of SIM commutativity.</tspan><tspan
+             y="182.93909"
              x="22.755556"
              sodipodi:role="line"
              id="tspan9642">If we required rename to commute <tspan
    style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
    id="tspan23210">regardless of state</tspan>, it would almost never</tspan><tspan
-             y="252.93909"
+             y="217.93909"
              x="22.755556"
              sodipodi:role="line"
              id="tspan9644">commute.  In fact, STEP this is the only case that doesn't depend on state, so</tspan><tspan
-             y="287.93909"
+             y="252.93909"
              x="22.755556"
              sodipodi:role="line"
              id="tspan9646">if we were to use a standard definition of commutativity, it would tell us that</tspan><tspan
-             y="322.96704"
+             y="287.96704"
              x="22.755556"
              sodipodi:role="line"
              id="tspan9648">two renames commute only if they're <tspan
    style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
    id="tspan23212">both self-renames</tspan>.</tspan><tspan
-             y="357.995"
+             y="322.995"
              x="22.755556"
              sodipodi:role="line"
              id="tspan9650">I don't know about you, but I think that's the <tspan
    style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
    id="tspan23216">only uninteresting</tspan> case here. STEP</tspan><tspan
-             y="393.02298"
+             y="358.02298"
              x="22.755556"
              sodipodi:role="line"
              id="tspan9652">Having all of these commutative cases opens up <tspan
    style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
    id="tspan23220">more opportunities to scale</tspan>, </tspan><tspan
-             y="428.05093"
+             y="393.05093"
              x="22.755556"
              sodipodi:role="line"
              id="tspan9654">which means we'll capture more of the <tspan
    style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
    id="tspan23222">operations that applications do</tspan>, </tspan><tspan
-             y="463.05093"
+             y="428.05093"
              x="22.755556"
              sodipodi:role="line"
              id="tspan9664">which is, after all, the point.</tspan></text>
@@ -21225,38 +21485,52 @@
            id="tspan40677"
            sodipodi:role="line"
            x="22.755556"
-           y="182.91112">concrete scalability tests; actual C code that puts the system in the necessary</tspan><tspan
+           y="182.93909">concrete scalability tests; actual C code that puts the system in the <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan26251">necessary</tspan></tspan><tspan
            id="tspan40679"
            sodipodi:role="line"
            x="22.755556"
-           y="217.91112">state and invokes the two operations with specific arguments for which the</tspan><tspan
+           y="217.96704"><tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan26253">state</tspan> and invokes the two operations with <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan26255">specific arguments</tspan> for which the</tspan><tspan
            sodipodi:role="line"
            x="22.755556"
-           y="252.91112"
+           y="252.96704"
            id="tspan59760">operations commute.</tspan><tspan
            sodipodi:role="line"
            x="22.755556"
-           y="287.91113"
+           y="287.96704"
            id="tspan9680">For example, this is what one of the tests of the first rename condition looks like.</tspan><tspan
            sodipodi:role="line"
            x="22.755556"
-           y="322.91113"
-           id="tspan9682">Commuter also generates 26 more tests from the rename/rename conditions.</tspan><tspan
+           y="322.995"
+           id="tspan9682">Commuter also generates <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan26257">26 more tests</tspan> from the rename/rename conditions.</tspan><tspan
            sodipodi:role="line"
            x="22.755556"
-           y="357.91113"
-           id="tspan9684">This is obviously more tests than conditions; Commuter is using a variant of</tspan><tspan
+           y="358.02298"
+           id="tspan9684">This is obviously <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan26259">more tests than conditions</tspan>; Commuter is using a variant of</tspan><tspan
            sodipodi:role="line"
            x="22.755556"
-           y="392.91113"
-           id="tspan9694">concolic execution to make sure it gets good coverage of the various ways to</tspan><tspan
+           y="393.05093"
+           id="tspan9694">concolic execution to make sure it gets good coverage of the various <tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan26261">ways to</tspan></tspan><tspan
            sodipodi:role="line"
            x="22.755556"
-           y="427.91113"
-           id="tspan24908">satisfy each individual condition.</tspan><tspan
+           y="428.07889"
+           id="tspan24908"><tspan
+   style="font-size:28px;font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Open Sans;-inkscape-font-specification:Open Sans Semi-Bold"
+   id="tspan26263">satisfy</tspan> each individual condition. This in turn gets good coverage of the impl</tspan><tspan
            sodipodi:role="line"
            x="22.755556"
-           y="462.91113"
+           y="463.07889"
            id="tspan23258">rename_rename_p92_0</tspan></text>
     </g>
   </g>
@@ -23680,7 +23954,7 @@
          sodipodi:role="line"
          x="23.008387"
          y="542.68842"
-         id="tspan56683">sv6 is a new..  We focused in particular on ..</tspan><tspan
+         id="tspan56683">sv6 is a new &lt;...&gt; originally based on xv6.  We focused in particular on ..</tspan><tspan
          sodipodi:role="line"
          x="23.008387"
          y="577.68842"
@@ -25950,7 +26224,7 @@
      inkscape:groupmode="layer"
      id="layer65"
      inkscape:label="Related work"
-     style="display:inline">
+     style="display:none">
     <text
        sodipodi:linespacing="125%"
        id="text36315"
@@ -26093,7 +26367,7 @@
      inkscape:groupmode="layer"
      id="layer66"
      inkscape:label="Conclusion"
-     style="display:none">
+     style="display:inline">
     <g
        inkscape:groupmode="layer"
        id="layer73"
@@ -27959,7 +28233,7 @@
            y="659.11115"
            x="25"
            sodipodi:role="line"
-           id="tspan59164">Thank you, I'd be happy to take (more) questions.  NEXT</tspan></text>
+           id="tspan59164">Thank you, and I'd be happy to take (more) questions.  NEXT</tspan></text>
     </g>
     <g
        inkscape:groupmode="layer"

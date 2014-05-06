@@ -344,7 +344,7 @@ var transitions = {
                 ];
     },
 
-    "The precise commutativity rule/Proof" : function(subslide) {
+    "The formal scalable commutativity rule/Proof" : function(subslide) {
         var _ = this.finder;
         var divergeSweep = sweepLeftToRight(_("?mpDiverge")[0]);
         return [
