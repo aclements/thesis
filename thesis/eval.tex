@@ -748,10 +748,9 @@ tables.
 
 \begin{table}
   \centering
-  \begin{tabular}{@{}l@{~ ~}r@{~}r@{~ ~}rr@{ }r@{}} \toprule
+  \begin{tabular}{l r r r r@{ }r} \toprule
     & & \multicolumn{2}{c}{Linux} & \multicolumn{2}{c}{Radix tree} \\
-    & \multicolumn{1}{c}{RSS}
-    & VMA tree & Page table & \multicolumn{2}{c}{(rel. to Linux)} \\
+    & RSS & VMA tree & Page table & \multicolumn{2}{c}{(rel. to Linux)} \\
     \midrule
     Firefox & \pyexpr{vmsize_row("firefox-10.0.6-used")} \\
     Chrome & \pyexpr{vmsize_row("chrome-used")} \\
