@@ -1,4 +1,3 @@
-TIKZ_FONT="',10'"
 call "common.gnuplot" "6in,4in"
 
 eval mpSetup(2, 2)
