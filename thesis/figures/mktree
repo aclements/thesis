@@ -257,7 +257,7 @@ class SchedTree(object):
                 assert isinstance(node.val, simsym.SymbolicApplyResult)
                 if node.val.value == 'C':
                     if isinstance(ctx, context.TikZ):
-                        label = '\\checkmark'
+                        label = '$\\checkmark$'
                     else:
                         label = u'\u2713'
                     fill = (0,1,0)
