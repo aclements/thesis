@@ -1,6 +1,14 @@
 // XXX Something is wrong if I back up over the first inter-slide
 // transition
 
+// NOTES FOR NEXT VERSION:
+//
+// In evaluation, my claim that rule says we can make this triangle
+// all green is false.  It does say that we can make all of these
+// tests conflict-free, but it doesn't say that it's practical to do
+// so, or that we can make them all conflict-free with the same
+// implementation.
+
 function skewed(anims, delay) {
     var sa = [];
     for (var i = 0; i < anims.length; i++) {
