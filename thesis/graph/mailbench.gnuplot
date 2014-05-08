@@ -12,7 +12,7 @@ set ytics format " %.0s%c"
 set key outside Left reverse
 
 plot \
-"< bash -c \"../data/mailbench ../data/mailbench-xv6.raw\"" \
+"<../data/ttt --layer iv.alt iv.cores dv.messages/sec ../data/mailbench-xv6.raw" \
    index "iv.alt=all" using 1:($2/$1) with lp title "Commutative APIs", \
 "" index "iv.alt=none" using 1:($2/$1) with lp title "Regular APIs", \
 "<../data/ttt iv.cores dv.messages/sec ../data/mailbench-linux.raw" \
