@@ -107,28 +107,26 @@ example test cases from \tool{}:
 
 \paragraph{Layer scalability.}  \fs uses data structures that
 themselves naturally satisfy the commutativity rule, such as linear
-arrays, radix arrays, and hash tables.  In
+arrays, radix trees, and hash tables.  In
 contrast with structures like balanced trees, these data
 structures
 typically share no cache lines when different elements are accessed
 or modified.  For example, \fs stores the cached data pages for a given inode
-using a radix array, so that concurrent reads or writes to different
+using a radix tree, so that concurrent reads or writes to different
 file pages scale, even in the presence of operations
 extending or truncating the file.
 % , as long as they don't access the part
 % of the file that's being extended or truncated.
 \tool led us to an additional benefit of this representation:
-many operations also use this radix array to determine if some offset
+many operations also use this radix tree to determine if some offset
 is within the file's bounds without reading the size and conflicting
 with operations
 that change the file's size.
 %
-For example, \code{pread} first probes this radix array for the
+For example, \code{pread} first probes this radix tree for the
 requested read offset: if the offset is beyond the last page of the
 file, it can return 0 immediately without reading (and potentially
 conflicting on) the file size.
-
-\XXX[AC]{``Radix tree'' or ``radix array''?  Be consistent.}
 
 
 \paragraph{Defer work.} Many \fs resources are shared,
