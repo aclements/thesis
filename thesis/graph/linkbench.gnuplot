@@ -15,4 +15,4 @@ plot \
    index "iv.st_nlink=False iv.FS_NLINK_REFCOUNT=refcache::" using 1:($2/$1) with lp title "Without \\gpcode{st\\_nlink}", \
 "" index "iv.st_nlink=True iv.FS_NLINK_REFCOUNT=::" using 1:($2/$1) with lp title "With shared \\gpcode{st\\_nlink}", \
 "" index "iv.st_nlink=True iv.FS_NLINK_REFCOUNT=refcache::" using 1:($2/$1) with lp title "With \\refcache\\ \\gpcode{st\\_nlink}", \
-"<echo '2 2324927.5'" with p pt 7 linecolor 2 ps 1 title ""
+"<../data/ttt --layer iv.st_nlink iv.cores dv.stats/sec ../data/linkbench-linux.raw" using 1:($1 == 2 ? $2/$1 : NaN) with p pt 7 linecolor 2 ps 1 title ""

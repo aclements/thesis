@@ -15,4 +15,5 @@ plot \
 "< bash -c \"../data/mailbench ../data/mailbench-xv6.raw\"" \
    index "iv.alt=all" using 1:($2/$1) with lp title "Commutative APIs", \
 "" index "iv.alt=none" using 1:($2/$1) with lp title "Regular APIs", \
-"<echo '1 316'" with p pt 7 linecolor 2 ps 1 title ""
+"<../data/ttt iv.cores dv.messages/sec ../data/mailbench-linux.raw" \
+   using 1:($1 == 1 ? $2/$1 : NaN) with p pt 7 linecolor 2 ps 1 title ""
