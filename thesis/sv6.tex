@@ -1,10 +1,11 @@
 \section{Achieving conflict-freedom in POSIX}
 \label{sec:sv6}
 
-\XXX[STATUS]{Draft ready (have unapplied edits from Frans).  Split
-  from ``Finding scalability
-  opportunities'' in SOSP.  Copied and reworked \refcache and \vm
-  sections from EuroSys.  New intros for all subsections.}
+\XXX[STATUS]{Draft v2 ready (have unapplied edits from Eddie).  Split
+  from ``Finding scalability opportunities'' in SOSP.  Copied and
+  reworked \refcache and \vm sections from EuroSys.  New intros for
+  all subsections.  Applied Frans' edits from init-154-6dbae76 (with
+  one outstanding bigger change to \fs section).}
 
 Given that many commutative operations are not conflict-free in Linux,
 is it feasible to build file system and virtual memory systems that
@@ -75,6 +76,13 @@ concerns.
 
 \subsection{\fs: Conflict-free file system operations}
 
+\XXX[FK/AC]{Make this more like \vm section.  Lead with operations and
+  their rough commutativity.  Since the high-level structure is much
+  more like a conventional VFS than \vm is like a convention VM, say
+  that and then explain some key detail (probably something involving
+  hash tables).  E.g., how the inode cache works.  (See FK edits for
+  init-154-6dbae76)}
+
 \fs encompasses \sys's unified buffer cache and VFS layers, providing
 operations such as \code{read}, \code{write}, \code{open}, and
 \code{unlink}.  We focused on the VFS and buffer cache layers because
@@ -128,6 +136,8 @@ requested read offset: if the offset is beyond the last page of the
 file, it can return 0 immediately without reading (and potentially
 conflicting on) the file size.
 
+\XXX[FK]{``Defer work'' can be presented as dealing with
+  non-commutative ops.}
 
 \paragraph{Defer work.} Many \fs resources are shared,
 such as file descriptions and inode objects, and must be freed when no
