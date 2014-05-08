@@ -1,0 +1,1342 @@
+== --id=2013-02-27T15:18:08 ==
+# --bench=radix --cores=1 --readers=1 --writers=0 --initial=1000 --duration=5s
+5.0001 secs
+343.798 cycles/search
+6.98104e+06 searches/sec
+# --bench=radix --cores=1 --readers=1 --writers=0 --initial=1000 --duration=5s
+5.00009 secs
+346.702 cycles/search
+6.92257e+06 searches/sec
+# --bench=radix --cores=1 --readers=1 --writers=0 --initial=1000 --duration=5s
+5.00009 secs
+347.946 cycles/search
+6.89781e+06 searches/sec
+# --bench=radix --cores=10 --readers=10 --writers=0 --initial=1000 --duration=5s
+5.00016 secs
+345.706 cycles/search
+6.94239e+07 searches/sec
+# --bench=radix --cores=10 --readers=10 --writers=0 --initial=1000 --duration=5s
+5.00014 secs
+343.349 cycles/search
+6.99007e+07 searches/sec
+# --bench=radix --cores=10 --readers=10 --writers=0 --initial=1000 --duration=5s
+5.00014 secs
+340.897 cycles/search
+7.04035e+07 searches/sec
+# --bench=radix --cores=20 --readers=20 --writers=0 --initial=1000 --duration=5s
+5.00062 secs
+340.002 cycles/search
+1.41164e+08 searches/sec
+# --bench=radix --cores=20 --readers=20 --writers=0 --initial=1000 --duration=5s
+5.00039 secs
+342.388 cycles/search
+1.40187e+08 searches/sec
+# --bench=radix --cores=20 --readers=20 --writers=0 --initial=1000 --duration=5s
+5.00077 secs
+341.517 cycles/search
+1.40534e+08 searches/sec
+# --bench=radix --cores=30 --readers=30 --writers=0 --initial=1000 --duration=5s
+5.00148 secs
+338.296 cycles/search
+2.12778e+08 searches/sec
+# --bench=radix --cores=30 --readers=30 --writers=0 --initial=1000 --duration=5s
+5.00148 secs
+337.888 cycles/search
+2.13034e+08 searches/sec
+# --bench=radix --cores=30 --readers=30 --writers=0 --initial=1000 --duration=5s
+5.00055 secs
+347.708 cycles/search
+2.07057e+08 searches/sec
+# --bench=radix --cores=40 --readers=40 --writers=0 --initial=1000 --duration=5s
+5.00105 secs
+336.256 cycles/search
+2.8545e+08 searches/sec
+# --bench=radix --cores=40 --readers=40 --writers=0 --initial=1000 --duration=5s
+5.00197 secs
+338.981 cycles/search
+2.83103e+08 searches/sec
+# --bench=radix --cores=40 --readers=40 --writers=0 --initial=1000 --duration=5s
+5.00175 secs
+345.943 cycles/search
+2.77418e+08 searches/sec
+# --bench=radix --cores=50 --readers=50 --writers=0 --initial=1000 --duration=5s
+5.00117 secs
+341.702 cycles/search
+3.51116e+08 searches/sec
+# --bench=radix --cores=50 --readers=50 --writers=0 --initial=1000 --duration=5s
+5.00205 secs
+350.873 cycles/search
+3.4188e+08 searches/sec
+# --bench=radix --cores=50 --readers=50 --writers=0 --initial=1000 --duration=5s
+5.00166 secs
+337.296 cycles/search
+3.55669e+08 searches/sec
+# --bench=radix --cores=60 --readers=60 --writers=0 --initial=1000 --duration=5s
+5.00207 secs
+344.317 cycles/search
+4.18064e+08 searches/sec
+# --bench=radix --cores=60 --readers=60 --writers=0 --initial=1000 --duration=5s
+5.0023 secs
+339.661 cycles/search
+4.23777e+08 searches/sec
+# --bench=radix --cores=60 --readers=60 --writers=0 --initial=1000 --duration=5s
+5.00252 secs
+343.698 cycles/search
+4.18795e+08 searches/sec
+# --bench=radix --cores=70 --readers=70 --writers=0 --initial=1000 --duration=5s
+5.0046 secs
+345.687 cycles/search
+4.85565e+08 searches/sec
+# --bench=radix --cores=70 --readers=70 --writers=0 --initial=1000 --duration=5s
+5.00339 secs
+340.066 cycles/search
+4.93709e+08 searches/sec
+# --bench=radix --cores=70 --readers=70 --writers=0 --initial=1000 --duration=5s
+5.00428 secs
+340.545 cycles/search
+4.92928e+08 searches/sec
+# --bench=radix --cores=80 --readers=80 --writers=0 --initial=1000 --duration=5s
+5.00241 secs
+345.596 cycles/search
+5.5532e+08 searches/sec
+# --bench=radix --cores=80 --readers=80 --writers=0 --initial=1000 --duration=5s
+5.00423 secs
+337.78 cycles/search
+5.67962e+08 searches/sec
+# --bench=radix --cores=80 --readers=80 --writers=0 --initial=1000 --duration=5s
+5.00479 secs
+344.012 cycles/search
+5.57612e+08 searches/sec
+== --id=2013-02-27T15:21:18 ==
+# --bench=radix --cores=2 --readers=1 --writers=1 --initial=1000 --duration=5s
+5.00016 secs
+344.314 cycles/search
+6.97055e+06 searches/sec
+19615.1 cycles/write
+122357 writes/sec
+# --bench=radix --cores=2 --readers=1 --writers=1 --initial=1000 --duration=5s
+5.00017 secs
+327.162 cycles/search
+7.336e+06 searches/sec
+19489.4 cycles/write
+123146 writes/sec
+# --bench=radix --cores=2 --readers=1 --writers=1 --initial=1000 --duration=5s
+5.00017 secs
+331.375 cycles/search
+7.24273e+06 searches/sec
+19542.3 cycles/write
+122812 writes/sec
+# --bench=radix --cores=10 --readers=9 --writers=1 --initial=1000 --duration=5s
+5.00026 secs
+327.229 cycles/search
+6.60087e+07 searches/sec
+19226.8 cycles/write
+124825 writes/sec
+# --bench=radix --cores=10 --readers=9 --writers=1 --initial=1000 --duration=5s
+5.00026 secs
+338.208 cycles/search
+6.38659e+07 searches/sec
+19281.2 cycles/write
+124473 writes/sec
+# --bench=radix --cores=10 --readers=9 --writers=1 --initial=1000 --duration=5s
+5.00025 secs
+328.538 cycles/search
+6.57458e+07 searches/sec
+19307 cycles/write
+124307 writes/sec
+# --bench=radix --cores=20 --readers=19 --writers=1 --initial=1000 --duration=5s
+5.00034 secs
+329.14 cycles/search
+1.38539e+08 searches/sec
+19499.1 cycles/write
+123079 writes/sec
+# --bench=radix --cores=20 --readers=19 --writers=1 --initial=1000 --duration=5s
+5.00032 secs
+345.169 cycles/search
+1.32106e+08 searches/sec
+19434.4 cycles/write
+123489 writes/sec
+# --bench=radix --cores=20 --readers=19 --writers=1 --initial=1000 --duration=5s
+5.00082 secs
+341.607 cycles/search
+1.33471e+08 searches/sec
+19451.9 cycles/write
+123367 writes/sec
+# --bench=radix --cores=30 --readers=29 --writers=1 --initial=1000 --duration=5s
+5.00124 secs
+340.755 cycles/search
+2.04211e+08 searches/sec
+19647.9 cycles/write
+122125 writes/sec
+# --bench=radix --cores=30 --readers=29 --writers=1 --initial=1000 --duration=5s
+5.00107 secs
+341.032 cycles/search
+2.04052e+08 searches/sec
+19577.3 cycles/write
+122570 writes/sec
+# --bench=radix --cores=30 --readers=29 --writers=1 --initial=1000 --duration=5s
+5.0007 secs
+341.465 cycles/search
+2.03808e+08 searches/sec
+19646.2 cycles/write
+122149 writes/sec
+# --bench=radix --cores=40 --readers=39 --writers=1 --initial=1000 --duration=5s
+5.00094 secs
+341.099 cycles/search
+2.74367e+08 searches/sec
+19709 cycles/write
+121755 writes/sec
+# --bench=radix --cores=40 --readers=39 --writers=1 --initial=1000 --duration=5s
+5.00078 secs
+345.895 cycles/search
+2.70572e+08 searches/sec
+19790.7 cycles/write
+121256 writes/sec
+# --bench=radix --cores=40 --readers=39 --writers=1 --initial=1000 --duration=5s
+5.00168 secs
+345.729 cycles/search
+2.70654e+08 searches/sec
+19817.2 cycles/write
+121072 writes/sec
+# --bench=radix --cores=50 --readers=49 --writers=1 --initial=1000 --duration=5s
+5.00105 secs
+344.086 cycles/search
+3.41719e+08 searches/sec
+19879.3 cycles/write
+120708 writes/sec
+# --bench=radix --cores=50 --readers=49 --writers=1 --initial=1000 --duration=5s
+5.0014 secs
+343.274 cycles/search
+3.42503e+08 searches/sec
+19920.7 cycles/write
+120450 writes/sec
+# --bench=radix --cores=50 --readers=49 --writers=1 --initial=1000 --duration=5s
+5.0014 secs
+342.632 cycles/search
+3.43145e+08 searches/sec
+19897.5 cycles/write
+120590 writes/sec
+# --bench=radix --cores=60 --readers=59 --writers=1 --initial=1000 --duration=5s
+5.00216 secs
+342.04 cycles/search
+4.13827e+08 searches/sec
+19741.4 cycles/write
+121525 writes/sec
+# --bench=radix --cores=60 --readers=59 --writers=1 --initial=1000 --duration=5s
+5.00189 secs
+344.026 cycles/search
+4.11461e+08 searches/sec
+19783.4 cycles/write
+121274 writes/sec
+# --bench=radix --cores=60 --readers=59 --writers=1 --initial=1000 --duration=5s
+5.0029 secs
+338.721 cycles/search
+4.1782e+08 searches/sec
+19760.9 cycles/write
+121388 writes/sec
+# --bench=radix --cores=70 --readers=69 --writers=1 --initial=1000 --duration=5s
+5.00349 secs
+340.367 cycles/search
+4.86216e+08 searches/sec
+20057 cycles/write
+119581 writes/sec
+# --bench=radix --cores=70 --readers=69 --writers=1 --initial=1000 --duration=5s
+5.00353 secs
+339.832 cycles/search
+4.86978e+08 searches/sec
+20033.5 cycles/write
+119721 writes/sec
+# --bench=radix --cores=70 --readers=69 --writers=1 --initial=1000 --duration=5s
+5.00393 secs
+342.239 cycles/search
+4.83514e+08 searches/sec
+20020.6 cycles/write
+119788 writes/sec
+# --bench=radix --cores=80 --readers=79 --writers=1 --initial=1000 --duration=5s
+5.00399 secs
+341.46 cycles/search
+5.54845e+08 searches/sec
+20170.6 cycles/write
+118896 writes/sec
+# --bench=radix --cores=80 --readers=79 --writers=1 --initial=1000 --duration=5s
+5.00417 secs
+342.623 cycles/search
+5.52942e+08 searches/sec
+20254.6 cycles/write
+118399 writes/sec
+# --bench=radix --cores=80 --readers=79 --writers=1 --initial=1000 --duration=5s
+5.00335 secs
+341.163 cycles/search
+5.554e+08 searches/sec
+20216 cycles/write
+118644 writes/sec
+== --id=2013-02-27T15:24:46 ==
+# --bench=radix --cores=6 --readers=1 --writers=5 --initial=1000 --duration=5s
+5.00019 secs
+344.466 cycles/search
+6.96744e+06 searches/sec
+21909.4 cycles/write
+547716 writes/sec
+# --bench=radix --cores=6 --readers=1 --writers=5 --initial=1000 --duration=5s
+5.00019 secs
+355.725 cycles/search
+6.74691e+06 searches/sec
+21848.3 cycles/write
+549246 writes/sec
+# --bench=radix --cores=6 --readers=1 --writers=5 --initial=1000 --duration=5s
+5.0002 secs
+347.641 cycles/search
+6.90381e+06 searches/sec
+21872.2 cycles/write
+548647 writes/sec
+# --bench=radix --cores=10 --readers=5 --writers=5 --initial=1000 --duration=5s
+5.00023 secs
+350.445 cycles/search
+3.42424e+07 searches/sec
+21831.2 cycles/write
+549674 writes/sec
+# --bench=radix --cores=10 --readers=5 --writers=5 --initial=1000 --duration=5s
+5.00022 secs
+357.632 cycles/search
+3.35543e+07 searches/sec
+21877.4 cycles/write
+548514 writes/sec
+# --bench=radix --cores=10 --readers=5 --writers=5 --initial=1000 --duration=5s
+5.00027 secs
+352.047 cycles/search
+3.40863e+07 searches/sec
+21871.5 cycles/write
+548657 writes/sec
+# --bench=radix --cores=20 --readers=15 --writers=5 --initial=1000 --duration=5s
+5.00032 secs
+347.672 cycles/search
+1.03544e+08 searches/sec
+25438.5 cycles/write
+471716 writes/sec
+# --bench=radix --cores=20 --readers=15 --writers=5 --initial=1000 --duration=5s
+5.00041 secs
+337.619 cycles/search
+1.06625e+08 searches/sec
+25464.2 cycles/write
+471232 writes/sec
+# --bench=radix --cores=20 --readers=15 --writers=5 --initial=1000 --duration=5s
+5.00169 secs
+342.228 cycles/search
+1.05162e+08 searches/sec
+25431.5 cycles/write
+471717 writes/sec
+# --bench=radix --cores=30 --readers=25 --writers=5 --initial=1000 --duration=5s
+5.00119 secs
+326.861 cycles/search
+1.83529e+08 searches/sec
+21810.6 cycles/write
+550083 writes/sec
+# --bench=radix --cores=30 --readers=25 --writers=5 --initial=1000 --duration=5s
+5.00073 secs
+339.191 cycles/search
+1.76873e+08 searches/sec
+21822.2 cycles/write
+549842 writes/sec
+# --bench=radix --cores=30 --readers=25 --writers=5 --initial=1000 --duration=5s
+5.00073 secs
+328.614 cycles/search
+1.82566e+08 searches/sec
+21810.6 cycles/write
+550135 writes/sec
+# --bench=radix --cores=40 --readers=35 --writers=5 --initial=1000 --duration=5s
+5.00112 secs
+330.204 cycles/search
+2.54342e+08 searches/sec
+26218.8 cycles/write
+457604 writes/sec
+# --bench=radix --cores=40 --readers=35 --writers=5 --initial=1000 --duration=5s
+5.00175 secs
+329.386 cycles/search
+2.54941e+08 searches/sec
+26241.1 cycles/write
+457158 writes/sec
+# --bench=radix --cores=40 --readers=35 --writers=5 --initial=1000 --duration=5s
+5.00091 secs
+329.458 cycles/search
+2.54929e+08 searches/sec
+26266.6 cycles/write
+456791 writes/sec
+# --bench=radix --cores=50 --readers=45 --writers=5 --initial=1000 --duration=5s
+5.00142 secs
+333.099 cycles/search
+3.2415e+08 searches/sec
+20801.2 cycles/write
+576753 writes/sec
+# --bench=radix --cores=50 --readers=45 --writers=5 --initial=1000 --duration=5s
+5.00248 secs
+344.517 cycles/search
+3.13341e+08 searches/sec
+20946.6 cycles/write
+572628 writes/sec
+# --bench=radix --cores=50 --readers=45 --writers=5 --initial=1000 --duration=5s
+5.00122 secs
+330.823 cycles/search
+3.26394e+08 searches/sec
+20885.1 cycles/write
+574458 writes/sec
+# --bench=radix --cores=60 --readers=55 --writers=5 --initial=1000 --duration=5s
+5.00215 secs
+334.242 cycles/search
+3.94772e+08 searches/sec
+20902.9 cycles/write
+573863 writes/sec
+# --bench=radix --cores=60 --readers=55 --writers=5 --initial=1000 --duration=5s
+5.00222 secs
+333.543 cycles/search
+3.95593e+08 searches/sec
+20972.6 cycles/write
+571949 writes/sec
+# --bench=radix --cores=60 --readers=55 --writers=5 --initial=1000 --duration=5s
+5.00214 secs
+333.492 cycles/search
+3.9566e+08 searches/sec
+20909.2 cycles/write
+573690 writes/sec
+# --bench=radix --cores=70 --readers=65 --writers=5 --initial=1000 --duration=5s
+5.00588 secs
+331.477 cycles/search
+4.70089e+08 searches/sec
+21233.1 cycles/write
+564515 writes/sec
+# --bench=radix --cores=70 --readers=65 --writers=5 --initial=1000 --duration=5s
+5.00301 secs
+332.693 cycles/search
+4.6864e+08 searches/sec
+20887.8 cycles/write
+574180 writes/sec
+# --bench=radix --cores=70 --readers=65 --writers=5 --initial=1000 --duration=5s
+5.00303 secs
+328.345 cycles/search
+4.74844e+08 searches/sec
+20824.1 cycles/write
+575935 writes/sec
+# --bench=radix --cores=80 --readers=75 --writers=5 --initial=1000 --duration=5s
+5.00609 secs
+336.567 cycles/search
+5.34185e+08 searches/sec
+25145.8 cycles/write
+476656 writes/sec
+# --bench=radix --cores=80 --readers=75 --writers=5 --initial=1000 --duration=5s
+5.00399 secs
+346.956 cycles/search
+5.18407e+08 searches/sec
+25079.5 cycles/write
+478120 writes/sec
+# --bench=radix --cores=80 --readers=75 --writers=5 --initial=1000 --duration=5s
+5.00687 secs
+348.302 cycles/search
+5.16107e+08 searches/sec
+25022.3 cycles/write
+478938 writes/sec
+== --id=2013-02-27T15:29:10 ==
+# --bench=radix --cores=11 --readers=1 --writers=10 --initial=1000 --duration=5s
+5.00026 secs
+354.213 cycles/search
+6.77566e+06 searches/sec
+44426.6 cycles/write
+540216 writes/sec
+# --bench=radix --cores=11 --readers=1 --writers=10 --initial=1000 --duration=5s
+5.00082 secs
+352.466 cycles/search
+6.80838e+06 searches/sec
+42098.4 cycles/write
+570067 writes/sec
+# --bench=radix --cores=11 --readers=1 --writers=10 --initial=1000 --duration=5s
+5.00029 secs
+352.752 cycles/search
+6.80364e+06 searches/sec
+41601.7 cycles/write
+576879 writes/sec
+# --bench=radix --cores=20 --readers=10 --writers=10 --initial=1000 --duration=5s
+5.00098 secs
+338.885 cycles/search
+7.0811e+07 searches/sec
+52612.6 cycles/write
+456105 writes/sec
+# --bench=radix --cores=20 --readers=10 --writers=10 --initial=1000 --duration=5s
+5.00072 secs
+333.847 cycles/search
+7.18848e+07 searches/sec
+52508.9 cycles/write
+457022 writes/sec
+# --bench=radix --cores=20 --readers=10 --writers=10 --initial=1000 --duration=5s
+5.00099 secs
+332.856 cycles/search
+7.2092e+07 searches/sec
+52910.8 cycles/write
+453531 writes/sec
+# --bench=radix --cores=30 --readers=20 --writers=10 --initial=1000 --duration=5s
+5.0011 secs
+327.72 cycles/search
+1.46441e+08 searches/sec
+44419.7 cycles/write
+540204 writes/sec
+# --bench=radix --cores=30 --readers=20 --writers=10 --initial=1000 --duration=5s
+5.00056 secs
+340.064 cycles/search
+1.41141e+08 searches/sec
+42026.4 cycles/write
+571032 writes/sec
+# --bench=radix --cores=30 --readers=20 --writers=10 --initial=1000 --duration=5s
+5.00216 secs
+346.558 cycles/search
+1.38451e+08 searches/sec
+43294.8 cycles/write
+554187 writes/sec
+# --bench=radix --cores=40 --readers=30 --writers=10 --initial=1000 --duration=5s
+5.00101 secs
+334.603 cycles/search
+2.15159e+08 searches/sec
+50508 cycles/write
+475093 writes/sec
+# --bench=radix --cores=40 --readers=30 --writers=10 --initial=1000 --duration=5s
+5.00084 secs
+323.71 cycles/search
+2.22407e+08 searches/sec
+49947.5 cycles/write
+480434 writes/sec
+# --bench=radix --cores=40 --readers=30 --writers=10 --initial=1000 --duration=5s
+5.00183 secs
+332.11 cycles/search
+2.16726e+08 searches/sec
+51461.8 cycles/write
+466215 writes/sec
+# --bench=radix --cores=50 --readers=40 --writers=10 --initial=1000 --duration=5s
+5.00237 secs
+327.073 cycles/search
+2.93387e+08 searches/sec
+38349.8 cycles/write
+625555 writes/sec
+# --bench=radix --cores=50 --readers=40 --writers=10 --initial=1000 --duration=5s
+5.00205 secs
+333.57 cycles/search
+2.8769e+08 searches/sec
+41091.1 cycles/write
+583865 writes/sec
+# --bench=radix --cores=50 --readers=40 --writers=10 --initial=1000 --duration=5s
+5.00274 secs
+332.731 cycles/search
+2.88376e+08 searches/sec
+40047.3 cycles/write
+598989 writes/sec
+# --bench=radix --cores=60 --readers=50 --writers=10 --initial=1000 --duration=5s
+5.0021 secs
+331.86 cycles/search
+3.61463e+08 searches/sec
+41055.8 cycles/write
+584348 writes/sec
+# --bench=radix --cores=60 --readers=50 --writers=10 --initial=1000 --duration=5s
+5.00205 secs
+327.699 cycles/search
+3.66056e+08 searches/sec
+41625 cycles/write
+576419 writes/sec
+# --bench=radix --cores=60 --readers=50 --writers=10 --initial=1000 --duration=5s
+5.00365 secs
+332.524 cycles/search
+3.60629e+08 searches/sec
+41256.7 cycles/write
+581332 writes/sec
+# --bench=radix --cores=70 --readers=60 --writers=10 --initial=1000 --duration=5s
+5.00278 secs
+330.9 cycles/search
+4.34987e+08 searches/sec
+39622.6 cycles/write
+605389 writes/sec
+# --bench=radix --cores=70 --readers=60 --writers=10 --initial=1000 --duration=5s
+5.00293 secs
+334.44 cycles/search
+4.30338e+08 searches/sec
+39234.4 cycles/write
+611316 writes/sec
+# --bench=radix --cores=70 --readers=60 --writers=10 --initial=1000 --duration=5s
+5.00449 secs
+335.914 cycles/search
+4.28338e+08 searches/sec
+40120.3 cycles/write
+597700 writes/sec
+# --bench=radix --cores=80 --readers=70 --writers=10 --initial=1000 --duration=5s
+5.00448 secs
+324.821 cycles/search
+5.16769e+08 searches/sec
+53261.6 cycles/write
+450222 writes/sec
+# --bench=radix --cores=80 --readers=70 --writers=10 --initial=1000 --duration=5s
+5.00564 secs
+343.521 cycles/search
+4.88524e+08 searches/sec
+53092.5 cycles/write
+451562 writes/sec
+# --bench=radix --cores=80 --readers=70 --writers=10 --initial=1000 --duration=5s
+5.00388 secs
+339.248 cycles/search
+4.94853e+08 searches/sec
+54201.5 cycles/write
+442469 writes/sec
+== --id=2013-02-27T15:33:07 ==
+# --bench=radix --cores=41 --readers=1 --writers=40 --initial=1000 --duration=5s
+5.00395 secs
+414.63 cycles/search
+5.78521e+06 searches/sec
+751574 cycles/write
+127661 writes/sec
+# --bench=radix --cores=41 --readers=1 --writers=40 --initial=1000 --duration=5s
+5.00472 secs
+445.496 cycles/search
+5.38395e+06 searches/sec
+789442 cycles/write
+121474 writes/sec
+# --bench=radix --cores=41 --readers=1 --writers=40 --initial=1000 --duration=5s
+5.00449 secs
+427.12 cycles/search
+5.61585e+06 searches/sec
+725555 cycles/write
+132257 writes/sec
+# --bench=radix --cores=50 --readers=10 --writers=40 --initial=1000 --duration=5s
+5.00435 secs
+344.399 cycles/search
+6.9629e+07 searches/sec
+710821 cycles/write
+134990 writes/sec
+# --bench=radix --cores=50 --readers=10 --writers=40 --initial=1000 --duration=5s
+5.00482 secs
+343.718 cycles/search
+6.97616e+07 searches/sec
+674108 cycles/write
+142329 writes/sec
+# --bench=radix --cores=50 --readers=10 --writers=40 --initial=1000 --duration=5s
+5.00786 secs
+338.076 cycles/search
+7.09084e+07 searches/sec
+741240 cycles/write
+129372 writes/sec
+# --bench=radix --cores=60 --readers=20 --writers=40 --initial=1000 --duration=5s
+5.00533 secs
+339.78 cycles/search
+1.41123e+08 searches/sec
+733459 cycles/write
+130773 writes/sec
+# --bench=radix --cores=60 --readers=20 --writers=40 --initial=1000 --duration=5s
+5.00673 secs
+339.765 cycles/search
+1.41091e+08 searches/sec
+781663 cycles/write
+122662 writes/sec
+# --bench=radix --cores=60 --readers=20 --writers=40 --initial=1000 --duration=5s
+5.00618 secs
+341.734 cycles/search
+1.40346e+08 searches/sec
+736546 cycles/write
+130269 writes/sec
+# --bench=radix --cores=70 --readers=30 --writers=40 --initial=1000 --duration=5s
+5.0054 secs
+342.472 cycles/search
+2.10019e+08 searches/sec
+745070 cycles/write
+128736 writes/sec
+# --bench=radix --cores=70 --readers=30 --writers=40 --initial=1000 --duration=5s
+5.00741 secs
+342.434 cycles/search
+2.09959e+08 searches/sec
+719130 cycles/write
+133284 writes/sec
+# --bench=radix --cores=70 --readers=30 --writers=40 --initial=1000 --duration=5s
+5.00755 secs
+344.146 cycles/search
+2.08999e+08 searches/sec
+763355 cycles/write
+125674 writes/sec
+# --bench=radix --cores=80 --readers=40 --writers=40 --initial=1000 --duration=5s
+5.00735 secs
+344.177 cycles/search
+2.78645e+08 searches/sec
+725771 cycles/write
+132054 writes/sec
+# --bench=radix --cores=80 --readers=40 --writers=40 --initial=1000 --duration=5s
+5.00603 secs
+345.605 cycles/search
+2.77579e+08 searches/sec
+753125 cycles/write
+127338 writes/sec
+# --bench=radix --cores=80 --readers=40 --writers=40 --initial=1000 --duration=5s
+5.00932 secs
+344.338 cycles/search
+2.78401e+08 searches/sec
+712507 cycles/write
+134523 writes/sec
+== --id=2013-02-27T15:35:09 ==
+# --bench=skip --cores=1 --readers=1 --writers=0 --initial=1000 --duration=5s
+5.00009 secs
+399.811 cycles/search
+6.003e+06 searches/sec
+# --bench=skip --cores=1 --readers=1 --writers=0 --initial=1000 --duration=5s
+5.00009 secs
+392.397 cycles/search
+6.11642e+06 searches/sec
+# --bench=skip --cores=1 --readers=1 --writers=0 --initial=1000 --duration=5s
+5.00016 secs
+415.163 cycles/search
+5.78102e+06 searches/sec
+# --bench=skip --cores=10 --readers=10 --writers=0 --initial=1000 --duration=5s
+5.00018 secs
+402.384 cycles/search
+5.9645e+07 searches/sec
+# --bench=skip --cores=10 --readers=10 --writers=0 --initial=1000 --duration=5s
+5.00016 secs
+400.725 cycles/search
+5.9892e+07 searches/sec
+# --bench=skip --cores=10 --readers=10 --writers=0 --initial=1000 --duration=5s
+5.00036 secs
+424.3 cycles/search
+5.6562e+07 searches/sec
+# --bench=skip --cores=20 --readers=20 --writers=0 --initial=1000 --duration=5s
+5.00031 secs
+401.493 cycles/search
+1.19552e+08 searches/sec
+# --bench=skip --cores=20 --readers=20 --writers=0 --initial=1000 --duration=5s
+5.00046 secs
+405.009 cycles/search
+1.1851e+08 searches/sec
+# --bench=skip --cores=20 --readers=20 --writers=0 --initial=1000 --duration=5s
+5.00026 secs
+427.584 cycles/search
+1.12258e+08 searches/sec
+# --bench=skip --cores=30 --readers=30 --writers=0 --initial=1000 --duration=5s
+5.00074 secs
+435.848 cycles/search
+1.65178e+08 searches/sec
+# --bench=skip --cores=30 --readers=30 --writers=0 --initial=1000 --duration=5s
+5.00151 secs
+422.626 cycles/search
+1.70319e+08 searches/sec
+# --bench=skip --cores=30 --readers=30 --writers=0 --initial=1000 --duration=5s
+5.00071 secs
+396.722 cycles/search
+1.8147e+08 searches/sec
+# --bench=skip --cores=40 --readers=40 --writers=0 --initial=1000 --duration=5s
+5.00087 secs
+395.04 cycles/search
+2.42982e+08 searches/sec
+# --bench=skip --cores=40 --readers=40 --writers=0 --initial=1000 --duration=5s
+5.00121 secs
+410.348 cycles/search
+2.33902e+08 searches/sec
+# --bench=skip --cores=40 --readers=40 --writers=0 --initial=1000 --duration=5s
+5.00171 secs
+396.208 cycles/search
+2.42225e+08 searches/sec
+# --bench=skip --cores=50 --readers=50 --writers=0 --initial=1000 --duration=5s
+5.00198 secs
+396.021 cycles/search
+3.02908e+08 searches/sec
+# --bench=skip --cores=50 --readers=50 --writers=0 --initial=1000 --duration=5s
+5.002 secs
+402.561 cycles/search
+2.97985e+08 searches/sec
+# --bench=skip --cores=50 --readers=50 --writers=0 --initial=1000 --duration=5s
+5.00307 secs
+424.416 cycles/search
+2.8258e+08 searches/sec
+# --bench=skip --cores=60 --readers=60 --writers=0 --initial=1000 --duration=5s
+5.00392 secs
+416.782 cycles/search
+3.45249e+08 searches/sec
+# --bench=skip --cores=60 --readers=60 --writers=0 --initial=1000 --duration=5s
+5.00224 secs
+427.77 cycles/search
+3.36494e+08 searches/sec
+# --bench=skip --cores=60 --readers=60 --writers=0 --initial=1000 --duration=5s
+5.00329 secs
+429.685 cycles/search
+3.34924e+08 searches/sec
+# --bench=skip --cores=70 --readers=70 --writers=0 --initial=1000 --duration=5s
+5.00368 secs
+428.286 cycles/search
+3.9199e+08 searches/sec
+# --bench=skip --cores=70 --readers=70 --writers=0 --initial=1000 --duration=5s
+5.00324 secs
+413.773 cycles/search
+4.05774e+08 searches/sec
+# --bench=skip --cores=70 --readers=70 --writers=0 --initial=1000 --duration=5s
+5.00434 secs
+404.673 cycles/search
+4.14808e+08 searches/sec
+# --bench=skip --cores=80 --readers=80 --writers=0 --initial=1000 --duration=5s
+5.00393 secs
+403.401 cycles/search
+4.75601e+08 searches/sec
+# --bench=skip --cores=80 --readers=80 --writers=0 --initial=1000 --duration=5s
+5.00474 secs
+422.785 cycles/search
+4.53722e+08 searches/sec
+# --bench=skip --cores=80 --readers=80 --writers=0 --initial=1000 --duration=5s
+5.00581 secs
+398.946 cycles/search
+4.80731e+08 searches/sec
+== --id=2013-02-27T15:38:19 ==
+# --bench=skip --cores=2 --readers=1 --writers=1 --initial=1000 --duration=5s
+5.00017 secs
+435.051 cycles/search
+5.51673e+06 searches/sec
+1751.01 cycles/write
+1.37066e+06 writes/sec
+# --bench=skip --cores=2 --readers=1 --writers=1 --initial=1000 --duration=5s
+5.00016 secs
+439.155 cycles/search
+5.46518e+06 searches/sec
+1740.84 cycles/write
+1.37867e+06 writes/sec
+# --bench=skip --cores=2 --readers=1 --writers=1 --initial=1000 --duration=5s
+5.00016 secs
+432.344 cycles/search
+5.55127e+06 searches/sec
+1746.75 cycles/write
+1.374e+06 writes/sec
+# --bench=skip --cores=10 --readers=9 --writers=1 --initial=1000 --duration=5s
+5.00027 secs
+428.033 cycles/search
+5.04631e+07 searches/sec
+1861.65 cycles/write
+1.28917e+06 writes/sec
+# --bench=skip --cores=10 --readers=9 --writers=1 --initial=1000 --duration=5s
+5.00025 secs
+447.69 cycles/search
+4.82472e+07 searches/sec
+1952.12 cycles/write
+1.22943e+06 writes/sec
+# --bench=skip --cores=10 --readers=9 --writers=1 --initial=1000 --duration=5s
+5.00024 secs
+433.715 cycles/search
+4.98022e+07 searches/sec
+1819.32 cycles/write
+1.31917e+06 writes/sec
+# --bench=skip --cores=20 --readers=19 --writers=1 --initial=1000 --duration=5s
+5.00077 secs
+469.391 cycles/search
+9.71366e+07 searches/sec
+3117.97 cycles/write
+769646 writes/sec
+# --bench=skip --cores=20 --readers=19 --writers=1 --initial=1000 --duration=5s
+5.00068 secs
+472.867 cycles/search
+9.64244e+07 searches/sec
+3096.34 cycles/write
+775028 writes/sec
+# --bench=skip --cores=20 --readers=19 --writers=1 --initial=1000 --duration=5s
+5.00046 secs
+466.932 cycles/search
+9.76541e+07 searches/sec
+3204.98 cycles/write
+748798 writes/sec
+# --bench=skip --cores=30 --readers=29 --writers=1 --initial=1000 --duration=5s
+5.00104 secs
+490.603 cycles/search
+1.41843e+08 searches/sec
+4202.23 cycles/write
+571033 writes/sec
+# --bench=skip --cores=30 --readers=29 --writers=1 --initial=1000 --duration=5s
+5.00126 secs
+487.349 cycles/search
+1.42784e+08 searches/sec
+4091.05 cycles/write
+586523 writes/sec
+# --bench=skip --cores=30 --readers=29 --writers=1 --initial=1000 --duration=5s
+5.00074 secs
+497.653 cycles/search
+1.39842e+08 searches/sec
+4081.76 cycles/write
+587921 writes/sec
+# --bench=skip --cores=40 --readers=39 --writers=1 --initial=1000 --duration=5s
+5.00089 secs
+536.923 cycles/search
+1.74304e+08 searches/sec
+4613.58 cycles/write
+520135 writes/sec
+# --bench=skip --cores=40 --readers=39 --writers=1 --initial=1000 --duration=5s
+5.00128 secs
+580.14 cycles/search
+1.61306e+08 searches/sec
+4802.7 cycles/write
+499614 writes/sec
+# --bench=skip --cores=40 --readers=39 --writers=1 --initial=1000 --duration=5s
+5.00134 secs
+551.93 cycles/search
+1.69549e+08 searches/sec
+4876.9 cycles/write
+492007 writes/sec
+# --bench=skip --cores=50 --readers=49 --writers=1 --initial=1000 --duration=5s
+5.00215 secs
+555.709 cycles/search
+2.1154e+08 searches/sec
+6162.66 cycles/write
+389293 writes/sec
+# --bench=skip --cores=50 --readers=49 --writers=1 --initial=1000 --duration=5s
+5.0012 secs
+564.435 cycles/search
+2.0831e+08 searches/sec
+6097.62 cycles/write
+393518 writes/sec
+# --bench=skip --cores=50 --readers=49 --writers=1 --initial=1000 --duration=5s
+5.00153 secs
+563.545 cycles/search
+2.08625e+08 searches/sec
+5924.4 cycles/write
+404998 writes/sec
+# --bench=skip --cores=60 --readers=59 --writers=1 --initial=1000 --duration=5s
+5.00246 secs
+615.671 cycles/search
+2.2989e+08 searches/sec
+6977.67 cycles/write
+343801 writes/sec
+# --bench=skip --cores=60 --readers=59 --writers=1 --initial=1000 --duration=5s
+5.00227 secs
+616.063 cycles/search
+2.29753e+08 searches/sec
+6964.57 cycles/write
+344461 writes/sec
+# --bench=skip --cores=60 --readers=59 --writers=1 --initial=1000 --duration=5s
+5.00199 secs
+624.142 cycles/search
+2.26792e+08 searches/sec
+6854.24 cycles/write
+350025 writes/sec
+# --bench=skip --cores=70 --readers=69 --writers=1 --initial=1000 --duration=5s
+5.00337 secs
+655.646 cycles/search
+2.52419e+08 searches/sec
+8039.04 cycles/write
+298356 writes/sec
+# --bench=skip --cores=70 --readers=69 --writers=1 --initial=1000 --duration=5s
+5.00488 secs
+656.191 cycles/search
+2.52131e+08 searches/sec
+8060.15 cycles/write
+297485 writes/sec
+# --bench=skip --cores=70 --readers=69 --writers=1 --initial=1000 --duration=5s
+5.00338 secs
+642.915 cycles/search
+2.57414e+08 searches/sec
+7799.65 cycles/write
+307513 writes/sec
+# --bench=skip --cores=80 --readers=79 --writers=1 --initial=1000 --duration=5s
+5.00407 secs
+666.447 cycles/search
+2.84276e+08 searches/sec
+8842.55 cycles/write
+271207 writes/sec
+# --bench=skip --cores=80 --readers=79 --writers=1 --initial=1000 --duration=5s
+5.0048 secs
+678.447 cycles/search
+2.79207e+08 searches/sec
+8605.79 cycles/write
+278630 writes/sec
+# --bench=skip --cores=80 --readers=79 --writers=1 --initial=1000 --duration=5s
+5.00514 secs
+724.583 cycles/search
+2.61411e+08 searches/sec
+8008.23 cycles/write
+299397 writes/sec
+== --id=2013-02-27T15:41:30 ==
+# --bench=skip --cores=6 --readers=1 --writers=5 --initial=1000 --duration=5s
+5.00019 secs
+520.232 cycles/search
+4.61342e+06 searches/sec
+1947.67 cycles/write
+6.16126e+06 writes/sec
+# --bench=skip --cores=6 --readers=1 --writers=5 --initial=1000 --duration=5s
+5.0002 secs
+538.84 cycles/search
+4.4541e+06 searches/sec
+2007.06 cycles/write
+5.97894e+06 writes/sec
+# --bench=skip --cores=6 --readers=1 --writers=5 --initial=1000 --duration=5s
+5.00019 secs
+562.551 cycles/search
+4.26635e+06 searches/sec
+2065.62 cycles/write
+5.80945e+06 writes/sec
+# --bench=skip --cores=10 --readers=5 --writers=5 --initial=1000 --duration=5s
+5.00025 secs
+528.171 cycles/search
+2.27199e+07 searches/sec
+2151.62 cycles/write
+5.57718e+06 writes/sec
+# --bench=skip --cores=10 --readers=5 --writers=5 --initial=1000 --duration=5s
+5.00024 secs
+505.863 cycles/search
+2.37218e+07 searches/sec
+2003.06 cycles/write
+5.99081e+06 writes/sec
+# --bench=skip --cores=10 --readers=5 --writers=5 --initial=1000 --duration=5s
+5.00025 secs
+547.569 cycles/search
+2.19151e+07 searches/sec
+2111.68 cycles/write
+5.68267e+06 writes/sec
+# --bench=skip --cores=20 --readers=15 --writers=5 --initial=1000 --duration=5s
+5.00037 secs
+801.982 cycles/search
+4.48875e+07 searches/sec
+4021.64 cycles/write
+2.98377e+06 writes/sec
+# --bench=skip --cores=20 --readers=15 --writers=5 --initial=1000 --duration=5s
+5.00039 secs
+808.229 cycles/search
+4.45404e+07 searches/sec
+4073.55 cycles/write
+2.94574e+06 writes/sec
+# --bench=skip --cores=20 --readers=15 --writers=5 --initial=1000 --duration=5s
+5.00043 secs
+746.235 cycles/search
+4.82402e+07 searches/sec
+3786.23 cycles/write
+3.16925e+06 writes/sec
+# --bench=skip --cores=30 --readers=25 --writers=5 --initial=1000 --duration=5s
+5.00072 secs
+987.502 cycles/search
+6.07534e+07 searches/sec
+4998.77 cycles/write
+2.40035e+06 writes/sec
+# --bench=skip --cores=30 --readers=25 --writers=5 --initial=1000 --duration=5s
+5.00152 secs
+936.597 cycles/search
+6.40452e+07 searches/sec
+4730.8 cycles/write
+2.53591e+06 writes/sec
+# --bench=skip --cores=30 --readers=25 --writers=5 --initial=1000 --duration=5s
+5.00152 secs
+979.279 cycles/search
+6.12538e+07 searches/sec
+4914.82 cycles/write
+2.44096e+06 writes/sec
+# --bench=skip --cores=40 --readers=35 --writers=5 --initial=1000 --duration=5s
+5.00113 secs
+1461.43 cycles/search
+5.74676e+07 searches/sec
+6346.51 cycles/write
+1.89046e+06 writes/sec
+# --bench=skip --cores=40 --readers=35 --writers=5 --initial=1000 --duration=5s
+5.00109 secs
+1366.46 cycles/search
+6.14623e+07 searches/sec
+5908.84 cycles/write
+2.03051e+06 writes/sec
+# --bench=skip --cores=40 --readers=35 --writers=5 --initial=1000 --duration=5s
+5.00117 secs
+1316.06 cycles/search
+6.38148e+07 searches/sec
+5903.15 cycles/write
+2.03243e+06 writes/sec
+# --bench=skip --cores=50 --readers=45 --writers=5 --initial=1000 --duration=5s
+5.00146 secs
+1557.87 cycles/search
+6.93086e+07 searches/sec
+6777 cycles/write
+1.77026e+06 writes/sec
+# --bench=skip --cores=50 --readers=45 --writers=5 --initial=1000 --duration=5s
+5.00347 secs
+1779.58 cycles/search
+6.06492e+07 searches/sec
+7103.99 cycles/write
+1.6881e+06 writes/sec
+# --bench=skip --cores=50 --readers=45 --writers=5 --initial=1000 --duration=5s
+5.00143 secs
+1707.25 cycles/search
+6.32443e+07 searches/sec
+6863.19 cycles/write
+1.74804e+06 writes/sec
+# --bench=skip --cores=60 --readers=55 --writers=5 --initial=1000 --duration=5s
+5.0026 secs
+2000.45 cycles/search
+6.5954e+07 searches/sec
+7381.72 cycles/write
+1.62487e+06 writes/sec
+# --bench=skip --cores=60 --readers=55 --writers=5 --initial=1000 --duration=5s
+5.00238 secs
+2139.01 cycles/search
+6.16845e+07 searches/sec
+8110.72 cycles/write
+1.47889e+06 writes/sec
+# --bench=skip --cores=60 --readers=55 --writers=5 --initial=1000 --duration=5s
+5.00239 secs
+2272.44 cycles/search
+5.80623e+07 searches/sec
+8034.72 cycles/write
+1.49288e+06 writes/sec
+# --bench=skip --cores=70 --readers=65 --writers=5 --initial=1000 --duration=5s
+5.00381 secs
+2729.76 cycles/search
+5.71071e+07 searches/sec
+9249.78 cycles/write
+1.2964e+06 writes/sec
+# --bench=skip --cores=70 --readers=65 --writers=5 --initial=1000 --duration=5s
+5.00272 secs
+3152.78 cycles/search
+4.94557e+07 searches/sec
+9994.79 cycles/write
+1.20003e+06 writes/sec
+# --bench=skip --cores=70 --readers=65 --writers=5 --initial=1000 --duration=5s
+5.00483 secs
+2661.13 cycles/search
+5.85679e+07 searches/sec
+8840.42 cycles/write
+1.35616e+06 writes/sec
+# --bench=skip --cores=80 --readers=75 --writers=5 --initial=1000 --duration=5s
+5.00467 secs
+3828.15 cycles/search
+4.69785e+07 searches/sec
+11018.7 cycles/write
+1.08809e+06 writes/sec
+# --bench=skip --cores=80 --readers=75 --writers=5 --initial=1000 --duration=5s
+5.00434 secs
+2702.93 cycles/search
+6.65398e+07 searches/sec
+9068.35 cycles/write
+1.3222e+06 writes/sec
+# --bench=skip --cores=80 --readers=75 --writers=5 --initial=1000 --duration=5s
+5.00511 secs
+3093.46 cycles/search
+5.8131e+07 searches/sec
+9693.05 cycles/write
+1.2368e+06 writes/sec
+== --id=2013-02-27T15:44:46 ==
+# --bench=skip --cores=11 --readers=1 --writers=10 --initial=1000 --duration=5s
+5.00024 secs
+1088.07 cycles/search
+2.20576e+06 searches/sec
+3956.16 cycles/write
+6.06649e+06 writes/sec
+# --bench=skip --cores=11 --readers=1 --writers=10 --initial=1000 --duration=5s
+5.00026 secs
+1074.59 cycles/search
+2.23343e+06 searches/sec
+3879.19 cycles/write
+6.18684e+06 writes/sec
+# --bench=skip --cores=11 --readers=1 --writers=10 --initial=1000 --duration=5s
+5.00025 secs
+1025.36 cycles/search
+2.34067e+06 searches/sec
+3761.11 cycles/write
+6.38109e+06 writes/sec
+# --bench=skip --cores=20 --readers=10 --writers=10 --initial=1000 --duration=5s
+5.00044 secs
+1218.26 cycles/search
+1.96995e+07 searches/sec
+4884.81 cycles/write
+4.91299e+06 writes/sec
+# --bench=skip --cores=20 --readers=10 --writers=10 --initial=1000 --duration=5s
+5.00034 secs
+1288.12 cycles/search
+1.86314e+07 searches/sec
+5146.09 cycles/write
+4.66363e+06 writes/sec
+# --bench=skip --cores=20 --readers=10 --writers=10 --initial=1000 --duration=5s
+5.00036 secs
+2038.62 cycles/search
+1.17724e+07 searches/sec
+6852.48 cycles/write
+3.50229e+06 writes/sec
+# --bench=skip --cores=30 --readers=20 --writers=10 --initial=1000 --duration=5s
+5.00086 secs
+4424.48 cycles/search
+1.08474e+07 searches/sec
+12655.2 cycles/write
+1.89622e+06 writes/sec
+# --bench=skip --cores=30 --readers=20 --writers=10 --initial=1000 --duration=5s
+5.00081 secs
+1874.53 cycles/search
+2.56034e+07 searches/sec
+6602.84 cycles/write
+3.63437e+06 writes/sec
+# --bench=skip --cores=30 --readers=20 --writers=10 --initial=1000 --duration=5s
+5.00059 secs
+1618.02 cycles/search
+2.96638e+07 searches/sec
+6146.26 cycles/write
+3.90453e+06 writes/sec
+# --bench=skip --cores=40 --readers=30 --writers=10 --initial=1000 --duration=5s
+5.00101 secs
+3647.26 cycles/search
+1.97378e+07 searches/sec
+9908.17 cycles/write
+2.42187e+06 writes/sec
+# --bench=skip --cores=40 --readers=30 --writers=10 --initial=1000 --duration=5s
+5.00103 secs
+2732 cycles/search
+2.63501e+07 searches/sec
+8603.19 cycles/write
+2.78922e+06 writes/sec
+# --bench=skip --cores=40 --readers=30 --writers=10 --initial=1000 --duration=5s
+5.00104 secs
+3542.51 cycles/search
+2.03213e+07 searches/sec
+9616.4 cycles/write
+2.49533e+06 writes/sec
+# --bench=skip --cores=50 --readers=40 --writers=10 --initial=1000 --duration=5s
+5.00165 secs
+3729.55 cycles/search
+2.57331e+07 searches/sec
+10542.4 cycles/write
+2.27588e+06 writes/sec
+# --bench=skip --cores=50 --readers=40 --writers=10 --initial=1000 --duration=5s
+5.0018 secs
+3982.59 cycles/search
+2.40974e+07 searches/sec
+11041.8 cycles/write
+2.17288e+06 writes/sec
+# --bench=skip --cores=50 --readers=40 --writers=10 --initial=1000 --duration=5s
+5.00141 secs
+5534.66 cycles/search
+1.73412e+07 searches/sec
+13339.4 cycles/write
+1.79876e+06 writes/sec
+# --bench=skip --cores=60 --readers=50 --writers=10 --initial=1000 --duration=5s
+5.00216 secs
+5367.36 cycles/search
+2.23488e+07 searches/sec
+12932.9 cycles/write
+1.85502e+06 writes/sec
+# --bench=skip --cores=60 --readers=50 --writers=10 --initial=1000 --duration=5s
+5.00224 secs
+5580.27 cycles/search
+2.14958e+07 searches/sec
+13235.4 cycles/write
+1.81259e+06 writes/sec
+# --bench=skip --cores=60 --readers=50 --writers=10 --initial=1000 --duration=5s
+5.00207 secs
+5272.04 cycles/search
+2.27532e+07 searches/sec
+11630.9 cycles/write
+2.06271e+06 writes/sec
+# --bench=skip --cores=70 --readers=60 --writers=10 --initial=1000 --duration=5s
+5.00261 secs
+6427.27 cycles/search
+2.23939e+07 searches/sec
+13230.5 cycles/write
+1.81313e+06 writes/sec
+# --bench=skip --cores=70 --readers=60 --writers=10 --initial=1000 --duration=5s
+5.00333 secs
+5335.31 cycles/search
+2.69735e+07 searches/sec
+12175.9 cycles/write
+1.9699e+06 writes/sec
+# --bench=skip --cores=70 --readers=60 --writers=10 --initial=1000 --duration=5s
+5.00346 secs
+7201.04 cycles/search
+1.99843e+07 searches/sec
+14156.5 cycles/write
+1.69425e+06 writes/sec
+# --bench=skip --cores=80 --readers=70 --writers=10 --initial=1000 --duration=5s
+5.00314 secs
+7950.74 cycles/search
+2.11179e+07 searches/sec
+15303 cycles/write
+1.56741e+06 writes/sec
+# --bench=skip --cores=80 --readers=70 --writers=10 --initial=1000 --duration=5s
+5.00518 secs
+8146.57 cycles/search
+2.0602e+07 searches/sec
+15064.2 cycles/write
+1.59161e+06 writes/sec
+# --bench=skip --cores=80 --readers=70 --writers=10 --initial=1000 --duration=5s
+5.0046 secs
+9738.87 cycles/search
+1.72355e+07 searches/sec
+18954.4 cycles/write
+1.2651e+06 writes/sec
+== --id=2013-02-27T15:47:41 ==
+# --bench=skip --cores=41 --readers=1 --writers=40 --initial=1000 --duration=5s
+5.0012 secs
+10903.4 cycles/search
+220075 searches/sec
+36123.7 cycles/write
+2.65705e+06 writes/sec
+# --bench=skip --cores=41 --readers=1 --writers=40 --initial=1000 --duration=5s
+5.00114 secs
+10154.6 cycles/search
+236335 searches/sec
+36590.3 cycles/write
+2.62318e+06 writes/sec
+# --bench=skip --cores=41 --readers=1 --writers=40 --initial=1000 --duration=5s
+5.00111 secs
+7682.49 cycles/search
+312359 searches/sec
+27977.1 cycles/write
+3.43081e+06 writes/sec
+# --bench=skip --cores=50 --readers=10 --writers=40 --initial=1000 --duration=5s
+5.00306 secs
+10374 cycles/search
+2.31218e+06 searches/sec
+34136.4 cycles/write
+2.81067e+06 writes/sec
+# --bench=skip --cores=50 --readers=10 --writers=40 --initial=1000 --duration=5s
+5.00257 secs
+9921.7 cycles/search
+2.41785e+06 searches/sec
+30972.7 cycles/write
+3.09805e+06 writes/sec
+# --bench=skip --cores=50 --readers=10 --writers=40 --initial=1000 --duration=5s
+5.00187 secs
+10370.5 cycles/search
+2.31355e+06 searches/sec
+33867.3 cycles/write
+2.83367e+06 writes/sec
+# --bench=skip --cores=60 --readers=20 --writers=40 --initial=1000 --duration=5s
+5.00202 secs
+20755 cycles/search
+2.31188e+06 searches/sec
+63321.8 cycles/write
+1.51553e+06 writes/sec
+# --bench=skip --cores=60 --readers=20 --writers=40 --initial=1000 --duration=5s
+5.0022 secs
+13819.8 cycles/search
+3.47193e+06 searches/sec
+45048.9 cycles/write
+2.13018e+06 writes/sec
+# --bench=skip --cores=60 --readers=20 --writers=40 --initial=1000 --duration=5s
+5.00324 secs
+13878.8 cycles/search
+3.45643e+06 searches/sec
+42638.9 cycles/write
+2.25012e+06 writes/sec
+# --bench=skip --cores=70 --readers=30 --writers=40 --initial=1000 --duration=5s
+5.00422 secs
+22823.9 cycles/search
+3.15212e+06 searches/sec
+66102.8 cycles/write
+1.45115e+06 writes/sec
+# --bench=skip --cores=70 --readers=30 --writers=40 --initial=1000 --duration=5s
+5.00379 secs
+19452.6 cycles/search
+3.69874e+06 searches/sec
+56486 cycles/write
+1.69835e+06 writes/sec
+# --bench=skip --cores=70 --readers=30 --writers=40 --initial=1000 --duration=5s
+5.00328 secs
+24209 cycles/search
+2.97233e+06 searches/sec
+77139.2 cycles/write
+1.24376e+06 writes/sec
+# --bench=skip --cores=80 --readers=40 --writers=40 --initial=1000 --duration=5s
+5.00432 secs
+28184.1 cycles/search
+3.40344e+06 searches/sec
+88415.6 cycles/write
+1.0849e+06 writes/sec
+# --bench=skip --cores=80 --readers=40 --writers=40 --initial=1000 --duration=5s
+5.0041 secs
+25709.6 cycles/search
+3.73118e+06 searches/sec
+77962.1 cycles/write
+1.23043e+06 writes/sec
+# --bench=skip --cores=80 --readers=40 --writers=40 --initial=1000 --duration=5s
+5.00435 secs
+29623 cycles/search
+3.23807e+06 searches/sec
+89820.7 cycles/write
+1.06792e+06 writes/sec
