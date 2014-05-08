@@ -58,13 +58,17 @@ no per-core partition drops to zero in the commutative region.
 However, a practical, \emph{general-purpose} conflict-free
 implementation of this interface remains elusive.
 
-\refcache exploits a further weakening of this interface, designed for
+\refcache pushes this interface reduction further, targeting
 reference counters that can tolerate some latency between when the
 count reaches zero and when the system detects that it's reached zero.
 %
+Like the interface changes presented in \cref{sec:posix}, \refcache
+is a further example of redesigning interfaces to enable greater
+implementation scalability.
+%
 \XXX[AC]{Emphasize here that this is suitable for many uses of
   reference counting, like memory reclamation?}
-%
+
 In \refcache, \emph{both} \code{inc} and \code{dec} return nothing and
 hence always commute, even if the count reaches zero.  A new
 \code{review()} operation finds all objects whose reference counts
@@ -95,19 +99,56 @@ drops to zero.  \code{inc} and \code{dec} are conflict-free with high
 probability and \code{review} induces only a small constant rate of
 conflicts for global epoch maintenance.
 
+% XXX[AC]{I feel like these counters are different in too many ways to
+% summarize neatly like this.  But maybe I chose the wrong columns?}
+%
+% \begin{figure}
+%   \centering
+%   \def\yes{Y}
+%   \def\no{N}
+%   \begin{tabular}{lcccccccc} \toprule
+%     & Conflict-free & Zero-detection & Per-object & Immediate \\
+%     & \code{inc}/\code{dec} & time & space & zero-detection \\
+%     \midrule
+%     %
+%     Shared counters      & \no       & $O(1)$
+%     & $O(1)$           & \yes \\
+%     %
+%     Distributed counters & \yes      & $O(\text{objs}\cdot\text{cpus})$
+%     & $O(\text{cpus})$ & \no \\
+%     %
+%     SNZI                 & Partially & $O(1)$
+%     & $O(\text{cpus})$ & \yes \\
+%     %
+%     Modula-2+ counts     & \yes      & $O(\text{heap})$
+%     & $O(1)$           & \no \\
+%     %
+%     Sloppy counters      & \yes      & $O(\text{objs}\cdot\text{cpus})$
+%     & $O(\text{cpus})$ & \no \\
+%     %
+%     \refcache            & \yes      & $O(1)$
+%     & $O(1)$           & \no \\
+%     \bottomrule
+%   \end{tabular}
+%   \caption{Comparison of reference counting techniques.}
+%   \label{fig:refcache-comparison}
+% \end{figure}
+
 \refcache inherits ideas from sloppy
 counters~\cite{boyd-wickizer:scaling}, Scalable NonZero Indicators
 (SNZI)~\cite{snzi:podc}, distributed counters~\cite{appavoo:k42},
 shared vs.\ local counts in Modula-2+~\cite{detreville:concurrent-gc},
 and approximate counters~\cite{approx:counter}.
 %
+% Modula-2+ counters are in section 2.3 and 2.5 of the Modula-2+ paper
+%
 All of these techniques speed up increment and decrement operations
 using per-core counters, but make different trade-offs between
 conflict-freedom, zero-detection cost, and space.  With the exception
 of SNZIs, these techniques do not detect when a count reaches zero, so
 the system must poll each counter for this condition.  SNZIs detect
-when a count reaches zero immediately, but at the cost of conflicts
-when a count is small.  \refcache balances these extremes, enabling
+when a counter reaches zero immediately, but at the cost of conflicts
+when a counter's value is small.  \refcache balances these extremes, enabling
 conflict-free operations and efficient zero-detection, but with a
 short delay.
 %
@@ -129,8 +170,10 @@ In \refcache, each reference counted object has a global reference
 count (much like a regular reference count) and each core also
 maintains a local, fixed-size cache of deltas to objects' reference
 counts.  Incrementing or decrementing an object's reference count
-modifies only the local, cached delta and this delta is periodically
-flushed to the object's global reference count.  The true reference
+modifies only the local, cached delta and \code{review} periodically
+flushes this delta to the object's global reference count.
+%
+The true reference
 count of an object is thus the sum of its global count and any local
 deltas for that object found in the per-core delta caches.  The value of the
 true count is generally unknown, but we assume that once it drops to
@@ -139,8 +182,9 @@ we discuss later).  \refcache depends on this stability to detect a
 zero true count after some delay.
 
 To detect a zero true reference count, \refcache divides time into
-periodic \emph{epochs} during which each core flushes all of the
-reference count deltas in its cache, applying these updates to the
+periodic \emph{epochs} during which each core calls \code{review} once
+to flush all of the
+reference count deltas in its cache and apply these updates to the
 global reference count of each object.  The last core in an epoch to
 finish flushing its cache ends the epoch and all of the cores repeat
 this process after some delay (our implementation uses 10ms).  Since
@@ -150,10 +194,11 @@ reordered.  As a result, a zero global reference count does not imply
 a zero true reference count.  However, once the true count \emph{is}
 zero, there will be no more updates, so if the global reference count
 of an object drops to zero and \emph{remains} zero for an entire
-epoch, then \refcache can guarantee that the true count is zero
-and free the object.  To detect this, the first core that sets an object's
-global reference count to zero adds the object to a per-core
-\emph{review queue} and reexamines it two epochs later (which
+epoch, then \code{review} can guarantee that the true count is zero
+and free the object.  To detect this, the first \code{review}
+operation to set an object's global reference count to zero adds the
+object to the local per-core \emph{review queue}.  \code{Review} then
+reexamines it two epochs later (which
 guarantees one complete epoch has elapsed) to decide whether its true
 reference count is zero.
 
@@ -174,13 +219,16 @@ reference count is zero.
 \Cref{fig:refcache-ex} gives an example of a single object over
 the course of eight epochs.  Epoch 1 demonstrates the power of
 batching: despite six reference count manipulations spread over three
-cores, the object's global reference count is never written to and
+cores, all \code{inc} and \code{dec} operations are conflict-free (as
+we would hope, given that they commute), the object's global reference
+count is never written to and
 cache line conflicts arise only from epoch maintenance.  The
 remaining epochs demonstrate the complications that arise from
 batching and the resulting lag between the true reference count and
 the global reference count of an object.
 
-Because of the flush order, the two updates in epoch 2 are applied to
+Because of the flush order, the \code{inc} and \code{dec} in epoch 2
+are applied to
 the global reference count in the opposite order of how they actually
 occurred.  As a result, core 0 observes the global count temporarily
 drop to zero when it flushes in epoch 2, even though the true count is
@@ -195,11 +243,12 @@ be zero when an object is reexamined; there must also have been no
 deltas flushed to the object's global count in the interim, even if
 those changes canceled out or the deltas themselves were zero.
 %
-For example, core 0 will observe a zero global reference count
+For example, core 0's \code{review} will observe a zero global
+reference count
 at the end of epoch 4, and again when it reexamines the object in
 epoch 6.  However, the true count is not zero, and the global
 reference count was temporarily non-zero during the epoch.  We call
-this a \emph{dirty} zero and in this situation \refcache will
+this a \emph{dirty} zero and in this situation \code{review} will
 queue the object to be examined again two epochs later, in epoch 8.
 
 \subsubsection{Weak references}
@@ -217,25 +266,27 @@ or will indicate that the object has already been deleted.
 
 A weak reference is simply a pointer marked with a ``dying'' bit,
 along with a back-reference from the referenced object.  When an
-object's global reference count initially reaches zero, \refcache sets
+object's global reference count initially reaches zero, \code{review} sets
 the weak reference's dying bit.  After this, \code{tryget} can
 ``revive'' the object by atomically clearing the dying bit and
 fetching the pointer value, and then incrementing the object's
-reference count as usual.  When \refcache decides to free an object,
+reference count as usual.  When \code{review} decides to free an object,
 it first atomically clears both the dying bit and the pointer in the
 weak reference.  If this succeeds, it can safely delete the object.
 If this fails, it reexamines the object again two epochs later.  In a
-race between \code{tryget} and deletion, which operation succeeds is determined
-by which clears the dying bit first.
+race between \code{tryget} and \code{review}, whether the object is
+reviewed or deleted is determined by which operation clears the dying
+bit first.
 
 This protocol can be extended to support multiple weak references per
-object using a two phase approach in which all weak references are
-first put in an intermediate state that can be rolled back if any
+object using a two phase approach in which \code{review} first puts
+all weak references to an object in an intermediate state that can be
+rolled back if any
 reference turns out to be revived.  Our current implementation does
-not support this because it was not necessary for \vm or \fs.
+not support this because it is unnecessary for \vm or \fs.
 
 \subsubsection{Algorithm}
-\Cref{fig:refcache-code} gives pseudocode for \refcache.  Each core
+\Cref{fig:refcache-code} shows pseudocode for \refcache.  Each core
 maintains a hash table
 storing its reference delta cache and the review queue that tracks
 objects whose global reference counts reached zero.  A core reviews an

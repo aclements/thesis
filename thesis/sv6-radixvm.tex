@@ -50,7 +50,19 @@ space with a single lock.  This induces not only conflicts but, often,
 complete serialization between commutative VM operations on the same
 address space, which can dramatically limit application
 scalability~\cite{boyd-wickizer:scaling,clements:bonsai}.
-\XXX{Mention workarounds or at least add that tidbit from Google?}
+%
+As a result, applications often resort to workarounds with significant
+downsides.
+%
+For example, a Google engineer reported to us that Google's memory
+allocator is reluctant to return memory to the OS precisely because of
+scaling problems with \code{munmap} and as a result applications tie
+up gigabytes of memory until they exit.
+%
+This delays the start of other applications and can cause servers to
+be used inefficiently.
+%
+Engineers from other companies have reported similar problems to us.
 
 \vm is a novel virtual memory system in which commutative operations
 on non-overlapping address space regions are almost always
@@ -70,19 +82,6 @@ of POSIX VM systems.  \Cref{sec:radixvm:tree,sec:radixvm:tlb} describe
 the data structures that form the core of \vm.  Finally,
 \cref{sec:radixvm:ops} describes how \vm uses these structures to
 implement standard VM operations.
-
-
-\XXX[AC]{Not sure where to say the following, but I think we need to
-  be clear that none of these subsystems 100\% follows the rule, but
-  that that's okay from an engineering standpoint:
-
-  Like \refcache, \vm sacrifices strict adherence to the scalable
-  commutativity rule in the interest of practical constraints on
-  memory consumption and sequential performance.  Complex software
-  systems inevitably involve conflicting requirements and scalability
-  is no different.  However, in designing \vm, the presence of the
-  rule forced us to explicitly recognize, evaluate, and justify where
-  we made such trade-offs.}
 
 \subsubsection{POSIX VM architecture}
 \label{sec:radixvm:arch}
@@ -110,12 +109,13 @@ memory, has various access permissions, and may be either shared or
 copied across \code{fork}.  \code{mmap} and \code{munmap}
 manipulate this view of the address space.
 
-However, translating virtual addresses to physical addresses is
-ultimately performed in hardware by the memory
+Translating virtual addresses to physical addresses is
+performed in hardware by the memory
 management unit (MMU) and the MMU's representation of virtual memory
 generally differs significantly from the kernel's internal
 representation of the address space.  Most hardware architectures
-specify some form of page table, like the x86 page table depicted in
+specify some form of page table data structure, like the x86 page
+table depicted in
 \cref{fig:vm-structures}, for the kernel to inform the MMU of the
 mapping from virtual addresses to physical addresses.  These
 structures map addresses at a page granularity (typically 4~KB, though
@@ -165,6 +165,12 @@ TLB.
 % \code{munmap}ing ranges of virtual address space while avoiding
 % conflicts between operations on non-overlapping regions.
 
+\XXX[FK]{Maybe move parts where the radix tree violates the rule to a
+  summary section (or the end of this section) that discusses how
+  conflict-free \vm is?}  \XXX[AC]{Currently these things are
+  discussed where they arise; if I move them to a summary I think
+  people will be left wondering.}
+
 We first tackle \vm's internal address space representation.
 %
 Widely-used operating system kernels represent an address space as a
@@ -191,12 +197,30 @@ interior nodes in the skip list---even when the \code{lookup} and
 \code{insert} involve different keys and hence commute---because
 \code{insert} must modify interior nodes to maintain $O(\log n)$
 lookup time.
+%
+The effect of these conflicts on performance can be dramatic, as shown
+by the simple experiment in \cref{fig:skiplist}.
 % Any balanced data structure will suffer from such problems.
 Furthermore, while these data structures maintain their own integrity
 under concurrent operations, a VM system must maintain higher-level
 invariants across the address space representation, page tables, and
 TLBs, and it is difficult to extend the precision design of a single
 lock-free data structure to cover these broader invariants.
+
+\begin{figure}
+  \centering
+  \input{graph/skiplist.tex}
+  %
+  \splitcaption{Throughput of skip list lookups with concurrent
+    inserts and deletes.}{The skip list represents $\sim$1,000 virtual
+    memory regions.  Lookups commute with modifications, but even a
+    small number of writers significantly limits lookup scalability.}
+  \label{fig:skiplist}
+\end{figure}
+
+\paragraph{Straw-man solution.}
+This raises the question: what is a good conflict-free data structure
+for virtual memory metadata?
 
 A (completely impractical) way to achieve conflict-free commutative
 address space
@@ -211,9 +235,10 @@ pages being mapped, unmapped, or faulted.
 Operations on non-overlapping regions are clearly conflict-free and
 precise range locking makes maintaining invariants across structures
 relatively straightforward.
-%
+
+\paragraph{Compressed radix trees.}
 The design of \vm follows the same general
-scheme as this strawman design, but reins in its memory consumption
+scheme as this straw-man design, but reins in its memory consumption
 using a multilevel, compressed radix tree.
 
 \begin{figure}
@@ -252,6 +277,7 @@ regions do not ultimately overlap.  However, after initial address
 space construction, the radix tree is largely ``fleshed out'' and
 these initialization conflicts become rare.
 
+\paragraph{Mapping metadata.}
 To record each mapping, \vm logically stores a separate instance of
 the mapping metadata
 in the radix tree for each page in the mapped range.  This differs
@@ -276,6 +302,7 @@ the hardware page tables, and it means that the hardware page tables
 themselves are cacheable memory that can be discarded by the OS to
 free memory.
 
+\paragraph{Radix node garbage collection.}
 To keep the memory footprint of the radix tree in check, the OS must be
 able to free nodes that no longer contain any valid mapping metadata.
 To accomplish this without introducing undue conflicts, we leverage
@@ -455,7 +482,15 @@ the vast majority of commutative VM operations.  The clear
 commutativity properties of the POSIX VM interface, combined with the
 right data structures makes this possible with a straightforward
 concurrency plan based on precise range locking.
-%
+
+\vm balances practical memory consumption with strict adherence to
+scalable commutativity rule, allowing conflicts between some
+commutative operations where doing so enables far more efficient
+memory use.  However, such conflicts are rare: operations that
+allocate a radix node will conflict with later operations on that
+node's range of the key space, but typical address space usage
+involves few node-allocating operations.
+
 As shown in \cref{fig:testcase-breakdown-sv6}, \tool confirmed that
 most commutative operations in \vm are conflict-free.  In
 \cref{sec:eval}, we further confirm that \vm's design translates into
