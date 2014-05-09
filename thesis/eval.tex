@@ -155,11 +155,11 @@ conflict-free implementations of commutative operations.
 % allocation, which has process-wide invariants; and sockbench exercises
 % local sockets, which have strict ordering requirements.
 
-\paragraph{statbench.} In general, it's difficult to argue that an
+\paragraph{\cmd{statbench}.} In general, it's difficult to argue that an
 implementation of a
 non-commutative interface achieves the best possible scalability for
 that interface and that no implementation could scale better.  However,
-in limited cases, we can do exactly this.  We start with statbench,
+in limited cases, we can do exactly this.  We start with \cmd{statbench},
 which measures the scalability of \code{fstat} with respect to
 \code{link}.  This benchmark creates a single file that $n/2$ cores
 repeatedly \code{fstat}. The other $n/2$ cores repeatedly
@@ -211,7 +211,7 @@ disjoint-access parallelism assertion on real hardware.}
 %   \label{fig:linkbench}
 % \end{figure}
 
-We run statbench in two modes: one mode uses \code{fstat}, which does
+We run \cmd{statbench} in two modes: one mode uses \code{fstat}, which does
 not commute with the \code{link} and \code{unlink} operations performed
 by the other threads, and the other mode uses \code{fstatx} to request
 all fields except the link count, an operation that \emph{does} commute
@@ -220,7 +220,7 @@ counter for the link count so that the
 \code{link}s and \code{unlink}s are conflict-free, and place it on
 its own cache line to avoid false sharing.
 \Cref{fig:linkbench} shows the results.  With the commutative
-\code{fstatx}, statbench scales perfectly for both \code{fstatx} and
+\code{fstatx}, \cmd{statbench} scales perfectly for both \code{fstatx} and
 \code{link}/\code{unlink} and experiences zero L2 cache
 misses in \code{fstatx}.  On the other hand, the traditional
 \code{fstat} scales poorly and the conflicts induced by \code{fstat}
@@ -230,7 +230,7 @@ impact the scalability of the threads performing \code{link} and
 %This is no implementation fluke. 
 To better
 isolate the difference between \code{fstat} and \code{fstatx}, we run
-statbench in a
+\cmd{statbench} in a
 third mode that uses \code{fstat}, but represents the link count
 using a simple shared counter instead of \refcache.  In this mode, \code{fstat}
 performs better at low core counts, but \code{fstat}, \code{link}, and
@@ -266,17 +266,17 @@ performs similarly to Linux's \code{fstat} on a single core.
 % Above 20~cores, the shared link count and \refcache link count
 % implementations of \code{fstat} scale similarly.
 
-\paragraph{openbench.} \Cref{fig:fdbench} shows the results
-of openbench, which stresses the file descriptor allocation performed by
-\code{open}.  In openbench, $n$ threads concurrently \code{open} and
+\paragraph{\cmd{openbench}.} \Cref{fig:fdbench} shows the results
+of \cmd{openbench}, which stresses the file descriptor allocation performed by
+\code{open}.  In \cmd{openbench}, $n$ threads concurrently \code{open} and
 \code{close} per-thread files.  These calls do not commute because each
 \code{open} must allocate the lowest unused file
 descriptor in the process.  For many applications, it suffices to return
 any unused file descriptor (in which case the \code{open} calls commute),
 so \sys adds an \code{O_ANYFD} flag to \code{open}, which it implements
 using per-core partitions of the FD space.  Much like
-statbench, the standard, non-commutative \code{open} interface limits
-openbench's scalability, while openbench with \code{O_ANYFD} scales
+\cmd{statbench}, the standard, non-commutative \code{open} interface limits
+\cmd{openbench}'s scalability, while \cmd{openbench} with \code{O_ANYFD} scales
 linearly.  Furthermore, there appears to be no performance penalty to
 \fs's \code{open}, with or without \code{O_ANYFD}: at one core, both
 cases perform identically and outperform Linux's \code{open} by
@@ -368,25 +368,25 @@ We perform a similar experiment using a simple mail server to
 produce a file system workload more representative of a real
 application.  Our mail server uses a sequence of separate, communicating
 processes, each with a specific task, roughly like qmail~\cite{qmail}.
-{mail-enqueue} takes a mailbox name and a single message on
-stdin, writes the message and the envelope to two files in a
+\cmd{mail-enqueue} takes a mailbox name and a single message on
+standard in, writes the message and the envelope to two files in a
 mail queue directory, and notifies the queue manager by writing the
 envelope file
-name to a Unix domain datagram socket.  {mail-qman} is a long-lived
+name to a Unix domain datagram socket.  \cmd{mail-qman} is a long-lived
 multithreaded process where each thread reads from the notification
 socket, reads the envelope information, opens the queued message, spawns
 and waits for the delivery process, and then deletes the queued message.
-Finally, {mail-deliver} takes a mailbox name and a single message
-on stdin and delivers the message to the appropriate Maildir.
+Finally, \cmd{mail-deliver} takes a mailbox name and a single message
+on standard in and delivers the message to the appropriate Maildir.
 The benchmark models a mail client with $n$ threads that continuously
-deliver email by spawning and feeding {mail-enqueue}.
+deliver email by spawning and feeding \cmd{mail-enqueue}.
 
 As in the microbenchmarks, we run the mail server in two configurations:
 in one we use lowest FD, an order-preserving socket for queue
 notifications, and \code{fork}/\code{exec} to spawn helper processes; in
 the other we use \code{O_ANYFD}, an unordered notification socket, and
 \code{posix_spawn}, all as described in \cref{sec:posix}.
-%\code{openbench} explored the limitations of lowest
+%\cmd{openbench} explored the limitations of lowest
 %FD.
 For queue notifications, we use a Unix domain datagram socket;
 \sys implements this with a single shared queue in ordered mode and with
@@ -514,15 +514,15 @@ and global microbenchmarks because all cores use the same page table.
   \label{fig:vm-tput}
 \end{figure*}
 
-\paragraph{vmlocal.} The vmlocal microbenchmark exercises completely
-disjoint address space usage.
+\paragraph{\cmd{vmlocal}.} The \cmd{vmlocal} microbenchmark exercises
+completely disjoint address space usage.
 %
-In vmlocal, each thread \code{mmap}s a single page in the shared
+In \cmd{vmlocal}, each thread \code{mmap}s a single page in the shared
 address space, writes to the page (invoking \code{pagefault}), and
 then \code{munmap}s the page.
 %
 Because each thread maps a page at a different virtual address, all
-operations performed by vmlocal commute.
+operations performed by \cmd{vmlocal} commute.
 
 Many concurrent memory allocators use per-thread memory pools that
 specifically optimize for thread-local allocations and exhibit this
@@ -534,7 +534,7 @@ burdening on the virtual memory system.
 Our microbenchmark does the opposite, using 4~KB regions to maximally
 stress the VM system.
 
-The vmlocal microbenchmark scales linearly on \sys.
+The \cmd{vmlocal} microbenchmark scales linearly on \sys.
 %
 While this benchmark does incur cache misses, none are conflict misses
 and none require cross-core communication.
@@ -547,7 +547,7 @@ None of these require cross-socket communication as all are satisfied
 from the core's local DRAM, which is consistent with \tool's
 determination that these operations are conflict-free.
 %
-Likewise, because \sys can track remote TLBs precisely, the vmlocal
+Likewise, because \sys can track remote TLBs precisely, the \cmd{vmlocal}
 microbenchmark sends no TLB shootdowns.
 %
 Because these operations are conflict-free---there is no lock
@@ -568,12 +568,12 @@ serializing the benchmark.
 \sys's performance is within 8\% of Linux, and it is likely this could
 be improved.
 
-\paragraph{vmpipeline.} The vmpipeline benchmark captures the pattern
-of streaming or pipeline communication, such as a \emph{map} task
-communicating with a \emph{reduce} task in
+\paragraph{\cmd{vmpipeline}.} The \cmd{vmpipeline} benchmark captures
+the pattern of streaming or pipeline communication, such as a
+\emph{map} task communicating with a \emph{reduce} task in
 MapReduce~\cite{dean:mapreduce}.
 %
-In vmpipeline, each thread \code{mmap}s a page of memory, writes to
+In \cmd{vmpipeline}, each thread \code{mmap}s a page of memory, writes to
 the page, and passes the page to the next thread in sequence, which
 also writes to the page and then \code{munmap}s it.
 %
@@ -582,18 +582,18 @@ implementation is not conflict-free.
 %
 However, the operations of non-neighboring cores do commute, so unlike
 the non-commutative cases in the file system benchmarks, increasing
-the number of cores in vmlocal increases the number of conflicted
+the number of cores in \cmd{vmlocal} increases the number of conflicted
 cache lines without increasing the number of cores conflicting on each
 cache line.
 %
-As a result, vmpipeline still scales well on \sys, but not linearly.
+As a result, \cmd{vmpipeline} still scales well on \sys, but not linearly.
 %
-We observe similar cache miss rates as vmlocal, but vmpipeline induces
+We observe similar cache miss rates as \cmd{vmlocal}, but \cmd{vmpipeline} induces
 cross-socket memory references for pipeline synchronization, returning
 freed pages to their home nodes when they are passed between sockets,
 and cross-socket shootdown IPIs.
 % 0.07 cache lines moved per iteration
-For Linux and Bonsai, vmpipeline is almost identical to vmlocal except
+For Linux and Bonsai, \cmd{vmpipeline} is almost identical to \cmd{vmlocal} except
 that it writes twice to each page; hence we see almost identical
 performance, scaled up by a factor of two.
 %
@@ -605,17 +605,17 @@ Again, \sys's single core performance is within 8\% of Linux.
 % cycles/mmap is relatively constant.  cycles/alloc page fault also
 % grows from ~6000 at 10 cores to ~12000 at 80 cores.
 
-\paragraph{vmglobal.} Finally, vmglobal simulates a widely shared
+\paragraph{\cmd{vmglobal}.} Finally, \cmd{vmglobal} simulates a widely shared
 region such as a memory-mapped library or a shared data structure like
 a hash table.
 %
-In vmglobal, each thread \code{mmap}s a 64~KB part of a large region
+In \cmd{vmglobal}, each thread \code{mmap}s a 64~KB part of a large region
 of memory, then all threads access all of the pages in the large
 region in a random order.
 %
 These operations commute within each phase, but not between phases.
 
-Vmglobal also scales well on \sys, despite being conceptually poorly
+\cmd{Vmglobal} also scales well on \sys, despite being conceptually poorly
 suited to \sys's per-core page tables and targeted TLB shootdown.  In
 this benchmark, \sys performance is limited by the cost of TLB
 shootdowns: at 80 cores, delivering shootdown IPIs to the other 79
@@ -624,8 +624,8 @@ cores and waiting for acknowledgments takes nearly a millisecond.
 However, at 80~cores, the shared region is 20~MB, so this cost is
 amortized over a large number of page faults.
 %
-Linux and Bonsai perform better on this benchmark than on vmlocal and
-vmpipeline because it has a higher ratio of page faults to \code{mmap}
+Linux and Bonsai perform better on this benchmark than on \cmd{vmlocal} and
+\cmd{vmpipeline} because it has a higher ratio of page faults to \code{mmap}
 and \code{munmap} calls, but they still fail to scale.
 
 

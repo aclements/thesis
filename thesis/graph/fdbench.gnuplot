@@ -6,7 +6,7 @@ set yrange [0:]
 set xlabel "\\# cores"
 set ylabel "\\gpcode{open}s/sec/core"
 set ytics format " %.0s%c"
-set title "(b) openbench throughput"
+set title "(b) \\gpcmd{openbench} throughput"
 
 plot \
 "<../data/ttt --layer iv.any_fd iv.cores dv.opens/sec ../data/fdbench-xv6.raw" \

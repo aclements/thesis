@@ -13,7 +13,7 @@ set yrange [0:]
 set ytics format " %.0s%c"
 # Ugh.  There is no way DWIM %s
 set ytics add ("1.5M" 1500000,"2.5M" 2500000)
-set title "(a) statbench throughput"
+set title "(a) \\gpcmd{statbench} throughput"
 
 eval mpNext
 set xtics format ""

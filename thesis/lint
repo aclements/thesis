@@ -62,6 +62,9 @@ for path in sys.argv[1:] or glob.glob("*.tex"):
     t.mark("Use '\\Thiscref'", r"This%s(?:section|chapter)" % TEXSPACE)
     t.mark("Use 'this dissertation'", r"this%s(?:paper|thesis)" % TEXSPACE, re.I)
     t.mark("Use 'radix tree'", r"radix%sarray" % TEXSPACE, re.I)
+    t.ignore(r"\\cmd\{[^}]*\}").mark(
+        "Use \\cmd{...}", (r"statbench|openbench|mail-(?:enqueue|qman|deliver)|"
+                           r"vm(?:local|pipeline|global)"))
 
     orig.showMarks()
     errors = errors or orig.hasErrors()
