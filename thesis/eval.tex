@@ -1,12 +1,14 @@
 \section{Performance evaluation}
 \label{sec:eval}
 
-\XXX[STATUS]{Draft ready.  Merged SOSP and \vm evaluations.  New(ish)
-  intro and discussion sections.}
+\XXX[STATUS]{Draft v2 ready.  Merged SOSP and \vm evaluations.
+  New(ish) intro and discussion sections.  Applied Frans' edits from
+  init-228-g69596c0, except for moving more implementation-related
+  content to previous chapter.}
 
-The previous \lcnamecref{sec:sv6} showed that \fs and \vm achieve
-conflict-freedom for nearly all commutative operations, which in
-principle should result in perfect scalability for these operations.
+Given that nearly all commutative \fs and \vm operations are
+conflict-free, in principle, applications built on these operations
+should scale perfectly.
 %
 \Thiscref{sec:eval} confirms this, completing a pyramid whose
 foundations were set in \cref{sec:scalability} when we demonstrated
@@ -88,7 +90,7 @@ heuristics will likewise evolve to not induce this false sharing.
 As a performance baseline, we compare against the same
 benchmarks running on Linux~3.5.7 from Ubuntu Quantal.
 %
-All benchmarks compile an run on Linux and \sys without modifications.
+All benchmarks compile and run on Linux and \sys without modifications.
 %
 Direct comparison is difficult because
 Linux implements many features \sys does not, but this comparison
@@ -188,7 +190,7 @@ disjoint-access parallelism assertion on real hardware.}
   \input{graph/linkbench.tex}
   \refstepcounter{mysubfigure}
   \label{fig:linkbench}
-%  \hspace{-.05in}
+  \hspace{-.05in}
   \input{graph/fdbench.tex}
   \hspace{-0.2in}
   \refstepcounter{mysubfigure}
@@ -246,7 +248,8 @@ interface limits the
 implementation's scalability.  One small tweak to make the operation
 commute by omitting \code{st_nlink} eliminates the barrier to scaling,
 demonstrating that even an optimal implementation of a non-commutative
-operation can have severely limited scalability.
+operation can have severely limited scalability, underscoring the
+results of \cref{sec:scalability}.
 
 In the case of \code{fstat}, optimizing for scalability sacrifices some
 sequential performance.  Tracking the link count with \refcache
@@ -277,7 +280,9 @@ so \sys adds an \code{O_ANYFD} flag to \code{open}, which it implements
 using per-core partitions of the FD space.  Much like
 \cmd{statbench}, the standard, non-commutative \code{open} interface limits
 \cmd{openbench}'s scalability, while \cmd{openbench} with \code{O_ANYFD} scales
-linearly.  Furthermore, there appears to be no performance penalty to
+linearly.
+
+Furthermore, there is no performance penalty to
 \fs's \code{open}, with or without \code{O_ANYFD}: at one core, both
 cases perform identically and outperform Linux's \code{open} by
 \pyexpr{percent(
@@ -366,7 +371,7 @@ somewhere that we have a model for unordered and ordered sockets.}
 
 We perform a similar experiment using a simple mail server to
 produce a file system workload more representative of a real
-application.  Our mail server uses a sequence of separate, communicating
+application.  The mail server uses a sequence of separate, communicating
 processes, each with a specific task, roughly like qmail~\cite{qmail}.
 \cmd{mail-enqueue} takes a mailbox name and a single message on
 standard in, writes the message and the envelope to two files in a
@@ -388,10 +393,15 @@ the other we use \code{O_ANYFD}, an unordered notification socket, and
 \code{posix_spawn}, all as described in \cref{sec:posix}.
 %\cmd{openbench} explored the limitations of lowest
 %FD.
-For queue notifications, we use a Unix domain datagram socket;
-\sys implements this with a single shared queue in ordered mode and with
-per-core message queues with scalable load balancing in unordered
-mode.  Finally, because \code{fork} commutes with essentially no other
+For queue notifications, we use a Unix domain datagram socket.
+\sys implements this with a single shared queue in ordered mode
+%
+In unordered mode, \sys uses load-balanced per-core message queues.
+Load balancing only triggers when a core attempts to read from an
+empty queue, so operations on unordered sockets are conflict-free as
+long as consumers don't outpace producers.
+%
+Finally, because \code{fork} commutes with essentially no other
 operations in the same process,
 \sys implements \code{posix_spawn} by constructing the new process image
 directly and building the new file
@@ -478,7 +488,9 @@ cache line storing the lock.
 Bonsai modifies the Linux virtual memory system so that
 \code{pagefault}s do not acquire this lock.  This makes most
 commutative \code{pagefault}s conflict-free in Bonsai, though Bonsai
-does not modify the locking behavior of \code{mmap} and \code{munmap}.
+does not modify the locking behavior of \code{mmap} and \code{munmap},
+so all \code{mmap} and \code{munmap} operations on the same address
+space conflict.
 
 \Cref{fig:vm-tput} shows the throughput of our three microbenchmarks
 on \sys, Bonsai, and Linux.
@@ -555,7 +567,7 @@ contention, a small and fixed number of cache misses, no remote DRAM
 accesses, and no TLB shootdowns---the time required to \code{mmap},
 \code{pagefault}, and \code{munmap} is constant regardless of the
 number of cores.
-%
+
 Linux and Bonsai, on the other hand, slow down as we add more cores.
 %
 This is not unexpected: Linux acquires the address space lock three
@@ -613,9 +625,11 @@ In \cmd{vmglobal}, each thread \code{mmap}s a 64~KB part of a large region
 of memory, then all threads access all of the pages in the large
 region in a random order.
 %
-These operations commute within each phase, but not between phases.
+These operations commute within each phase---all \code{mmap}s are to
+non-overlapping regions and \code{pagefault}s always commute---but not
+between phases.
 
-\cmd{Vmglobal} also scales well on \sys, despite being conceptually poorly
+\cmd{Vmglobal} scales well on \sys, despite being conceptually poorly
 suited to \sys's per-core page tables and targeted TLB shootdown.  In
 this benchmark, \sys performance is limited by the cost of TLB
 shootdowns: at 80 cores, delivering shootdown IPIs to the other 79
@@ -768,7 +782,11 @@ tables.
     MySQL & \pyexpr{vmsize_row("eurosys-mysql")} \\
     \bottomrule
   \end{tabular}
-  \caption{Memory usage for alternate VM representations.}
+  %
+  \splitcaption{Memory usage for alternate VM representations.}{RSS
+    (resident set size) gives the size of the memory mapped and
+    faulted by the application.  The other columns give the size of
+    the address space metadata structures used by Linux and \vm.}
   \label{tab:memuse}
 \end{table}
 
