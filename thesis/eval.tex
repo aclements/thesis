@@ -179,15 +179,21 @@ disjoint-access parallelism assertion on real hardware.}
 \renewcommand{\themysubfigure}{\thefigure(\alph{mysubfigure})}
 
 \begin{figure*}
+  \centering
   % Make subfigure labels refer to correct figure
   \stepcounter{figure}
+\mbox{
+  % Top-align the two graphs
+  \tikzset{gnuplot/.append style={baseline=(current bounding box.north)}}
   \input{graph/linkbench.tex}
   \refstepcounter{mysubfigure}
   \label{fig:linkbench}
-  \hspace{-.22in}
+%  \hspace{-.05in}
   \input{graph/fdbench.tex}
+  \hspace{-0.2in}
   \refstepcounter{mysubfigure}
   \label{fig:fdbench}
+}
   \addtocounter{figure}{-1}
   %
   \splitcaption{File system microbenchmark throughput}{in operations
@@ -214,10 +220,12 @@ counter for the link count so that the
 \code{link}s and \code{unlink}s are conflict-free, and place it on
 its own cache line to avoid false sharing.
 \Cref{fig:linkbench} shows the results.  With the commutative
-\code{fstatx}, statbench scales perfectly and experiences zero L2 cache
-misses in \code{fstatx}, while the traditional \code{fstat} severely
-limits the
-scalability of statbench.  
+\code{fstatx}, statbench scales perfectly for both \code{fstatx} and
+\code{link}/\code{unlink} and experiences zero L2 cache
+misses in \code{fstatx}.  On the other hand, the traditional
+\code{fstat} scales poorly and the conflicts induced by \code{fstat}
+impact the scalability of the threads performing \code{link} and
+\code{unlink}.
 
 %This is no implementation fluke. 
 To better
@@ -225,8 +233,10 @@ isolate the difference between \code{fstat} and \code{fstatx}, we run
 statbench in a
 third mode that uses \code{fstat}, but represents the link count
 using a simple shared counter instead of \refcache.  In this mode, \code{fstat}
-performs better (at the expense of \code{link} and \code{unlink}), but
-still does not scale.  With a shared link count, each \code{fstat}
+performs better at low core counts, but \code{fstat}, \code{link}, and
+\code{unlink} all suffer at higher core counts.
+%
+With a shared link count, each \code{fstat}
 call experiences exactly one L2 cache miss (for the cache line
 containing the link count), which means this is the most scalable that
 \code{fstat} can possibly be in the presence of concurrent \code{link}s

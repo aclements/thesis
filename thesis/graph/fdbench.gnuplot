@@ -5,7 +5,7 @@ set zeroaxis
 set yrange [0:]
 set xlabel "\\# cores"
 set ylabel "\\gpcode{open}s/sec/core"
-set ytics format "  %.0s%c"
+set ytics format " %.0s%c"
 set title "(b) openbench throughput"
 
 plot \
