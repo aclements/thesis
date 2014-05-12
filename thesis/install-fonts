@@ -1,0 +1,44 @@
+#!/bin/zsh -x
+
+set -e
+
+if (( $# < 1 )); then
+    echo "Usage: $0 [Minion Pro OTF directory]" >&2
+    echo >&2
+    echo "For example $0 /usr/lib/Adobe/Reader9/Resource/Font (though this" >&2
+    echo "cannot be redistributed)" >&2
+    exit 2
+fi
+
+mkdir -p fonts
+cp $1/MinionPro-*.otf fonts/
+cd fonts
+
+DIR=$PWD
+
+# Clone
+if [[ ! -d FontPro ]]; then
+    git clone https://github.com/sebschub/FontPro.git
+fi
+
+cd FontPro
+
+# Build
+if [[ ! -f fontname ]]; then
+    mkdir -p otf
+    cp ../MinionPro-*.otf otf/
+
+    ./scripts/makeall MinionPro
+fi
+
+export TEXMFLOCAL=$DIR/texmf
+export TEXMFHOME=$DIR/texmf
+export TEXMFVAR=$DIR/texmfvar
+
+mkdir -p $TEXMFLOCAL $TEXMFVAR
+
+if [[ ! -f $TEXMFLOCAL/ls-R ]]; then
+    ./scripts/install
+fi
+
+updmap --enable Map=MinionPro.map

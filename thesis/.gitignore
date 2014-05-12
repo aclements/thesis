@@ -23,3 +23,6 @@
 # Latexrun ignores
 /.latexrun.db
 /latex.out
+
+# fonts/ is a manually managed subrepository
+/fonts

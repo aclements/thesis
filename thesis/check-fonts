@@ -1,0 +1,40 @@
+#!/bin/sh
+
+set -e
+
+FONTSVER=fb67cd29be7b8b62289b16dceb666060877e9002
+
+if [ ! -d fonts ]; then
+    echo "fonts/ not found.  Attempting to clone fonts repository..." >&2
+
+    URL=$(git remote show -n origin |
+        awk '/Fetch URL/ {print $3}' |
+        sed 's,/$,,;s/$/-fonts/')
+    if ! git clone $URL fonts; then
+        echo "Failed to clone $URL.  Please either manually clone the fonts">&2
+        echo "repository into fonts/, run ./install-fonts to install from">&2
+        echo "local font files, or see the comments in thesis.tex to switch">&2
+        echo "to standard fonts.">&2
+        exit 1
+    fi
+fi
+
+HAVEVER=$(cd fonts && git rev-parse HEAD)
+if [ $HAVEVER != $FONTSVER ]; then
+    if [ $(cd fonts && git rev-parse origin/master) != $HAVEVER ]; then
+        echo "WARNING: Expected fonts/ revision $FONTSVER.">&2
+        echo "In fonts/, origin/master has diverged from HEAD, so not">&2
+        echo "updating automatically.">&2
+        exit 0
+    fi
+
+    # Safe to try an automatic update
+    echo "Updating fonts/ to $FONTSVER..." >&2
+    cd fonts
+    git fetch origin
+    if ! git merge --ff-only $FONTSVER; then
+        echo "WARNING: Expected fonts/ revision $FONTSVER.">&2
+        echo "Automatic update of fonts/ failed.">&2
+        exit 1
+    fi
+fi

@@ -25,10 +25,14 @@ gnuplot-lua-tikz.sty:
 
 %.pdf: %.svg
 	$(call quiet,INKSCAPE)
-	$(Q)inkscape -z --export-text-to-path --export-pdf=$@ $(INKARGS) $<
+	sed -re 's/(font-family:)(Times New Roman)/\1Minion Pro,\2/g' < $< > $*.mp.svg
+	inkscape -z --export-pdf=$@ $(INKARGS) $*.mp.svg
+	rm $*.mp.svg
 
 figures/refcache.pdf: INKARGS+=--export-area-drawing
 figures/radix.pdf: INKARGS+=--export-area-drawing
+
+all-figures: $(addprefix figures/,machines.pdf refcache.pdf radix.pdf as.pdf)
 
 # linuxcomp.tex: data/filebench-*.data data/dirbench-*.data mklinuxcomp
 # 	./mklinuxcomp > $@~ && mv $@~ $@
@@ -52,8 +56,10 @@ thesis.pdf: $(GRAPHS:.gnuplot=.tex) gnuplot-lua-tikz.sty \
 	   figures/testcases-sv6.tex \
 	   FORCE
 	-@./lint $(SPELLTEX)
+	$(Q)./check-fonts
 	$(call quiet,LATEX)
-	$(Q)if which latexrun >/dev/null 2>&1; then \
+	$(Q)export TEXMFHOME=$$PWD/fonts/texmf TEXMFVAR=$$PWD/fonts/texmfvar; \
+	if which latexrun >/dev/null 2>&1; then \
 		latexrun --bibtex-args=-min-crossrefs=100 thesis.tex; \
 	else \
 		( echo '#!/bin/sh' ; echo 'exec '$(shell which bibtex)' -min-crossrefs=100 "$$@"' ) > bibtex; \
