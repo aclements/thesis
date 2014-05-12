@@ -88,10 +88,9 @@ implement standard VM operations.
 
 \begin{figure}
   \centering
-  \XXX!{Mapped regions, page tables, TLB with application on top.  See
-    Bonsai Figure 1 and \vm talk.}
+  \includegraphics{figures/as.pdf}
   \caption[Key structures in a POSIX VM system.]{Key structures in a
-    POSIX VM system, showing an address space with four mapped
+    POSIX VM system, showing an address space with three mapped
     regions.  Crossed-out page table entries are marked ``not
     present.''  Some pages have not been faulted yet, and thus are not
     present, despite being in a mapped region.}
