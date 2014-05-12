@@ -348,6 +348,102 @@ commutative system calls translate to dramatic improvements in
 measured scalability for both microbenchmarks and application
 benchmarks on an 80-core x86 machine.
 
+
+\XXX![AC]{New intro stuff below here.}
+
+
+\subsection{Contributions}
+
+This dissertation's broad contribution is a new approach to building
+scalable software using interface-based reasoning to guide design,
+implementation, and testing.  This dissertation has the following
+intellectual contributions:
+
+\begin{itemize}
+
+\item The scalable commutativity rule, its formalization, and a proof
+  of its correctness.
+
+\item \SIM commutativity, a novel form of interface commutativity that
+  is state-sensitive and interface-based.  As we demonstrate with
+  \tool, \SIM commutativity enables us to identify myriad commutative
+  cases in the highly stateful POSIX interface.
+
+\item A set of guidelines for commutative interface design based on
+  \SIM commutativity.  Using these guidelines, we propose specific
+  enhancements to POSIX and empirically demonstrate that these changes
+  enable dramatic improvements in application scalability.
+
+\item An automated method for reasoning about interface commutativity
+  and generating implementation scalability tests using symbolic
+  execution.  This method is embodied in a new tool named \tool, which
+  generates \pyexpr{mscan.ntestcases} tests of commutative operations
+  in our model of \pyexpr{len(mscan.calls)} POSIX file system and
+  virtual memory system operations.  These tests cover many subtle
+  cases, identify many substantial scalability bottlenecks in the
+  Linux kernel, and guide the implementation of \sys.
+
+\end{itemize}
+
+This dissertation also contributes several implementation techniques,
+embodied in a new operating system named \sys:
+
+\begin{itemize}
+
+\item \refcache, a novel scalable reference counting scheme that
+  achieves conflict-free \emph{increment} and \emph{decrement}
+  operations with efficient periodic reconciliation and $O(1)$
+  per-object space overhead.
+
+\item \vm, a POSIX virtual memory system based on radix trees that is
+  conflict-free for commutative \code{mmap}, \code{munmap}, and
+  \code{pagefault} operations.
+
+\item \fs, a POSIX file system that is conflict-free for the vast
+  majority of commutative operations.
+
+\end{itemize}
+
+We validate \vm and \fs, and thus their design methodology based on
+the rule and \tool, by evaluating their performance and scalability on
+an 80-core x86 machine.
+
+
+\subsection{Outline}
+
+The remainder of this dissertation begins by relating our thinking
+about scalability to previous work.
+
+We then turn to formalizing and proving the scalable commutativity
+rule, which we approach in two steps.  First, \cref{sec:rule}
+formalizes and proves that commutative operations have conflict-free
+implementations, developing and justifying \SIM commutativity in the
+process.  Second, \cref{sec:scalability} empirically demonstrates that
+conflict-free operations are scalable on modern, large multicore
+machines.
+
+We next turn to applying the rule.  \Cref{sec:posix} starts by
+applying the rule to interface design, developing a set of guidelines
+for designing interfaces that enable scalable implementations and
+proposing specific modifications to POSIX that broaden its
+commutativity.
+
+\Cref{sec:tool} presents \tool, which applies the rule to automate
+reasoning about interface commutativity and the conflict-freedom of
+implementations.  \Cref{sec:linux} uses \tool to analyze the Linux
+kernel and show that the rule and \tool can systematically pinpoint
+significant scalability problems even in mature systems.
+
+Finally, we turn to the implementation of scalable systems guided by
+the rule.  \Cref{sec:sv6} describes the implementation of \sys and how
+it achieves conflict-freedom for the vast majority of commutative
+POSIX file system and virtual memory operations.  \Cref{sec:eval}
+confirms that theory translates into practice by evaluating the
+performance and scalability of \sys on real hardware for several
+microbenchmarks and application benchmarks.
+
+\XXX[AC]{\Cref{sec:concl}}
+
 % The paper is organized as follows.  \S\ref{sec:related} relates our thinking
 % about scalability to previous work. \S\ref{sec:rule} introduces the
 % commutativity rule and argues its correctness. \S\ref{sec:posix} applies the
