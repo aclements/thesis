@@ -25,7 +25,7 @@ if (!exists("SLIDES_SIZE")) {
 }
 
 # Note: If you change the default font size, change \gpcode
-TIKZ_FONT=exists("TIKZ_FONT") ? TIKZ_FONT : "',10'"
+TIKZ_FONT=exists("TIKZ_FONT") ? TIKZ_FONT : "'\\figureversion{tab},10'"
 if (TARGET eq "paper-tikz") {
   set term tikz size @SIZE font @TIKZ_FONT
   set output
