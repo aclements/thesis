@@ -104,19 +104,24 @@ workloads and hardware that kernel developers don't have access to is
 a gamble.
 %
 But the deeper problem with this workload-driven approach is that many
-scalability problems lie not in the implementation, but in the
+scalability problems lie not in the implementation, but in the design
+of the
 software interface.  By the time developers have an implementation, a
 workload, and the hardware to demonstrate a bottleneck,
 interface-level solutions may be impractical or impossible.
 
-Consider the POSIX~\cite{posix2013} \code{open} call, which opens a
+As an example of interface design that limits implementation
+scalability, consider the POSIX~\cite{posix2013} \code{open} call.
+%
+This call opens a
 file by name and returns a \emph{file descriptor}, a number used to
 identify the open file in later operations.
 %
 Even though this identifier is opaque, POSIX requires that \code{open}
 return the numerically lowest available file descriptor for the
-calling process, forcing the kernel to serialize file descriptor
-allocation between threads in a process.
+calling process, forcing the kernel to allocate file descriptors one
+at a time, even if many parallel threads are simultaneously opening
+files.
 %
 This simplified the kernel interface during the early days of Unix,
 but this interface design choice is now a burden on implementation
@@ -140,10 +145,10 @@ scalable implementations.
 
 \subsection{A rule for interface design}
 
-This dissertation presents a new approach to scalability that starts
-at scalable software interface design.
+This dissertation presents a new approach to scalable software design
+that starts with the design of scalable software interfaces.
 %
-This makes reasoning about multicore scalability possible before an
+This approach makes reasoning about multicore scalability possible before an
 implementation exists and before the necessary hardware is available
 to measure the implementation's scalability.
 %
@@ -169,7 +174,7 @@ core is not scalable, however, since the coherence protocol serializes
 ownership changes for each cache line, and because the shared
 interconnect may serialize unrelated transfers.
 
-We therefore say that a set of operations scales if their
+We therefore say that a set of operations \emph{scales} if their
 implementations have \emph{conflict-free} memory accesses; that is, no
 core writes a cache line that was read or written by another core.
 %
