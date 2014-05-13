@@ -166,7 +166,13 @@
 \newcommand{\inputnodraft}[1]{%
   \ifdraft{#1 omitted in draft mode}{\input{#1}}}
 
-\newcommand{\splitcaption}[2]{\caption[#1]{#1 #2}}
+\makeatletter
+% XXX I'd much rather strip all periods from *all* captions in the
+% list of figures, but I can't for the life of me get TeX to do that.
+\def\sc@oneperiod#1.{\@ifnextchar.{\sc@oneperiod #1}{#1.}}
+\newcommand{\splitcaption}[2]{%
+  \caption[\protect\sc@oneperiod #1.]{#1 #2}}
+\makeatother
 
 \newcommand{\tikzshowbbox}{
   \path[draw=black] (current bounding box.north west)
@@ -221,7 +227,6 @@
 \newpage
 \listoffigures \XXX!{Check if this is reasonable}
 \XXX{Check for overlong captions and use splitcaption}
-\XXX{Check for consistent use of period at end of captions}
 
 % The preamble folded tables in to the list of figures
 % \newpage
