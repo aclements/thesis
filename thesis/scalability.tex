@@ -293,10 +293,12 @@ conflict-freedom break down.
 \begin{figure}
   \centering
   \inputnodraft{graph/memscan}
-  \caption{Latencies for repeatedly reading a shared region of memory
-    (top) and writing separate per-core regions (bottom), as a
-    function of region size and number of cores.  All operations scale
-    until they exceed cache or directory capacity.}
+  %
+  \splitcaption{Operations scale until they exceed cache or directory
+    capacity.}{Each graph shows the latency for repeatedly reading a
+    shared region of memory (top) and writing separate per-core
+    regions (bottom), as a function of region size and number of
+    cores.}
   \label{fig:memscan}
 \end{figure}
 
