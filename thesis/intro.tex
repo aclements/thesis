@@ -1,8 +1,9 @@
 \section{Introduction}
 \label{sec:intro}
 
-\XXX[STATUS]{Restructuring contributions and outline.  Have unapplied
-  edits from Eddie.  Re-organized and expanded from SOSP.}
+\XXX[STATUS]{Restructuring contributions and outline.  Re-organized
+  and expanded from SOSP.  Applied: Frans init-176-g5ef5d9a, Eddie
+  init-244-ga695479.}
 
 \XXX[AC]{Incorporate clock/heat/cores plot from defense.  Make point
   that core count is growing exponentially (albeit not Moore's
@@ -10,31 +11,32 @@
 
 This dissertation presents a pragmatic and formal approach to the
 design and implementation of scalable multicore software that spans
-from the earliest stages of software interface conception through
+from the earliest stages of software interface design through
 testing and maintenance of complete implementations.
 
 The rest of \thiscref{sec:intro} introduces the multicore
 architectures that now dominate general-purpose computing, the
 problematic ways in which software developers are coping with these
-new architectures, and our interface-drive approach to the design and
+new architectures, and our interface-driven approach to the design and
 implementation of software for multicore architectures.
 
 
 %\subsection{The rise of multicore architectures}
 \subsection{Parallelize or perish}
 
-Until the mid-2000's, writing higher performance software got easier
-with every passing year as each new CPU model clambered for higher
-clock speeds and greater computational throughput.
+In the mid-2000s, there was a fundamental shift in the construction of
+high performance software.  For decades, CPU clock speeds had ridden
+the exponential curve of Moore's Law to greater and greater
+computational throughput.  With rising clock speeds, software
+naturally got faster.
 %
 But higher clock speeds require more power and generate more heat, and
 around 2005 clock speeds brought CPUs to the thermal dissipation
 limits of a few square centimeters of silicon.
 %
 CPU architects could no longer significantly increase clock speeds, so
-instead they began increasing parallelism, putting more cores on the
-same chip, providing more and more parallel processing units that
-share access to memory and I/O resources.
+they began to increase parallelism by putting more CPUs on the same
+chip.
 % maintaining a ``coherent'' view of memory and shared access to I/O
 % resources.
 %
@@ -44,35 +46,41 @@ With the widespread adoption of multicore architectures for
 general-purpose computing, parallel programming went from niche to
 necessary.
 %
-All software must now be parallel to perform.
+\emph{Total} cycles per second continues to grow exponentially, but
+now software must be increasingly parallel to take advantage of this.
 %
-But, while software performance naturally scales with clock speed,
+However, while software performance naturally scaled with clock speed,
 scaling with parallelism is an untamed problem.  Even with careful
 engineering, software rarely achieves the holy grail of \emph{linear
   scalability}, where doubling hardware parallelism doubles the
 software's performance.
 
-Operating system kernels are a poignant example of both the importance
+Operating system kernels exemplify both the importance
 of parallelism and the difficulty of achieving it.
 %
-As the common substrate that provides shared services and resources
-that most applications depend heavily on, any limits on kernel
-scalability become limits on application scalability.
+Many applications depend heavily on the shared services and resources
+provided by the kernel.
 %
-Kernels must deal with interactions within and between applications
-and cope with diverse and unknown workloads.
+As a result, if the kernel doesn't scale, many applications won't
+scale.
+%
+At the same time, the kernel must cope with diverse and unknown
+workloads while supporting the combined parallelism of all
+applications on a computer.  Additionally, its role as the arbiter of
+shared resources make it particularly susceptible to scalability
+problems.
 %
 % \XXX{example?  Any application that creates, opens, read, or writes
 %   files is at risk of contending with any other application that uses
 %   the file system if the kernel's implementation is insufficiently
 %   parallel.}
 %
-Underlining the importance of kernel scalability, Linux kernel
-developers have put vast amounts of effort into multicore Linux,
-bringing it to the forefront of putting parallel programming
-techniques into practice.  Lock-free data structures, read-copy-update
-garbage collection, per-core data, and sophisticated synchronization
-mechanisms are all commonplace in the Linux kernel.
+% Underlining the importance of kernel scalability, Linux kernel
+% developers have put vast amounts of effort into multicore Linux,
+% bringing it to the forefront of putting parallel programming
+% techniques into practice.  Lock-free data structures, read-copy-update
+% garbage collection, per-core data, and sophisticated synchronization
+% mechanisms are all commonplace in the Linux kernel.
 
 Yet, despite the extensive efforts of kernel and application
 developers alike, scaling software performance on multicores remains
@@ -80,12 +88,13 @@ an inexact science dominated by guesswork, measurement, and expensive
 cycles of redesign.
 %
 The state of the art for evaluating and improving the scalability of
-multicore software is the choose some workload, plot performance at
+multicore software is to choose some workload, plot performance at
 varying numbers of cores, and use tools such as differential
 profiling~\cite{mckenney:differential} to identify scalability
-bottlenecks.  \XXX[AC]{Should we cite anything for this?  Is there
-  anything to cite besides our own papers?}  \XXX[AC]{Mention that
-  this is an evolution of sequential optimization techniques?}
+bottlenecks.
+% \XXX[AC]{Should we cite anything for this?  Is there
+%   anything to cite besides our own papers?}  \XXX[AC]{Mention that
+%   this is an evolution of sequential optimization techniques?}
 %
 This focuses developer effort on demonstrable issues, but is
 ultimately a near-sighted approach.
@@ -99,9 +108,12 @@ Each new hardware model and workload powers a Sisyphean cycle of
 finding and fixing new bottlenecks.
 %
 Projects such as Linux require continuous infusions of manpower to
-maintain their scalability edge and even then, the scalability of
-workloads and hardware that kernel developers don't have access to is
-a gamble.
+maintain their scalability edge.
+%
+Worse, scalability problems that span layers---for example,
+application behavior that triggers kernel bottlenecks---require
+cross-layer solutions, and few applications have the reach or
+resources to accomplish this.
 %
 But the deeper problem with this workload-driven approach is that many
 scalability problems lie not in the implementation, but in the design
@@ -148,9 +160,9 @@ scalable implementations.
 This dissertation presents a new approach to scalable software design
 that starts with the design of scalable software interfaces.
 %
-This approach makes reasoning about multicore scalability possible before an
-implementation exists and before the necessary hardware is available
-to measure the implementation's scalability.
+This approach makes reasoning about multicore scalability possible
+before an implementation exists and before the necessary hardware is
+available to measure the implementation's scalability.
 %
 It can highlight inherent scalability problems, leading to alternate
 interface designs.
@@ -160,7 +172,7 @@ scalable interface.  And it enables systematic testing of an
 implementation's scalability.
 
 Reasoning about scalability during interface design requires a notion
-of scalability that is divorced from the details of a specific
+of scalability divorced from the details of a specific
 implementation and specific hardware.
 %
 Modern shared-memory multicores have architectural commonalities that
@@ -336,7 +348,7 @@ design and implementation of a real system, we use these tests to
 guide the implementation of a new research operating system kernel
 named \sys.
 %
-\sys doubles as both an existence proof showing that the rule can be
+\sys doubles as an existence proof showing that the rule can be
 applied fruitfully to the design and implementation of a large
 software system, and as an embodiment of novel scalable kernel
 implementation techniques.
