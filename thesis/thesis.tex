@@ -193,6 +193,11 @@
 \let\c@table\c@figure
 \makeatother
 
+% Fold the one table in to the list of figures
+\makeatletter
+\renewcommand\ext@table{lof}
+\makeatother
+\renewcommand\listfigurename{Figures and Tables}
 
 \begin{document}
 
@@ -217,8 +222,10 @@
 \listoffigures \XXX!{Check if this is reasonable}
 \XXX{Check for overlong captions and use splitcaption}
 \XXX{Check for consistent use of period at end of captions}
-\newpage
-\listoftables \XXX!{Check if this is reasonable}
+
+% The preamble folded tables in to the list of figures
+% \newpage
+% \listoftables
 
 % Shift sectioning commands to start at \chapter
 \let\subsubsubsection\subsubsection
