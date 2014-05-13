@@ -156,25 +156,28 @@ It can highlight inherent scalability problems, leading to alternate
 interface designs.
 %
 It sets a clear scaling target for the implementation of a
-scalable interface and enables systematic testing of an
+scalable interface.  And it enables systematic testing of an
 implementation's scalability.
 
-Scalability is often considered an implementation property, not an
-interface property, not least because what scales depends on hardware.
+Reasoning about scalability during interface design requires a notion
+of scalability that is divorced from the details of a specific
+implementation and specific hardware.
 %
-However, modern shared-memory multicores use local caches and
-protocols like MESI~\cite{papamarcos:mesi} to provide a globally
-consistent, \emph{coherent} view of memory.  This general architecture
-enables general arguments about scalability.
+Modern shared-memory multicores have architectural commonalities that
+make this possible.  These machines have distributed memory
+hierarchies with CPU-local caches and depend on protocols like
+MESI~\cite{papamarcos:mesi} to provide a globally consistent,
+\emph{coherent} view of memory.  This general architecture enables
+general arguments about scalability.
 %
-On such processors, a core can scalably read and write data it has
+In such architectures, a core can scalably read and write data it has
 cached exclusively, and scalably read data it has cached in shared
 mode. Writing a cache line that was last read or written by another
 core is not scalable, however, since the coherence protocol serializes
 ownership changes for each cache line, and because the shared
 interconnect may serialize unrelated transfers.
 
-We therefore say that a set of operations \emph{scales} if their
+We therefore consider a set of operations \emph{scalable} if their
 implementations have \emph{conflict-free} memory accesses; that is, no
 core writes a cache line that was read or written by another core.
 %
