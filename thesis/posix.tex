@@ -1,7 +1,7 @@
 \section{Designing commutative interfaces}
 \label{sec:posix}
 
-\XXX[STATUS]{Unchanged from SOSP.  No changes planned.}
+\XXX[STATUS]{Tweaked intro and switched to subsections from SOSP.}
 
 \noindent
 The rule facilitates scalability reasoning at the interface and
@@ -10,19 +10,22 @@ complex interfaces.
 %\Cref{sec:topic:strong-commutativity} gave a glimpse of this using
 %\code{open}.
 \Thiscref{sec:posix} demonstrates the interface-level reasoning enabled by the
-rule. Using POSIX as a case study, we explore changes that make operations
-commute in more situations, enabling more scalable implementations.
+rule, using POSIX as a case study.
 %
 Already, many POSIX operations commute with many other
-operations, a fact we will quantify in the next \lcnamecref{sec:tool};
+operations, a fact we will quantify in the following \lcnamecref{sec:tool}s;
 \thiscref{sec:posix} focuses on
 problematic cases to give a sense of the subtler issues of commutative
 interface design.
-%
-% While the details here are specific to POSIX, the general ideas are
-% applicable to any interface.
 
-\paragraph{Decompose compound operations.}
+The following \lcnamecref{sec:posix:decompose}s explore four general
+classes of changes that make operations commute in more situations,
+enabling more scalable implementations.
+
+
+
+\subsection{Decompose compound operations}
+\label{sec:posix:decompose}
 
 Many POSIX APIs combine several operations into one, limiting the
 combined operation's commutativity.
@@ -74,7 +77,7 @@ pointless ways?  I think open had something annoying with this.}
 % this is really about naming.  Do not constrain resource names?  Name
 % resources non-deterministically?  Use opaque resource names?}
 
-\paragraph{Embrace specification non-determinism.}
+\subsection{Embrace specification non-determinism}
 
 POSIX's ``lowest available FD'' rule is a classic example of
 overly deterministic design that results in poor scalability.
@@ -93,7 +96,7 @@ inode number to a new file.
 % \XXX[AC]{Linearizable interfaces are really the problem below.
 % Communication interfaces should allow causal or unconstrained ordering.}
 
-\paragraph{Permit weak ordering.}
+\subsection{Permit weak ordering}
 
 Another common source of limited commutativity is strict ordering
 requirements between operations.  For many operations, ordering is
@@ -128,7 +131,7 @@ scalable communication (which we use in \cref{sec:eval:app}).
 % about coordinate you want to be immediate, just unordered.  This is
 % about coordination that can be delayed.}
 
-\paragraph{Release resources asynchronously.}
+\subsection{Release resources asynchronously}
 
 % \XXX[AC]{kill isn't very compelling.  Others are better.}
 % Another example of strict ordering is \code{kill}, which requires that
