@@ -122,7 +122,7 @@ class SchedTree(object):
         for child in node.children.values():
             self.__apply_rec(fn, child, *args)
 
-    def layout(self):
+    def layout(self, orientation):
         apply_rec = self.__apply_rec
         # Compute band order using a topo sort over bands
         # XXX This can't handle genuine loops, since they will cause
@@ -205,9 +205,28 @@ class SchedTree(object):
                       len(node.children))
         assign_x(self.__root)
 
-    def to_ctx(self, ctx, S):
-        """Draw self to ctx.  S is the unit size of the node grid."""
-        self.layout()
+        # Current orientation: forks split on the X axis with ordered
+        # from true to false; time increases on the Y axis.  Re-layout
+        # in to desired orientation.
+        def reorient_px_my(node):
+            node.x, node.y = node.y, node.x
+        if orientation == '+y-x':
+            self.__edge_order = 'HV'
+        elif orientation == '+x-y':
+            apply_rec(reorient_px_my)
+            self.__edge_order = 'VH'
+        else:
+            raise NotImplementedError('Orientation %s' % (orientation,))
+
+    def to_ctx(self, ctx, S, orientation='+y-x'):
+        """Draw self to ctx.  S is the unit size of the node grid.
+
+        orientation is a string of the form '[+-][xy][+-][xy]' where
+        the first two characters give the direction of increasing time
+        and the second two give the direction of increasing truth.
+        """
+        self.layout(orientation)
+
         NODE_RADIUS = S * 0.1
         LABEL_PAD = S * 0.15
         STROKE_WIDTH = S * 0.04
@@ -228,24 +247,38 @@ class SchedTree(object):
         def render_edges(node, move):
             for label, child in node.children.items():
                 if label:
-                    if child.x < node.x:
+                    c = (cmp(child.x, node.x), cmp(child.y, node.y))
+                    if c in ((0, 1), (1, 0), (1, 1)):
+                        # Label below-right
+                        ctx.text(label, S*node.x + LABEL_PAD,
+                                 S*node.y + LABEL_PAD, 'tl')
+                    elif c in ((-1, 1),):
+                        # Label below-left
                         ctx.text(label, S*node.x - LABEL_PAD,
                                  S*node.y + LABEL_PAD, 'tr')
-                    elif child.x > node.x:
+                    elif c in ((1, -1),):
+                        # Label above-right
                         ctx.text(label, S*node.x + LABEL_PAD,
-                                 S*node.y + LABEL_PAD, 'tl')
+                                 S*node.y - LABEL_PAD, 'bl')
                     else:
-                        ctx.text(label, S*node.x + LABEL_PAD,
-                                 S*node.y + LABEL_PAD, 'tl')
+                        raise NotImplementedError(
+                            'Label for edge direction %s' % (c,))
 
                 if move:
                     path.append(('M', S*node.x, S*node.y))
-                path.extend([('H', S*child.x), ('V', S*child.y)])
+                if self.__edge_order == 'HV':
+                    path.extend([('H', S*child.x), ('V', S*child.y)])
+                else:
+                    path.extend([('V', S*child.y), ('H', S*child.x)])
                 move = True
                 render_edges(child, False)
         # Stem to the root
-        path.extend([('M', S*self.__root.x, S*(self.__root.y - 1)),
-                     ('V', S*self.__root.y)])
+        if self.__edge_order == 'HV':
+            path.append(('M', S*self.__root.x, S*(self.__root.y - 1)))
+            path.append(('V', S*self.__root.y))
+        else:
+            path.append(('M', S*(self.__root.x - 1), S*self.__root.y))
+            path.append(('H', S*self.__root.x))
         with ctx:
             ctx.font_size = BRANCH_LABEL_SIZE
             render_edges(self.__root, False)
@@ -286,8 +319,14 @@ class SchedTree(object):
         GAP = S * 2             # Gap between tree and region labels
         LINE_SKIP = S * 1.2     # Distance between region layer baselines
 
+        if self.__edge_order == 'HV':
+            # Get time, get fork
+            gett, getf = (lambda n: n.y), (lambda n: n.x)
+        else:
+            gett, getf = (lambda n: n.x), (lambda n: n.y)
+
         # Compute region bounds
-        regions, lr, unique_regions = {}, [None, None], set()
+        regions, sides, unique_regions = {}, [None, None], set()
         def find_regions(node):
             if node.region:
                 unique_regions.add(node.region)
@@ -295,17 +334,18 @@ class SchedTree(object):
                 region = node.region[:i]
                 bounds = regions.get(region)
                 if bounds is None:
-                    regions[region] = (node.y - 1, node.y)
+                    regions[region] = (gett(node) - 1, gett(node))
                 else:
-                    regions[region] = (min(node.y - 1, bounds[0]),
-                                       max(node.y, bounds[1]))
-            if lr[0] is None:
-                lr[0] = lr[1] = node.x
+                    regions[region] = (min(gett(node) - 1, bounds[0]),
+                                       max(gett(node), bounds[1]))
+            if sides[0] is None:
+                sides[0] = sides[1] = getf(node)
             else:
-                lr[0], lr[1] = min(node.x, lr[0]), max(node.x, lr[1])
+                sides[0], sides[1] \
+                    = min(getf(node), sides[0]), max(getf(node), sides[1])
         self.__apply_rec(find_regions)
         max_len = max(map(len, unique_regions))
-        left = lr[0] * S - GAP - max_len * LINE_SKIP
+        left = sides[0] * S - GAP - max_len * LINE_SKIP
 
         # Generate region colors
         def parse_rgb(x):
@@ -322,9 +362,16 @@ class SchedTree(object):
         for i, k in enumerate(sorted(unique_regions,
                                      key=lambda r:regions[r][0])):
             region = regions[k]
-            ctx.rect((lr[0] - 0.5) * S, region[0] * S,
-                     (lr[1] - lr[0] + 1) * S, (region[1] - region[0]) * S,
-                     fill=region_colors[i])
+            if self.__edge_order == 'HV':
+                ctx.rect((sides[0] - 0.5) * S, region[0] * S,
+                         (sides[1] - sides[0] + 1) * S,
+                         (region[1] - region[0]) * S,
+                         fill=region_colors[i])
+            else:
+                ctx.rect(region[0] * S, (sides[0] - 0.5) * S,
+                         (region[1] - region[0]) * S,
+                         (sides[1] - sides[0] + 1) * S,
+                         fill=region_colors[i])
 
         # Render separating lines
         lines = {}
@@ -332,14 +379,20 @@ class SchedTree(object):
             for y in (t, b):
                 lines[y] = min(lines.get(y, 0), left + len(label) * LINE_SKIP)
         for y, x in lines.items():
-            ctx.path([('M', x, y*S), ('H', (lr[1]+0.5)*S)],
+            y *= S
+            if self.__edge_order == 'VH':
+                x, y = y, x
+            ctx.path([('M', x, y), (self.__edge_order[0], (sides[1]+0.5)*S)],
                      stroke=(0,0,0,0.3), stroke_width=S*0.1)
 
         # Render region labels
         for label, (t, b) in regions.items():
             x = left + len(label) * LINE_SKIP
-            ctx.text(label[-1], x, (t + b) / 2.0 * S, 'bm',
-                     rotate=270)
+            if self.__edge_order == 'HV':
+                ctx.text(label[-1], x, (t + b) / 2.0 * S, 'bm',
+                         rotate=270)
+            else:
+                ctx.text(label[-1], (t + b) / 2.0 * S, x, 'tm')
 
 argparser = argparse.ArgumentParser()
 group = argparser.add_mutually_exclusive_group(required=True)
@@ -358,14 +411,15 @@ for sar in simsym.symbolic_apply(test, Rename, Rename.rename, Rename.rename):
         print >>sys.stderr, simsym.simplify(sar.path_condition)
         print >>sys.stderr
 
+orientation = '+x-y'
 if args.svg:
     ctx = context.SVG(**{'font-family': 'Open Sans',
     #                     'font-weight': '300'
                      })
-    tree.to_ctx(ctx, S=30)
+    tree.to_ctx(ctx, S=30, orientation=orientation)
 
 if args.tex:
     ctx = context.TikZ()
-    tree.to_ctx(ctx, S=13)
+    tree.to_ctx(ctx, S=13, orientation=orientation)
 
 ctx.write_to(sys.stdout)
