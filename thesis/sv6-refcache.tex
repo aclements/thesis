@@ -176,7 +176,8 @@ flushes this delta to the object's global reference count.
 The true reference
 count of an object is thus the sum of its global count and any local
 deltas for that object found in the per-core delta caches.  The value of the
-true count is generally unknown, but we assume that once it drops to
+true count is generally unknown, but we assume that once the true
+count drops to
 zero, it will remain zero (in the absence of weak references, which
 we discuss later).  \refcache depends on this stability to detect a
 zero true count after some delay.
@@ -301,15 +302,15 @@ reference caches at least once.
   \begin{tabbing}
     \quad\=\quad\=\quad\=\quad\=\quad\=\quad\=\kill
     inc(obj): \+\\
-      if local cache[hash(obj)].obj $\ne$ obj: \+\\
-        evict(local cache[hash(obj)]) \\
-        local cache[hash(obj)] $\gets$ $\langle$obj, 0$\rangle$ \-\\
-      local cache[hash(obj)].delta += 1 \\
+      if local-cache[hash(obj)].obj $\ne$ obj: \+\\
+        evict(local-cache[hash(obj)]) \\
+        local-cache[hash(obj)] $\gets$ $\langle$obj, 0$\rangle$ \-\\
+      local-cache[hash(obj)].delta += 1 \\
     \-\\[\fgap]
     tryget(weakref): \+\\
       do: \+\\
         $\langle$obj, dying$\rangle$ $\gets$ weakref \-\\
-      while weakref.cmpxchng($\langle$obj, dying$\rangle$,
+      while weakref.cmpxchg($\langle$obj, dying$\rangle$,
         $\langle$obj, false$\rangle$) fails \\
       if obj is not null: \+\\
         inc(obj) \-\\
@@ -337,7 +338,7 @@ reference caches at least once.
             obj.dirty $\gets$ true \\
     \-\-\-\-\\[\fgap]
     flush(): \+\\
-      evict all local cache entries and clear cache \\
+      evict all local-cache entries and clear cache \\
       update the current epoch \\
     \-\\[\fgap]
     review(): \+\\
@@ -348,7 +349,7 @@ reference caches at least once.
           remove obj from the review queue \\
           if obj.refcnt $\ne$ 0: \+\\
             obj.weakref.dying $\gets$ false \-\\
-          else if obj.dirty or obj.weakref.cmpxchng(%
+          else if obj.dirty or obj.weakref.cmpxchg(%
                 $\langle$obj, true$\rangle$,
                 $\langle$null, false$\rangle$) fails: \+\\
             obj.dirty $\gets$ false \\
