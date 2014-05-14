@@ -218,7 +218,7 @@ class SchedTree(object):
         else:
             raise NotImplementedError('Orientation %s' % (orientation,))
 
-    def to_ctx(self, ctx, S, orientation='+y-x'):
+    def to_ctx(self, ctx, S, orientation='+y-x', region_label_pt=None):
         """Draw self to ctx.  S is the unit size of the node grid.
 
         orientation is a string of the form '[+-][xy][+-][xy]' where
@@ -228,11 +228,11 @@ class SchedTree(object):
         self.layout(orientation)
 
         NODE_RADIUS = S * 0.1
-        LABEL_PAD = S * 0.15
-        STROKE_WIDTH = S * 0.04
-        NODE_LABEL_SIZE = 5 * S / 13    # 5pt at S=13
-        BRANCH_LABEL_SIZE = 4 * S / 13  # 4pt at S=13
-        REGION_LABEL_SIZE = 11 * S / 13 # 11pt at S=13
+        LABEL_PAD = S * 0.1
+        STROKE_WIDTH = S * 0.02
+        NODE_LABEL_SIZE = 5 * S / 13.0    # 5pt at S=13
+        BRANCH_LABEL_SIZE = 5 * S / 13.0  # 5pt at S=13
+        REGION_LABEL_SIZE = region_label_pt or (11 * S / 13.0) # 11pt at S=13
 
         # XXX Should this include line number labels for each
         # individual band?
@@ -316,7 +316,7 @@ class SchedTree(object):
             self.__apply_rec(render_node)
 
     def __render_regions(self, ctx, S):
-        GAP = S * 2             # Gap between tree and region labels
+        GAP = S * 1.5        # Gap between tree and region labels
         LINE_SKIP = S * 1.2     # Distance between region layer baselines
 
         if self.__edge_order == 'HV':
@@ -358,20 +358,20 @@ class SchedTree(object):
         # Blend toward white
         region_colors = [inter(c, (1,1,1), 0.75) for c in region_colors]
 
-        # Render region backgrounds
-        for i, k in enumerate(sorted(unique_regions,
-                                     key=lambda r:regions[r][0])):
-            region = regions[k]
-            if self.__edge_order == 'HV':
-                ctx.rect((sides[0] - 0.5) * S, region[0] * S,
-                         (sides[1] - sides[0] + 1) * S,
-                         (region[1] - region[0]) * S,
-                         fill=region_colors[i])
-            else:
-                ctx.rect(region[0] * S, (sides[0] - 0.5) * S,
-                         (region[1] - region[0]) * S,
-                         (sides[1] - sides[0] + 1) * S,
-                         fill=region_colors[i])
+        # # Render region backgrounds
+        # for i, k in enumerate(sorted(unique_regions,
+        #                              key=lambda r:regions[r][0])):
+        #     region = regions[k]
+        #     if self.__edge_order == 'HV':
+        #         ctx.rect((sides[0] - 0.5) * S, region[0] * S,
+        #                  (sides[1] - sides[0] + 1) * S,
+        #                  (region[1] - region[0]) * S,
+        #                  fill=region_colors[i])
+        #     else:
+        #         ctx.rect(region[0] * S, (sides[0] - 0.5) * S,
+        #                  (region[1] - region[0]) * S,
+        #                  (sides[1] - sides[0] + 1) * S,
+        #                  fill=region_colors[i])
 
         # Render separating lines
         lines = {}
@@ -383,7 +383,7 @@ class SchedTree(object):
             if self.__edge_order == 'VH':
                 x, y = y, x
             ctx.path([('M', x, y), (self.__edge_order[0], (sides[1]+0.5)*S)],
-                     stroke=(0,0,0,0.3), stroke_width=S*0.1)
+                     stroke=(0,0,0,0.3), stroke_width=S*0.08)
 
         # Render region labels
         for label, (t, b) in regions.items():
@@ -420,6 +420,8 @@ if args.svg:
 
 if args.tex:
     ctx = context.TikZ()
-    tree.to_ctx(ctx, S=13, orientation=orientation)
+    # Note: With orientation '-y+x', S=13 is just shy of 6" wide
+    tree.to_ctx(ctx, S=18, orientation=orientation,
+                region_label_pt=11)
 
 ctx.write_to(sys.stdout)
