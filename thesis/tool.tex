@@ -3,6 +3,7 @@
 
 \XXX[STATUS]{\analyzer section rewritten from SOSP.  Planning to
   expand \testgen section a bit.
+  Applied: Minor edits from Eddie init-244-ga695479.
   Unapplied: Eddie init-244-ga695479.
 }
 
@@ -114,7 +115,7 @@ choose any free inode) as under-constrained symbolic values.
 
 \subsubsection{Concrete commutativity analysis}
 
-Starting from such a model, \analyzer computes the commutativity
+Starting from an interface model, \analyzer computes the commutativity
 condition of each multiset of operations of a user-specified size.
 %
 To determine whether a set of operations commutes, \analyzer executes
@@ -157,6 +158,7 @@ arguments \code{args}.
 %         return False
 %  return True
 
+This test is implemented by a function called \code{commutes}.
 \code{commutes} codifies the definition of \SIM commutativity, except
 that it requires the specification to be sequentially consistent so it
 needn't interleave partial operations.  Recall that $\HY$ \SI-commutes
@@ -353,7 +355,7 @@ Given two
       \code{a} exists, \code{c} does not, and \code{b}$\neq$\code{c}, or
       \code{c} exists, \code{a} does not, and \code{d}$\neq$\code{a}).
 
-\item Neither \code{a} nor \code{c} exist.
+\item Neither \code{a} nor \code{c} exists.
 
 \item Both calls are self-renames (\code{a}$=$\code{b} and \code{c}$=$\code{d}).
 
@@ -367,6 +369,10 @@ Given two
        \code{a}$\neq$\code{c}, and \code{b}$=$\code{d}).
 
 \end{CompactItemize}
+
+\XXX![AC]{Make point here that we would only have been able to find
+  one of these cases without a state-sensitive definition of
+  commutativity?}
 
 As this example shows, when system calls access shared, mutable
 state, reasoning about every commutative case by hand can become

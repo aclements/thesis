@@ -21,7 +21,6 @@ def commutes(s0, ops, args):
     # Test for state equivalence
     if frozenset(perm) not in states:
       states[frozenset(perm)] = s
-      # Optimization: Move todo.extend here
     elif s != states[frozenset(perm)]:
       return False
 

@@ -22,7 +22,6 @@
     \PY{c}{\PYZsh{} Test for state equivalence}
     \PY{k}{if} \PY{n+nb}{frozenset}\PY{p}{(}\PY{n}{perm}\PY{p}{)} \PY{k}{not} \PY{k}{in} \PY{n}{states}\PY{p}{:}
       \PY{n}{states}\PY{p}{[}\PY{n+nb}{frozenset}\PY{p}{(}\PY{n}{perm}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{n}{s}
-      \PY{c}{\PYZsh{} Optimization: Move todo.extend here}
     \PY{k}{elif} \PY{n}{s} \PY{o}{!=} \PY{n}{states}\PY{p}{[}\PY{n+nb}{frozenset}\PY{p}{(}\PY{n}{perm}\PY{p}{)}\PY{p}{]}\PY{p}{:}
       \PY{k}{return} \PY{n+nb+bp}{False}
 
