@@ -1,10 +1,10 @@
 \section{Analyzing interfaces using \tool}
 \label{sec:tool}
 
-\XXX[STATUS]{\analyzer section rewritten from SOSP.  Planning to
-  expand \testgen section a bit.
-  Applied: Minor edits from Eddie init-244-ga695479.
-  Unapplied: Eddie init-244-ga695479.
+\XXX[STATUS]{Draft v2 ready.  Minor edits and some reflowing of
+  \analyzer section from draft v1.  \analyzer section rewritten from
+  SOSP.  Planning to expand \testgen section a bit.
+  Applied: Eddie init-244-ga695479.
 }
 
 Fully understanding the commutativity of a complex interface is
@@ -260,6 +260,45 @@ operations rather than larger sets because larger sets take
 exponentially longer to analyze and rarely reveal problems beyond
 those already revealed by pairs.
 
+By symbolically executing \code{commutes2} for two \code{rename}
+operations, \code{rename(a, b)} and \code{rename(c, d)}, \analyzer
+determines that these operations commute if any of the following hold:
+
+\begin{CompactItemize}
+\item Both source files exist, and the file names are all different
+      (\code{a} and \code{c} exist, and \code{a}, \code{b}, \code{c},
+      \code{d} all differ).
+
+\item One \code{rename}'s source does not exist, and it is not the
+      other \code{rename}'s destination (either
+      \code{a} exists, \code{c} does not, and \code{b}$\neq$\code{c}, or
+      \code{c} exists, \code{a} does not, and \code{d}$\neq$\code{a}).
+
+\item Neither \code{a} nor \code{c} exists.
+
+\item Both calls are self-renames (\code{a}$=$\code{b} and \code{c}$=$\code{d}).
+
+\item One call is a self-rename of an existing file
+      (\code{a} exists and \code{a}$=$\code{b}, or
+       \code{c} exists and \code{c}$=$\code{d}) and
+      it's not the other call's source (\code{a}$\neq$\code{c}).
+
+\item Two hard links to the same inode are renamed to the same new name
+      (\code{a} and \code{c} point to the same inode,
+       \code{a}$\neq$\code{c}, and \code{b}$=$\code{d}).
+
+\end{CompactItemize}
+
+Despite \code{rename}'s seeming simplicity, \analyzer's symbolic
+execution systematically explores its hidden complexity, revealing the
+many combinations of state and arguments for which two rename calls
+commute.
+
+\XXX![AC]{Make point here that we would only have been able to find
+  one of these cases without a state-sensitive definition of
+  commutativity?}
+
+
 % Derived from figures/tree.tex
 \newcommand\treecommutes{%
   \tikz[y=-0.0111111in,x=0.0111111in,baseline={([yshift=-.6ex]current bounding box.center)}]{
@@ -295,7 +334,7 @@ those already revealed by pairs.
   figure?}
 
 \Cref{fig:rename-branching} illustrates the symbolic execution of
-\code{commutes2} testing a pair of \code{rename} operations.
+\code{commute2} that arrives at these conditions.
 %
 By and large, this symbolic execution proceeds like regular Python
 execution, except when it encounters a conditional branch on a
@@ -340,41 +379,6 @@ conditions for which \code{commutes2} returns \code{True} captures the
 precise and complete set of initial system states and operation
 arguments for which
 the operations commute.
-
-\XXX!{Fix up flow here.}
-
-Given two
-\code{rename} operations, \code{rename(a, b)} and \code{rename(c, d)},
-\analyzer outputs that they commute if any of the following hold:
-
-\begin{CompactItemize}
-\item Both source files exist, and the file names are all different
-      (\code{a} and \code{c} exist, and \code{a}, \code{b}, \code{c},
-      \code{d} all differ).
-
-\item One \code{rename}'s source does not exist, and it is not the
-      other \code{rename}'s destination (either
-      \code{a} exists, \code{c} does not, and \code{b}$\neq$\code{c}, or
-      \code{c} exists, \code{a} does not, and \code{d}$\neq$\code{a}).
-
-\item Neither \code{a} nor \code{c} exists.
-
-\item Both calls are self-renames (\code{a}$=$\code{b} and \code{c}$=$\code{d}).
-
-\item One call is a self-rename of an existing file
-      (\code{a} exists and \code{a}$=$\code{b}, or
-       \code{c} exists and \code{c}$=$\code{d}) and
-      it's not the other call's source (\code{a}$\neq$\code{c}).
-
-\item Two hard links to the same inode are renamed to the same new name
-      (\code{a} and \code{c} point to the same inode,
-       \code{a}$\neq$\code{c}, and \code{b}$=$\code{d}).
-
-\end{CompactItemize}
-
-\XXX![AC]{Make point here that we would only have been able to find
-  one of these cases without a state-sensitive definition of
-  commutativity?}
 
 As this example shows, when system calls access shared, mutable
 state, reasoning about every commutative case by hand can become
