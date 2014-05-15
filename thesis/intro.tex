@@ -1,13 +1,9 @@
 \section{Introduction}
 \label{sec:intro}
 
-\XXX[STATUS]{Restructuring contributions and outline.  Re-organized
-  and expanded from SOSP.  Applied: Frans init-176-g5ef5d9a, Eddie
-  init-244-ga695479.}
-
-\XXX[AC]{Incorporate clock/heat/cores plot from defense.  Make point
-  that core count is growing exponentially (albeit not Moore's
-  Law-exponentially).}
+\XXX[STATUS]{Draft v2 ready.  Restructured contributions and outline
+  from draft v1.  Re-organized and expanded from SOSP.  Applied: Frans
+  init-176-g5ef5d9a, Eddie init-244-ga695479.}
 
 This dissertation presents a pragmatic and formal approach to the
 design and implementation of scalable multicore software that spans
@@ -26,34 +22,37 @@ implementation of software for multicore architectures.
 
 In the mid-2000s, there was a fundamental shift in the construction of
 high performance software.  For decades, CPU clock speeds had ridden
-the exponential curve of Moore's Law to greater and greater
-computational throughput.  With rising clock speeds, software
-naturally got faster.
+the exponential curve of Moore's Law and rising clock speeds naturally
+translated to faster software performance.
 %
 But higher clock speeds require more power and generate more heat, and
-around 2005 clock speeds brought CPUs to the thermal dissipation
+around 2005 CPUs reached the thermal dissipation
 limits of a few square centimeters of silicon.
 %
-CPU architects could no longer significantly increase clock speeds, so
-they began to increase parallelism by putting more CPUs on the same
+CPU architects could no longer significantly increase the clock speed
+of a single CPU core, so
+they began to increase parallelism by putting more CPU cores on the same
 chip.
 % maintaining a ``coherent'' view of memory and shared access to I/O
 % resources.
 %
 % With the rise of multicore architectures, parallel programming went
 % from niche to necessary.
-With the widespread adoption of multicore architectures for
-general-purpose computing, parallel programming went from niche to
+Now, with the widespread adoption of multicore architectures for
+general-purpose computing, parallel programming has gone from niche to
 necessary.
 %
 \emph{Total} cycles per second continues to grow exponentially, but
-now software must be increasingly parallel to take advantage of this.
+now software must be increasingly parallel to take advantage of this
+growth.
 %
-However, while software performance naturally scaled with clock speed,
+Unfortunately, while software performance naturally scaled with clock speed,
 scaling with parallelism is an untamed problem.  Even with careful
 engineering, software rarely achieves the holy grail of \emph{linear
   scalability}, where doubling hardware parallelism doubles the
 software's performance.
+%
+\XXX[AC]{Incorporate clock/heat/cores plot from defense?}
 
 Operating system kernels exemplify both the importance
 of parallelism and the difficulty of achieving it.
@@ -66,9 +65,9 @@ scale.
 %
 At the same time, the kernel must cope with diverse and unknown
 workloads while supporting the combined parallelism of all
-applications on a computer.  Additionally, its role as the arbiter of
-shared resources make it particularly susceptible to scalability
-problems.
+applications on a computer.  Additionally, the kernel's role as the
+arbiter of shared resources make it particularly susceptible to
+scalability problems.
 %
 % \XXX{example?  Any application that creates, opens, read, or writes
 %   files is at risk of contending with any other application that uses
@@ -132,8 +131,8 @@ identify the open file in later operations.
 Even though this identifier is opaque, POSIX requires that \code{open}
 return the numerically lowest available file descriptor for the
 calling process, forcing the kernel to allocate file descriptors one
-at a time, even if many parallel threads are simultaneously opening
-files.
+at a time, even when many parallel threads are opening files
+simultaneously.
 %
 This simplified the kernel interface during the early days of Unix,
 but this interface design choice is now a burden on implementation
@@ -157,116 +156,90 @@ scalable implementations.
 
 \subsection{A rule for interface design}
 
-This dissertation presents a new approach to scalable software design
+This dissertation presents a new approach to designing scalable software
 that starts with the design of scalable software interfaces.
 %
 This approach makes reasoning about multicore scalability possible
 before an implementation exists and before the necessary hardware is
 available to measure the implementation's scalability.
 %
-It can highlight inherent scalability problems, leading to alternate
+It can highlight inherent scalability problems, leading to better
 interface designs.
 %
 It sets a clear scaling target for the implementation of a
 scalable interface.  And it enables systematic testing of an
 implementation's scalability.
 
-Reasoning about scalability during interface design requires a notion
-of scalability divorced from the details of a specific
-implementation and specific hardware.
-%
-Modern shared-memory multicores have architectural commonalities that
-make this possible.  These machines have distributed memory
-hierarchies with CPU-local caches and depend on protocols like
-MESI~\cite{papamarcos:mesi} to provide a globally consistent,
-\emph{coherent} view of memory.  This general architecture enables
-general arguments about scalability.
-%
-In such architectures, a core can scalably read and write data it has
-cached exclusively, and scalably read data it has cached in shared
-mode. Writing a cache line that was last read or written by another
-core is not scalable, however, since the coherence protocol serializes
-ownership changes for each cache line, and because the shared
-interconnect may serialize unrelated transfers.
+% Reasoning about scalability during interface design requires a notion
+% of scalability divorced from the details of a specific
+% implementation and specific hardware.
+% %
+% Modern shared-memory multicores have architectural commonalities that
+% make this possible.  These machines have distributed memory
+% hierarchies with CPU-local caches and employ protocols like
+% MESI~\cite{papamarcos:mesi} to provide a globally consistent,
+% \emph{coherent} view of memory.  This general architecture enables
+% general arguments about scalability.
+% %
+% In such architectures, a core can scalably read and write data it has
+% cached exclusively, and scalably read data it has cached in shared
+% mode. Writing a cache line that was last read or written by another
+% core is not scalable, however, since the coherence protocol serializes
+% ownership changes for each cache line, and because the shared
+% interconnect may serialize unrelated transfers.
 
-We therefore consider a set of operations \emph{scalable} if their
-implementations have \emph{conflict-free} memory accesses; that is, no
-core writes a cache line that was read or written by another core.
-%
-When memory accesses are conflict-free, adding more cores will produce
-a linear increase in capacity.
-%
-This is not a perfect model of the complex realities of modern
-hardware, but it is a good approximation that we confirm in
-\cref{sec:scalability}.
+% We therefore consider a set of operations \emph{scalable} if their
+% implementations have \emph{conflict-free} memory accesses; that is, no
+% core writes a cache line that was read or written by another core.
+% %
+% When memory accesses are conflict-free, adding more cores will produce
+% a linear increase in capacity.
+% %
+% This is not a perfect model of the complex realities of modern
+% hardware, but it is a good approximation that we confirm in
+% \cref{sec:scalability}.
 
 At the core of our approach is this \emph{scalable commutativity
   rule}: In any situation where several operations
 \emph{commute}---meaning there's no way to distinguish their execution
-order using the interface---they have an implementation whose memory
-accesses are conflict-free during those operations.
+order using the interface---they have a implementation that is
+conflict-free during those operations---meaning no core
+writes a cache line that was read or written by another core.
+%
+Empirically, conflict-free operations scale, so this implementation
+scales.
 %
 Or, more concisely, \textbf{whenever interface operations commute,
   they can be implemented in a way that scales.}
 
 This rule makes intuitive sense: when operations commute, their
-results (return value and effect on system state) are independent of
+results (return values and effect on system state) are independent of
 order.  Hence, communication between commutative operations is
-unnecessary, and eliminating it yields conflict-free and scalable
-implementations.
-
-The commutativity rule leads to a new way to design scalable
-software:
+unnecessary, and eliminating it yields a conflict-free implementation.
 %
-analyze the interface's commutativity; if possible, refine or redesign
-the interface to improve its commutativity; and then design an
-implementation that scales in commutative situations.
-%
-For example,
-consider file creation in a POSIX-like file system. Imagine that
-multiple processes create files in the same directory at the same
-time. Can the creation system calls be made to scale? Our
-first answer was ``obviously not'': the system calls modify the same
-directory, so surely the implementation must
-serialize access to the directory. But it turns
-out these operations commute if the two files have different names
-(and no hard or symbolic links are involved) and, therefore, have an
-implementation that scales for such names.
-One such implementation represents each directory as a hash table
-indexed by file name, with an independent lock per bucket,
-so that creation of differently named files is conflict-free, barring
-hash collisions.
-%
-Before the rule, we tried to determine if these
-operations could scale by analyzing all of the \emph{implementations}
-we could think
-of.  This process was difficult, unguided, and itself did not scale to
-complex interfaces, which
-motivated our goal of reasoning about
-scalability in terms of interfaces.
+On modern shared-memory multicores, conflict-free operations can
+execute entirely from per-core caches, so the performance of
+a conflict-free implementation will scale linearly with the number of
+cores.
 
-
-\subsection{Contributions}
-
-\XXX{Should more of this stuff go into the rule section and this just
-  be a summary?}
-
-The rest of this dissertation presents the scalable commutativity rule
-in depth and explores its consequences from interface design to
-implementation to testing.
-
-The intuition for the rule presented above is useful in practice, but
+The intuitive version of the rule is useful in practice, but
 not precise enough to reason
 about formally.
 %
-Therefore, the first contribution of this dissertation is a
-formalization of the scalable commutativity rule and a proof of the
-correctness of this formalized form, which we present in
-\cref{sec:rule}.
-%
-Connecting this formalization to scalability as traditionally measured
-requires certain assumptions about multicore hardware, which we verify
-experimentally in \cref{sec:scalability}.
+Therefore, this dissertation formalizes the scalable commutativity
+rule, proves that commutative operations have a conflict-free
+implementation, and demonstrates experimentally that, under reasonable
+assumptions, conflict-free implementations scale linearly on modern
+multicore hardware.
+
+% Therefore, the first contribution of this dissertation is a
+% formalization of the scalable commutativity rule and a proof of the
+% correctness of this formalized form, which we present in
+% \cref{sec:rule}.
+% %
+% Connecting this formalization to scalability as traditionally measured
+% requires certain assumptions about multicore hardware, which we verify
+% experimentally in \cref{sec:scalability}.
 
 An important consequence of this presentation is a novel form of
 commutativity we name \emph{\SIM\ commutativity}.
@@ -296,16 +269,49 @@ indistinguishable via the interface.
 implementation, enabling developers to apply the rule directly to
 interface design.
 
-In \cref{sec:posix}, this dissertation puts the rule into practice,
-contributing a set of general guidelines for designing interfaces that
-enable scalable implementations, inspired by both the successes and
-failures of POSIX.
-%
-Using these guidelines, we propose specific modifications to POSIX
-that would enable greater scalability.
 
-However, complex interfaces are still complex, and even with the rule
-and these interface design guidelines, it can be difficult to spot and
+\subsection{Applying the rule}
+
+The scalable commutativity rule leads to a new way to design scalable
+software:
+%
+analyze the interface's commutativity; if possible, refine or redesign
+the interface to improve its commutativity; and then design an
+implementation that scales when operations commute.
+
+For example,
+consider file creation in a POSIX-like file system. Imagine that
+multiple processes create files in the same directory at the same
+time. Can the creation system calls be made to scale? Our
+first answer was ``obviously not'': the system calls modify the same
+directory, so surely the implementation must
+serialize access to the directory. But it turns
+out these operations commute if the two files have different names
+(and no hard or symbolic links are involved) and, therefore, have an
+implementation that scales for such names.
+One such implementation represents each directory as a hash table
+indexed by file name, with an independent lock per bucket,
+so that creation of differently named files is conflict-free, barring
+hash collisions.
+%
+Before the rule, we tried to determine if these
+operations could scale by analyzing all of the \emph{implementations}
+we could think
+of.  This process was difficult, unguided, and itself did not scale to
+complex interfaces, which
+motivated our goal of reasoning about
+scalability in terms of interfaces.
+
+% In \cref{sec:posix}, this dissertation puts the rule into practice,
+% contributing a set of general guidelines for designing interfaces that
+% enable scalable implementations, inspired by both the successes and
+% failures of POSIX.
+% %
+% Using these guidelines, we propose specific modifications to POSIX
+% that would enable greater scalability.
+
+However, real-world interfaces and their implementations are complex.
+Even with the rule, it can be difficult to spot and
 reason about all commutative cases.
 %
 % Complex interfaces can make it difficult to spot and reason about all
@@ -313,17 +319,22 @@ reason about all commutative cases.
 %
 To address this challenge, this dissertation introduces a method to
 automate reasoning about interfaces and implementations, embodied in a
-software tool named \tool, presented in \cref{sec:tool}.
+software tool named \tool.
 %
-\tool takes an interface model
-in the form of a simplified, symbolic implementation, computes precise
-conditions under which sets of operations commute, and tests an
-implementation for conflict-freedom under these conditions.  This tool can be
+\tool takes a symbolic interface model,
+computes precise conditions under which sets of operations commute,
+generates concrete tests of commutative operations,
+and uses these tests to reveal conflicts in an implementation.
+%
+Any conflicts \tool finds represent an opportunity for the developer
+to improve the scalability of their implementation.
+%
+This tool can be
 integrated into the software development process to drive initial design and
 implementation, to incrementally improve existing implementations, and to
 help developers understand the commutativity of an interface.
 
-In \cref{sec:topic:model}, we apply \tool to a model of
+We apply \tool to a model of
 \pyexpr{len(mscan.calls)} POSIX file system and virtual memory system
 calls.
 %
@@ -353,30 +364,28 @@ applied fruitfully to the design and implementation of a large
 software system, and as an embodiment of novel scalable kernel
 implementation techniques.
 %
-\Cref{sec:sv6} details these techniques and the software designs
-necessary to achieve conflict-free commutative operations in \sys's
-virtual memory system (\vm) and in-memory file system (\fs).
+% \Cref{sec:sv6} details these techniques and the software designs
+% necessary to achieve conflict-free commutative operations in \sys's
+% virtual memory system (\vm) and in-memory file system (\fs).
 %
 \tool verifies that \sys is conflict-free for
 \pyexpr{mscan.ntestcases - mscan.xv6.shared}
 (\pyexpr{percent(1-(mscan.xv6.shared/float(mscan.ntestcases)))})
-of the tests generated by our POSIX model and addresses many of the
+of the tests generated by our POSIX model and that \sys addresses many
+of the
 sources of conflicts found in the Linux kernel.
 %
-\Cref{sec:eval} confirms that \sys's conflict-free implementations of
+\sys's conflict-free implementations of
 commutative system calls translate to dramatic improvements in
 measured scalability for both microbenchmarks and application
-benchmarks on an 80-core x86 machine.
-
-
-\XXX![AC]{New intro stuff below here.}
+benchmarks.
 
 
 \subsection{Contributions}
 
 This dissertation's broad contribution is a new approach to building
 scalable software using interface-based reasoning to guide design,
-implementation, and testing.  This dissertation has the following
+implementation, and testing.  This dissertation makes the following
 intellectual contributions:
 
 \begin{itemize}
@@ -405,8 +414,9 @@ intellectual contributions:
 
 \end{itemize}
 
-This dissertation also contributes several implementation techniques,
-embodied in a new operating system named \sys:
+\noindent
+This dissertation also contributes several operating system
+implementation techniques:
 
 \begin{itemize}
 
@@ -420,10 +430,11 @@ embodied in a new operating system named \sys:
   \code{pagefault} operations.
 
 \item \fs, a POSIX file system that is conflict-free for the vast
-  majority of commutative operations.
+  majority of commutative file system operations.
 
 \end{itemize}
 
+\noindent
 We validate \vm and \fs, and thus their design methodology based on
 the rule and \tool, by evaluating their performance and scalability on
 an 80-core x86 machine.
@@ -431,8 +442,12 @@ an 80-core x86 machine.
 
 \subsection{Outline}
 
-The remainder of this dissertation begins by relating our thinking
-about scalability to previous work.
+The rest of this dissertation presents the scalable commutativity rule
+in depth and explores its consequences from interface design to
+implementation to testing.
+
+We begin by relating our thinking about scalability to previous work
+in \cref{sec:related}.
 
 We then turn to formalizing and proving the scalable commutativity
 rule, which we approach in two steps.  First, \cref{sec:rule}
@@ -448,10 +463,10 @@ for designing interfaces that enable scalable implementations and
 proposing specific modifications to POSIX that broaden its
 commutativity.
 
-\Cref{sec:tool} presents \tool, which applies the rule to automate
+\Cref{sec:tool} presents \tool, which uses the rule to automate
 reasoning about interface commutativity and the conflict-freedom of
 implementations.  \Cref{sec:linux} uses \tool to analyze the Linux
-kernel and show that the rule and \tool can systematically pinpoint
+kernel and show that \tool can systematically pinpoint
 significant scalability problems even in mature systems.
 
 Finally, we turn to the implementation of scalable systems guided by
