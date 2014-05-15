@@ -358,20 +358,20 @@ class SchedTree(object):
         # Blend toward white
         region_colors = [inter(c, (1,1,1), 0.75) for c in region_colors]
 
-        # # Render region backgrounds
-        # for i, k in enumerate(sorted(unique_regions,
-        #                              key=lambda r:regions[r][0])):
-        #     region = regions[k]
-        #     if self.__edge_order == 'HV':
-        #         ctx.rect((sides[0] - 0.5) * S, region[0] * S,
-        #                  (sides[1] - sides[0] + 1) * S,
-        #                  (region[1] - region[0]) * S,
-        #                  fill=region_colors[i])
-        #     else:
-        #         ctx.rect(region[0] * S, (sides[0] - 0.5) * S,
-        #                  (region[1] - region[0]) * S,
-        #                  (sides[1] - sides[0] + 1) * S,
-        #                  fill=region_colors[i])
+        # Render region backgrounds
+        for i, k in enumerate(sorted(unique_regions,
+                                     key=lambda r:regions[r][0])):
+            region = regions[k]
+            if self.__edge_order == 'HV':
+                ctx.rect((sides[0] - 0.5) * S, region[0] * S,
+                         (sides[1] - sides[0] + 1) * S,
+                         (region[1] - region[0]) * S,
+                         fill=region_colors[i])
+            else:
+                ctx.rect(region[0] * S, (sides[0] - 0.5) * S,
+                         (region[1] - region[0]) * S,
+                         (sides[1] - sides[0] + 1) * S,
+                         fill=region_colors[i])
 
         # Render separating lines
         lines = {}
