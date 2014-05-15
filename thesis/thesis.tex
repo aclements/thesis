@@ -64,6 +64,7 @@
 
 \usepackage{xxxnotes}
 \usepackage{gitinfo}
+\usepackage{wordnum}
 
 \usepackage{scp-macros}
 \usetikzlibrary{calc}
@@ -75,9 +76,13 @@
 
 \DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
 
-% If we're building without Minion Pro, define away \figureversion
+% If we're building without Minion Pro, define away \figureversion and
+% \sscshape
 \ifx\figureversion\undefined%
   \def\figureversion#1{}
+\fi
+\ifx\sscshape\undefined%
+  \let\sscshape=\scshape
 \fi
 
 % Draft footer
@@ -190,8 +195,16 @@
 \newcommand{\thiscref}[1]{this \lcnamecref{#1}}
 \newcommand{\Thiscref}[1]{This \lcnamecref{#1}}
 
-\titleformat{\chapter}[hang]{%
-  \huge\bfseries}{\thechapter\hspace{15pt}\rule[-1.2em]{.5pt}{3em}\hspace{15pt}}{0pt}{\huge\bfseries}
+% Single-line format with chapter number and a vertical bar.
+% \titleformat{\chapter}[hang]{%
+%   \huge\bfseries}{\thechapter\hspace{15pt}\rule[-1.2em]{.5pt}{3em}\hspace{15pt}}{0pt}{\huge\bfseries}
+
+% Two-line format with spelled-out chapter number and a horizontal bar
+% under the title.
+\titleformat{\chapter}[display]%
+  {\relax}%
+  {\sscshape\Wordnum{\thechapter}}{1em}%
+  {\huge\bfseries}[\titlerule]
 
 % Make tables use the same numbering and format as figures
 \makeatletter

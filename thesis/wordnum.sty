@@ -1,0 +1,29 @@
+\ProvidesPackage{wordnum}[2014/05/15 v0.1 Translate numbers to words]
+\NeedsTeXFormat{LaTeX2e}
+
+\RequirePackage{xstring}
+
+\DeclareRobustCommand{\Wordnum}[1]{%
+  \xdef\wordnum@tmp{#1}
+  \ifnum\wordnum@tmp>19\relax
+    \PackageError{wordnum}{#1 is above the supported range}
+  \else\ifnum\wordnum@tmp>9\relax
+    \expandafter\@Wordnumtens\wordnum@tmp
+  \else\ifnum\wordnum@tmp>-1\relax
+    \expandafter\@Wordnumones\wordnum@tmp
+  \else
+    \PackageError{wordnum}{#1 is below the supported range}
+  \fi\fi\fi
+}
+
+\def\@Wordnumones#1{%
+  \ifcase#1\relax Zero\or One\or Two\or Three\or Four\or Five\or
+  Six\or Seven\or Eight\or Nine\fi
+}
+
+\def\@Wordnumtens1#1{%
+  \ifcase#1\relax Ten\or Eleven\or Twelve\or Thirteen\or Fourteen\or
+  Fifteen\or Sixteen\or Seventeen\or Eighteen\or Nineteen\fi
+}
+
+\endinput
