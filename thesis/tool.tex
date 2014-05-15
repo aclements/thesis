@@ -261,17 +261,17 @@ those already revealed by pairs.
 
 % Derived from figures/tree.tex
 \newcommand\treecommutes{%
-  \tikz[y=-0.0111111in,x=0.0111111in]{
+  \tikz[y=-0.0111111in,x=0.0111111in,baseline={([yshift=-.6ex]current bounding box.center)}]{
     \definecolor{tmpfill}{rgb}{0,0.8,0}
-    \path[fill=tmpfill] (0,0) circle (4.29);
-    \node[font=\fontsize{5}{6}\selectfont,text=white,inner sep=0pt] {$\checkmark$};
+    \path[fill=tmpfill] (0,0) circle (5.94);
+    \node[font=\fontsize{6.92308}{8.30769}\selectfont,text=white,inner sep=0pt] {$\checkmark$};
   }%
 }
 \newcommand\treediverges[1]{%
-  \tikz[y=-0.0111111in,x=0.0111111in]{
+  \tikz[y=-0.0111111in,x=0.0111111in,baseline={([yshift=-.6ex]current bounding box.center)}]{
     \definecolor{tmpfill}{rgb}{1,0,0}
-    \path[fill=tmpfill] (0,0) circle (4.29);
-    \node[font=\fontsize{5}{6}\selectfont,text=white,inner sep=0pt] {#1};
+    \path[fill=tmpfill] (0,0) circle (5.94);
+    \node[font=\fontsize{6.92308}{8.30769}\selectfont,text=white,inner sep=0pt] {#1};
   }%
 }
 \begin{figure}
