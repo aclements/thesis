@@ -2,8 +2,9 @@
 \label{sec:intro}
 
 \XXX[STATUS]{Draft v2 ready.  Restructured contributions and outline
-  from draft v1.  Re-organized and expanded from SOSP.  Applied: Frans
-  init-176-g5ef5d9a, Eddie init-244-ga695479.}
+  from draft v1.  Re-organized and expanded from SOSP.
+  Applied: Frans init-176-g5ef5d9a, Eddie init-244-ga695479, Frans
+  init-283-g3e316ce.}
 
 This dissertation presents a pragmatic and formal approach to the
 design and implementation of scalable multicore software that spans
@@ -13,7 +14,7 @@ testing and maintenance of complete implementations.
 The rest of \thiscref{sec:intro} introduces the multicore
 architectures that now dominate general-purpose computing, the
 problematic ways in which software developers are coping with these
-new architectures, and our interface-driven approach to the design and
+new architectures, and a new interface-driven approach to the design and
 implementation of software for multicore architectures.
 
 
@@ -52,7 +53,7 @@ engineering, software rarely achieves the holy grail of \emph{linear
   scalability}, where doubling hardware parallelism doubles the
 software's performance.
 %
-\XXX[AC]{Incorporate clock/heat/cores plot from defense?}
+\XXX[AC/FK]{Incorporate clock/heat/cores plot from defense}
 
 Operating system kernels exemplify both the importance
 of parallelism and the difficulty of achieving it.
@@ -95,7 +96,8 @@ bottlenecks.
 %   anything to cite besides our own papers?}  \XXX[AC]{Mention that
 %   this is an evolution of sequential optimization techniques?}
 %
-This focuses developer effort on demonstrable issues, but is
+
+This approach focuses developer effort on demonstrable issues, but is
 ultimately a near-sighted approach.
 %
 % Different workloads and higher core counts often reveal new
@@ -113,7 +115,7 @@ Worse, scalability problems that span layers---for example,
 application behavior that triggers kernel bottlenecks---require
 cross-layer solutions, and few applications have the reach or
 resources to accomplish this.
-%
+
 But the deeper problem with this workload-driven approach is that many
 scalability problems lie not in the implementation, but in the design
 of the
@@ -203,7 +205,7 @@ At the core of our approach is this \emph{scalable commutativity
   rule}: In any situation where several operations
 \emph{commute}---meaning there's no way to distinguish their execution
 order using the interface---they have a implementation that is
-conflict-free during those operations---meaning no core
+\emph{conflict-free} during those operations---meaning no core
 writes a cache line that was read or written by another core.
 %
 Empirically, conflict-free operations scale, so this implementation
@@ -256,7 +258,7 @@ specific operation arguments, and specific concurrent operations, we
 show that an implementation exists that is conflict-free \emph{for that state
   and those arguments and concurrent operations}.
 %
-This exposes many more opportunities to apply the rule to real
+\SIM commutativity exposes many more opportunities to apply the rule to real
 interfaces---and thus discover scalable implementations---than a more
 conventional notion of commutativity would.
 %
@@ -310,7 +312,7 @@ scalability in terms of interfaces.
 % Using these guidelines, we propose specific modifications to POSIX
 % that would enable greater scalability.
 
-However, real-world interfaces and their implementations are complex.
+Real-world interfaces and their implementations are complex.
 Even with the rule, it can be difficult to spot and
 reason about all commutative cases.
 %
