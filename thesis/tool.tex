@@ -210,11 +210,12 @@ So far, we've considered only how to determine if a set of operations
 commutes for a specific initial state and specific arguments.
 Ultimately, we're interested in the entire space of states and
 arguments for which a set of operations commutes.  To find this,
-\analyzer executes \code{commutes} \emph{symbolically}, passing it an
+\analyzer executes both the interface model and \code{commutes}
+\emph{symbolically}, starting with an
 unconstrained symbolic initial state and unconstrained symbolic
 operation arguments.  Symbolic execution lets \analyzer efficiently
 consider \emph{all possible} initial states and arguments and
-precisely determine the (likely infinite) set of states and arguments
+precisely determine the (typically infinite) set of states and arguments
 for which the operations commute (that is, for which \code{commutes}
 returns \code{True}).
 
@@ -317,7 +318,7 @@ different reorderings of the two operations.  Each call region shows
 the three conditional branches in \code{rename}.  The first call forks
 at every conditional branch because the state and arguments are
 completely unconstrained at this point; \analyzer therefore explores
-every code path through \code{rename}.  The second call forks
+every code path through the first call to \code{rename}.  The second call forks
 similarly.  The third and fourth calls generally do not fork; by this
 point, the symbolic values of \code{s0}, \code{argsA}, and
 \code{argsB} are heavily constrained by the path condition produced by
@@ -329,14 +330,15 @@ Finally, after executing both reorderings of \code{rename/rename},
 operation's return value is equivalent in both permutations and if the
 system states reached by both permutations are equivalent.  This, too,
 is symbolic and may fork execution if it's still possible for the pair
-of operations to be either commutative or non-commutative (we see a
-couple such forks in \cref{fig:rename-branching}).
+of operations to be either commutative or non-commutative (we see two
+such forks in \cref{fig:rename-branching}).
 
 Together, the set of path conditions that pass this final
 commutativity test are the commutativity condition of this pair of
 operations.  Barring SMT solver time-outs, the disjunction of the path
 conditions for which \code{commutes2} returns \code{True} captures the
-precise set of initial system states and operation arguments for which
+precise and complete set of initial system states and operation
+arguments for which
 the operations commute.
 
 \XXX!{Fix up flow here.}
