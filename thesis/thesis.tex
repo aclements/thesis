@@ -147,13 +147,14 @@
 \endgroup
 \def\@code#1{\ifmmode\text{\@@code{#1}}\else\@@code{#1}\fi}
 \def\@@code#1{\begingroup\code@activate@us
-  \fontsize{9}{9}\sffamily
+  % Match x-height of 11pt Minion Pro
+  \fontsize{9.5}{9.5}\sffamily
   \scantokens{#1\endinput}%
   \endgroup
 }
 \makeatother
 \let\syscall=\code
-% Code in gnuplot labels (match 10pt font)
+% Code in gnuplot labels (match x-height of 10pt Minion Pro)
 \def\gpcode#1{{\fontsize{9}{9}\sffamily #1}}
 % Command names
 \let\cmd=\code
