@@ -1,5 +1,7 @@
 call "common.gnuplot" "2x2"
 
+# Our Y tic labels are somewhat long, so increase colgap
+mp_colgap=mp_colgap*1.1
 eval mpSetup(2, 2)
 
 set zeroaxis
