@@ -1,4 +1,4 @@
-call "common.gnuplot" "6in,4in"
+call "common.gnuplot" "2x2"
 
 eval mpSetup(2, 2)
 

@@ -16,7 +16,12 @@ if ("$0" eq "" || "$0"[0:1] eq "$$"[0:1]) {
     if ("$0" eq "3col") {
       SIZE="2.25in,1.6in"
     } else {
-      SIZE="$0"
+      if ("$0" eq "2x2") {
+        # Sized for a 2x2 multiplot on a 6" wide body
+        SIZE="6in,4in"
+      } else {
+        SIZE="$0"
+      }
     }
   }
 }

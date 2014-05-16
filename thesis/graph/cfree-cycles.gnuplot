@@ -1,4 +1,4 @@
-call "common.gnuplot" "6in,4in"
+call "common.gnuplot" "2x2"
 
 if (TARGET eq "") {
   set term wxt size 640,768
