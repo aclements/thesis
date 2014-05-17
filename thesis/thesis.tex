@@ -146,16 +146,18 @@
 }
 \endgroup
 \def\@code#1{\ifmmode\text{\@@code{#1}}\else\@@code{#1}\fi}
+% Match x-height of 10.95pt Minion Pro to 9.5pt sf
+\newlength\code@factor
+\setlength\code@factor{0.8675799086757991pt}
 \def\@@code#1{\begingroup\code@activate@us
-  % Match x-height of 11pt Minion Pro
-  \fontsize{9.5}{9.5}\sffamily
+  \fontsize{\f@size\code@factor}{\f@size\code@factor}\sffamily
   \scantokens{#1\endinput}%
   \endgroup
 }
 \makeatother
 \let\syscall=\code
-% Code in gnuplot labels (match x-height of 10pt Minion Pro)
-\def\gpcode#1{{\fontsize{9}{9}\sffamily #1}}
+% Code in gnuplot labels
+\let\gpcode=\code
 % Command names
 \let\cmd=\code
 \let\gpcmd=\gpcode
