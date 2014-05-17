@@ -101,7 +101,6 @@ mp_width=0.825                  # Total width of plot area
 mp_height=0.825                 # Total height of plot area
 mp_colgap=0.1                   # Gap between columns
 mp_rowgap=0.15                  # Gap between rows
-mp_rowLabelGap=0.01             # Gap between plot area and row label
 # The screen coordinate of the left edge of column col
 mp_left(col)=mp_startx + col*((mp_width+mp_colgap)/real(mp_ncols))
 # The screen coordinate of the top edge of row row
