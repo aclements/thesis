@@ -1,4 +1,4 @@
-\section{Scalability and conflict-freedom}
+\section{Conflict-freedom to scalability}
 \label{sec:scalability}
 
 \XXX[STATUS]{Draft v2 ready.  New chapter vs SOSP.  Applied Frans
@@ -27,7 +27,8 @@
 
 The previous \lcnamecref{sec:rule} proved that commutative operations
 have a conflict-free implementation, but what ultimately matters to
-practitioners is scalability.  \Thiscref{sec:scalability} shows that
+practitioners is scalability.  \Thiscref{sec:scalability} shows that,
+under reasonable assumptions,
 conflict-freedom is a good predictor of linear scalability on modern
 multicore hardware, closing the gap between the theoretical basis of
 the scalability commutativity rule and its utility in practice.
