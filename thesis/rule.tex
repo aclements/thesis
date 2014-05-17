@@ -1,12 +1,12 @@
 \section{Commutativity to conflict-freedom}
 \label{sec:rule}
 
-\XXX[STATUS]{Expanded and reworked to focus on conflict-freedom up to
-  3.4.
+\XXX[STATUS]{Expanded and reworked to focus on conflict-freedom vs
+  SOSP.  May reorder with \cref{sec:scalability}.  Planning to add
+  example before proof.
 %  Planning to add non-commutative non-scalability rule and discussion
 %  of global clocks.
-  Applied: Eddie init-244-ga695479 up to 3.4.
-  Unapplied: Eddie init-244-ga695479 3.4 and on.
+  Applied: Eddie init-244-ga695479.
 }
 
 What is the precise connection between interface commutativity and
@@ -25,10 +25,11 @@ Our constructive proof of the formalism
 also sheds some light on how real conflict-free implementations might be
 built, though the actual construction is not very practical.
 
-\Thiscref{sec:rule} forms the first of two steps toward the scalable
-commutativity rule.  The following \lcnamecref{sec:scalability}
-completes the rule by showing that, under reasonable assumptions about
-modern multicore hardware, conflict-free implementations scale.
+\Thiscref{sec:rule} focuses on the connection between commutativity
+and conflict-freedom and assumes conflict-freedom translates to
+scalability on real hardware.  We verify this assumption and explore
+its boundaries experimentally in the following
+\lcnamecref{sec:scalability}.
 
 
 \subsection{Actions}
@@ -260,7 +261,8 @@ calls will return the same error).
   know what this means.}
 %
 \SIM\ commutativity allows us to distinguish these cases, even though the
-operations are the same in each.  This, in turn, means the commutativity
+operations are the same in each.  This, in turn, means the scalable
+commutativity
 rule can tell us that scalable implementations exist in the commutative
 cases.
 %
@@ -417,7 +419,6 @@ thread's steps.
 % ``scales.''
 
 
-\XXX![AC]{Still editing past here.}
 \subsection{Rule}
 
 We can now formally state the scalable commutativity rule.
@@ -430,6 +431,10 @@ and where $\REFIMP$ can generate $H$.
 %
 Then there exists a correct implementation $m$ of $\SPEC$ whose steps in
 the $\HY$ region of $H$ are conflict-free.
+
+Empirically, conflict-free operations scale linearly on modern
+multicore hardware given reasonable workload assumptions, so we can
+say that $m$ scales in the $\HY$ region of $H$.
 
 % \XXX[rtm]{``the ... $\HY$ region'' seems to imply that $m$ must
 % generate the same B as $M$.
@@ -454,8 +459,8 @@ the $\HY$ region of $H$ are conflict-free.
 
 \subsection{Proof}
 
-A constructive proof for the commutativity rule can be obtained by
-building a scalable
+A constructive proof for the scalable commutativity rule can be obtained by
+building a conflict-free
 implementation $m$ from the reference implementation $\REFIMP$ and
 history $H = \HX \HCONCAT \HY$.
 %
@@ -541,7 +546,7 @@ excludes responses; and adds \CONTINUE\ invocations as appropriate.
 This implementation is correct---its responses for any history
 always match those from the reference implementation.
 %
-But it doesn't scale.
+But it isn't conflict-free.
 %
 In replay mode, any two steps of $\NSIMP$ conflict on accessing
 $s.h$. These accesses track which invocations
@@ -614,7 +619,7 @@ Each step of $m$ in the commutative region \emph{accesses
 only state components specific to the invoking thread}.
 %
 This means that any two steps in the commutative region are
-conflict-free, and the commutativity rule is proved.
+conflict-free, and the scalable commutativity rule is proved.
 %
 The construction uses \SIM\ commutativity when initializing the
 reference implementation's state via $H'$.
@@ -643,7 +648,8 @@ diverges \emph{within} the commutative region.\footnote{%
   desired results, $m$ could throw away $M$'s state, produce a new $H'$
   with different \CONTINUE\ invocations and/or commutative region ordering,
   and try again.
-  This procedure must eventually succeed.}
+  This procedure must eventually succeed and does not change the
+  conflict-freedom of $m$ in the commutative region.}
 
 \begin{comment}
 \begin{figure*}
@@ -800,7 +806,7 @@ diverges \emph{within} the commutative region.\footnote{%
 
 \subsection{Discussion}
 
-The commutativity rule and proof construction push state and
+The rule and proof construction push state and
 history dependence to an extreme: the proof construction is specialized
 for a single commutative region.
 %
@@ -837,21 +843,30 @@ Consider, for example, an interface with two calls:
 \code{max()} returns the maximum sample recorded so far (or \code{0}).
 Suppose
 %
-\[H = [\scpline{\scpi{A}{1}}=\code{put(1)}, \scpline{\scpr{A}{1}},
-   \scpline{\scpi{B}{2}}=\code{put(1)}, \scpline{\scpr{B}{2}},
-   \scpline{\scpi{C}{3}}=\code{max()}, \scpline{\scpr{C}{3}}=1].
+\[H = [
+   \rlap{$\overbrace{\phantom{
+         \scpline{\scpi{A}{1}}=\code{put(1)}, \scpline{\scpr{A}{1}},
+         \scpline{\scpi{B}{2}}=\code{put(1)}, \scpline{\scpr{B}{2}}}}^{H_1}$}
+   \scpline{\scpi{A}{1}}=\code{put(1)}, \scpline{\scpr{A}{1}},
+   \underbrace{
+     \scpline{\scpi{B}{2}}=\code{put(1)}, \scpline{\scpr{B}{2}},
+     \scpline{\scpi{C}{3}}=\code{max()}, \scpline{\scpr{C}{3}}=1}_{H_2}].
 \]
 %
+Both $H_1$ and $H_2$ \SIM commute in $H$, but $H$ overall is not \SIM
+commutative.
+%
 An implementation could store per-thread maxima reconciled by
-\code{max} and be conflict-free for $\scpline{\scpir{A}{1}
-  \scpir{B}{2}}$ in $H$.  Alternatively, it could use a
+\code{max} and be conflict-free for $H_1$.  Alternatively, it could use a
 global maximum that \code{put} checked before writing.  This
-is conflict-free for $\scpline{\scpir{B}{2} \scpir{C}{3}}$ in $H$.
+is conflict-free for $H_2$.
 %Symmetric cases hold in the history $\scpline{\scpir{B}{2} \scpir{A}{1}
 %  \scpir{C}{3}}$. 
 %% E: I am happy to ignore this nit; not sure it's relevant.
 %
 But no correct implementation can be conflict-free across all of $H$.
+Since $H_1$ and $H_2$ together span $H$, that means no single
+implementation can be conflict-free for \emph{both} $H_1$ and $H_2$.
 %
 In the
 end, a system designer must decide which situations involving
@@ -865,7 +880,7 @@ scalability classes.
 %It may also be possible to implement non-commutative operations
 %scalably. _------THAT IS REPET WITH THE BELOW
 %
-The commutativity rule shows that \SIM-commutative regions
+The scalable commutativity rule shows that \SIM-commutative regions
 have conflict-free implementations.
 %
 It does not show the converse, however:
@@ -877,12 +892,11 @@ implementations---for instance, on machines that
 offer scalable access to strictly increasing sources of time, or when
 the core interconnect allows certain communication patterns to scale.
 %
-Furthermore, some conflict-free access patterns don't scale on real
-machines; if an application overwhelms the memory bus with memory accesses,
-scalability will suffer regardless of whether those accesses have
-conflicts.
+Furthermore, as we show in \cref{sec:scalability}, some conflict-free
+access patterns don't scale on real
+machines.
 %
-We hope to investigate these problems in future, but as we show below,
+We hope to investigate these problems in the future, but as we show below,
 the rule is already a good guideline for achieving practical
 scalability.
 
