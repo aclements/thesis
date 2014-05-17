@@ -1,25 +1,34 @@
-\section{The scalable commutativity rule}
+\section{Commutativity to conflict-freedom}
 \label{sec:rule}
 
-\XXX[STATUS]{Unchanged from SOSP.  Planning to add non-commutative
-  non-scalability rule and discussion of global clocks.
-  Unapplied: Eddie init-244-ga695479.
+\XXX[STATUS]{Expanded and reworked to focus on conflict-freedom up to
+  3.4.
+%  Planning to add non-commutative non-scalability rule and discussion
+%  of global clocks.
+  Applied: Eddie init-244-ga695479 up to 3.4.
+  Unapplied: Eddie init-244-ga695479 3.4 and on.
 }
 
-\Thiscref{sec:rule} addresses two questions: What is the precise
-definition of the scalable commutativity rule, and why is the rule true?
+What is the precise connection between interface commutativity and
+conflict-free implementations?
 %
-We answer these questions using a formalism based on abstract actions,
+\Thiscref{sec:rule} answers this question by developing and proving a
+formalism based on abstract actions,
 histories,
 and implementations.
 %
-The formalism relies on \SIM commutativity, whose generality broadens
-the rule's applicability to complex software interfaces.
+\Thiscref{sec:rule} also defines \SIM commutativity, a critical part of this
+formalism that makes it possible to broadly apply the scalable
+commutativity rule to complex software interfaces.
 %
-Our constructive proof of the commutativity rule
-also sheds some light on how real commutative implementations might be
+Our constructive proof of the formalism
+also sheds some light on how real conflict-free implementations might be
 built, though the actual construction is not very practical.
 
+\Thiscref{sec:rule} forms the first of two steps toward the scalable
+commutativity rule.  The following \lcnamecref{sec:scalability}
+completes the rule by showing that, under reasonable assumptions about
+modern multicore hardware, conflict-free implementations scale.
 
 
 \subsection{Actions}
@@ -104,18 +113,19 @@ Our definitions and proof require that some specification exists, but we
 aren't concerned with how it is constructed.
 
 
-\subsection{Commutativity}
+\subsection{\SIM commutativity}
 \label{sec:topic:strong-commutativity}
 
-Commutativity should capture the idea that the order of a set
+Commutativity captures the idea that the order of a set
 of actions ``doesn't matter.''
 %
-This happens when \emph{later} actions can't tell which order actually
-occurred.
+This happens when the caller of an interface cannot distinguish which
+order actions actually occurred in, either through those actions'
+responses or through any possible future actions.
 %
 The specification helps make this precise:
 %
-a set of operations commutes in some context when the specification
+a set of actions commutes in some context when the specification
 is indifferent to the execution order of that set.
 %
 This means that any response valid for one order of the commutative set
@@ -127,7 +137,10 @@ build it up in two steps.
 
 An action sequence, or region, $H'$ is a \emph{reordering}
 of an action sequence $H$ when $\HRESTRICT{H}{t} = \HRESTRICT{H'}{t}$ for
-every thread $t$. Thus, regions $H$ and $H'$ contain the same actions, but
+every thread $t$.
+%
+This is, regions $H$ and $H'$ contain the same invocations and
+responses in the same order for each individual thread, but
 may interleave threads differently.
 %
 If $H =
@@ -150,13 +163,12 @@ $\HY'$ of $\HY$, and any action sequence $\HSUFF$,
 \[ \HX \HCONCAT \HY \HCONCAT \HSUFF \in \SPEC \text{~~~if and only if~~~} \HX \HCONCAT \HY' \HCONCAT \HSUFF \in \SPEC. \]
 %
 This definition
-captures the interface basis and
-state dependence we need.  The action sequence $\HX$ puts the system
+captures the state dependence and interface basis
+we need.  The action sequence $\HX$ puts the system
 into the state we wish to consider; switching regions $\HY$ and $\HY'$
-requires that the return
-values from
-$\HY$ be valid according to the specification regardless of the actions'
-order; and the presence of region $\HSUFF$ in both histories requires
+requires that the exact responses in
+$\HY$ remain valid according to the specification even if $\HY$ is
+reordered; and the presence of region $\HSUFF$ in both histories requires
 that reorderings of
 actions in region $\HY$ are indistinguishable by future operations.
 %
@@ -165,64 +177,73 @@ actions in region $\HY$ are indistinguishable by future operations.
 % and then I'm not sure we have an informal definition of commutativity?
 % Maybe the point was to imply this def actually isn't very hard?...}
 
-Unfortunately, \SI commutativity doesn't suffice for the proof
+Unfortunately, \SI commutativity doesn't suffice for our needs
 because it is \emph{non-monotonic}.
 %
 Given an action sequence $\HX \HCONCAT \HY_1 \HCONCAT \HY_2$, it is possible
 for $\HY_1 \HCONCAT \HY_2$ to \SI-commute after region $\HX$ even
-though $\HY_1$ on its own does not.
+though $\HY_1$ without $\HY_2$ does not.
 %
 For example, consider a
-\code{get}/\code{set} interface and
+\code{get}/\code{set} interface and the action sequence
 %
-\(\HY =
-  [\scpline{\scpi{A}{1}}=\code{set(1)}, \scpline{\scpr{A}{1}},
-   \scpline{\scpi{B}{2}}=\code{set(2)}, \scpline{\scpr{B}{2}},
-   \scpline{\scpi{C}{1}}=\code{set(2)}, \scpline{\scpr{C}{1}}]\).
+\[\HY =
+  [\underbrace{
+    \scpline{\scpi{A}{1}}=\code{set(1)}, \scpline{\scpr{A}{1}},
+    \scpline{\scpi{B}{2}}=\code{set(2)}, \scpline{\scpr{B}{2}}}_{\HY_1},
+   \underbrace{
+     \scpline{\scpi{C}{1}}=\code{set(2)}, \scpline{\scpr{C}{1}}}_{\HY_2}].
+\]
 %
-\(\HY\) \SI-commutes in any history (every order sets the
-underlying value to 2), but its prefix
+\(\HY\) \SI-commutes in any history because \code{set} never returns
+anything and every reordering sets the underlying value to 2, so
+future \code{get} operations cannot distinguish reoderings of $\HY$.
 %
-\(\HY_1 =
-  [\scpline{\scpi{A}{1}}=\code{set(1)}, \scpline{\scpr{A}{1}},
-   \scpline{\scpi{B}{2}}=\code{set(2)}, \scpline{\scpr{B}{2}}]\)
-%
-does not (some orders set the value to 1 and some to 2).
+However, its prefix $\HY_1$
+% %
+% \[\HY_1 =
+%   [\scpline{\scpi{A}{1}}=\code{set(1)}, \scpline{\scpr{A}{1}},
+%    \scpline{\scpi{B}{2}}=\code{set(2)}, \scpline{\scpr{B}{2}}]\]
+% %
+does not \SI-commute because some orders set the value to 1 and some
+to 2, so future \code{get} operations can distinguish them.
 %
 Whether or not $\HY_1$ will
 ultimately form part of a commutative region thus depends on \emph{future}
 operations!  This is usually incompatible with scalability:
 operations in $\HY_1$ must ``plan for the worst'' by remembering their
-order in case execution diverges from $\HY_2$.
+order, even if they ultimately form part of a \SI-commutative region.
 
-A monotonic version of commutativity eliminates this problem.
+Requiring monotonicity eliminates this problem.
 %
 An action sequence $\HY$ \emph{\SIM-commutes} in a history $H = \HX \HCONCAT
-\HY$ when for any \emph{prefix} $P$ of some reordering of $\HY$ (including
+\HY$ when for any \emph{prefix} $P$ of any reordering of $\HY$ (including
 $P = \HY$), $P$ \SI-commutes in $\HX \HCONCAT P$.
 %
-Like \SI commutativity, \SIM\ commutativity captures 
-interface basis and state dependence; unlike \SI commutativity, it
-is monotonic and, as we show below, suffices to prove the
-commutativity rule.
-
-State dependence means that \SIM\ commutativity captures operations that
-commute, and therefore can scale, in some states, but not others.
+Continuing the \code{get}/\code{set} example, while the sequence $Y$
+given above \SI-commutes (in any history), $\HY$ does \emph{not}
+\SIM-commute because its prefix $\HY_1$ is not \SI commutative.
 %
-This allows us to greatly expand the situations that commute,
-and that therefore can scale.
+Like \SI commutativity, \SIM\ commutativity captures 
+state dependence and interface basis.  Unlike \SI commutativity, \SIM
+commutativity eliminates cases where the commutativity of a region
+changes depending on future operations and,
+as we show below, suffices to prove the
+scalable commutativity rule.
+
+State dependence means that \SIM commutativity can capture when operations
+commute in some states, but not others.
+%
+As a result, \SIM commutativity applies to a much broader range of
+situations than traditional non-state-dependent notions of
+commutativity.
 %
 For example, few OS system calls unconditionally commute in
-every state and history.
+every state, but many system calls conditionally commute.
 %
-(One that does is \code{getpid()}, since its result is constant over a
-process's lifetime.)
+Consider POSIX's \code{open} call.
 %
-But many system calls \emph{conditionally} commute.
-%
-Consider Unix's \code{open} system call.
-%
-Two calls to \code{open("a", O_CREAT|O_EXCL)} often don't
+In general, two calls to \code{open("a", O_CREAT|O_EXCL)} don't
 commute: one call will create the file and the other will
 fail because the file already exists.
 %
@@ -233,14 +254,23 @@ directory, two calls to \code{open("a", O_CREAT|O_EXCL)} will commute
 {if the file already exists} (both
 calls will return the same error).
 %
+\XXX[EK]{Let's expand the example into a history in an itemize or
+  something, and show the actual example, with comments such as ``//
+  spec requires this open() call return -1''}  \XXX[AC]{I don't really
+  know what this means.}
+%
 \SIM\ commutativity allows us to distinguish these cases, even though the
 operations are the same in each.  This, in turn, means the commutativity
 rule can tell us that scalable implementations exist in the commutative
 cases.
-
-\SIM\ commutativity is also interface-based.
 %
-It evaluates the consequences of execution order using only the
+\XXX[AC]{Use rename example from later?  ``For example, the
+  \emph{only} case where two \code{rename} operations commute
+  regardless of state is when both are self-renames.''}
+
+\SIM\ commutativity is also interface-based:
+%
+it evaluates the consequences of execution order using only the
 specification.
 %
 Furthermore, it doesn't say that every reordering has indistinguishable
@@ -249,23 +279,34 @@ every reordering \emph{is allowed by the specification} to have
 indistinguishable results. This is important because any given
 implementation might
 have unnecessary scalability bottlenecks that show through the
-interface. The \SIM\ commutativity of an interface can be
-considered even when no implementation exists. This in turn makes it
-possible to use the commutativity rule early in software development,
+interface.
+%
+For example, an interface in which \code{open} is allowed to return
+\emph{any} unused file descriptor could still be implemented by
+returning the lowest unused file descriptor, which would expose the
+order of \code{open} calls.  But the interface specification permits
+other implementations
+that don't expose order.  Since our goal is to reason about
+\emph{possible} implementations, it's important that \SIM
+commutativity capture the scalability inherent in the interface
+itself.
+%
+This in turn makes it
+possible to use the scalable commutativity rule early in software development,
 during interface design and initial implementation.
 
-\XXX[rtm]{if my machine has synchronized clocks, do I need ``SIM
-commutative''? would SI commutative be enough?}
-\XXX[E]{I believe that's right.}
+% \XXX[rtm]{if my machine has synchronized clocks, do I need ``SIM
+% commutative''? would SI commutative be enough?}
+% \XXX[E]{I believe that's right.}
 
 
 \subsection{Implementations}
 
 To reason about implementation scalability, we need to model
 implementations in enough detail to tell
-whether different threads' ``memory accesses'' are conflict-free. (As 
-discussed in \cref{sec:intro}, conflict freedom is our proxy for
-scalability.) We define an implementation as a step
+whether different threads' ``memory accesses'' are conflict-free.
+%
+We define the implementation of an interface as a step
 function: given a state and an invocation, it produces a new state and a
 response. Special \CONTINUE\ actions enable
 concurrent overlapping operations and blocking.
@@ -327,22 +368,26 @@ and responses, in order, with \CONTINUE{}s removed.
 
 An implementation $m$ is \emph{correct} for some specification $\SPEC$
 when the responses it generates are always allowed by the specification.
-Specifically, assume $H \in \SPEC$ is a valid history and
-$r$ is a response where $m$ can generate $H \HCONCAT r$.
-We say that $m$ is correct when for any such $H$ and $r$, $H
-\HCONCAT r \in \SPEC$. Note that a correct implementation need not be
+Specifically, let $H$ be a valid history that can be generated by $m$.
+We say that $m$ is correct when every such $H$ is in $\SPEC$.
+% Specifically, assume $H \in \SPEC$ is a valid history and
+% $r$ is a response where $m$ can generate $H \HCONCAT r$.
+% We say that $m$ is correct when for any such $H$ and $r$, $H
+% \HCONCAT r \in \SPEC$.
+Note that a correct implementation need not be
 capable of generating
-every possible valid response; it's just that every response it does
-generate is valid.
+every possible legal response or every possible history in $\SPEC$;
+it's just that every response it does
+generate is legal.
 
 To reason about conflict freedom, we must peek into
 implementation states, identify reads and writes, and check for access
 conflicts.
 %
-Let each state $s \in S$ be a tuple $\tup{s.0, \dots, s.m}$, and let
+Let each state $s \in S$ be a tuple $\tup{s.0, \dots, s.j}$, and let
 %
 $\tupleadj{s}{i}{x}$ indicate component
-replacement: $\tupleadj{s}{i}{x} = \tup{s.0,\dots,s.(i-1),x,s.(i+1),\dots,s.m}$.
+replacement: $\tupleadj{s}{i}{x} = \tup{s.0,\dots,s.(i-1),x,s.(i+1),\dots,s.j}$.
 %
 Now consider an implementation step $m(s,a) = \tup{s', r}$.
 %
@@ -358,17 +403,21 @@ Two implementation steps have an \emph{access conflict} when they are on
 different threads and one writes a state component that the other either
 writes or reads.
 %
-A set of implementation steps is \emph{conflict-free}
-when no pair of steps in the set has an access conflict.
-%
 This notion of access conflicts maps directly onto read and write access
-conflicts on real shared-memory machines. Since modern MESI-based
-cache-coherent machines
-usually provide good scalability on conflict-free access patterns,
-we can loosely say that a conflict-free set of implementation steps
-``scales.''
+conflicts on real shared-memory machines.
+%
+A set of implementation steps is \emph{conflict-free}
+when no pair of steps in the set has an access conflict; that is, no
+thread's steps read or write a state component written by another
+thread's steps.
+% Since modern MESI-based
+% cache-coherent machines
+% usually provide good scalability on conflict-free access patterns,
+% we can loosely say that a conflict-free set of implementation steps
+% ``scales.''
 
 
+\XXX![AC]{Still editing past here.}
 \subsection{Rule}
 
 We can now formally state the scalable commutativity rule.
