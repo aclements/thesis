@@ -80,8 +80,8 @@ for i, (sysname, testset) in enumerate(testsets):
     hmap = readmscan.Tikz.heatmap(table.mapget('nonshared_frac'),
                                   heat_map_color)
     if i == 0:
-        hmap.left_labels()
-    hmap.top_labels().caption(
+        hmap.left_labels(xform=lambda l: '\\code{%s}' % l)
+    hmap.top_labels(xform=lambda l: '\\code{%s}' % l).caption(
         r'%s (%s of %s cases scale)' %
         (sysname, nfmt(testset.nonshared), nfmt(testset.total)))
     print r'\begin{scope}[font=\fontsize{6pt}{1em}\selectfont]'

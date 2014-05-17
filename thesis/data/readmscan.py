@@ -457,17 +457,17 @@ class Tikz(object):
 
         return cls(width, height, None, None, None, fp)
 
-    def top_labels(self):
+    def top_labels(self, xform=lambda x:x):
         for i, l in enumerate(self.table.col_labels):
             print >> self.fp, \
                 r'\path (%g,0) node[anchor=mid west,rotate=90] {%s};' % \
-                (self.xspace * i + self.yspace / 2.0, l)
+                (self.xspace * i + self.yspace / 2.0, xform(l))
         return self
 
-    def left_labels(self):
+    def left_labels(self, xform=lambda x:x):
         for i, l in enumerate(self.table.row_labels):
             print >> self.fp, \
-                r'\path (0,-%d-0.5) node[anchor=mid east] {%s};' % (i, l)
+                r'\path (0,-%d-0.5) node[anchor=mid east] {%s};' % (i, xform(l))
         return self
 
     def caption(self, caption):
