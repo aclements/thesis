@@ -30,7 +30,6 @@ gnuplot-lua-tikz.sty:
 	rm $*.mp.svg
 
 figures/refcache.pdf: INKARGS+=--export-area-drawing
-figures/radix.pdf: INKARGS+=--export-area-drawing
 
 all-figures: $(addprefix figures/,machines.pdf refcache.pdf radix.pdf as.pdf)
 
