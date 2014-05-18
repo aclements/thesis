@@ -1,9 +1,6 @@
 \subsection{Refcache: Scalable reference counting}
 \label{sec:sv6:refcache}
 
-\XXX![AC]{Some of this text is now redundant with the example in the
-  rule chapter.}
-
 Reference counting is critical to many OS functions and used
 throughout \vm and \fs.  \vm must reference count physical pages
 shared between address spaces, such as when forking a process, as well
@@ -36,7 +33,10 @@ for most operations turns out to be an excellent exercise in applying
 the scalable commutativity rule to both implementation and interface
 design.
 
-In its simplest form, a reference counter has two operations,
+We first touched on this problem in \cref{sec:rule:rc-example}, where
+we introduced the notion of a \emph{lazy reference counter} that
+separates manipulation from zero detection.  Simple reference counters
+have two operations,
 \code{inc($o$)} and \code{dec($o$)}, which both return the new
 reference count.  These operations trivially commute when applied to
 different objects, so we focus on the case of a single object.  When
@@ -65,12 +65,12 @@ implementation of this interface remains elusive.
 reference counters that can tolerate some latency between when the
 count reaches zero and when the system detects that it's reached zero.
 %
-Like the interface changes presented in \cref{sec:posix}, \refcache
-is a further example of redesigning interfaces to enable greater
-implementation scalability.
-%
-\XXX[AC]{Emphasize here that this is suitable for many uses of
-  reference counting, like memory reclamation?}
+% Like the interface changes presented in \cref{sec:posix}, \refcache
+% is a further example of redesigning interfaces to enable greater
+% implementation scalability.
+% %
+% \XXX[AC]{Emphasize here that this is suitable for many uses of
+%   reference counting, like memory reclamation?}
 
 In \refcache, \emph{both} \code{inc} and \code{dec} return nothing and
 hence always commute, even if the count reaches zero.  A new
