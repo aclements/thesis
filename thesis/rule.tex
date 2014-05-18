@@ -457,19 +457,132 @@ say that $m$ scales in the $\HY$ region of $H$.
 % clearer that the construction is conflict-free in any $\HY'$?}
 
 
+\subsection{Example}
+
+Before we turn to why the scalable commutativity rule is true, we'll
+first illustrate how the rule helps designers think about interfaces
+and implementations, using reference counters as a case study.
+
+In its simplest form, a reference counter has two operations,
+\code{inc} and \code{dec}, which respectively increment and decrement
+the value of the counter and return its new value.  We'll also
+consider a third operation, \code{iszero}, which returns whether the
+reference count is zero.  Together, these operations and their
+behavior define a reference counter specification $\SPECRC$.
+$\SPECRC$ has a simple reference implementation using a shared
+counter, which we can represent formally as
+%
+\begin{align*}
+  \MRC(s, \code{inc}) & \equiv \tup<s+1, s+1> &
+  \MRC(s, \code{dec}) & \equiv \tup<s-1, s-1> &
+  \MRC(s, \code{iszero}) & \equiv \tup<s, s = 0>
+\end{align*}
+
+\newcommand\HAB{H_{\text{\sf AB}}}
+\newcommand\HABC{H_{\text{\sf ABC}}}
+\newcommand\HBC{H_{\text{\sf BC}}}
+\newcommand\HCD{H_{\text{\sf CD}}}
+
+\noindent
+Consider a reference counter that starts with a value of $2$ and the
+history
+%
+\[H =
+  [\underbrace{
+    \scpline{\scpi{A}{1}}=\code{iszero()}, \scpline{\scpr{A}{1}}=\code{false},
+    \scpline{\scpi{B}{2}}=\code{iszero()}, \scpline{\scpr{B}{2}}=\code{false}}_{\HAB},
+   \underbrace{
+    \scpline{\scpi{C}{3}}=\code{dec()}, \scpline{\scpr{C}{3}}=1,
+    \scpline{\scpi{D}{1}}=\code{dec()}, \scpline{\scpr{D}{1}}=0}_{\HCD}]
+\]
+%
+The region $\HAB$ \SIM commutes in $H$.  Thus, by the rule, there is
+an implementation of $\SPECRC$ that is conflict-free for $\HAB$.  In
+fact, this is already true of the shared counter reference
+implementation $\MRC$ because \code{iszero} reads the state, but does
+not change it.
+
+$\HCD$ does not \SIM commute in $H$, and therefore the rule does not
+apply (indeed, no correct implementation can be conflict-free for
+$\HCD$).  However, the rule does suggest a direction: if we modify the
+specification so that \code{dec} (and \code{inc}) return nothing, then
+these modified operations \emph{do} commute (more precisely: any
+region consisting exclusively of these operations commutes in any
+history).  With this modified specification, $\SPECRC'$, the caller
+must invoke \code{iszero} to detect when the object is no longer
+referenced, but in many cases this delayed zero detection is
+acceptable and represents a desirable trade-off.
+
+The equivalent history with this modified specification is
+%
+\[H' = [
+   \rlap{$\overbrace{\phantom{
+         \scpline{\scpi{A}{1}}=\code{iszero()},
+         \scpline{\scpr{A}{1}}=\code{false},
+         \scpline{\scpi{B}{2}}=\code{iszero()},
+         \scpline{\scpr{B}{2}}=\code{false},
+         \scpline{\scpi{C}{3}}=\code{dec()}, \scpline{\scpr{C}{3}}}}^{\HABC'}$}
+   \underbrace{
+    \scpline{\scpi{A}{1}}=\code{iszero()}, \scpline{\scpr{A}{1}}=\code{false},
+    \scpline{\scpi{B}{2}}=\code{iszero()}, \scpline{\scpr{B}{2}}=\code{false}}_{\HAB'},
+   \underbrace{
+    \scpline{\scpi{C}{3}}=\code{dec()}, \scpline{\scpr{C}{3}},
+    \scpline{\scpi{D}{1}}=\code{dec()}, \scpline{\scpr{D}{1}}}_{\HCD'}]
+\]
+
+Unlike $\HCD$, $\HCD'$ \SIM commutes.  And, accordingly, there is an
+implementation of $\SPECRC'$ that is conflict-free for $\HCD'$: using
+per-thread counters, each \code{dec} can modify its local counter,
+while \code{iszero} sums the per-thread values.  Per-thread and
+per-core sharding of data structures like this is a common and
+long-standing pattern in scalable implementations.
+
+The rule highlights at least one more opportunity in this history.
+$\HABC'$ \emph{also} \SIM commutes (still assuming an initial count of
+$2$).  However, the implementation given above for $\HCD'$ is
+\emph{not} conflict-free for $\HABC'$ because $\scpline{\scpi{C}{3}}$
+will write one component of the state that is read and summed by
+$\scpline{\scpi{A}{1}}$ (and $\scpline{\scpi{B}{2}}$).  But, again,
+there is a conflict-free implementation based on adding a Boolean
+\code{iszero} snapshot to the state.  \code{iszero} simply returns
+this snapshot.  When \code{dec}'s per-thread value reaches zero, it
+can read and sum all per-thread values and update the \code{iszero}
+snapshot if necessary.
+
+These two implementations of $\SPECRC'$ are fundamentally different.
+Which is most desirable depends on whether the workload is expected to
+be write-heavy (mostly \code{inc} and \code{dec}) or read-heavy
+(mostly \code{iszero}).  Thus an implementer must determine what
+opportunities to scale exist, decide which are likely to be the most
+valuable, and choose the implementation that scales in those
+situations.
+
+In \cref{sec:sv6:refcache}, we'll return to the topic of reference
+counters when we describe \refcache, a practical and broadly
+conflict-free implementation of a \emph{lazy reference counter}
+similar to $\SPECRC'$.
+
+
 \subsection{Proof}
 
-A constructive proof for the scalable commutativity rule can be obtained by
-building a conflict-free
-implementation $m$ from the reference implementation $\REFIMP$ and
-history $H = \HX \HCONCAT \HY$.
+The implementations of the reference counter example were derived by
+hand, but a general, constructive proof for the scalable commutativity
+rule is possible.
+%
+The construction builds a conflict-free implementation $m$ from an
+arbitrary reference implementation $\REFIMP$ and history $H = \HX
+\HCONCAT \HY$.
+%
+% Given a reference implementation $\REFIMP$ and history $H = \HX
+% \HCONCAT \HY$ where $\HY$ \SIM commutes in $H$, the construction
+% builds a new implementation $m$ that is conflict-free for $\HY$.
 %
 The constructed implementation emulates the reference implementation and
-is thus correct for any history. Its {performance}
+is thus correct for any history. Its \emph{performance}
 properties, however, are specialized for $H$. For
 any history $\HX\HCONCAT P$ where $P$ is a prefix of a
 reordering of $\HY$, the constructed implementation's steps in $P$
-are conflict-free. This means that, within the \SIM-commutative
+are conflict-free. That is, within the \SIM-commutative
 region, $m$ scales.
 
 
@@ -846,27 +959,27 @@ Suppose
 \[H = [
    \rlap{$\overbrace{\phantom{
          \scpline{\scpi{A}{1}}=\code{put(1)}, \scpline{\scpr{A}{1}},
-         \scpline{\scpi{B}{2}}=\code{put(1)}, \scpline{\scpr{B}{2}}}}^{H_1}$}
+         \scpline{\scpi{B}{2}}=\code{put(1)}, \scpline{\scpr{B}{2}}}}^{\HAB}$}
    \scpline{\scpi{A}{1}}=\code{put(1)}, \scpline{\scpr{A}{1}},
    \underbrace{
      \scpline{\scpi{B}{2}}=\code{put(1)}, \scpline{\scpr{B}{2}},
-     \scpline{\scpi{C}{3}}=\code{max()}, \scpline{\scpr{C}{3}}=1}_{H_2}].
+     \scpline{\scpi{C}{3}}=\code{max()}, \scpline{\scpr{C}{3}}=1}_{\HBC}].
 \]
 %
-Both $H_1$ and $H_2$ \SIM commute in $H$, but $H$ overall is not \SIM
+Both $\HAB$ and $\HBC$ \SIM commute in $H$, but $H$ overall is not \SIM
 commutative.
 %
 An implementation could store per-thread maxima reconciled by
-\code{max} and be conflict-free for $H_1$.  Alternatively, it could use a
+\code{max} and be conflict-free for $\HAB$.  Alternatively, it could use a
 global maximum that \code{put} checked before writing.  This
-is conflict-free for $H_2$.
+is conflict-free for $\HBC$.
 %Symmetric cases hold in the history $\scpline{\scpir{B}{2} \scpir{A}{1}
 %  \scpir{C}{3}}$. 
 %% E: I am happy to ignore this nit; not sure it's relevant.
 %
 But no correct implementation can be conflict-free across all of $H$.
-Since $H_1$ and $H_2$ together span $H$, that means no single
-implementation can be conflict-free for \emph{both} $H_1$ and $H_2$.
+Since $\HAB$ and $\HBC$ together span $H$, that means no single
+implementation can be conflict-free for \emph{both} $\HAB$ and $\HBC$.
 %
 In the
 end, a system designer must decide which situations involving
