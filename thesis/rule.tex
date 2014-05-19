@@ -600,7 +600,7 @@ region, $m$ scales.
 ~~~    \(\tup{s.\V{refstate}, r} \gets \REFIMP(s.\V{refstate}, a)\)
 ~~~else:                 \COMMENT{replay mode}
 ~~~    \(s.h \gets \text{tail}(s.h)\)
-~~~return \(\tup{s, r}\)
+~~~Return \(\tup{s, r}\)
 \end{obeyspaces}
 \end{obeylines}
 \rule{\columnwidth}{0.5pt}
@@ -696,7 +696,7 @@ All future responses will still be valid according to the specification.
 ~~~    \(s.h[t] \gets \text{tail}(s.h[t])\)
 ~~~else:   \COMMENT{replay mode}
 ~~~    \(s.h[u] \gets \text{tail}(s.h[u])\) for each thread \(u\)
-~~~return \(\tup{s, r}\)
+~~~Return \(\tup{s, r}\)
 \end{obeyspaces}
 \end{obeylines}
 \rule{\columnwidth}{0.5pt}
