@@ -300,71 +300,73 @@ object after two epoch boundaries have passed, which guarantees
 that all cores have flushed their
 reference caches at least once.
 
-\XXX![AC]{Make pseudo-code formatting consistent with rule chapter.}
-
 \begin{figure}
-  \def\fgap{-0.25em}            % Fit on a page
+  \def\fgap{1em}
   \small
-  \begin{tabbing}
-    \quad\=\quad\=\quad\=\quad\=\quad\=\quad\=\kill
-    inc(obj): \+\\
-      if local-cache[hash(obj)].obj $\ne$ obj: \+\\
-        evict(local-cache[hash(obj)]) \\
-        local-cache[hash(obj)] $\gets$ $\langle$obj, 0$\rangle$ \-\\
-      local-cache[hash(obj)].delta += 1 \\
-    \-\\[\fgap]
-    tryget(weakref): \+\\
-      do: \+\\
-        $\langle$obj, dying$\rangle$ $\gets$ weakref \-\\
-      while weakref.cmpxchg($\langle$obj, dying$\rangle$,
-        $\langle$obj, false$\rangle$) fails \\
-      if obj is not null: \+\\
-        inc(obj) \-\\
-      return obj \\
-    \-\\[\fgap]
-    evict(obj, delta): \+\\
-      % If this condition is true, then the locked region would be a
-      % no-op, but why is it safe to do it without the lock?  The
-      % danger is that the read of refcnt will slip in the middle of
-      % another region that modified refcnt with obj locked.  evict
-      % is the only place this happens and it does only a single write
-      % to refcnt.  Assuming both this read and that write are
-      % atomic, then we can consider this check atomic with the entire
-      % locked region in the competing evict.
-      if delta = 0 and obj.refcnt $\ne$ 0: return \\
-      with obj locked: \+\\
-        obj.refcnt $\gets$ obj.refcnt + delta \\
-        if obj.refcnt = 0: \+\\
-          if obj is not on any review queue: \+\\
-            obj.dirty $\gets$ false \\
-            obj.weakref.dying $\gets$ true \\
-            add $\langle$obj, epoch$\rangle$ to the local review
-            queue \-\\
-          else: \+\\
-            obj.dirty $\gets$ true \\
-    \-\-\-\-\\[\fgap]
-    flush(): \+\\
-      evict all local-cache entries and clear cache \\
-      update the current epoch \\
-    \-\\[\fgap]
-    review(): \+\\
-      flush() \\
-      for each $\langle$obj, objepoch$\rangle$ in local review queue: \+\\
-        if epoch $<$ objepoch + 2: continue \\
-        with obj locked: \+\\
-          remove obj from the review queue \\
-          if obj.refcnt $\ne$ 0: \+\\
-            obj.weakref.dying $\gets$ false \-\\
-          else if obj.dirty or obj.weakref.cmpxchg(%
-                $\langle$obj, true$\rangle$,
-                $\langle$null, false$\rangle$) fails: \+\\
-            obj.dirty $\gets$ false \\
-            obj.weakref.dying $\gets$ true \\
-            add $\langle$obj, epoch$\rangle$ to the local review queue \-\\
-          else: \+\\
-            free obj
-  \end{tabbing}
-  \vspace{-1em}                 % No idea where this space comes from
+\begin{obeylines}
+\begin{obeyspaces}
+inc(obj) $\equiv$
+~~~If local-cache[hash(obj)].obj $\ne$ obj:
+~~~    evict(local-cache[hash(obj)])
+~~~    local-cache[hash(obj)] $\gets$ $\langle$obj, 0$\rangle$
+~~~local-cache[hash(obj)].delta += 1
+~
+tryget(weakref) $\equiv$
+~~~Do:
+~~~    $\langle$obj, dying$\rangle$ $\gets$ weakref
+~~~while weakref.cmpxchg($\langle$obj, dying$\rangle$, $\langle$obj, false$\rangle$) fails
+~~~If obj is not null:
+~~~    inc(obj)
+~~~Return obj
+
+\vspace{\fgap}
+
+evict(obj, delta) $\equiv$
+% If this condition is true, then the locked region would be a
+% no-op, but why is it safe to do it without the lock?  The
+% danger is that the read of refcnt will slip in the middle of
+% another region that modified refcnt with obj locked.  evict
+% is the only place this happens and it does only a single write
+% to refcnt.  Assuming both this read and that write are
+% atomic, then we can consider this check atomic with the entire
+% locked region in the competing evict.
+~~~If delta = 0 and obj.refcnt $\ne$ 0: return
+~~~With obj locked:
+~~~    obj.refcnt $\gets$ obj.refcnt + delta
+~~~    If obj.refcnt = 0:
+~~~        If obj is not on any review queue:
+~~~            obj.dirty $\gets$ false
+~~~            obj.weakref.dying $\gets$ true
+~~~            Add $\langle$obj, epoch$\rangle$ to the local review queue
+~~~        else:
+~~~            obj.dirty $\gets$ true
+
+\vspace{\fgap}
+
+flush() $\equiv$
+~~~Evict all local-cache entries and clear cache
+~~~Update the current epoch
+
+\vspace{\fgap}
+
+review() $\equiv$
+~~~flush()
+~~~For each $\langle$obj, objepoch$\rangle$ in local review queue:
+~~~    If epoch $<$ objepoch + 2: continue
+~~~    With obj locked:
+~~~        Remove obj from the review queue
+~~~        If obj.refcnt $\ne$ 0:
+~~~            obj.weakref.dying $\gets$ false
+~~~        else if obj.dirty or obj.weakref.cmpxchg(%
+$\langle$obj, true$\rangle$, %
+$\langle$null, false$\rangle$) fails:
+~~~            obj.dirty $\gets$ false
+~~~            obj.weakref.dying $\gets$ true
+~~~            Add $\langle$obj, epoch$\rangle$ to the local review queue
+~~~        else:
+~~~            Free obj
+\end{obeyspaces}
+\end{obeylines}
   \rule{\columnwidth}{0.5pt}
   \vspace{-\baselineskip}
   \caption[\refcache algorithm.]
