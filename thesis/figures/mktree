@@ -420,8 +420,10 @@ if args.svg:
 
 if args.tex:
     ctx = context.TikZ()
-    # Note: With orientation '-y+x', S=13 is just shy of 6" wide
-    tree.to_ctx(ctx, S=18, orientation=orientation,
-                region_label_pt=11)
+    # Note: With orientation '-y+x': S=13 is just shy of 6" wide.
+    # With orientation '+x-y': S=18 is the right height for a 10" tall
+    # figure; S=16.9 is the right height for a 9.5" tall figure.
+    tree.to_ctx(ctx, S=16.9, orientation=orientation,
+                region_label_pt=10.95)
 
 ctx.write_to(sys.stdout)
