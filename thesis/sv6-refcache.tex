@@ -216,7 +216,7 @@ reference count is zero.
     global count, and blue circles show when each core flushes its
     local reference cache.  The loops around the global count show
     when the object is in core 0's review queue and
-    the red zeroes indicate dirty zeroes.}
+    the red zeroes indicate dirty zeroes. \XXX![AC]{Split figure.}}
   \label{fig:refcache-ex}
 \end{figure*}
 
@@ -302,6 +302,7 @@ reference caches at least once.
 
 \begin{figure}
   \def\fgap{-0.25em}            % Fit on a page
+  \small
   \begin{tabbing}
     \quad\=\quad\=\quad\=\quad\=\quad\=\quad\=\kill
     inc(obj): \+\\

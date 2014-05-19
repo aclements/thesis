@@ -1,5 +1,8 @@
 #call "common.gnuplot" "2col"
-call "common.gnuplot" "2.95in,3.8in"
+# 6" wide body
+#call "common.gnuplot" "2.95in,3.8in"
+# 5.5" wide body
+call "common.gnuplot" "2.7in,3.8in"
 
 mp_startx=0.25
 mp_starty=0.095                 # Matching title alignment with fdbench

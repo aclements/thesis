@@ -1,9 +1,5 @@
 % -*- TeX-PDF-mode: t -*-
 
-% XXX 12pt?  Measure is a bit long in 11pt.  Note: If I change the
-% document font size, be sure to match the x-height of \code.
-% XXX Use monospace for \code?
-
 % draft - Fast compilation, all XXX notes, draft+git footers
 %\documentclass[11pt,twoside,draft]{mitthesis}
 % (no option) - Full compilation, all XXX notes, draft+git footer
@@ -104,6 +100,14 @@
 
 % Disable annoying inter-paragraph vertical spacing
 \raggedbottom
+
+% Bring in margins a bit.  The measure at 11pt on a 5.5" body is
+% pretty reasonable (and almost identical to 12pt on a 6" body).
+\addtolength{\textwidth}{-0.5in}
+\addtolength{\oddsidemargin}{0.25in}
+\addtolength{\evensidemargin}{0.25in}
+\addtolength{\topmargin}{0.25in}
+\addtolength{\textheight}{-0.5in}
 
 % Aggressive figure placement
 \renewcommand{\topfraction}{0.9}

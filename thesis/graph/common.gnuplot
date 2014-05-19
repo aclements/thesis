@@ -11,14 +11,18 @@ if ("$0" eq "" || "$0"[0:1] eq "$$"[0:1]) {
 } else {
   if ("$0" eq "2col") {
     # Sized for 6" wide body
-    SIZE="2.95in,2.2in"
+    #SIZE="2.95in,2.2in"
+    # 5.5" wide body
+    SIZE="2.7in,2.2in"
   } else {
     if ("$0" eq "3col") {
       SIZE="2.25in,1.6in"
     } else {
       if ("$0" eq "2x2") {
         # Sized for a 2x2 multiplot on a 6" wide body
-        SIZE="6in,4in"
+        #SIZE="6in,4in"
+        # 5.5" wide body
+        SIZE="5.5in,3.7in"
       } else {
         SIZE="$0"
       }
