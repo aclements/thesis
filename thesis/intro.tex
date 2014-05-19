@@ -452,12 +452,12 @@ We begin by relating our thinking about scalability to previous work
 in \cref{sec:related}.
 
 We then turn to formalizing and proving the scalable commutativity
-rule, which we approach in two steps.  First, \cref{sec:rule}
-formalizes and proves that commutative operations have conflict-free
-implementations, developing and justifying \SIM commutativity in the
-process.  Second, \cref{sec:scalability} empirically demonstrates that
-conflict-free operations are scalable on modern, large multicore
-machines.
+rule, which we approach in two steps.  First, \cref{sec:scalability}
+establishes experimentally that conflict-free operations are generally
+scalable on modern, large multicore machines.  \Cref{sec:rule} then
+formalizes the rule, develops \SIM commutativity, and proves that
+commutative operations have conflict-free (and thus scalable)
+implementations.
 
 We next turn to applying the rule.  \Cref{sec:posix} starts by
 applying the rule to interface design, developing a set of guidelines
@@ -479,7 +479,7 @@ confirms that theory translates into practice by evaluating the
 performance and scalability of \sys on real hardware for several
 microbenchmarks and application benchmarks.
 
-\XXX[AC]{\Cref{sec:concl}}
+\XXX![AC]{\Cref{sec:concl}}
 
 % The paper is organized as follows.  \S\ref{sec:related} relates our thinking
 % about scalability to previous work. \S\ref{sec:rule} introduces the

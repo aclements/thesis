@@ -1,35 +1,30 @@
-\section{Commutativity to conflict-freedom}
+\section{The scalable commutativity rule}
 \label{sec:rule}
 
 \XXX[STATUS]{Expanded and reworked to focus on conflict-freedom vs
-  SOSP.  May reorder with \cref{sec:scalability}.  Planning to add
-  example before proof.
+  SOSP.
 %  Planning to add non-commutative non-scalability rule and discussion
 %  of global clocks.
   Applied: Eddie init-244-ga695479.
 }
 
-What is the precise connection between interface commutativity and
-conflict-free implementations?
+\Thiscref{sec:rule} addresses two questions: What is the precise
+definition of the scalable commutativity rule, and why is the rule
+true?
 %
-\Thiscref{sec:rule} answers this question by developing and proving a
-formalism based on abstract actions,
+We answer these questions using a formalism based on abstract actions,
 histories,
-and implementations.
+and implementations, combined with the empirical result of the
+previous \lcnamecref{sec:scalability}.
 %
-\Thiscref{sec:rule} also defines \SIM commutativity, a critical part of this
-formalism that makes it possible to broadly apply the scalable
+This formalism relies on a novel form of commutativity, \emph{\SIM
+  commutativity}, whose generality makes it possible to broadly apply
+the scalable
 commutativity rule to complex software interfaces.
 %
-Our constructive proof of the formalism
+Our constructive proof of the scalable commutativity rule
 also sheds some light on how real conflict-free implementations might be
 built, though the actual construction is not very practical.
-
-\Thiscref{sec:rule} focuses on the connection between commutativity
-and conflict-freedom and assumes conflict-freedom translates to
-scalability on real hardware.  We verify this assumption and explore
-its boundaries experimentally in the following
-\lcnamecref{sec:scalability}.
 
 
 \subsection{Actions}
@@ -431,10 +426,10 @@ and where $\REFIMP$ can generate $H$.
 %
 Then there exists a correct implementation $m$ of $\SPEC$ whose steps in
 the $\HY$ region of $H$ are conflict-free.
-
+%
 Empirically, conflict-free operations scale linearly on modern
-multicore hardware given reasonable workload assumptions, so we can
-say that $m$ scales in the $\HY$ region of $H$.
+multicore hardware, so, given reasonable workload assumptions,
+$m$ scales in the $\HY$ region of $H$.
 
 % \XXX[rtm]{``the ... $\HY$ region'' seems to imply that $m$ must
 % generate the same B as $M$.
@@ -1006,7 +1001,7 @@ implementations---for instance, on machines that
 offer scalable access to strictly increasing sources of time, or when
 the core interconnect allows certain communication patterns to scale.
 %
-Furthermore, as we show in \cref{sec:scalability}, some conflict-free
+Furthermore, as we showed in \cref{sec:scalability}, some conflict-free
 access patterns don't scale on real
 machines.
 %

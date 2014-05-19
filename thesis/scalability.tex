@@ -1,8 +1,10 @@
-\section{Conflict-freedom to scalability}
+\section{Scalability and conflict-freedom}
 \label{sec:scalability}
 
-\XXX[STATUS]{Draft v2 ready.  New chapter vs SOSP.  Applied Frans
-  edits from init-154-g6dbae76.}
+\XXX[STATUS]{Draft v3 ready.
+  v3: Moved back before the rule chapter.
+  v2: Applied Frans init-154-g6dbae76.
+  v1: New chapter vs SOSP.}
 
 % \XXX[AC]{Should this go \emph{after} the rule chapter?  To show
 %   commutative $\implies$ conflict-free and then conflict-free
@@ -25,13 +27,24 @@
 % steady-state.  What can be done purely locally.  Any transition that
 % involves coordination represents a scalability hazard.
 
-The previous \lcnamecref{sec:rule} proved that commutative operations
-have a conflict-free implementation, but what ultimately matters to
-practitioners is scalability.  \Thiscref{sec:scalability} shows that,
-under reasonable assumptions,
-conflict-freedom is a good predictor of linear scalability on modern
-multicore hardware, closing the gap between the theoretical basis of
-the scalability commutativity rule and its utility in practice.
+Understanding scalability requires first understanding the machine.
+%
+\Thiscref{sec:scalability} looks at the machine: it shows that, under
+reasonable assumptions, conflict-free operations scale linearly on
+modern multicore hardware.
+%
+This establishes conflict-freedom as a property worth reasoning
+formally about in the following \lcnamecref{sec:rule}.  Together, the
+empirical result of \thiscref{sec:scalability} and the formal result
+of the next \lcnamecref{sec:rule} form the scalable commutativity
+rule.
+
+% This result will act as the bridge from the formal connection between
+% interface commutativity and conflict-free implementations established
+% in the next chapter into the pragmatic realm of scalability.
+% Together, these two results---formal and empirical---will form the
+% scalable commutativity rule.
+
 
 \subsection{Conflict-freedom and multicore processors}
 
@@ -337,8 +350,9 @@ socket's physical memory, which this benchmark quickly exceeds.
 
 \subsection{Summary}
 
-Despite some limitations, conflict-freedom remains a good predictor
-of scalability in practice.  Most software has good cache locality and
+Despite some limitations, conflict-freedom is a good predictor
+of linear scalability in practice.  Most software has good cache
+locality and
 high cache hit rates both because this is crucial for sequential
 performance, and because it's in the interest of CPU manufacturers to
 design caches that fit typical working sets.  For workloads that
@@ -351,9 +365,6 @@ aggregate DRAM bandwidth.
 that conflict-free implementations of commutative interfaces enable
 software to scale not just at the level of memory microbenchmarks, but
 at the level of an entire OS kernel and its applications.
-
-\XXX[AC]{Conclude by saying that we now have the rule in its full,
-  pragmatic form?}
 
 \XXX![FK]{Should this section cite some other performance studies?
   E.g., ``these results are consistent with that other SOSP paper in
