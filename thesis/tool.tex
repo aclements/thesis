@@ -167,7 +167,7 @@ in $H = \HX \HCONCAT \HY$ when, given any reordering $\HY'$ of $\HY$
 and any action sequence $\HSUFF$, \[\HX \HCONCAT \HY \HCONCAT \HSUFF
 \in \SPEC \text{~~~if and only if~~~} \HX \HCONCAT \HY' \HCONCAT
 \HSUFF \in \SPEC.\]  Further, for $\HY$ to \SIM-commute in $H$, every
-prefix of every reodering of $\HY$ must \SI-commute.
+prefix of every reordering of $\HY$ must \SI-commute.
 %
 In \code{commutes}, the initial state \code{s0} serves the role of the
 prefix $\HX$: to put the system in some state.
@@ -178,7 +178,7 @@ prefix $\HX$: to put the system in some state.
 % test and a state test.
 \code{ops} serves the role of $\HY$ (assuming sequential consistency)
 and the loop in \code{commutes} generates every $\HY'$, that is, all
-prefixes of all reoderings of $\HY$.  This loop performs two tests.
+prefixes of all reorderings of $\HY$.  This loop performs two tests.
 First, the result equivalence test ensures that each operation gives
 the same response in all reorderings.  Finally, the state equivalence
 test serves the role of the future actions, $\HSUFF$, by requiring all
@@ -560,3 +560,5 @@ $\sim$6,500 LOC.}
 % instructions such as \code{call} and \code{ret} to produce call stacks.
 % This information is written to a log file.
 
+
+%  LocalWords:  reorderings

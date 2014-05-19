@@ -65,6 +65,7 @@ for path in sys.argv[1:] or glob.glob("*.tex"):
     t.ignore(r"\\cmd\{[^}]*\}").mark(
         "Use \\cmd{...}", (r"statbench|openbench|mail-(?:enqueue|qman|deliver)|"
                            r"vm(?:local|pipeline|global)"))
+    t.mark("reoRdering", "reodering", re.I)
 
     orig.showMarks()
     errors = errors or orig.hasErrors()
