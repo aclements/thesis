@@ -148,7 +148,7 @@ situations than traditional non-state-dependent notions of
 commutativity.
 %
 For example, few OS system calls unconditionally commute in
-every state, but many system calls conditionally commute.
+every state, but many system calls commute in restricted states.
 %
 Consider POSIX's \code{open} call.
 %
@@ -156,19 +156,23 @@ In general, two calls to \code{open("a", O_CREAT|O_EXCL)} don't
 commute: one call will create the file and the other will
 fail because the file already exists.
 %
-However, two calls to \code{open("a", O_CREAT|O_EXCL)} \emph{do}
-commute if called from processes with different working
-directories.  And even if the processes have the same working
-directory, two calls to \code{open("a", O_CREAT|O_EXCL)} will commute
-{if the file already exists} (both
-calls will return the same error).
+However, two such calls do commute if called from processes with
+different working directories; or if the file \code{"a"} already
+exists (both calls will return the same error).
+% However, two calls to \code{open("a", O_CREAT|O_EXCL)} \emph{do}
+% commute if called from processes with different working
+% directories.  And even if the processes have the same working
+% directory, two calls to \code{open("a", O_CREAT|O_EXCL)} will commute
+% {if the file already exists} (both
+% calls will return the same error).
 %
 \XXX[EK]{Let's expand the example into a history in an itemize or
   something, and show the actual example, with comments such as ``//
   spec requires this open() call return -1''}  \XXX[AC]{I don't really
   know what this means.}
 %
-State dependence enables us to distinguish these cases, even though the
+State dependence makes it possible to distinguish these cases, even
+though the
 operations are the same in each.  This, in turn, means the scalable
 commutativity
 rule can tell us that scalable implementations exist in all of these
