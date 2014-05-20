@@ -41,4 +41,6 @@ if [[ ! -f $TEXMFLOCAL/ls-R ]]; then
     ./scripts/install
 fi
 
+# XXX This is SUPPOSED to install to $TEXMFVAR.  If I run it by hand
+# it does.  But here it (often?) doesn't.
 updmap --enable Map=MinionPro.map

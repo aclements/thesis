@@ -2,7 +2,7 @@
 
 set -e
 
-FONTSVER=fb67cd29be7b8b62289b16dceb666060877e9002
+FONTSVER=b1b834e16ea7f655d4a7338bfe4875133f5ab6a5
 
 if [ ! -d fonts ]; then
     echo "fonts/ not found.  Attempting to clone fonts repository..." >&2
