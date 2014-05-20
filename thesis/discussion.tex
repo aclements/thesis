@@ -1,0 +1,251 @@
+\section{Discussion and future directions}
+\label{sec:future-work}
+
+\XXX[STATUS]{New chapter.  Mostly complete.}
+
+\XXX![AC]{Write chapter intro.}
+\XXX![AC]{Add to intro chapter.}
+
+% The limitations and assumptions of the rule light the way to future
+% opportunities.  The first step to pushing boundaries is understanding
+% them.
+
+% Explore what we don't know.
+
+
+\subsection{The non-scalable non-commutativity rule}
+
+\XXX[AC]{Converse or inverse?  They're logically equivalent, but which
+  we should use depends on how we state the theorem.}
+
+The scalable commutativity rule shows that \SIM-commutative regions
+have conflict-free implementations.
+%
+It does not show the inverse, however: that given a non-commutative
+region, there is no implementation that is conflict-free (or linearly
+scalable) in that region.
+
+In general, the inverse is not true.
+%
+For example, consider an interface with two operations:
+\code{increment} and \code{get}, where \code{get} can return either
+the current value \emph{or} \code{unknown}.  \code{increment} and
+\code{get} operations do not \SIM commute because the specification
+permits an implementation where \code{get} always returns the current
+value and thus the order of these operations is observable.  But the
+specification does permits a trivially conflict-free implementation
+with \emph{no} state where \code{get} always returns \code{unknown}.
+%
+This disproves the inverse of the rule, but seems to do so on an
+unsatisfying technicality: this example is ``too non-deterministic.''
+%
+% We consider non-determinism important to the design of broadly
+% commutative interfaces (e.g., our perennial example of \code{open}
+% returning any unused file descriptor), but this example is, somehow,
+% ``too non-deterministic''.
+
+What if we swing to the other extreme and consider only interfaces
+that are \emph{sequentially consistent} (every legal history has a
+sequential reordering that is also legal) and \emph{sequentially
+  deterministic} (the sequence of invocations in a sequential history
+uniquely determines the sequence of responses)?  Then the inverse of
+the rule \emph{is} true.
+%
+% In fact, the inverse of the rule is true for interfaces that are
+% \emph{sequentially consistent} (every legal history has a sequential
+% reordering that is also legal) and \emph{sequentially deterministic}
+% (the sequence of invocations in a sequential history uniquely
+% determines the sequence of responses).
+
+This is because, whenever an implementation is conflict-free in a
+region of a history, the state components read by all of the steps on
+a given thread in that region must be disjoint from the state
+components written by steps on other threads.  Since the
+implementation's step function is required to be deterministic and the
+invocations on each thread will be the same in any reordering of the
+conflict-free region, the step function must yield the same responses
+and the same final state in any reordering.
+%
+But if this region is non-commutative and the specification is
+sequentially consistent and sequentially deterministic, a correct
+implementation \emph{cannot} yield the same the same responses and
+final state in every reordering.
+
+Many real-world interfaces satisfy these constraints (e.g., many
+concurrent data structures), but many do not (e.g., unsurprisingly,
+POSIX).  Indeed, we consider non-determinism an important tool in the
+design of broadly commutative interfaces.
+% (e.g., our perennial example of \code{open} returning any unused
+% file descriptor).
+
+However, we believe that specifications with limited non-determinism
+are similarly constrained by the inverse of the rule.
+%
+% This is based partly on our failed attempts to find such
+% implementations, as well as the intuition that adding small
+% non-deterministic aspects to SCSD interfaces does not fundamentally
+% alter the behavior of regions that still don't commute.
+%
+For example, a specification consisting exclusively of POSIX's
+\code{open} is sequentially consistent and sequentially deterministic.
+Adding \emph{any FD} semantics makes more regions commutative, but
+does not fundamentally alter the behavior of regions that did not
+commute for other reasons.
+
+Understanding the inverse of the rule would shed light on the precise
+boundaries of scalable implementations.
+%
+However, the greater value of the inverse may be to highlight ways to
+escape these boundaries.  The following two
+\lcnamecref{sec:future-work:clocks}s explore hardware features not
+captured by the rule's formalization that may expand the reach of the
+rule and enable scalable implementations of broader classes of
+interfaces.
+
+
+% : assumptions and simplifications made by the
+% rule that can be broken by 
+
+% It may also highlight ways to escape these boundaries: assumptions and
+% simplifications made by the rule 
+
+% However, even if real-world interfaces are constrained by the inverse
+% of the rule, the assumptions built in to the inverse suggest ways to
+% escape it.
+
+
+\subsection{Synchronized clocks}
+\label{sec:future-work:clocks}
+
+\Cref{sec:rule:implementations} formalized implementations as step
+functions reflecting a machine capable of general computation and
+communication through shared memory.
+%
+Some hardware has at least one useful capability not captured by this
+model: \emph{synchronized timestamp counters}.
+
+% This suggests that additional hardware
+% capabilities could expand the reach of the rule and enable scalable
+% implementations of broader classes of interfaces.
+%
+% Some hardware already has at least one promising capability: a
+% \emph{synchronized timestamp counter}.
+
+Reads of a synchronized timestamp counter will always observe
+increasing values, even if the reads occur on different cores.
+%
+% Strictly speaking, neither Intel nor AMD currently guarantees
+% timestamp synchronization between sockets, but current hardware
+% implements it~\cite{boyd-wickizer:thesis} and the Linux kernel
+% depends on it for efficient timekeeping.
+%
+With this capability, operations in a commutative region can record
+their order \emph{without communicating} and later operations can
+depend on this order.
+%
+For example, multiple appends to a file from different threads could
+record each operation's timestamp and data in per-thread state, and
+later reads from this file could reconcile the file contents.  The
+appends do not commute, but this implementation is conflict-free.
+
+Formally, we can model a synchronized timestamp counter as an
+additional argument to the implementation step function must increase
+monotonically over a history.  With this additional argument, many of
+the conclusions drawn by the proof of the scalable commutativity rule
+no longer hold.
+
+Recent work by Boyd-Wickizer developed a technique for scalable
+implementations called OpLog based on this
+idea~\cite{boyd-wickizer:thesis}.  Exactly what interfaces are
+amenable to OpLog implementations remains unclear and is a question
+worth exploring.
+
+
+\subsection{Scalable conflicts}
+
+% Synchronized clocks challenge the assumptions that go in to the formal
+% step of the scalable commutativity rule.  It is also possible to
+% challenge the empirical step.
+
+Another potential way to expand the reach of the rule and create more
+opportunities for scalable implementations is to find ways in which
+non-conflict-free operations can scale.
+
+\XXX!{Interconnect-aware sharing} \XXX!{Non-MESI coherence protocols}
+
+
+\subsection{Not everything can commute}
+
+This dissertation has advocated fixing scalability problems starting
+by making interfaces as commutative as possible.  But some interfaces
+are set in stone, and others, such as synchronization interfaces, are
+fundamentally non-commutative.  It may not be possible to make
+implementations of these scale linearly, but making them scale as well
+as possible is as important as making commutative operations scale.
+
+This dissertation has addressed this problem only in ad hoc ways.
+Most notably, \refcache's design focuses all of the non-commutativity
+and non-scalability inherent in resource reclamation into a single,
+non-critical-path operation, allowing it to amortize the cost of this
+operation.
+%
+However, whether an interface-driven approach to the scalability of
+non-commutative operations is possible remains an open question.
+
+
+\subsection{Broad conflict-freedom}
+
+% The scalable commutativity rule is very specific: it states that for a
+% \emph{specific} commutative region of a \emph{specific} history, there
+% is a conflict-free implementation.  This strictness is a necessary
+% consequence of \SIM commutativity.  But as evidenced by \sys in
+% \cref{sec:sv6}, real implementations of real interfaces can be
+% conflict-free in nearly all commutative situations at once.
+
+% This gap between the theory and the practice of the rule suggests that
+% there may be a different trade-off between interfaces and
+% implementations that does not apply to all \SIM commutative
+% interfaces, but in return offers a broadly conflict-free
+% implementation construction.
+
+As evidenced by \sys in \cref{sec:sv6}, real implementations of real
+interfaces can be conflict-free in nearly all commutative situations.
+But, formally, the scalable commutativity rule states something far
+more restricted: that for a \emph{specific} commutative region of a
+\emph{specific} history, there is a conflict-free implementation.  In
+other words, there is some implementation that is conflict-free for
+each of the \pyexpr{mscan.ntestcases} tests \tool ran, but passing all
+of them might require \pyexpr{mscan.ntestcases} different
+implementations.
+
+This strictness is a necessary consequence of \SIM commutativity, but
+the gap between the theory and the practice of the rule suggests that
+there may be a space of trade-offs between interface properties and
+construction generality.
+%
+A more restrictive interface property may enable the construction of
+broadly conflict-free implementations.
+%
+If possible, this ``alternate rule'' may capture a more practically
+useful construction; perhaps even a construction that could be applied
+automatically.
+
+% At the other end of the spectrum, a single implementation can be
+% conflict-free for all \emph{algebraically} commutative regions
+% (regions that commute regardless of state).
+%
+% If you see an algebraically commutative operation (is this
+% meaningful?), perform it on local state and log it.  For other
+% operations, flush logs to global state.
+%
+% I don't think this is actually true.  Consider an array interface,
+% which has the following algebraic commutativity conditions:
+%
+%          get(k')  set(k',v')
+% get(k)     Y        k!=k'
+% set(k,v)         k!=k'||v==v'
+%
+% I'm not even sure how to do a conflict-free implementation of this
+% by hand.  If k's and v's types were finite, it might be possible.
+
+%  LocalWords:  timestamp OpLog
