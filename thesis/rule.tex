@@ -918,23 +918,28 @@ diverges \emph{within} the commutative region.\footnote{%
 
 The rule and proof construction push state and
 history dependence to an extreme: the proof construction is specialized
-for a single commutative region.
+for a \emph{single} commutative region.
 %
-Repeated application of the construction can build an
+This can be mitigated by repeated application of the construction to
+build an
 implementation that scales over multiple commutative regions in a
-history, or for the union of many histories.
+history, or for the union of many histories.%
 %
-(This is because, once the constructed machine leaves the specialized
-region, it passes invocations directly to the reference and has
-the same conflict-freedom properties as the reference.)
+\footnote{This is possible because, once the constructed machine
+  leaves the specialized region, it passes invocations directly to the
+  reference and has the same conflict-freedom properties as the
+  reference.}
 %
-Nevertheless, the proof construction is impractical, and real
-implementations usually achieve scalability using different techniques.
+Nevertheless, the implementation constructed by the proof is
+impractical and real implementations achieve broad scalability using
+different techniques, such as the ones this dissertation explores in
+\cref{sec:sv6}.
 
-We believe it is easier to create practical scalable implementations for
-operations that commute in more situations.
+We believe such broad implementation scalability is made easier by
+broadly commutative interfaces.
 %
-The arguments and system states for which a set of operations
+In broadly commutative interfaces, the arguments and system states for
+which a set of operations
 commutes often collapse into
 fairly well-defined classes (e.g., file creation might
 commute whenever the containing directories are different).
@@ -942,14 +947,23 @@ commute whenever the containing directories are different).
 In practice, implementations scale for whole classes of states and
 arguments, not just for specific histories.
 
-It is also often the case that a set of operations
+On the other hand, there can be limitations on how broadly an
+implementation can scale.
+%
+It is sometimes the case that a set of operations
 commutes in more than one class of situation,
 % and while there exist scalable implementations for each class, 
 but no
-single implementation scales for all classes.
+single implementation can scale for all classes.
 %
-Consider, for example, an interface with two calls:
-\code{put(}$x$\code{)} records a sample with value $x$, and
+The reference counter example in \cref{sec:rule:rc-example} hinted at
+this when we constructed several possible implementations for
+different situations, but never arrived at a broadly conflict-free
+one.
+%
+As an example that's easier to reason about,
+consider an interface with two calls:
+\code{put($x$)} records a sample with value $x$, and
 \code{max()} returns the maximum sample recorded so far (or \code{0}).
 Suppose
 %
@@ -978,37 +992,56 @@ But no correct implementation can be conflict-free across all of $H$.
 Since $\HAB$ and $\HBC$ together span $H$, that means no single
 implementation can be conflict-free for \emph{both} $\HAB$ and $\HBC$.
 %
-In the
-end, a system designer must decide which situations involving
-commutative operations are most important, and find practical
-implementation strategies that scale in those situations.
+% In the
+% end, a system designer must decide which situations involving
+% commutative operations are most important, and find practical
+% implementation strategies that scale in those situations.
 %
-In \cref{sec:sv6} we show that many operations in POSIX have
-implementations that scale quite broadly, with few cases of incompatible
-scalability classes.
+% \XXX[AC]{Already sort of made this point in example, but without a
+%   proof.  Maybe keep proof here, but with reference to that example:
+%   %
+%   In section X, we discussed several implementations of a reference
+%   counter implementation, but never developed a broadly conflict-free
+%   one.  In fact, this was not merely limited by our imagination: some
+%   interfaces have multiple commutative classes, but no single
+%   implementation scales for all cases.}
 
-%It may also be possible to implement non-commutative operations
-%scalably. _------THAT IS REPET WITH THE BELOW
+In our experience, real-world interface operations rarely demonstrate
+such mutually exclusive implementation choices.  For example, the
+POSIX implementation in \cref{sec:sv6} scales quite broadly, with only
+a handful of cases that would require incompatible implementations.
+
+We hope to further explore this gap between the specificity of the
+formalized scalable commutativity rule and the generality of practical
+implementations.
 %
-The scalable commutativity rule shows that \SIM-commutative regions
-have conflict-free implementations.
+We'll return to this question and several other avenues for future
+work in \cref{sec:future-work}.
 %
-It does not show the converse, however:
-commutativity \emph{suffices} for conflict-free accesses,
-but it may not be \emph{necessary}.
-%
-Some non-commutative interfaces may have scalable
-implementations---for instance, on machines that
-offer scalable access to strictly increasing sources of time, or when
-the core interconnect allows certain communication patterns to scale.
-%
-Furthermore, as we showed in \cref{sec:scalability}, some conflict-free
-access patterns don't scale on real
-machines.
-%
-We hope to investigate these problems in the future, but as we show below,
-the rule is already a good guideline for achieving practical
-scalability.
+However, as the rest of this dissertation shows, the rule is already
+an effective guideline for achieving practical scalability.
+
+
+% The scalable commutativity rule shows that \SIM-commutative regions
+% have conflict-free implementations.
+% %
+% It does not show the converse, however:
+% commutativity \emph{suffices} for conflict-free accesses,
+% but it may not be \emph{necessary}.
+% %
+% Some non-commutative interfaces may have scalable
+% implementations---for instance, on machines that
+% offer scalable access to strictly increasing sources of time, or when
+% the core interconnect allows certain communication patterns to scale.
+% %
+% Furthermore, as we showed in \cref{sec:scalability}, some conflict-free
+% access patterns don't scale on real
+% machines.
+% %
+% We hope to investigate these problems in the future, but as the rest
+% of this dissertation shows,
+% the rule is already a good guideline for achieving practical
+% scalability.
 
 
 % The rest of this paper gives examples of how the rule guided
