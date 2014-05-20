@@ -113,6 +113,7 @@ aren't concerned with how it is constructed.
 
 
 \subsection{\SIM commutativity}
+\label{sec:rule:sim-commutativity}
 \label{sec:topic:strong-commutativity}
 
 Commutativity captures the idea that the order of a set
@@ -132,7 +133,82 @@ This means that any response valid for one order of the commutative set
 is valid for {any} order of the commutative set, and likewise any
 response invalid for one order is invalid for any order.
 %
-The right definition for commutativity is a little tricky, so we
+The rest of this \lcnamecref{sec:rule:sim-commutativity} formalizes
+this intuition as \emph{\SIM commutativity}.
+
+Our definition has two goals: state dependence and interface basis.
+
+\emph{State dependence} means \SIM commutativity must to capture when
+operations commute in some states, even if those same operations do
+not commute in other states.
+%
+This is important because it allows the rule to apply to a much
+broader range of
+situations than traditional non-state-dependent notions of
+commutativity.
+%
+For example, few OS system calls unconditionally commute in
+every state, but many system calls conditionally commute.
+%
+Consider POSIX's \code{open} call.
+%
+In general, two calls to \code{open("a", O_CREAT|O_EXCL)} don't
+commute: one call will create the file and the other will
+fail because the file already exists.
+%
+However, two calls to \code{open("a", O_CREAT|O_EXCL)} \emph{do}
+commute if called from processes with different working
+directories.  And even if the processes have the same working
+directory, two calls to \code{open("a", O_CREAT|O_EXCL)} will commute
+{if the file already exists} (both
+calls will return the same error).
+%
+\XXX[EK]{Let's expand the example into a history in an itemize or
+  something, and show the actual example, with comments such as ``//
+  spec requires this open() call return -1''}  \XXX[AC]{I don't really
+  know what this means.}
+%
+State dependence enables us to distinguish these cases, even though the
+operations are the same in each.  This, in turn, means the scalable
+commutativity
+rule can tell us that scalable implementations exist in all of these
+commutative
+cases.
+%
+\XXX[AC]{Use rename example from later?  ``For example, the
+  \emph{only} case where two \code{rename} operations commute
+  regardless of state is when both are self-renames.''}
+
+\emph{Interface basis} means \SIM commutativity must
+evaluate the consequences of execution order using only the
+specification, without reference to any particular implementation.
+%
+Since our goal is to reason about
+\emph{possible} implementations, it's necessary to capture the
+scalability inherent in the interface
+itself.
+%
+This in turn makes it
+possible to use the scalable commutativity rule early in software development,
+during interface design and initial implementation.
+%
+% Furthermore, it doesn't say that every reordering has indistinguishable
+% results on a \emph{given} implementation; it requires instead that
+% every reordering \emph{is allowed by the specification} to have
+% indistinguishable results. This is important because any given
+% implementation might
+% have unnecessary scalability bottlenecks that show through the
+% interface.
+% %
+% For example, an interface in which \code{open} is allowed to return
+% \emph{any} unused file descriptor could still be implemented by
+% returning the lowest unused file descriptor, which would expose the
+% order of \code{open} calls.  But the interface specification permits
+% other implementations
+% that don't expose order.
+
+The right definition for commutativity that achieves both of these
+goals is a little tricky, so we
 build it up in two steps.
 
 \paragraph{Definition.}
@@ -167,10 +243,16 @@ $\HY'$ of $\HY$, and any action sequence $\HSUFF$,
 This definition
 captures the state dependence and interface basis
 we need.  The action sequence $\HX$ puts the system
-into the state we wish to consider; switching regions $\HY$ and $\HY'$
+into the state we wish to consider, without specifying any particular
+representation of that state (which would depend on an
+implementation).
+%
+Switching regions $\HY$ and $\HY'$
 requires that the exact responses in
 $\HY$ remain valid according to the specification even if $\HY$ is
-reordered; and the presence of region $\HSUFF$ in both histories requires
+reordered.
+%
+The presence of region $\HSUFF$ in both histories requires
 that reorderings of
 actions in region $\HY$ are indistinguishable by future operations.
 %
@@ -223,82 +305,18 @@ Requiring monotonicity eliminates this problem.
 An action sequence $\HY$ \emph{\SIM-commutes} in a history $H = \HX \HCONCAT
 \HY$ when for any \emph{prefix} $P$ of any reordering of $\HY$ (including
 $P = \HY$), $P$ \SI-commutes in $\HX \HCONCAT P$.
-%
-Continuing the \code{get}/\code{set} example, while the sequence $Y$
-given above \SI-commutes (in any history), $\HY$ does \emph{not}
+
+Return to the \code{get}/\code{set} example, while the sequence $Y$
+given in the example \SI-commutes (in any history), $\HY$ does \emph{not}
 \SIM-commute because its prefix $\HY_1$ is not \SI commutative.
-%
+
 Like \SI commutativity, \SIM\ commutativity captures 
 state dependence and interface basis.  Unlike \SI commutativity, \SIM
-commutativity eliminates cases where the commutativity of a region
+commutativity excludes cases where the commutativity of a region
 changes depending on future operations and,
 as we show below, suffices to prove the
 scalable commutativity rule.
 
-State dependence means that \SIM commutativity can capture when operations
-commute in some states, but not others.
-%
-As a result, \SIM commutativity applies to a much broader range of
-situations than traditional non-state-dependent notions of
-commutativity.
-%
-For example, few OS system calls unconditionally commute in
-every state, but many system calls conditionally commute.
-%
-Consider POSIX's \code{open} call.
-%
-In general, two calls to \code{open("a", O_CREAT|O_EXCL)} don't
-commute: one call will create the file and the other will
-fail because the file already exists.
-%
-However, two calls to \code{open("a", O_CREAT|O_EXCL)} \emph{do}
-commute if called from processes with different working
-directories.  And even if the processes have the same working
-directory, two calls to \code{open("a", O_CREAT|O_EXCL)} will commute
-{if the file already exists} (both
-calls will return the same error).
-%
-\XXX[EK]{Let's expand the example into a history in an itemize or
-  something, and show the actual example, with comments such as ``//
-  spec requires this open() call return -1''}  \XXX[AC]{I don't really
-  know what this means.}
-%
-\SIM\ commutativity allows us to distinguish these cases, even though the
-operations are the same in each.  This, in turn, means the scalable
-commutativity
-rule can tell us that scalable implementations exist in the commutative
-cases.
-%
-\XXX[AC]{Use rename example from later?  ``For example, the
-  \emph{only} case where two \code{rename} operations commute
-  regardless of state is when both are self-renames.''}
-
-\SIM\ commutativity is also interface-based:
-%
-it evaluates the consequences of execution order using only the
-specification.
-%
-Furthermore, it doesn't say that every reordering has indistinguishable
-results on a \emph{given} implementation; it requires instead that
-every reordering \emph{is allowed by the specification} to have
-indistinguishable results. This is important because any given
-implementation might
-have unnecessary scalability bottlenecks that show through the
-interface.
-%
-For example, an interface in which \code{open} is allowed to return
-\emph{any} unused file descriptor could still be implemented by
-returning the lowest unused file descriptor, which would expose the
-order of \code{open} calls.  But the interface specification permits
-other implementations
-that don't expose order.  Since our goal is to reason about
-\emph{possible} implementations, it's important that \SIM
-commutativity capture the scalability inherent in the interface
-itself.
-%
-This in turn makes it
-possible to use the scalable commutativity rule early in software development,
-during interface design and initial implementation.
 
 % \XXX[rtm]{if my machine has synchronized clocks, do I need ``SIM
 % commutative''? would SI commutative be enough?}
