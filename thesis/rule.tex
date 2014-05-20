@@ -2,6 +2,7 @@
 \label{sec:rule}
 
 \XXX[STATUS]{
+  v3: Applied Eddie init-317-gdbaaa0d.
   v2: Applied Eddie init-244-ga695479.
   v1: Expanded and reworked to focus on conflict-freedom vs SOSP.
 %  Planning to add non-commutative non-scalability rule and discussion
@@ -330,14 +331,24 @@ scalable commutativity rule.
 \subsection{Implementations}
 \label{sec:rule:implementations}
 
-To reason about implementation scalability, we need to model
+To reason about the scalability of an implementation of an interface,
+we need to model
 implementations in enough detail to tell
 whether different threads' ``memory accesses'' are conflict-free.
 %
-We define the implementation of an interface as a step
+We represent an implementation as a step
 function: given a state and an invocation, it produces a new state and a
-response. Special \CONTINUE\ actions enable
-concurrent overlapping operations and blocking.
+response.
+%
+We can think of this step function as being invoked by a driver
+algorithm (a \emph{scheduler} in operating systems parlance) that
+repeatedly picks which thread to take a step on and passes state from
+one application of the step
+function to the next.
+%
+Special \CONTINUE\ actions let the step function request that the
+driver ``run'' a different thread and let us represent
+concurrent overlapping operations and blocking operations.
 
 We begin by defining three sets:
 
@@ -347,20 +358,27 @@ We begin by defining three sets:
 \item $R$ is the set of valid responses, including \CONTINUE.
 \end{CompactItemize}
 
-An implementation $m$ is a function in $S \times I \mapsto S \times R$.
+\paragraph{Definition.}
+An \emph{implementation} $m$ is a function in $S \times I \mapsto S \times R$.
 Given an old state and an invocation, the
-implementation produces a new state and a response (where the response
-must have the same thread as the invocation).
+implementation produces a new state and a response.
+%
+The response
+must have the same thread as the invocation.
+%
 A \CONTINUE\ response indicates that a real response for that thread is
 not yet ready,
-and allows the implementation to effectively switch to another thread.
+and gives the driver the opportunity to take a step on a different
+thread without a real response from the current thread.
 \CONTINUE\ invocations give the implementation an opportunity to complete an
-outstanding request (or further delay its response); however, the response
-must be for the thread matching the \CONTINUE\ invocation.%
-\footnote{There are restrictions on how implementation
-  arguments are chosen---we assume, for example, that \CONTINUE\ invocations
-  are passed only when a thread has an outstanding request.
-  Since implementations are functions, they must be
+outstanding request on that thread (or further delay its response).%
+% however, the response
+% must be for the thread matching the \CONTINUE\ invocation.%
+\footnote{There are restrictions on how a driver can choose arguments
+  to the step function.  We assume, for example, that
+  it passes a \CONTINUE\ invocation for thread $t$
+  if and only if $t$ has an outstanding request.
+  Furthermore, since implementations are functions, they must be
   deterministic. We could model implementations instead as relations,
   allowing non-determinism, though this would complicate later arguments
   somewhat.}
@@ -431,8 +449,9 @@ Two implementation steps have an \emph{access conflict} when they are on
 different threads and one writes a state component that the other either
 writes or reads.
 %
-This notion of access conflicts maps directly onto read and write access
-conflicts on real shared-memory machines.
+This notion of access conflicts maps directly onto the read and write access
+conflicts on real shared-memory machines explored in
+\cref{sec:scalability}.
 %
 A set of implementation steps is \emph{conflict-free}
 when no pair of steps in the set has an access conflict; that is, no
