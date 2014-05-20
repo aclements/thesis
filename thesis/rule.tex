@@ -1,11 +1,11 @@
 \section{The scalable commutativity rule}
 \label{sec:rule}
 
-\XXX[STATUS]{Expanded and reworked to focus on conflict-freedom vs
-  SOSP.
+\XXX[STATUS]{
+  v2: Applied Eddie init-244-ga695479.
+  v1: Expanded and reworked to focus on conflict-freedom vs SOSP.
 %  Planning to add non-commutative non-scalability rule and discussion
 %  of global clocks.
-  Applied: Eddie init-244-ga695479.
 }
 
 \Thiscref{sec:rule} addresses two questions: What is the precise
@@ -75,11 +75,14 @@ different threads.
 \scpr{H}{1}
 \scpr{G}{3}}
 
-A system execution is called a \emph{history}. For example:
+A system execution is called a \emph{history}. For example
 %
 \[H = \text{\scpline{\historyexample}}\]
 %
-\noindent We'll consider only \emph{well-formed} histories, in which
+consists of eight invocations and eight corresponding responses across
+three different threads.
+%
+We'll consider only \emph{well-formed} histories, in which
 each thread's actions form a sequence of invocation--response pairs.
 $H$ above is well-formed; checking this for the red thread $\scpt{$t$}{1}$, we
 see that the thread-restricted subhistory $\HRESTRICT{H}{\scpt{$t$}{1}} =
@@ -99,7 +102,7 @@ The \emph{specification} distinguishes whether or not a history is
 %
 A specification $\SPEC$ is a prefix-closed set of well-formed histories.
 %
-Its contents depend on the system being modeled; for example, if $\SPEC$
+The set's contents depend on the system being modeled; for example, if $\SPEC$
 specified a Unix-like OS, then
 $[\scpline{\scpi{A}{0}}=\code{getpid()},
 \scpline{\scpr{A}{0}}=0] \not\in \SPEC$, since no Unix thread can
@@ -115,22 +118,24 @@ aren't concerned with how it is constructed.
 Commutativity captures the idea that the order of a set
 of actions ``doesn't matter.''
 %
-This happens when the caller of an interface cannot distinguish which
-order actions actually occurred in, either through those actions'
+This happens when the caller of an interface cannot distinguish the
+order in which events actually occurred, either through those actions'
 responses or through any possible future actions.
 %
-The specification helps make this precise:
+To formalize this inability to distinguish orders, we use the
+specification.
 %
-a set of actions commutes in some context when the specification
+A set of actions commutes in some context when the specification
 is indifferent to the execution order of that set.
 %
 This means that any response valid for one order of the commutative set
 is valid for {any} order of the commutative set, and likewise any
 response invalid for one order is invalid for any order.
 %
-But the right definition for commutativity is a little tricky, so we
+The right definition for commutativity is a little tricky, so we
 build it up in two steps.
 
+\paragraph{Definition.}
 An action sequence, or region, $H'$ is a \emph{reordering}
 of an action sequence $H$ when $\HRESTRICT{H}{t} = \HRESTRICT{H'}{t}$ for
 every thread $t$.
@@ -150,6 +155,7 @@ $\text{\scpline{\scpi{B}{2} \scpi{C}{1} \scpr{B}{2} \scpr{C}{1}
     \scpi{A}{1} \scpr{A}{1}}}$
 is not, since it doesn't respect the order of actions in $H$'s red thread.
 
+\paragraph{Definition.}
 Consider a history $H = \HX \HCONCAT \HY$ (where $\HCONCAT$ concatenates
 action sequences).
 %
@@ -201,7 +207,7 @@ However, its prefix $\HY_1$
 %   [\scpline{\scpi{A}{1}}=\code{set(1)}, \scpline{\scpr{A}{1}},
 %    \scpline{\scpi{B}{2}}=\code{set(2)}, \scpline{\scpr{B}{2}}]\]
 % %
-does not \SI-commute because some orders set the value to 1 and some
+alone does not \SI-commute because some orders set the value to 1 and some
 to 2, so future \code{get} operations can distinguish them.
 %
 Whether or not $\HY_1$ will
@@ -211,6 +217,8 @@ operations in $\HY_1$ must ``plan for the worst'' by remembering their
 order, even if they ultimately form part of a \SI-commutative region.
 
 Requiring monotonicity eliminates this problem.
+
+\paragraph{Definition.}
 %
 An action sequence $\HY$ \emph{\SIM-commutes} in a history $H = \HX \HCONCAT
 \HY$ when for any \emph{prefix} $P$ of any reordering of $\HY$ (including
