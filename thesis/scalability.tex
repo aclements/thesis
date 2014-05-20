@@ -1,7 +1,8 @@
 \section{Scalability and conflict-freedom}
 \label{sec:scalability}
 
-\XXX[STATUS]{Draft v3 ready.
+\XXX[STATUS]{Draft v4 ready.
+  v4: Applied Eddie init-317-gdbaaa0d.
   v3: Moved back before the rule chapter.
   v2: Applied Frans init-154-g6dbae76.
   v1: New chapter vs SOSP.}
@@ -27,17 +28,15 @@
 % steady-state.  What can be done purely locally.  Any transition that
 % involves coordination represents a scalability hazard.
 
-Understanding scalability requires first understanding the machine.
+Understanding multicore scalability requires first understanding the
+hardware.
 %
-\Thiscref{sec:scalability} looks at the machine: it shows that, under
+\Thiscref{sec:scalability} shows that, under
 reasonable assumptions, conflict-free operations scale linearly on
 modern multicore hardware.
 %
-This establishes conflict-freedom as a property worth reasoning
-formally about in the following \lcnamecref{sec:rule}.  Together, the
-empirical result of \thiscref{sec:scalability} and the formal result
-of the next \lcnamecref{sec:rule} form the scalable commutativity
-rule.
+The following \lcnamecref{sec:rule} will use conflict-freedom as a
+stepping-stone in establishing the scalable commutativity rule.
 
 % This result will act as the bridge from the formal connection between
 % interface commutativity and conflict-free implementations established
@@ -56,8 +55,8 @@ did not scale.
 
 Today's multicores avoid such centralized components.  Modern, large,
 cache-coherent multicores utilize peer-to-peer interconnects between
-cores and sockets, partition and distribute physical memory between
-sockets (NUMA), and have deep cache hierarchies with per-core
+cores and sockets; partition and distribute physical memory between
+sockets (NUMA); and have deep cache hierarchies with per-core
 write-back caches.
 %
 To maintain a unified, globally consistent view of memory despite
@@ -121,20 +120,29 @@ basic communication required to maintain cache coherence.
 Roughly, a set of operations scales when maintaining coherence does
 not require communication in the steady state.
 %
-Multiple cores reading different cache lines scales because, once each
+There are three memory access patterns that do not require
+communication:
+\begin{itemize}
+\item
+Multiple cores \emph{reading different} cache lines.  This scales
+because, once each
 cache line is in each core's cache, no further communication is
 required to access it, so further reads can proceed independently of
 concurrent operations.
 %
-Likewise, multiple cores writing different cache lines scales for much
+\item
+Multiple cores \emph{writing different} cache lines scales for much
 the same reason.
 %
-Multiple cores reading the \emph{same} cache line also scales because
-the line can be kept in each core's cache in shared mode, allowing
-further reads to proceed independently and in parallel with no
-coordination.
+\item
+Multiple cores \emph{reading the same} cache line scales.
+A copy of the line can be kept in each core's cache in shared mode,
+which further reads from those cores can access without
+communication.
+\end{itemize}
 %
-These three conditions are synonymous with conflict-freedom.
+That is, when memory accesses are conflict-free, they do no require
+communication.
 %
 Furthermore, higher level operations composed of conflict-free reads
 and writes are
@@ -143,8 +151,13 @@ parallel.
 %
 In all of these cases, conflict-free operations execute in the same
 time in isolation as they do concurrently, so the total throughput of
-$N$ such concurrent operations is proportional to $N$.  Therefore,
-conflict-free operations scale.
+$N$ such concurrent operations is proportional to $N$.
+%
+Therefore, given a perfect implementation of MESI, conflict-free
+operations scale linearly.  The following sections verify this
+assertion holds on real hardware under reasonable workload assumptions
+and explore where it breaks down.
+
 
 The converse is also true: conflicting operations cause
 cache state transitions and the resulting coordination limits
@@ -156,12 +169,13 @@ coordinate and, as a result, will slow each other down.  While this
 doesn't directly concern the scalable commutativity rule (which says
 only when operations can be conflict-free, not when they must be
 conflicted), the huge effect that conflicts can have on scalability
-affirms the importance of conflict-freedom.
+affirms the importance of conflict-freedom.  The following sections
+also demonstrate the effect of conflicts on real hardware.
 
-The following sections verify that conflict-free operations scale
-linearly on real hardware, show that conflicts can severely limit
-scalability, and explore
-the practical limitations of conflict-free scalability.
+% The following sections verify that conflict-free operations scale
+% linearly on real hardware, show that conflicts can severely limit
+% scalability, and explore
+% the practical limitations of conflict-free scalability.
 
 
 \subsection{Conflict-free operations scale}
@@ -344,6 +358,12 @@ socket's physical memory, which this benchmark quickly exceeds.
 % The Intel machine has a similar directory, but it's integrated into
 % the L3~\cite{intel:e7-8870} and sufficiently provisioned even for
 % this benchmark.
+
+These benchmarks show some of the limitations to how far we can push
+conflict-freedom before it no longer aligns with scalability.
+Nevertheless, even in the worst cases demonstrated by these
+benchmarks, conflict-free operations both perform and scale far better
+than conflicted operations.
 
 \XXX[AC]{False sharing is another common limitation.}
 
