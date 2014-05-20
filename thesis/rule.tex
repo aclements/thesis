@@ -2,7 +2,8 @@
 \label{sec:rule}
 
 \XXX[STATUS]{
-  v3: Applied Eddie init-317-gdbaaa0d.
+  v3: Applied Eddie init-317-gdbaaa0d and Frans init-317-gdbaaa0d.
+  Put properties of \SIM commutativity before definition.
   v2: Applied Eddie init-244-ga695479.
   v1: Expanded and reworked to focus on conflict-freedom vs SOSP.
 %  Planning to add non-commutative non-scalability rule and discussion
@@ -547,10 +548,13 @@ an implementation of $\SPECRC$ that is conflict-free for $\HAB$.  In
 fact, this is already true of the shared counter reference
 implementation $\MRC$ because \code{iszero} reads the state, but does
 not change it.
-
+%
+On the other hand,
 $\HCD$ does not \SIM commute in $H$, and therefore the rule does not
 apply (indeed, no correct implementation can be conflict-free for
-$\HCD$).  However, the rule does suggest a direction: if we modify the
+$\HCD$).
+
+The rule suggests a direction to make $\HCD$ conflict-free: if we modify the
 specification so that \code{dec} (and \code{inc}) return nothing, then
 these modified operations \emph{do} commute (more precisely: any
 region consisting exclusively of these operations commutes in any
@@ -577,8 +581,9 @@ The equivalent history with this modified specification is
 \]
 
 Unlike $\HCD$, $\HCD'$ \SIM commutes.  And, accordingly, there is an
-implementation of $\SPECRC'$ that is conflict-free for $\HCD'$: using
-per-thread counters, each \code{dec} can modify its local counter,
+implementation of $\SPECRC'$ that is conflict-free for $\HCD'$.  By
+using per-thread counters, we can construct such an implementation.
+Each \code{dec} can modify its local counter,
 while \code{iszero} sums the per-thread values.  Per-thread and
 per-core sharding of data structures like this is a common and
 long-standing pattern in scalable implementations.
@@ -611,7 +616,7 @@ similar to $\SPECRC'$.
 
 \subsection{Proof}
 
-The implementations of the reference counter example were derived by
+We derived implementations of the reference counter example by
 hand, but a general, constructive proof for the scalable commutativity
 rule is possible.
 %
@@ -671,23 +676,28 @@ To understand the construction, it helps to first imagine constructing a
 %
 This non-scalable implementation begins in \emph{replay mode}.
 %
-While the input invocations match $H$, $\NSIMP$ responds exactly according to
-$H$, without invoking the reference.
+As long as each invocation matches the next invocation in $H$,
+$\NSIMP$ simply replays the
+corresponding responses from $H$, without invoking the reference
+implementation.
 %
-When the input invocations diverge from $H$, however, $\NSIMP$ no
-longer knows how to respond, so it enters \emph{emulation mode}.
+If the input invocations diverge from $H$, however, $\NSIMP$ can no
+longer replay responses from $H$, so it enters \emph{emulation mode}.
 %
 This requires feeding $M$ all previously received invocations to
-prepare its state.
+prepare its state.  After this, $\NSIMP$ responds by passing all
+invocations to the reference implementation and returning its
+responses.
 
 A state $s$ for $\NSIMP$ contains two components.
 %
-First, $s.h$ holds either the portion of $H$ that remains to be replayed
-or \EMULATE, which denotes emulation mode.
-It is initialized to $H$.
+First, $s.h$ either holds the portion of $H$ that remains to be replayed
+or has the value \EMULATE, which denotes emulation mode.
+$s.h$ is initialized to $H$.
 %
-Second, $s.\V{refstate}$ is the state of the reference
-implementation, and is initialized accordingly.
+Second, $s.\V{refstate}$ is the state of the reference implementation,
+and starts as the value of the reference implementation's initial
+state.
 %
 \Cref{fig:nonscalablesim} shows how the simulated implementation
 works.
