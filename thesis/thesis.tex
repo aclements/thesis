@@ -204,6 +204,14 @@
   \draw[overlay,black] (0,2mm) -- +(0,5mm) (0,-2mm) -- +(0,-5mm)
                        (2mm,0) -- +(5mm,0) (-2mm,0) -- +(-5mm,0);}
 
+\makeatletter
+\newcommand{\asterism}{%
+  \noindent\par\vspace{1em}%
+  {\hfill $*$ \hspace{3em} $*$ \hspace{3em} $*$ \hfill}\vspace{1em}%
+  \par\@afterindentfalse\@afterheading
+}
+\makeatother
+
 \bibpunct[: ]{[}{]}{,}{n}{XXX}{XXX}
 
 % Do always capitalize "Figure".  Also override the default "Fig."
