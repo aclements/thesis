@@ -12,7 +12,8 @@
 % Put hyperref in final mode; otherwise hyperlinks are disabled
 \usepackage[pdfauthor={Austin T. Clements},
             pdftitle={The Scalable Commutativity Rule: Designing Scalable Software for Multicore Processors},
-            breaklinks,hidelinks,final]{hyperref}
+            breaklinks,hidelinks,final,
+            bookmarksdepth=3]{hyperref}
 
 % Fonts
 \usepackage[T1]{fontenc}
@@ -231,6 +232,9 @@
   {\relax}%
   {\sscshape\Wordnum{\thechapter}}{1em}%
   {\huge\bfseries}[\titlerule]
+
+% Make the TOC only list chapters and sections
+\setcounter{tocdepth}{1}
 
 % Make tables use the same numbering and format as figures
 \makeatletter
