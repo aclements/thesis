@@ -208,13 +208,13 @@ or locking, but because no updates are necessary, it is often easy to
 make atomic.  If updates are necessary, the operation acquires
 locks or uses lock-free protocols, re-verifies its conditions to
 ensure atomicity of the update stage, and performs updates.  For
-example, \code{lseek} first computes the new offset using a lock-free
+example, \code{lseek} computes the new offset using a lock-free
 read-only protocol and returns early if the new offset is invalid or
 equal to the current offset.  Otherwise, \code{lseek} locks the file
 offset and re-computes the new offset to ensure consistency.
 %
 In fact, \code{lseek} has surprisingly complex interactions with
-system state and other operations, and arriving at a protocol that was
+state and other operations, and arriving at a protocol that was
 both correct and conflict-free in all commutative cases would have
 been difficult without \tool.
 
@@ -229,7 +229,7 @@ conflicts with other operations that look up \code{b}.
 %
 As we saw in \cref{sec:topic:rename-conditions}, \code{rename} has
 many surprising and subtle commutative cases and, much like
-\code{lseek}, \tool was instrumental in helping us arrive at an
+\code{lseek}, \tool was instrumental in helping us find an
 implementation that was conflict-free in these cases.
 
 
