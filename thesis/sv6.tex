@@ -27,10 +27,11 @@ would have required extensive changes throughout the Linux kernel.
 The designs of both RadixVM and \fs were guided by the
 commutativity rule.  For \fs, we relied heavily on \tool throughout
 development to guide its design and identify sharing problems in its
-implementation.  RadixVM
+implementation.  \vm
 was built prior to
 \tool, but was guided by manual reasoning about commutativity and
-conflicts, which we later validated using \tool.
+conflicts (which was feasible because of the virtual memory system's
+relatively simple interface).  We later validated \vm using \tool.
 
 \begin{figure*}
 \small
@@ -42,9 +43,7 @@ conflicts, which we later validated using \tool.
 
 \Cref{fig:testcase-breakdown-sv6} shows the result of applying \tool
 to \sys.  In contrast with Linux, \sys is conflict-free for nearly
-every commutative test case.  The rest of \thiscref{sec:sv6} describes
-the design of \sys and how it achieves conflict-freedom for cases
-where current file and virtual memory systems do not.
+every commutative test case.
 
 For a small number of commutative operations, \sys is not
 conflict-free.  Some appear to require implementations that would be
@@ -58,6 +57,10 @@ scalability is no different.  However, the presence of the rule forced
 us to explicitly recognize, evaluate, and justify where we made such
 trade-offs.
 
+The rest of \thiscref{sec:sv6} describes
+the design of \sys and how it achieves conflict-freedom for cases
+where current file and virtual memory systems do not.
+%
 \Thiscref{sec:sv6} starts with the design of Refcache, a scalable reference
 counting mechanism used throughout \sys.  It then covers the designs
 of RadixVM and \fs.  Finally, it discusses operations that are
