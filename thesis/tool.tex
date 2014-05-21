@@ -295,7 +295,7 @@ execution systematically explores its hidden complexity, revealing the
 many combinations of state and arguments for which two rename calls
 commute.
 
-\XXX![AC]{Make point here that we would only have been able to find
+\XXX[AC]{Make point here that we would only have been able to find
   one of these cases without a state-sensitive definition of
   commutativity?}
 
@@ -370,8 +370,8 @@ Finally, after executing both reorderings of \code{rename/rename},
 operation's return value is equivalent in both permutations and if the
 system states reached by both permutations are equivalent.  This, too,
 is symbolic and may fork execution if it's still possible for the pair
-of operations to be either commutative or non-commutative (we see two
-such forks in \cref{fig:rename-branching}).
+of operations to be either commutative or non-commutative
+(\cref{fig:rename-branching} contains two such forks).
 
 Together, the set of path conditions that pass this final
 commutativity test are the commutativity condition of this pair of
