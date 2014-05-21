@@ -46,7 +46,7 @@ kernel.
 
 Owing to complex invariants in virtual memory systems,
 widely used kernels such as Linux and FreeBSD protect each address
-space with a single lock.  This induces not only conflicts but, often,
+space with a single lock.  This induces both conflicts and, often,
 complete serialization between commutative VM operations on the same
 address space, which can dramatically limit application
 scalability~\cite{boyd-wickizer:scaling,clements:bonsai}.
@@ -59,8 +59,8 @@ allocator is reluctant to return memory to the OS precisely because of
 scaling problems with \code{munmap} and as a result applications tie
 up gigabytes of memory until they exit.
 %
-This delays the start of other applications and can cause servers to
-be used inefficiently.
+This delays the start of other applications and uses servers
+inefficiently.
 %
 Engineers from other companies have reported similar problems to us.
 
@@ -217,10 +217,10 @@ lock-free data structure to cover these broader invariants.
   \label{fig:skiplist}
 \end{figure}
 
-\paragraph{Straw-man solution.}
 This raises the question: what is a good conflict-free data structure
 for virtual memory metadata?
 
+\paragraph{Straw-man solution.}
 A (completely impractical) way to achieve conflict-free commutative
 address space
 operations is to represent a process's address space as a large linear
@@ -236,21 +236,9 @@ precise range locking makes maintaining invariants across structures
 relatively straightforward.
 
 \paragraph{Compressed radix trees.}
-The design of \vm follows the same general
+\vm follows the same general
 scheme as this straw-man design, but reins in its memory consumption
 using a multilevel, compressed radix tree.
-
-\begin{figure}
-  \centering
-  \includegraphics{figures/radix.pdf}
-  %
-  \splitcaption{A radix tree containing a three page file
-    mapping.}{This highlights the path for looking up the 36-bit
-    virtual page number shown in binary at the top of the figure.  The
-    last level of the tree contains separate mapping metadata for each
-    page.}
-  \label{fig:radix}
-\end{figure}
 
 \vm's internal address space representation resembles a hardware page table
 structurally, storing mapping metadata in a fixed-depth radix tree,
@@ -275,6 +263,18 @@ conflict with other operations in that same subtree, even if their
 regions do not ultimately overlap.  However, after initial address
 space construction, the radix tree is largely ``fleshed out'' and
 these initialization conflicts become rare.
+
+\begin{figure}
+  \centering
+  \includegraphics{figures/radix.pdf}
+  %
+  \splitcaption{A radix tree containing a three page file
+    mapping.}{This highlights the path for looking up the 36-bit
+    virtual page number shown in binary at the top of the figure.  The
+    last level of the tree contains separate mapping metadata for each
+    page.}
+  \label{fig:radix}
+\end{figure}
 
 \paragraph{Mapping metadata.}
 To record each mapping, \vm logically stores a separate instance of
@@ -369,7 +369,7 @@ With TLB tracking, if an application thread
 allocates, accesses, and frees memory on one core, with no other threads
 accessing the same memory region, then \vm will perform no TLB shootdowns.
 
-The obvious downside to this approach is the extra memory required for
+The downside to this approach is the extra memory required for
 per-core page tables.  We show in \cref{sec:eval:memory} that this
 overhead is small in practice compared to the total memory footprint
 of an application, but for applications with poor partitioning, it may
