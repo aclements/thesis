@@ -64,9 +64,9 @@ their distributed architecture, multicores depend on MESI-like
 coherence protocols~\cite{papamarcos:mesi} to coordinate ownership of
 cached memory.
 %
-A key invariant of these coherence protocols is that either a cache
-line is not present in any cache, a mutable copy is present in a
-single cache, or the line is present in any number of caches but is
+A key invariant of these coherence protocols is that either 1) a cache
+line is not present in any cache, 2) a mutable copy is present in a
+single cache, or 3) the line is present in any number of caches but is
 immutable.
 %
 Maintaining this invariant requires coordination, and this is where
@@ -110,8 +110,8 @@ the connection to scalability lies.
 
 \Cref{fig:mesi} shows the basic state machine implemented by each
 cache for each cache line.  This maintains the above invariant by
-ensuring a cache line is either invalid in all caches, modified in one
-cache and invalid in all others, or shared by any number of caches.
+ensuring a cache line is either ``invalid'' in all caches, ``modified'' in one
+cache and ``invalid'' in all others, or ``shared'' in any number of caches.
 Practical implementations add further states---MESI's ``exclusive''
 state, Intel's ``forward'' state~\cite{goodman:mesif}, and AMD's
 ``owned'' state~\cite[\S7.3]{amd-arch-2}---but these do not change the
@@ -141,10 +141,10 @@ which further reads from those cores can access without
 communication.
 \end{itemize}
 %
-That is, when memory accesses are conflict-free, they do no require
+That is, when memory accesses are conflict-free, they do not require
 communication.
 %
-Furthermore, higher level operations composed of conflict-free reads
+Furthermore, higher-level operations composed of conflict-free reads
 and writes are
 themselves conflict-free and will also execute independently and in
 parallel.
@@ -188,7 +188,7 @@ Intel Xeon E7-8870 (the same machine used for evaluation in
 48-core (8 sockets $\times$ 6 cores) AMD Opteron 8431.
 %
 Both are cc-NUMA x86 machines with directory-based cache coherence,
-but two manufacturers use different architectures, interconnects, and
+but the two manufacturers use different architectures, interconnects, and
 coherence protocols.
 %
 \Cref{fig:machines} shows how the
@@ -261,12 +261,12 @@ distribution of write latencies, which further illustrates this
 serialization, as some cores acquire ownership quickly, while others
 take much longer.
 
-For comparison, a single complex system call like \code{open}
+For comparison, an operation like \code{open}
 typically takes 1,000--2,000 cycles on these machines, while a single
-conflicting write can take upwards of 50,000 cycles.
+conflicting write instruction can take upwards of 50,000 cycles.
 %
-In the time it takes one thread to perform a single write to a highly
-contended cache line, another could open 25 files.
+In the time it takes one thread to execute this one machine
+instruction, another could open 25 files.
 
 % On the AMD machine, the growth of the mean latency and the spread of
 % the distribution are noticeably super-linear as the benchmark adds
@@ -308,9 +308,9 @@ scalability of conflict-free operations.
 Satisfying a cache miss (due to conflicts or capacity) requires the
 cache to fetch the cache line from another cache or from memory.
 %
-If this requires communicating with remote cores or remote memory, the
+If this requires communicating with remote cores or memory, the
 fetch may contend with concurrent operations for interconnect
-resources or the remote memory controller.
+resources or memory controller bandwidth.
 
 Applications with good cache behavior are unlikely to exhibit such
 issues, while applications with poor cache behavior usually have
