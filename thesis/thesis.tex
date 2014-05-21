@@ -50,6 +50,7 @@
 \usepackage{ifdraft}
 \usepackage{titlesec}
 \usepackage{cleveref} % After hyperref, listings
+\usepackage{fancyhdr}
 \IfFileExists{microtype.sty}{
   \usepackage{microtype}
 }{
@@ -60,8 +61,16 @@
 % Local packages below here
 
 \usepackage{xxxnotes}
-\usepackage{gitinfo}
 \usepackage{wordnum}
+% Set up fancyhdr before gitinfo
+\fancypagestyle{plain}{%
+  \fancyhead{}
+  \renewcommand{\headrulewidth}{0pt}
+}
+% If I just \pagestyle{plain}, the left and right footers shift back
+% and forth on each page.
+\AtBeginDocument{\pagestyle{plain}}
+\usepackage{gitinfo}
 
 \usepackage{scp-macros}
 \usetikzlibrary{calc}

@@ -11,10 +11,5 @@
 \ifgitinfo
 \input{gitinfo.tex}
 
-\fancypagestyle{plain}{
-  \fancyhead{}
-  \renewcommand{\headrulewidth}{0pt}
-  \fancyfoot[R]{{\bf Revision:} \gitid}
-}
-\AtBeginDocument{\pagestyle{plain}}
+\fancyfoot[R]{{\bf Revision:} \gitid}
 \fi
