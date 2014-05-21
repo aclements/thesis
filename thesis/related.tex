@@ -30,11 +30,11 @@ interface, our work encompasses any software interface.
 % about the existence of an implementation.
 %
 Attiya et al. extend Israeli and Rappoport's definition to additionally require
-conflict-free operations to scale~\cite{attiya:disjoint}.
+non-disjoint reads to scale~\cite{attiya:disjoint}.
 %
 Our work builds on the assumption that
-memory systems behave this way, and we indirectly confirm that real hardware
-closely approximates this behavior~(\cref{sec:eval}).
+memory systems behave this way, and we confirm that real hardware
+closely approximates this behavior~(\cref{sec:scalability}).
 
 % They have a fixed interface (asynchronous shared memory) and show specific
 % implementations with disjoint-access parallelism.
@@ -63,9 +63,10 @@ hardware, a single modified
 shared cache line can wreck
 scalability (\cref{sec:scalability,sec:eval}).
 
-The Laws of Order~\cite{law:orders} explore the relationship between an
-interface's \emph{strong non-commutativity} and whether its implementation
-requires atomic instructions or fences (e.g., \code{mfence} on the x86) for
+The Laws of Order~\cite{law:orders} explore the relationship between
+the \emph{strong non-commutativity} of an interface and whether any
+implementation of that interface
+must have atomic instructions or fences (e.g., \code{mfence} on the x86) for
 correct concurrent execution.  These instructions slow down execution by
 interfering with out-of-order execution, even if there are no memory access
 conflicts.  The Laws of Order resemble the commutativity rule, but draw
@@ -124,6 +125,14 @@ identifies situations
 where POSIX permits or limits scalability and points out specific interface
 modifications that would permit greater implementation scalability.
 
+Venerable scalable kernels like K42~\cite{appavoo:k42},
+Tornado~\cite{tornado}, and Hurricane~\cite{hurricane} have developed
+design patterns like clustered objects and locality-preserving IPC as
+general building blocks of scalable kernels.  These patterns
+complement the scalable commutativity rule by suggesting practical
+ways to achieve conflict-freedom for commutative operations as well as
+ways to cope with non-commutative operations.
+
 Multikernels for multicore processors aim for scalability by avoiding shared
 data structures in the kernel~\cite{barrelfish:sosp,wentzlaff:fos}.  These
 systems implement shared abstractions using distributed systems techniques (such
@@ -150,7 +159,8 @@ The use of commutativity to increase concurrency has been widely explored.
 Steele describes a parallel programming discipline in which all operations must
 be either
 causally related or commutative~\cite{steele:commutativity}.  His work
-approximates commutativity as conflict-freedom.  Our work shows that commutative
+approximates commutativity as conflict-freedom.  This dissertation
+shows that commutative
 operations always have a conflict-free implementation, making Steele's model
 more broadly applicable.
 %
@@ -166,7 +176,7 @@ analysis~\cite{prabhu:cset}.
 Rinard and Prabhu's work focuses
 on the \emph{safety} of executing commutative operations concurrently.  This
 gives operations the opportunity to scale, but does not ensure that they will.
-Our work focuses on scalability: given concurrent, commutative
+Our work focuses on scalability directly: given concurrent, commutative
 operations, we show they have a scalable implementation.
 
 The database community has long used logical readsets and writesets, conflicts,
