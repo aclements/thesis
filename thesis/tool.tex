@@ -294,10 +294,11 @@ Despite \code{rename}'s seeming simplicity, \analyzer's symbolic
 execution systematically explores its hidden complexity, revealing the
 many combinations of state and arguments for which two rename calls
 commute.
-
-\XXX[AC]{Make point here that we would only have been able to find
-  one of these cases without a state-sensitive definition of
-  commutativity?}
+%
+Here we see again the value of \SIM commutativity: every condition
+above except the self-rename case depends on state and would not have
+been captured by a traditional, non-state-sensitive definition of
+commutativity.
 
 
 % Derived from figures/tree.tex
@@ -393,22 +394,6 @@ implementation scale for commutative cases.
 automates reasoning about all possible system states, all possible
 sets of operations that can be
 invoked, and all possible arguments to those operations.
-
-\XXX[AC]{Are these examples that enlightening?  Do they just reinforce
-the ``corner case'' mentality?
-
-For
-example, creating two files in two different directories might appear to
-be obviously commutative, but in fact if the file system has exactly one
-free inode left, these two operations do not commute.
-%
-As another example, the \code{open()} and \code{stat()} system calls
-generally commute if they refer to different file names, but there are a
-number of non-obvious cases: e.g., the two operations do not commute if one
-of the files does not exist, the other is a symlink to the first, and
-\code{open} is invoked with \code{O_CREAT}; or if one file exists and is
-non-empty, the other is a symlink to the first, and \code{open} is invoked
-with \code{O_TRUNC}.}
 
 
 \subsection{\testgen}
