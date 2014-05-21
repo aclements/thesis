@@ -149,6 +149,13 @@ operations. This agrees with previous
 findings~\cite{boyd-wickizer:scaling,clements:radixvm,clements:bonsai},
 which demonstrated these problems in the context of several applications.
 
+\Cref{fig:testcase-breakdown-linux} also reveals many previously
+unknown bottlenecks that may be triggered by future workloads or
+hardware.
+
+The next \lcnamecref{sec:sv6} shows how these current and future
+bottlenecks can be removed in a practical implementation of POSIX.
+
 % Another source of non-scalability is
 % needless lock acquisition: for instance, Linux locks an inode when
 % truncating the file in \code{open(O_TRUNC)} even if the file is
