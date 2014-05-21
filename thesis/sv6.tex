@@ -12,8 +12,8 @@
 }
 
 Given that many commutative operations are not conflict-free in Linux,
-is it feasible to build file system and virtual memory systems that
-do achieve conflict-freedom?
+is it feasible to build file systems and virtual memory systems that
+do achieve conflict-freedom for commutative operations?
 %
 To answer this
 question, we designed and implemented a \code{ramfs}-like in-memory
@@ -42,37 +42,27 @@ conflicts, which we later validated using \tool.
 
 \Cref{fig:testcase-breakdown-sv6} shows the result of applying \tool
 to \sys.  In contrast with Linux, \sys is conflict-free for nearly
-every commutative test case.  The rest of \thiscref{sec:sv6} explores the
-design of \sys and answers the following questions:
+every commutative test case.  The rest of \thiscref{sec:sv6} describes
+the design of \sys and how it achieves conflict-freedom for cases
+where current file and virtual memory systems do not.
 
-\begin{CompactItemize}
-
-\item What techniques are necessary to achieve conflict-freedom for
-      cases where current file and virtual memory systems are not?
-
-\item What situations might be too difficult or impractical to
-      make conflict-free, despite being commutative?
-
-\end{CompactItemize}
+For a small number of commutative operations, \sys is not
+conflict-free.  Some appear to require implementations that would be
+incompatible with conflict-freedom in other cases.  In these
+situations, we preferred the conflict-freedom of the cases we
+considered more important.  Other non-conflict-free cases represent
+intentional engineering decisions in the interest of practical
+constraints on memory consumption and sequential performance.  Complex
+software systems inevitably involve conflicting requirements, and
+scalability is no different.  However, the presence of the rule forced
+us to explicitly recognize, evaluate, and justify where we made such
+trade-offs.
 
 \Thiscref{sec:sv6} starts with the design of Refcache, a scalable reference
 counting mechanism used throughout \sys.  It then covers the designs
 of RadixVM and \fs.  Finally, it discusses operations that are
 difficult to make conflict-free without sacrificing other practical
 concerns.
-
-\XXX[AC]{I think we need to be clear that none of these subsystems
-  100\% follows the rule, but that that's okay from an engineering
-  standpoint.  Work this in when I make this chapter more broadly
-  about \sys.  E.g.,
-
-  Like \refcache, \vm sacrifices strict adherence to the scalable
-  commutativity rule in the interest of practical constraints on
-  memory consumption and sequential performance.  Complex software
-  systems inevitably involve conflicting requirements and scalability
-  is no different.  However, in designing \vm, the presence of the
-  rule forced us to explicitly recognize, evaluate, and justify where
-  we made such trade-offs.}
 
 \input{sv6-refcache}
 
@@ -300,6 +290,12 @@ end; however, since there's generally no way to know a priori if a
 some situations.  Other cases involve operations that return the same
 result in either order, but for different reasons, such as two reads
 from a file filled with identical bytes.
+%
+By the rule, each of these cases has some conflict-free
+implementation, but making these particular cases conflict-free would
+have required sacrificing the conflict-freedom of many other
+operations.
+
 
 \XXX[AC]{fstest works around all radix tree expansion.  Is this
 cheating?  That's actually an interesting case.}
