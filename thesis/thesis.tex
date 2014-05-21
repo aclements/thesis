@@ -141,6 +141,9 @@
 % use $math$ in \code.
 \makeatletter
 \def\code{\protect\@code}
+\newlength\code@factor
+\setlength\code@factor{0.8675799086757991pt}
+\def\codefont{\fontsize{\f@size\code@factor}{\f@size\code@factor}\sffamily}
 % Underscore trick derived from http://tex.stackexchange.com/a/146066
 \begingroup
 % At definition time the token `_` must be active
@@ -152,10 +155,8 @@
 \endgroup
 \def\@code#1{\ifmmode\text{\@@code{#1}}\else\@@code{#1}\fi}
 % Match x-height of 10.95pt Minion Pro to 9.5pt Lato
-\newlength\code@factor
-\setlength\code@factor{0.8675799086757991pt}
 \def\@@code#1{\begingroup\code@activate@us
-  \fontsize{\f@size\code@factor}{\f@size\code@factor}\sffamily
+  \codefont
   \scantokens{#1\endinput}%
   \endgroup
 }
@@ -169,6 +170,8 @@
 % Or don't typeset command names differently
 %\newcommand{\cmd}[1]{#1}
 %\newcommand{\gpcmd}[1]{#1}
+
+\def\UrlFont{\codefont}
 
 \RecustomVerbatimEnvironment{Verbatim}{Verbatim}{formatcom=\footnotesize}
 
