@@ -275,7 +275,7 @@ for $\HY_1 \HCONCAT \HY_2$ to \SI-commute after region $\HX$ even
 though $\HY_1$ without $\HY_2$ does not.
 %
 For example, consider a
-\code{get}/\code{set} interface and the action sequence
+\code{get}/\code{set} interface and the history
 %
 \[\HY =
   [\underbrace{
@@ -285,8 +285,8 @@ For example, consider a
      \scpline{\scpi{C}{1}}=\code{set(2)}, \scpline{\scpr{C}{1}}}_{\HY_2}].
 \]
 %
-\(\HY\) \SI-commutes in any history because \code{set} never returns
-anything and every reordering sets the underlying value to 2, so
+\(\HY\) \SI-commutes because \code{set} returns
+nothing and every reordering sets the underlying value to 2, so
 future \code{get} operations cannot distinguish reorderings of $\HY$.
 %
 However, its prefix $\HY_1$
@@ -303,7 +303,7 @@ ultimately form part of a commutative region thus depends on \emph{future}
 operations!  This is usually incompatible with scalability:
 operations in $\HY_1$ must ``plan for the worst'' by remembering their
 order, even if they ultimately form part of a \SI-commutative region.
-
+%
 Requiring monotonicity eliminates this problem.
 
 \paragraph{Definition.}
@@ -479,7 +479,8 @@ Then there exists a correct implementation $m$ of $\SPEC$ whose steps in
 the $\HY$ region of $H$ are conflict-free.
 %
 Empirically, conflict-free operations scale linearly on modern
-multicore hardware, so, given reasonable workload assumptions,
+multicore hardware (\cref{sec:scalability}), so, given reasonable
+workload assumptions,
 $m$ scales in the $\HY$ region of $H$.
 
 % \XXX[rtm]{``the ... $\HY$ region'' seems to imply that $m$ must
