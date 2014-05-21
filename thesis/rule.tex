@@ -347,7 +347,7 @@ repeatedly picks which thread to take a step on and passes state from
 one application of the step
 function to the next.
 %
-Special \CONTINUE\ actions let the step function request that the
+Special \YIELD\ responses let the step function request that the
 driver ``run'' a different thread and let us represent
 concurrent overlapping operations and blocking operations.
 
@@ -356,7 +356,7 @@ We begin by defining three sets:
 \begin{CompactItemize}
 \item $S$ is the set of implementation states.
 \item $I$ is the set of valid invocations, including \CONTINUE.
-\item $R$ is the set of valid responses, including \CONTINUE.
+\item $R$ is the set of valid responses, including \YIELD.
 \end{CompactItemize}
 
 \paragraph{Definition.}
@@ -367,7 +367,7 @@ implementation produces a new state and a response.
 The response
 must have the same thread as the invocation.
 %
-A \CONTINUE\ response indicates that a real response for that thread is
+A \YIELD\ response indicates that a real response for that thread is
 not yet ready,
 and gives the driver the opportunity to take a step on a different
 thread without a real response from the current thread.
@@ -378,7 +378,7 @@ outstanding request on that thread (or further delay its response).%
 \footnote{There are restrictions on how a driver can choose arguments
   to the step function.  We assume, for example, that
   it passes a \CONTINUE\ invocation for thread $t$
-  if and only if $t$ has an outstanding request.
+  if and only if the last step on $t$ returned \YIELD.
   Furthermore, since implementations are functions, they must be
   deterministic. We could model implementations instead as relations,
   allowing non-determinism, though this would complicate later arguments
@@ -401,9 +401,9 @@ shows an implementation $m$ generating a history
 \scpline{\scpi{A}{1} \scpi{B}{2} \scpr{B}{2} \scpr{A}{1}}:
 
 \begin{CompactItemize}
-\item $m(s_0, \text{\scpline{\scpi{A}{1}}}) = \langle s_1, \scpt{\CONTINUE}{1} \rangle$
-\item $m(s_1, \text{\scpline{\scpi{B}{2}}}) = \langle s_2, \scpt{\CONTINUE}{2} \rangle$
-\item $m(s_2, \scpt{\CONTINUE}{1}) = \langle s_3, \scpt{\CONTINUE}{1} \rangle$
+\item $m(s_0, \text{\scpline{\scpi{A}{1}}}) = \langle s_1, \scpt{\YIELD}{1} \rangle$
+\item $m(s_1, \text{\scpline{\scpi{B}{2}}}) = \langle s_2, \scpt{\YIELD}{2} \rangle$
+\item $m(s_2, \scpt{\CONTINUE}{1}) = \langle s_3, \scpt{\YIELD}{1} \rangle$
 \item $m(s_3, \scpt{\CONTINUE}{2}) = \langle s_4, \text{\scpline{\scpr{B}{2}}}\rangle$
 \item $m(s_4, \scpt{\CONTINUE}{1}) = \langle s_5, \text{\scpline{\scpr{A}{1}}}\rangle$
 \end{CompactItemize}
@@ -411,7 +411,7 @@ shows an implementation $m$ generating a history
 \noindent The state is threaded from step to step;
 invocations appear as arguments and responses as
 return values. The generated history consists of the invocations
-and responses, in order, with \CONTINUE{}s removed.
+and responses, in order, with \YIELD{}s and \CONTINUE{}s removed.
 
 An implementation $m$ is \emph{correct} for some specification $\SPEC$
 when the responses it generates are always allowed by the specification.
@@ -643,7 +643,7 @@ region, $m$ scales.
 \(\NSIMP(s, a) \equiv\)
 ~~~If \(\HEAD(s.h) = a\):
 ~~~    \(r \gets \CONTINUE\)
-~~~else if \(a = \CONTINUE\) and \(\HEAD(s.h)\) is a response
+~~~else if \(a = \YIELD\) and \(\HEAD(s.h)\) is a response
 ~~~              and \(\THREAD(\HEAD(s.h)) = \THREAD(a)\):
 ~~~    \(r \gets \HEAD(s.h)\)   \COMMENT{replay $s.h$}
 ~~~else if \(s.h \neq \EMULATE\):   \COMMENT{$H$ complete or input diverged}
@@ -742,7 +742,7 @@ All future responses will still be valid according to the specification.
 ~~~    \(s.\V{commute}[t] \gets \TRUE\);~ \(s.h[t] \gets \TAIL(s.h[t])\)
 ~~~If \(\HEAD(s.h[t]) = a\):
 ~~~    \(r \gets \CONTINUE\)
-~~~else if \(a = \CONTINUE\) and \(\HEAD(s.h[t])\) is a response
+~~~else if \(a = \YIELD\) and \(\HEAD(s.h[t])\) is a response
 ~~~              and \(\THREAD(\HEAD(s.h[t])) = t\):
 ~~~    \(r \gets \HEAD(s.h[t])\)   \COMMENT{replay $s.h$}
 ~~~else if \(s.h[t] \neq \EMULATE\):   \COMMENT{$H$ complete/input diverged}
