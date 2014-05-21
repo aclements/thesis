@@ -139,7 +139,7 @@ The rest of this \lcnamecref{sec:rule:sim-commutativity} formalizes
 this intuition as \emph{\SIM commutativity}.
 
 Our definition has two goals: state dependence and interface basis.
-
+%
 \emph{State dependence} means \SIM commutativity must to capture when
 operations commute in some states, even if those same operations do
 not commute in other states.
@@ -312,7 +312,7 @@ An action sequence $\HY$ \emph{\SIM-commutes} in a history $H = \HX \HCONCAT
 \HY$ when for any \emph{prefix} $P$ of any reordering of $\HY$ (including
 $P = \HY$), $P$ \SI-commutes in $\HX \HCONCAT P$.
 
-Return to the \code{get}/\code{set} example, while the sequence $Y$
+Returning to the \code{get}/\code{set} example, while the sequence $Y$
 given in the example \SI-commutes (in any history), $\HY$ does \emph{not}
 \SIM-commute because its prefix $\HY_1$ is not \SI commutative.
 
