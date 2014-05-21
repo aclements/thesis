@@ -87,8 +87,8 @@ precisely control sharing.  We believe that, as large multicores and
 highly parallel applications become more prevalent, prefetcher
 heuristics will likewise evolve to not induce this false sharing.
 
-As a performance baseline, we compare against the same
-benchmarks running on Linux~3.5.7 from Ubuntu Quantal.
+As a performance baseline, we run the same
+benchmarks on Linux~3.5.7 from Ubuntu Quantal.
 %
 All benchmarks compile and run on Linux and \sys without modifications.
 %
@@ -742,7 +742,7 @@ sequential performance.  \Thiscref{sec:eval:memory} turns to memory
 overhead, another important performance metric.
 
 While \fs's data structures closely resemble those of traditional Unix
-kernels, \vm's scalability depends on a less-compact representation of
+kernels, the scalability of \vm depends on a less-compact representation of
 virtual memory than a traditional binary tree of memory regions and
 per-core page tables.
 
