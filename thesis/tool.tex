@@ -26,9 +26,9 @@ tool named \tool, whose components are shown in
 \end{figure*}
 
 First, \analyzer takes a symbolic model of
-an interface and computes precise conditions under which that interface's
-operations commute.  Second, \testgen takes
-these conditions and generates concrete test cases of sets of operations
+an interface and computes precise conditions for when that interface's
+operations commute.  Second, \testgen uses
+these conditions to generate concrete tests of sets of operations
 that commute according to the interface model, and thus should
 have a conflict-free implementation according to the commutativity rule.
 %
@@ -263,7 +263,7 @@ those already revealed by pairs.
 
 By symbolically executing \code{commutes2} for two \code{rename}
 operations, \code{rename(a, b)} and \code{rename(c, d)}, \analyzer
-determines that these operations commute if any of the following hold:
+computes that these operations commute if any of the following hold:
 
 \begin{CompactItemize}
 \item Both source files exist, and the file names are all different
