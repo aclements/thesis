@@ -92,7 +92,14 @@ spell:
 	@ for i in $(SPELLTEX) *.bbl; do aspell \
 		--mode=tex \
 		--add-tex-command="pyexpr p" \
-		--add-tex-command="XXX oo" \
+		--add-tex-command="XXX op" \
+		--add-tex-command="code p" \
+		--add-tex-command="cmd p" \
+		--add-tex-command="cref p" \
+		--add-tex-command="Cref p" \
+		--add-tex-command="thiscref p" \
+		--add-tex-command="Thiscref p" \
+		--add-tex-command="lcnamecref p" \
 		-p ./aspell.words -c $$i; done
 	@ for i in $(SPELLTEX); do perl bin/double.pl $$i; done
 	@ bash bin/hyphens.sh $(SPELLTEX)
