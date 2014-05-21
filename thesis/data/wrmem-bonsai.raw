@@ -1,4 +1,4 @@
-== id=2013-02-11T19:24:33-0500 bench=wrmem kernel=Linux host=ben krel=2.6.37-amdragon-cbtree-all+ kver="#7 SMP Sun Jul 17 13:53:55 EDT 2011" ==
+== id=2014-05-21T14:35:39-0400 bench=wrmem kernel=Linux host=ben krel=2.6.37-amdragon-cbtree-all+ kver="#7 SMP Sun Jul 17 13:53:55 EDT 2011" ==
 
 # --size=4000M
 # --cores=1
@@ -6,7 +6,7 @@
 done with map
 done with map and reduce
 Runtime in millisecond [1 cores]
-	Sample:	10065	Map:	203094	Reduce:	10362	Merge:	5	Sum:	223528	Real:	223529	
+	Sample:	8922	Map:	214095	Reduce:	4102	Merge:	1	Sum:	227122	Real:	227122	
 Number of Tasks
 	Sample:	1	Map:	15	Reduce:	439	
 
@@ -22,7 +22,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [10 cores]
-	Sample:	1689	Map:	25354	Reduce:	4035	Merge:	6	Sum:	31086	Real:	31087	
+	Sample:	1024	Map:	23080	Reduce:	3008	Merge:	0	Sum:	27114	Real:	27115	
 Number of Tasks
 	Sample:	10	Map:	150	Reduce:	439	
 
@@ -38,7 +38,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [20 cores]
-	Sample:	918	Map:	14754	Reduce:	2399	Merge:	10	Sum:	18083	Real:	18084	
+	Sample:	711	Map:	12190	Reduce:	1767	Merge:	1	Sum:	14670	Real:	14671	
 Number of Tasks
 	Sample:	20	Map:	300	Reduce:	439	
 
@@ -54,7 +54,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [30 cores]
-	Sample:	777	Map:	11690	Reduce:	1242	Merge:	8	Sum:	13719	Real:	13721	
+	Sample:	673	Map:	8278	Reduce:	916	Merge:	1	Sum:	9870	Real:	9871	
 Number of Tasks
 	Sample:	30	Map:	450	Reduce:	480	
 
@@ -70,7 +70,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [40 cores]
-	Sample:	704	Map:	11013	Reduce:	1000	Merge:	8	Sum:	12726	Real:	12729	
+	Sample:	744	Map:	6863	Reduce:	898	Merge:	2	Sum:	8507	Real:	8510	
 Number of Tasks
 	Sample:	40	Map:	600	Reduce:	640	
 
@@ -86,7 +86,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [50 cores]
-	Sample:	805	Map:	11271	Reduce:	1121	Merge:	5	Sum:	13203	Real:	13207	
+	Sample:	984	Map:	6134	Reduce:	772	Merge:	2	Sum:	7893	Real:	7896	
 Number of Tasks
 	Sample:	50	Map:	750	Reduce:	800	
 
@@ -102,7 +102,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [60 cores]
-	Sample:	672	Map:	9231	Reduce:	1930	Merge:	6	Sum:	11841	Real:	11845	
+	Sample:	888	Map:	5442	Reduce:	616	Merge:	2	Sum:	6949	Real:	6953	
 Number of Tasks
 	Sample:	60	Map:	900	Reduce:	960	
 
@@ -118,7 +118,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [70 cores]
-	Sample:	598	Map:	9154	Reduce:	1923	Merge:	3	Sum:	11680	Real:	11685	
+	Sample:	903	Map:	5125	Reduce:	553	Merge:	2	Sum:	6585	Real:	6590	
 Number of Tasks
 	Sample:	70	Map:	1050	Reduce:	1120	
 
@@ -134,439 +134,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [80 cores]
-	Sample:	623	Map:	9897	Reduce:	1931	Merge:	4	Sum:	12456	Real:	12462	
-Number of Tasks
-	Sample:	80	Map:	1200	Reduce:	1280	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=1
-# --malloc=256K
-done with map
-done with map and reduce
-Runtime in millisecond [1 cores]
-	Sample:	9731	Map:	202293	Reduce:	10342	Merge:	2	Sum:	222369	Real:	222370	
-Number of Tasks
-	Sample:	1	Map:	15	Reduce:	439	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=10
-# --malloc=256K
-done with map
-done with map and reduce
-Runtime in millisecond [10 cores]
-	Sample:	1396	Map:	25049	Reduce:	4099	Merge:	3	Sum:	30549	Real:	30550	
-Number of Tasks
-	Sample:	10	Map:	150	Reduce:	439	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=20
-# --malloc=256K
-done with map
-done with map and reduce
-Runtime in millisecond [20 cores]
-	Sample:	763	Map:	13294	Reduce:	2935	Merge:	8	Sum:	17001	Real:	17003	
-Number of Tasks
-	Sample:	20	Map:	300	Reduce:	439	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=30
-# --malloc=256K
-done with map
-done with map and reduce
-Runtime in millisecond [30 cores]
-	Sample:	527	Map:	8614	Reduce:	1390	Merge:	9	Sum:	10541	Real:	10543	
-Number of Tasks
-	Sample:	30	Map:	450	Reduce:	480	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=40
-# --malloc=256K
-done with map
-done with map and reduce
-Runtime in millisecond [40 cores]
-	Sample:	434	Map:	6378	Reduce:	1488	Merge:	10	Sum:	8312	Real:	8315	
-Number of Tasks
-	Sample:	40	Map:	600	Reduce:	640	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=50
-# --malloc=256K
-done with map
-done with map and reduce
-Runtime in millisecond [50 cores]
-	Sample:	395	Map:	4945	Reduce:	1253	Merge:	3	Sum:	6599	Real:	6602	
-Number of Tasks
-	Sample:	50	Map:	750	Reduce:	800	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=60
-# --malloc=256K
-done with map
-done with map and reduce
-Runtime in millisecond [60 cores]
-	Sample:	326	Map:	3983	Reduce:	991	Merge:	5	Sum:	5306	Real:	5311	
-Number of Tasks
-	Sample:	60	Map:	900	Reduce:	960	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=70
-# --malloc=256K
-done with map
-done with map and reduce
-Runtime in millisecond [70 cores]
-	Sample:	287	Map:	3393	Reduce:	1086	Merge:	3	Sum:	4770	Real:	4776	
-Number of Tasks
-	Sample:	70	Map:	1050	Reduce:	1120	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=80
-# --malloc=256K
-done with map
-done with map and reduce
-Runtime in millisecond [80 cores]
-	Sample:	275	Map:	3270	Reduce:	1032	Merge:	4	Sum:	4582	Real:	4588	
-Number of Tasks
-	Sample:	80	Map:	1200	Reduce:	1280	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=1
-# --malloc=1M
-done with map
-done with map and reduce
-Runtime in millisecond [1 cores]
-	Sample:	9726	Map:	201933	Reduce:	10343	Merge:	2	Sum:	222004	Real:	222005	
-Number of Tasks
-	Sample:	1	Map:	15	Reduce:	439	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=10
-# --malloc=1M
-done with map
-done with map and reduce
-Runtime in millisecond [10 cores]
-	Sample:	1305	Map:	22793	Reduce:	3631	Merge:	3	Sum:	27733	Real:	27734	
-Number of Tasks
-	Sample:	10	Map:	150	Reduce:	439	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=20
-# --malloc=1M
-done with map
-done with map and reduce
-Runtime in millisecond [20 cores]
-	Sample:	721	Map:	11558	Reduce:	2118	Merge:	7	Sum:	14405	Real:	14407	
-Number of Tasks
-	Sample:	20	Map:	300	Reduce:	439	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=30
-# --malloc=1M
-done with map
-done with map and reduce
-Runtime in millisecond [30 cores]
-	Sample:	509	Map:	7861	Reduce:	1212	Merge:	8	Sum:	9592	Real:	9594	
-Number of Tasks
-	Sample:	30	Map:	450	Reduce:	480	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=40
-# --malloc=1M
-done with map
-done with map and reduce
-Runtime in millisecond [40 cores]
-	Sample:	416	Map:	5715	Reduce:	1264	Merge:	9	Sum:	7406	Real:	7409	
-Number of Tasks
-	Sample:	40	Map:	600	Reduce:	640	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=50
-# --malloc=1M
-done with map
-done with map and reduce
-Runtime in millisecond [50 cores]
-	Sample:	369	Map:	4226	Reduce:	1004	Merge:	5	Sum:	5605	Real:	5609	
-Number of Tasks
-	Sample:	50	Map:	750	Reduce:	800	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=60
-# --malloc=1M
-done with map
-done with map and reduce
-Runtime in millisecond [60 cores]
-	Sample:	311	Map:	3587	Reduce:	864	Merge:	5	Sum:	4768	Real:	4773	
-Number of Tasks
-	Sample:	60	Map:	900	Reduce:	960	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=70
-# --malloc=1M
-done with map
-done with map and reduce
-Runtime in millisecond [70 cores]
-	Sample:	275	Map:	2906	Reduce:	961	Merge:	3	Sum:	4146	Real:	4152	
-Number of Tasks
-	Sample:	70	Map:	1050	Reduce:	1120	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=80
-# --malloc=1M
-done with map
-done with map and reduce
-Runtime in millisecond [80 cores]
-	Sample:	264	Map:	2642	Reduce:	910	Merge:	4	Sum:	3822	Real:	3828	
-Number of Tasks
-	Sample:	80	Map:	1200	Reduce:	1280	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=1
-# --malloc=4M
-done with map
-done with map and reduce
-Runtime in millisecond [1 cores]
-	Sample:	9730	Map:	202492	Reduce:	6029	Merge:	2	Sum:	218254	Real:	218255	
-Number of Tasks
-	Sample:	1	Map:	15	Reduce:	439	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=10
-# --malloc=4M
-done with map
-done with map and reduce
-Runtime in millisecond [10 cores]
-	Sample:	1274	Map:	22149	Reduce:	3495	Merge:	3	Sum:	26923	Real:	26924	
-Number of Tasks
-	Sample:	10	Map:	150	Reduce:	439	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=20
-# --malloc=4M
-done with map
-done with map and reduce
-Runtime in millisecond [20 cores]
-	Sample:	720	Map:	11263	Reduce:	2093	Merge:	6	Sum:	14084	Real:	14085	
-Number of Tasks
-	Sample:	20	Map:	300	Reduce:	439	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=30
-# --malloc=4M
-done with map
-done with map and reduce
-Runtime in millisecond [30 cores]
-	Sample:	508	Map:	7575	Reduce:	1209	Merge:	6	Sum:	9299	Real:	9301	
-Number of Tasks
-	Sample:	30	Map:	450	Reduce:	480	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=40
-# --malloc=4M
-done with map
-done with map and reduce
-Runtime in millisecond [40 cores]
-	Sample:	429	Map:	5652	Reduce:	1231	Merge:	8	Sum:	7321	Real:	7324	
-Number of Tasks
-	Sample:	40	Map:	600	Reduce:	640	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=50
-# --malloc=4M
-done with map
-done with map and reduce
-Runtime in millisecond [50 cores]
-	Sample:	366	Map:	4043	Reduce:	966	Merge:	3	Sum:	5379	Real:	5382	
-Number of Tasks
-	Sample:	50	Map:	750	Reduce:	800	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=60
-# --malloc=4M
-done with map
-done with map and reduce
-Runtime in millisecond [60 cores]
-	Sample:	300	Map:	3440	Reduce:	848	Merge:	5	Sum:	4594	Real:	4598	
-Number of Tasks
-	Sample:	60	Map:	900	Reduce:	960	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=70
-# --malloc=4M
-done with map
-done with map and reduce
-Runtime in millisecond [70 cores]
-	Sample:	270	Map:	2772	Reduce:	944	Merge:	4	Sum:	3991	Real:	3997	
-Number of Tasks
-	Sample:	70	Map:	1050	Reduce:	1120	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=80
-# --malloc=4M
-done with map
-done with map and reduce
-Runtime in millisecond [80 cores]
-	Sample:	262	Map:	2504	Reduce:	886	Merge:	6	Sum:	3659	Real:	3665	
+	Sample:	1014	Map:	4992	Reduce:	573	Merge:	2	Sum:	6584	Real:	6590	
 Number of Tasks
 	Sample:	80	Map:	1200	Reduce:	1280	
 
@@ -582,7 +150,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [1 cores]
-	Sample:	9743	Map:	202423	Reduce:	6034	Merge:	2	Sum:	218202	Real:	218203	
+	Sample:	8923	Map:	211476	Reduce:	4111	Merge:	1	Sum:	224512	Real:	224512	
 Number of Tasks
 	Sample:	1	Map:	15	Reduce:	439	
 
@@ -598,7 +166,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [10 cores]
-	Sample:	1278	Map:	21924	Reduce:	3473	Merge:	3	Sum:	26679	Real:	26681	
+	Sample:	999	Map:	22171	Reduce:	3017	Merge:	1	Sum:	26189	Real:	26190	
 Number of Tasks
 	Sample:	10	Map:	150	Reduce:	439	
 
@@ -614,7 +182,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [20 cores]
-	Sample:	717	Map:	11159	Reduce:	2091	Merge:	6	Sum:	13975	Real:	13976	
+	Sample:	530	Map:	11190	Reduce:	1796	Merge:	1	Sum:	13518	Real:	13520	
 Number of Tasks
 	Sample:	20	Map:	300	Reduce:	439	
 
@@ -630,7 +198,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [30 cores]
-	Sample:	511	Map:	7536	Reduce:	1197	Merge:	7	Sum:	9253	Real:	9255	
+	Sample:	364	Map:	7383	Reduce:	889	Merge:	1	Sum:	8639	Real:	8641	
 Number of Tasks
 	Sample:	30	Map:	450	Reduce:	480	
 
@@ -646,7 +214,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [40 cores]
-	Sample:	426	Map:	5665	Reduce:	1268	Merge:	8	Sum:	7369	Real:	7372	
+	Sample:	280	Map:	5484	Reduce:	1019	Merge:	2	Sum:	6786	Real:	6788	
 Number of Tasks
 	Sample:	40	Map:	600	Reduce:	640	
 
@@ -662,7 +230,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [50 cores]
-	Sample:	380	Map:	4189	Reduce:	994	Merge:	5	Sum:	5569	Real:	5573	
+	Sample:	255	Map:	3938	Reduce:	739	Merge:	2	Sum:	4935	Real:	4938	
 Number of Tasks
 	Sample:	50	Map:	750	Reduce:	800	
 
@@ -678,7 +246,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [60 cores]
-	Sample:	316	Map:	3609	Reduce:	900	Merge:	6	Sum:	4833	Real:	4837	
+	Sample:	208	Map:	3458	Reduce:	524	Merge:	2	Sum:	4193	Real:	4198	
 Number of Tasks
 	Sample:	60	Map:	900	Reduce:	960	
 
@@ -694,7 +262,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [70 cores]
-	Sample:	286	Map:	2898	Reduce:	1005	Merge:	4	Sum:	4195	Real:	4200	
+	Sample:	186	Map:	2702	Reduce:	704	Merge:	2	Sum:	3596	Real:	3601	
 Number of Tasks
 	Sample:	70	Map:	1050	Reduce:	1120	
 
@@ -710,152 +278,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [80 cores]
-	Sample:	274	Map:	2574	Reduce:	904	Merge:	5	Sum:	3759	Real:	3766	
-Number of Tasks
-	Sample:	80	Map:	1200	Reduce:	1280	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-
-# --size=4000M
-# --cores=1
-# --malloc=64K
-done with map
-done with map and reduce
-Runtime in millisecond [1 cores]
-	Sample:	10084	Map:	202903	Reduce:	10334	Merge:	5	Sum:	223328	Real:	223328	
-Number of Tasks
-	Sample:	1	Map:	15	Reduce:	439	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=10
-# --malloc=64K
-done with map
-done with map and reduce
-Runtime in millisecond [10 cores]
-	Sample:	1691	Map:	25415	Reduce:	4033	Merge:	6	Sum:	31147	Real:	31148	
-Number of Tasks
-	Sample:	10	Map:	150	Reduce:	439	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=20
-# --malloc=64K
-done with map
-done with map and reduce
-Runtime in millisecond [20 cores]
-	Sample:	919	Map:	14803	Reduce:	2419	Merge:	10	Sum:	18152	Real:	18154	
-Number of Tasks
-	Sample:	20	Map:	300	Reduce:	439	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=30
-# --malloc=64K
-done with map
-done with map and reduce
-Runtime in millisecond [30 cores]
-	Sample:	787	Map:	11524	Reduce:	1211	Merge:	8	Sum:	13532	Real:	13534	
-Number of Tasks
-	Sample:	30	Map:	450	Reduce:	480	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=40
-# --malloc=64K
-done with map
-done with map and reduce
-Runtime in millisecond [40 cores]
-	Sample:	726	Map:	10810	Reduce:	1007	Merge:	8	Sum:	12553	Real:	12556	
-Number of Tasks
-	Sample:	40	Map:	600	Reduce:	640	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=50
-# --malloc=64K
-done with map
-done with map and reduce
-Runtime in millisecond [50 cores]
-	Sample:	791	Map:	10872	Reduce:	1080	Merge:	4	Sum:	12749	Real:	12753	
-Number of Tasks
-	Sample:	50	Map:	750	Reduce:	800	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=60
-# --malloc=64K
-done with map
-done with map and reduce
-Runtime in millisecond [60 cores]
-	Sample:	662	Map:	8663	Reduce:	1855	Merge:	5	Sum:	11187	Real:	11192	
-Number of Tasks
-	Sample:	60	Map:	900	Reduce:	960	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=70
-# --malloc=64K
-done with map
-done with map and reduce
-Runtime in millisecond [70 cores]
-	Sample:	574	Map:	9072	Reduce:	1921	Merge:	3	Sum:	11571	Real:	11576	
-Number of Tasks
-	Sample:	70	Map:	1050	Reduce:	1120	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=80
-# --malloc=64K
-done with map
-done with map and reduce
-Runtime in millisecond [80 cores]
-	Sample:	617	Map:	9789	Reduce:	1927	Merge:	3	Sum:	12338	Real:	12344	
+	Sample:	172	Map:	2411	Reduce:	554	Merge:	2	Sum:	3142	Real:	3148	
 Number of Tasks
 	Sample:	80	Map:	1200	Reduce:	1280	
 
@@ -867,11 +290,11 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
             ABI - 238429
 # --size=4000M
 # --cores=1
-# --malloc=256K
+# --malloc=64K
 done with map
 done with map and reduce
 Runtime in millisecond [1 cores]
-	Sample:	9728	Map:	205268	Reduce:	10330	Merge:	2	Sum:	225330	Real:	225330	
+	Sample:	8932	Map:	210442	Reduce:	4095	Merge:	1	Sum:	223472	Real:	223473	
 Number of Tasks
 	Sample:	1	Map:	15	Reduce:	439	
 
@@ -883,11 +306,11 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
             ABI - 238429
 # --size=4000M
 # --cores=10
-# --malloc=256K
+# --malloc=64K
 done with map
 done with map and reduce
 Runtime in millisecond [10 cores]
-	Sample:	1391	Map:	25057	Reduce:	4081	Merge:	4	Sum:	30534	Real:	30535	
+	Sample:	1023	Map:	22963	Reduce:	3027	Merge:	1	Sum:	27015	Real:	27016	
 Number of Tasks
 	Sample:	10	Map:	150	Reduce:	439	
 
@@ -899,11 +322,11 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
             ABI - 238429
 # --size=4000M
 # --cores=20
-# --malloc=256K
+# --malloc=64K
 done with map
 done with map and reduce
 Runtime in millisecond [20 cores]
-	Sample:	766	Map:	13374	Reduce:	2949	Merge:	8	Sum:	17098	Real:	17100	
+	Sample:	712	Map:	12260	Reduce:	1755	Merge:	1	Sum:	14730	Real:	14732	
 Number of Tasks
 	Sample:	20	Map:	300	Reduce:	439	
 
@@ -915,11 +338,11 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
             ABI - 238429
 # --size=4000M
 # --cores=30
-# --malloc=256K
+# --malloc=64K
 done with map
 done with map and reduce
 Runtime in millisecond [30 cores]
-	Sample:	528	Map:	8372	Reduce:	1396	Merge:	9	Sum:	10307	Real:	10309	
+	Sample:	695	Map:	8367	Reduce:	963	Merge:	1	Sum:	10028	Real:	10030	
 Number of Tasks
 	Sample:	30	Map:	450	Reduce:	480	
 
@@ -931,11 +354,11 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
             ABI - 238429
 # --size=4000M
 # --cores=40
-# --malloc=256K
+# --malloc=64K
 done with map
 done with map and reduce
 Runtime in millisecond [40 cores]
-	Sample:	437	Map:	6404	Reduce:	1539	Merge:	10	Sum:	8391	Real:	8394	
+	Sample:	764	Map:	7075	Reduce:	725	Merge:	1	Sum:	8568	Real:	8570	
 Number of Tasks
 	Sample:	40	Map:	600	Reduce:	640	
 
@@ -947,11 +370,11 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
             ABI - 238429
 # --size=4000M
 # --cores=50
-# --malloc=256K
+# --malloc=64K
 done with map
 done with map and reduce
 Runtime in millisecond [50 cores]
-	Sample:	395	Map:	5036	Reduce:	1289	Merge:	5	Sum:	6727	Real:	6731	
+	Sample:	996	Map:	6408	Reduce:	813	Merge:	2	Sum:	8220	Real:	8223	
 Number of Tasks
 	Sample:	50	Map:	750	Reduce:	800	
 
@@ -963,11 +386,11 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
             ABI - 238429
 # --size=4000M
 # --cores=60
-# --malloc=256K
+# --malloc=64K
 done with map
 done with map and reduce
 Runtime in millisecond [60 cores]
-	Sample:	324	Map:	4056	Reduce:	1015	Merge:	5	Sum:	5401	Real:	5405	
+	Sample:	884	Map:	5558	Reduce:	617	Merge:	2	Sum:	7063	Real:	7067	
 Number of Tasks
 	Sample:	60	Map:	900	Reduce:	960	
 
@@ -979,11 +402,11 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
             ABI - 238429
 # --size=4000M
 # --cores=70
-# --malloc=256K
+# --malloc=64K
 done with map
 done with map and reduce
 Runtime in millisecond [70 cores]
-	Sample:	288	Map:	3438	Reduce:	1100	Merge:	3	Sum:	4831	Real:	4836	
+	Sample:	908	Map:	5051	Reduce:	512	Merge:	2	Sum:	6476	Real:	6481	
 Number of Tasks
 	Sample:	70	Map:	1050	Reduce:	1120	
 
@@ -995,299 +418,11 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
             ABI - 238429
 # --size=4000M
 # --cores=80
-# --malloc=256K
+# --malloc=64K
 done with map
 done with map and reduce
 Runtime in millisecond [80 cores]
-	Sample:	283	Map:	3287	Reduce:	1048	Merge:	4	Sum:	4623	Real:	4629	
-Number of Tasks
-	Sample:	80	Map:	1200	Reduce:	1280	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=1
-# --malloc=1M
-done with map
-done with map and reduce
-Runtime in millisecond [1 cores]
-	Sample:	9736	Map:	201837	Reduce:	10340	Merge:	2	Sum:	221917	Real:	221918	
-Number of Tasks
-	Sample:	1	Map:	15	Reduce:	439	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=10
-# --malloc=1M
-done with map
-done with map and reduce
-Runtime in millisecond [10 cores]
-	Sample:	1307	Map:	22845	Reduce:	3642	Merge:	3	Sum:	27798	Real:	27800	
-Number of Tasks
-	Sample:	10	Map:	150	Reduce:	439	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=20
-# --malloc=1M
-done with map
-done with map and reduce
-Runtime in millisecond [20 cores]
-	Sample:	726	Map:	11663	Reduce:	2123	Merge:	7	Sum:	14520	Real:	14522	
-Number of Tasks
-	Sample:	20	Map:	300	Reduce:	439	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=30
-# --malloc=1M
-done with map
-done with map and reduce
-Runtime in millisecond [30 cores]
-	Sample:	515	Map:	7788	Reduce:	1231	Merge:	9	Sum:	9544	Real:	9546	
-Number of Tasks
-	Sample:	30	Map:	450	Reduce:	480	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=40
-# --malloc=1M
-done with map
-done with map and reduce
-Runtime in millisecond [40 cores]
-	Sample:	425	Map:	5850	Reduce:	1297	Merge:	10	Sum:	7584	Real:	7587	
-Number of Tasks
-	Sample:	40	Map:	600	Reduce:	640	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=50
-# --malloc=1M
-done with map
-done with map and reduce
-Runtime in millisecond [50 cores]
-	Sample:	382	Map:	4359	Reduce:	1045	Merge:	3	Sum:	5791	Real:	5795	
-Number of Tasks
-	Sample:	50	Map:	750	Reduce:	800	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=60
-# --malloc=1M
-done with map
-done with map and reduce
-Runtime in millisecond [60 cores]
-	Sample:	320	Map:	3698	Reduce:	904	Merge:	5	Sum:	4929	Real:	4933	
-Number of Tasks
-	Sample:	60	Map:	900	Reduce:	960	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=70
-# --malloc=1M
-done with map
-done with map and reduce
-Runtime in millisecond [70 cores]
-	Sample:	293	Map:	3043	Reduce:	1002	Merge:	3	Sum:	4342	Real:	4348	
-Number of Tasks
-	Sample:	70	Map:	1050	Reduce:	1120	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=80
-# --malloc=1M
-done with map
-done with map and reduce
-Runtime in millisecond [80 cores]
-	Sample:	271	Map:	2731	Reduce:	942	Merge:	4	Sum:	3950	Real:	3956	
-Number of Tasks
-	Sample:	80	Map:	1200	Reduce:	1280	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=1
-# --malloc=4M
-done with map
-done with map and reduce
-Runtime in millisecond [1 cores]
-	Sample:	9730	Map:	202647	Reduce:	6032	Merge:	2	Sum:	218413	Real:	218414	
-Number of Tasks
-	Sample:	1	Map:	15	Reduce:	439	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=10
-# --malloc=4M
-done with map
-done with map and reduce
-Runtime in millisecond [10 cores]
-	Sample:	1277	Map:	22051	Reduce:	3509	Merge:	3	Sum:	26842	Real:	26843	
-Number of Tasks
-	Sample:	10	Map:	150	Reduce:	439	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=20
-# --malloc=4M
-done with map
-done with map and reduce
-Runtime in millisecond [20 cores]
-	Sample:	719	Map:	11203	Reduce:	2075	Merge:	6	Sum:	14004	Real:	14006	
-Number of Tasks
-	Sample:	20	Map:	300	Reduce:	439	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=30
-# --malloc=4M
-done with map
-done with map and reduce
-Runtime in millisecond [30 cores]
-	Sample:	505	Map:	7626	Reduce:	1201	Merge:	7	Sum:	9341	Real:	9343	
-Number of Tasks
-	Sample:	30	Map:	450	Reduce:	480	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=40
-# --malloc=4M
-done with map
-done with map and reduce
-Runtime in millisecond [40 cores]
-	Sample:	417	Map:	5575	Reduce:	1238	Merge:	8	Sum:	7240	Real:	7242	
-Number of Tasks
-	Sample:	40	Map:	600	Reduce:	640	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=50
-# --malloc=4M
-done with map
-done with map and reduce
-Runtime in millisecond [50 cores]
-	Sample:	387	Map:	4185	Reduce:	1000	Merge:	5	Sum:	5578	Real:	5581	
-Number of Tasks
-	Sample:	50	Map:	750	Reduce:	800	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=60
-# --malloc=4M
-done with map
-done with map and reduce
-Runtime in millisecond [60 cores]
-	Sample:	320	Map:	3609	Reduce:	890	Merge:	5	Sum:	4825	Real:	4829	
-Number of Tasks
-	Sample:	60	Map:	900	Reduce:	960	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=70
-# --malloc=4M
-done with map
-done with map and reduce
-Runtime in millisecond [70 cores]
-	Sample:	284	Map:	2917	Reduce:	984	Merge:	4	Sum:	4191	Real:	4196	
-Number of Tasks
-	Sample:	70	Map:	1050	Reduce:	1120	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=80
-# --malloc=4M
-done with map
-done with map and reduce
-Runtime in millisecond [80 cores]
-	Sample:	276	Map:	2663	Reduce:	921	Merge:	5	Sum:	3866	Real:	3872	
+	Sample:	1022	Map:	5244	Reduce:	489	Merge:	2	Sum:	6760	Real:	6765	
 Number of Tasks
 	Sample:	80	Map:	1200	Reduce:	1280	
 
@@ -1303,7 +438,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [1 cores]
-	Sample:	9752	Map:	204331	Reduce:	6025	Merge:	2	Sum:	220112	Real:	220113	
+	Sample:	8922	Map:	209932	Reduce:	4111	Merge:	1	Sum:	222967	Real:	222968	
 Number of Tasks
 	Sample:	1	Map:	15	Reduce:	439	
 
@@ -1319,7 +454,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [10 cores]
-	Sample:	1273	Map:	21901	Reduce:	3482	Merge:	3	Sum:	26661	Real:	26663	
+	Sample:	1001	Map:	22147	Reduce:	3008	Merge:	0	Sum:	26158	Real:	26159	
 Number of Tasks
 	Sample:	10	Map:	150	Reduce:	439	
 
@@ -1335,7 +470,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [20 cores]
-	Sample:	712	Map:	11048	Reduce:	2068	Merge:	6	Sum:	13836	Real:	13838	
+	Sample:	522	Map:	11173	Reduce:	1805	Merge:	1	Sum:	13503	Real:	13505	
 Number of Tasks
 	Sample:	20	Map:	300	Reduce:	439	
 
@@ -1351,7 +486,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [30 cores]
-	Sample:	505	Map:	7551	Reduce:	1182	Merge:	7	Sum:	9247	Real:	9249	
+	Sample:	365	Map:	7542	Reduce:	939	Merge:	1	Sum:	8850	Real:	8851	
 Number of Tasks
 	Sample:	30	Map:	450	Reduce:	480	
 
@@ -1367,7 +502,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [40 cores]
-	Sample:	420	Map:	5583	Reduce:	1253	Merge:	8	Sum:	7265	Real:	7268	
+	Sample:	295	Map:	5552	Reduce:	1002	Merge:	2	Sum:	6851	Real:	6854	
 Number of Tasks
 	Sample:	40	Map:	600	Reduce:	640	
 
@@ -1383,7 +518,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [50 cores]
-	Sample:	376	Map:	4153	Reduce:	971	Merge:	4	Sum:	5504	Real:	5507	
+	Sample:	246	Map:	3918	Reduce:	728	Merge:	2	Sum:	4896	Real:	4899	
 Number of Tasks
 	Sample:	50	Map:	750	Reduce:	800	
 
@@ -1399,7 +534,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [60 cores]
-	Sample:	312	Map:	3575	Reduce:	892	Merge:	5	Sum:	4785	Real:	4789	
+	Sample:	205	Map:	3410	Reduce:	526	Merge:	2	Sum:	4144	Real:	4148	
 Number of Tasks
 	Sample:	60	Map:	900	Reduce:	960	
 
@@ -1415,7 +550,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [70 cores]
-	Sample:	272	Map:	2795	Reduce:	968	Merge:	4	Sum:	4041	Real:	4046	
+	Sample:	184	Map:	2668	Reduce:	699	Merge:	2	Sum:	3554	Real:	3560	
 Number of Tasks
 	Sample:	70	Map:	1050	Reduce:	1120	
 
@@ -1431,152 +566,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [80 cores]
-	Sample:	261	Map:	2524	Reduce:	910	Merge:	5	Sum:	3701	Real:	3707	
-Number of Tasks
-	Sample:	80	Map:	1200	Reduce:	1280	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-
-# --size=4000M
-# --cores=1
-# --malloc=64K
-done with map
-done with map and reduce
-Runtime in millisecond [1 cores]
-	Sample:	10088	Map:	202867	Reduce:	10327	Merge:	5	Sum:	223289	Real:	223290	
-Number of Tasks
-	Sample:	1	Map:	15	Reduce:	439	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=10
-# --malloc=64K
-done with map
-done with map and reduce
-Runtime in millisecond [10 cores]
-	Sample:	1664	Map:	25361	Reduce:	4027	Merge:	6	Sum:	31059	Real:	31060	
-Number of Tasks
-	Sample:	10	Map:	150	Reduce:	439	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=20
-# --malloc=64K
-done with map
-done with map and reduce
-Runtime in millisecond [20 cores]
-	Sample:	928	Map:	14809	Reduce:	2410	Merge:	10	Sum:	18159	Real:	18161	
-Number of Tasks
-	Sample:	20	Map:	300	Reduce:	439	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=30
-# --malloc=64K
-done with map
-done with map and reduce
-Runtime in millisecond [30 cores]
-	Sample:	787	Map:	11550	Reduce:	1203	Merge:	7	Sum:	13549	Real:	13551	
-Number of Tasks
-	Sample:	30	Map:	450	Reduce:	480	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=40
-# --malloc=64K
-done with map
-done with map and reduce
-Runtime in millisecond [40 cores]
-	Sample:	728	Map:	11003	Reduce:	1045	Merge:	9	Sum:	12787	Real:	12790	
-Number of Tasks
-	Sample:	40	Map:	600	Reduce:	640	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=50
-# --malloc=64K
-done with map
-done with map and reduce
-Runtime in millisecond [50 cores]
-	Sample:	792	Map:	10954	Reduce:	1084	Merge:	5	Sum:	12838	Real:	12841	
-Number of Tasks
-	Sample:	50	Map:	750	Reduce:	800	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=60
-# --malloc=64K
-done with map
-done with map and reduce
-Runtime in millisecond [60 cores]
-	Sample:	653	Map:	8668	Reduce:	1853	Merge:	5	Sum:	11181	Real:	11185	
-Number of Tasks
-	Sample:	60	Map:	900	Reduce:	960	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=70
-# --malloc=64K
-done with map
-done with map and reduce
-Runtime in millisecond [70 cores]
-	Sample:	567	Map:	9121	Reduce:	1933	Merge:	3	Sum:	11625	Real:	11630	
-Number of Tasks
-	Sample:	70	Map:	1050	Reduce:	1120	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=80
-# --malloc=64K
-done with map
-done with map and reduce
-Runtime in millisecond [80 cores]
-	Sample:	621	Map:	9796	Reduce:	1929	Merge:	3	Sum:	12351	Real:	12357	
+	Sample:	174	Map:	2417	Reduce:	563	Merge:	2	Sum:	3159	Real:	3165	
 Number of Tasks
 	Sample:	80	Map:	1200	Reduce:	1280	
 
@@ -1588,11 +578,11 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
             ABI - 238429
 # --size=4000M
 # --cores=1
-# --malloc=256K
+# --malloc=64K
 done with map
 done with map and reduce
 Runtime in millisecond [1 cores]
-	Sample:	9721	Map:	202136	Reduce:	10333	Merge:	2	Sum:	222193	Real:	222193	
+	Sample:	8937	Map:	211862	Reduce:	4103	Merge:	1	Sum:	224905	Real:	224905	
 Number of Tasks
 	Sample:	1	Map:	15	Reduce:	439	
 
@@ -1604,11 +594,11 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
             ABI - 238429
 # --size=4000M
 # --cores=10
-# --malloc=256K
+# --malloc=64K
 done with map
 done with map and reduce
 Runtime in millisecond [10 cores]
-	Sample:	1390	Map:	25046	Reduce:	4067	Merge:	4	Sum:	30507	Real:	30509	
+	Sample:	1029	Map:	22905	Reduce:	3002	Merge:	1	Sum:	26939	Real:	26940	
 Number of Tasks
 	Sample:	10	Map:	150	Reduce:	439	
 
@@ -1620,11 +610,11 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
             ABI - 238429
 # --size=4000M
 # --cores=20
-# --malloc=256K
+# --malloc=64K
 done with map
 done with map and reduce
 Runtime in millisecond [20 cores]
-	Sample:	768	Map:	13381	Reduce:	2963	Merge:	8	Sum:	17122	Real:	17124	
+	Sample:	719	Map:	12284	Reduce:	1768	Merge:	1	Sum:	14773	Real:	14774	
 Number of Tasks
 	Sample:	20	Map:	300	Reduce:	439	
 
@@ -1636,11 +626,11 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
             ABI - 238429
 # --size=4000M
 # --cores=30
-# --malloc=256K
+# --malloc=64K
 done with map
 done with map and reduce
 Runtime in millisecond [30 cores]
-	Sample:	526	Map:	8371	Reduce:	1401	Merge:	10	Sum:	10310	Real:	10312	
+	Sample:	695	Map:	8396	Reduce:	966	Merge:	1	Sum:	10060	Real:	10062	
 Number of Tasks
 	Sample:	30	Map:	450	Reduce:	480	
 
@@ -1652,11 +642,11 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
             ABI - 238429
 # --size=4000M
 # --cores=40
-# --malloc=256K
+# --malloc=64K
 done with map
 done with map and reduce
 Runtime in millisecond [40 cores]
-	Sample:	438	Map:	6406	Reduce:	1524	Merge:	10	Sum:	8380	Real:	8383	
+	Sample:	767	Map:	7067	Reduce:	725	Merge:	1	Sum:	8563	Real:	8565	
 Number of Tasks
 	Sample:	40	Map:	600	Reduce:	640	
 
@@ -1668,11 +658,11 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
             ABI - 238429
 # --size=4000M
 # --cores=50
-# --malloc=256K
+# --malloc=64K
 done with map
 done with map and reduce
 Runtime in millisecond [50 cores]
-	Sample:	378	Map:	4844	Reduce:	1233	Merge:	5	Sum:	6463	Real:	6466	
+	Sample:	1033	Map:	6371	Reduce:	857	Merge:	2	Sum:	8263	Real:	8267	
 Number of Tasks
 	Sample:	50	Map:	750	Reduce:	800	
 
@@ -1684,11 +674,11 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
             ABI - 238429
 # --size=4000M
 # --cores=60
-# --malloc=256K
+# --malloc=64K
 done with map
 done with map and reduce
 Runtime in millisecond [60 cores]
-	Sample:	313	Map:	3863	Reduce:	962	Merge:	5	Sum:	5145	Real:	5149	
+	Sample:	893	Map:	5540	Reduce:	623	Merge:	2	Sum:	7061	Real:	7065	
 Number of Tasks
 	Sample:	60	Map:	900	Reduce:	960	
 
@@ -1700,11 +690,11 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
             ABI - 238429
 # --size=4000M
 # --cores=70
-# --malloc=256K
+# --malloc=64K
 done with map
 done with map and reduce
 Runtime in millisecond [70 cores]
-	Sample:	278	Map:	3320	Reduce:	1046	Merge:	3	Sum:	4649	Real:	4654	
+	Sample:	914	Map:	5036	Reduce:	521	Merge:	2	Sum:	6474	Real:	6478	
 Number of Tasks
 	Sample:	70	Map:	1050	Reduce:	1120	
 
@@ -1716,299 +706,11 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
             ABI - 238429
 # --size=4000M
 # --cores=80
-# --malloc=256K
+# --malloc=64K
 done with map
 done with map and reduce
 Runtime in millisecond [80 cores]
-	Sample:	266	Map:	3215	Reduce:	1015	Merge:	4	Sum:	4502	Real:	4508	
-Number of Tasks
-	Sample:	80	Map:	1200	Reduce:	1280	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=1
-# --malloc=1M
-done with map
-done with map and reduce
-Runtime in millisecond [1 cores]
-	Sample:	9731	Map:	202644	Reduce:	10348	Merge:	2	Sum:	222726	Real:	222727	
-Number of Tasks
-	Sample:	1	Map:	15	Reduce:	439	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=10
-# --malloc=1M
-done with map
-done with map and reduce
-Runtime in millisecond [10 cores]
-	Sample:	1305	Map:	22783	Reduce:	3640	Merge:	3	Sum:	27732	Real:	27733	
-Number of Tasks
-	Sample:	10	Map:	150	Reduce:	439	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=20
-# --malloc=1M
-done with map
-done with map and reduce
-Runtime in millisecond [20 cores]
-	Sample:	726	Map:	11646	Reduce:	2138	Merge:	7	Sum:	14519	Real:	14520	
-Number of Tasks
-	Sample:	20	Map:	300	Reduce:	439	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=30
-# --malloc=1M
-done with map
-done with map and reduce
-Runtime in millisecond [30 cores]
-	Sample:	514	Map:	7817	Reduce:	1232	Merge:	9	Sum:	9574	Real:	9576	
-Number of Tasks
-	Sample:	30	Map:	450	Reduce:	480	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=40
-# --malloc=1M
-done with map
-done with map and reduce
-Runtime in millisecond [40 cores]
-	Sample:	429	Map:	5845	Reduce:	1297	Merge:	9	Sum:	7582	Real:	7585	
-Number of Tasks
-	Sample:	40	Map:	600	Reduce:	640	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=50
-# --malloc=1M
-done with map
-done with map and reduce
-Runtime in millisecond [50 cores]
-	Sample:	387	Map:	4362	Reduce:	1040	Merge:	3	Sum:	5792	Real:	5796	
-Number of Tasks
-	Sample:	50	Map:	750	Reduce:	800	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=60
-# --malloc=1M
-done with map
-done with map and reduce
-Runtime in millisecond [60 cores]
-	Sample:	315	Map:	3732	Reduce:	906	Merge:	5	Sum:	4960	Real:	4965	
-Number of Tasks
-	Sample:	60	Map:	900	Reduce:	960	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=70
-# --malloc=1M
-done with map
-done with map and reduce
-Runtime in millisecond [70 cores]
-	Sample:	285	Map:	3032	Reduce:	1001	Merge:	3	Sum:	4322	Real:	4327	
-Number of Tasks
-	Sample:	70	Map:	1050	Reduce:	1120	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=80
-# --malloc=1M
-done with map
-done with map and reduce
-Runtime in millisecond [80 cores]
-	Sample:	276	Map:	2730	Reduce:	951	Merge:	4	Sum:	3964	Real:	3970	
-Number of Tasks
-	Sample:	80	Map:	1200	Reduce:	1280	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=1
-# --malloc=4M
-done with map
-done with map and reduce
-Runtime in millisecond [1 cores]
-	Sample:	9754	Map:	201990	Reduce:	6031	Merge:	2	Sum:	217778	Real:	217779	
-Number of Tasks
-	Sample:	1	Map:	15	Reduce:	439	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=10
-# --malloc=4M
-done with map
-done with map and reduce
-Runtime in millisecond [10 cores]
-	Sample:	1280	Map:	22101	Reduce:	3493	Merge:	3	Sum:	26879	Real:	26880	
-Number of Tasks
-	Sample:	10	Map:	150	Reduce:	439	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=20
-# --malloc=4M
-done with map
-done with map and reduce
-Runtime in millisecond [20 cores]
-	Sample:	721	Map:	11338	Reduce:	2093	Merge:	6	Sum:	14159	Real:	14161	
-Number of Tasks
-	Sample:	20	Map:	300	Reduce:	439	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=30
-# --malloc=4M
-done with map
-done with map and reduce
-Runtime in millisecond [30 cores]
-	Sample:	514	Map:	7566	Reduce:	1210	Merge:	8	Sum:	9299	Real:	9301	
-Number of Tasks
-	Sample:	30	Map:	450	Reduce:	480	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=40
-# --malloc=4M
-done with map
-done with map and reduce
-Runtime in millisecond [40 cores]
-	Sample:	424	Map:	5664	Reduce:	1264	Merge:	8	Sum:	7361	Real:	7364	
-Number of Tasks
-	Sample:	40	Map:	600	Reduce:	640	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=50
-# --malloc=4M
-done with map
-done with map and reduce
-Runtime in millisecond [50 cores]
-	Sample:	385	Map:	4182	Reduce:	1001	Merge:	3	Sum:	5572	Real:	5576	
-Number of Tasks
-	Sample:	50	Map:	750	Reduce:	800	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=60
-# --malloc=4M
-done with map
-done with map and reduce
-Runtime in millisecond [60 cores]
-	Sample:	319	Map:	3665	Reduce:	886	Merge:	5	Sum:	4877	Real:	4881	
-Number of Tasks
-	Sample:	60	Map:	900	Reduce:	960	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=70
-# --malloc=4M
-done with map
-done with map and reduce
-Runtime in millisecond [70 cores]
-	Sample:	280	Map:	2864	Reduce:	993	Merge:	4	Sum:	4144	Real:	4149	
-Number of Tasks
-	Sample:	70	Map:	1050	Reduce:	1120	
-
-wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
-            ABA - 238733
-            ABC - 239084
-            ABE - 238760
-            ABG - 238841
-            ABI - 238429
-# --size=4000M
-# --cores=80
-# --malloc=4M
-done with map
-done with map and reduce
-Runtime in millisecond [80 cores]
-	Sample:	276	Map:	2693	Reduce:	936	Merge:	5	Sum:	3912	Real:	3918	
+	Sample:	975	Map:	5197	Reduce:	479	Merge:	2	Sum:	6655	Real:	6661	
 Number of Tasks
 	Sample:	80	Map:	1200	Reduce:	1280	
 
@@ -2024,7 +726,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [1 cores]
-	Sample:	9726	Map:	203235	Reduce:	6025	Merge:	2	Sum:	218989	Real:	218990	
+	Sample:	8919	Map:	209907	Reduce:	4110	Merge:	1	Sum:	222938	Real:	222939	
 Number of Tasks
 	Sample:	1	Map:	15	Reduce:	439	
 
@@ -2040,7 +742,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [10 cores]
-	Sample:	1277	Map:	22032	Reduce:	3485	Merge:	3	Sum:	26798	Real:	26799	
+	Sample:	1000	Map:	22188	Reduce:	3002	Merge:	0	Sum:	26192	Real:	26193	
 Number of Tasks
 	Sample:	10	Map:	150	Reduce:	439	
 
@@ -2056,7 +758,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [20 cores]
-	Sample:	720	Map:	11110	Reduce:	2078	Merge:	6	Sum:	13916	Real:	13917	
+	Sample:	532	Map:	11261	Reduce:	1791	Merge:	1	Sum:	13587	Real:	13588	
 Number of Tasks
 	Sample:	20	Map:	300	Reduce:	439	
 
@@ -2072,7 +774,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [30 cores]
-	Sample:	502	Map:	7546	Reduce:	1192	Merge:	7	Sum:	9248	Real:	9250	
+	Sample:	365	Map:	7536	Reduce:	943	Merge:	1	Sum:	8847	Real:	8848	
 Number of Tasks
 	Sample:	30	Map:	450	Reduce:	480	
 
@@ -2088,7 +790,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [40 cores]
-	Sample:	418	Map:	5524	Reduce:	1243	Merge:	8	Sum:	7194	Real:	7197	
+	Sample:	293	Map:	5542	Reduce:	1005	Merge:	1	Sum:	6843	Real:	6845	
 Number of Tasks
 	Sample:	40	Map:	600	Reduce:	640	
 
@@ -2104,7 +806,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [50 cores]
-	Sample:	376	Map:	4070	Reduce:	967	Merge:	3	Sum:	5418	Real:	5422	
+	Sample:	247	Map:	3930	Reduce:	731	Merge:	2	Sum:	4912	Real:	4916	
 Number of Tasks
 	Sample:	50	Map:	750	Reduce:	800	
 
@@ -2120,7 +822,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [60 cores]
-	Sample:	317	Map:	3627	Reduce:	909	Merge:	5	Sum:	4859	Real:	4864	
+	Sample:	209	Map:	3477	Reduce:	532	Merge:	2	Sum:	4221	Real:	4225	
 Number of Tasks
 	Sample:	60	Map:	900	Reduce:	960	
 
@@ -2136,7 +838,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [70 cores]
-	Sample:	284	Map:	2889	Reduce:	1025	Merge:	5	Sum:	4204	Real:	4210	
+	Sample:	182	Map:	2647	Reduce:	695	Merge:	2	Sum:	3527	Real:	3531	
 Number of Tasks
 	Sample:	70	Map:	1050	Reduce:	1120	
 
@@ -2152,7 +854,7 @@ wordreverseindex: results (TOP 5 from 4394 keys, 1048576000 words):
 done with map
 done with map and reduce
 Runtime in millisecond [80 cores]
-	Sample:	269	Map:	2614	Reduce:	946	Merge:	5	Sum:	3836	Real:	3842	
+	Sample:	174	Map:	2405	Reduce:	545	Merge:	2	Sum:	3128	Real:	3134	
 Number of Tasks
 	Sample:	80	Map:	1200	Reduce:	1280	
 

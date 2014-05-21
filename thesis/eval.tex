@@ -685,29 +685,133 @@ can avoid the first source of contention by minimizing the number of
 Therefore, we measure Metis using two different allocation units: 8~MB
 to stress \code{pagefault} and 64~KB to stress \code{mmap}.
 %
-At 80 cores, Metis invokes \code{mmap} 5,987 times in the 8~MB
-configuration, and 572,292 in the 64~KB configuration.
+At 80 cores, Metis invokes \code{mmap} 4,145 times in the 8~MB
+configuration, and 232,464 in the 64~KB configuration.
 %
-In both cases, it invokes \code{pagefault} approximately 12~million
-times, where 70\% of these page faults cause it to allocate new
+In both cases, it invokes \code{pagefault} approximately 10~million
+times, where 65\% of these page faults cause it to allocate new
 physical pages and the rest bring pages already faulted on another
 core in to the per-core page tables.
+
+% monkstats ./metis_wrmem -s 4000 -p 80 -a 65536
+% 0 tlb_shootdown_count
+% 0 tlb_shootdown_targets
+% 0 tlb_shootdown_cycles
+% 10198778 page_fault_count
+% 57007393167 page_fault_cycles
+% 6631648 page_fault_alloc_count
+% 50993199716 page_fault_alloc_cycles
+% 3567130 page_fault_fill_count
+% 5377196067 page_fault_fill_cycles
+% 232464 mmap_count
+% 19761210984 mmap_cycles
+% 0 munmap_count
+% 0 munmap_cycles
+% 7066133 kalloc_page_alloc_count
+% 2607562 kalloc_page_free_count
+% 110372 kalloc_hot_list_refill_count
+% 40739 kalloc_hot_list_flush_count
+% 27490 kalloc_hot_list_steal_count
+% 44345 kalloc_hot_list_remote_free_count
+% 140926 refcache_review_count
+% 1672589007 refcache_review_cycles
+% 140926 refcache_flush_count
+% 6073739321 refcache_flush_cycles
+% 5 refcache_reap_count
+% 3084738936 refcache_reap_cycles
+% 6143339 refcache_item_flushed_count
+% 6631656 refcache_item_reviewed_count
+% 926291 refcache_item_freed_count
+% 0 refcache_item_requeued_count
+% 0 refcache_item_disowned_count
+% 0 refcache_dirtied_count
+% 7120424 refcache_conflict_count
+% 0 refcache_weakref_break_failed
+% 0 socket_load_balance
+% 0 socket_local_read
+% 0 socket_local_sendto_cycles
+% 0 socket_local_client_sendto_cycles
+% 0 socket_local_sendto_cnt
+% 0 socket_local_client_sendto_cnt
+% 0 socket_local_recvfrom_cycles
+% 0 socket_local_recvfrom_cnt
+% 140926 sched_tick_count
+% 2375 sched_blocked_tick_count
+% 2375 sched_delayed_tick_count
+% 1100804 write_cycles
+% 24 write_count
+% 0 mnode_alloc
+% 0 mnode_free
+
+% monkstats ./metis_wrmem -s 4000 -p 80 -a 8388608
+% 0 tlb_shootdown_count
+% 0 tlb_shootdown_targets
+% 0 tlb_shootdown_cycles
+% 10272715 page_fault_count
+% 58884596454 page_fault_cycles
+% 6704297 page_fault_alloc_count
+% 52884597852 page_fault_alloc_cycles
+% 3568418 page_fault_fill_count
+% 5313567970 page_fault_fill_cycles
+% 4145 mmap_count
+% 18940750356 mmap_cycles
+% 0 munmap_count
+% 0 munmap_cycles
+% 7127550 kalloc_page_alloc_count
+% 2440673 kalloc_page_free_count
+% 111361 kalloc_hot_list_refill_count
+% 38133 kalloc_hot_list_flush_count
+% 27949 kalloc_hot_list_steal_count
+% 39549 kalloc_hot_list_remote_free_count
+% 141331 refcache_review_count
+% 1713148071 refcache_review_cycles
+% 141331 refcache_flush_count
+% 6321172977 refcache_flush_cycles
+% 6 refcache_reap_count
+% 3699579892 refcache_reap_cycles
+% 6687203 refcache_item_flushed_count
+% 6704305 refcache_item_reviewed_count
+% 1115112 refcache_item_freed_count
+% 0 refcache_item_requeued_count
+% 0 refcache_item_disowned_count
+% 0 refcache_dirtied_count
+% 6721871 refcache_conflict_count
+% 0 refcache_weakref_break_failed
+% 0 socket_load_balance
+% 0 socket_local_read
+% 0 socket_local_sendto_cycles
+% 0 socket_local_client_sendto_cycles
+% 0 socket_local_sendto_cnt
+% 0 socket_local_client_sendto_cnt
+% 0 socket_local_recvfrom_cycles
+% 0 socket_local_recvfrom_cnt
+% 141331 sched_tick_count
+% 2493 sched_blocked_tick_count
+% 2493 sched_delayed_tick_count
+% 1000328 write_cycles
+% 24 write_count
+% 0 mnode_alloc
+% 0 mnode_free
+
 
 \begin{figure}
   \centering
   \input{graph/wrmem.tex}
   %
   \splitcaption{Metis application scalability}{for different VM
-    systems and allocation unit sizes.}
+    systems and allocation unit sizes.  \sys/8~MB and \sys/64~KB
+    perform identically, so their lines are indistinguishable.}
   \label{fig:metis}
 \end{figure}
 
-\XXX[AC]{Metis's scalability on \sys for 64~KB units is limited by
-  umalloc being dumb, not by \vm as far as I can tell.}
+\Cref{fig:metis} shows how Metis scales for the three VM systems.
 
-\Cref{fig:metis} shows how Metis scales for the inverse indexing
-application for the three VM systems.
-%
+Metis on \sys not only scales near-linearly, but performs identically
+in both the 64~KB and 8~MB configurations because virtually all of the
+virtual memory operations performed by Metis are commutative and thus
+conflict-free on \vm.
+
+In contrast,
 Metis scales poorly on Linux in both configurations, spending most of
 its time at high core counts in the virtual memory system acquiring
 the address space lock rather than performing useful computation.
@@ -716,12 +820,9 @@ This is true even in the \code{pagefault}-heavy configuration because,
 while \code{pagefault}s run in parallel on Linux, acquiring the
 address space lock in shared mode induces cache line conflicts.
 
-Metis on \sys scales comparatively well with both large and small
-allocation sizes.
-%
-For the 8~MB \code{pagefault}-heavy configuration, both \sys and
-Bonsai scale near-linearly, both as a result of conflict-free
-\code{pagefault} implementations.
+For the 8~MB \code{pagefault}-heavy configuration,
+Bonsai scales as well as \vm because it also achieves conflict-free
+\code{pagefault} operations.
 %
 Furthermore, in this configuration \sys and Bonsai perform
 similarly---\sys is $\sim5\%$ slower than Bonsai at all core
@@ -729,9 +830,9 @@ counts---suggesting that there is little or no sequential performance
 penalty to \vm's very different design.  It's likely we could close
 this gap with further work on the sequential performance of \sys.
 %
-Unlike Bonsai, \sys achieves conflict-free \code{mmap} and
-\code{munmap} in addition to conflict-free \code{pagefault}s, enabling
-it to out-scale Bonsai in the \code{mmap}-heavy 64~KB configuration.
+Bonsai suffers in the 64~KB configuration because, unlike
+\sys, Bonsai's \code{mmap} and \code{munmap} operations are not
+conflict-free.
 
 
 \subsection{Memory overhead}
