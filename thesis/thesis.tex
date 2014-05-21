@@ -1,11 +1,15 @@
 % -*- TeX-PDF-mode: t -*-
 
+\newif\ifdraftfooter\draftfootertrue
+
 % draft - Fast compilation, all XXX notes, draft+git footers
 %\documentclass[11pt,twoside,draft]{mitthesis}
 % (no option) - Full compilation, all XXX notes, draft+git footer
-\documentclass[11pt,twoside]{mitthesis}
+%\documentclass[11pt,twoside]{mitthesis}
+% proof - Full compilation, no XXX notes, draft+git footer
+\documentclass[11pt,twoside,final,proof]{mitthesis}
 % final - Full compilation, no XXX notes, no footer
-%\documentclass[11pt,twoside,final]{mitthesis}
+%\documentclass[11pt,twoside,final]{mitthesis} \draftfooterfalse
 
 \usepackage[square,comma,numbers,sort&compress]{natbib}
 
@@ -92,8 +96,10 @@
 \fi
 
 % Draft footer
+\ifdraftfooter
 \ifoptiondraft{\fancyfoot[L]{\textbf{FAST DRAFT}}}%
-{\ifoptionfinal{}{\fancyfoot[L]{\textbf{DRAFT}}}}%
+{\fancyfoot[L]{\textbf{DRAFT}}}
+\fi
 
 % Set page number footer in old style numerals
 \fancyfoot[C]{{\figureversion{text}\thepage}}
