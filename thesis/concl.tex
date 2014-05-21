@@ -1,13 +1,14 @@
 \section{Conclusion}
 \label{sec:concl}
 
-\XXX[STATUS]{Unchanged from SOSP.}
+\XXX[STATUS]{v2: Tweaked.  v1: Unchanged from SOSP.}
 
-\XXX![AC]{Needs expansion.}
-
-The scalable commutativity rule provides a new approach for software
-developers to understand and exploit multicore scalability starting at
-the software interface.
+This dissertation introduced a new approach for software developers to
+understand and exploit multicore scalability during software interface
+design, implementation, and testing.
+%
+We defined, formalized, and proved the scalable commutativity rule,
+the key observation that underlies this new approach.
 %
 We defined \SIM commutativity, which allows developers to apply the
 rule to complex, stateful interfaces.
@@ -20,10 +21,29 @@ Finally, using \sys, we showed that it is practical to achieve a
 broadly scalable implementation of POSIX by applying the rule, and
 that commutativity is essential to achieving scalability and
 performance on real hardware.
-%
-We hope that programmers will find the commutativity rule helpful to
-produce software that is scalable by design.
 
-\tool, \sys, and a browser for the data in this dissertation are
-available at
-\url{http://pdos.csail.mit.edu/commuter}.
+% We hope that programmers will find the scalable commutativity rule helpful to
+% produce software that is scalable by design.
+
+
+% Looking forward, as scalability becomes increasingly important at all
+% levels of the software stack, we hope that the scalable commutativity
+% rule will help shape the way developers design and implement scalable
+% software.
+
+
+% Scalability is becoming increasingly important at all levels of the
+% software stack and the software interfaces we define today will have
+% to cope with the dramatically more parallel machines of tomorrow.
+% %
+% We hope that the scalable commutativity rule will shape the way
+% developers design and implement scalable software.
+
+
+We are in the midst of a sea change in software performance, as
+everything from top-tier servers to embedded devices turns to
+increasing parallelism to maintain a competitive performance edge.
+%
+As scalability becomes increasingly important at all levels of the
+software stack, we hope that the scalable commutativity rule will help
+shape the way developers meet this challenge.
