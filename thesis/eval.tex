@@ -473,9 +473,9 @@ specific pattern of address space usage.
 
 As in the earlier benchmarks, we compare \vm against Linux~3.5.7.  We
 additionally compare against the Bonsai VM
-system~\cite{clements:bonsai} (which is based on Linux~2.6.37).
+system~\cite{clements:bonsai} (based on Linux~2.6.37).
 %
-As discussed in \cref{sec:topic:linux-coarse}, in the Linux kernel
+As discussed in \cref{sec:topic:linux-coarse}, Linux's
 \code{mmap}, \code{munmap}, and \code{pagefault} all acquire a
 per-address space lock.  This serializes \code{mmap} and \code{munmap}
 operations.  Linux's \code{pagefault} acquires the lock in shared
