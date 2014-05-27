@@ -84,6 +84,26 @@
 \input{glyphtounicode}
 \pdfgentounicode=1
 
+% By default, when including another PDF, rather than including its
+% fonts directly, pdfTeX will look for the fonts by name in the fonts
+% that it knows and use those (to deduplicate against document fonts).
+% Unfortunately, this deduplication has the side-effect of disabling
+% pdfTeX's subsetting of the copy of the font included in the PDF.
+% This has two consequences.  1) The final PDF gets much bigger.  And
+% 2) some PDF engines choke on the complete Minion Pro.  Acroread,
+% Evince, and Okular handle it, but at least RepliGo Reader and
+% Quickoffice for Android do not (which appear to have a common
+% ancestry).
+%
+% The below directive tells pdfTeX to keep the fonts that come in PDF
+% inclusions.  The result is that we get both Type 1 (body) and Type
+% 1C (figures) copies of Minion Pro, but the document renders
+% correctly.  pdfTeX appears to still merge the Type 1C fonts from the
+% various inclusions, so we only wind up with two copies, not several.
+% This also makes the final PDF smaller because the sum of the two
+% subsetted fonts is smaller than the full Minion Pro.
+\pdfinclusioncopyfonts=1
+
 \DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
 
 % If we're building without Minion Pro, define away \figureversion and
