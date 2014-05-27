@@ -1291,6 +1291,7 @@ function Slides(parent, path, transitions, external) {
         if (location.hash === "#!snapshot") {
             this._snapshotMode = true;
             location.hash = "";
+            this.deleteNotes();
             this.doSnapshot();
         }
 
@@ -1408,6 +1409,10 @@ Slides.prototype.showNotes = function(show) {
     else
         this._noteStyle.text('.notes {display:none;}');
     this._notesVisible = show;
+};
+
+Slides.prototype.deleteNotes = function() {
+    $('.notes', this._svg).remove();
 };
 
 Slides.prototype.doSnapshot = function() {
