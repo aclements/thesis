@@ -1,6 +1,6 @@
 # Run snapshot.py first to create thumbs-svg
 
-import sys, glob, subprocess
+import sys, os, glob, subprocess, pdf
 
 class Inkscape(object):
     def __init__(self):
@@ -30,13 +30,29 @@ class Inkscape(object):
 # Make PDFs
 print >> sys.stderr, "Converting to PDF..."
 ink = Inkscape()
-pdfs = []
+pdfPaths = []
 for svg in sorted(glob.glob("thumbs-svg/*.svg")):
-    pdf = svg[:-3] + "pdf"
-    ink.do("%s --export-area-page --export-pdf=%s" % (svg, pdf))
-    pdfs.append(pdf)
+    pdfPath = svg[:-3] + "pdf"
+    ink.do("%s --export-area-page --export-pdf=%s" % (svg, pdfPath))
+    pdfPaths.append(pdfPath)
 ink.flush()
 
 # Merge PDFs
 print >> sys.stderr, "Merging..."
-subprocess.check_call(["pdftk"] + pdfs + ["cat", "output", "slides.pdf"])
+subprocess.check_call(["pdftk"] + pdfPaths + ["cat", "output", "slides.pdf"])
+
+# Set viewer preferences
+f = pdf.File('slides.pdf')
+catalogR = f.trailer['Root']
+catalog = pdf.deref(catalogR)
+catalog['PageLayout'] = pdf.Name('SinglePage')
+if 'ViewerPreferences' in catalog:
+    raise ValueError('Already has viewer preferences')
+catalog['ViewerPreferences'] = {'FitWindow': True}
+catalogR.replace(catalog)
+f.write_to('slides.pdf')
+
+# Linearize
+print >> sys.stderr, "Linearizing..."
+subprocess.check_call(['qpdf', '--linearize', 'slides.pdf', 'slides2.pdf'])
+os.rename('slides2.pdf', 'slides.pdf')
