@@ -1,0 +1,105 @@
+%% Colorful Herlihy-Wing-style thread action histories
+%%
+%% By Austin T. Clements and Eddie Kohler
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{colorhist}
+  [2014/06/25 v0.1 Colorful Herlihy-Wing-style thread action histories]
+
+\RequirePackage{amsmath}
+\RequirePackage{tikz}
+\usetikzlibrary{shapes.misc}
+
+%
+% Thread color and offset settings
+%
+
+% Defaults
+\def\hist@color@{black}
+\def\hist@height@{0pt}
+
+\def\hist@color@i{red}
+\def\hist@height@i{0pt}
+
+\def\hist@color@ii{blue}
+\def\hist@height@ii{2pt}
+
+\def\hist@color@iii{rgb:violet,4;white,3}
+\def\hist@height@iii{-2pt}
+
+\def\hist@color@iv{violet}
+\def\hist@height@iv{-3pt}
+
+%
+% Action shape settings
+%
+
+\tikzstyle{hist/shape}=
+  [rounded rectangle,inner ysep=2pt,inner xsep=0.75pt,text=white]
+\tikzstyle{hist/shape/inv}=
+  [hist/shape,rounded rectangle right arc=none]
+\tikzstyle{hist/shape/res}=
+  [hist/shape,rounded rectangle left arc=none]
+
+%
+% Internal implementation
+%
+
+% \hist@if@show{thread #}{t}{f} - Expand to t if thread # should be
+% shown, f otherwise
+\def\hist@if@show#1#2#3{#2}
+
+% \hist@action{shape}{thread #}{label} - Typeset an action, reusing a
+% saved rendering if possible and creating a new one if not.
+\def\hist@action#1#2#3{%
+  \hist@if@show{#2}{%
+    \@ifundefined{hist@save@#1@#2@#3}{%
+      \expandafter\newsavebox\csname hist@save@#1@#2@#3\endcsname
+      \global\expandafter\sbox\csname hist@save@#1@#2@#3\endcsname
+      {\hist@shape{#1}{#2}{#3}}%
+    }{}%
+    \expandafter\usebox\csname hist@save@#1@#2@#3\endcsname
+  }{\ignorespaces}%
+}
+
+\newdimen\hist@dimen
+\def\hist@setting#1#2{%
+  \expandafter\ifx\csname hist@#1@\romannumeral #2\endcsname\relax
+    \csname hist@#1@\endcsname
+  \else
+    \csname hist@#1@\romannumeral #2\endcsname
+  \fi}
+\def\hist@color#1{\hist@setting{color}{#1}}
+\def\hist@height#1{\hist@setting{height}{#1}}
+
+% \hist@shape{shape}{thread #}{label} - Core implementation of action
+% typesetting.
+\def\hist@shape#1#2#3{%
+  \setbox0\hbox{\small\textsf{N}}\hist@dimen=\wd0
+  \text{\scriptsize
+    \raisebox{\hist@height{#2}}{\hbox{%
+        \tikz[baseline=(node.base)]{%
+          \node[hist/shape/#1,draw=\hist@color{#2},fill=\hist@color{#2}] (node)
+          {\hbox to \hist@dimen{\hss \textsf{#3}\hss}};}}}}}
+
+%
+% Public interface
+%
+
+% \inv{thread #}{label} - Typeset an invocation action
+\newcommand*\inv[2]{\hist@action{inv}{#1}{#2}}
+
+% \res{thread #}{label} - Typeset a response action
+\newcommand*\res[2]{\hist@action{res}{#1}{#2}}
+
+% \invres{thread #}{label} - Typeset an invocation followed by a
+% response
+\newcommand*\invres[2]{\inv{#1}{#2} \res{#1}{#2}}
+
+% \thread{thread #}{text} - Typeset text in thread #'s color
+\newcommand*\thread[2]{{\color{\hist@color{#1}}\hbox{#2}}}
+
+% \histrestrict{thread #}{x} - Expand to x, but with histories
+% restricted to the actions of thread #.
+\newcommand*\histrestrict[2]{\bgroup
+  \def\hist@if@show##1##2##3{\if#1##1\relax##2\else##3\fi}%
+  #2\egroup}
