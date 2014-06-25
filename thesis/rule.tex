@@ -50,32 +50,32 @@ call is being invoked); (2) operation arguments (for invocations) or
 a return value (for responses); (3) the relevant thread;
 and (4) a tag for uniqueness.
 %
-We'll write invocations as left half-circles \scpline{\scpi{A}{0}}
+We'll write invocations as left half-circles \inv{0}{A}
 (``invoke A'') and responses as right half-circles
-\scpline{\scpr{A}{0}} (``respond A''), where the letters match
+\res{0}{A} (``respond A''), where the letters match
 invocations and their responses.
 %
 Color and vertical offset differentiate threads:
-\scpline{\scpi{A}{1}} and \scpline{\scpi{B}{2}} are invocations on
+\inv{1}{A} and \inv{2}{B} are invocations on
 different threads.
 
 \def\historyexample{%
-\scpi{A}{1}
-\scpi{B}{3}
-\scpi{C}{2}
-\scpr{A}{1}
-\scpr{C}{2}
-\scpr{B}{3}
-\scpi{D}{1}
-\scpr{D}{1}
-\scpi{E}{3}
-\scpr{E}{3}
-\scpi{F}{2}
-\scpi{G}{3}
-\scpi{H}{1}
-\scpr{F}{2}
-\scpr{H}{1}
-\scpr{G}{3}}
+\inv{1}{A}
+\inv{3}{B}
+\inv{2}{C}
+\res{1}{A}
+\res{2}{C}
+\res{3}{B}
+\inv{1}{D}
+\res{1}{D}
+\inv{3}{E}
+\res{3}{E}
+\inv{2}{F}
+\inv{3}{G}
+\inv{1}{H}
+\res{2}{F}
+\res{1}{H}
+\res{3}{G}}
 
 A system execution is called a \emph{history}. For example
 %
@@ -86,16 +86,11 @@ three different threads.
 %
 We'll consider only \emph{well-formed} histories, in which
 each thread's actions form a sequence of invocation--response pairs.
-$H$ above is well-formed; checking this for the red thread $\scpt{$t$}{1}$, we
-see that the thread-restricted subhistory $\HRESTRICT{H}{\scpt{$t$}{1}} =
-\text{\scplinerestrictb{1}{\historyexample}}$ formed
-by selecting \(\scpt{$t$}{1}\)'s actions from $H$ alternates invocations
+$H$ above is well-formed; checking this for the red thread $\thread{1}{$t$}$, we
+see that the thread-restricted subhistory $\HRESTRICT{H}{\thread{1}{$t$}} =
+\text{\scpline{\histrestrict{1}{\historyexample}}}$ formed
+by selecting \(\thread{1}{$t$}\)'s actions from $H$ alternates invocations
 and responses as one would want.
-%
-%\[\HRESTRICT{H}{\scpt{$t$}{1}} = \text{\scplinerestrict{1}{\historyexample}}\]
-%\[\HRESTRICT{H}{\scpt{$t$}{x1}} = \text{\scplinerestrictb{1}{\historyexample}}\]
-%
-%\noindent%
 In a well-formed history, each thread has at
 most one outstanding invocation at every point.
 
@@ -106,8 +101,8 @@ A specification $\SPEC$ is a prefix-closed set of well-formed histories.
 %
 The set's contents depend on the system being modeled; for example, if $\SPEC$
 specified a Unix-like OS, then
-$[\scpline{\scpi{A}{0}}=\code{getpid()},
-\scpline{\scpr{A}{0}}=0] \not\in \SPEC$, since no Unix thread can
+$[\inv{0}{A}=\code{getpid()},
+\res{0}{A}=0] \not\in \SPEC$, since no Unix thread can
 have PID 0.
 %
 Our definitions and proof require that some specification exists, but we
@@ -227,14 +222,14 @@ responses in the same order for each individual thread, but
 may interleave threads differently.
 %
 If $H =
-\text{\scpline{\scpi{A}{1} \scpi{B}{2} \scpr{A}{1} \scpi{C}{1} \scpr{B}{2}
-    \scpr{C}{1}}}$, then
+\text{\scpline{\inv{1}{A} \inv{2}{B} \res{1}{A} \inv{1}{C} \res{2}{B}
+    \res{1}{C}}}$, then
 %
-$\text{\scpline{\scpi{B}{2} \scpr{B}{2} \scpi{A}{1} \scpr{A}{1} \scpi{C}{1}
-    \scpr{C}{1}}}$
+$\text{\scpline{\inv{2}{B} \res{2}{B} \inv{1}{A} \res{1}{A} \inv{1}{C}
+    \res{1}{C}}}$
 is a reordering of $H$, but
-$\text{\scpline{\scpi{B}{2} \scpi{C}{1} \scpr{B}{2} \scpr{C}{1}
-    \scpi{A}{1} \scpr{A}{1}}}$
+$\text{\scpline{\inv{2}{B} \inv{1}{C} \res{2}{B} \res{1}{C}
+    \inv{1}{A} \res{1}{A}}}$
 is not, since it doesn't respect the order of actions in $H$'s red thread.
 
 \paragraph{Definition.}
@@ -279,10 +274,10 @@ For example, consider a
 %
 \[\HY =
   [\underbrace{
-    \scpline{\scpi{A}{1}}=\code{set(1)}, \scpline{\scpr{A}{1}},
-    \scpline{\scpi{B}{2}}=\code{set(2)}, \scpline{\scpr{B}{2}}}_{\HY_1},
+    \inv{1}{A}=\code{set(1)}, \res{1}{A},
+    \inv{2}{B}=\code{set(2)}, \res{2}{B}}_{\HY_1},
    \underbrace{
-     \scpline{\scpi{C}{1}}=\code{set(2)}, \scpline{\scpr{C}{1}}}_{\HY_2}].
+     \inv{1}{C}=\code{set(2)}, \res{1}{C}}_{\HY_2}].
 \]
 %
 \(\HY\) \SI-commutes because \code{set} returns
@@ -292,8 +287,8 @@ future \code{get} operations cannot distinguish reorderings of $\HY$.
 However, its prefix $\HY_1$
 % %
 % \[\HY_1 =
-%   [\scpline{\scpi{A}{1}}=\code{set(1)}, \scpline{\scpr{A}{1}},
-%    \scpline{\scpi{B}{2}}=\code{set(2)}, \scpline{\scpr{B}{2}}]\]
+%   [\inv{1}{A}=\code{set(1)}, \res{1}{A},
+%    \inv{2}{B}=\code{set(2)}, \res{2}{B}]\]
 % %
 alone does not \SI-commute because some orders set the value to 1 and some
 to 2, so future \code{get} operations can distinguish them.
@@ -398,14 +393,14 @@ implementation (perhaps including \CONTINUE\ invocations)
 could potentially produce the corresponding history.
 For example, this sequence
 shows an implementation $m$ generating a history
-\scpline{\scpi{A}{1} \scpi{B}{2} \scpr{B}{2} \scpr{A}{1}}:
+\scpline{\inv{1}{A} \inv{2}{B} \res{2}{B} \res{1}{A}}:
 
 \begin{CompactItemize}
-\item $m(s_0, \text{\scpline{\scpi{A}{1}}}) = \langle s_1, \scpt{\YIELD}{1} \rangle$
-\item $m(s_1, \text{\scpline{\scpi{B}{2}}}) = \langle s_2, \scpt{\YIELD}{2} \rangle$
-\item $m(s_2, \scpt{\CONTINUE}{1}) = \langle s_3, \scpt{\YIELD}{1} \rangle$
-\item $m(s_3, \scpt{\CONTINUE}{2}) = \langle s_4, \text{\scpline{\scpr{B}{2}}}\rangle$
-\item $m(s_4, \scpt{\CONTINUE}{1}) = \langle s_5, \text{\scpline{\scpr{A}{1}}}\rangle$
+\item $m(s_0, \text{\inv{1}{A}}) = \langle s_1, \thread{1}{\YIELD} \rangle$
+\item $m(s_1, \text{\inv{2}{B}}) = \langle s_2, \thread{2}{\YIELD} \rangle$
+\item $m(s_2, \thread{1}{\CONTINUE}) = \langle s_3, \thread{1}{\YIELD} \rangle$
+\item $m(s_3, \thread{2}{\CONTINUE}) = \langle s_4, \text{\res{2}{B}}\rangle$
+\item $m(s_4, \thread{1}{\CONTINUE}) = \langle s_5, \text{\res{1}{A}}\rangle$
 \end{CompactItemize}
 
 \noindent The state is threaded from step to step;
@@ -537,11 +532,11 @@ history
 %
 \[H =
   [\underbrace{
-    \scpline{\scpi{A}{1}}=\code{iszero()}, \scpline{\scpr{A}{1}}=\code{false},
-    \scpline{\scpi{B}{2}}=\code{iszero()}, \scpline{\scpr{B}{2}}=\code{false}}_{\HAB},
+    \inv{1}{A}=\code{iszero()}, \res{1}{A}=\code{false},
+    \inv{2}{B}=\code{iszero()}, \res{2}{B}=\code{false}}_{\HAB},
    \underbrace{
-    \scpline{\scpi{C}{3}}=\code{dec()}, \scpline{\scpr{C}{3}}=1,
-    \scpline{\scpi{D}{1}}=\code{dec()}, \scpline{\scpr{D}{1}}=0}_{\HCD}]
+    \inv{3}{C}=\code{dec()}, \res{3}{C}=1,
+    \inv{1}{D}=\code{dec()}, \res{1}{D}=0}_{\HCD}]
 \]
 %
 The region $\HAB$ \SIM commutes in $H$.  Thus, by the rule, there is
@@ -568,17 +563,17 @@ The equivalent history with this modified specification is
 %
 \[H' = [
    \rlap{$\overbrace{\phantom{
-         \scpline{\scpi{A}{1}}=\code{iszero()},
-         \scpline{\scpr{A}{1}}=\code{false},
-         \scpline{\scpi{B}{2}}=\code{iszero()},
-         \scpline{\scpr{B}{2}}=\code{false},
-         \scpline{\scpi{C}{3}}=\code{dec()}, \scpline{\scpr{C}{3}}}}^{\HABC'}$}
+         \inv{1}{A}=\code{iszero()},
+         \res{1}{A}=\code{false},
+         \inv{2}{B}=\code{iszero()},
+         \res{2}{B}=\code{false},
+         \inv{3}{C}=\code{dec()}, \res{3}{C}}}^{\HABC'}$}
    \underbrace{
-    \scpline{\scpi{A}{1}}=\code{iszero()}, \scpline{\scpr{A}{1}}=\code{false},
-    \scpline{\scpi{B}{2}}=\code{iszero()}, \scpline{\scpr{B}{2}}=\code{false}}_{\HAB'},
+    \inv{1}{A}=\code{iszero()}, \res{1}{A}=\code{false},
+    \inv{2}{B}=\code{iszero()}, \res{2}{B}=\code{false}}_{\HAB'},
    \underbrace{
-    \scpline{\scpi{C}{3}}=\code{dec()}, \scpline{\scpr{C}{3}},
-    \scpline{\scpi{D}{1}}=\code{dec()}, \scpline{\scpr{D}{1}}}_{\HCD'}]
+    \inv{3}{C}=\code{dec()}, \res{3}{C},
+    \inv{1}{D}=\code{dec()}, \res{1}{D}}_{\HCD'}]
 \]
 
 Unlike $\HCD$, $\HCD'$ \SIM commutes.  And, accordingly, there is an
@@ -592,9 +587,9 @@ long-standing pattern in scalable implementations.
 The rule highlights at least one more opportunity in this history.
 $\HABC'$ \emph{also} \SIM commutes (still assuming an initial count of
 $2$).  However, the implementation given above for $\HCD'$ is
-\emph{not} conflict-free for $\HABC'$ because $\scpline{\scpi{C}{3}}$
+\emph{not} conflict-free for $\HABC'$ because $\inv{3}{C}$
 will write one component of the state that is read and summed by
-$\scpline{\scpi{A}{1}}$ (and $\scpline{\scpi{B}{2}}$).  But, again,
+$\inv{1}{A}$ (and $\inv{2}{B}$).  But, again,
 there is a conflict-free implementation based on adding a Boolean
 \code{iszero} snapshot to the state.  \code{iszero} simply returns
 this snapshot.  When \code{dec}'s per-thread value reaches zero, it
@@ -1029,12 +1024,12 @@ Suppose
 %
 \[H = [
    \rlap{$\overbrace{\phantom{
-         \scpline{\scpi{A}{1}}=\code{put(1)}, \scpline{\scpr{A}{1}},
-         \scpline{\scpi{B}{2}}=\code{put(1)}, \scpline{\scpr{B}{2}}}}^{\HAB}$}
-   \scpline{\scpi{A}{1}}=\code{put(1)}, \scpline{\scpr{A}{1}},
+         \inv{1}{A}=\code{put(1)}, \res{1}{A},
+         \inv{2}{B}=\code{put(1)}, \res{2}{B}}}^{\HAB}$}
+   \inv{1}{A}=\code{put(1)}, \res{1}{A},
    \underbrace{
-     \scpline{\scpi{B}{2}}=\code{put(1)}, \scpline{\scpr{B}{2}},
-     \scpline{\scpi{C}{3}}=\code{max()}, \scpline{\scpr{C}{3}}=1}_{\HBC}].
+     \inv{2}{B}=\code{put(1)}, \res{2}{B},
+     \inv{3}{C}=\code{max()}, \res{3}{C}=1}_{\HBC}].
 \]
 %
 Both $\HAB$ and $\HBC$ \SIM commute in $H$, but $H$ overall is not \SIM
@@ -1044,8 +1039,8 @@ An implementation could store per-thread maxima reconciled by
 \code{max} and be conflict-free for $\HAB$.  Alternatively, it could use a
 global maximum that \code{put} checked before writing.  This
 is conflict-free for $\HBC$.
-%Symmetric cases hold in the history $\scpline{\scpir{B}{2} \scpir{A}{1}
-%  \scpir{C}{3}}$. 
+%Symmetric cases hold in the history $\scpline{\invres{2}{B} \invres{1}{A}
+%  \invres{3}{C}}$.
 %% E: I am happy to ignore this nit; not sure it's relevant.
 %
 But no correct implementation can be conflict-free across all of $H$.
