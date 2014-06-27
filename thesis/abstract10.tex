@@ -1,0 +1,789 @@
+% -*- TeX-PDF-mode: t -*-
+
+\newif\ifdraftfooter\draftfootertrue
+
+\documentclass[11pt,final]{article} \draftfooterfalse
+
+\usepackage[square,comma,numbers,sort&compress]{natbib}
+
+% Put hyperref in final mode; otherwise hyperlinks are disabled
+\usepackage[pdfauthor={Austin T. Clements},
+            pdftitle={The Scalable Commutativity Rule: Designing Scalable Software for Multicore Processors},
+            breaklinks,hidelinks,final,
+            bookmarksdepth=3]{hyperref}
+\usepackage{ifluatex}
+
+% Fonts
+\usepackage[T1]{fontenc}
+\usepackage{amssymb}
+\ifluatex
+\usepackage{fontspec}
+% Ligatures=TeX adds "--"/etc ligatures
+\setmainfont[Ligatures=TeX]{Minion Pro}
+\setsansfont[Ligatures=TeX,Scale=MatchLowercase]{Lato}
+\else
+\usepackage[defaultsans]{lato}
+% [lf] - Use lining figures by default.  Mostly because I say things
+% like "CPU 0" a lot in the text and old style figures make that look
+% really weird.
+\usepackage[lf,footnotefigures]{MinionPro} % After amssymb
+\usepackage[toc,bib]{tabfigures}
+% No Minion Pro?  Uncomment the next line to use Times
+%\usepackage{times,mathptmx}
+\fi
+\usepackage{mathrsfs}
+
+\usepackage{textcomp}
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{xspace}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{balance}
+\usepackage{subfig}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{rotating}
+\usepackage{fancyvrb}
+\usepackage{lastpage}
+\usepackage{alltt}
+\usepackage{etoolbox}
+\usepackage{ifdraft}
+\usepackage{cleveref} % After hyperref, listings
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\IfFileExists{microtype.sty}{
+  \usepackage{microtype}
+}{
+  \PackageError{microtype}{Package microtype not found.  Please
+    install texlive-latex-recommended}{}
+}
+
+% Local packages below here
+
+\usepackage{xxxnotes}
+% Set up fancyhdr before gitinfo
+%\fancypagestyle{plain}{%
+%  \fancyhead{}
+%  \renewcommand{\headrulewidth}{0pt}
+  \fancyhead[R]{Austin T. Clements}
+  \fancyhead[L]{The Scalable Commutativity Rule}
+%}
+% If I just \pagestyle{plain}, the left and right footers shift back
+% and forth on each page.
+%\AtBeginDocument{\pagestyle{fancy}}
+\pagestyle{fancy}
+\usepackage{gitinfo}
+
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+% By default, when including another PDF, rather than including its
+% fonts directly, pdfTeX will look for the fonts by name in the fonts
+% that it knows and use those (to deduplicate against document fonts).
+% Unfortunately, this deduplication has the side-effect of disabling
+% pdfTeX's subsetting of the copy of the font included in the PDF.
+% This has two consequences.  1) The final PDF gets much bigger.  And
+% 2) some PDF engines choke on the complete Minion Pro.  Acroread,
+% Evince, and Okular handle it, but at least RepliGo Reader and
+% Quickoffice for Android do not (which appear to have a common
+% ancestry).
+%
+% The below directive tells pdfTeX to keep the fonts that come in PDF
+% inclusions.  The result is that we get both Type 1 (body) and Type
+% 1C (figures) copies of Minion Pro, but the document renders
+% correctly.  pdfTeX appears to still merge the Type 1C fonts from the
+% various inclusions, so we only wind up with two copies, not several.
+% This also makes the final PDF smaller because the sum of the two
+% subsetted fonts is smaller than the full Minion Pro.
+\pdfinclusioncopyfonts=1
+
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+
+% If we're building without Minion Pro, define away \figureversion and
+% \sscshape
+\ifx\figureversion\undefined%
+  \def\figureversion#1{}
+\fi
+\ifx\sscshape\undefined%
+  \let\sscshape=\scshape
+\fi
+
+% Draft footer
+\ifdraftfooter
+\ifoptiondraft{\fancyfoot[L]{\textbf{FAST DRAFT}}}%
+{\fancyfoot[L]{\textbf{DRAFT}}}
+\fi
+
+% Set page number footer in old style numerals
+\fancyfoot[C]{{\figureversion{text}\thepage}}
+
+% One space after periods
+\frenchspacing
+
+% Avoid widows and orphans
+\widowpenalty=500
+\clubpenalty=500
+
+% Double spacing
+\linespread{1.6}
+
+% Disable annoying inter-paragraph vertical spacing
+\raggedbottom
+
+% % Bring in margins a bit.  The measure at 11pt on a 5.5" body is
+% % pretty reasonable (and almost identical to 12pt on a 6" body).
+% \addtolength{\textwidth}{-0.5in}
+% \addtolength{\oddsidemargin}{0.25in}
+% \addtolength{\evensidemargin}{0.25in}
+% \addtolength{\topmargin}{0.25in}
+% \addtolength{\textheight}{-0.5in}
+
+% Aggressive figure placement
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\setcounter{dbltopnumber}{2}
+\renewcommand{\dbltopfraction}{0.9}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.7}
+\renewcommand{\dblfloatpagefraction}{0.7}
+
+\setlength{\marginparwidth}{0.8in}
+
+% For text from the SOSP paper, define CompactItemize
+\newenvironment{CompactItemize}{\begin{itemize}}{\end{itemize}}
+
+% Fix things like \emph{foo\xspace}.  See
+% http://tug.org/pipermail/texhax/2006-November/007339.html
+\makeatletter
+\xspaceaddexceptions{\check@icr}
+\makeatother
+
+% Listing style
+\lstset{basicstyle=\fontsize{9}{9}\sffamily,showstringspaces=false,columns=fullflexible}
+
+% Use \code{...} to typeset text in code font.  "_"s are accepted in
+% the argument of \code.  You can use \code in math mode and you can
+% use $math$ in \code.
+\makeatletter
+\def\code{\protect\@code}
+\newlength\code@factor
+\ifluatex
+%% Fontspec already adjusted to match the x-height
+\setlength\code@factor{1pt}
+\else
+\setlength\code@factor{0.8675799086757991pt}
+\fi
+\def\codefont{\fontsize{\f@size\code@factor}{\f@size\code@factor}\sffamily}
+% Underscore trick derived from http://tex.stackexchange.com/a/146066
+\begingroup
+% At definition time the token `_` must be active
+\catcode`_=\active
+\gdef\code@activate@us{%
+  \let_\textunderscore
+  \catcode`\_=\active
+}
+\endgroup
+\def\@code#1{\ifmmode\text{\@@code{#1}}\else\@@code{#1}\fi}
+% Match x-height of 10.95pt Minion Pro to 9.5pt Lato
+\def\@@code#1{\begingroup\code@activate@us
+  \codefont
+  \scantokens{#1\endinput}%
+  \endgroup
+}
+\makeatother
+\let\syscall=\code
+% Code in gnuplot labels
+\let\gpcode=\code
+% Command names
+\let\cmd=\code
+\let\gpcmd=\gpcode
+% Or don't typeset command names differently
+%\newcommand{\cmd}[1]{#1}
+%\newcommand{\gpcmd}[1]{#1}
+
+\def\UrlFont{\codefont}
+
+\RecustomVerbatimEnvironment{Verbatim}{Verbatim}{formatcom=\footnotesize}
+
+\renewcommand{\ttdefault}{pxtt}
+
+\newcommand{\vm}{RadixVM\xspace}
+\newcommand{\refcache}{Refcache\xspace}
+\newcommand{\sys}{sv6\xspace}
+\newcommand{\tool}{{\scshape Commuter}\xspace}
+\newcommand{\analyzer}{{\scshape Analyzer}\xspace}
+\newcommand{\testgen}{{\scshape Testgen}\xspace}
+\newcommand{\mtrace}{{\scshape Mtrace}\xspace}
+\newcommand{\SIM}{SIM\xspace}
+\newcommand{\fs}{ScaleFS\xspace}
+
+\newcommand{\inputcode}[1]{%
+  {\small\hrule\vspace{0.5em}\input{#1}\hrule\vspace{0.5em}}}
+
+\newcommand{\inputnodraft}[1]{%
+  \ifdraft{#1 omitted in draft mode}{\input{#1}}}
+
+\makeatletter
+% XXX I'd much rather strip all periods from *all* captions in the
+% list of figures, but I can't for the life of me get TeX to do that.
+\def\sc@oneperiod#1.{\@ifnextchar.{\sc@oneperiod #1}{#1.}}
+\newcommand{\splitcaption}[2]{%
+  \caption[\protect\sc@oneperiod #1.]{#1 #2}}
+\makeatother
+
+\newcommand{\tikzshowbbox}{
+  \path[draw=black] (current bounding box.north west)
+    rectangle (current bounding box.south east);
+  \fill[overlay,black] (0,0) circle (.5mm);
+  \draw[overlay,black] (0,2mm) -- +(0,5mm) (0,-2mm) -- +(0,-5mm)
+                       (2mm,0) -- +(5mm,0) (-2mm,0) -- +(-5mm,0);}
+
+\makeatletter
+\newcommand{\asterism}{%
+  \noindent\par\vspace{1em}%
+  {\hfill $*$ \hspace{3em} $*$ \hspace{3em} $*$ \hfill}\vspace{1em}%
+  \par\@afterindentfalse\@afterheading
+}
+\makeatother
+
+\bibpunct[: ]{[}{]}{,}{n}{XXX}{XXX}
+
+% Do always capitalize "Figure".  Also override the default "Fig."
+\crefname{figure}{Figure}{Figures}
+\crefname{mysubfigure}{Figure}{Figures}
+\Crefname{mysubfigure}{Figure}{Figures}
+\newcommand{\thiscref}[1]{this \lcnamecref{#1}}
+\newcommand{\Thiscref}[1]{This \lcnamecref{#1}}
+
+% Make tables use the same numbering and format as figures
+\makeatletter
+\let\thetable\thefigure
+\let\c@table\c@figure
+\makeatother
+
+\begin{document}
+
+\input{pyexpr}
+\input{code/fmt}
+
+\thispagestyle{plain}
+
+\begin{singlespace}
+\begin{center}
+  \textbf{The Scalable Commutativity Rule: \\
+    Designing Scalable Software for Multicore Processors} \\
+  Austin T. Clements
+\end{center}
+\end{singlespace}
+
+\noindent
+This dissertation presents a pragmatic and formal approach to the
+design and implementation of scalable multicore software that spans
+from the earliest stages of software interface design through
+testing and maintenance of complete implementations.
+
+% The rest of \thiscref{sec:intro} introduces the multicore
+% architectures that now dominate general-purpose computing, the
+% problematic ways in which software developers are coping with these
+% new architectures, and a new interface-driven approach to the design and
+% implementation of software for multicore architectures.
+
+
+%\subsection*{The rise of multicore architectures}
+\subsection*{Parallelize or perish}
+
+In the mid-2000s, there was a fundamental shift in the construction of
+high performance software.  For decades, CPU clock speeds had ridden
+the exponential curve of Moore's Law and rising clock speeds naturally
+translated to faster software performance.
+%
+But higher clock speeds require more power and generate more heat, and
+around 2005 CPUs reached the thermal dissipation
+limits of a few square centimeters of silicon.
+%
+CPU architects could no longer significantly increase the clock speed
+of a single CPU core, so
+they began to increase parallelism instead by putting more CPU cores on the same
+chip.
+% maintaining a ``coherent'' view of memory and shared access to I/O
+% resources.
+%
+% With the rise of multicore architectures, parallel programming went
+% from niche to necessary.
+Now, with the widespread adoption of multicore architectures for
+general-purpose computing, parallel programming has gone from niche to
+necessary.
+%
+\emph{Total} cycles per second continues to grow exponentially, but
+now software must be increasingly parallel to take advantage of this
+growth.
+%
+Unfortunately, while software performance naturally scaled with clock speed,
+scaling with parallelism is an untamed problem.  Even with careful
+engineering, software rarely achieves the holy grail of \emph{linear
+  scalability}, where doubling hardware parallelism doubles the
+software's performance.
+%
+\XXX[AC/FK]{Incorporate clock/heat/cores plot from defense}
+
+Operating system kernels exemplify both the importance
+of parallelism and the difficulty of achieving it.
+%
+Many applications depend heavily on the shared services and resources
+provided by the kernel.
+%
+As a result, if the kernel doesn't scale, many applications won't
+scale.
+%
+At the same time, the kernel must cope with diverse and unknown
+workloads while supporting the combined parallelism of all
+applications on a computer.  Additionally, the kernel's role as the
+arbiter of shared resources makes it particularly susceptible to
+scalability problems.
+%
+% \XXX{example?  Any application that creates, opens, read, or writes
+%   files is at risk of contending with any other application that uses
+%   the file system if the kernel's implementation is insufficiently
+%   parallel.}
+%
+% Underlining the importance of kernel scalability, Linux kernel
+% developers have put vast amounts of effort into multicore Linux,
+% bringing it to the forefront of putting parallel programming
+% techniques into practice.  Lock-free data structures, read-copy-update
+% garbage collection, per-core data, and sophisticated synchronization
+% mechanisms are all commonplace in the Linux kernel.
+
+Yet, despite the extensive efforts of kernel and application
+developers alike, scaling software performance on multicores remains
+an inexact science dominated by guesswork, measurement, and expensive
+cycles of redesign.
+%
+The state of the art for evaluating and improving the scalability of
+multicore software is to choose some workload, plot performance at
+varying numbers of cores, and use tools such as differential
+profiling~\cite{mckenney:differential} to identify scalability
+bottlenecks.
+% \XXX[AC]{Should we cite anything for this?  Is there
+%   anything to cite besides our own papers?}  \XXX[AC]{Mention that
+%   this is an evolution of sequential optimization techniques?}
+%
+
+This approach focuses developer effort on demonstrable issues, but is
+ultimately a near-sighted approach.
+%
+% Different workloads and higher core counts often reveal new
+% bottlenecks, leading to a Sisyphean cycle of performance catch-up and
+% leaving workloads and hardware that kernel developers don't have
+% access to to fend for themselves.
+%
+Each new hardware model and workload powers a Sisyphean cycle of
+finding and fixing new bottlenecks.
+%
+Projects such as Linux require continuous infusions of manpower to
+maintain their scalability edge.
+%
+Worse, scalability problems that span layers---for example,
+application behavior that triggers kernel bottlenecks---require
+cross-layer solutions, and few applications have the reach or
+resources to accomplish this.
+
+But the deeper problem with this workload-driven approach is that many
+scalability problems lie not in the implementation, but in \emph{the design
+of the
+software interface}.  By the time developers have an implementation, a
+workload, and the hardware to demonstrate a bottleneck,
+interface-level solutions may be impractical or impossible.
+
+As an example of interface design that limits implementation
+scalability, consider the POSIX \code{open} call~\cite{posix2013}.
+%
+This call opens a
+file by name and returns a \emph{file descriptor}, a number used to
+identify the open file in later operations.
+%
+Even though this identifier is opaque, POSIX---the standard for the
+Unix interface---requires that \code{open}
+return the numerically lowest available file descriptor for the
+calling process, forcing the kernel to allocate file descriptors one
+at a time, even when many parallel threads are opening files
+simultaneously.
+%
+This simplified the kernel interface during the early days of Unix,
+but this interface design choice is now a burden on implementation
+scalability.
+%
+It's an unnecessary burden, too: a simple change to allow \code{open}
+to return \emph{any} available file descriptor would enable the kernel
+to choose file descriptors scalably.
+%
+This particular example is well-known~\cite{boyd-wickizer:corey}, but
+myriad subtler issues exist in POSIX and other interfaces.
+
+Interface design choices have implications for implementation
+scalability.
+%
+If interface designers could distinguish interfaces that definitely
+have a scalable implementation from those that don't, they would have
+the predictive power to design \emph{scalable interfaces} that enable
+scalable implementations.
+
+
+\subsection*{A rule for interface design}
+
+This dissertation presents a new approach to designing scalable software
+that starts with the design of scalable software interfaces.
+%
+This approach makes reasoning about multicore scalability possible
+before an implementation exists and before the necessary hardware is
+available to measure the implementation's scalability.
+%
+It can highlight inherent scalability problems, leading to better
+interface designs.
+%
+It sets a clear scaling target for the implementation of a
+scalable interface.  And it enables systematic testing of an
+implementation's scalability.
+
+% Reasoning about scalability during interface design requires a notion
+% of scalability divorced from the details of a specific
+% implementation and specific hardware.
+% %
+% Modern shared-memory multicores have architectural commonalities that
+% make this possible.  These machines have distributed memory
+% hierarchies with CPU-local caches and employ protocols like
+% MESI~\cite{papamarcos:mesi} to provide a globally consistent,
+% \emph{coherent} view of memory.  This general architecture enables
+% general arguments about scalability.
+% %
+% In such architectures, a core can scalably read and write data it has
+% cached exclusively, and scalably read data it has cached in shared
+% mode. Writing a cache line that was last read or written by another
+% core is not scalable, however, since the coherence protocol serializes
+% ownership changes for each cache line, and because the shared
+% interconnect may serialize unrelated transfers.
+
+% We therefore consider a set of operations \emph{scalable} if their
+% implementations have \emph{conflict-free} memory accesses; that is, no
+% core writes a cache line that was read or written by another core.
+% %
+% When memory accesses are conflict-free, adding more cores will produce
+% a linear increase in capacity.
+% %
+% This is not a perfect model of the complex realities of modern
+% hardware, but it is a good approximation that we confirm in
+% \cref{sec:scalability}.
+
+At the core of this dissertation's approach is this \emph{scalable
+  commutativity
+  rule}: In any situation where several operations
+\emph{commute}---meaning there's no way to distinguish their execution
+order using the interface---they have a implementation that is
+\emph{conflict-free} during those operations---meaning no core
+writes a cache line that was read or written by another core.
+%
+Empirically, conflict-free operations scale, so this implementation
+scales.
+%
+Or, more concisely, \textbf{whenever interface operations commute,
+  they can be implemented in a way that scales.}
+
+This rule makes intuitive sense: when operations commute, their
+results (return values and effect on system state) are independent of
+order.  Hence, communication between commutative operations is
+unnecessary, and eliminating it yields a conflict-free implementation.
+%
+On modern shared-memory multicores, conflict-free operations can
+execute entirely from per-core caches, so the performance of
+a conflict-free implementation will scale linearly with the number of
+cores.
+
+The intuitive version of the rule is useful in practice, but
+not precise enough to reason
+about formally.
+%
+Therefore, this dissertation formalizes the scalable commutativity
+rule, proves that commutative operations have a conflict-free
+implementation, and demonstrates experimentally that, under reasonable
+assumptions, conflict-free implementations scale linearly on modern
+multicore hardware.
+
+% Therefore, the first contribution of this dissertation is a
+% formalization of the scalable commutativity rule and a proof of the
+% correctness of this formalized form, which we present in
+% \cref{sec:rule}.
+% %
+% Connecting this formalization to scalability as traditionally measured
+% requires certain assumptions about multicore hardware, which we verify
+% experimentally in \cref{sec:scalability}.
+
+An important consequence of this presentation is a novel form of
+commutativity we name \emph{\SIM\ commutativity}.
+%
+The usual definition of commutativity (e.g., for algebraic operations)
+is so stringent that it rarely applies to the complex, stateful
+interfaces common in systems software.
+%
+\SIM\ commutativity, in contrast, is \emph{state-dependent} and
+\emph{interface-based}, as well as \emph{monotonic}.
+%
+When operations commute in the context of a specific system state,
+specific operation arguments, and specific concurrent operations, we
+show that an implementation exists that is conflict-free \emph{for that state
+  and those arguments and concurrent operations}.
+%
+\SIM commutativity exposes many more opportunities to apply the rule to real
+interfaces---and thus discover scalable implementations---than a more
+conventional notion of commutativity would.
+%
+Despite its state dependence, \SIM\ commutativity is
+interface-based: rather than requiring all operation orders to produce
+identical internal states, it requires the resulting states to be
+indistinguishable via the interface.
+%
+\SIM\ commutativity is thus independent of any specific
+implementation, enabling developers to apply the rule directly to
+interface design.
+
+
+\subsection*{Applying the rule}
+
+The scalable commutativity rule leads to a new way to design scalable
+software:
+%
+analyze the interface's commutativity; if possible, refine or redesign
+the interface to improve its commutativity; and then design an
+implementation that scales when operations commute.
+
+For example,
+consider file creation in a POSIX-like file system. Imagine that
+multiple processes create files in the same directory at the same
+time. Can the creation system calls be made to scale? Our
+first answer was ``obviously not'': the system calls modify the same
+directory, so surely the implementation must
+serialize access to the directory. But it turns
+out these operations commute if the two files have different names
+(and no hard or symbolic links are involved) and, therefore, have an
+implementation that scales for such names.
+One such implementation represents each directory as a hash table
+indexed by file name, with an independent lock per bucket,
+so that creation of differently named files is conflict-free, barring
+hash collisions.
+%
+Before the rule, we tried to determine if these
+operations could scale by analyzing all of the \emph{implementations}
+we could think
+of.  This process was difficult, unguided, and itself did not scale to
+complex interfaces, which
+motivated our goal of reasoning about
+scalability in terms of interfaces.
+
+% In \cref{sec:posix}, this dissertation puts the rule into practice,
+% contributing a set of general guidelines for designing interfaces that
+% enable scalable implementations, inspired by both the successes and
+% failures of POSIX.
+% %
+% Using these guidelines, we propose specific modifications to POSIX
+% that would enable greater scalability.
+
+Real-world interfaces and their implementations are complex.
+Even with the rule, it can be difficult to spot and
+reason about all commutative cases.
+%
+% Complex interfaces can make it difficult to spot and reason about all
+% commutative cases even given the rule.
+%
+To address this challenge, this dissertation introduces a method to
+automate reasoning about interfaces and implementations, embodied in a
+software tool named \tool.
+%
+\tool takes a symbolic interface model,
+computes precise conditions under which sets of operations commute,
+generates concrete tests of commutative operations,
+and uses these tests to reveal conflicts in an implementation.
+%
+Any conflicts \tool finds represent an opportunity for the developer
+to improve the scalability of their implementation.
+%
+This tool can be
+integrated into the software development process to drive initial design and
+implementation, to incrementally improve existing implementations, and to
+help developers understand the commutativity of an interface.
+
+We apply \tool to a model of
+\pyexpr{len(mscan.calls)} POSIX file system and virtual memory system
+calls.
+%
+From this model,
+\tool generates \pyexpr{mscan.ntestcases} tests of commutative
+system call pairs, all of which can be made conflict-free
+according to the rule.
+%
+Applying this suite to Linux, we find that the Linux kernel is
+conflict-free for \pyexpr{mscan.ntestcases - mscan.linux.shared}
+(\pyexpr{percent(1-(mscan.linux.shared/float(mscan.ntestcases)))}) of
+these cases.
+%
+Many of the commutative cases where Linux is not conflict-free are
+important to applications---such as commutative
+\code{mmap}s and creating different files in a shared directory---and
+reflect bottlenecks found in previous
+work~\cite{boyd-wickizer:scaling}.
+%
+Others reflect previously unknown problems that may become bottlenecks
+on future machines or workloads.
+
+Finally, to demonstrate the application of the rule and \tool to the
+design and implementation of a real system, we use these tests to
+guide the implementation of a new research operating system kernel
+named \sys.
+%
+\sys doubles as an existence proof showing that the rule can be
+applied fruitfully to the design and implementation of a large
+software system, and as an embodiment of several novel scalable kernel
+implementation techniques.
+%
+% \Cref{sec:sv6} details these techniques and the software designs
+% necessary to achieve conflict-free commutative operations in \sys's
+% virtual memory system (\vm) and in-memory file system (\fs).
+%
+\tool verifies that \sys is conflict-free for
+\pyexpr{mscan.ntestcases - mscan.xv6.shared}
+(\pyexpr{percent(1-(mscan.xv6.shared/float(mscan.ntestcases)))})
+of the tests generated by our POSIX model and confirms that \sys addresses many
+of the
+sources of conflicts found in the Linux kernel.
+%
+\sys's conflict-free implementations of
+commutative system calls translate to dramatic improvements in
+measured scalability for both microbenchmarks and application
+benchmarks.
+
+
+\subsection*{Contributions}
+
+This dissertation's broad contribution is a new approach to building
+scalable software using interface-based reasoning to guide design,
+implementation, and testing.  This dissertation makes the following
+intellectual contributions:
+
+\begin{itemize}
+
+\item The scalable commutativity rule, its formalization, and a proof
+  of its correctness.
+
+\item \SIM commutativity, a novel form of interface commutativity that
+  is state-sensitive and interface-based.  As we demonstrate with
+  \tool, \SIM commutativity enables us to identify myriad commutative
+  cases in the highly stateful POSIX interface.
+
+\item A set of guidelines for commutative interface design based on
+  \SIM commutativity.  Using these guidelines, we propose specific
+  enhancements to POSIX and empirically demonstrate that these changes
+  enable dramatic improvements in application scalability.
+
+\item An automated method for reasoning about interface commutativity
+  and generating implementation scalability tests using symbolic
+  execution.  This method is embodied in a new tool named \tool, which
+  generates \pyexpr{mscan.ntestcases} tests of commutative operations
+  in our model of \pyexpr{len(mscan.calls)} POSIX file system and
+  virtual memory system operations.  These tests cover many subtle
+  cases, identify many substantial scalability bottlenecks in the
+  Linux kernel, and guide the implementation of \sys.
+
+\end{itemize}
+
+\noindent
+This dissertation also contributes several operating system
+implementation techniques:
+
+\begin{itemize}
+
+\item \refcache, a novel scalable reference counting scheme that
+  achieves conflict-free \code{increment} and \code{decrement}
+  operations with efficient periodic reconciliation and $O(1)$
+  per-object space overhead.
+
+\item \vm, a POSIX virtual memory system based on radix trees that is
+  conflict-free for commutative \code{mmap}, \code{munmap}, and
+  \code{pagefault} operations.
+
+\item \fs, a POSIX file system that is conflict-free for the vast
+  majority of commutative file system operations.
+
+\end{itemize}
+
+\noindent
+We validate \vm and \fs---and thus their design methodology based on
+the rule and \tool---by evaluating their performance and scalability
+using several microbenchmarks and application benchmarks on
+an 80-core x86 machine.
+
+% The source code to all of the software produced for this dissertation
+% is publicly available under an MIT license from
+% \url{http://pdos.csail.mit.edu/commuter}.
+
+
+% \subsection*{Outline}
+
+% The rest of this dissertation presents the scalable commutativity rule
+% in depth and explores its consequences from interface design to
+% implementation to testing.
+
+% We begin by relating our thinking about scalability to previous work
+% in \cref{sec:related}.
+
+% We then turn to formalizing and proving the scalable commutativity
+% rule, which we approach in two steps.  First, \cref{sec:scalability}
+% establishes experimentally that conflict-free operations are generally
+% scalable on modern, large multicore machines.  \Cref{sec:rule} then
+% formalizes the rule, develops \SIM commutativity, and proves that
+% commutative operations can have conflict-free (and thus scalable)
+% implementations.
+
+% We next turn to applying the rule.  \Cref{sec:posix} starts by
+% applying the rule to interface design, developing a set of guidelines
+% for designing interfaces that enable scalable implementations and
+% proposing specific modifications to POSIX that broaden its
+% commutativity.
+
+% \Cref{sec:tool} presents \tool, which uses the rule to automate
+% reasoning about interface commutativity and the conflict-freedom of
+% implementations.  \Cref{sec:linux} uses \tool to analyze the Linux
+% kernel and demonstrates that \tool can systematically pinpoint
+% significant scalability problems even in mature systems.
+
+% Finally, we turn to the implementation of scalable systems guided by
+% the rule.  \Cref{sec:sv6} describes the implementation of \sys and how
+% it achieves conflict-freedom for the vast majority of commutative
+% POSIX file system and virtual memory operations.  \Cref{sec:eval}
+% confirms that theory translates into practice by evaluating the
+% performance and scalability of \sys on real hardware for several
+% microbenchmarks and application benchmarks.
+
+% \Cref{sec:future-work} takes a step back and explores some promising
+% future directions for this work.  \Cref{sec:concl} concludes.
+
+% LocalWords:  rule's RCU microbenchmarks
+
+
+\newpage
+{
+\begin{singlespace}
+% Since we're using natbib in numbers mode, we don't need plainnat,
+% which exists to feed authors and years back in to natbib.  As a
+% result, it complains about entries without years, which we don't
+% care about.
+%\bibliographystyle{plainnat}
+\bibliographystyle{plain}
+\bibliography{n-str,local,n,n-conf,kpubs}
+\end{singlespace}
+}
+
+\end{document}

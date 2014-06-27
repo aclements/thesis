@@ -70,6 +70,12 @@ thesis.pdf: $(GRAPHS:.gnuplot=.tex) gnuplot-lua-tikz.sty \
 thesis.ps: thesis.pdf
 	acroread -toPostScript $<
 
+abstract10.pdf: gitinfo.tex pyexpr.tex FORCE
+	-@./lint abstract10.tex
+	$(call quiet,LATEX)
+	$(Q)latexrun --latex-cmd=lualatex --bibtex-args=-min-crossrefs=100 \
+		abstract10.tex
+
 .PHONY: lint
 lint:
 	./lint $(SPELLTEX)
