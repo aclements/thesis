@@ -7,13 +7,22 @@ import os
 import itertools
 
 class Proc(collections.namedtuple(
-        'Proc', 'name date clock_mhz cores tdp_watts product_id')):
+        'Proc', 'name date clock_mhz cores total_cores tdp_watts product_id')):
 
     def dominates(self, other):
         """Return True if self strictly dominates other."""
+        # cmps = [cmp(getattr(self, field), getattr(other, field))
+        #         for field in ('clock_mhz', 'cores', 'tdp_watts')]
         cmps = [cmp(getattr(self, field), getattr(other, field))
-                for field in ('clock_mhz', 'cores', 'tdp_watts')]
+                for field in ('clock_mhz', 'total_cores')]
         return all(c >= 0 for c in cmps) and any(c > 0 for c in cmps)
+
+    def weak_dominates(self, other):
+        cmps = [cmp(getattr(self, field), getattr(other, field))
+                for field in ('clock_mhz', 'total_cores', 'date')]
+        # Smaller dates dominate larger dates
+        cmps[2] = -cmps[2]
+        return any(c > 0 for c in cmps) or all(c == 0 for c in cmps)
 
 def parse_odata_date(s):
     m = re.match(r'/Date\(([0-9]+)\)/', s)
@@ -34,7 +43,8 @@ def read_ark(fp):
         date = parse_odata_date(rec['LaunchDate'])
         yield Proc(name=rec['ProductName'], date=date,
                    clock_mhz=rec['ClockSpeedMhz'],
-                   cores=rec['CoreCount'], # * (rec['MaxCPUs'] or 1),
+                   cores=rec['CoreCount'],
+                   total_cores=rec['CoreCount'] * (rec['MaxCPUs'] or 1),
                    tdp_watts=rec['MaxTDP'],
                    product_id=('Intel', rec['ProductId']))
 
@@ -74,6 +84,7 @@ def read_cpudb(path):
         yield Proc(name=rec['model'], date=date,
                    clock_mhz=float(rec['clock']),
                    cores=int(rec['hw_ncores']),
+                   total_cores=int(rec['hw_ncores']),
                    tdp_watts=float(rec['tdp']),
                    product_id=product_id)
 
@@ -118,8 +129,17 @@ def dedominate_past(procs):
                 kept.append(proc)
                 yield proc
 
-for proc in dedominate_past(dedup(
+def dedominate_any(procs):
+    kept = []
+    procs = list(procs)
+    for proc1 in procs:
+        if all(proc1.weak_dominates(proc2) for proc2 in procs):
+            kept.append(proc1)
+    kept.sort(key=lambda p: p.date)
+    return kept
+
+for proc in dedominate_any(dedup(
         read_ark(open('ark/processors.json')),
         read_cpudb('cpudb'))):
     df = proc.date.year + (proc.date.replace(year=1).toordinal() / 365.0)
-    print df, proc.clock_mhz, proc.tdp_watts, proc.cores, proc.name.encode('utf-8')
+    print df, proc.clock_mhz, proc.tdp_watts, proc.cores, proc.total_cores, proc.name.encode('utf-8')
